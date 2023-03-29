@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>How to Synthesize a Fake Obama Video with Artificial Neural Networks</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">如何用人工神经网络合成假奥巴马视频</h1>
+<blockquote>原文：<a href="https://thenewstack.io/synthesize-fake-obama-video-artificial-neural-networks/#0001-01-01">https://thenewstack.io/synthesize-fake-obama-video-artificial-neural-networks/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">如今，似乎没有一天没有人宣布“假新闻”——这个现在已经臭名昭著的短语在上次美国大选期间变得突出，现在正在令人作呕地流传。</p>
+<p class="translated">但是任何聪明的人都知道，你不能总是相信你在网上(或网下)读到或看到的东西。由于照片编辑技术允许人们创造看起来真实但实际上从未发生的场景，互联网上充斥着伪造的PS图像。</p>
+<p class="translated">现在，在人工智能的帮助下，我们也可能面临虚假新闻视频爆炸的前景。至少这是我们从来自华盛顿大学的研究人员的新发现中可能假设的，华盛顿大学的研究人员使用人工神经网络创建了这个相当令人信服但虚假的美国前总统巴拉克·奥巴马的视频，这个人工神经网络是在以前总统为主角的数小时视频片段上训练的，上面覆盖了他去年谈论<a href="https://thenewstack.io/off-shelf-hacker-times-fear-uncertainty-doubt-lean-tools/" class="local-link">奥兰多大规模枪击事件</a>的真实音频剪辑。观察并看看你是否能确定什么是真实的，什么不是，以及它是如何做到的:</p>
+<p class="translated"><iframe loading="lazy" src="https://www.youtube.com/embed/9Yq67CjDqvw?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">视频</iframe></p>
+<p class="translated">根据研究人员的论文，他们使用了所谓的递归神经网络(RNN)，这是一种人工神经网络，它排列人工神经元的节点，以类似人类大脑的方式运行。这些网络被输入大量数据，以便“学习”如何执行任务或解决问题。</p>
+<p class="translated">我们已经看到递归神经网络被应用于语音识别、文本到语音合成等领域——任何需要某种内部存储器来处理不同输入序列的领域。</p>
+<p class="translated">在这种情况下，研究人员在一个单独的视频中提取了奥巴马讲话的音频，并将其复制到另一个完全不同位置的视频上。使用公共领域中大约14小时的镜头，并来源于奥巴马的每周公告，递归神经网络能够“学习”如何重建对应于各种声音的面部和嘴部运动的组合。</p>
+<p class="translated">为了做到这一点，神经网络合成了一个“稀疏的嘴形”，在此基础上，嘴部纹理可以被应用并混合到一个改变的目标视频中，给说话的头部一个自然运动的外观。结果是一个怪异的似是而非的假唱。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2759368" src="../Images/1f10d180dc6c30a537110338c78ef841.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/07/75c852bc-synthesizing-obama-6.jpg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2759373" src="../Images/e54b59827638b6508c95b49113f8ca3f.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/07/ea5072ef-synthesizing-obama-1.jpg"/></p>
+<p class="translated">然而令人惊讶的是，这并不是研究人员第一次尝试做这种事情。正如上面视频中提到的，同样的概念也有过其他版本，但这一次，华盛顿大学的团队在这个过程中添加了一个时间延迟，以使结果看起来更加真实。</p>
+<p class="translated">此外，神经网络专注于合成面部与说话最相关的部分——即嘴及其周围区域、嘴唇和牙齿，特别关注说话时皮肤上的细微皱纹和阴影。甚至下颌线也翘起来，与目标视频中的下巴相匹配。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2759369" src="../Images/9c0ff7a174b5c47f064e42392e0d5c52.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/07/8cd96034-synthesizing-obama-5.jpg"/></p>
+<p class="translated">“给定每个时刻的嘴形，我们合成高质量的嘴部纹理，并将其与适当的3D姿势匹配进行合成，以改变他在目标视频中似乎在说什么，以匹配输入音频轨道，”该团队写道。"我们的方法产生了逼真的效果."</p>
+<p class="translated">但制造假新闻不是这里的主要目的。研究小组预测这项技术可以用于其他更实际的应用。</p>
+<p class="translated">“现实的音频到视频转换具有实际应用，如改善会议的视频会议，以及未来的应用，如能够通过仅从音频创建视觉效果，在虚拟现实中与历史人物进行对话，”研究的共同作者Ira<a href="https://homes.cs.washington.edu/~kemelmi/" class="ext-link" rel="external ">Kemelmacher-Shlizerman</a>在<em> <a href="https://www.sciencedaily.com/releases/2017/07/170711141408.htm" target="_blank" class="ext-link" rel="external ">科学日报</a> </em>上说。“这种突破将有助于推动接下来的步骤。”</p>
+<p class="translated">即使这项技术被用于操纵大众以达到政治目的，同样的技术也可以被用来确定一个视频是真的还是假的——通过检测混合的牙齿和嘴部运动。</p>
+<p class="translated">论文合著者<a href="http://homes.cs.washington.edu/~supasorn/" class="ext-link" rel="external "> Supasorn Suwajanakorn </a>告诉<a href="http://spectrum.ieee.org/tech-talk/robotics/artificial-intelligence/ai-creates-fake-obama" target="_blank" class="ext-link" rel="external "> <em> IEEE Spectrum </em> </a>“这可能不会被人眼注意到，但可以很容易地开发一个程序，将嘴区域的模糊性与视频的其余部分进行比较，并将非常可靠地工作”。</p>
+<p class="translated">或许，这是一种冰冷的安慰，但至少这是一个合理的警告，提醒我们未来可能会发生什么。</p>
+<p class="attribution translated">图片:华盛顿大学</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

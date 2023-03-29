@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Serverless Pricing: Estimating Consumption Costs</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">无服务器定价:估计消费成本</h1>
+<blockquote>原文：<a href="https://thenewstack.io/serverless-pricing-estimating-consumption-costs/#0001-01-01">https://thenewstack.io/serverless-pricing-estimating-consumption-costs/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="p1 translated">无服务器将基于消费的定价理念带到了IT预算的前沿，最终将彻底改变公司和企业的决策和组织结构。无服务器已经使新的创业公司更加可行，并允许企业以更低的风险更快地进行实验，因为生产不依赖于分配服务器基础设施来运行新的应用程序或部署尚未经过市场测试的产品功能。</p>
+<p class="p1 translated">通常，走向无服务器的最初动力是关于开发人员的速度。向企业和政府提供快速测试新想法的机会，而没有基础设施成本开销，这激发了兴趣并推动了初步实施。但是，如果不加以监控，无服务器成本可能会导致与传统系统一样大的基础架构成本。</p>
+<p class="p1 translated">“我们发现人们越来越担心无服务器系统的成本，”<a href="http://epsagon.com" class="ext-link" rel="external ">爱普生</a>首席执行官兼联合创始人<a href="https://www.linkedin.com/in/nitzan-shapira-521291108/?originalSubdomain=il" class="ext-link" rel="external ">尼赞·沙皮拉</a>说。“人们希望了解他们在无服务器中的成本，因为它是按使用付费的。越来越多的采纳者现在在问:我们支付什么，为了什么？是因为代码慢，还是因为我们用的一个API？他们需要能够以非常商业和符合逻辑的方式分析成本。”</p>
+<h2 class="p1 translated">找到函数运行时的最佳点</h2>
+<p class="p1 translated">无服务器系统的定价虽然没有完全商品化，但AWS、Azure Functions、Google Cloud Platform和IBM OpenWhisk都以类似的方式构建。每百万次调用都要对函数收费。然后，用户可以选择分配给计算时间的内存大小。</p>
+<p class="p1 translated">从表面上看，为计算选择最低的内存分配似乎是最便宜的，代价是运行时可能会更慢。但是正如杰瑞米·戴利在今年早些时候AWS举办的创业日活动中与<a href="https://www.jeremydaly.com/15-key-takeaways-from-the-serverless-talk-at-aws-startup-day/" class="ext-link" rel="external ">分享的那样，“调整你的函数的计算能力有很大的好处。”</a></p>
+<p class="p1 translated">由于较小的内存分配可能会延长执行时间，因此总成本可能会更高。Daly分享了由亚马逊网络服务的高级开发人员Chris Munns 提交的数据，该数据表明，在1000次调用后，分配128MB的内存大小可能需要花费0.024628美元，耗时11.72秒。然后，256MB和512MB内存大小分配的价格略有上升，但最有趣的是，当用户分配1024 MB RAM进行计算时，执行时间下降到1.47秒，但成本仅为0.00001美元，为0.024638美元。</p>
+<p class="p1 translated">去年在纽约举行的Serverlessconf会议上，几位发言人都分享了关于寻找无服务器定价最佳点的类似发现，而不考虑云供应商。</p>
+<h2 class="p1 translated">定价不仅仅是调用和计算</h2>
+<p class="p1 translated">然而，除了计算时间所需的函数调用和内存分配之外，在一个完整的无服务器系统或工作流中还会增加其他成本。<a href="https://github.com/jonathan-kosgei" class="ext-link" rel="external ">来自IP地理定位API公司<a href="https://ipdata.co/" class="ext-link" rel="external "> ipdata </a>、<a href="https://medium.freecodecamp.org/how-we-serve-25m-api-calls-from-10-scalable-global-endpoints-for-150-a-month-911002703280" class="ext-link" rel="external ">的Jonathan Kosgei </a>写道，无服务器给了他们“优惠的价格”和无限的规模和高吞吐量</a>。这是他们的全球服务所需要的，该服务需要根据网站访问者的IP地址快速返回他们的位置，以便提供定制的和区域相关的内容。但这样一个在AWS中设计的无服务器系统，不仅需要lambdas，还需要API Gateway、Dynamodb、CloudWatch服务的使用和Kinesis。</p>
+<blockquote><p class="translated">“我们已经看到一些公司因为代码出错而收到了一张5万美元的账单。”</p></blockquote>
+<p class="p1 translated">对于Kosgei来说，是意外的CloudWatch使用，包括警报和请求，并且由于CloudWatch只存储24小时的日志，因此更长期的日志存储也涉及到额外的成本。从好的方面来看，Kosgei指出他的Dynamodb成本低于预期，因为可能会过度提供rcu的使用，但计费是基于使用的，因此只有在任何设定的时间范围内使用的那些才会被收费。他指出，理解Dynamodb的定价体系也需要一个学习过程。</p>
+<p class="p1 translated">Elliot Forbes <a href="https://read.acloud.guru/scaling-your-static-site-to-a-global-market-for-a-fraction-of-the-cost-on-aws-12d23f30f877" class="ext-link" rel="external ">还发现了无服务器系统</a>的额外成本，因此尽管他能够通过使用无服务器将托管单页web应用的总成本从每月20美元降至每月7美元，但这些成本中的大部分来自CloudFront，一小部分来自Route53和S3存储公司。</p>
+<p class="p1 translated">另一个隐性成本来自API请求。Spotinst，<a href="https://medium.com/@amiram_26122/the-hidden-costs-of-serverless-6ced7844780b" class="ext-link" rel="external "> <span class="s1">的首席执行官兼创始人Amiram Shachar在年初</span> </a>写道，这是无服务器系统最昂贵的定价要素之一。“由于许多无服务器应用程序大量调用API，这可能会非常昂贵，大约每执行100万次需要3.50美元，”他指出。</p>
+<h2 class="p1 translated">在无服务器中，性能和成本紧密相关</h2>
+<p class="p1 translated">来自Epsagon的Shapira说，理解无服务器成本的关键是要超越单个功能，看到完整的无服务器业务流程。</p>
+<p class="p1 translated">他说，分布式跟踪是理解无服务器系统的关键，以便首先监控性能，进而确定成本。</p>
+<p class="p1 translated">“要真正弄清楚无服务器系统中发生了什么，你必须以某种方式将事件联系起来。这就是我们考虑无服务器成本和分布式跟踪的原因，”Shapira说。“我们使用代码工具和人工智能技术将无服务器应用分成不同类型的流，例如，一种类型的流可能是用户注册系统，另一种类型的流是用户付款。然后，您可以识别最频繁的流和最高优先级的流。然后你可以弄清楚，你怎么知道为什么业务流程需要一秒钟？是因为您的代码速度慢，还是因为您使用的API降低了性能？”</p>
+<p class="p1 translated">Shapira说，这是一个核心问题，因为当无服务器系统的性能受到影响时，这是通过定价来实现的。Shapira解释说:“当你考虑整个系统时，成本进来得非常快。当你期待一张5000美元的账单时，你如何真正知道你不会在月底得到一张100000美元的账单？我们已经看到一些公司因为代码出错而收到了5万美元的账单。”</p>
+<p class="p1 translated">Shapira说，无服务器定价基本上是你的代码运行多长时间乘以一些因素，比如计算资源(加上上面提到的所有额外费用)。但这表明，专注于优化函数代码的编写，使其小而高效，将会降低成本。</p>
+<p class="p1 translated">“您的函数的总时间和成本更受API的影响，包括AWS的API，或任何第三方，如Twilio或Stripe。即使这些API中的一个运行缓慢，您也可能会付出很大的代价。如果它们以每秒50毫秒的速度工作，并且一个月内发生一百万次，那么成本就会增加。你需要识别你正在使用的所有API，我们的系统会告诉你这些API运行缓慢，”Shapira建议道。</p>
+<div id="attachment_5573094" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5573094" decoding="async" loading="lazy" class="size-full wp-image-5573094" src="../Images/9bc9c63fd738201634d77f7841820002.png" alt="Epsagon dashboard shows link between performance and costs" data-original-src="https://cdn.thenewstack.io/media/2018/09/f65e8563-systemhealth.png"/><p id="caption-attachment-5573094" class="wp-caption-text translated">Epsagon仪表板显示性能和成本之间的联系</p></div>
+<p class="p1 translated">映射和识别所有正在使用的无服务器工作流的另一个目标是，更容易区分哪些工作流是核心业务不可或缺的，而不是为没有增加相应业务价值份额或没有创收的工作流支付更高的费用。</p>
+<h2 class="p1 translated">监控企业无服务器产品定价的新方法</h2>
+<p class="p1 translated">目前，许多开始采用无服务器的人并没有看到这些隐藏的定价问题。获得最大优势的是那些购买未充分利用的服务器并迁移到无服务器的用户，他们的基础架构成本大幅降低。已经建立了新的无服务器应用但尚未达到规模的初创公司和颠覆者也从基于消费的定价中受益，在这种定价中，他们的使用水平可能意味着他们每月无需支付任何费用或支付很低的费用。</p>
+<p class="p1 translated">但是，那些寻求将服务器自动扩展作为其采用无服务器的关键优势的大型企业，面临着将财务钥匙交给无服务器云提供商的风险。密切监控与峰值相关的风险，并确保估计成本不会因无服务器工作流和系统的低性能而增加，这将是工程副总裁和企业架构师在未来一年的新重点。</p>
+<p class="attribution translated">专题图片:<a href="https://unsplash.com/photos/MEldcHumbu8?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external ">阿尔瓦罗·雷耶斯</a>在<a href="https://unsplash.com/search/photos/cash-register?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash </a>拍摄的照片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Cutting Through the Hype: When Serverless Works and When It Doesn’t</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">打破宣传:无服务器何时可行，何时不可行</h1>
+<blockquote>原文：<a href="https://thenewstack.io/cutting-through-the-hype-when-serverless-works-and-when-it-doesnt/#0001-01-01">https://thenewstack.io/cutting-through-the-hype-when-serverless-works-and-when-it-doesnt/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="attribution translated">CircleCi 赞助了这篇文章</p>
+<p class="translated">围绕无服务器架构以及它们如何帮助开发团队削减成本和卸载管理任务，有很多积极的言论。关于它能做什么，以及何时和如何使用它，也有一些误解。为了深入了解无服务器架构的实际用途，CircleCI的首席技术官罗布·祖贝尔(Rob Zuber)采访了Stackery的首席执行官内特·塔加特(Nate Schmidt)，stack ery提供无服务器操作控制台，帮助开发团队构建无服务器应用程序。以下是对话中的一些亮点——要了解更多，请观看<a href="https://www.youtube.com/watch?v=2cHfpYhlPQA&amp;feature=youtu.be" class="ext-link" rel="external ">视频</a>。</p>
+<p class="translated"><iframe loading="lazy" title="Can serverless scale? Practical considerations for serverless architectures" src="https://www.youtube.com/embed/2cHfpYhlPQA?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">你能给我们简单介绍一下无服务器意味着什么吗？</p>
+<a href="https://circleci.com/" class="clearfix infoBlock " target="_blank">
+<div class="infoBlockImageBlock">
+<img class="infoBlockImage" src="../Images/ed74d3d18ca0624073b440eeec27874d.png" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/07/e931e21c-rob-zuber-headshot-1.jpg"/>
+</div>
+<div class="infoBlockTextBlock">
+<p class="infoBlockTitle translated">罗伯·朱伯</p>
+<p class="infoBlockText translated">Rob Zuber是一位有20年软件创业经验的老手——四次创始人，三次首席技术官。自三年半前加入CircleCI担任CTO以来，Rob见证了该公司1800万美元的B轮和3100万美元的C轮投资，并实现了大规模的产品创新。在同一时期，Rob将CircleCI的工程团队扩大了四倍，被《旧金山商业时报》评为湾区最佳工作场所之一。在加入CircleCI之前，Rob是Distiller的首席技术官和联合创始人，Distiller是一个针对移动应用程序的持续集成和部署平台，于2014年被CircleCI收购。在加入Distiller之前，他共同创立了在线社交市场peripheral。在periphery之前，Rob是Yoohoot的首席技术官和联合创始人，yoo hoot是一家让当地企业与附近消费者联系起来的技术公司，于2011年被Appconomy收购。Rob拥有安大略省金斯敦皇后大学的应用科学学士学位。</p>
+</div>
+</a>
+<p class="translated">内特:我认为最好的开始是承认“无服务器”是世界上最愚蠢的名字。有<em>个</em>服务器——你的代码将在服务器上运行。</p>
+<p class="translated">亚马逊有一个很好的表述方式:你外包管理服务器的无差别的繁重工作。这里的想法是，你专注于你的应用程序，而你用一个无服务器的解决方案将你的代码交付给云提供商。他们负责扩展、可用性和协调，而您则专注于应用开发和交付。</p>
+<p class="translated">人们应该从哪里开始使用无服务器计算？在无服务器的世界中，最容易建模的应用程序是什么？</p>
+<p class="translated"><strong> Nate: </strong>我们看到大多数公司从低可见性和关键度工作负载开始试水。它几乎总是一个后台任务——类似于一个cron作业脚本，每晚或每周运行一次，位于AWS EC2实例上。对于您的第一个无服务器应用程序来说，这是一个很好的切入点。</p>
+<p class="translated">无服务器应用程序将会发生的情况是，您的功能将按需启动。你将为它运行的几秒钟或几分钟付费——然后它将关闭，剩下的时间你不用付费。成本节约是人们所指的，而真正的优势是不必管理运行这些小服务的基础架构。</p>
+<p class="translated">一旦人们开始执行这些任务，他们就会着眼于更高可见性和更关键的无服务器应用程序。通常，前进的道路是使用无服务器应用程序来支持API或作为微服务模式的一部分。与其决定重新构建整个应用程序以便它可以在无服务器上运行，不如将应用程序的一些组件迁移到无服务器上。</p>
+<p class="translated"><strong>罗布:我认为人们很难像理解cron作业的价值一样，将API这样的东西概念化为无服务器。他们不认为API是一种功能，因为它总是打开的，总是在监听。如果人们打算考虑API的无服务器，他们需要建立什么样的心理联系？</strong></p>
+<p class="translated"><strong>内特:</strong>我想我们在这里用几种不同的方式谈论功能。您有自己的代码、构建模块和组件。您已经编写了一个代码函数，现在我们要按需运行它。这似乎并不十分令人困惑。但是有点棘手的是，这些短暂的计算实例可以封装比单个文字代码块更多的代码。</p>
+<p class="translated">您可以做的是构建一个应用程序，然后按需运行该应用程序。我们可以决定，当一个API被命中时，它将触发一个代码块运行，这就是功能即服务。我们也可以变得更复杂。我们可以构建一个完整的应用程序，将其装载到我们想要使用的任何计算功能中，然后决定当API端点被命中时，我们将通过应用程序路由它——就像我们对长期服务器应用程序所做的那样。然后我们将选择正确的代码块在代码中运行。</p>
+<p class="translated">关于无服务器有哪些误解？关于无服务器的哪些想法与它所提供的不太相符？</p>
+<p class="translated">Nate: 现在，无服务器无疑是热门话题，引起了很多热议。随着人们开始接受它，我们听到了一些常见的误解。其中最大的一个问题是，无服务器不需要运营，您不需要管理基础架构方面的任何东西。这显然是不真实的。当然，有些运营职责是可以外包的。例如，您不再需要管理应用程序的流程编排，而可用性和负载平衡等工作作为托管服务的一部分在幕后进行。</p>
+<p class="translated">当我们谈论无服务器时，我们实际上是在谈论计算，仅此而已。但是没有一个真正的应用程序是仅仅依靠计算来构建的。您将会有依赖性、第三方服务、内部服务、数据存储和网络需求。这些都是你仍然需要管理的部分。</p>
+<p class="translated"><strong>罗布:谁<em>不应该</em>使用无服务器？有哪些不好的用例？</strong></p>
+<p class="translated"><strong> Nate: </strong>一个明显的例子是，您有一个长期运行且非常可预测的工作负载，每天都有一个三小时的批处理作业。如果是这种情况，并且您擅长启动服务器，运行它，然后关闭它，坦白地说，这可能是一个更好的解决方案。</p>
+<p class="translated">如果您需要大量的资源，如高内存和大量的磁盘空间，无服务器可能不是一个好方法。但是，如果您无法预测容量，并且您正在处理大量小型事务性工作负载，那么无服务器真的很好。</p>
+<p class="attribution translated">通过 Pixabay生成的特征图像<a href="https://thenewstack.io/?p=5176034&amp;preview=true" class="local-link">。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

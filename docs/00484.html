@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Containerd 1.0 Release Becomes the Public Face of Containers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Containerd 1.0发行版成为容器的公众形象</h1>
+<blockquote>原文：<a href="https://thenewstack.io/containerd-1-0-release/#0001-01-01">https://thenewstack.io/containerd-1-0-release/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在一个OCI标准集装箱内可能有多个操作部件，尽管目前有两个是最重要的。runccomponent是executive——使容器自身发挥功能的部分。谜题的第二部分，<a href="http://containerd.io/" class="ext-link" rel="external "> containerd </a>充当“监督”容器生命周期的部分，并通过API调用与外界通信。</p>
+<p class="translated">该功能可能会取代生产系统中持续存在完整容器引擎的需求，为Kubernetes、Mesosphere DC/OS和其他容器编排引擎扫清道路。</p>
+<p class="translated">“有了Docker平台的下一个版本，开发者可以在他们的工作站上直接在Kubernetes上开发和测试应用，”<a href="https://blog.docker.com/2017/10/kubernetes-docker-platform-and-moby-project/" class="ext-link" rel="external ">宣布Docker Inc .的Solomon Hykes去年10月</a> ( <a href="https://thenewstack.io/solomon-hykes-changes-roles-docker/" class="local-link"> Hykes已经从首席技术官</a>晋升为副董事长)。“此外，运营部门可以获得Docker企业版的所有优势，包括安全的多租户、图像扫描和基于角色的访问控制，同时在生产环境中运行与Kubernetes或Swarm协调的应用。”</p>
+<h2 class="translated">不再连接我们的引擎</h2>
+<p class="translated">尽管从那时起，基本上整个容器驱动的世界都在围绕配备containerd的结构构建平台，但直到2017年12月初，该项目才达到了必要的稳定性水平，使<a href="https://www.cncf.io/" class="ext-link" rel="external ">Cloud Native Computing Foundation</a>、<a href="https://thenewstack.io/docker-donate-container-runtime-containerd-cloud-native-computing-foundation/" class="local-link">自去年3月以来的项目管理者</a>宣布该项目全面可用。</p>
+<p class="translated">就在发布前几周，Docker工程师Stephen Day向DockerCon Europe 17 的与会者解释说，containerd使orchestrator或orchestrator平台管理的插件组件能够有效地管理整个容器生命周期，而无需包含整个Docker Engine或其对应组件。Kubernetes的工程师已经通过使用orchestrator的容器运行时接口来交付管理功能，展示了这一原则的实际应用——例如，通过CRI-O 。</p>
+<p class="translated">containerd接管Docker的原始引擎，与主机操作系统进行交互，为容器的网络名称空间和文件系统设置原语，从注册表中获取容器的OCI映像，将该映像中的组件插入名称空间，并开始执行。它还为Prometheus等监控平台以及独立的开源Bucketbench项目等底层基准驱动程序收集和分发容器性能指标。</p>
+<p class="translated">在最近的一次网络研讨会上，IBM高级技术人员<a href="https://twitter.com/estesp" class="ext-link" rel="external ">Phil Estes</a>——bucket bench的创建者——解释说，容器化的实现者需要某些功能，直到去年，这些功能一直被锁定在Docker引擎中，以便分解成单独的、标准化的、可互换的、可能“无聊”的组件。两年前，当<a href="https://coreos.com/" class="ext-link" rel="external "> CoreOS </a>引入一个与容器结构更松散耦合的竞争性运行时，这种对一个容器引擎品牌的明显依赖成为了<a href="https://thenewstack.io/coalition-for-app-container-spec-shows-docker-is-not-the-standard-for-everyone/" class="local-link">争论的焦点。</a></p>
+<p class="translated">基于成员对相对深奥的体系结构原则的立场，像这样的混战带来了将容器开发社区分成不同阵营的危险。</p>
+<h2 class="translated">少一点码头工人</h2>
+<p class="translated">从那时起，Docker Inc .使其技术背后的开源倡议从商业组织中剥离出来，<a href="https://thenewstack.io/what-is-the-moby-project/" class="local-link">成为莫比项目</a>。在这样做的时候，它建立了一个贡献结构，有效地将Docker从其事实上的“仁慈的独裁者”(BDFL)的位置上赶了下来，并在它的位置上建立了一个技术指导委员会(TSC ),该委员会最初由Docker的工程师组成，但也包括来自IBM的Estes和工程总监Laura Frank。</p>
+<p class="translated">去年12月13日，Estes在个人博客中宣布了这个委员会的结构。他认为正是这种结构使得莫比的项目对更广泛的开源贡献者来说更加容易理解和有趣。尽管CNCF是containerd的官方管理者，Estes在去年10月的网上研讨会上说，莫比TSC将对其发展战略产生影响。</p>
+<p class="translated">这一策略已经让莫比的投稿人不再以码头工人为中心，尤其是对Kubernetes而言。在containerd的1.0稳定版中，开发人员添加了一些在运行时的0.x alpha阶段没有尝试过的重要特性。其中一个被称为<em>容器扩展</em>,<a href="https://github.com/containerd/containerd/releases" class="ext-link" rel="external ">文档将</a>描述为一种方式，通过这种方式，寻求与容器运行时集成的组件可以在容器本身维护的数据结构中存储描述集成的JSON元数据。</p>
+<p class="translated">这将有效地消除与容器引擎集成的需要，就像Docker Inc .两年前设想的那样。</p>
+<p class="translated">IBM的Estes在他的网络研讨会上说:“Containerd将是TSC覆盖的保护伞的一部分。“很多人已经期待这种改变有一段时间了，所以这真的是一个积极的消息，它肯定会使containerd和莫比旗下的其他项目更加开放，更加关注治理，并且应该更容易被那些仍然想知道Docker对这些项目的控制的更大的社区所接受。</p>
+<p class="translated">“生产这些[<em>组件</em>的一个重要方面，尤其是将它们提供给基金会，”Estes继续说道，“实际上是让它们有望在Docker引擎和Docker产品套件之外使用。”</p>
+<h2 class="translated">非敌意收购</h2>
+<p class="translated">Estes解释说，作为Docker容器面向外部的一部分，containerd将承担最初委托给Docker守护进程的许多职责，回到它是一个将构建工具、客户机和守护进程的功能融合在一个组件中的单一二进制文件的时候。它将是runc执行程序的管理者或监督者(确切的语言仍在确定中),并且是runc提供了容器内部二进制组件的固有功能。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/12/e83c4e8d-171217-containerd-basic-architecture.png" class="ext-image" rel="external "><img decoding="async" loading="lazy" class="wp-image-3737886 alignnone" src="../Images/81aa3cdf1e9a5e22b43527098b9461dc.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/12/e83c4e8d-171217-containerd-basic-architecture.png"/>T2】</a></p>
+<p class="translated">随着容器在其生命周期中的进展，containerd利用广泛的子系统为每个主要里程碑触发显式事件，如实例化、启动、更新和删除，如上图所示(承蒙<a href="http://containerd.io/" class="ext-link" rel="external "> containerd.io </a>)。在这个图中，<strong> ctr </strong>充当与API通信的命令行，尽管在生产中，组件可以直接进行这种连接，而不仅仅是通过命令行。</p>
+<p class="translated">通过基于gRPC的API，这些事件可以触发例程。在任何需要监听这些事件的例程的源代码中，首先有一个方法实例化一个容器服务客户机的新实例。声明内存中的一个集合，它将包含返回事件的队列。然后，在最简单的形式中，无条件循环可以重复使用<strong>。Recv() </strong>方法监听事件，然后跳转到适当的响应。</p>
+<p class="translated">关于这种交互，最重要的是它不在Docker引擎或任何其他容器引擎和客户机之间。相反，它是客户端与容器本身的标准化元素进行接触。这样，orchestrator不再与引擎争夺管理权限，也不必侦听引擎触发的事件，这些事件可能会以某种方式影响其自己的管理计划。</p>
+<p class="translated">这种方法可以缓解谷歌工程师Tim Hockin去年2月提出的担忧，其中最重要的可能是必须通过orchestrator和容器引擎之间的接口传递事件的长长的组件链，就像消防队传递水桶一样。此外，Docker Inc .一直在构建Hockin所描述的负责生命周期管理的组件的“自以为是的堆栈”。“我什么都不想要，”他当时说。“对Kubernetes来说没有意义。”</p>
+<p class="translated">现在，可以说所有的争论都已经成为过眼云烟。Estes在他10月份的网络研讨会上评论道，“Containerd是一个位于CNCF的项目，可以被各种各样的人使用，包括VMware、Docker、Kubernetes、IBM Cloud和Amazon ECS Registry……所有这些参与者现在都有这个独立于Docker产品套件的核心容器运行时。”</p>
+<p class="attribution translated">云本地计算基金会、T2代码协会和T4 CoreOS都是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:Iwona Erskine-Kellie在温哥华水族馆拍摄的一只<a href="https://commons.wikimedia.org/wiki/File:Delphinapterus_leucas_24.jpg" class="ext-image" rel="external ">母白鲸和幼白鲸</a>，在知识共享2.0下发布。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

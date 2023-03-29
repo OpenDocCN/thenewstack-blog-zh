@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Prisma Aims to Unite the Polyglot of Databases with GraphQL</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Prisma的目标是将多语言数据库与GraphQL结合起来</h1>
+<blockquote>原文：<a href="https://thenewstack.io/prisma-aims-to-unite-the-polyglot-of-databases-with-graphql/#0001-01-01">https://thenewstack.io/prisma-aims-to-unite-the-polyglot-of-databases-with-graphql/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Prisma 是一个新的数据库后端组合开源项目，允许企业管理多语言数据库环境，并通过统一的GraphQL端点访问不同系统的数据集。</p>
+<p class="translated">该软件背后的公司<a href="https://github.com/schickling" class="ext-link" rel="external ">的联合创始人兼首席执行官Johannes Schickling </a>说，对Prisma的需求产生于今天管理分布式、大规模应用程序和商业系统的方式。在过去，企业可能用一个SQL或Oracle数据库来管理一切，而今天的后端系统通常由多种数据库组成。“根据你拥有的数据类型，你可能会将一些数据放在搜索数据库中，一些放在关系数据库中，其他数据放在Neo4j之类的东西中，其他数据放在Redis中，”Schickling说。"这是我们今天生活的多语言数据库世界."</p>
+<p class="translated">Schickling说，由于这些选择，数据库是分布式的，但涉及许多基础设施，这意味着当业务应用程序管理状态(即，需要存储、读取、可能更改然后再次存储的数据)时，它们最终会降低性能。</p>
+<p class="translated">为了解决这个问题，Prisma专注于三项任务:使分布式应用程序设计总体上更简单；特别是使使用数据库更容易；并让更大的公司能够赶上新兴的最佳实践。</p>
+<p class="translated">Schickling举了一个关键的例子，说明了科技巨头可以尝试和实施的最佳实践，但这对大型企业来说可能遥不可及。Schickling解释说:“现代应用程序设计分为几层，通常是基础设施层和逻辑层。“事实上，您的应用程序和数据库不是一回事，这已经是大家都熟悉的一个层次。在任何API和后端服务中，您都会有一个数据访问层，这是一个逻辑层。这个逻辑层变得越来越复杂，需要处理更多关于授权、访问和速度的责任，因此非常难以构建。这已经成为应用程序开发的最大瓶颈。”</p>
+<p class="translated">Schickling表示，科技巨头已经通过将该逻辑层转变为另一个对其他流程完全不可知的基础设施层，为自己解决了这类问题。“这是我们自己的基础设施层，通过缓存和高效的方式来查询您的数据，然后我们将它放入基础设施层，因此您可以用多种语言访问它。从客户端应用程序到数据库，你都可以获得类型安全。</p>
+<p class="translated">对于Prisma使数据库工作更容易的愿景，他们需要具有多数据库集成能力。为每种类型的数据库构建连接器并能够组合这些连接器是他们的首要任务，支持MySQL和Postgres数据库已经就绪。在他们的GitHub repo中提供了一个开放的pull请求，追随者(自2018年1月首次推出以来已超过8000人)可以投票选择他们接下来想要创建的数据库连接器。</p>
+<p class="translated">Schickling说，MongoDB和ElasticSearch已经被社区选为下一个需要支持的最重要的数据库。“我们非常受社区驱动，我们的开放问题是我们最大的灵感来源。在接下来的一年里，我们将增加对各种数据库的支持，”Schickling说。</p>
+<p class="translated">通过将数据库连接到单个GraphQL端点，一些人认为这创建了另一层，这可能意味着数据库架构师更加头疼。Shickling认为，通过选择GraphQL，跨底层数据库的一致性更容易维护。“Prisma帮助你迁移底层数据模型和数据库，”Schickling反驳道。“您可以生成GraphQL绑定，将其绑定到您的逻辑层，锦上添花的是端到端的类型安全。您可以从数据模型到数据库获得类型安全，因此保持同步变得容易得多。”</p>
+<p class="translated">Schickling说，例如，REST需要信任数据访问层返回正确的数据，而GraphQL和Prisma的绑定功能确保了这一点。</p>
+<p class="translated">到目前为止，Prisma看到了企业和初创公司的采用，每个都有自己的用例。企业——通常是金融企业——正在寻求摆脱对遗留数据库的依赖。“他们可以将数据访问层放在他们的Oracle数据库之上，并非常快速地构建API，这是目前人们关注Prisma的最常见驱动因素，”Schickling证实道。</p>
+<p class="translated">与此同时，初创公司很感兴趣，因为这反映了他们对新堆栈的兴趣:GraphQL、MongoDB、React……他们希望找到最快的方法来构建一个可以与MongoDB对话的GraphQL服务器，Schickling说，Prisma让他们这样做。</p>
+<p class="attribution translated">专题图片:斯科特·韦伯在“T2”Unsplash上拍摄的照片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

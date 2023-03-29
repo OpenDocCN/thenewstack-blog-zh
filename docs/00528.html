@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Moving Beyond the Limits of Infrastructure Testing with Chef InSpec 2.0</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">借助Chef InSpec 2.0超越基础设施测试的限制</h1>
+<blockquote>原文：<a href="https://thenewstack.io/moving-beyond-limits-infrastructure-testing-inspec-2-0/#0001-01-01">https://thenewstack.io/moving-beyond-limits-infrastructure-testing-inspec-2-0/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://www.chef.io/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">张秀坤·里希特</p> <p class="infoBlockText">张秀坤是一位创始人、产品负责人和工程经理，他共同创建了InSpec、Chef Compliance和dev-sec.io项目。他的公司VulcanoSec被Chef Software收购，负责推动其安全性和合规性解决方案。他在工程、黑客和领导成功团队方面有15年的经验。</p> </div> </a></p><p class="translated">随着InSpec 2.0 的发布，InSpec 刚刚迎来了它的下一次重大升级<a href="https://thenewstack.io/chef-bulks-security-compliance-automation-cloud/" class="local-link">。作为一个开放源码项目，经过两年多的时间和上一个主要版本发布一年后，它在范围、稳定性和社区方面都有了相当大的发展。</a></p>
+<p class="translated">自InSpec 1.0以来，该版本增加了30多项新资源、重大性能改进、错误修复和稳定性。然而，亚马逊网络服务和Azure支持看似无辜的添加指向了InSpec本身基础的重大转变。</p>
+<p class="translated">在本文中，我们将了解操作系统(OS)和服务器测试的开端，以及InSpec如何从简单的节点验证扩展到覆盖整个计算设备的承诺。InSpec 2.0悄悄地打开了自动化和安全测试新世界的大门，它统一了不同的系统，并将它们暴露在您的指尖。</p>
+<h2 class="translated">操作系统培训</h2>
+<p class="translated">InSpec的灵感来自于服务器测试框架Serverspec。因此，它非常适合测试操作系统和节点配置和服务。</p>
+<p class="translated">InSpec建立在train之上，即传输接口——一种与本地和远程操作系统对话的API。Train允许InSpec提供资源，而无需处理操作系统检测和处理的所有细节。</p>
+<h2 class="translated">超越操作系统</h2>
+<p class="translated">当我们第一次在更大的真实世界用例中部署InSpec时，我们开始注意到对数据库和API端点的测试。虽然InSpec本身并没有阻止我们添加这些，但它导致了一些我们无法解决的缺点:</p>
+<ol>
+<li class="translated">概要文件将报告他们运行的操作系统，而不是他们正在验证的组件。例如，您将测试一个AWS API，但是报告将指出测试在RedHat Linux机器的节点<code>xyz</code>上运行。我们希望InSpec报告实际的目标，而不是当前的执行环境。</li>
+<li class="translated">为API编写的概要文件不能测试它们是否针对正确的系统。例如，一个配置文件可以表明它只支持Windows Server 2012R2，不会在Linux上运行。嵌入在代码中的API端点不允许这些检查运行。</li>
+<li class="translated">资源无法表明它们是为基于API的目标编写的。例如，一个<code>aws_iam_role</code>将只在AWS上工作。为了在执行概要文件之前验证这一点，我们需要知道用户想要测试AWS。</li>
+</ol>
+<p class="translated">我们可以轻松地在这里停下来，决定创建另一个工具来测试API端点。最终，我们决定不这样做，因为我们看到InSpec开始测试完整的基础设施，我们意识到我们没有达到这个目标。</p>
+<p class="translated">当然，一个简单的补救方法也可以是在InSpec的当前执行层中加入Frankenstein API支持。然而，这个想法在早期讨论中引起的混乱很快决定了它的命运。</p>
+<h2 class="translated">InSpec 2.0中的平台支持</h2>
+<p class="translated">我们决定将InSpec的视野从操作系统扩展到更广泛的平台。在这个模型中，操作系统构成了目标的一个分支。API端点是另一种，专门用于低级套接字(TCP/UDP)、中级目标(HTTP/REST)和高级API(AWS、Azure)。在这种模式中，很容易支持到数据库和网络设备的远程连接。</p>
+<p class="translated">随着InSpec 2.0的发布，我们这个奇妙的团队和社区终于达到了它的崇高目标。酝酿了一年的<a href="https://github.com/chef/inspec/issues/1661" class="ext-link" rel="external "> RFC </a>终于迎来了实施。InSpec现已向操作系统之外的所有其他组件开放了基础设施设备的全栈测试。</p>
+<p class="translated">这一版本不仅增加了AWS和Azure支持，还使我们能够轻松地使用其他组件来扩展这一框架，以适应您的计算设备的不断发展。</p>
+<h2 class="translated">检查更新稳定性</h2>
+<p class="translated">InSpec的2.0版本也展示了我们更新理念的一个重要方面。我们的目标是将重大变更的数量保持在最低，并尽可能容易地升级到另一个主要版本。这可能看起来像是一个巨大的更新，但如果你一直在定期升级，它真的不是。</p>
+<p class="translated">通过使用前滚方法，我们在开发过程中对稳定的1.x代码库引入了大多数2.0更改，而没有破坏兼容性。所有突破性的变化已被收集在一个单独的问题，主要是在形式上的反对，将被删除的升级。如果您今天运行InSpec时没有任何反对警告，那么您可以安全地继续前进。</p>
+<p class="translated">非常感谢推动InSpec发布的团队和整个社区！我很期待这个项目的未来。</p>
+<p class="attribution translated">厨师是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

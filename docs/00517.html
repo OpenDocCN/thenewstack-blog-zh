@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>4 Threat Models for Kubernetes Deployment Security</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Kubernetes部署安全性的4种威胁模型</h1>
+<blockquote>原文：<a href="https://thenewstack.io/4-threat-models-for-kubernetes-deployment-security/#0001-01-01">https://thenewstack.io/4-threat-models-for-kubernetes-deployment-security/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">作为一个编排平台，<a href="https://kubernetes.io/" class="ext-link" rel="external "> Kubernetes </a>影响了许多运行时安全功能。这些包括身份验证、授权、日志记录和资源隔离，以及更高级的含义，如工作负载放置和网络分段。</p>
+<p class="translated">由于orchestrator在容器运行时环境中的广泛影响力，Kubernetes安全性是容器基础设施安全性的一个重要方面。在我们新博客系列的第一部分，也是我们即将发布的关于<a href="https://thenewstack.io/ebooks/kubernetes/kubernetes-deployment-and-security-patterns/" class="local-link"> Kubernetes部署和安全模式</a>的电子书的一部分，我们将讨论Kubernetes部署的威胁模型。</p>
+<h2 class="translated">Kubernetes威胁模型</h2>
+<div href="" class="clearfix infoBlock " target="_blank">
+<div class="infoBlockImageBlock">
+<img class="infoBlockImage" src="../Images/291025fd273d3107f910f67c65014065.png" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/01/fd81c17e-chenxi-wang3-pr-large-3.png"/>
+</div>
+<div class="infoBlockTextBlock">
+<p class="infoBlockTitle translated">王晨曦博士</p>
+<p class="infoBlockText translated">王晨曦博士是网络安全战略咨询公司简·邦德项目的创始人。网络安全行业知名战略家、演说家、作家。Wang博士还担任OWASP基金会董事会副主席，ClearSky security和630 Cyber的投资顾问，以及各种安全初创公司和IT Security Planet的战略顾问。此前，陈曦是Twistlock的首席战略官，负责将Twistlock的品牌和业务从零发展到细分市场的领导者。陈曦被《SC》杂志评为2016年度最具影响力女性，她还担任了2017年格蕾丝·赫柏会议的项目主席(安全和隐私)。晨曦在网络安全行业建立了辉煌的职业生涯，包括在Forrester Research、Intel Security和CipherCloud担任多个高管职位。在Forrester，Chenxi研究了移动、云和企业安全，并撰写了许多有影响力的研究论文。在英特尔安全部门，她领导了涵盖硬件和软件平台的无处不在战略。陈曦的职业生涯始于她在卡内基梅隆大学担任计算机工程教员。晨曦是一位广受欢迎的公共演说家，曾被全球顶级媒体和活动报道过。晨曦拥有弗吉尼亚大学计算机科学博士学位。</p>
+</div>
+</div>
+<p class="translated">在<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>环境中，无论部署模式如何，通常都存在四种类型的威胁(有一些边缘情况例外):</p>
+<ol>
+<li class="translated"><strong>旨在破坏Kubernetes控制的外部攻击:</strong>这种威胁存在于所有连接的系统中。在Kubernetes集群的上下文中，这表示攻击者获得了对系统的访问权，或者破坏了将影响系统安全性的某些控制。</li>
+<li class="translated"><strong>受损的容器或节点:</strong>如果Kubernetes控制的环境中有恶意容器，或者集群中有恶意节点，对其余节点或集群有什么影响？您能否有效地控制节点上和群集内的“爆炸半径”？</li>
+<li class="translated"><strong>凭证受损:</strong>当Kubernetes管理员的凭证受损时会发生什么？这对集群有多大影响？</li>
+<li class="translated"><strong>滥用合法权限:</strong>当系统配置错误、缺乏控制或运营未受到密切监控时，可能会发生这种情况。</li>
+</ol>
+<p class="translated">这些不同的威胁可能会导致大量危害和不良情况，包括特权提升、敏感数据泄露、运营受损或违反合规性政策。</p>
+<p class="translated">[cyclone slider id = " kubernetes-series-book-2-赞助商"]</p>
+<p class="translated">已经引起相当多关注的攻击场景之一是对“爆炸半径”的担忧，即被破坏的容器会对同一节点上的其他容器造成多大的损害，或者被破坏的节点会对集群的其余部分造成多大的损害？Kubernetes部署的所有安全考虑都是由这些威胁模型以及最小化“爆炸半径”的需求所驱动的。</p>
+<h2 class="translated">外部攻击</h2>
+<p class="translated">在Kubernetes环境中，外部可访问的组件将暴露于外部攻击。这些组件可以包括应用编程接口(API)服务器、<a href="https://kubernetes.io/docs/reference/generated/kubelet/" class="ext-link" rel="external "> kubelet </a>和<a href="https://coreos.com/etcd/" class="ext-link" rel="external "> etcd </a>。(请参阅新堆栈的电子书“Kubernetes生态系统的状态”以查看Kubernetes节点中的组件。)</p>
+<p class="translated">为了减轻外部攻击的威胁，请确保只暴露必要的Kubernetes服务，而不是更多。始终对任何公开的服务实施身份验证并配置正确的网络安全策略。</p>
+<h2 class="translated">受损容器</h2>
+<p class="translated">最终，Kubernetes管理在容器中运行的工作负载。如果一个容器受到威胁，那么问题是该容器是否可以提升权限来控制其他容器或集群。</p>
+<p class="translated">Kubernetes的隔离机制，如名称空间或网络分段，以及一些内置的、操作系统级的控制，可以管理容器可以访问的内容，有助于限制受损容器的影响。用户应该注意的另一个控制是限制可以在特权模式下运行的容器数量的能力——如果特权容器被破坏，它将比普通容器造成更大的危害。</p>
+<h2 class="translated">泄露的凭据</h2>
+<p class="translated">当合法用户的凭据遭到破坏时，系统中可能有恶意用户。因此，正确管理和限制用户对群集资源的访问并密切监视用户操作至关重要。</p>
+<p class="translated">为了减少恶意用户的影响，您需要实施最低权限访问、基于角色的访问控制或其他细粒度的访问控制。</p>
+<h2 class="translated">滥用特权</h2>
+<p class="translated">如果系统配置不正确，可能会导致滥用用户权限。例如，如果网络策略不限制pod或命名空间之间的访问，则用户可能能够读取他或她本来不应该访问的其他命名空间的流量。</p>
+<p class="translated">防止滥用特权的主要手段是适当的强化。确保所有系统组件(如容器、pod、名称空间和kubelets)都得到加强，以显著降低滥用权限的可能性。</p>
+<p class="translated">另一个重要的防御是授权控制。Kubernetes支持插件架构，允许包含复杂的授权逻辑。正确设计和实施授权；这是反对滥用特权的最有效的武器之一。</p>
+<p class="translated">考虑到威胁模型，下一次我们将沿着四个主要原则探索Kubernetes安全性:身份验证和授权；资源隔离；硬化和网络安全；以及日志和审计。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/photos/ZwPuquZBnyM?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Yannick Pulver </a>在<a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash </a>上拍摄的特征图像。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

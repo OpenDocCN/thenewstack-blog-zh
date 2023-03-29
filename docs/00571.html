@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Google Develops 'Adversarial Example' Images that Fool Both Humans and Computers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">谷歌开发了愚弄人类和计算机的“反面例子”图像</h1>
+<blockquote>原文：<a href="https://thenewstack.io/google-develops-adversarial-example-images-that-fool-both-humans-and-computers/#0001-01-01">https://thenewstack.io/google-develops-adversarial-example-images-that-fool-both-humans-and-computers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">我们知道人工智能技术正变得越来越强大:它可以帮助我们更准确地诊断疾病，帮助汽车自动识别行人，甚至提高建筑行业的生产率。</p>
+<p class="translated">但是我们知道机器，不管它们有多聪明，也会犯错误——有时会带来非常悲惨的后果。有时，机器可能会被故意愚弄，所谓的<a href="https://en.wikipedia.org/wiki/Adversarial_machine_learning" target="_blank" class="ext-link" rel="external ">对抗例子</a>——例如，当自动驾驶汽车中的计算机视觉系统被隐藏在路标上的涂鸦欺骗，完全将它们解读为其他东西。</p>
+<p class="translated">但令人惊讶的是，人类显然也可能成为迷惑人工神经网络的同样对抗性诡计的牺牲品。至少，这是谷歌大脑研究人员在开发一种算法时发现的，这种算法产生的额外信息可以叠加在现有图像上，导致机器和人类错误识别内容。正如上面的主图所示，在被这个软件修改后，人类和计算机都错误地将一张猫的图片归类为一张狗的图片。</p>
+<p class="translated">然而，正如之前的研究表明的那样，愚弄机器学习模型并不难，因为它们看待世界的方式与我们人类不同。视觉分类模型使用一种被称为<a href="https://en.wikipedia.org/wiki/Convolutional_neural_network" target="_blank" class="ext-link" rel="external ">卷积神经网络</a> (CNN)的人工神经网络，在它们能够可靠地识别一个对象之前，它可能需要数百万个不同的训练图像。相比之下，生物视觉系统的效率要高得多，训练样本也少得多；人类儿童可能只看到几个不同版本的“猫”，然后他们可能会做出推断并概括出所有这些都符合“猫”的概念:耳朵、眼睛、身体等的特定形状。</p>
+<p class="translated">另一方面，即使训练有素的人工智能模型也很容易被愚弄，做出错误的识别，只需增加一层称为扰动的视觉“噪声”。正如在这个熊猫的例子中所看到的，在添加这种干扰后，机器在99%的情况下都会被误导识别为长臂猿，这是人眼无法察觉的。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4721297" src="../Images/96ecca8a3df2c035e2b92131d7c647e5.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/05/43d07aba-google-brain-adversarial-images-fool-humans-computers-4.jpeg"/></p>
+<h2 class="translated">阻挠人类的反面例子</h2>
+<p class="translated">但是正如谷歌大脑团队在他们的<a href="https://arxiv.org/pdf/1802.08195.pdf" target="_blank" class="ext-link" rel="external ">论文</a>中解释的那样，人类也可能被对立的例子所愚弄，尤其是那些以更“强大”和明显的方式精心制作的例子，它们被定制成成功地阻碍人类的视觉。知道具有不同架构的不同计算机视觉系统仍然会受到相同敌对例子的影响，该团队在这里的目标是看看机器中的这种漏洞是否可以“转移”到人类看待事物的方式上。</p>
+<p class="translated">“我们(调整)了机器学习模型，以模仿人类的初始视觉处理，使对立的例子更有可能从模型转移到人类观察者，”该团队写道。“为了更好地匹配人类视觉系统的初始处理，我们为每个模型输入预先添加了一个视网膜层，其中包含了人眼执行的一些转换。在这一层中，我们对图像进行了偏心率相关的模糊处理，以逼近人类受试者的视觉皮层通过其视网膜网格接收到的输入。”</p>
+<p class="translated">为了实现这一点，研究人员对物体的边缘进行了处理，要么软化或增强它们，要么改变对比度和纹理，要么修改图像的黑暗区域。向人类受试者展示图像，按照宠物、蔬菜和危险生物(蜘蛛、蛇等)的类别分组——这些图像要么未经修改，要么经过扰动层修改，要么经过上下颠倒的扰动层修改(标记为“翻转”)——这是实验的控制案例，以观察对抗性扰动是否真的对人类视觉产生影响。参与者只有大约60到70毫秒的时间快速浏览图片，然后他们必须对图片进行分类。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4721296" src="../Images/9b83157e1b395915675aeba97fdb6276.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/05/1d19144e-google-brain-adversarial-images-fool-humans-computers-1.jpeg"/></p>
+<p class="translated">足够有趣的是，人类和计算机在应用垂直扰动层的情况下，总是以更高的速度对图像进行错误分类。在这个有一张狗的照片的例子中，当使用敌对层(标记为“adv”)时，机器和人都倾向于不太准确地识别它，这一趋势也反映在其他图像组中。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4721298" src="../Images/a5736f376f3ef981ae5d83f323451d62.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/05/16e6f252-google-brain-adversarial-images-fool-humans-computers-3.jpeg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4721299" src="../Images/7432a0331e07e9ce9b9c92e29f1df78b.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/05/e7933d3d-google-brain-adversarial-images-fool-humans-computers-2.jpeg"/></p>
+<h2 class="translated">“神经网络的超常刺激”</h2>
+<p class="translated">但这些发现只是冰山一角，在神经科学和人工智能的交汇点上，还有更多答案有待发现。</p>
+<p class="translated">研究人员写道:“我们的研究提出了一些基本问题，如对立的例子如何工作，CNN模型如何工作，以及大脑如何工作。”“对抗性攻击从CNN转移到人类，是因为CNN中的语义表征与人脑中的相似吗？他们转而转移是因为CNN和人类大脑中的表征都类似于某种与现实自然对应的内在语义表征吗？”</p>
+<p class="translated">这些都是非常吸引人的问题，但是如果对立的例子被用于更邪恶的目的，可能会有更广泛的影响。例如，深度学习模型可以被训练来评估人脸的可信度。研究人员说，在这种情况下，“就有可能产生对抗性的干扰，增强或减弱人们对可信度的印象，这些干扰的图像可能会被用于新闻报道或政治广告中”。</p>
+<p class="translated">研究小组在对立的例子和自然发生的现象之间画出了一些额外的相似之处，一些动物使用某些“超常”的感官刺激来侵入其他动物的大脑反应，以利用它们。例如，布谷鸟雏鸟会这样做，以便其他物种的鸟来喂养它们，而不是它们自己的雏鸟。</p>
+<p class="translated">“对立的例子可以被视为神经网络的一种超常刺激，”作者说。“一种令人担忧的可能性是，旨在影响人类行为或情绪的超常刺激，而不仅仅是图像的感知类别标签，也可能从机器转移到人类。”</p>
+<p class="translated">知道了人工智能已经可以用来创建令人震惊的有说服力的假新闻视频来愚弄人类观众，不难想象人工智能可以在更微妙的层面上被用来创建以更潜意识的方式影响我们的敌对图像，就在意识的地平线以下——这是一个潜在的强大工具，如果落入坏人手中会很危险。</p>
+<p class="attribution translated">图片:谷歌大脑。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

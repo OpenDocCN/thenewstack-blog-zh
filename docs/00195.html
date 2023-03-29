@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Off-The-Shelf-Hacker: My New Obsession, the ESP8266</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:我的新爱好，ESP8266</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-new-obsession-esp8266/#0001-01-01">https://thenewstack.io/off-shelf-hacker-new-obsession-esp8266/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">让我们暂时抛开蒸汽朋克，谈谈我疯狂的新爱好。ESP8266 WiFi模块。</p>
+<p class="translated">该设备拥有32位处理器、丰富的程序空间、多达16个通用输入/输出引脚、集成WiFi和低廉的价格。它在世界各地的现成黑客<a href="/tag/off-the-shelf-hacker/" target="_blank">那里获得了一席之地。它于2014年从中国出现，没有可用的文件。在很短的时间内，硬件黑客开始翻译规格表并分享他们的知识。Arduino IDE最近开始包含8266库，所以从事实上的行业标准环境中上传你自己的固件非常容易。</a></p>
+<p class="translated">最大的问题是，你用它做什么？</p>
+<p class="translated">这很简单。以下是我目前的几个项目。</p>
+<h2 class="translated"><strong> WiFi演示点击器</strong></h2>
+<p class="translated">你还记得我在演示机器上的<a href="https://thenewstack.io/off-shelf-hacker-push-button-slides-pi/" class="local-link">有线遥控器</a>吗？</p>
+<div id="attachment_1110424" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1110424" decoding="async" loading="lazy" class="size-full wp-image-1110424" src="../Images/832a14a5fd830363d9cf7f4ccc40e747.png" alt="Steampunk Clicker" data-original-src="https://thenewstack.io/wp-content/uploads/2016/03/steampunk-clicker.png"/><p id="caption-attachment-1110424" class="wp-caption-text translated">蒸汽朋克点击器</p></div>
+<p class="translated">WiFi版可以让我通过网络链接控制LibreOffice Impress演示文稿中的幻灯片。它使用一个ESP8266型号07，几个按钮和一个电池。通电后，无线点击器连接到我的局域网，并启动一个简单的TCP服务器。在LibreOffice Impress (Raspberry Pi或Linux notebook)端，一个Python客户端程序然后连接到clicker。将无线点击器作为服务器运行似乎比其他方式更安全一些。按下遥控器上的按钮可以在演示文稿中向前或向后移动。</p>
+<p class="translated">原型工作得很好，我很快就会在我的技术演讲中建立一个实际使用的手持外壳。</p>
+<div id="attachment_1265672" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1265672" decoding="async" loading="lazy" class="size-large wp-image-1265672" src="../Images/a8e8dac02402f47237e32ce6b38dc5c9.png" alt="8266 Wireless Clicker Prototype" data-original-src="https://thenewstack.io/wp-content/uploads/2016/06/8266-clicker-prototype-842x1024.png"/><p id="caption-attachment-1265672" class="wp-caption-text translated">8266无线点击器原型</p></div>
+<p class="translated">计划要求在AP模式下启动无线点击器，然后连接Pi或Linux笔记本，根本不需要局域网。在会议上使用公共WiFi总会有恶作剧的风险。</p>
+<p class="translated">不过，我认为这是一个有趣的项目，可以作为其他后续系统的概念验证。</p>
+<h2 class="translated"><strong>入侵探测器</strong></h2>
+<p class="translated">我可能看了太多的科技动作片，因为我强烈需要在我的房子外面安装一个入侵检测传感器网络。</p>
+<p class="translated">ESP8266芯片非常适合这项工作。</p>
+<p class="translated">我的计划是使用被动红外传感器来监视我院子周围的指定区域，然后使用超声波测距仪跟踪/记录移动，并将数据发送到我局域网上的服务器，用于威胁数据整合和分析。然后，软件会相应地通知我，可能是通过我智能手机上的短信，我桌面上的提醒，或者是通过敲响警钟。</p>
+<p class="translated">红外“绊线”也可以在阻塞点周围使用，为数据流增加另一个维度。该传感器只是一个红外LED和光电池的组合，位于开口的一侧，另一侧是反射器。</p>
+<p class="translated">使用8266芯片的好处是只需要电源就能工作，无论是由电线还是太阳能电池/电池组供电。所有的数据都通过我的网络无线传输。标准Arduino解决方案需要电源和数据连接。对于8266来说，范围也不是一个问题，尽管“07”型号在需要时有一个用于外部天线的连接器。无论如何，在我那富丽堂皇的庄园里，这应该不成问题。</p>
+<p class="translated">服务器上的软件也将整理数据，所以我知道发展行为模式。例如，如果活动连续几天发生在凌晨3:30，这可能表明有人正在寻找进入我家的方法。或者，是一只浣熊在翻垃圾桶。</p>
+<p class="translated">坏人，或者动物，甚至不会知道我知道他们在那里。优势，托克医生。对入侵者来说是个坏消息。</p>
+<h2 class="translated"><strong>本地温度传感器</strong></h2>
+<p class="translated">几年前，我用Arduino和Dallas DS18B20数字温度计制作了一个温度传感器。它运行良好，可以检测到大约1/10华氏度的温度变化。如果你看一下我家24小时内的温度图，空调循环非常明显。</p>
+<p class="translated">我甚至把设备放在冰箱和冰柜里检查设置是否正确。顺便说一句，普通的铅酸电池在变冷时会失去很多能量。</p>
+<p class="translated">我的新设计要求用ESP8266代替Arduino。我可能只需要在最初的草图上添加几行与WiFi相关的代码，就可以让它正常工作了。根据应用，读数可以从每秒一次到每分钟一次之间选择。在读数之间，8266可以进入深度睡眠模式，以尽量减少电力需求，如果它是运行在电池上。</p>
+<p class="translated">使用DS18B20的一个很酷的地方是，你可以在一条双线总线上将几个器件连在一起。他们称之为单线器件，尽管最终你实际上只有一根线和一个地。在一根30英尺长的22号电缆上安装三个或四个温度传感器是显而易见的。每个传感器都有一个内置的唯一ID代码，该代码与数据相关，因此很容易在代码中整理出值。</p>
+<p class="translated">与入侵传感器一样，可以在本地服务器上收集数据，并以各种方式进行分析。你可以称之为本地物联网。</p>
+<h2 class="translated"><strong>前进建造</strong></h2>
+<p class="translated">需要多几个ESP8266项目思路？Hack-A-Day有一个包含333个项目的<a href="https://hackaday.io/projects/tag/ESP8266" class="ext-link" rel="external ">页面。Instructables也有</a><a href="http://www.instructables.com/id/ESP8266-Projects/" class="ext-link" rel="external ">一堆</a>。</p>
+<p class="translated">支持WiFi的微控制器正变得无处不在，进入门槛不断降低。这里有一款<a href="http://www.banggood.com/ESP8266-ESP-100-Serial-WIFI-Module-Compatible-With-ESP-07-With-External-Antenna-p-1055445.html" class="ext-link" rel="external ">“07”型号，售价3.39美元</a>，免费运送到美国。<a href="http://www.banggood.com/ESP8266-ESP-07-Remote-Serial-Port-WIFI-Transceiver-Wireless-Module-p-968190.html" class="ext-link" rel="external ">五台设备仅13.51美元</a>，含免费运费。</p>
+<p class="translated">不过，要小心，建设8266项目可能会成为你新的困扰。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

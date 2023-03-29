@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Why Analytics is a Core Function of Monitoring Microservices</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">为什么分析是监控微服务的核心功能</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tns-analysts-show-45-why-analytics-is-a-core-function-of-monitoring-microservices-architectures/#0001-01-01">https://thenewstack.io/tns-analysts-show-45-why-analytics-is-a-core-function-of-monitoring-microservices-architectures/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在本期新的Stack Analysts播客中，Alex欢迎SignalFx创始人兼首席技术官<a href="https://www.linkedin.com/pub/phillip-liu/0/31/52b" class="ext-link" rel="external "> Phillip Liu </a>，这一次SignalFx创始人兼首席执行官<a href="https://www.linkedin.com/in/krrau" class="ext-link" rel="external "> Karthik Rau </a>也加入了他的行列。参加的还有Kickstarter的工程副总裁<a href="https://www.linkedin.com/in/turnbulljames" class="ext-link" rel="external ">詹姆斯·特恩布尔</a>，以及451 Research的联合主持人<a href="https://twitter.com/dberkholz" class="ext-link" rel="external ">唐尼·伯克霍尔茨</a>。</p>
+<p class="translated">更多剧集，请查看新堆栈的播客部分<a href="https://thenewstack.io/podcasts/" class="local-link">。</a></p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/45-why-analytics-is-a-core-function-of-monitoring-microservices-architectures" class="ext-link" rel="external "> #45:为什么分析是监控微服务架构的核心功能</a> </span></p>
+
+<p class="translated">这个播客也可以在YouTube上看到。</p>
+<p class="translated">Karthik解释说，SignalFx是从头开始设计的，旨在为现代分布式应用程序提供更好的监控和可见性:“我们看到新的应用程序被设计为分布式应用程序和更多的微服务架构，发现应用程序具有几十个、几百个甚至可能几千个组件是很常见的。”</p>
+<p class="translated">“在这种环境下，”他说，“你真的必须重新考虑如何进行监控。如果您只是简单地对单个节点进行健康检查，您可能会制造很多噪音。我们发现，进步的组织正在寻找更多基于分析的监控方法，在这种方法中，您可以收集堆栈上的数据，跨不同的服务收集数据，将其集中起来，并运行分析来尝试识别模式。”</p>
+<p class="translated">当Alex问及监控方法的这种彻底转变时，James断言“传统的监控已经被打破了。”</p>
+<p class="translated">詹姆斯说:“使用Nagios这样的东西，你实际上关心的是故障检测之类的事情，你会连接所有的服务和所有的主机，ping它们，并询问它们自己的情况，如果一个<a href="http://wiki.nginx.org/Main" class="ext-link" rel="external "> Nginx </a>或Apache停止工作，它会向你发出警报。</p>
+<blockquote><p class="translated">“人们的邮箱或传呼机队列中充满了警报，表明某些东西已经停止，这是您从这种监控中获得的最深刻的见解。”</p></blockquote>
+<p class="translated">“那不成比例，”詹姆斯评论道。“这不是很有用。如果你在凌晨4点钟被一条消息吵醒，说Apache已经停止了’，这对你有多大用处？结果，操作人员开始忽略这些警报，”James说，并补充说该流程早就应该更新了。</p>
+<p class="translated">Donnie补充说:“人们希望在逻辑应用方面使用监控，无论它是否是微服务。</p>
+<p class="translated">“许多公司都在扩大他们的IT足迹，而没有扩大他们背后的团队，”唐尼说。“如今，云驱动的公司试图用一个<a href="https://www.linkedin.com/job/site-reliability-engineer-jobs/" class="ext-link" rel="external "> SRE </a>来维护大约10，000个系统。”</p>
+<p class="translated">Karthik说，许多进步的组织“使用尽可能多的相关指标。”</p>
+<p class="translated">“当您遇到性能问题或错误情况时，”他说，“让这些指标真正可访问，特别是如果您仍然有这些指标流入，这意味着您可以以非常互动的方式更好地了解您的环境中正在发生的事情。”</p>
+<p class="translated">“这些现代应用程序并不是单一的应用程序，”Karthik继续说道。“你有不同的服务，不同的服务有不同的所有者。如果您的所有数据都在日志中，那么不同团队之间的沟通、共享联系人以及理解如果您的服务“B”降级，以及服务“C”的下游影响都将变得非常困难，您可能会有不同的开发团队，他们都需要共享信息并找出解决问题的方法。”</p>
+<p class="translated">Karthik说:“如果你在SignalFx这样的服务中使用了度量标准和仪表板，你就可以在不同组件之间慢慢出现问题时检测到问题，当你遇到问题时，你可以在不同的团队中非常快速地开始调试。”</p>
+<p class="translated">正如James所说，“我不需要一个监控工具来为我提供单一窗口。我正在寻找一种监控工具，它可以帮助我识别问题领域，然后我可以深入研究，找出问题所在，并进行故障排除。我不期望我的监控系统会出现大量的故障排除或诊断。我认为那是人类的问题，人类在解决那些问题上要好得多，但需要被指向正确的地方。”</p>
+<p class="translated">“我们在寻找指导，而不是一些神奇的异常检测，”詹姆斯说。</p>
+<p class="translated">Alex询问为什么微服务架构需要分析作为监控平台的核心功能。</p>
+<p class="translated">“这是一个更加动态的解决方案，”詹姆斯回答道。“微服务往往是频繁变化的小型主机集群。活码头集装箱很大程度上被认为是短暂的；预计它们只会存在很短一段时间。因此，它不像过去的单片服务器，以及运行在该服务器上的单片应用程序，其中' application-1 dot example . com '永远是您的主机名，具有相同的IP地址，并始终显示相同的JVM指标。”</p>
+<p class="translated">“你不能再围绕这些单片文物建立监控系统，”詹姆斯说。“你可能在一个小时内生产出1000个集装箱，所有这些集装箱的名称和IP地址你都不关心。您所关心的是通过该容器、应用程序或微服务运行的服务，这些东西都有指标。它们有事务吞吐量、响应时间或延迟，这些是你现在关心的数字。”</p>
+<p class="translated">Karthik说，在走向基于度量的监控的过程中，人们关心整个服务的趋势。人们可能仍然关心单个组件上发生的事情，但没有整个服务中发生的事情那么紧急。“我们看到了更多利用指标和围绕指标构建分析的趋势。”</p>
+<p class="translated">Alex认为微服务架构肯定会引发问题和背景问题。</p>
+<p class="translated">Karthik说:“你有一个更加灵活的环境，在这个环境中，你可能会非常频繁地看到单个服务的规模扩大或缩小。“你有更多的依赖；不同的服务有时以不同的节奏更新，并且具有上游和下游依赖性。”</p>
+<p class="translated">Karthik观察到，人们的许多问题都是他们自己的应用程序所特有的:“你会遇到一个性能问题。你需要了解它的起源。它是上游服务还是下游服务？更好地了解这一点变得非常重要。错误条件可能在依赖的服务之间有各种各样的其他依赖关系，因此需要更多的协作，并且每个组织都有独特的问题。”</p>
+<p class="translated">“我们当然看到了在这些环境中建立工具来提供更好的交流的需要，”他说。</p>
+<p class="translated">“在微服务环境中，”Phillip说，“一个应用程序包含许多不同的服务，但不同的团队拥有应用程序的不同部分，”一个服务中的部署变化可能会产生意想不到的副作用。</p>
+<p class="translated">Phillip指出，在过去，如果它是一个大的应用程序，它就不会工作，但是，“在这个微服务环境中，你是在推动一个组件。在下游，它可能会影响其他组件。”</p>
+<p class="translated">“除非你有一个整体观，或者一个能让你一次看到多个组成部分的系统，否则你不会知道你正在造成什么影响。”</p>
+<p class="attribution translated">SignalFx是新堆栈的赞助商。</p>
+<p class="attribution translated">特色图片:保罗·克利，《在核心》(1935)，石油在船上，途经<a href="http://www.wikiart.org/en/paul-klee/at-the-core-1935" class="ext-link" rel="external ">WikiArt.org</a>。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Illumio: A Security Platform That Follows the Workload Across the New Stack Universe</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Illumio:一个安全平台，可跟踪整个新堆栈领域的工作负载</h1>
+<blockquote>原文：<a href="https://thenewstack.io/illumio-a-security-platform-that-follows-the-workload-across-the-new-stack-universe/#0001-01-01">https://thenewstack.io/illumio-a-security-platform-that-follows-the-workload-across-the-new-stack-universe/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着应用程序和基础架构变得更加紧密地联系在一起，同时也在运行于企业数据中心或云服务上的复杂、分布式基础架构之间独特地分离开来，这种新兴趋势变得越来越明显。将应用程序绑定到这种新的堆栈是一个松散耦合的自适应软件和服务技术的生态系统，无论基础架构是什么，这些技术都会跟随工作负载。</p>
+<p class="translated">最新的例子来自于<a href="https://www.illumio.com" class="ext-link" rel="external "> Illumio </a>，这是一家将安全策略与应用或工作负载联系起来的初创公司，而不是它运行的基础设施。</p>
+<p class="translated">“如果你看看今天的计算环境，数据中心和云环境，它非常动态，非常分散，非常以API为中心，但安全模型不是这样。实际上，数据中心和云的安全模式正在失败。这就是我们公司着手解决的问题，”Illumio首席商务官艾伦·科恩(Alan Cohen)说。</p>
+<p class="translated">今天，该公司已经筹集了4250万美元，低调亮相，展示了一个顶级投资者团队，其中包括安德森·霍洛维茨(Andreessen Horowitz)，该公司领导了该公司的第一轮800万美元融资。它还得到了来自<a href="https://medium.com/@herrod/security-and-the-software-defined-datacenter-6f1dc5088fb" class="ext-link" rel="external "> General Catalyst的资金，后者领导了第二轮3400万美元的融资。个人投资者包括Salesforce创始人兼首席执行官马克贝尼奥夫(Marc Benioff)和雅虎联合创始人杨致远(Jerry Yang)。</a></p>
+<p class="translated">来自VMware、Cisco、Juniper、McAfee和Nicira的工程师构建了Illumio平台，应用了他们在虚拟化、网络和安全性方面的专业知识。联合创始人安德鲁·鲁宾(现任首席执行官)和首席技术官PJ·科尔纳都曾就职于云安全供应商Cymtec Systems柯纳是瞻博公司的杰出工程师。</p>
+<p class="translated">在宣布这一轮的时候，Herrod指出，我们越来越多地使用在多个地方运行的多种服务的混搭应用程序，这意味着防火墙安全模型不再那么有效。虚拟化正在成为常态，服务可能位于公共或私有云中，或者同时运行于两者之间。</p>
+<p class="translated">Herrod写道:“如何保护一个应用程序应该独立于该应用程序在哪里运行或者它在什么基础设施上运行。”</p>
+<p class="translated">这就是Illumio技术背后的理念。有两个部分:虚拟实施节点，它了解工作负载的所有情况，以及策略计算引擎，它获取该信息并为该工作负载创建特定的安全策略，该策略位于工作负载的操作系统之上。</p>
+<p class="translated">虚拟实施节点是一个语义层，它提供了对应用程序行为和拓扑的可见性——正如Cohen所说，“这是Apache，这是版本层，这是通信端口，这是我正在与之通信的人——上下文、状态以及与其他工作负载的交互”。</p>
+<p class="translated">同时，策略计算引擎的策略语言非常精确。</p>
+<p class="translated">“这是一个自适应白名单模型。…我们真正能够做到的是减少攻击面，因为在我们的模型中，唯一能够交流的是在应用信封或容器中编排的内容。其他一切都被封锁了，”科恩说。</p>
+<p class="translated">它的模型还通过IPsec连接对传输中的数据进行加密。</p>
+<p class="translated">Cohen说，Illumio在获得初始资金的五个月后，就将代码交到了客户手中，并且已经收到了一些有用的反馈。首先，企业希望降低其计算环境的复杂性。虽然该技术是为从云中交付而创建的，但一些客户，如金融服务客户摩根士丹利，更喜欢在内部使用它。</p>
+<p class="translated">科恩强调说，这不是一个虚拟防火墙。</p>
+<p class="translated">“当我们实施策略时，我们使用IT表或Windows过滤、Linux、微软和虚拟机固有的安全和通信功能，因此我们在工作负载级别使用工具，转动服务器中的旋钮来决定什么可以与什么进行通信。后端控制器，即策略计算引擎，实际上是基于图论的，所以你可能会认为它是算法和自动化。所以我们正在使用分布式计算来保护计算，”他说。</p>
+<p class="translated">该系统构建在八个RESTful APIs之上，因此可以插入现有的编排系统。Cohen说，应用程序运行的技术是不可知的。</p>
+<p class="translated">“这是一个声明性系统，而不是命令性系统。您告诉策略引擎您希望它做什么，它从语义上进行翻译，然后在工作负载上实施策略。如果某个东西自动扩展，它会带着该策略一起扩展。如果有未经授权的东西试图与工作负载进行通信，比如说它是一个数据库中的恶意软件，它会在一个月内醒来，该策略会对此发出警报。如果你真的担心的话，你甚至可以设置一个自动隔离的策略。”</p>
+<p class="translated">分析师兼作家Dan Kusnetzky表示，他不能具体评论Illumio的技术，但他指出了保护虚拟化环境的挑战。他指出，现代数据中心正在使用多达七种不同类型的虚拟化技术，每种技术都有自己的“攻击面”和操作模式，并补充说有一个拥挤的领域来解决这些问题。参与者包括知名企业和一系列初创公司，包括提供监控工具的Splunk、Loggly和Sumo Logic，以及允许公司控制其基于云的数据的Bitglass、CipherCloud、橡皮筋和Perspecsys，就像在内部一样。</p>
+<p class="translated">专注于应用程序容器的开源项目Docker已经增强了自己的安全性，T2与微软合作将容器引入Windows。</p>
+<p class="translated">与此同时，NSS实验室的一份分析简报指出了云安全领域的一系列新参与者<a href="https://www.nsslabs.com/reports/cloud-based-security-here-stay" class="ext-link" rel="external "/>，但警告称，新技术可能会使集成变得复杂，并可能给组织带来其他费用。</p>
+<p class="translated">“弥合内部安全性和云中安全性之间的差距并不容易，组织和供应商都还没有提供一个集成的解决方案，”它说。</p>
+<p class="translated">这就是Illumio着手解决的问题。</p>
+<p class="attribution translated">特色图片<a href="https://www.flickr.com/photos/abbylanes/3336023984/in/photolist-65MZGU-3KyLPE-CkgH-E4nGt-7fZgAd-8LUMzN-9Z2f2P-65HCFr-64v5Fp-aeEeJ8-5wb8ST-E4nGD-5ffezv-64zkLj-64v5qi-8LULkW-E4nGB-8LRJnp-8LULQS-8LRHTe-8LRJBe-7mVutV-aPrC5X-8LUL7W-8LUHKs-8LRHcc-8LRFZg-8LRFgr-8LRGYa-8LRK3K-8LRFJv-8LUJV5-8LRKje-8LUKpo-8LRGuK-8LUJa1-8LUHzW-noEKm-66sVN9-8h95Kv-aNvD6M-aHG5B8-5nsz8w-A1u9i-5VPjdM-5nojnZ-5nssDq-7mZpzS-3yJ5po-jssnXi" class="ext-link" rel="external ">通过</a> Flickr知识共享。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

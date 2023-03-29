@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Intro to DevOps: DevOps on a Smaller Scale</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">DevOps简介:小规模的DevOps</h1>
+<blockquote>原文：<a href="https://thenewstack.io/intro-to-devops-devops-on-a-smaller-scale/#0001-01-01">https://thenewstack.io/intro-to-devops-devops-on-a-smaller-scale/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://www.influxdata.com/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">凯蒂农夫</p> <p class="infoBlockText">凯蒂和她的丈夫以及两条狗住在加州的奥克兰(其中至少有一条会跟她聊些有趣的、技术性的东西)。她喜欢试验代码，破坏东西，并试图修复它。她在科罗拉多州丹佛市的图灵软件与设计学院学习编码，这给了她一个绝好的机会，在她知道如何修复之前就把东西弄坏了。</p> </div> </a></p><p class="attribution translated">InfluxData 是新堆栈的赞助商。</p>
+<p class="translated">DevOps是技术中一个非常酷的交叉领域，流程、工具和理念都在这里碰撞。但是让它变得有趣的东西也是让它变得难以理解和采纳的东西。刚接触DevOps很难——至少对我来说是这样——所以我想尽自己的努力让其他人更容易入门。</p>
+<p class="translated">第一次在工作中有人向我提到DevOps时，我点了点头，就像你不知道发生了什么事时一样，但你很确定你可以谷歌一下。</p>
+<p class="translated">事实证明，它有点不可谷歌，因为它太广了。每个关键词我都遇到了障碍。我发现了更多我从未听过的词。我分支成一千个更小的搜索，直到我忘记了我最初试图查找的内容。有如此多的工具可供选择，而且它们中的每一个似乎都需要我没有的上下文。</p>
+<p class="translated">所以我谷歌了DevOps最佳实践的每一个组合，但我仍然觉得我错过了DevOps的魔力。</p>
+<div id="attachment_4865803" class="wp-caption alignright"><img aria-describedby="caption-attachment-4865803" decoding="async" loading="lazy" class="size-full wp-image-4865803" src="../Images/28bcf11a32a37bc8b7080871bf17b9b2.png" alt="" data-id="4865803" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/05/eb8203b9-kf1.png"/><p id="caption-attachment-4865803" class="wp-caption-text translated">关于DevOps你需要知道的一切</p></div>
+<p class="translated">因为试图将解决方案用于拥有数百万用户和数千名员工的全球性公司是有问题的，即使它们是最成功的模式。我的公司和大多数科技公司一样，没有数百万用户和数千名员工，我们需要合适的解决方案。</p>
+<p class="translated">最具创新性的DevOps策略令人印象深刻，它们大多来自大公司。大公司有数据库团队来建立策略并从数据库中收集数据。大公司有网络团队来协调和监控他们的网络。大公司可以为几乎所有的问题提供团队。在中等规模的公司，我们没有这种能力。我们必须发挥我们的专长，尽可能做出最佳决策。这几乎总是涉及权衡。</p>
+<blockquote><p class="translated">采用DevOps并不是从采用工具开始，而是从采用DevOps社区的基本价值观开始。</p></blockquote>
+<p class="translated">当然，大公司必须解决的问题很难，但这并不意味着小公司面临的挑战更少或更简单。几乎我们所有人都在尝试优先考虑和妥协，以使DevOps解决方案为我们工作。那么我们从哪里开始呢？</p>
+<p class="translated">采用DevOps并不是从采用工具开始，而是从采用DevOps社区的基本价值观开始。</p>
+<h2 class="translated">见识</h2>
+<p class="translated">对技术的洞察力可以有很多种形式。例如，我们可以从不同的应用程序、基础架构和平台级别监控我们的系统。即使在较小的公司中，使用多种工具的组合来实现这一点也是一种日益增长的趋势。我们可能使用一个工具来收集日志，一个工具来收集站点流量，另一个工具来管理规模。然后，我们可能还有最后一个工具来统一所有这些数据源。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="wp-image-4865802 size-medium alignleft" src="../Images/f9a1a5a25fe49cfcad45d20b991f5572.png" alt="" data-id="4865802" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/05/07673730-kf2-294x300.png"/></p>
+<p class="translated">这对我来说已经听起来势不可挡了。在我工作的前两个月，真正聪明的人给我解释了很多概念，但我觉得我好像在看太阳——我的大脑在融化，我的眼睛在流泪。直到在第一个项目中，我使用我们的工具从我的一个旧Rails应用程序中获取一些指标，我才明白这一点。我不需要精确的数据。我需要应用程序的基本指标，比如响应时间、响应代码和数据库查询时间。即使是这么少的数据也足以改进我的代码。</p>
+<p class="translated">我们用来获得洞察力的工具有工作要做，但它们不应该占用我们的资源。特别是在DevOps中，我们使用的工具应该鼓励我们的协作文化，而不是制造更多的障碍。</p>
+<p class="translated">从您的应用程序中看到度量标准，即使是最基本的级别，也比担心使用哪种工具重要得多。</p>
+<h2 class="translated">沟通</h2>
+<div id="attachment_4865801" class="wp-caption alignright"><img aria-describedby="caption-attachment-4865801" decoding="async" loading="lazy" class="wp-image-4865801 size-medium" src="../Images/52705b2a7045d978bb9390e9c4860b87.png" alt="" data-id="4865801" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/05/04bd56b1-kf3-268x300.png"/><p id="caption-attachment-4865801" class="wp-caption-text translated">太多的洞察力</p></div>
+<p class="translated">沟通是DevOps最难的部分。这可能是我见过谈论最多的领域，是我们都需要改进的领域，也是我们失败最多的领域。</p>
+<p class="translated">想想所有的沟通层次:团队成员和不同团队之间，我的代码和使用它的人之间。我们必须认识到，即使洞察了我们的应用程序的行为——如果没有交流，可能也不会有任何进展。</p>
+<p class="translated">我们应该像思考我们编写的代码一样思考我们收集的数据和指标。下一个人会明白我们的意图吗？如果我们不小心，检测我们的应用程序可能会给其他人带来更多的工作——即使那个人只是六个月后想知道你在想什么的你。</p>
+<p class="translated">假设其他人知道如何解读指标是有风险的。例如，当我在我的<a href="https://www.influxdata.com/influxenterprise/" class="ext-link" rel="external "> InfluxEnterprise </a>集群中使用超过60%的数据节点时，我可能会收到警报(无耻的插入)。这并不一定是因为该数据节点处于危险之中，而是因为我提前考虑了这样一种情况:两个数据节点的运行率为60%，其中一个停止运行，然后剩下的一个节点的运行率立即达到120%，这意味着我没有可用的节点。不了解我的背景的人可能会对该警报有非常不同的反应，特别是如果他们在凌晨3点收到传呼。我们的意图不会写入我们正在收集的数据中，因此我们有责任确保我们的意图是明确的。在这种情况下，它可能就像让警报消息变得简单明了一样简单。</p>
+<p class="translated">同样重要的是，要意识到沟通策略就像采用它们的公司一样多样和独特。也许您的团队强调代码中的注释或描述性的提交消息。也许你的团队想要一份你所采用的工具的书面历史。如果你改变成功的沟通工具和模式来适应你的组织，这是没问题的。</p>
+<h2 class="translated">结论</h2>
+<p class="translated">我们总是要比任何外部资源更好地了解我们自己的团队、数据和代码，因此我们采用适合那些异常组织的策略是有意义的。他们很成功，也很特别，但请记住，那些永远不必担心全球统治地位的小公司是大多数。</p>
+<p class="translated">如果我们接受DevOps，我们就接受了我们需要更多沟通和洞察力的想法，因此我们采用的工具和实践永远不会阻止我们共享数据、协作或建立我们的文化。</p>
+<p class="attribution translated">InfluxData是新堆栈的赞助商。</p>
+<p class="attribution translated">凯蒂·法默的插图。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

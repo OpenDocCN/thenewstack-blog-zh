@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>eBay's 'Extreme' OLAP Engine for Distributed Data Gets Apache Backing</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">易贝分布式数据的“极限”OLAP引擎得到Apache的支持</h1>
+<blockquote>原文：<a href="https://thenewstack.io/big-data-tool-kylin-now-top-level-apache-project/#0001-01-01">https://thenewstack.io/big-data-tool-kylin-now-top-level-apache-project/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">一个由易贝首先开发的分布式分析引擎，名为<a href="https://blogs.apache.org/foundation/entry/the_apache_software_foundation_announces85" class="ext-link" rel="external "> Kylin </a>，已经被Apache软件基金会接受为一个完整的顶级项目。该软件可以帮助组织使用标准的业务分析工具来查询大数据仓库。</p>
+<p class="translated">“在易贝，我们收集每个易贝屏幕上的每个用户行为。易贝数据服务和解决方案高级总监Wilson Pang解释说:“当其他OLAP(在线分析处理)引擎在数据量上挣扎时，Kylin可以在几毫秒内实现查询响应。“我们也开始将Kylin用于近实时数据流存储和分析引擎。总而言之，麒麟是易贝产品分析平台的关键后端组件</p>
+<p class="translated">该电子商务网站在内部构建了通过ANSI SQL处理非常大的OLAP立方体的技术。据报告，其最大的用例是分析超过120亿条源记录，生成14tb以上的立方体。其90%的查询延迟不到5秒。</p>
+<p class="translated">在开源方面，易贝在<a href="http://www.ebaytechblog.com/2014/10/20/announcing-kylin-extreme-olap-engine-for-big-data/#.VE5_gvnF9JY" class="ext-link" rel="external ">的博客文章</a>中解释说，加速Hadoop上的分析并允许使用SQL兼容工具的技术并不新鲜，但它寻求在加快速度的同时仍允许业务用户使用熟悉的工具。它与Tableau集成，与Microstrategy和Excel的集成正在进行中。</p>
+<div id="attachment_858545" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2015/12/Kylin-Screen-Shot-2015-12-08-at-2.45.13-PM.png" class="local-link"><img aria-describedby="caption-attachment-858545" decoding="async" loading="lazy" class="size-large wp-image-858545" src="../Images/e557c9fea009f6106a9cf3539ce9cc30.png" alt="Kylin in a ction." data-id="858545" data-original-src="https://thenewstack.io/wp-content/uploads/2015/12/Kylin-Screen-Shot-2015-12-08-at-2.45.13-PM-1024x502.png"/></a><p id="caption-attachment-858545" class="wp-caption-text translated">麒麟建筑。</p></div>
+<p class="translated">该公司在2014年10月将代码作为Apache孵化器项目提交，标志着它相对快速地上升到顶级项目的地位。作为一个顶级项目，Kylin现在得到了Apache Software Foundation的<a href="http://www.apache.org/press/#about" class="ext-link" rel="external ">组织、法律和财务支持</a>，这应该会加速它的开发，面向更广泛的潜在用户。</p>
+<p class="translated">Kylin与一系列其他大数据工具争夺市场份额，包括开源项目<a href="https://hive.apache.org/" class="ext-link" rel="external "> Hive </a>、<a href="http://druid.io/" class="ext-link" rel="external "> Druid </a>和<a href="https://drill.apache.org/" class="ext-link" rel="external "> Drill </a>。</p>
+<p class="translated">中国团购网站Meituan.com的工程技术高级研究员李文称赞了这些功能，包括对10亿条记录的亚秒级查询延迟、高可扩展性以及与商业智能产品的无缝集成。</p>
+<p class="translated">Kylin的工作原理是从Hive中读取数据，运行MapReduce进行预先计算，将立方体数据存储在HBase中，并使用Zookeeper来协调作业。</p>
+<p class="translated">它的<a href="http://kylin.apache.org/blog/2015/09/06/release-v1.0-incubating/" class="ext-link" rel="external "> v1.0(酝酿中)版本</a>于9月6日发布，<a href="http://kylin.apache.org/blog/2015/10/25/release-v1.1-incubating/" class="ext-link" rel="external "> v1.1 </a>于10月25日发布。</p>
+<p class="translated">“过去30年来，许多技术都使用相同的理论来加速分析。这些技术包括存储预先计算的结果以服务于分析查询的方法，生成具有所有可能维度组合的每个级别的长方体，以及计算不同级别的所有指标，”易贝在捐赠代码时解释道。</p>
+<p class="translated">“当数据变大时，预计算处理变得不可能，即使使用强大的硬件也是如此。然而，借助Hadoop的分布式计算能力，计算作业可以利用成千上万的节点。这使得Kylin可以并行执行这些计算，并合并最终结果，从而大大减少处理时间。”</p>
+<p class="translated">它利用开源的动态数据管理框架<a href="https://calcite.apache.org/" class="ext-link" rel="external "> Apache方解石</a>来解析SQL和插件代码。它支持多种访问方法，包括JDBC ( <span class="_Tgc"> Java数据库连接</span>)、ODBC(开放式数据库连接)和用于编程访问的REST API。</p>
+<p class="translated">该平台的核心组件包括:</p>
+<ul>
+<li class="translated"><strong>元数据管理器:</strong>作为元数据驱动的应用，其他所有组件都依赖于它。</li>
+<li class="translated"><strong>作业引擎:</strong>它处理所有离线作业，包括shell脚本、Java API和MapReduce作业。它协调所有作业，并确保每个作业执行和处理故障。</li>
+<li class="translated"><strong>存储引擎:</strong>这个引擎管理底层存储——特别是长方体，它们被存储为键值对。它使用HBase，但也可以扩展到支持其他K-V系统，如Redis。</li>
+<li class="translated"><strong> REST服务器:</strong>REST服务器是应用针对Kylin开发的入口。应用程序可以提交查询、获取结果、触发多维数据集构建作业、获取元数据、获取用户权限等。</li>
+<li class="translated"><strong> ODBC </strong></li>
+<li class="translated"><strong>查询引擎:</strong>一旦多维数据集准备好了，查询引擎就接收并解析用户查询。然后，它与其他组件交互，将结果返回给用户。</li>
+</ul>
+<p class="translated">它吹捧的特性包括一个简单的网络界面来管理、构建、监控和查询多维数据集；在多维数据集/项目级别设置访问控制的安全功能；以及对LDAP(轻量级目录访问协议)集成的支持。</p>
+<p class="attribution translated">特征图片:<a href="https://www.flickr.com/photos/125216703@N02/" class="ext-link" rel="external ">adaptelux</a>制作的<a href="https://www.flickr.com/photos/125216703@N02/16779897456/in/photolist-ryMmUQ-6iKWTy-6dLnZZ-5huHnb-4MFWW6-9B4GeZ-tcwS5-atDuit-5PMUY-cdH6JY-6iKXdU-6Hjpne-7z4gSQ-de9V2g-bTwRvp-fz5NbX-4DcwZv-xavgV-u4etfH-biKKVk-6zyB6C-7zHevp-6NGQfD-6MVs2R-wBAn8b-bPoYUK-ayL35F-dVVg2H-9Y83Fy-bT6kGT-9dJFqH-pHLfqY-9o5wfV-dURSTS-sgH62u-qhK798-uVAVys-6LCdMG-AoJ9Nf-5UPX37-wBdFUj-7NqxrT-6iFLVg-7SEAST-biQfKM-793QAr-7vX7Gy-aEwhH5-6Pn2Az-4HtAKe" class="ext-link" rel="external ">剧羽</a>，获得<strong> CC BY-SA 2.0 </strong>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

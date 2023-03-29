@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>TNS Makers From Ricon 2015: The Challenges of Microservices at Scale</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">来自Ricon 2015的TNS制造商:大规模微服务的挑战</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tns-makers-ricon-2015-challenges-microservices-scale/#0001-01-01">https://thenewstack.io/tns-makers-ricon-2015-challenges-microservices-scale/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着越来越多的企业和初创公司在其分布式系统环境中过渡到容器，或者开始在日常工作流中使用微服务，更好地了解正在运行的服务以及在某种程度上更好地理解这些微服务如何配合在一起的需求变得至关重要。</p>
+<p class="translated">Basho的Ricon 2015 上周在旧金山举行，围绕微服务、在容器中工作以及大规模使用应用程序的敏捷开发策略进行了讨论。New Stack创始人Alex Williams就当前分布式系统面临的问题与,<a href="https://www.battery.com/" target="_blank" class="ext-link" rel="external ">电池风险投资</a>的技术研究员阿德里安·科克罗夫特和<a href="http://pivotal.io/" target="_blank" class="ext-link" rel="external "> Pivotal </a>的首席技术专家布里吉特·克罗姆胡特进行了交谈。</p>
+<h2 class="translated">电池投资公司的艾德里安·科克罗夫特</h2>
+<p class="translated">科克罗夫特说，监控微服务是当今分布式系统面临的主要问题之一。微服务已经成为技术的最新流行语，因为它们能够将应用程序开发问题分解为更小的、可操作的任务，然后可以分配给个人并迅速采取行动。这允许企业更快地构建系统。</p>
+<p class="translated">对于微服务，应用程序有许多小部分，通常与依赖项捆绑在一起，以确保跨各种系统的功能。如果开发人员的堆栈中只有少量的微服务，这很容易跟踪。然而，当一个生产部署中有数百个微服务时，跟踪它们可能会很快失控。</p>
+<p class="translated">为了帮助解决微服务可见性的问题，科克罗夫特建立了一个微服务模拟器，模拟在一系列服务器上运行的复杂系统环境，每个单独的容器都生成数据以连接微服务监控工具。这将为开发人员提供一个场景，其中运行着500个或更多的虚拟机，以及相关的指标。</p>
+<p class="translated">对于当前可用的数据模型，可能会有一个复杂的依赖关系链，需要费力才能找到正确的图。现有的工具如甲骨文的<a href="https://www.oracle.com/applications/performance-management/index.html" target="_blank" class="ext-link" rel="external "> EPM </a>试图通过系统捕捉呼叫流，其他工具如<a href="http://www.appdynamics.com/" target="_blank" class="ext-link" rel="external "> App Dynamics </a>和<a href="http://newrelic.com/" target="_blank" class="ext-link" rel="external "> New Relic </a>也是如此。这些模型通常很简单，由前端、中间层和数据库构成。</p>
+<p class="translated">一旦有数百个微服务和数据库部署了这种系统架构，这种软件就很难跟上，因为它们的数据模型很难掌握这些微服务如何在容器之间进行数百或数千次调用。</p>
+<p class="translated">“发展世界在你脚下变化如此之快，你不能假设一切都将保持静止，”科克罗夫特说。</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/adrian-cockcroft-battery-ventures-the-ricon-interviews" class="ext-link" rel="external ">阿德里安·科克罗夫特，崎勇:《里康访谈》</a> </span></p>
+
+<h2 class="translated">布里奇特·克鲁姆胡特，Pivotal</h2>
+<p class="translated">分布式系统正在变得如此庞大，以至于人类很难从逻辑上确定它们的规模。“如果一个人甚至不能开始理解一个系统的架构，那么他们如何决定服务位于何处，或者它们的依赖关系是否会一起工作？”克鲁姆豪特说。</p>
+<p class="translated">这就是开发人员不得不求助于自动化来解决这些特殊问题的地方。如果软件开发团队试图通过在头脑中可视化整个系统来解决问题，那么几乎肯定会失败。大规模构建系统要求它们既有弹性又有容错能力，尽管Kromhout强调试图从系统中设计出故障是徒劳的。</p>
+<p class="translated">在她在Ricon的演讲中，Kromhout深入探讨了<a href="http://bridgetkromhout.com/speaking/2015/ricon/" target="_blank" class="ext-link" rel="external ">远程团队和通信架构</a>的问题。无论团队是分布式的还是内部的，开发人员都可以通过向他们的提交添加更好的文档来更好地促进团队间的交流。而不是说，“我修好了。”有人会说为什么，因为他们分散在异地工作的团队成员会感谢他们提供的额外环境。</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/bridget-kromhout-pivotal-the-ricon-interviews" class="ext-link" rel="external ">布里奇特·克鲁姆豪特，举足轻重:利康访谈</a> </span></p>
+
+<p class="attribution translated">Basho、New Relic和Pivotal是新堆栈的赞助商</p>
+<p class="attribution translated">特征图片:芭蕉。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

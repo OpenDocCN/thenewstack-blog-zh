@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Machines 'Learn to Learn' with New Algorithm</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">机器通过新算法“学会学习”</h1>
+<blockquote>原文：<a href="https://thenewstack.io/machines-learn-learn-like-humans-new-breakthrough-algorithm/#0001-01-01">https://thenewstack.io/machines-learn-learn-like-humans-new-breakthrough-algorithm/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">从你的智能手机的智能个人助理，到可以随着时间的推移适应你的偏好的<a href="https://thenewstack.io/linkedin-finalizes-its-new-search-architecture-galene/" class="local-link">个性化搜索引擎</a>和<a href="https://thenewstack.io/40-something-dude-asks-for-music-recommendation-redditors-point-to-the-algorithms/" class="local-link">音乐推荐服务</a>，许多初级形式的人工智能现在渗透到我们的日常生活中。</p>
+<p class="translated">然而，这些应用背后的机器学习算法往往需要大量数据——从几十到几百甚至几千个例子——来学习一个新概念。相比之下，一个五岁的人类儿童，只要看几个例子，就可以毫不费力地学会像“鸟”或字母“A”一般是什么样子的概念。</p>
+<p class="translated">说到像人类一样快速灵活地学习，机器还有一段路要走。但是，在当前深度学习模型的一项重大突破中，来自麻省理工学院、纽约大学和多伦多大学的科学家最近推出了一种新的算法，帮助机器模仿类似人类的学习能力，使它们能够在只看到有限数量的例子后，识别、绘制甚至创建新的手写视觉概念。</p>
+<p class="translated">https://youtu.be/shT-dFKU2WA</p>
+<h2 class="translated">概率程序学习</h2>
+<p class="translated">这是人类的概括能力，现在机器有了这种能力。在他们发表在期刊<a href="http://www.sciencemag.org/content/350/6266/1332" class="ext-link" rel="external "> <em>科学</em> </a>上的论文中，研究人员描述了他们的“贝叶斯程序学习”(BPL)框架，其中广泛的概念被简化为简单的概率程序。这些简单的程序成为构建新程序的基本构件或“原语”，能够表达更复杂的表示，但与标准的机器学习模型相比，需要更少的数据。这篇论文把它描述为一个“生成模型，可以对新类型的概念(一个“A”、“B”等)进行采样。)通过以新的方式组合部件和子部件”，并且还可以解析这些部件之间的关系。本质上，机器可以通过这种算法“学习学习”，通过建立在以前的知识上来加速新概念的学习。</p>
+<p class="translated">这项研究的作者之一，多伦多大学计算机科学和统计科学系的助理教授Ruslan Salakhutdinov说:“制造像人类学习新概念时需要那么少数据的机器是非常困难的。“复制这些能力是一个令人兴奋的研究领域，它连接了机器学习、统计学、计算机视觉和认知科学。”</p>
+<h2 class="translated">是机器写的还是人写的？</h2>
+<p class="translated">研究人员从世界各地的50个字母中挑选了1600个手写字符，作为视觉概念来测试他们的模型。一台使用BPL算法的计算机不需要几十个例子来训练它，在只给它看一个例子后，它就能够再现这些字符的相对忠实的版本。这里，数据被分解为组成部分，以更简单的程序表示，允许模型模仿人类绘制这些符号的方式，如笔画顺序和方向，而不是将视觉概念呈现为像素或特征的集合。该算法还允许计算机进行足够的“归纳”,以创建与它之前学习的字母风格相似的新例子。</p>
+<p class="translated">结果是惊人的:对于视觉上比较人类和计算机生成的字形的人类法官来说，该算法对这些手写版本的字母模仿得如此之好，以至于它们与人类样本“几乎无法区分”。</p>
+<div id="attachment_902095" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2015/12/bpl-2.jpg" rel="attachment wp-att-902095" class="local-link"><img aria-describedby="caption-attachment-902095" decoding="async" loading="lazy" class="wp-image-902095 size-large" src="../Images/5d00497e83b82bee65ad3841c6dce401.png" alt="bpl-2" data-original-src="https://thenewstack.io/wp-content/uploads/2015/12/bpl-2-627x1024.jpg"/></a><p id="caption-attachment-902095" class="wp-caption-text translated">“从图像推断运动程序”:人类和机器模仿手写字符，重点是找到正确的笔画顺序。</p></div>
+<div id="attachment_902096" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2015/12/bpl-3.png" rel="attachment wp-att-902096" class="local-link"><img aria-describedby="caption-attachment-902096" decoding="async" loading="lazy" class="wp-image-902096 size-full" src="../Images/c92444a0d5b2de5787c4cea70eb8043f.png" alt="bpl-3" data-original-src="https://thenewstack.io/wp-content/uploads/2015/12/bpl-3.png"/></a><p id="caption-attachment-902096" class="wp-caption-text translated">你能猜出哪些是人类画的还是机器画的吗？给人类和机器一个新的手写字符的图像(顶部方框),并要求它们产生新的例子。由机器制成的每对中的九个字符网格是(按行):1，2；二，一和一，一。</p></div>
+<p class="translated"><strong>新算法与其他机器学习算法的不同之处在于，它不需要人类程序员在训练过程中进行干预。</strong>该算法对自己进行编程，以重现它所看到的新的视觉概念。与其他标准模型不同，它使用这些简单的概率程序，每次执行代码都会产生新的输出，使机器能够快速学习、识别和重建概念，就像人类的孩子一样。</p>
+<p class="translated">“在他们进入幼儿园之前，孩子们学会从一个单一的例子中识别新概念，甚至可以想象他们没有见过的新例子，”研究作者、麻省理工学院认知科学教授约书亚·特南鲍姆说。“我们还远远没有制造出像人类孩子一样聪明的机器，但这是我们第一次拥有一台能够学习和使用大量现实世界概念的机器，甚至是简单的视觉概念，如手写字符，其方式很难与人类区分开来。”</p>
+<p class="translated">尽管该算法目前仅限于手写字符，但研究人员相信，有一天它可以应用于学习口语、手势甚至抽象知识，目的是开发人类似乎非常擅长的“一次性学习”的机器版本。这将意味着以不同的方式向模型呈现数据，并背离使用<a href="https://thenewstack.io/deep-learning-neural-networks-google-deep-dream/" class="local-link">大量数据来训练神经网络</a>的流行做法。该研究的主要作者布伦丹·莱克说:“关键是我们需要学习正确的表示形式，而不仅仅是从更大的数据集学习，以便建立更强大、更像人类的学习模式。”</p>
+<p class="attribution translated">在多伦多<a href="http://news.utoronto.ca/researchers-nyu-u-t-and-mit-teach-machines-learn-humans" class="ext-link" rel="external ">大学</a>和<em>T5】理科阅读更多。</em></p>
+<p class="attribution translated">图片:王丹青，<span class="name">布伦丹莱克</span> <span class="xref-sep">，</span> <span class="name">鲁斯兰萨拉赫丁诺夫</span>，<span class="name">约书亚特南鲍姆</span></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>The PredictionIO Machine Learning Project Propels Intelligent Development</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">预测机器学习项目推动智能发展</h1>
+<blockquote>原文：<a href="https://thenewstack.io/predictionio-machine-learning-project-propels-intelligent-development/#0001-01-01">https://thenewstack.io/predictionio-machine-learning-project-propels-intelligent-development/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">PredictionIO是Apache Software Foundation的最新项目之一，被提升到了顶级项目的地位，就像许多这样的项目一样，它是在挫折中成长起来的。</p>
+<p class="translated">“每次我们需要建立一些智能的东西——做新闻推荐或简历分析，产品匹配，诸如此类的事情——我们每次都必须从头开始建立机器学习技术栈，”<a href="https://predictionio.apache.org/" class="ext-link" rel="external ">预测</a>的联合创始人<a href="https://twitter.com/simonchannet" class="ext-link" rel="external ">西蒙·陈</a>，以及<a href="https://twitter.com/kpszeto?lang=en" class="ext-link" rel="external ">唐纳德·司徒</a>、<a href="https://twitter.com/ckhkenneth" class="ext-link" rel="external ">陈启泰</a>和<a href="https://www.linkedin.com/in/thomasrorystone/" class="ext-link" rel="external ">托马斯·斯通</a>说。</p>
+<p class="translated">“如果你不需要从零开始构建你的数据库，为什么你要从零开始构建你的机器学习服务器呢？…我们的想法是开发一些没有博士学位的开发人员也能使用的东西。”</p>
+<p class="translated">他说，他们当时受到MySQL模型的启发，决定提供一个开源版本。</p>
+<p class="translated">Salesforce <a href="https://techcrunch.com/2016/02/19/salesforce-acquires-predictionio-to-build-up-its-machine-learning-muscle/" class="ext-link" rel="external ">在2016年初收购了</a>他们的公司，并在当年晚些时候向ASF捐赠了开源版本。此后，它成为Salesforce <a href="https://thenewstack.io/salesforce-mixes-automated-ai-custom-data-models-einstein/" class="local-link"> Einstein </a>的支柱，使客户能够构建自己的人工智能工具。</p>
+<p class="translated">日本高管工作网站<a href="https://www.linkedin.com/company/bizreach/" class="ext-link" rel="external "> BizReach </a>，生命周期管理公司<a href="http://www.slb.com/services/production/artificial_lift/advanced_lifting/lift-iq.aspx" class="ext-link" rel="external "> LiftIQ </a>，在线开发人员培训公司<a href="https://www.pluralsight.com/" class="ext-link" rel="external "> Pluralsight </a>，机器学习咨询公司<a href="http://actionml.com/" class="ext-link" rel="external "> ActionML </a>也在使用它。</p>
+<p class="translated"><iframe loading="lazy" title="Introduction to Apache PredictionIO" src="https://www.youtube.com/embed/OhqBECqifhA?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">该项目的最大资产之一是一个名为<a href="https://predictionio.apache.org/gallery/template-gallery/" class="ext-link" rel="external ">模板图库</a>的概念。它允许用户以模板的形式共享他们的项目。现在担任Salesforce Einstein产品管理高级主管的Chan说，开发类似应用程序的公司可以简单地下载你的模板，照原样运行它，或者修改一些组件。</p>
+<p class="translated">模板包括推荐、分类、自然语言处理和其他工具。回归模板包括预测能源使用、电力负荷和波士顿房价。</p>
+<p class="translated">他在<a href="https://www.salesforce.com/blog/2017/10/apache-predictionio-graduates-top-level-project.html" class="ext-link" rel="external ">的一篇博客文章</a>中说，建立一个推荐引擎，一个通常需要一个专家数据科学家团队几个月才能完成的项目，在一两个具有预测能力的工程师的帮助下，可以在几周内完成。</p>
+<h2 class="translated">不仅仅是算法</h2>
+<p class="translated">Chan解释说，PredictionIO最初是建立在Hadoop上的，但随着它变得更加成熟，已经切换到了<a href="https://spark.apache.org/" class="ext-link" rel="external "> Spark </a>。它使用HBase作为数据存储；Spark ML库<a href="https://spark.apache.org/mllib/" class="ext-link" rel="external ">ML lib</a>；<a href="https://github.com/spray" class="ext-link" rel="external ">喷</a>，Scala中的JSON实现；某些模型中的HDFS和存储元数据的Elasticsearch。</p>
+<p class="translated">事件服务器从您的应用程序中实时或批量连续收集数据，用于模型训练和评估。事件服务器还可以统一来自多个来源的数据进行分析。</p>
+<p class="translated">然后，预测引擎使用这些数据通过一种或多种算法构建模型。在它被部署为web服务之后，它会侦听来自应用程序的查询，并通过REST API实时响应预测的结果。</p>
+<p class="translated">Chan表示，虽然ASF拥有机器学习库，如<a href="https://en.wikipedia.org/wiki/Apache_Mahout" class="ext-link" rel="external "> Mahout </a>和<a href="https://spark.apache.org/mllib/" class="ext-link" rel="external "> MLlib </a>，但机器学习仍处于早期阶段，需要研究人员、开发人员和公司为其做出贡献，才能取得成功。</p>
+<p class="translated">“如果你不是真的[了解]机器学习栈，你真的不能只用算法做很多事情，”Chan说。PredictionIO需要处理整个流程，包括准备数据、构建算法、培训、管理和评估模型。</p>
+<p class="translated">IBM创建的另一个ASF项目SystemML 也是基于Spark和MLlib构建的。它提供了从小型笔记本电脑到大型集群的<a href="https://thenewstack.io/systemml-becomes-top-level-project-apache-software-foundation/" class="local-link">扩展</a>数据分析的能力，而无需重写整个代码库。</p>
+<p class="translated">其他开源的机器学习项目，比如<a href="https://www.tensorflow.org/" class="ext-link" rel="external "> TensorFlow </a>、<a href="http://caffe.berkeleyvision.org/" class="ext-link" rel="external "> Caffe </a>、<a href="https://github.com/JohnLangford/vowpal_wabbit/wiki" class="ext-link" rel="external "> Vowpal Wabbit </a>、<a href="http://scikit-learn.org/stable/" class="ext-link" rel="external "> scikit-learn </a>，都是ML库。</p>
+<p class="translated">Chan说，PredictionIO已经扩展到支持任何JDBC (Java数据库连接)数据存储和多种其他算法。</p>
+<p class="translated">作为顶级地位的结果，他看到了更多与ASF项目的项目间合作，如Spark和<a href="https://beam.apache.org/" class="ext-link" rel="external "> Beam </a>。</p>
+<p class="translated">“可用性仍然是机器学习中的一个大问题。我们需要使开发过程更加简单，这将需要开源社区的大量资源，”他说。</p>
+<p class="translated">Chan说，看到公司如何使用开源和内部Salesforce实现PredictionIO令人鼓舞。</p>
+<p class="translated">例如，在最近的Dreamforce '17会议上，来自苏格兰阿尔斯特银行的员工<a href="https://success.salesforce.com/sessions?eventId=a1Q3A00000stRRuUAM#/session/a2q3A000001yt0dQAA" class="ext-link" rel="external ">谈论了</a>它如何使用PredictionIO和Einstein来预测<a href="https://www.irishtimes.com/business/financial-services/ulster-bank-turns-to-ai-to-understand-customers-better-1.3260966" class="ext-link" rel="external ">下一个最佳报价</a>——使用过去的客户行为来了解下一步应该建议哪些银行服务。</p>
+<p class="translated">阿根廷的巴勒莫大学已经使用PredictionIO来预测特定课程的辍学率。</p>
+<p class="attribution translated">特征图:树皮的<a href="https://www.flickr.com/photos/barkbud/4165385634/in/photolist-7m5G2G-3L2cDX-9bk8tQ-beyUee-34Ydj3-5kHT4P-f9o9TQ-5X4jXi-ck983w-6Ano5Y-ck98oC-2ubWp-4EoDaX-4KcNEB-ck97RL-bZQnHs-vtdAr-kHLeh-ck98wA-UXYS44-dzzqP7-CcacD-eL1dNo-5EhVBP-7ss3CH-fTNgVn-4GqdtE-" class="ext-link" rel="external "> 40+37魔8球</a>，CC BY-SA 2.0 下授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

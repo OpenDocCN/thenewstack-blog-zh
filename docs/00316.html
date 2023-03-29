@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>GitLab Now Offers Free Static Web Page Hosting</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">GitLab现在提供免费的静态网页托管</h1>
+<blockquote>原文：<a href="https://thenewstack.io/gitlab-releases-free-static-web-page-hosting/#0001-01-01">https://thenewstack.io/gitlab-releases-free-static-web-page-hosting/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">为了响应社区的请求，<a href="https://gitlab.com/" class="ext-link" rel="external "> GitLab </a>推出了一项新服务，让开发者能够免费托管静态网页，名为GitLab Pages，community edition (CE)。</p>
+<div id="attachment_1948478" class="wp-caption alignleft"><img aria-describedby="caption-attachment-1948478" decoding="async" loading="lazy" class="size-medium wp-image-1948478" src="../Images/e0037cba1e3dbec275967680d3da6c67.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/02/06bae4c1-screen-shot-2017-02-18-at-1.12.07-pm-300x258.png"/><p id="caption-attachment-1948478" class="wp-caption-text translated">入门指南</p></div>
+<p class="translated">GitLab的产品副总裁乔布·范德沃特(Job van der Voort)在葡萄牙里斯本接受电话采访时表示，企业版已经推出约一年了。六个月前<a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/14605" target="_blank" class="ext-link" rel="external ">他宣布了不延长社区表格页面的决定</a>。他结束了这个问题，但保持线索开放。</p>
+<p class="translated">他说，一些评论者，主要是喜欢GitLab环境的小企业，要求提供社区版或至少更实惠的小企业选项。一个月前，范德沃特重返论坛，推翻了这一决定。</p>
+<p class="translated">Kevin Minehart是众多要求GitLab重新考虑的社区成员之一。“考虑一个存储库集成的静态站点的用例，”他写道，列举了几个:</p>
+<ul>
+<li class="translated"><em>托管项目文档。这对我们非常有用，因为我们使用[静态站点生成器] ( <a href="https://github.com/lord/slate" class="ext-link" rel="external "> Slate </a>)来为我们的公共REST API创建更好的文档。</em></li>
+<li class="translated"><em>博客。</em></li>
+<li class="translated"><em>演示文稿&amp;安装说明。</em></li>
+<li class="translated"><em>软件版本/夜生活的公开列表？分发二进制文件？</em></li>
+</ul>
+<p class="translated">van der Voort说，我们没有想到的是，人们开始将它用于GitLab没有考虑到的功能，如发布文档或测试结果。</p>
+<p class="translated">他解释说，这代表着网站部署和使用方式的转变。目前，大多数网站都建立在内容管理系统(CMSes)上。人们一直想转向静态网页，但传统上很难建立并运行一个网页，部分原因是没有标准化的方法。</p>
+<p class="translated">“这是非常繁重的工程。从0到1非常非常艰难，”范德沃特说。他说，随着时间的推移，随着社区开始使用该产品并添加他们自己的代码，这将变得更加容易。</p>
+<p class="translated">不用部署CMS，用户可以部署任何他们选择的<a href="https://www.staticgen.com/" class="ext-link" rel="external ">静态网站生成器</a>，例如<a href="http://jekyllrb.com/" class="ext-link" rel="external ">杰基尔</a>、<a href="http://gohugo.io/" class="ext-link" rel="external ">雨果</a>或<a href="https://hexo.io/" class="ext-link" rel="external "> Hexo </a>。与CMS内置的动态网页不同，静态网页在后台没有数据库。范德沃特说，内容是静态的，所以信息就是全部。改变内容的唯一方法就是重建网站。“你生成的网站是一个单一的图像，任何你想做的改变，你都需要重建网站，”他说。</p>
+<p class="translated">据van der Voort说，人们关注静态网页的原因之一是缺乏高速缓存使其速度非常快，高达6倍。唯一的动作是需要提供HTML。这消除了几乎所有的缓存需求。</p>
+<p class="translated">范德沃特说，另一个主要原因是安全。如果不定期更新，CMS驱动的网站很容易受到安全攻击，尤其是如果核心CMS引擎可以暴露在网络上。对于静态网站，服务器上唯一的东西就是静态内容:所以即使有人可以直接访问您的网站，他们也只能将内容更改为特定的网页。你只需要运行生成器软件，通常是离线运行，来重新加载原始页面。</p>
+<p class="translated">van der Voort解释说，从最终用户的角度来看，与动态或静态网页交互是没有区别的。特别是对于市场营销，文档网站正在转向静态网站。他以Vox Media为例说，有很多面向客户的静态网站。</p>
+<p class="translated">对于内容的创建者来说，唯一的区别是他们在GitLab中创建并将更改推送到存储库，而不是更新CMS。GitLab提供了社区工具来简化这一过程。</p>
+<p class="translated"><a href="https://about.gitlab.com/2016/04/07/gitlab-pages-setup/#getting-started" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-large wp-image-1959696" src="../Images/1cf9b55713674bdae256728b9401519c.png" alt="" data-id="1959696" data-original-src="https://cdn.thenewstack.io/media/2017/02/c420a45d-gitlab-browse-download-artifacts-1024x624.png"/> </a></p>
+<p class="translated">GitLab Pages使用<a href="https://docs.gitlab.com/ee/ci/quick_start/README.html#creating-a-.gitlab-ci.yml-file" class="ext-link" rel="external "> GitLab持续集成</a> (CI)社区已经熟悉的工具，包括所有的协作特性。静态站点只是另一个存储库。范德沃特说，他们创建了一个静态网站，而不是创建一个测试或其他东西。</p>
+<p class="translated">“我们只是简化了整个过程。”</p>
+<p class="translated">每个帐户在每个项目中获得10GB的磁盘空间，在每个页面中获得1GB的工件空间，以及无限的总磁盘空间。点击此处获取关于如何通过GitLab <a href="https://about.gitlab.com/2016/04/07/gitlab-pages-setup/" target="_blank" class="ext-link" rel="external ">启动自己的静态网页的详细说明。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

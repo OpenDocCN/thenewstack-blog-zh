@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Control a Drone with Eye-Tracking Glasses</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">用眼球追踪眼镜控制无人机</h1>
+<blockquote>原文：<a href="https://thenewstack.io/control-a-drone-with-eye-tracking-glasses/#0001-01-01">https://thenewstack.io/control-a-drone-with-eye-tracking-glasses/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">控制无人机不一定是最直观的活动，正如许多被无人机蹂躏的婚礼(以及随后的诉讼)所显示的那样。通过深度学习让无人机更加<a href="https://thenewstack.io/deep-learning-drone-detects-fights-bombs-shootings-in-crowds/" target="_blank" class="local-link">自主，并为其配备</a><a href="https://thenewstack.io/foldable-drone-origami-like-protective-cage-makes-safer-deliveries/" target="_blank" class="local-link">安全功能</a>可以有所帮助，但并不能解决根本问题。对于其他机器，我们已经看到了各种可能的解决方案，例如使用<a href="https://thenewstack.io/control-robotic-arm-mind-using-machine-learning/" target="_blank" class="local-link">脑机接口</a>(BCIs)<a href="https://thenewstack.io/smartphone-app-can-control-robots-augmented-reality/" target="_blank" class="local-link">增强现实</a>或一个人的<a href="https://thenewstack.io/mits-alterego-headset-lets-you-silently-converse-with-voice-controlled-devices/" target="_blank" class="local-link">语音</a>来控制设备。</p>
+<p class="translated">但是还有很多其他可能的方法。正如宾夕法尼亚大学、美国陆军研究实验室和纽约大学的一个团队所展示的那样，控制无人机可能很简单，只需使用一副眼球追踪眼镜，然后故意移动视线，将它指引到需要去的地方。看一看:</p>
+<p class="translated"><iframe loading="lazy" title="Human Gaze-Driven Spatial Tasking of an Autonomous MAV voice" src="https://www.youtube.com/embed/brF6TDqu1ec?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">根据该团队的说法，这里的想法是为人们远程控制飞行器创造一种直观和非侵入性的方式。虽然之前有一些尝试开发基于视觉的无人机控制方法，但这一次不同的是，这是一个独立的系统，不使用外部传感器来跟踪无人机，相对于控制的人来说。</p>
+<p class="translated">此外，导航系统是相对于用户的，而不是相对于无人机的，这意味着所有方位点都是从用户的立场出发的。例如，如果用户告诉无人机向右走，它将走向用户的右边，而不是走向无人机的右边，这对用户来说将表现为无人机向左走(因为这是镜像运动)。团队系统的配置方式是，所有这些寻路都不需要结合其他外部系统，如运动捕捉技术或GPS来跟踪用户和无人机相对于彼此的位置。</p>
+<p class="translated">根据研究团队的说法，该系统包括一些现成的组件，如Tobii Pro Glasses 2，这是一款视线跟踪可穿戴设备，配备了一个<a href="https://en.wikipedia.org/wiki/Inertial_measurement_unit" target="_blank" class="ext-link" rel="external ">惯性测量单元</a> (IMU)，此外还有一个高清摄像头，以及一个NVIDIA Jetson TX2 CPU和GPU，以便使用深度神经网络来帮助处理数据。</p>
+<p class="translated">一旦用户戴上眼镜，他或她就可以通过观察无人机来检测无人机，从用户位置看到的四旋翼无人机的大小，处理器将使用来自IMU和机载相机的方向数据来确定其相对位置大约有多远。正如该团队所指出的那样，IMU还可以帮助确定用户的头部方向，这有助于“将凝视方向与头部运动分离”，这意味着该系统可以在用户只移动眼睛或同时移动眼睛和头部的情况下工作。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-5762503" src="../Images/60bae3a4202fd1d1d07d77b620afce24.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/10/601b9d7b-screen-shot-2018-10-02-at-3.13.27-pm.png"/></p>
+<p class="translated">纽约大学机器人学助理教授、宾夕法尼亚大学<a href="https://www.grasp.upenn.edu/" target="_blank" class="ext-link" rel="external "> GRASP实验室</a>主任Giuseppe Loianno博士在<a href="https://www.digitaltrends.com/cool-tech/fly-drone-eye-tracking-glasses/" target="_blank" class="ext-link" rel="external "> <em>数字趋势</em> </a>上解释说:“这种解决方案提供了在人类和机器人之间创建新的非侵入式互动形式的机会，允许人类在未经训练的环境中向机器人发送新的3D导航航路点。“用户可以通过凝视来控制无人机，只需指向一个空间位置，这与我们的头部方向不同。”</p>
+<p class="translated">该团队目前正在努力完善该系统将二维“凝视坐标”转化为三维导航航路点的方式。根据该团队的说法:“理想情况下，3D导航航路点将直接来自眼球追踪眼镜，但我们在实验中发现，眼镜报告的深度分量噪音太大，无法有效使用。在未来，我们希望进一步调查这个问题，以便让用户对深度有更多的控制。”</p>
+<p class="translated">该团队的目标是最终创造出直观、反应灵敏的新人机界面，特别是可以结合多种交互模式的界面——无论是通过视觉、手势还是基于语音的命令。除了允许几乎没有经验的人安全驾驶无人机，这种多模式界面还有许多潜在的用途，例如让残疾人更容易控制他们的设备，或用于检查目的，执法或搜索和救援任务。</p>
+<p class="attribution translated">图片:纽约大学</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

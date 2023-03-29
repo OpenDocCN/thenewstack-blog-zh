@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Scope: A Serverless Project to Manage Open Source Projects</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">范围:管理开源项目的无服务器项目</h1>
+<blockquote>原文：<a href="https://thenewstack.io/scope-serverless-project-manage-open-source-projects/#0001-01-01">https://thenewstack.io/scope-serverless-project-manage-open-source-projects/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="p1 translated">支持<a href="https://serverless.com" class="ext-link" rel="external ">无服务器</a>框架的人们发布了一个开源状态板，旨在帮助开发者跟踪他们的GitHub项目，名为<a href="https://github.com/serverless/scope" class="ext-link" rel="external "> <span class="s1">范围</span> </a>。</p>
+<p class="p1 translated">使用类似Trello的项目卡片流，Scope允许用户定制显示开源项目当前阶段的栏目。用户可以设置所需的标签来决定需要显示哪些拉取请求、提交或注释，并且可以打开和关闭最近完成的项目，这取决于项目经理是否希望显示这些项目。</p>
+<p class="p1 translated">Serverless本身正在使用Scope<a href="https://serverless.com/framework/status/" class="ext-link" rel="external "><span class="s1">向社区通知与serverless项目相关的</span> </a>活动的当前状态，并使其成为一个开源项目，可以用作独立的应用程序或嵌入到网站中。</p>
+<p class="p1 translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-1928029" src="../Images/1974ce43f577c1a2b628848b24464699.png" alt="Scope status board screenshot" data-original-src="https://cdn.thenewstack.io/media/2017/02/f8177ce5-screen-shot-2017-02-13-at-15.14.45-1024x744.png"/></p>
+<p class="p1 translated">该应用程序运行在Amazon Web Services上，可以使用其免费层进行部署。必须先部署<a href="https://github.com/serverless/serverless" class="ext-link" rel="external ">无服务器</a>后端，然后用户进入自己开源项目的GitHub API端点，配置在项目卡片中显示哪些列，部署前端。</p>
+<p class="p1 translated">无服务器开发人员David Wells写道，编写这个工具是因为在管理和通知开源社区优先级问题、拉取请求和工作的当前状态时遇到了困难。Wells认为Scope将帮助无服务器团队更好地突出他们寻求反馈和协作的领域。</p>
+<p class="translated"><iframe loading="lazy" title="Scope - The Serverless Open Source Status Board" src="https://www.youtube.com/embed/kTrPeKZ0JxI?list=PLIIjEI2fYC-BtxWcDeTziRp7cIZVEepB3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="p1 translated">Scope有一个空闲的AWS <a href="https://aws.amazon.com/lambda/" class="ext-link" rel="external "> Lambda </a>函数，通过<a href="https://webhooks.pbworks.com/w/page/13385124/FrontPage" class="ext-link" rel="external "> webhook </a>监听任何对开源项目的GitHub更新。任何活动都会触发Lambda函数将帖子的详细信息保存在DynamoDB中。状态板最初由所有打开的问题填充一次，在GitHub webhooks和API Gateway事件之后，Lambda函数用于维护来自<a href="https://aws.amazon.com/dynamodb/" class="ext-link" rel="external "> DynamoDB </a>的项目卡状态细节，并保持项目流最新，仅显示配置中定制的细节。</p>
+<p class="p1 translated">虽然上周才发布，但截至记者发稿时，该项目已经被打了140次星号，被分叉了7次。回购的几个分支是开发商店，像<a href="https://www.codegram.com/" class="ext-link" rel="external "> <span class="s1"> Codegram </span> </a>，它已经创建了三个开源项目。一个是Ruby兼容的<a href="https://github.com/codegram/date_validator" class="ext-link" rel="external "> <span class="s1">数据验证器</span> </a>已经被下载了超过1200万次，还有<span class="s1"> <a href="https://github.com/codegram/spinach" class="ext-link" rel="external ">菠菜</a>，</span>一个运行在<a href="https://github.com/cucumber/cucumber/wiki/Gherkin" class="ext-link" rel="external ">小黄瓜</a>之上的行为驱动开发框架，一种商业可读的特定领域语言。</p>
+<p class="p1 translated">这个版本是无服务器提供的一系列工具中的最新一个，用来展示他们的平台的发展方向和可能性。该公司还开源了一个博客网站结构，<a href="https://github.com/serverless/serverless-graphql-blog" class="ext-link" rel="external "> <span class="s1">使用GraphQL API </span> </a>运行该结构，它将三个数据源(帖子、作者和评论)整合在一起，存储为DynamoDB表，所有内容只有一个端点。</p>
+<p class="p1 attribution translated">专题图片:由<a href="https://unsplash.com/search/camera?photo=OATNVU37Vj0" class="ext-link" rel="external "> Justin Main </a>，via Unsplash。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

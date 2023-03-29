@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Couchbase Server 4.1 Embraces SQL for the Enterprise</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Couchbase Server 4.1面向企业采用SQL</h1>
+<blockquote>原文：<a href="https://thenewstack.io/couchbase-server-4-1-shakes-sql/#0001-01-01">https://thenewstack.io/couchbase-server-4-1-shakes-sql/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">NoSQL不是未来的科技。事实上，它已经存在了相当一段时间。作为标准SQL数据库的替代，NoSQL由于其易于扩展而迅速成为新的标准。随着越来越多的公司开始开发依赖于海量数据收集的基于网络的应用程序，NoSQL在一秒钟内解析成千上万个查询的敏捷性和灵活性可能意味着成功与失败的区别。</p>
+<p class="translated">Couchbase是NoSQL领域的众多参与者之一。该公司刚刚更新了其文档存储管理软件<a href="http://www.couchbase.com/nosql-databases/couchbase-server" class="ext-link" rel="external "> Couchbase服务器</a>。新发布的版本4.1对其查询语言进行了性能改进和增强，使其更适合企业市场。</p>
+<h2 class="translated">真的有什么区别吗？</h2>
+<p class="translated">对于许多企业来说，从关系数据库向NoSQL的过渡迫在眉睫。然而，浏览各种可用的NoSQL平台并了解每个平台如何处理查询和操作会很快变得很麻烦。建立在传统SQL的基础上，NoSQL的灵活性和易用性标志着数据库平台即服务(DBaaS)的兴起。</p>
+<p class="translated">这导致了各种各样的查询语言被提供来更好地为这些数据库平台的用户服务，比如<a href="http://www.couchbase.com/n1ql" class="ext-link" rel="external "> Couchbase的N1QL </a>。其他选项包括<a href="http://searchsqlserver.techtarget.com/definition/ACID" class="ext-link" rel="external ">基于ACID的事务方法</a>，而MarkLogic使用XQuery，MongoDB利用<a href="https://docs.mongodb.org/manual/crud/" class="ext-link" rel="external "> CRUD </a>操作。</p>
+<div id="attachment_936179" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/01/Screenshot-2016-01-06-at-1.13.56-AM.png" rel="attachment wp-att-936179" class="local-link"><img aria-describedby="caption-attachment-936179" decoding="async" loading="lazy" class="size-large wp-image-936179" src="../Images/edf2c8261ebfd346a40c153534976c52.png" alt="Left: An SQL Query vs. Right: An N1QL Query" data-original-src="https://thenewstack.io/wp-content/uploads/2016/01/Screenshot-2016-01-06-at-1.13.56-AM-1024x426.png"/></a><p id="caption-attachment-936179" class="wp-caption-text translated">左图:SQL查询与右图:N1QL查询</p></div>
+<p class="translated">利用JSON的力量是NoSQL DBaaS提供商脱颖而出的最重要方式之一。MongoDB和Couchbase都使用JSON文档来扩展SQL，使其超越传统的严格限制。</p>
+<p class="translated">Couchbase的N1QL是一种敏捷的声明式查询语言，它为企业提供了“在熟悉的SQL界面中开发应用程序的速度，同时获得了NoSQL的性能优势，”Couchbase产品和工程高级副总裁Ravi Mayuram说。</p>
+<p class="translated">Couchbase 4.1现在支持CRUD以及传统的SQL特性，比如合并、插入和删除。MongoDB也采用了这种方法，通过添加“严格模式”来扩展JSON，允许MongoDB用户解析包含在<a href="http://rfc7159.net/" class="ext-link" rel="external "> JSON RFC </a>中的信息。由于JSON的结构与许多编程语言的数据结构非常相似，对于那些大规模开发基于浏览器的应用程序的人来说，拥有JSON的NoSQL数据库提供商是一个理想的选择。</p>
+<h2 class="translated">把所有的放在一起</h2>
+<p class="translated">通过改善用户体验，Couchbase进一步简化了其Couchbase Server 4.1产品，通过加快查询速度优化了性能。该平台的可扩展性和集群管理依赖于基础数据库技术。Couchbase 4.1的系统编排和管理由erlang提供支持，而函数习惯用法用C编写，数据访问用Go编写。</p>
+<p class="translated">该平台还为SQL数据库能够理解的标准接口提供了驱动程序，允许用户在从关系设置迁移时获得即插即用的体验。除了允许开发人员在Spring或他们首选的平台上工作之外，Couchbase还为开发人员提供了使用他们最熟悉的语言进行编码的灵活性。</p>
+<p class="translated">Couchbase Server 4.1还提供SDX语言支持。我们的客户使用的主要语言是Java，其次是。网络和节点。JS，”Mayuram说。它还提供了对Ruby、Rails和Go的语言支持。为了进一步提高性能，Couchbase引入了预处理语句，允许用户避免在遇到重复查询解析时经常遇到的瓶颈。</p>
+<div id="attachment_936180" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/01/couchbase_server-25.png" rel="attachment wp-att-936180" class="local-link"><img aria-describedby="caption-attachment-936180" decoding="async" loading="lazy" class="size-full wp-image-936180" src="../Images/bd8ab6087241b1fcc9b21974416ed5ee.png" alt="Pictured: Couchbase Server Nodes" data-original-src="https://thenewstack.io/wp-content/uploads/2016/01/couchbase_server-25.png"/></a><p id="caption-attachment-936180" class="wp-caption-text translated">图为:Couchbase服务器节点</p></div>
+<p class="translated">对于那些考虑使用NoSQL数据库来更好地分析客户数据的人来说，Couchbase与Tableau、Looker和Informatica等报告软件相结合。这些程序可以远程访问存储在Couchbase 4.1中的数据，或者用户可以选择将其存储在关系系统中。对于那些完全在云中或混合环境中工作的企业，许多数据库都可以在Docker Hub上作为映像使用，而企业也可以通过选择付费订阅模式将软件下载到他们的系统中。</p>
+<p class="translated">无论用户选择部署和管理他们的NoSQL数据库解决方案，从关系数据库和僵化的数据结构中迁移的痛点现在都可能成为过去。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/mattgyver" class="ext-link" rel="external ">马特·本森</a>通过<a href="https://unsplash.com/" class="ext-link" rel="external "> Unsplash </a>制作的专题图片，获得<a class="ext-link ext-link" href="https://unsplash.com/license" rel="external ">知识共享协议CC0 </a>的许可。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

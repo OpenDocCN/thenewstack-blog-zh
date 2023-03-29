@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Tiny Wireless Robot Insect Is Powered by Lasers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">微型无线机器人昆虫由激光驱动</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tiny-wireless-robot-insect-is-powered-by-lasers/#0001-01-01">https://thenewstack.io/tiny-wireless-robot-insect-is-powered-by-lasers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">很难不相信某种机器人接管正在进行中，特别是我们看到的各种机器人:从工厂生产线上发现的巨型工业机器人，到可能<a href="https://thenewstack.io/self-folding-mini-origami-robots-are-the-nanosurgeons-of-tomorrow/" target="_blank" class="local-link">进行手术</a>、<a href="https://thenewstack.io/harvards-micro-robot-high-precision-high-speed-wonder/" target="_blank" class="local-link">微加工</a>、<a href="https://thenewstack.io/biodegradable-micro-robots-made-algae-help-fight-cancer/" target="_blank" class="local-link">诊断疾病甚至抗击癌症</a>的微型机器人。</p>
+<p class="translated">但是，无论大小，机器人都受到它们如何供电、推进和控制的限制，尤其是微型机器人。它们的体型很小，这意味着它们不能像大型无人机那样使用螺旋桨，它们的移动通常受到沉重电池或电源的限制。例如，像哈佛大学<a href="https://wyss.harvard.edu/technology/autonomous-flying-microrobots-robobees/" target="_blank" class="ext-link" rel="external "> RoboBee </a>这样的小型机器人在概念上很吸引人，但在现实中，它们必须通过有线连接与电源相连，这一事实阻碍了它们的发展。</p>
+<p class="translated">然而，华盛顿大学的研究人员最近在开发一种方法方面取得了重大进展，这种方法可以为微型机器人提供足够的无线动力，使其能够升空飞行——当然是使用激光。它被称为RoboFly，重量大约与牙签相同，正如我们所见，它绝对没有电池或电线来阻止它瞬间发射，快速拍打翅膀。</p>
+<p class="translated"><iframe loading="lazy" src="https://www.youtube.com/embed/7DXuxGErs9k?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">视频</iframe></p>
+<p class="translated">RoboFly的短暂升空可能看起来不算多，但这实际上是第一次这么小的机器人能够无线飞行。正如该团队在他们的论文<a href="https://homes.cs.washington.edu/~gshyam/Papers/wirelessfly.pdf" target="_blank" class="ext-link" rel="external ">中解释的那样，该论文最近在</a><a href="https://icra2018.org/" class="ext-link" rel="external ">国际机器人和自动化会议</a>上发表，微型机器人不能像它们更大、更重的无人机兄弟一样使用螺旋桨，因此通常依靠由压电致动器驱动的扑翼。以前的设计也受到无线飞行所需电池重量的限制，以及增加电压和处理计算所需的(相对)沉重的机载电子设备。</p>
+<p class="translated">但是，为了创造一个真正自主的可以无线飞行的昆虫机器人，该团队必须克服这些挑战。为了实现这一目标，该团队开发了自己的电路制造技术，以创造无线自主飞行所需的微型电子设备。使用这种方法，他们能够创建一个重量不到100毫克的<a href="https://en.wikipedia.org/wiki/Boost_converter" target="_blank" class="ext-link" rel="external ">升压转换器</a>，压电驱动器和微控制器，然后将所有这些集成到微型机器人昆虫中，总重量为190毫克。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4921492" src="../Images/39c2df8dd5b39ac698f11d4f95ad1009.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/06/3d689e1f-robofly-university-washington-4.jpg"/></p>
+<p class="translated">该机器人还附有一个微型光伏板，可以将激光束的恒定功率转化为电能。但仅此一项就产生了微不足道的7伏电压，所以这个电压然后被升压转换器放大到240伏，然后可以驱动翅膀快速跳动。微控制器就像一个“大脑”,调节电流，使其产生类似于真正昆虫翅膀的运动。</p>
+<p class="translated">“[微控制器]使用脉冲来形成波形，”论文的主要作者<a href="https://depts.washington.edu/airlab/people.html" class="ext-link" rel="external "> Johannes James </a>说。“为了让翅膀快速向前扇动，它会快速连续地发出一系列脉冲，然后当你接近波峰时，脉冲会变慢。然后它反过来这样做，让翅膀平稳地向另一个方向扇动。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4921493" src="../Images/01f370a7094e7f68ee4c91d235d00dfe.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/06/e53b73e1-robofly-university-washington-1.jpg"/></p>
+<p class="translated">然而，正如你可能已经注意到的那样，一旦机器人移动到激光指向的范围之外，它就会停止飞行。该团队现在正在研究一种方法，在机器人移动时一前一后地操纵激光，这样它就可以保持飞行更长的距离。也有可能使用更小的电池，可以有效地从无线电波中获取能量。如果这些改进得以实现，那么很难说这种微型机器人会走向何方。</p>
+<p class="translated">“我真的很想做一个发现甲烷泄漏的，”副教授兼论文合著者<a href="https://homes.cs.washington.edu/~gshyam/" class="ext-link" rel="external "> Shyam Gollakota </a>说。“你可以买一个装满它们的手提箱，打开它，它们会绕着你的大楼飞来飞去，寻找从泄漏的管道中冒出来的缕缕气体。如果这些机器人可以很容易地找到漏洞，它们将更有可能被修补，这将减少温室气体排放。这是受真苍蝇的启发，真苍蝇真的很擅长飞来飞去找有臭味的东西。所以我们认为这是我们RoboFly的一个很好的应用。”</p>
+<p class="attribution translated">图片:华盛顿大学</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

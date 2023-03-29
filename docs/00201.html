@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Microsoft Prepares for Serverless Computing with Azure Functions Preview</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">微软用Azure功能预览版为无服务器计算做准备</h1>
+<blockquote>原文：<a href="https://thenewstack.io/azure-functions-serverless-computing-handling-iot-devices/#0001-01-01">https://thenewstack.io/azure-functions-serverless-computing-handling-iot-devices/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">迁移到云不仅仅意味着不必再担心硬件和系统维护；这是你设计应用和服务方式的转变。PaaS比IaaS带你走得更远，但是<a href="https://thenewstack.io/amazon-debuts-flourish-runtime-application-model-serverless-computing/" class="local-link">无服务器</a>(有时称为无状态)计算，如<a href="https://thenewstack.io/aws-gets-serious-lambda-adds-python-cron-scheduling/" class="local-link"> AWS Lambda </a>、<a href="https://thenewstack.io/ibm-launches-bluemix-openwhisk-event-driven-program-service/" class="local-link">IBM open whish</a>、谷歌即将推出的<a href="https://thenewstack.io/google-cloud-functions-arrives-challenge-aws-lambda/" class="local-link">云功能</a>和微软新的<a href="https://thenewstack.io/microsoft-draws-line-sand-azure-functions/" class="local-link"> Azure功能</a>提供了一种不同的方法。</p>
+<p class="translated">与许多PaaS选项不同，您可以用自己选择的语言编写任意代码，并让它基于触发器和事件执行；与IaaS不同，您不必关心虚拟机或代码在其上执行的基础设施的任何其他部分。</p>
+<p class="translated">这使得无服务器成为处理物联网传感器数据的天然匹配，但它的应用范围比这更广。IDC分析师<a href="https://twitter.com/AlHilwa" class="ext-link" rel="external "> Al Hilwa </a>认为该模型“相当广泛——文件处理、ETL、物联网数据工作负载或任何需要后端处理的东西。云功能模型的灵活性、可组合性、生产力和成本效率使其对开发人员极具吸引力。”</p>
+<p class="translated">来自微软Azure Functions团队的Nir Mashkowski 同意这项服务不仅仅与物联网相关，因为它对物联网很有用。“这是基于事件的计算的整个思想，比如Skype的机器人等等，或者使用函数做管理杂务的DevOps。我们看到一些人使用函数来实现WordPress站点的搜索索引；这是一个典型的例子，说明了为什么函数在加速云开发方面如此出色，因为您可以使用它们来做一些原本会是一件非常繁琐的事情。可以做批量；你可以在受保护的环境中一次性完成。”</p>
+<p class="translated">他认为这是加速云计算发展的新工具。“无服务器计算是另一个支柱；您可以获得动态托管计划，并真正为您所使用的内容付费。”</p>
+<h2 class="translated">Azure Functions真的是无服务器吗？</h2>
+<p class="translated">你可以将现在的服务<a href="https://azure.microsoft.com/en-us/blog/introducing-azure-functions/" class="ext-link" rel="external ">功能</a>追溯到Azure的网站服务。“甚至当我们四年前启动时，我们就想实现PaaS的愿景，”Mashkowski声称；“横向扩展的共享主机的概念，你可以购买一个实例，这是计算和内存能力的承诺。”</p>
+<p class="translated">随着之前独立的移动应用构建、通知和工作流工具的加入，网站服务演变为Azure应用服务，用于构建移动、云和工作流应用，并添加了<a href="https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-jobs/" class="ext-link" rel="external "> WebJobs SDK </a>，用于基于触发器和事件运行后台任务。尽管SDK是为。因为微软使用JSON元数据为多种语言和WebJobs扩展创建绑定，所以你可以用多种语言包括PHP、Python、Node和Java来实现。</p>
+<p class="translated">WebJobs的功能远远超出了最初的图像处理、日志处理和网站所需的其他任务，特别是当微软增加了<a href="https://developer.github.com/webhooks/" class="ext-link" rel="external "> WebHook </a>支持，并抽象出WebJobs运行的WebApp主机，成为一个无服务器的动态计算层，可以进行扩展、监控、诊断和遥测。WebJobs服务的灵活性和Azure团队在管理服务器和分配容量方面获得的经验相结合，被证明是构建功能的理想选择。</p>
+<p class="translated">“我们管理很多服务器，”Mashkowski指出。“我们所做的一切都是为了实现始终为您提供温暖实例的承诺，这意味着我们变得非常善于了解还剩多少容量可供运行计算。我们选择了WebJobs SDK，因为他们在绑定方面有很棒的体验，我们还选择了另一个项目，名为动态托管计划，我们将所有用作缓冲区的空闲容量用于保证可靠性，我们能够在这些项目中加入功能的原子单元。”</p>
+<p class="translated">基于WebJobs基础设施也是Azure让无服务器经济运行的方式，就像Google Drive把你的文件放在那些因为性能原因而空着的驱动器上；Functions利用微软在大规模管理映像方面的专业知识来收取部分费用。“一方面，我们有提供无服务器所需的创新；另一方面，我们找到了一种模式，在这种模式下，我们可以非常快速地将图像放到机器上，我们不需要将获取图像并将其排列到客户面前的成本转嫁出去，因为我们对此非常擅长。然后，我们非常擅长测量您的代码实际运行了多长时间。”</p>
+<p class="translated">所以功能下是有基础设施的，但是你应该不用管它。这在实践中有多真实？</p>
+<p class="translated">“鉴于Azure函数是一个更大、更复杂的框架的专门化，有更多的功能和选项，这确实意味着使用它们的模型比使用AWS Lambda更复杂，”希尔瓦指出。“另一方面，Azure团队在用户体验方面做得很好。”</p>
+<p class="translated">因此，虽然您使用的主机上有一个文件系统，其中有大量的存储空间(目前为5TB)，但您只需在需要使用它时考虑这一点。有一个非常简单的文件布局用于部署，所以你可以使用GitHub和CI工具，像npm和NuGet这样的包管理器，云存储，Visual Studio Team Services，Functions portal或Azure Resource Manager模板，还有一些用于创建常见操作的模板，如HTTPTrigger和QueueTrigger，以及一些扩展，包括DocumentDB。</p>
+<p class="translated">“我们有输入绑定和输出绑定，”Mashkowski解释说；输入绑定可以是类似队列存储或文件存储的触发器。我们提供了许多格式，并且给了你一个强类型的对象供你使用。它们都是可插拔的，你可以为WebJobs SDK编写自己的绑定扩展。”Functions已经有了许多其他微软服务的扩展。“函数可能是在DocumentDB中获得CRUD的最简单的方法，”他建议道。“我可以创建一个Azure函数来输入到DocumentDB连接中，或者将文件放入Azure存储中，或者用Bing认知服务处理图像。”他承诺为开发者和合作伙伴提供创建绑定和触发器的简单方法。“不用40或50行代码来启动与Slack的集成，我所做的只是直观地说我想要Slack绑定。”</p>
+<p class="translated">他认为，在这些领域中的许多领域，功能都异常先进，因为它利用了底层PaaS平台的成熟性。“如果我不喜欢web portal体验，我可以在我的IDE中开发；我可以下载WebJobs SDK并在本地运行。这比我们希望的要多一点工作，但是开发者可以在本地运行函数并调试它们——或者使用网站可用的特性，比如云调试；你已经可以用C#实时调试Azure函数了。”</p>
+<blockquote><p class="translated">我不想知道我在红帽上跑灯；我只想写我的代码——为此，我们将有函数的开发模型”——Nir Mashkowski，微软。</p></blockquote>
+<p class="translated">Mashkowski承诺为当地发展提供更多选择；实时JavaScript调试已经成为可能，但他指出“它不符合我们的流畅开发者体验的标准，所以你可以期待它继续改进。”</p>
+<p class="translated">目前，您需要使用发布管理器来进行版本控制，但是将来功能将从应用服务中获得部署特性，比如测试和生产环境之间的交换。“你将能够开始管理版本和真正的开发项目需要的更全面的东西，”他承诺。</p>
+<p class="translated">运行时是开源的，Mashkowski说不仅会有本地运行时，而且他希望Azure功能可以超越Azure，而不仅仅是在微软的Azure Stack私有云选项上。“我认为你会看到其他平台上可用的开发模式，偏向Azure Stack。您可能还会看到我们将无服务器运行时模型从函数中分离出来，并使其可用于其他服务。”他小心翼翼地称之为策略而非承诺，但策略是无服务器计算的潜在节省不仅仅局限于Azure功能。</p>
+<h2 class="translated">重叠的Azure服务</h2>
+<p class="translated">与另一个微软服务<a href="https://flow.microsoft.com/en-us/" class="ext-link" rel="external "> Flow </a>有一些重叠，Mashkowski称其为Azure App服务中<a href="https://azure.microsoft.com/en-us/services/app-service/logic/" class="ext-link" rel="external ">逻辑应用</a>的姐妹产品(并在相同的基础设施上实现)；Flow允许您将API和服务连接到工作流中。“我们区分逻辑应用与流程和功能的方式是，流程和逻辑应用都与工作流有关；将步骤协调在一起，确保它们是事务性的，确保如果流程停止，它可以重新启动。函数创造了一个很好的方法来非常快速地实现一些逻辑；我们把它看作是互补的，它们有很大的天然亲和力。你不会看到职能团队专注于管理职能之间的工作流程；你可以使用逻辑应用程序，或者在某些情况下使用Flow。”</p>
+<p class="translated">Mashkowski并没有将无服务器视为与容器和微服务等其他云模式的竞争，而是认为它们是一系列方法的一部分。“我认为容器本质上是一种包装形式。如果我使用Docker Gateway拥有一个本地开发环境，然后将其推送到云，我知道它会以同样的方式运行。如果用函数之类的高级服务还不够，可以打包在一个容器里。”</p>
+<p class="translated">他预测，容器最终也将运行在无服务器的基础设施上，这将意味着不会将容器加载到内存中的成本转嫁给那些希望PaaS给他们带来价值的客户。“我不想知道我在红帽上跑灯；我只想写我的代码——为此，我们将有函数的开发模型。我预测将会有一个分离，我们将无服务器视为运行时和计费模型，然后我们将看到所有这些开发范例适应无服务器。最自然的一种是PaaS，但我们设想在无服务器上运行其他类型的应用。我们认为这是云领域的下一个重大突破。”</p>
+<h2 class="translated">你什么时候选择函数？</h2>
+<p class="translated">“AWS Lambda、Google Cloud Functions和IBM Bluemix OpenWhisk等功能和类似功能的关键价值在于运行轻量级后台进程。Hilwa指出:“这些功能在不同的维度上各不相同，比如支持的语言、时间限制、并发程度、与其他开发人员工具链集成的难易程度等等。“我认为这个领域现在非常不稳定，我们应该会看到这些解决方案在未来12个月内迅速发展。”</p>
+<p class="translated">函数支持Node.js、C#、F#、Java、Python和PHP，以及PowerShell、Bash和批处理文件；正如RedMonk分析师<a href="https://twitter.com/fintanr" class="ext-link" rel="external "> Fintan Ryan </a>指出的，这给了微软<a href="http://redmonk.com/fryan/2016/04/28/serverless-volume-compute-for-a-new-generation/" class="ext-link" rel="external ">迄今为止最大的语言深度</a>。</p>
+<p class="translated">您可以拥有持久的环境变量。函数没有执行限制，也没有计费上限。这种组合有利于ETL和处理大文件，Mashkowski指出，他遇到的抱怨账单上限的开发人员和担心代码中出现错误而意外增加账单的开发人员一样多。</p>
+<p class="translated">“我们真的希望最终让开发者拥有所有的控制权。如果你不想运行超过两分钟，我们可以说‘这是设置最大运行时间的旋钮。’如果你想确保一个函数只运行一次，并且是完全隔离的，那么成本会高一点，因为你可能利用了多线程，但这取决于你。"</p>
+<p class="translated">功能在预览版中是免费使用的，微软还没有宣布价格，但是测量单位将与其他无服务器产品相匹配，但是Mashkowski说微软将监测开发者如何使用该服务，以确定这是否是正确的计费模式。最初，内存大小将与AWS Lambda相同，但他建议，“为您消耗的内存和运行时的组合提供两种大小或动态内存可能是有意义的。我们从最昂贵的资源是内存和计算时间这一概念开始，然后我们从那里开始。”</p>
+<p class="translated">在preview中，每个函数只能有十个并发执行。" Mashkowski解释说，我们现在所有的限制都来自于预览版和免费提供它. "我们希望在让人们玩这个服务但不能拒绝我们之间找到一个平衡点。我们决定了什么是我们觉得舒服的，只要创造一个可怕的预览体验，并了解更多，以尽快进入GA。"</p>
+<p class="translated">这让微软可以立即打开预览，而不是像谷歌云功能那样进行私人预览。“我很自豪，当我们启动时，我们可以打开闸门；我们没有等待列表，我们能够让人们从第一天就开始使用它，”Mashkowski自豪地说，并补充说，“我们上市的速度可能会让每个人都感到惊讶，因为确保企业信任我们的业务对我们来说至关重要。”</p>
+<p class="attribution translated">IBM 是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+ </g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

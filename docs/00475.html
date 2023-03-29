@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>It’s Mesos’ SMACK Stack versus Kubernetes’ Smart Clusters for Hosting Spark</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">这是Mesos的SMACK Stack与Kubernetes的Smart Clusters托管Spark</h1>
+<blockquote>原文：<a href="https://thenewstack.io/mesos-smack-stack-versus-kubernetes-smart-clusters-hosting-spark/#0001-01-01">https://thenewstack.io/mesos-smack-stack-versus-kubernetes-smart-clusters-hosting-spark/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">这似乎是不止一个支持者在洛杉矶举行的上一次2017年中尺度会议上提出的一个非常有说服力的论点:<a href="http://mesos.apache.org/" class="ext-link" rel="external "> Apache Mesos </a>，他们说，比任何其他orchestrator都更适合大规模运行<a href="https://spark.apache.org/" class="ext-link" rel="external "> Apache Spark </a>流数据引擎。有人说Mesos更适合提供一个能够运行Spark并行任务的框架。但是，他们几乎毫无例外地表示，Mesos跨多个基础架构配置文件管理工作负载的能力赋予了它优势。</p>
+<p class="translated">在上面的段落中，你可以很容易地用“Kubernetes”来代替“任何其他管弦乐队”</p>
+<p class="translated">“我们不得不重新设计我们的软件，我们经历了一个容器化的过程，”Esri的实时和大数据首席开发者Adam Mollenkopf在去年9月在<a href="https://thenewstack.io/architectural-requirements-customers-require-processing-millions-events-per-second/" class="local-link">的中尺度会议上说。“因此，我们没有开发一个单一的应用程序，而是将它分解成一些小型的微服务。我们的摄入途径已经被分解成了一些东西，它们坐在那里收集数据。”</a></p>
+<h2 class="translated">重量级</h2>
+<p class="translated">Mollenkopf展示了SMACK栈在工作中的一个关键例子:一组由Spark领导的开源组件，并由Mesos(更具体地说，<a href="https://d2iq.com/" class="ext-link" rel="external "> Mesosphere DC/OS </a>)、用于Scala和Java的<a href="https://akka.io/" class="ext-link" rel="external "> Akka消息传递框架</a>、作为NoSQL数据库组件的Cassandra(尽管有些已经切换到MariaDB)和用于消息传递的Kafka支持。在这个堆栈中，地理空间数据提供商Esri添加了作为可视化和搜索引擎的ElasticSearch，以及用于Java和Scala应用程序的Apache Play Web framework。</p>
+<p class="translated">“这使我们能够根据客户需求横向扩展系统的任何方面，”Mollenkopf说他的观点是，对于一个企业来说，仅仅为了满足对一种资源的近期需求而扩展整个应用程序环境并不总是可行的。Esri的实施现在被称为Trinity托管服务堆栈。</p>
+<p class="translated">“在DC/OS内部要容易得多——这是一种非常确定的交付这些经纪人的方式，”他告诉一位提问者。“它通过DC/OS和Mesos的调度系统来实现，实际上它运行在具有可用性的节点上。所以我们真的不需要考虑，“这台机器是给卡夫卡的，”或者，“这台机器是给弹性搜索的。”我们可以有一个通用的框架，可以更好地利用这些系统。如果我们想给调度程序一些提示，比如说，“我实际上希望这是一个数据节点，这是一个接收节点，”你也可以通过DC/操作系统和Mesos，通过所谓的<em>放置配置</em>来做到这一点。或者如果我不希望两个Kafka brokers依赖于同一台机器，我可以给它唯一的托管约束，这样它只在一台机器上运行。我对如何做到这一点有很大的灵活性。"</p>
+<p class="translated">在<a href="https://thenewstack.io/the-smack-stack-on-mesospheres-dcos-gives-retailers-a-path-to-leave-amazon/" class="local-link">与我们在meso son</a>的采访中，天文学家工程副总裁Aaron Brongersma告诉我们，除了在“M”上运行“S”、“A”、“C”和“K”组件之外，另一种选择是分别配置这些组件，包括可扩展性策略。这意味着，也要解决如何单独管理和扩展DNS服务的问题。</p>
+<p class="translated">Brongersma说:“DNS往往是那些正常工作的服务之一，但是当它们不正常工作时，对每个相关的人来说都是痛苦的。做对是非常困难的。服务发现成为下一个，然后当你开始向上移动堆栈时，我们如何调度我们的容器？所有这一切都将是一吨R&amp;D的工作，只是得到一些屈指可数的组件，更不用说我们从一开始就得到的东西，也就是'点击一个按钮，得到一个卡夫卡'。点击一个按钮，得到一个卡珊德拉。我们仍然有能力调整这些服务，但大多数服务对我们来说都是现成的，不需要去寻找最佳实践。"</p>
+<h2 class="translated">猛打下去</h2>
+<p class="translated">“我不知道为什么有人会说Spark的并行需求不能在Kubernetes上得到满足，”<a href="https://twitter.com/ssuchter" class="ext-link" rel="external ">首席技术官和<a href="https://www.pepperdata.com/" class="ext-link" rel="external "> Pepperdata </a>的联合创始人肖恩·苏克特</a>在接受New Stack采访时说。在2008年被微软挖走领导必应搜索技术中心之前，Suchter是雅虎前搜索技术副总裁。</p>
+<p class="translated">在今年的大部分时间里，Suchter一直忙于演示一个管道系统，他声称该系统不仅集成了Spark和Kubernetes，而且有效地使它们成为Kubernetes pods中分析密集型容器调度的合作伙伴。Kubernetes是一个由<a href="https://www.cncf.io/" class="ext-link" rel="external ">云本地计算基金会</a>管理的开源项目。</p>
+<p class="translated">“可能他们的意思是，从历史上看，如果你想在Kubernetes上运行Spark，你必须以Spark独立的方式这样做——这意味着Spark是Kubernetes的一层，不知道如何告诉Kubernetes启动许多工人，并让他们相互通信，”Suchter继续说道。“基本上，要么你必须自己完成所有这些工作——这是一个非常高的技术壁垒——要么你的Spark应用程序必须是一个容器，因此显然不是并行的。但有了原生的Spark-on-Kubernetes工作——它只存在了不到一年，但现在完全可以访问，并将出现在Spark的下一个正式版本中——现在Spark可以与Kubernetes进行原生交互，它可以请求它需要的任何并行度，它可以进行<a href="https://spark.apache.org/docs/1.6.1/configuration.html#dynamic-allocation" class="ext-link" rel="external "> Spark动态分配</a>，这允许它随着应用程序的需求而动态变化。”</p>
+<p class="translated">Spark已经有了一种方法，可以指示引擎根据自己对当前工作负载的评估需求，来调整它所使用的执行器数量。因此，在Suchter看来，任何声称只有Mesos能够独立地动态扩展堆栈中的一个组件的说法，都可能忽略了开源社区的其他成员在Spark上所做的最近几个月的工作。</p>
+<p class="translated">去年8月，Spark社区批准向GitHub发布最新Spark 2.2.0版本的分支，演示用Kubernetes替换Spark的原生集群管理器。一开始就不应该是开胸手术。Spark在Mesos上运行的事实已经表明Spark对这个问题漠不关心。</p>
+<p class="translated">然而，正如在最近的Spark峰会上不止一次<a href="https://www.youtube.com/watch?v=0xRHONrWwvU&amp;feature=youtu.be" class="ext-link" rel="external ">所展示的那样，Kubernetes和Spark不会完全表现为“解耦”的组件。事实上，它们是真诚合作的:通常的<strong> spark提交</strong>脚本会将作业发送给Kubernetes调度程序，后者通过调度特定于spark的驱动程序来响应。当司机请求包含Spark执行者的pod时，Kubernetes会根据需要遵守(或拒绝)。执行者将依次运行Spark任务，就像以前一样。火花驱动器将处理清理。</a></p>
+<p class="translated">这是一个复杂的事件链:从提交过程，到驱动程序，到执行者，最后到任务本身。但这也意味着Spark容器可以与包含其他任务的pods共享基础设施。我们的目标是Spark可以与已经在那里运行的任何基础设施共享。</p>
+<p class="translated">这个目标需要Kubernetes运行任何特殊的配置吗？不，Pepperdata的Sucher说。</p>
+<p class="translated">“当我们在Kubernetes上实现本机Spark支持时，我们遇到的部分好处(这是Kubernetes令人印象深刻的)是，Kubernetes为我们提供的原语足够丰富，允许这些大数据、高度并行、高度占用资源的应用程序与其他非大数据服务共存，并且根本不知道这些Spark容器或它们的语义——在同一个集群上，无需修改Kubernetes或这些其他应用程序。”</p>
+<p class="translated">Pepperdata是否解释了协同处理硬件日益流行的原因，例如<a href="http://www.datacenterknowledge.com/archives/2016/11/14/xilinx-unleashes-fpga-accelerator-stack-supporting-caffe-openstack" class="ext-link" rel="external "> FPGA加速器</a>和<a href="http://www.datacenterknowledge.com/archives/2016/11/11/nvidia-become-data-center-accelerator-company" class="ext-link" rel="external ">通用GPU</a>(gp GPU)，它们独特地利用了并行化？Suchter无法对Spark上的Kubernetes作出回应。但是对于他的公司现有的YARN数据库优化器的发布版本，他们已经监控了并行数据作业如何在各种硬件配置上运行，包括加速器。CTO告诉我们，为了提供Hadoop用户(就YARN而言)所期望的确定性和可靠性，这是非常必要的。</p>
+<h2 class="translated">准备好战斗吧</h2>
+<p class="translated">如果你经常阅读新的堆栈，你已经看到，包括Mesos和Kubernetes在内的多个orchestrators的支持者是如何支持<a href="https://thenewstack.io/containerization-leaders-explore-possible-data-storage-interface-initiative/" class="local-link">开发容器存储接口</a> (CSI)的。这是一种为容器提供对持久存储的访问的机制，理论上支持对持久数据库甚至是大型数据湖的有状态连接。</p>
+<p class="translated">因此，当你听说Pepperdata的Suchter认为，在涉及Hadoop或Spark的高度并行的场景中，这样的连接可能是不必要的，甚至是不可取的，你会感到惊讶。事实上，他和他的团队一直在研究其他东西:通过Kubernetes现有的存储抽象，将HDFS文件系统与容器直接集成的方法。</p>
+<p class="translated">“对于大数据系统，你不会真的想将数据加载到一个卷上，一次装载到一个地方，”CTO告诉新堆栈，“可能会四处移动。你只需要考虑你想读的数据。这是分布式文件系统的全部前提:您不必仅仅将数据看作是被某人使用的卷。这是一种更抽象的思维方式。当然，Kubernetes有一些原语，允许您在任一抽象级别上考虑数据。因此，我们添加了一个非常高性能的分布式文件系统——HDFS，没有Hadoop部分——作为一个持久存储后端，它可以在Kubernetes系统内部使用，并且可用。”</p>
+<p class="translated">他解释说，这将是集群上的存储，使用HDFS语义，以Hadoop速度执行。但是如果追溯的话，它可以被视为orchestrator的原生文件系统。他认为，有了这种本地级别的集成，实际上就不需要消息队列来协调各层之间的数据重新分发。“如果你真的在解决非玩具类的问题，那么用这种方式来使用信息系统是很没价值的，”他说。您不希望有更多的系统中介体可以直接相互通信，因为每个中介体——尤其是消息传递系统，以及它们所有的上下文切换——都会让您损失很多性能。如果不需要中介，就不要。”</p>
+<p class="translated">这是一个资深(也是有价值的)搜索系统开发人员的强有力的论点，它为SMACK栈提供了一个很大的漏洞。Sean Suchter说，如果组件在更深的层次上合作，你可能不需要在它们之间做太多。两个交织在一起的元素可以做五个堆栈的工作。然而，Spark 2.2.0上个月才发布，这是一个等待确凿证据的论点。</p>
+<p class="attribution translated">云本地计算基金会和T2中间层是新堆栈的赞助商</p>
+<p class="attribution translated">专题图片:1893年的一次事故，一个蒸汽机<a href="https://commons.wikimedia.org/wiki/File:Locomotive_engineering_-_a_practical_journal_of_railway_motive_power_and_rolling_stock_(1897)_(14761379935).jpg" class="ext-image" rel="external ">的锅炉爆炸，整齐地落在另一个</a>的上面(没有人受伤)。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

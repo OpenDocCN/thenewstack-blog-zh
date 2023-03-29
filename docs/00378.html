@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>The Spinnaker Continuous Delivery Platform Goes Live with 1.0 Release</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Spinnaker连续交付平台从1.0版本开始运行</h1>
+<blockquote>原文：<a href="https://thenewstack.io/spinnaker-continuous-delivery-platform-goes-live-1-0-release/#0001-01-01">https://thenewstack.io/spinnaker-continuous-delivery-platform-goes-live-1-0-release/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">当<a href="http://www.netflix.com" class="ext-link" rel="external ">网飞</a>和<a href="https://www.google.com" class="ext-link" rel="external ">谷歌</a>联手打造一个持续交付平台时，你可以打赌人们会刮目相看。今天，<a href="https://github.com/spinnaker" class="ext-link" rel="external ">大三角帆</a>，这一合作的产物，达到了<a href="https://cloudplatform.googleblog.com/2017/06/spinnaker-10-continuous-delivery.html" class="ext-link" rel="external ">版本1.0 </a>。该项目的最终目标是支持全球、多云部署，以及跨这些部署的自动化发布。</p>
+<p class="translated">“在Spinnaker中，部署是使用定制的发布管道来编排的，其阶段可以包含几乎任何您想要的内容——集成或系统测试、启动或关闭服务器组、手动批准、等待一段时间，或者运行定制脚本或Jenkins作业，”Google产品经理<a href="https://www.linkedin.com/in/christophersanson/" class="ext-link" rel="external "> Christopher Sanson </a>、<a href="https://cloudplatform.googleblog.com/2017/06/spinnaker-10-continuous-delivery.html" class="ext-link" rel="external ">在一篇发布博客中写道，该博客详细介绍了1.0的变化以及Spinnaker的整体工作方式</a>。</p>
+<p class="translated">最初创建于网飞，谷歌在2014年首次注意到Spinnaker。到2015年11月，Spinnaker由网飞开源，因为该项目开始在<a href="http://www.target.com" class="ext-link" rel="external "> Target </a>、<a href="http://www.oracle.com" class="ext-link" rel="external ">甲骨文</a>和<a href="http://www.microsoft.com" class="ext-link" rel="external ">微软</a>等公司中接受新用户。</p>
+<p class="translated"><a href="https://medium.com/netflix-techblog/global-continuous-delivery-with-spinnaker-2a6896c23ba7" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2468253" src="../Images/486fc23c6961eb58cc87fd3476d686be.png" alt="" data-id="2468253" data-original-src="https://cdn.thenewstack.io/media/2017/06/b1230689-netflix-spinnaker.png"/> </a></p>
+<p class="translated">今天的版本包含了过去四年在支持多种云方面所做的工作。截至今天，Spinnaker支持Google的云平台、AWS、Microsoft Azure、Kubernetes和OpenStack。Oracle裸机云将于年底获得支持。</p>
+<p class="translated">Spinnaker还支持诸如释放金丝雀、多级环境、蓝/绿或红/黑部署、流量分流和简单回滚等功能。Spinnaker本身甚至包括一个工具，使它更容易管理。随着Spinnaker 1.0的发布，该项目现在还包括<a href="https://github.com/spinnaker/halyard" class="ext-link" rel="external "> halyard </a>，一个用于配置、安装和更新平台的工具。</p>
+<p class="translated">Spinnaker项目作为一个整体包括一些其他的护理和喂养工具。这包括<a href="https://github.com/spinnaker/deck" class="ext-link" rel="external "> deck </a>，它是一个管理UI、一些监控工具、一个名为<a href="https://github.com/spinnaker/roer" class="ext-link" rel="external "> roer </a>的命令行界面，以及igor，它处理Spinnaker、git和Jenkins之间的集成。</p>
+<div id="attachment_2468254" class="wp-caption aligncenter"><a href="https://medium.com/netflix-techblog/global-continuous-delivery-with-spinnaker-2a6896c23ba7" class="ext-link" rel="external "><img aria-describedby="caption-attachment-2468254" decoding="async" loading="lazy" class="size-full wp-image-2468254" src="../Images/04fada5c5d86dfd035326da658bb2f16.png" alt="" data-id="2468254" data-original-src="https://cdn.thenewstack.io/media/2017/06/2442c596-spinnaker-pipelines.png"/></a><p id="caption-attachment-2468254" class="wp-caption-text translated">大三角帆输油管道(网飞)。</p></div>
+<p class="translated">Sanson写道，Spinnaker对企业特别有吸引力，因为它支持许多身份验证和授权选项。这意味着Spinnaker可以使用OAuth、SAML、LDAP、X.509证书、GitHub团队、Azure组或Google组来提供基于角色的授权和权限。</p>
+<p class="translated">Spinnaker可以将这些角色直接应用到开发阶段，这意味着如果需要的话，对管道的访问甚至可以被限制为需要手动批准过程。还可以根据一天或一周的时间来限制阶段，这意味着新部署可以在深夜自动部署。</p>
+<p class="translated">1.0版本也为重新设计<a href="https://www.spinnaker.io/" class="ext-link" rel="external "> Spinnaker网站</a>提供了一个理由。而且，由于Spinnaker起源于网飞，它也与<a href="https://github.com/Netflix/SimianArmy/wiki/Chaos-Monkey" class="ext-link" rel="external ">混沌猴</a>兼容，这意味着混沌可以在Spinnaker管道的特定阶段产生影响。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

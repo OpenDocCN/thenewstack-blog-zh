@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>CoreOS Joins Docker in Donating a Container Runtime to the Cloud Native Computing Foundation</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">CoreOS加入Docker，向云本地计算基金会捐赠一个容器运行时</h1>
+<blockquote>原文：<a href="https://thenewstack.io/chess-games-cloud-native-world/#0001-01-01">https://thenewstack.io/chess-games-cloud-native-world/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在现代，一个软件的普及程度取决于它的创造者能在多大程度上公开它。周三深夜，<a href="https://coreos.com/" class="ext-link" rel="external "> CoreOS </a>，其分布式容器环境的开发者，<a href="https://coreos.com/blog/rkt-container-runtime-to-the-cncf.html" class="ext-link" rel="external ">在一篇博客</a>中宣布其打算将其核心容器运行时包<a href="https://github.com/coreos/rkt" class="ext-link" rel="external "> <strong> rkt </strong> </a>捐赠给<a href="https://www.cncf.io/" class="ext-link" rel="external ">云本地计算基金会</a>。</p>
+<p class="translated">CoreOS的声明是在Docker Inc .<a href="https://thenewstack.io/docker-donate-container-runtime-containerd-cloud-native-computing-foundation/" class="local-link">周三早上向世界宣布其打算</a>向CNCF捐赠其开源核心容器运行时包<a href="https://github.com/docker/containerd" class="ext-link" rel="external "> <strong> containerd </strong> </a>几个小时后发布的。两者都在两周一次的会议上提交给了CNCF技术监督委员会，以考虑纳入CNCF。</p>
+<p class="translated">CoreOS将其努力描述为与Docker一起的一个组合提案。在周四对新堆栈的一份声明中，Docker Inc .的发言人否认了CoreOS努力的联合性质，称其他公司的举动是一个单独的问题，将由CNCF成员在一项单独的动议中进行表决。</p>
+<p class="translated">随着集装箱化在过去几年中的迅速发展，集装箱技术的词汇一直在努力跟上。资深的新堆栈读者可能会对<strong> containerd </strong>和<strong> rkt </strong>感到困惑，因为在2015年，<strong> <a href="https://thenewstack.io/declaring-format-wars-over-docker-slips-a-universal-runtime-into-all-containers/" class="local-link"> runC </a> </strong> <a href="https://thenewstack.io/declaring-format-wars-over-docker-slips-a-universal-runtime-into-all-containers/" class="local-link">被描述为Docker的容器运行时</a>，而<strong><a href="https://thenewstack.io/docker-donates-container-format-and-runtime-code-joins-coreos-to-form-standards-group/" class="local-link">lib container</a></strong><a href="https://thenewstack.io/docker-donates-container-format-and-runtime-code-joins-coreos-to-form-standards-group/" class="local-link">被描述为Docker的“容器格式和运行时”</a><strong><a href="https://github.com/opencontainers/runc/tree/master/libcontainer" class="ext-link" rel="external ">appc</a></strong><a href="https://github.com/opencontainers/runc/tree/master/libcontainer" class="ext-link" rel="external "/></p>
+<p class="translated">这是一个烂摊子，对随之而来的烂摊子的任何解释都必须为一点清理工作让路。</p>
+<p class="translated">在当前的Docker环境中，<strong> containerd </strong>是位于每个容器内部的守护进程，负责监督容器的执行、管理以及与容器的通信。它使用gRPC与外界联系(gRPC本身是本月早些时候捐赠给CNCF的)，它向在早期被称为“执行者”或命令执行者的人发送命令。这个元素就是<a href="https://thenewstack.io/ready-docker-containers-runc-runtime-riddler/" class="local-link"> <strong> runC </strong> </a>，在捐赠给<a href="https://www.opencontainers.org/" class="ext-link" rel="external ">开放容器倡议</a> (OCI)之前，它确实被称为“运行时”。因此<a href="https://github.com/opencontainers/runc" class="ext-link" rel="external "> <strong> runC </strong> </a>是它启动的容器的宿主进程。尽管Docker容器的格式偶尔会被错误地称为“runC格式”，但现在称之为“Docker图像格式”和“OCI格式”是合适的(目前，这两种格式彼此略有不同)。</p>
+<p class="translated"><strong> containerd </strong>守护进程是一个开源组件，基于Docker的容器引擎的原始模型。<a href="https://github.com/opencontainers/runc/tree/master/libcontainer" class="ext-link" rel="external "><strong>lib container</strong>库</a>是Docker的命令集，用于与<strong> containerd </strong>接口交互。</p>
+<p class="translated">相比之下，<a href="https://github.com/appc" class="ext-link" rel="external "> <strong> appc </strong> </a>是CoreOS对其容器化系统的图像格式的规范。早期的文档提到<strong> appc </strong>指定了图像格式和容器运行时，但是后来的草案已经背离了这一立场。CoreOS的“运行时”现在被更正式地称为“容器引擎”。</p>
+<p class="translated">在架构上，它的官方名称是<strong> rkt </strong>，但读作“rocket”，是Docker的<strong> runC </strong>的对应，而不是Docker的<strong> containerd </strong>。此外，<strong> appc </strong>被认为是无守护进程的，不像<strong> containerd </strong>。</p>
+<p class="translated">这可能会让CoreOS周三晚间的举动更加扑朔迷离。</p>
+<h2 class="translated">选择或其他</h2>
+<p class="translated">在周四对黑客新闻的评论中，CNCF执行董事Dan Kohn承认他一直在与CoreOS和Docker Inc .合作，分别致力于最终将他们的组件捐赠给基金会。在内部讨论之前，CNCF参与者暂时拒绝就这些问题向新的Stack发表评论。</p>
+<p class="translated">然而，CoreOS首席技术官Brandon Philips愿意与我们分享他的见解。首先，我们问他，他预见到在CNCF开发两种集装箱引擎会有什么好处，有些人可能认为这两种引擎基本上可以互换。</p>
+<p class="translated">“这两个项目都是建立和验证工业开放容器倡议(OCI)标准，都是为运行容器而设计的，”飞利浦回应道。作为具有不同体系结构的两个独立实施，它们都有不同的目标使用情形</p>
+<p class="translated">Philips指出了让实现者选择“他们希望如何运行他们的容器，并最终运行他们的应用程序”的好处。一个问题的解决方案不一定适合另一个问题。”</p>
+<p class="translated">他接着说，在CNCF的管理下，为了多样性的利益，这两个项目的<em>独立的</em>发展道路不仅会得到维护，而且会得到保证。他说，两个项目的共存会给他们各自的参与者提供共享代码、库和协作建议的机会。</p>
+<p class="translated">但是飞利浦承认了两个组件可互换性的一个要素:即，在使用一个或另一个引擎旋转容器时配置管理系统的要求。至于可能涉及的任何其他架构风险，CTO表示，“没有风险，因为<strong> containerd </strong>和<strong> rkt </strong>都使用OCI建立的标准，这确保了容器化的应用程序可以在两者下运行。这意味着应用程序开发人员可以放心地构建OCI映像，然后基础架构工程师可以根据他们的需求挑选使用哪个容器引擎。”</p>
+<p class="translated">那么，如何期望这些工程师做出选择，尤其是当配置管理系统认为两者是等同的时候？</p>
+<p class="translated">“它们没有被完全等同对待，”飞利浦回应道。“尽管它们可以互换(一旦OCI 1.0发布)，但每种实现都强调容器基础设施的不同方面。在决定使用哪个容器引擎进行部署之前，架构师应该适当地权衡什么对他们是重要的。<strong> Rkt </strong>的架构是一个可行的选择，因为它对于寻求大规模运行应用程序的系统管理员来说很舒适。他们理解并欣赏<strong> rkt </strong>的架构决策，特别是对安全性的关注，如VM容器、工具的无守护进程特性以及通过插件进行组合的方法。"</p>
+<p class="translated">最后，我们问了飞利浦这个问题:如果Kubernetes有一个像IBM的沃森一样的声音，并且它可以对此事发表意见——由与CoreOS关系密切的人开发——他认为它会做出什么评论？</p>
+<p class="translated">“Kubernetes希望看到的是一个稳定、易于升级、社区领先的容器引擎，能够履行Kubernetes CRI合同，”飞利浦回应道。“今天，<strong> rkt </strong>接近实现这些目标；鉴于其在实现CRI上游全面覆盖方面取得的强劲进展，我们希望将其置于CNCF，使其成为更具吸引力的选择。然而，Kubernetes没有发言权，而是由一个试图做一个伟大项目的大型社区组成。说到底，CoreOS只是希望看到Kubernetes在一个强大的容器运行时支持下取得成功。”</p>
+<h2 class="translated">或者不捐赠(这是个问题)</h2>
+<p class="translated">虽然CNCF发言人向新堆栈确认将对<strong> containerd </strong>和<strong> rkt </strong>贡献进行单独投票，但将这些提交的内容付诸表决可能需要经过一次法律程序。在他的黑客新闻消息中，CNCF的Kohn确认这两个项目的权利人必须公开他们各自的商标，并同意这些交易可能需要在法律上被称为“贡献”而不是“捐赠”</p>
+<p class="translated">“但这是一个非常面向开源的形而上学概念，”Kohn写道，“通过放弃对项目的一些控制，发起项目的公司有望带来更多的贡献者，最终增加项目的总价值和对他们的价值。”</p>
+<p class="translated">另一位与会者不同意，他说，因为Docker和CoreOS都不期望他们的交易得到回报，所以“捐赠”是一个更合适的术语。这个问题可能不仅仅是语义上的:人们普遍认为，专有技术可能依赖于开源组件，但不会变成非专有的(否则，使用SSL的所有东西都会突然免费)。但是在过去，<a href="https://github.com/opencontainers/image-spec/issues/24" class="ext-link" rel="external "> Docker的贡献者提出了一个案例</a>,背离Docker早期方法的OCI格式的演变可能对Docker不公平，或者至少对使用Docker的人不公平。</p>
+<p class="translated">《OCI》的撰稿人Timothy Hobbs在《黑客新闻》中提出了这个早期的争议，作为这种形而上学争议确实可能发生的证据。他的意见促使Docker Inc .的工程师贾斯汀·科马克声明，从技术上来说，Docker没有<a href="https://thenewstack.io/docker-donates-container-format-and-runtime-code-joins-coreos-to-form-standards-group/" class="local-link">向OCI捐赠其容器图像规范，尽管当时</a>声称。相反，他说，“许多人决定对Docker已经在做的事情做一个大致的规范，使它正式化，并同意尽快做1.0。创建一个全新的规范并不是一个标准，至少在最初是这样。有很多现有的映像，所以增量更改和向后兼容性很重要。”</p>
+<p class="attribution translated">2010年温哥华冬奥会上，<a href="https://commons.wikimedia.org/wiki/File:2010_Winter_Olympics_-_Curling_-_Women_-_GBR-SWE.jpg" class="ext-image" rel="external ">队横扫</a>队，击败瑞典队的后卫罗克队的图片，由Jonathan Pope创作，获得知识共享许可。</p>
+<p class="attribution translated">云本地计算基金会和CoreOS是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

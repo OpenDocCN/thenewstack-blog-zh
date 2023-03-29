@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Rancher Labs is Building a Platform for Docker Containers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">牧场主实验室正在为码头集装箱建造一个平台</h1>
+<blockquote>原文：<a href="https://thenewstack.io/rancher-labs-building-os-docker-containers/#0001-01-01">https://thenewstack.io/rancher-labs-building-os-docker-containers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">牧场主实验室的人正在重新组建乐队。他们正在与系统集成商<a href="http://www.redapt.com/" target="_blank" class="ext-link" rel="external "> Redapt </a>合作，就像他们在经营Cloud.com的时候一样。<span>这一次，目标是为容器创建一个</span> <span>超融合基础设施平台。</span></p>
+<p class="translated">他们的目标是通过定义应用打包和运行时标准，极大地简化和降低为容器化工作负载构建私有基础架构堆栈的成本。</p>
+<p class="translated">Rancher Labs联合创始人兼首席执行官盛亮表示，Docker的流行推动了人们对基础设施的彻底反思，包括存储、网络、负载平衡、防火墙等。</p>
+<p class="translated">“Docker映像是可移植的，但是如果这些映像被绑定到这些基础设施服务上，而这些基础设施服务实际上并不那么可移植，那么这就破坏了Docker无处不在的一些价值。我们认为，如果我们能够建立一套用软件编写的、可以在任何地方运行的丰富的基础设施服务，这将为客户带来价值，”他说。</p>
+<p class="translated">这是其容器管理平台Rancher和RancherOS背后的想法，这是一个为运行容器而构建的基本(20MB)操作系统。除了容器基础设施平台，它还宣布Rancher支持为Docker编排持久存储服务。</p>
+<p class="translated">梁说，Redapt和他之前的公司曾在2011年前后合作，为当时最大的游戏制造商之一Zynga开发私有云。</p>
+<p class="translated">传统的方法是构建云，进行虚拟化，然后在其上运行容器，但“通过超融合基础设施，我们消除了许多复杂性和层次，”他说，从而产生了一个易于管理的交钥匙平台。</p>
+<p class="translated">虽然大多数人在虚拟机和云中运行容器，但他认为虚拟化不会消失,“…在某些情况下，当人们在自己的数据中心大规模运行时，他们希望获得最后一点性能，他们希望对资源调度有更多的控制，因此消除一些额外的层以提高性能和资源利用率是有意义的。”</p>
+<p class="translated">他在谈论消除独立的虚拟化和云管理层。</p>
+<p class="translated">“在[这个平台]中，RancherOS和Docker在裸机上运行，但我们仍然必须管理虚拟机工作负载，因为这些用户中的许多人仍然有无法容器化的传统工作负载。它可能运行在Windows或旧版本的Linux上。</p>
+<p class="translated">“我们仍然支持KVM，但我们不再单独管理KVM。我们只是在一个容器中运行KVM，所以管理栈实际上是相同的。你用来管理容器的管理栈，你也可以用它来管理KVM。它们被有效地包装成Docker图像。这就是我们如何管理虚拟化工作负载的向后兼容性。但是已经取消了单独的虚拟化层。再也没有CloudStack、OpenStack这样的层了。如果您想要一台虚拟机，我们只需在一个容器中运行它，这并不是什么新鲜事。谷歌这么做已经很多年了。”</p>
+<p class="translated">据该公司称，该平台:</p>
+<ul>
+<li class="translated">基于基于英特尔x86的服务器和固态硬盘。</li>
+<li class="translated">支持虚拟机和容器；编排框架Compose、Swarm和Kubernetes以及流行的DevOps工具如Chef、Puppet、SaltStack和Ansible。</li>
+<li class="translated">为有状态容器提供了丰富的持久存储特性。</li>
+<li class="translated">使开发人员能够通过将公共云中的实例注册为计算资源来扩展容量。</li>
+<li class="translated">在不同主机上运行的容器和虚拟机之间提供网络隔离和连接。</li>
+<li class="translated">提供强大的资源调度程序，提高计算资源的密度和利用率。</li>
+</ul>
+<p class="translated">顺便提一下，它没有一个很酷的名字，它只是“超融合基础设施平台”梁说，容器市场似乎还没有准备好像以前的专有软件套件那样的一体化打包选项。他说，他的客户往往是运营自己的数据中心的公司，他们不想建立自己的云，但没有提到任何人。</p>
+<p class="translated">“我们特意使其更加灵活，因为一些潜在客户有非常具体的要求，甚至包括服务器的品牌和型号。重要的是我们让体验变得顺畅，”他说。</p>
+<p class="translated">这些都是非常新的技术。它的Rancher产品自6月以来一直处于测试阶段。该公司计划在2016年第一季度全面上市。它计划在明年上半年推出RancherOS和超融合基础设施平台，梁称RancherOS尚未进入测试阶段。</p>
+<h2 class="translated"><strong> Docker存储插件</strong></h2>
+<p class="translated">梁说，Docker宣布的网络和存储插件模型对Rancher Labs来说是一个福音。</p>
+<p class="translated">“网络是容器要解决的第一个问题，”他说。“[版本] 1.9对我们帮助很大。最初，Docker没有插件框架，我们必须做大量的幕后工作，与Rancher一起联网才能让它工作，”他说。</p>
+<p class="translated">它将其持久存储服务设计为这些插件之一。该公司解释说，牧场主可以用来:</p>
+<ul>
+<li class="translated">使用作为容器提供的任何软件定义的存储平台，如Gluster、Ceph和Nexenta，直接在容器主机上协调存储服务的部署和配置。</li>
+<li class="translated">使用Docker Compose和这些存储服务启动应用程序，以自动创建持久的Docker卷来支持传统数据库等有状态应用程序服务。</li>
+<li class="translated">使用任何特定于供应商的高级存储功能，如快照、备份、远程复制和数据分析。</li>
+<li class="translated">在任何虚拟机或裸机服务器上部署应用程序及其所有存储服务，运行在任何公共云或私有数据中心。</li>
+</ul>
+<p class="translated">梁说，该公司一直在与软件定义的存储供应商合作，以简化Rancher的部署和存储管理。</p>
+<p class="translated">Portworx首席技术官Gou Rao在介绍Docker用于在Linux容器中托管有状态应用程序的存储软件<a href="https://thenewstack.io/five-storage-companies-that-speak-to-dockers-next-wave/" target="_blank" class="local-link">时表示，围绕基础设施的一切，包括网络和存储，都是“事后想到的，它们被视为附加功能”。</a></p>
+<p class="translated">尽管Docker宣布ClusterHQ的Flocker是其第一个存储合作伙伴，但竞争对手已经在排队了。</p>
+<p class="translated">Red Hat刚刚宣布在其原子主机平台中支持Ceph和Gluster存储选项的<a href="http://www.informationweek.com/cloud/platform-as-a-service/red-hat-preps-containerized-cloud-workloads-in-openshift/d/d-id/1323056" target="_blank" class="ext-link" rel="external ">插件，以及几个尚未命名的第三方插件。</a></p>
+<p class="translated">与此同时，一家名为Hedvig <a href="https://thenewstack.io/hedvigs-software-defined-storage-and-the-test-to-dockers-plugin-system/" target="_blank" class="local-link">的公司通过软件定义的路线将分布式应用连接到现有存储</a>。</p>
+<p class="translated">Taneja Group的高级分析师和顾问Mike Matchett解释说，虽然Flocker正在映射外部存储和容器，但Rancher正在直接从作为容器运行的SD存储映射到其他容器，并指出他没有得到关于Rancher的简报。当然，容器托管的SD存储需要在某个时候映射到某个地方的持久存储。</p>
+<p class="translated">“现在有几种方法可以试着剥集装箱储猫的皮。好消息是，容器世界现在有了一些非常有趣的存储架构方法和选项。具有挑战性的部分是，不清楚哪种解决方案提供了最健壮、最可靠和最高效的IO，”Matchett说。</p>
+<p class="translated">他指出，我们从虚拟化中了解到，虽然存储和IO通道抽象/隔离具有巨大的优势，但它也会使可见性、故障排除、性能优化和容量规划变得复杂。</p>
+<p class="translated">“与容器世界纯粹主义者交谈很有趣，他们可能仍然坚持认为容器架构旨在用于相对无状态的微服务托管，将持久存储放入其中违背了原则。但随后，实际的IT界开始考虑在容器中托管各种工作负载，”他说。</p>
+<p class="translated">“容器方法的潜在优势是巨大的，因此我完全预计容器体系结构将继续快速发展，以支持甚至取代越来越多的虚拟机用例。”</p>
+<p class="attribution translated">Docker和Red Hat是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/seattlemunicipalarchives/" target="_blank" class="ext-link" rel="external ">西雅图市档案馆</a><a href="https://www.flickr.com/photos/seattlemunicipalarchives/3762792170/in/photolist-6Jvi25-4CmaCB-4Cmawe-4Aerdd-pgFtoj-dYxjR3-aceMrn-p2W5E3-8Vpf9R-joAi8B-aCZGkf-rFp88W-o7LSyT-qAQasV-oSpATg-ooY8cg-dSt1CS-46LwV4-4C7eEk-aUg5p6-rp2CUv-4CbwW5-4C7eCB-oK7qnC-oM7ub3-fNsLXg-d2fU27-ouDMQh-rW7Y5q-5NuLW9-rFnHBJ-dQo6G8-8jLHvA-oSpAyt-oQDzQy-5YLvsU-6hwm4D-7xx3kV-jSusRu-7n6njn-5oVGxk-aUg8cx-ouDoHM-ouDnTv-aUgdnB-e2pDsg-ahvqtx-kCZryt-8nMcKK-7Wc3u3" target="_blank" class="ext-link" rel="external ">工程计划存储，2001 </a>，获<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" class="ext-link" rel="external "> CC BY-SA 2.0 </a>许可。</p>
+<p> </p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

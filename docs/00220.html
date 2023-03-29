@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>The New Stack @ Scale, Show 2: Microservices Complexity and Battlestar Galactica</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">新的Stack @ Scale，Show 2:微服务复杂性和太空堡垒卡拉狄加</h1>
+<blockquote>原文：<a href="https://thenewstack.io/the-new-stack-scale-show-2-managing-complexity-and-battlestar-galactica/#0001-01-01">https://thenewstack.io/the-new-stack-scale-show-2-managing-complexity-and-battlestar-galactica/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">欢迎来到新的Stack @ Scale播客的第二集，这是我们由New Relic赞助的新的月度节目，探索动态服务和系统带来的问题。</p>
+<p class="translated">在AWS re:Invent，<span class="s1">录制的New Stack创始人亚历克斯·威廉姆斯(Alex Williams)和联合主持人弗雷德里克·保罗(Fredric Paul)在一起，他本人是一名长期记者，也是New Relic的主编。他们迎来了两位客人，他们对开发人员世界和分布式系统的复杂性都不陌生:</span></p>
+<ul>
+<li class="translated"><a href="https://twitter.com/mccrory" target="_blank" class="ext-link" rel="external ">戴夫·麦克罗里</a>，巴绍科技公司的首席技术官。此前，戴夫在华纳音乐集团担任工程SVP；以及VMware云计算铸造部门的高级架构师；作为戴尔的云解决方案架构师。他还是虚拟化、系统管理和云计算领域几家公司的发明家、作者和创始人/首席技术官。</li>
+<li class="translated"><a href="https://twitter.com/monkchips" target="_blank" class="ext-link" rel="external "> James Governor </a>，专注于开发商的行业分析公司RedMonk的联合创始人。詹姆斯还是伦敦一家以开发者为中心的联合办公空间Shoreditch Works的创始人。</li>
+</ul>
+<p class="translated">在稍后的节目中，我们将听到首席执行官约翰·希恩讲述Runscope的基础设施，以及sysdig创始人洛里斯·德吉奥安尼讲述新堆栈的复杂性。</p>
+<p class="translated">此外，确保在播客最后的奖金部分戴上耳塞。你会看到《太空堡垒卡拉狄加》(Battlestar Galactica)作为一个关于微服务的寓言的疯狂娱乐性解构，以及使用《星球大战》(Star Wars)进行的同样有效的分析，这是即将成为标志性的“获奖公牛的寓言”的首映，等等。</p>
+<p class="translated">对于其他播客剧集，请查看新堆栈的播客部分<a href="https://thenewstack.io/podcasts/" target="_blank" class="local-link">。</a></p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/show-2-managing-complexity" class="ext-link" rel="external ">展示2:管理复杂性</a> </span></p>
+
+<p class="translated">亚历克斯认为复杂性有两种:必要的和不必要的复杂性。一个是解决问题所必须的。一个是随着时间的推移构建的系统和软件的有机产物，拼凑在一起——基本上是一团糟。</p>
+<p class="translated">“我今天看到的大多数系统都是由于错误或无知而变得复杂的，”Dave说。“有人太懒或不想投资简化it，所以你要为此付出代价，这个代价就是复杂性。”</p>
+<blockquote><p class="translated">“并不是所有东西都应该、需要或者将要成为微服务，”他继续说道。“我认为微服务是目前大规模分布式系统的热门术语。”</p></blockquote>
+<p class="translated">“微服务可能是有效的，但它们有很多很多问题。(上辈子)实现了一个有很多微服务的系统，这就产生了噩梦。同时，如果你有一个简单的问题，你应该尝试使用简单的解决方案。如果已经有一个简单的解决方案，为什么还要做一个复杂的呢？”</p>
+<p class="translated">弗雷德问我们是否正处于似乎很复杂的进化阶段，因为我们还没有在这条路上走得那么远，他想知道随着时间的推移，复杂性是否会减少。</p>
+<p class="translated">“不，它们很复杂，”詹姆斯回答道。“分布式系统总是很难。您可以做一些抽象来简化其中的一些结构。但是，是的，分布式系统很难。这是没有办法的。”</p>
+<p class="translated">“这是一种心态，”詹姆斯补充道。“这并不是说我们没有越来越多的人可以获得这种心态。”</p>
+<blockquote><p class="translated">“实施，再实施，冲洗和重复，”詹姆斯自告奋勇。</p></blockquote>
+<p class="translated">“坦率地说，我们一直在尝试做我们已经做过的事情。虚拟化—是的，VMware在这方面做得很好。但是，他们没有发明那个。那是在主机上，事实上，坦白地说，我们现在谈论的很多东西都是主机类型的思想。我不认为这里面有什么新东西。我们只是不断地重新实现一些东西。你只需要看看JavaScript生态系统就知道了。”</p>
+<p class="translated">“我看到一些创新的事情发生，”戴夫反驳道。“我认为，危险在于混淆了创新和近乎时尚的东西。我们在编程语言中看到了这一点。我们在硬件解决方案中看到了这一点。我们从服务、业务和产品中看到它。所有行业都存在这种情况。”</p>
+<p class="translated">“所以，简而言之，”詹姆斯说，“你当然可以简化事情。容器并不新鲜，但Docker做得很好，让它成为Mac上的一种简单体验，因此让许多开发人员感到非常有效率。这是否真正解决了管理生产环境和分布式系统的挑战是一个非常不同的问题。”</p>
+<p class="translated">“微服务背后的理念，”Dave说，“是让每项服务都非常独立和具体，而不是将许多不同的功能混合或聚合到一项服务中，因此，这是一项非常有针对性的服务。这样做的问题是，你不能轻松地处理事物的集成，而是松散地耦合一切，而松散地耦合一切会导致复杂性。”</p>
+<p class="translated">“这不仅会导致复杂性，而且您现在必须管理这个相互依赖的事物网络，您可以有循环依赖关系，也可以有单向依赖关系，但是除此之外，这些离散服务中的每一个都是有版本控制的。如果你改变它，它可能会影响下游的其他五件事。所以你现在有了这个庞大的依赖图，你必须管理它。管理微服务代码真的很容易，因为它只做这一件小事，这很棒。但是现在，你如何处理所有行为的结果以及所有依赖它的行为？一旦你真正开始实施微服务，这就是真正的挑战之一。”</p>
+<p class="attribution translated">Basho和New Relic是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="https://www.flickr.com/photos/120600995@N07/14028600474/in/photolist-nnEfaY-ds26Et-bh4AGB-jnDBtq-5E2411-333pUJ-aXeGui-5Mj9Mt-2A1ugP-7fvHxP-efQwGU-mbGm6V-eaxabV-3Y2GN8-7HAXU6-8pqD9P-6JZufR-k5hFmS-8TGdkk-d3cZjS-fMe73q-qZJaEt-792ti2-8ATonx-cgGrt5-MLVm9-pT3U7W-oFetj2-2eL2kX-6L6jF3-mTZywC-fswHHC-ttmZMR-5W81Gq-og74CT-5yD8Wu-dL8A1w-x5jct-mGWpiE-5qr3Pu-qpzMDz-5gR5Cr-2sjeFh-8eNMk7-uaCiFU-mG1o17-8f7RRJ-nwyRPY-bxDRqZ-6Vwor7" target="_blank" class="ext-link" rel="external ">由<a href="https://www.flickr.com/photos/120600995@N07/" target="_blank" class="ext-link" rel="external "> Jacqui Brown </a>发布便签</a>，获得<a href="https://creativecommons.org/licenses/by-nd/2.0/" target="_blank" class="ext-link" rel="external "> CC GA 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

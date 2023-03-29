@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>This Smartphone App Can Control Robots with Augmented Reality</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">这款智能手机应用可以通过增强现实来控制机器人</h1>
+<blockquote>原文：<a href="https://thenewstack.io/smartphone-app-can-control-robots-augmented-reality/#0001-01-01">https://thenewstack.io/smartphone-app-can-control-robots-augmented-reality/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着各种尺寸和类型的机器人在我们的工厂和办公室变得越来越普遍，人类找到一种简单而直观的方法来控制它们变得至关重要，而不必经历某种特殊的培训。虽然有一天我们可能能够使用非侵入性的<a href="https://thenewstack.io/self-correcting-robot-thats-telepathically-controlled-human-brain/" target="_blank" class="local-link">脑机接口</a>用我们的思想通过心灵感应来控制机器人，但这些解决方案仍然需要某种准备培训(除了戴上看起来笨拙的游泳帽)。</p>
+<p class="translated">也就是说，直觉机器人控制更有可能的候选者可能是使用普通的智能手机或配备某种易于使用的应用程序的平板电脑。这正是纽约大学<a href="http://engineering.nyu.edu/" target="_blank" rel=" noopener noreferrer external" class="ext-link">坦登工程学院</a>的机械工程博士生<a href="https://www.linkedin.com/in/jared-alan-frank/" class="ext-link" rel="external ">贾里德·艾伦·弗兰克</a>开发的:一款利用增强现实(AR)的应用程序，允许用户告诉机器人去哪里和做什么。观看来自IEEE Spectrum<a href="http://spectrum.ieee.org/video/robotics/robotics-software/controlling-robot-swarms-with-augmented-reality" target="_blank" rel="noopener noreferrer external " class="ext-link"><em/></a>的视频，了解这是如何做到的:</p>
+<p class="translated">https://youtu.be/IUI6OMbUzAU</p>
+<h2 class="translated">操纵虚拟对象</h2>
+<p class="translated">与其他增强现实应用类似，弗兰克的应用程序使用智能设备上的摄像头来“捕捉”场景。然后，它在指定的“虚拟对象”上覆盖标记，然后可以在应用程序中使用手势进行空间操作。智能设备屏幕上的这些点击、滑动和手指绘制的线条会转化为现实世界中机器人的相应运动或动作。</p>
+<p class="translated">弗兰克使用苹果公司的软件开发平台<a href="https://developer.apple.com/xcode/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Xcode </a>，用坐标系创建了一个虚拟网格。用户定义的虚拟物体被放置在这些虚拟坐标内，被称为<a href="https://en.wikipedia.org/wiki/Fiducial_marker#Augmented_Reality" class="ext-link" rel="external ">基准标记</a>的视觉标签被放置在用户想要在这个虚拟空间内控制的任何东西上，无论是机器人还是需要移动的其他物品。智能设备的内置传感器——如加速度计、陀螺仪和磁力计——在建立这个虚拟场景时也发挥了作用。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2262177" src="../Images/d609f38f706030482484401f25f48131.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/d9b18b01-augmented-reality-app-robot-control-2.jpg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2262223" src="../Images/266c9084ddc2bb3f88a0ebe60a1dd4e0.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/870d6d1e-augmented-reality-app-robot-control-7.jpg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2262242" src="../Images/2b3edf3ef7c072221dd8676dd2db0dfd.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/e0837a28-augmented-reality-app-robot-control-9.jpg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2262232" src="../Images/508acea19e3e408efa4777ff906f2f06.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/ae09d0fa-augmented-reality-app-robot-control-8.jpg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2262187" src="../Images/eefa20a7b442c9208f92aa751524f5ac.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/378855f2-augmented-reality-app-robot-control-3.jpg"/></p>
+<p class="translated">通过这种方式设置虚拟舞台，然后使用设备的摄像头捕捉场景。一旦完成，用户现在就可以通过智能设备操纵场景的虚拟物体来发出命令。这些指令通过WiFi传递给机器人，机器人配备了Raspberry Pi板作为处理这些命令的主要控制器。</p>
+<p class="translated">这个系统的主要优点是它不需要特殊设备。“与传统上用于与复杂的机器人团队互动的方法不同，我们的方法不需要购买或安装任何额外的硬件或软件，也不需要在传统的实验室环境中进行互动，”弗兰克告诉<a href="https://next.reality.news/news/robot-swarms-could-be-controlled-by-your-smartphone-thanks-ar-0177243/" target="_blank" rel="noopener noreferrer external " class="ext-link"> <em> Next Reality </em> </a>。“这是因为我们的应用程序减轻了对实验室级和工业级设备的依赖，而是利用移动设备的功能来跟踪和控制机器人。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2262215" src="../Images/e1f7273d73119fa1ec535e80ae8fc721.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/fcc04441-augmented-reality-app-robot-control-6.jpg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2262166" src="../Images/4f1dc0c1294876d9ca1513c86eefc723.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/1fd0b8a2-augmented-reality-app-robot-control-1.jpg"/></p>
+<p class="translated">这意味着人们可能只需拿出一个安装了应用程序的智能设备，拍摄一个场景，然后方便地开始控制一组连接到系统的机器人。像这样的工具相对来说更具移动性，并可能对更好地将机器人融入日常生活和许多行业产生巨大影响。</p>
+<p class="translated">Frank解释说:“让普通人控制一小群机器人具有很大的实用价值，因为人们和机器人群体可能需要交互的应用列表预计将稳步增长(例如，在教育和培训、建筑和制造以及娱乐领域)。”。现在的目标是进一步完善该应用程序，但要保持其易用性和直观性，以便可以在建筑工地和工厂车间进行测试。</p>
+<p class="translated">采取这种方法是有意义的，这将使机器人的使用更加大众化和简化。毕竟，我们已经依赖智能设备来完成各种任务——在街上导航、寻找好餐馆或扫描二维码来获取更多信息——这样的例子不胜枚举。现在，想象一下能够使用你的智能手机和另一个易于使用的应用程序来命令机器人。毫无疑问，这是一个吸引人的想法。</p>
+<p class="attribution translated">图片:NYU</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

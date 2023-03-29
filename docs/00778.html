@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>3 DevOps Insights from NIO, Maker of Self-Driving Cars, DC/OS and Kubernetes Power User</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">3来自自动驾驶汽车制造商NIO、DC/OS和Kubernetes Power User的DevOps见解</h1>
+<blockquote>原文：<a href="https://thenewstack.io/3-devops-insights-nio-maker-self-driving-cars-kubernetes-power-user/#0001-01-01">https://thenewstack.io/3-devops-insights-nio-maker-self-driving-cars-kubernetes-power-user/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="http://www.portworx.com" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">苟饶，Portworx </p> <p class="infoBlockText">苟饶，Portworx联合创始人兼首席技术官，曾任戴尔数据保护部门和思杰系统ASG公司首席技术官；Ocarina Networks和Net6的联合创始人兼首席技术官；也是英特尔和洛克希德·马丁公司的主要架构师。他拥有计算机科学学士(班加罗尔大学)和硕士(宾夕法尼亚大学)学位。</p> </div> </a></p><p class="translated">在初创公司工作的好处之一是与客户建立非常深厚的关系。作为首席技术官，我喜欢与我们的每一位客户共事。他们激励我和我们的团队每天去工作，去创新。我也从他们身上学到了很多。由于我们为容器化应用开发了<a href="https://portworx.com/cloud-native-storage/" class="ext-link" rel="external ">云原生存储</a>解决方案，我们的客户无疑处于技术前沿。今天的帖子是关于我从曾经合作过的最酷的公司之一学到的行业和技术见解:<a href="https://www.nio.io/" class="ext-link" rel="external "> NIO </a>。</p>
+<p class="translated">很难列出NIO的酷属性，但这里有一些我最喜欢的。</p>
+
+<p class="translated">我们最近采访了NIO自动驾驶汽车云负责人Satya Komala，讨论了他们在容器、中间层DC/OS和Kubernetes上运行平台时必须克服的一些更高层次的问题。以下是我从与NIO的讨论中学到的三件事。</p>
+<h2 class="translated">物联网正在产生大量数据，我们需要考虑系统，而不是云。</h2>
+<p class="translated">当我们想到物联网(IoT)时，我们会想到联网的烤面包机、冰箱和恒温器。可能有很多这样的设备，但它们不会产生很多数据。物联网的更大部分将是工业设备，如自动驾驶汽车。正如我提到的，NIO的每辆自动驾驶汽车每天产生高达24TB的数据。仅仅十辆车就是240TB。出于规划目的，NIO希望今年拥有120PB的数据。这是一个巨大的数据量，完全改变了他们构建基础架构的方式。</p>
+<p class="translated">拥有一个产生如此多数据的车队在许多方面证实了著名风险投资公司Andreessen Horowitz的合伙人Peter Levine的预测。在云计算的<a href="https://a16z.com/2016/12/16/the-end-of-cloud-computing/" class="ext-link" rel="external ">端，Levine的观点很简单:在一个实时处理超过网络传输大型数据集的能力的世界里，集中式数据存储和处理没有意义。</a></p>
+<p class="translated">NIOs的经历证实了这一点，正如科马拉告诉我的，“当我开始[在NIO]工作时，我来自特斯拉，正如我之前提到的，特斯拉有一辆<a href="http://www.thedrive.com/sheetmetal/15724/what-are-these-levels-of-autonomy-anyway" class="ext-link" rel="external ">2级(半自动)汽车</a>。由于特斯拉使用云，我开始评估云提供商，但我很快意识到，4级车辆(完全自动驾驶车辆)是完全不同的游戏。在开发模式下，一辆汽车每天产生12到24tb的数据。10辆车相当于每天240万亿字节，我无法将任何数据放入云中。所以问题陈述完全变了。”</p>
+<p class="translated">NIO关注的不是数据和应用程序，而是基础设施和系统。这包括直接在裸机服务器上运行Docker，而不是依赖虚拟机，以限制边缘位置不必要的性能开销和环境复杂性。</p>
+<h2 class="translated">快速数据和大数据应用的广泛组合推动了洞察，需要灵活的运营平台</h2>
+<p class="translated">从如此大量的数据中争论和获得洞察力需要专门的工具。如果有人怀疑我们已经从基于Oracle的世界中走了出来，那就是它。NIO使用一系列工具来传输、存储和处理来自其车队的数据。这里的主要观点是，对于每个专门化的任务，他们使用专门化的服务。</p>
+<p class="translated">例如，每辆车产生的数据几乎都是来自车上12个摄像头的高质量、1080p图像和视频。出于监管原因，所有这些数据必须首先从汽车中流出并长期存储，还要进行分析。</p>
+<p class="translated">流媒体利用了<a href="https://kafka.apache.org/" class="ext-link" rel="external ">卡夫卡</a>。批处理工作负载利用运行在<a href="https://hadoop.apache.org/" class="ext-link" rel="external "> Hadoop HDFS </a>之上的<a href="https://spark.apache.org/" class="ext-link" rel="external "> Spark </a>。在<a href="https://spark.apache.org/docs/1.2.2/ml-guide.html" class="ext-link" rel="external "> Spark ML </a>和<a href="https://www.tensorflow.org/" class="ext-link" rel="external "> TensorFlow </a>上训练机器学习。</p>
+<p class="translated">由于使用了这么多不同的服务，NIO很难成为操作每一个服务的深度专家，就像数据库管理员过去是操作单个“宠物”数据库的专家一样。这就是像中间层DC/OS和Kubernetes这样的平台的用武之地。它们提供了一种一致的方式来部署、升级、备份和迁移任何运行在Linux上的有状态服务。有了这样一个一致的平台，NIO可以自由地创新和试验许多不同的数据服务，而不必担心必须雇用专门的运营团队来管理它们。</p>
+<h2 class="translated">不是所有的问题都已经解决了，选择几个合作伙伴进行深入研究，并进行创新</h2>
+<p class="translated">世界上从来没有一辆汽车每天产生24TB的数据，所以从定义上来说，不存在现成的解决方案来运行这种规模的平台。这些都是全新的问题，需要新的技术。这令人兴奋，但也令人生畏。Komala的一个关键观点是，你应该专注于你的堆栈中的少数关键领域，并找到合适的合作伙伴来解决这些问题，并在这些领域进行创新。</p>
+<p class="translated">例如，NIO给我讲了一个关于大型交换网络T1的精彩故事。NIO面临的挑战是让覆盖网络在Kubernetes上大规模运行。IP空间管理是一个巨大的挑战，特别是由于与每个容器集群相关联的IP数量巨大。该公司想要一个与CNCF集装箱网络接口(CNI)标准相集成的软件定义的网络，以便拥有一个更扁平的网络架构，并自动化IP空间管理和网络空间管理。问题是这并不存在。发现问题后，NIO与Big Switch合作，扩展了对CNI接口的支持，从而在其平台上形成了一个稳定的网络解决方案。</p>
+<h2 class="translated">下一步是什么？</h2>
+<p class="translated">在这样一个新的空间里，你不能指望所有的问题都会马上得到解决。与正确的合作伙伴一起选择正确的挑战是在不断发展的空间中挑战极限的关键。在我们自己的互联网领域，我们很高兴能与NIO这样的客户合作，推进<a href="https://portworx.com/use-case/persistent-storage-dcos/" target="_blank" class="ext-link" rel="external ">DC/操作系统存储</a>和<a href="https://portworx.com/use-case/kubernetes-storage/" target="_blank" class="ext-link" rel="external "> Kubernetes存储</a>的边界。总有东西要建造，总有东西要学习。</p>
+<p class="attribution translated">波特沃克斯赞助了这个故事。</p>
+<p class="attribution translated">CNCF和中间层是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>A Self-Correcting Robot that's Telepathically Controlled by the Human Brain</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">一个由人脑通过心灵感应控制的自我修正机器人</h1>
+<blockquote>原文：<a href="https://thenewstack.io/self-correcting-robot-thats-telepathically-controlled-human-brain/#0001-01-01">https://thenewstack.io/self-correcting-robot-thats-telepathically-controlled-human-brain/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在一个日益自动化的世界里，有许多可能的方法让机器人和其他机器执行我们的命令。例如，机器人可以通过语音命令来控制，但当然，这意味着这些机器需要配备某种精通自然语言处理的人工智能。但是，正如我们许多人从使用智能手机上的数字助理的亲身经历中所知，这种方法可能不可靠，令人沮丧。</p>
+<p class="translated">因此，科学家们正在探索机器人控制的替代方案，例如<a href="https://thenewstack.io/control-robotic-arm-mind-using-machine-learning/" target="_blank" class="local-link">脑机接口</a> (BCIs)，它在大脑和外部机器之间建立了直接的通信链接。来自麻省理工学院<a href="https://www.csail.mit.edu/" target="_blank" class="ext-link" rel="external ">计算机科学和人工智能实验室</a> (CSAIL)和<a href="http://www.bu.edu/" class="ext-link" rel="external ">波斯顿大学</a>的一组研究人员最近创建了这样一个界面，允许人类利用机器学习和来自<a href="http://www.rethinkrobotics.com/" class="ext-link" rel="external "> Rethink Robotics </a>名为Baxter的商用<a href="https://thenewstack.io/collaborative-robots-will-help-human-workers-not-replace/" target="_blank" class="local-link">协作机器人</a>用意念控制机器人。</p>
+<p class="translated">在团队论文中概述的实验<a href="https://groups.csail.mit.edu/drl/wiki/images/e/ec/Correcting_Robot_Mistakes_in_Real_Time_Using_EEG_Signals.pdf" class="ext-link" rel="external ">中，合作机器人Baxter的任务是将喷漆罐和电线卷分类放入两个独立的箱子中。该团队的界面包括人类受试者将脑电图(EEG)帽戴在头上，将他们连接到一个封闭的反馈回路系统，其中也包括机器人。该系统允许人类在机器人排序出错时，仅通过思维实时提醒机器人，甚至引发机器人的“尴尬”反应，如视频所示。</a></p>
+<p class="translated"><iframe loading="lazy" title="Brain-controlled Robots" src="https://www.youtube.com/embed/Zd9WhJPa2Ok?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">该系统读取并作用于大脑中一种叫做错误相关电位(ErrPs)的特定电活动。当一个人意识到自己犯了一个错误时，这种特殊的大脑信号就会爆发。这些电脉冲被EEG cap拾取，并在10到30毫秒内，被机器学习算法分类和解码为简单的机器人控制命令，这些命令会促使Baxter停止并自我纠正。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2095674" src="../Images/e9f173c28e48b12550468530be3eae22.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/03/58e75b45-csail-baxter-1.jpg"/></p>
+<p class="translated">“想象一下，能够即时告诉机器人做某个动作，而不需要输入命令，按下按钮，甚至说一句话，”CSAIL主任<a href="https://www.csail.mit.edu/user/876" class="ext-link" rel="external ">丹妮拉·鲁斯</a>说。“像这样的简化方法将提高我们监管工厂机器人、无人驾驶汽车和其他我们尚未发明的技术的能力。”</p>
+<p class="translated">与其他现有的脑机接口相比，该团队的方法有一些明显的优势，这些接口通常需要训练人类操作员以某种方式调整他们的大脑信号，以便从系统中获得响应。一个例子是一个连接到BCI的人类受试者，在精神上想象一个光标向计算机屏幕上的目标移动。该系统的软件将解释这些脑电波，并将这种思维转化为屏幕上的可见活动。这种技术的一个主要缺点是它需要高度的专注、持续的视觉刺激和额外的训练。相比之下，该团队的目标是开发一种更直观的控制方法。</p>
+<p class="translated">“当你观察机器人时，你所要做的就是在精神上同意或不同意它正在做的事情，”鲁斯说。“你不必训练自己以某种方式思考——机器会适应你，而不是相反。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2095675" src="../Images/f27079e3e0ecfcef9cbc6bbfd2c33dbc.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/03/cbcb7200-csail-baxter-2.jpg"/></p>
+<p class="translated">为了提高机器人的响应精度，并抵消ErrP信号的固有弱点，该团队还将注意力转向了他们所谓的“二次误差”。当机器人没有正确响应操作员的初始反馈时，这些信号出现在人类操作员的大脑中，并且比初始错误相关的大脑信号更容易识别。</p>
+<p class="translated">虽然这个额外的功能还不能在这个模型中实时使用，但该团队相信，一旦它被集成到系统中，它将提高系统的性能，将准确率提高90%，并在人类和机器人之间建立持续的通信。</p>
+<p class="translated">该团队还认为，该系统可以超越双重的“是或否”的区分，以包含多种选择，因为ErrP信号的“错误”可以在相对的层次上进行分析，以便从许多答案或行动中得出最“正确”的答案或行动</p>
+<p class="translated">像这样直观的脑-机接口很有希望创造出控制机器人的系统，这种系统几乎不需要训练就能使用。这样一个易于使用和立即响应的界面在工厂环境中是有价值的，毫无疑问，这将方便患有疾病的人，他们使用某种假肢，但患有疾病或受伤，无法用他们的声音控制他们的设备。事实上，这种研究表明，用你的思想控制机器人的想法听起来不像过去那样遥不可及，而且可能有潜力成为一项广泛应用的技术，我们可能会看到它集成到我们的汽车、家庭和工厂中。</p>
+<p class="attribution translated">图片:CSAIL /波士顿大学</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

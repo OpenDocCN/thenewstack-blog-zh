@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Docker for Today and Tomorrow From DockerCon 2015</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">今天和明天的Docker来自DockerCon 2015</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tns-analysts-show-50-docker-for-today-and-tomorrow-from-dockercon/#0001-01-01">https://thenewstack.io/tns-analysts-show-50-docker-for-today-and-tomorrow-from-dockercon/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="http://www.dramafever.com/" class="ext-link" rel="external "> DramaFever </a>于2013年10月开始运行Docker。这使他们成为第一批，特别是考虑到所罗门·海克斯在那年4月才与世界共享Docker。这也使得DramaFever的Bridget Kromhout和Tim Gross成为我们本周在DockerCon录制的这一集《新堆栈分析师》的嘉宾。两人在最后的精彩演示后加入了我们:</p>
+
+<p class="translated">斯科特富尔顿，谁写的新堆栈覆盖码头，特别是，加入了作为该节目的共同主持人。更多剧集，请查看新堆栈的播客部分<a href="https://thenewstack.io/podcasts/" class="local-link">。</a></p>
+<p class="translated"><br/><span class="media-direct-link"><a href="https://thenewstack.simplecast.com/episodes/50-docker-for-today-and-tomorrow-from-dockercon-2015" class="ext-link" rel="external "># 50:Docker con 2015</a></span>今天和明天的Docker</p>
+
+<p class="translated">这个播客也可以在YouTube上找到。</p>
+<h2 class="translated">码头工人和戏剧狂热</h2>
+<p class="translated">DramaFever团队讨论了他们在将一个版本投入生产时遇到的问题。他们需要一个在开发服务器上与生产环境中完全相同的解决方案。Docker脱颖而出。他们知道这是有风险的，因为它是0.6版本，但是他们知道他们会回到Linux容器。在他们开始使用Docker之前，可能需要一整天或更长时间才能让开发人员跟上速度。今天，他们可以在第一天工作的午餐前让新的开发人员开始工作。DramaFever团队现在正在寻找服务发现工具。有很多新工具，但是很难知道哪些工具适合这个用例。一些真正脱颖而出的东西是华特·迪士尼在先进技术赛道DockerCon上展示的Mesos和马拉松配对。</p>
+
+<p/>
+<p class="translated">目前，DramaFever将一个容器映射到一个主机。这是他们想要改变的事情之一。这将意味着一个更复杂的编排环境。</p>
+<p class="translated">但是在展会上宣布作为通用格式和运行时的RunC呢？那有影响吗？不是直接的。它将使生态系统比现在成熟得多，但开发工具制造商比“水管工”受影响更大，所罗门用这个术语来描述管理运营的人。但这可能会扩大贡献者的范围。</p>
+<h2 class="translated">技术堆栈</h2>
+<p class="translated">DramaFever在AWS上使用Ubuntu Linux。它有一个遗留的单片Django应用程序，但一直在从中抽取片段来制作用go编写的微服务。他们还使用AWS来管理持久层的存储和缓存。它们会根据流量模式积极地自动伸缩。应用程序主要以无状态的方式运行。</p>
+<p class="translated">在AWS上，弹性容器服务作为一个原型很有趣。它在发布时似乎还不够成熟。从那时起，他们已经做出了改变，所以情况正在好转。它是DramaFever的潜在候选，因为它更深入地研究了他们用Docker构建的管理环境。</p>
+<p class="translated">另一个注意事项:AWS对于某些术语的含义是不透明的，例如什么是“高”或“中等”，或者在比较性能方面。要弄清楚事情是如何运作的可能需要一些摆弄。</p>
+<p class="translated">DramaFever在Docker投入生产后又增加了其他工具。他们增加了厨师来定义形象，就像迪士尼正在做的那样。你必须控制宿主基底，才能知道容器外部发生了什么。他们开始注意工具，比如Hashicorp提供的工具。然后是Mesos和马拉松式的产品。</p>
+<p class="translated">Cobb说，Docker Machine和Docker Swarm有兴趣一起弥合供应和主机之间的差距。这可能意味着使用Compose，进行适当的扩展，并通过EC2 provisioner为机器应用它。对于戏剧热来说，这可能是一个强大的组合。</p>
+<p class="translated">DramaFever就不必像现在这样使用Boot2Docker了。这将消除在EC2中启动自己的实例的一些摩擦，并且非常适合前端开发人员。他们将使用Docker Machine，而不是使用fab命令来启动EC2实例。</p>
+<p class="translated">Scott和我讨论了Docker开放容器格式及其对市场的意义，并以此结束了这次展览。</p>
+<p class="translated">斯科特说，Docker通过解决一些争议做了一些大事，巩固了自己在市场上的基础。它的DNA现在无处不在。</p>
+<p class="translated">最能说明问题的例子之一是架构是如何发展的。Scott说，RunC将为容器带来新的智能，正如Quake演示中展示的实时迁移能力所示。RunC是大会的重大架构新闻。</p>
+<p class="attribution translated">Docker是新堆栈的赞助商。</p>
+<p class="attribution translated">通过推特上的<a href="https://twitter.com/professoruss/status/613500502601396224/photo/1" class="ext-link" rel="external "> @professoruss </a>的特写图片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

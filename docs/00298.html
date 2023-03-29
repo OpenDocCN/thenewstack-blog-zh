@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Context: What Do ‘Normal Microservices’ Look Like?</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">上下文:正常的微服务是什么样的？</h1>
+<blockquote>原文：<a href="https://thenewstack.io/context-normal-microservices-look-like-2/#0001-01-01">https://thenewstack.io/context-normal-microservices-look-like-2/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">微服务环境没有“正常”可言。如果2016年11月由来自墨西拿<a href="http://web.unime.it/en" class="ext-link" rel="external ">大学</a>、英国<a href="http://www.ncl.ac.uk/" class="ext-link" rel="external ">纽卡斯特大学</a>和IBM Research的六名研究人员组成的团队发布的开创性白皮书(PDF)被信以为真，那么这种平衡状态可能永远也不会实现。</p>
+<p class="translated">研究人员写道，每个数据中心都有独特的操作要求。一旦微服务被部署到那里，它们所需的配置不仅变得独一无二，而且被嵌入到各自的系统中。</p>
+<p class="translated">“此外，这些微服务具有控制和数据流依赖性，”白皮书写道。“在处理由异构性能要求驱动的微服务和云数据中心资源的异构配置方面存在挑战…微服务到数据中心的映射需要从大量可能性中选择定制配置，这是不可能手动解决的。”</p>
+<p class="translated">那么，如果您的工作是使用应用性能管理(APM)平台监控数据中心微服务环境的行为，您在寻找什么？你什么时候能知道某些服务的行为，或者整个系统，是否与众不同？一旦你确定了你工作的地方和时间的“普通”是什么，在它完全改变之前，你预计这种情况会持续多久？</p>
+<p class="translated">“APM系统实际上是一个web应用程序。因此，一个请求来自最终用户，它在开放的互联网上传播，它到达一些服务器，然后它被馈送到一个数据库，在那里记录被更新，请求返回一个响应，响应沿着相同的路径返回给用户，<a href="https://www.weave.works/" class="ext-link" rel="external "> Weaveworks </a>的首席执行官<a href="https://twitter.com/monadic" class="ext-link" rel="external "> Alexis Richardson </a>在接受本期<a href="https://thenewstack.io/podcasts/context/" class="local-link"> Context </a>播客的新堆栈采访时解释道。</p>
+<p class="translated">“在云原生系统中，架构并不特别简单，”Richardson继续说道。“可能有50个微服务合作，向一个最终用户提供一个响应。这是一个极端的例子。或者一个微服务调用另一个微服务。因此，如果你把它画成一幅画，请求会来回摆动，就像20世纪80年代的突破控制台游戏一样，直到最终返回给用户，而不是有一个直接的、向上/向下的请求/响应。跟踪所有这些与在典型的APM环境中进行跟踪有很大的不同。”</p>
+<p class="translated">Weaveworks生产了一个商业版的普罗米修斯监控平台<a href="https://www.weave.works/guides/cloud-guide-part-3-monitor-prometheus-monitoring/" class="ext-link" rel="external ">，名为Cortex </a>。Richardson告诉我们，他同意任何APM平台供应商说它可以在学术上将其基于代理的监控系统从客户端/服务器扩展到微服务模型，这有点夸大其词。</p>
+<p class="translated">他说，“一个为web应用程序提供支持的APM供应商，现在声称它可以为任何其他类型的应用程序提供同等水平的支持，坦率地说，这是一个非常有希望——或者可能毫无希望——的说法。”</p>
+<p class="translated">然而，考虑到APM平台<em>正在</em>扩展到微服务，客户<em>正在</em>体验一些成果，这样的评估有多现实呢？这是我们在本期<a href="https://thenewstack.simplecast.com/episodes/show-9-microservices-and-the-hunt-for-the-new-normal" class="ext-link" rel="external ">新堆栈:背景</a>中深入探讨的问题，我们采访了:</p>
+<ul>
+<li class="translated">Weaveworks首席执行官Alexis Richardson </li>
+<li class="translated">Sysdig首席执行官洛里斯·德吉奥安尼</li>
+<li class="translated"><strong> Jim Gochee </strong>，新遗迹首席产品官</li>
+</ul>
+<p class="translated">现在请听SoundCloud上的“<a href="https://thenewstack.simplecast.com/episodes/show-9-microservices-and-the-hunt-for-the-new-normal" class="ext-link" rel="external ">微服务和寻找新常态”</a>，由<a href="https://twitter.com/SMFulton3" class="ext-link" rel="external "> Scott Fulton </a>和<a href="https://thenewstack.io/author/luke/" class="local-link"> Luke Lefler </a>为新堆栈制作:</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/show-9-microservices-and-the-hunt-for-the-new-normal" class="ext-link" rel="external ">展示9:微服务与猎取新常态</a> </span></p>
+
+<p class="attribution translated">IBM是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="http://www.retrogames.cz/play_223-Atari2600.php?language=EN" class="ext-link" rel="external ">来自RetroGames.cz </a>的仿真雅达利2600超级突围游戏。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

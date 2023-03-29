@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Facial Recognition AIgorithm Re-Trained to Recognize Faraway Galaxies</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">面部识别算法被重新训练以识别遥远的星系</h1>
+<blockquote>原文：<a href="https://thenewstack.io/facial-recognition-aigorithm-re-trained-to-recognize-faraway-galaxies/#0001-01-01">https://thenewstack.io/facial-recognition-aigorithm-re-trained-to-recognize-faraway-galaxies/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">用于检测和识别物体的技术在过去几年里已经有了很大的发展，正在被用于自动驾驶汽车中，用于<a href="https://thenewstack.io/deep-learning-algorithm-helps-driverless-cars-recognize-pedestrians-better/" target="_blank" class="local-link">识别行人</a>、<a href="https://thenewstack.io/using-opensource-watson-turn-videos-data/" target="_blank" class="local-link">从视频中提取数据</a>，或者赋予机器能力<a href="https://thenewstack.io/amazons-got-goods-banish-long-lines-whole-foods/" target="_blank" class="local-link">识别人脸</a>和<a href="https://thenewstack.io/affective-computing-emotionally-intelligent-machines/" target="_blank" class="local-link">知道你的感受</a>。这种人工智能计算机视觉的使用似乎没有限制，现在来自西澳大利亚大学和国际射电天文学研究中心(ICRAR)的一个团队正在利用相同的深度学习技术来识别外太空深处的遥远星系。</p>
+<p class="translated">昵称为ClaRAN(ClaRAN是<strong> Cla </strong>分类<strong>R</strong>adio sources<strong>A</strong>automatically with<strong>N</strong>eural networks)的算法改编自脸书和微软使用的相同面部识别技术。但是，ClaRAN不是扫描人脸，而是扫描射电望远镜的图像，以检测所谓的<a href="https://en.wikipedia.org/wiki/Radio_galaxy" target="_blank" class="ext-link" rel="external ">射电星系</a>——一种活动星系核(AGN)，它发出强烈的光，但在无线电波长，而不是在可见光谱内。正是从这些星系中心的超大质量黑洞中，出现了这些无线电波射流。</p>
+<p class="translated">天文学家<a href="https://www.icrar.org/people/iwong/" target="_blank" class="ext-link" rel="external ">Ivy Wong</a>博士，最近发表的<a href="https://academic.oup.com/mnras/article/482/1/1211/5142869#" target="_blank" class="ext-link" rel="external ">论文</a>的主要作者之一，告诉<em> <a href="https://www.sciencedaily.com/releases/2018/10/181031080608.htm" target="_blank" class="ext-link" rel="external ">科学日报</a> </em>“这些超大质量黑洞偶尔会喷出可以用射电望远镜看到的喷流”。“随着时间的推移，喷流可以从它们的主星系延伸很远，这使得传统的计算机程序很难找出星系的位置。这就是我们试图教ClaRAN去做的。”</p>
+<p class="translated">根据该团队的说法，目前使用的传统计算机算法可以识别大约90%的无线电辐射源。</p>
+<p class="translated">“由于其扩展结构的复杂性，仍有10%，即700万个‘困难’星系必须由人类肉眼观察，”Wong博士解释道，他还强调了公民科学项目的重要性，如射电星系动物园(RGZ)项目，以发现这些难以捉摸的剩余星系。“如果ClaRAN将需要视觉分类的来源数量减少到1%，这意味着我们的公民科学家有更多的时间来研究新类型的星系。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-6139814" src="../Images/9bce7963776a20b8c03a46d40601094d.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/11/5c32687e-claran-1.jpeg"/></p>
+<h2 class="translated">一种更快的卷积神经网络</h2>
+<p class="translated">为了做到这一点，ClaRAN接受了同时执行两项关键任务的训练:在给定的图像中识别无线电喷流的来源，并对已识别来源的形态进行分类。特别是，ClaRAN的算法是基于一种叫做<a href="https://towardsdatascience.com/r-cnn-fast-r-cnn-faster-r-cnn-yolo-object-detection-algorithms-36d53571365e" target="_blank" class="ext-link" rel="external ">更快的基于区域的卷积神经网络</a>方法的<a href="https://en.wikipedia.org/wiki/Convolutional_neural_network" target="_blank" class="ext-link" rel="external ">卷积神经网络</a> (CNN)，这种方法比它的前辈提供了显著的性能提升:它使用起来直观灵活，在识别射电源方面更准确更快。然后，使用数千幅世界坐标系对齐的同一空间区域的无线电和红外图像来训练该算法。在识别这些成对图像中的射电源后，它将把探测到的信号源归类到RGZ使用的六种形态类型之一。此外，该团队的方法提供了他们所谓的“单一的、端到端的数据管道”</p>
+<p class="translated">“端到端，我们的意思是整个训练管道只有一个单一的优化步骤，这两项任务在一次训练迭代中同时训练，”该团队写道。“这也意味着在获得手工制作的特征时几乎不需要人工参与，特征提取主要是由从训练集中学习的卷积核驱动的，而不是由专家强加的事先假设。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-6139815" src="../Images/cd7544015b633b20857374061d98e88a.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/11/a12239f4-claran-2.jpeg"/></p>
+<div id="fig5" class="fig fig-section"><p class="translated">该团队使用人工智能交叉匹配这些不同数据源的方法似乎非常有效，使用无线电和红外图像精确定位射电星系的准确率超过90%。正如该团队所指出的，随着我们对浩瀚宇宙越来越深入的窥视能力随着更好的硬件而提高，在下一代射电巡天中收集的数据量(例如即将到来的</p><a href="https://www.atnf.csiro.au/people/Ray.Norris/emu/index.html" target="_blank" class="ext-link" rel="external ">Evolutionary Map of the Universe</a><p class="translated">)将是巨大的——这意味着像ClaRAN这样的工具将在未来使这种研究切实可行方面至关重要。</p></div>
+<p class="attribution translated">图片:NASA &amp;吴、陈；Wong，Oiwei Ivy</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Mesosphere Raises $36M From Khosla Ventures to Build Out Data Center Operating System</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Mesosphere从Khosla Ventures融资3600万美元，用于构建数据中心操作系统</h1>
+<blockquote>原文：<a href="https://thenewstack.io/mesosphere-develops-a-data-center-operating-system-and-raises-36m-from-khosla-ventures/#0001-01-01">https://thenewstack.io/mesosphere-develops-a-data-center-operating-system-and-raises-36m-from-khosla-ventures/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Mesosphere将加速其数据中心操作系统的开发，它在由Khosla Ventures领投的一轮融资中获得了3600万美元的资金，Khosla Ventures是硅谷最受尊敬的风险投资FIM之一。6月，Mesosphere在Andreessen Horowitz领导的一轮融资中筹集了1000万美元。</p>
+<p class="translated">在过去的六个月里，这家公司获得了相当多的关注。这在一定程度上是因为创始人的血统，他们是Twitter和Airbnb等互联网规模运营背后的建筑师。但这也是随着Docker越来越受欢迎，人们对容器产生新兴趣的结果。</p>
+<p class="translated">Mesosphere 诞生于Mesos，<a href="http://www.datacenterknowledge.com/archives/2014/09/22/mesos-cluster-management-co-creator-leaves-twitter-for-mesosphere/" class="ext-link" rel="external ">数据中心知识</a>在9月份将其描述为大约五年前诞生于加州大学伯克利分校AMPLab的分布式系统内核。Benjamin Hindman当时是伯克利的一名博士生，在今年秋天加入Mesosphere之前，他在Twitter工作了四年。他是Apache Mesos项目的最初创建者之一。</p>
+<p class="translated">Mesosphere的数据中心操作系统(DCOS)旨在将数据中心视为一台巨型计算机。中间层的差异来自于他们对待数据中心的理念。它支持的机器并不多。运行在数据中心内部的应用程序更是如此。这颠覆了企业模型。多年来，一位IT主管会构建硬件，然后在其上运行软件，将所有这些服务器和大盒子视为宠物。在当今世界，应用程序是第一位的。硬件被抽象化了，更像牲口一样对待。如今，这种比较经常被用来解释在当今以应用程序为中心的数据密集型世界中，必须如何对待现代数据中心。Apps com优先。</p>
+<blockquote><p class="translated">数据中心是一个虚拟的围栏。资源被集中起来，应用程序被启动，就像操作系统在电脑上工作一样。</p></blockquote>
+<p class="translated">Mesos能够扩展应用程序的数量和大小，以及不同类型的工作负载所需的计算、存储和其他资源。它的核心在内核中，内核执行主要功能，例如为应用程序分配资源。</p>
+<p dir="ltr" class="translated">现代操作系统通过各种组件向用户和应用程序提供服务。这些组件一起工作，提供一个完整的系统。在传统的操作系统中，组件是分开的，以提高可靠性、安全性和可维护性。在DCOS，组件是分布式的和冗余的，以提供高可用性。DCOS将资源分配给应用程序，而不是手动分配负载。这使得DCOS能够实现高数据中心利用率，并为应用程序提供稳定的性能。</p>
+<p dir="ltr" class="translated">用户界面是中间层DCOS的一个较新的、值得注意的方面。</p>
+<p dir="ltr" class="translated"><a href="https://thenewstack.io/wp-content/uploads/2014/12/DCOS-2.png" class="local-link"><img decoding="async" loading="lazy" class="aligncenter wp-image-178435 size-full" src="../Images/3000dfefea1fcc2e3deec06b8b433f8a.png" alt="DCOS-2" data-original-src="https://thenewstack.io/wp-content/uploads/2014/12/DCOS-2.png"/>T2】</a></p>
+<p dir="ltr" class="translated">中间层DCOS有一个现代的设计，这是分布式基础设施环境的开发者工具和管理服务所期望的。对设计的关注在其监控功能中显而易见，该功能提供数据中心运行状况和性能的高级视图，识别容量问题，提供应用程序调整和扩展建议，以及检测系统故障的能力。</p>
+<p dir="ltr" class="translated">Mesos DCOS的其他主要功能:</p>
+<ul>
+<li dir="ltr" class="translated">Init系统，也称为马拉松，它决定启动哪些应用程序。它可以根据需求扩展网络、消息和其他功能。Mesos作为一个框架来启动其他应用程序和框架。它的API启动和停止其他应用程序。</li>
+<li dir="ltr" class="translated">Cron，也称为Chronos，是DCOS的调度程序。</li>
+<li dir="ltr" class="translated">服务发现功能在数据库、web服务器和其他后端组件从一个节点移动到另一个节点时跟踪它们。</li>
+<li dir="ltr" class="translated">中间层DCOS使用Hadoop作为其分布式文件系统。Mesosphere高管表示，Hadoop允许用户运行需要更大容量、性能和可靠性的应用程序。这些都是企业客户的主要需求。</li>
+<li dir="ltr" class="translated">谷歌Kubernetes是马拉松的替代选择，客户可以在Mesos上跑步。根据Mesosphere的说法，如果存在竞争需求或用户需求，马拉松和Kubernetes可以在一个集群中同时运行。</li>
+<li dir="ltr" class="translated">在Mesos中，应用程序被称为框架。在Mesos中，输入到注册表中的框架可以通过一个命令安装。这意味着客户可以运行Spark、Cassandra、Kafka和Yarn的传统应用和框架。所有这些都是众所周知的开源服务，旨在分布式基础设施上运行。</li>
+<li dir="ltr" class="translated">DCOS支持红帽、Debian、Ubuntu和CoreOS。据该公司称，DCOS可以用于私人数据中心的虚拟或裸机节点，或AWS(亚马逊网络服务)、GCE(谷歌计算引擎)和DigitalOcean云服务上的云实例。</li>
+</ul>
+<p class="translated">Mesos有谷歌的支持。上周在DockerCon收到了Docker的祝福。中间层现在是Docker生态系统中的一等公民。现在，该公司还得到了科斯拉的资金支持，科斯拉以与投资组合公司合作开发良好的商业实践而闻名。</p>
+<p class="translated">会有障碍。像Twitter这样的互联网规模的公司需要Mesosphere提供的东西，但这些公司很少。此外，与类似的技术有很多重叠，例如Kubernetes和Cloudsoft的Clocker等服务，以及某种程度上Cloud Foundry的<a href="https://thenewstack.io/docker-on-diego-cloud-foundrys-new-elastic-runtime/" class="local-link"> Diego框架</a>。</p>
+<p class="translated">正如我们在今年秋天早些时候所写的:“迭戈解决的编排问题使其可以与谷歌Kubernetes和Mesos等平台相媲美。Kubernetes和Diego都运行在<a title="About Etcd, the Distributed Key-Value Store Used For Kubernetes, Google’s Cluster Container Manager" href="https://thenewstack.io/about-etcd-the-distributed-key-value-store-used-for-kubernetes-googles-cluster-container-manager/" class="local-link"> etcd </a>上，这种配置技术也是CoreOS用来管理其服务器部署操作系统的技术：</p>
+<p class="translated">Mesos只是一个通信基础设施和协议，用于支持跨分布式资源的调度。Diego做到了这一点(不可否认更具体)以及更多:容器化、日志聚合、路由、健康管理等等。构建在Mesos之上的框架，比如Marathon，更能直接与Diego相提并论。</p>
+<p class="translated"><span>还有几个新进入市场的公司，如<a href="https://thenewstack.io/tutum-offers-docker-container-management/" class="local-link"> Tutum </a>。最终用户也在开发他们自己的编排技术来管理他们的Docker部署。</span></p>
+<p class="translated">但Docker通过将工作重点放在开发人员和他们开发的应用程序上，帮助放松了企业思维。Docker从未真正讨论过“云”。相反，Docker高管将讨论如何使用容器来加速应用程序开发。因此，客户现在更多地考虑如何抽象他们的硬件，以便他们可以在被视为牲畜而不是宠物的基础设施上更快地开发应用程序。</p>
+<p class="attribution translated">Pivotal、Cloudsoft和New Relic是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

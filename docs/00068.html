@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>The Open Road to Galene, LinkedIn's Search Architecture</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">LinkedIn搜索架构Galene的开放之路</h1>
+<blockquote>原文：<a href="https://thenewstack.io/the-open-road-to-galene-linkedins-new-search-architecture/#0001-01-01">https://thenewstack.io/the-open-road-to-galene-linkedins-new-search-architecture/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="p1 translated">像许多互联网规模的公司一样，LinkedIn不得不开发自己的工具和技术组合来满足特定的要求。我们不断在Airbnb、脸书、谷歌等公司以及任何数量的公司中看到这种情况，这些公司现在的经营规模远远超过世界上大多数公司。LinkedIn从第一周的2500名用户开始，到2007年增长到超过1300万名成员，达到了必须改变其存储、访问和组织数据的方式的地步。</p>
+<p class="p1 translated">今天，该公司在网络上拥有超过3亿用户，为了发挥其潜力，需要通过更深层次的搜索功能进行互联。如果没有进步，LinkedIn网络将缺乏联系人们、帮助他们找到工作和参与的能力——无论是通过小组、博客还是其他方式。</p>
+<p class="p1 translated">这种增长预示着LinkedIn需要转变其数据基础设施。通过这一过程，LinkedIn开发出了Galene，这是一种搜索架构，可以立即对用户档案的每一次更新进行索引。在通往Galene的道路上，LinkedIn已经建立了一个开源技术的核心，这个核心已经影响了它的搜索架构。</p>
+<p class="p1 translated">LinkedIn的故事对SaaS公司来说是一个熟悉的故事，这些公司在RESTful APIs、NoSQL数据库和现代灵活的编程语言等创新出现之前就开始了。今天，我们面临着向必须适应应用需求的基础设施的过渡，这预示着容器、微服务和分布式架构带来的一系列新的复杂性的到来。</p>
+<p class="p1 translated">伴随着这些新的复杂性而来的是开源项目的驱动力，这些项目吸引开发人员来构建需要扩展的技术。LinkedIn是较早采取这种方法的公司之一，此前它意识到了更多为公司企业而非网络规模运营构建的技术的局限性。它使LinkedIn有能力建立一个搜索产品，LinkedIn首席员工工程师Sriram Sankar在一篇博客文章中写道，该产品旨在“找到人、工作、公司、团体和其他专业内容。”</p>
+<blockquote><p class="translated">“我们的目标是根据每个成员的身份和关系提供深度个性化的搜索结果。”</p></blockquote>
+<div id="attachment_314952" class="wp-caption alignright"><a href="https://thenewstack.io/wp-content/uploads/2015/04/image.jpg" class="local-link"><img aria-describedby="caption-attachment-314952" decoding="async" loading="lazy" class="wp-image-314952 size-medium" src="../Images/c24b3d14f3938a441c4d006d01b5f880.png" alt="" data-original-src="https://thenewstack.io/wp-content/uploads/2015/04/image-225x300.jpg"/></a><p id="caption-attachment-314952" class="wp-caption-text translated">LinkedIn工程副总裁伊戈尔·佩里希奇</p></div>
+<p class="p1 translated">在今年早些时候的一次采访中，LinkedIn工程副总裁Igor Perisic向我们解释了该公司如何转变其数据架构，并随后开发了一套开源技术，帮助该公司通过Galene转变其搜索功能。</p>
+<p class="p1 translated">LinkedIn的变化发生在2007年，当时回头看，似乎对应用程序开发界来说是一个神奇的时期。由于多种因素，市场见证了新技术的爆炸式增长，以及网络规模架构的相应成熟，以适应数百万新用户。REST APIs现在是标准，允许web开发人员使用该架构来构建向外扩展的服务。这些API引领了分离客户端-服务器关系、无状态协议、缓存、不同形式的负载平衡和编程语言(如JavaScript)的接口的接受。API证明了互联应用的价值以及对开放技术的日益接受。</p>
+<p class="p1 translated">当时还出现了大规模计算能力和存储的突然可用性，这反过来对开发工具、平台和数据库产生了自己的影响。这些技术的成熟反映在许多使用亚马逊网络服务的服务提供商身上，这种方式是上一代公司所没有的。</p>
+<p class="p1 translated">思科云计算副总裁兼首席技术官、OpenStack基金会副主席卢·塔克(Lew Tucker)表示，Hadoop、Cassandra和MongoDB等技术使新创业者能够做出早期创业者必须做出的投资的一小部分。随之而来的是网络规模的公司和一批新的商业软件提供商对开源项目的贡献激增，这些公司和提供商已经将他们的业务建立在开源项目之上。Docker是符合这一要求的公司的一个很好的例子。</p>
+<p class="p1 translated">LinkedIn的例子显示了一些最大的科技公司如何开源技术来建立开发者社区，这反过来又导致了基于社区贡献的平台。在这个过程中，一条线索浮现出来:更高的效率，更自动化的技术，以及为公司工作的更敏锐的开发团队。</p>
+<p class="p1 translated">“网络公司受益于他们在贡献开源项目时吸引开发者，”塔克在接受新堆栈的电话采访时说。“这使得雇佣员工变得更加容易。”</p>
+<h2 class="p1 translated">开阔的道路</h2>
+<p class="p1 translated">LinkedIn在搜索方面的进步可以追溯到2007年，当时工程师们正在与缓慢而笨拙的搜索算法作斗争。该公司希望为会员提供搜索功能，可以立即更新用户的个人资料。作为回应，LinkedIn开发了Zoie，这是一个基于T2 Apache Lucene的开源实时索引和搜索系统。LinkedIn在2008年夏天开源了Zoie。</p>
+<p class="p1 translated"><img decoding="async" loading="lazy" class="aligncenter" src="../Images/7ebdb9fdc4e96d3435524f747791081d.png" alt="" data-original-src="https://javasoze.github.io/zoie/images/zoie-graph.jpg"/></p>
+<p class="p1 translated">LinkedIn还发现，随着搜索进步带来的新功能，内存和CPU成本也在增加。可靠性也是一个问题，它会导致大型网络成员偶尔停机。也有关于最佳图划分是什么样子的问题。W 它可以随机分片吗，或者互相交流的人可以放在同一个分片上吗？最重要的是，它的工程师处理的是一个极其动态而非静态的环境，有许多耗时的更新。反过来，他们缺乏快速重建分区的能力，因为Hadoop还没有出现。最终，LinkedIn的搜索、网络和分析团队决定采用随机分片，在<a href="http://basho.com/riak/" class="ext-link" rel="external "> Riak </a>上散列，这已经足够有效了。</p>
+<p class="p1 translated"><span class="s1"> LinkedIn在2008年开始使用Zoie进行开源开发，随后逐渐转向其他开源工具，如<a href="https://hadoop.apache.org/" class="ext-link" rel="external "> Hadoop </a>。该公司需要Hadoop来取代Oracle，因为它依赖Oracle来存储数据。尽管Oracle很强大，但它带来的成本证明是相当可观的，足以探索更多的开源计划。</span></p>
+<p class="p1 translated">2009年，LinkedIn开源了分布式键值存储系统<a href="http://www.project-voldemort.com/voldemort/" class="ext-link" rel="external ">伏地魔</a>。2011年，该公司开源了Kafka，这是一个大容量、低延迟的信息系统，用于管理实时数据。2012年，它开源了Sensei，一个分布式、弹性、实时、半结构化的数据库。</p>
+<p class="p1 translated">2013年，Samza出现，这是一个分布式流处理框架，最初是为了帮助实时标准化各种数据流而开发的，而不是离线，因为离线需要更多的周期，也不具备可扩展性。所有这些项目都是为了适应不断增长的数据规模，以及改造不再足够灵活的架构。LinkedIn还开发了<a href="http://data.linkedin.com/projects/espresso" class="ext-link" rel="external "> Espresso </a>，这是一个可横向扩展的、有索引的、时间线一致的NoSQL数据存储，最终将取代该公司遗留的Oracle数据库。</p>
+<p class="p1 translated">Sankar在他写的关于Galene的博客中说，前Galene的建筑还包括Bobo，Cleo，Krati和Norbert。这些组件也是开源的。</p>
+<p class="p1 translated">该架构在许多方面仍然缺乏深度。索引很难重建。如果索引确实需要重建，比如说在数据损坏之后，这通常意味着需要几个人来完成这个项目。更新很麻烦，当只有一部分需要修改时，需要重新构建整个实体。评分是不灵活的，这使得插入机器学习分数成为一项繁琐的任务。Lucene的能力有限。离线相关性、查询重写、重新排序、混合和实验都是Lucene无法实现的。</p>
+<p class="p1 translated">还有关于开源组件的问题。随着越来越多的东西被开源，跨多个组织整合东西就变得越来越分散和复杂。那次经历教会了他们不要拆散Galene。相反，根据Sankar的说法，Galene变成了一个具有单一身份的单一统一框架。</p>
+<p class="p1 translated">去年，该公司推出了Galene作为其新的搜索架构，以取代Lucene。对于Lucene来说,“最初存在内存泄漏。为了持久化索引和进行Lucene优化，你必须关闭机器。“[Galene]改造了整个后端搜索栈。”</p>
+<p class="p1 translated"><span class="s1"> Galene代表了LinkedIn从反应式的临时方法向更全面的方法转变，以跟上规模的步伐。在他写的关于Galene的帖子中，Sankar解释了为什么LinkedIn超越Lucene，以及这一转变背后的技术细节:</span></p>
+<p class="p3 translated"><span class="s1">随着我们的成长，我们通过在Lucene之上增加层来发展搜索栈。我们扩展系统的方法是被动的，通常是狭隘的，并导致在我们的架构中增加新的组件，每个组件解决一个特定的问题，而没有整体地考虑整个系统的需求。这种渐进式发展最终碰壁了，要求我们花费大量时间来保持系统运行，并执行可伸缩性攻击来扩展系统的极限。</span></p>
+<p class="p1 translated">Galene背后的新搜索架构允许成员和公司快速检索复杂搜索查询的结果，如“巴西具有Hadoop经验的工程师”或“我的关系在纽约的公司中的数据科学工作”。</p>
+<p/>
+<div><p class="translated">除了响应LinkedIn不断增长的需求，Galene的搜索架构也是向该公司建立全球首个“</p><a href="https://www.linkedin.com/pulse/20121210053039-22330283-the-future-of-linkedin-and-the-economic-graph" class="ext-link" rel="external ">economic graph</a><p class="translated">“—全球经济的数字地图，它确定了人员、技能、工作和公司之间的联系，整合了实时趋势，从而创建了一个节点网络，将人才与大规模机会无缝链接。</p></div>
+<p class="p1 translated">那么，对于LinkedIn来说，即将到来的一年会是怎样的呢？根据Perisic的说法，该公司关注的首要数据科学和发展主题包括数据标准化，如何优化多样性，添加更多语言，简化排名，以及关注跨平台以类似方式表达模型的能力。</p>
+<p class="p1 attribution translated">特色图片<a href="https://www.flickr.com/photos/smi23le/4613342990/in/photolist-82EA9o-7w564c-6M62rr-7yuDWB-9fLRVv-n5ztS-d59ToJ-82EAFQ-5BwY81-82Buin-98SppB-cNL4r7-27Msfr-2hG19-82EAmu-cNL2KS-82EzHN-5R4hW5-9MKoLL-adWYuV-3ahJ3L-9d9ApV-2wHv8-ayeJFw-dyyYT5-dTZsva-7RD8PQ-dQuDXo-eqJboT-dpcrWp-zX9Xu-5xLtMw-dQp4Xr-9Js88s-axKupX-5zyyhF-8W2L2-aFbk4G-9v76Un-4v6vLm-brCjfb-dwtTSy-8mf6pd-ayc3yD-9Y9nGA-7xatis-gjuvyS-6tLekM-8QaTgm-8Q7Mti" class="ext-link" rel="external ">通过</a> Flickr知识共享。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

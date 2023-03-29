@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Microsoft Launches Azure Container Service with Mesosphere DCOS, Drawing its Distinction with Google</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">微软与DCOS中间层合作推出Azure容器服务，与谷歌拉开差距</h1>
+<blockquote>原文：<a href="https://thenewstack.io/microsoft-launches-azure-container-service-mesosphere-dcos-drawing-distinction-google/#0001-01-01">https://thenewstack.io/microsoft-launches-azure-container-service-mesosphere-dcos-drawing-distinction-google/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">如果谷歌的容器引擎的特点是Kubernetes编排平台的存在，微软的容器引擎的特点是中间层DCOS的存在。周二，在一个名为AzureCon的全新Azure聚焦大会上，微软和Mesosphere发表联合声明称，他们正在以这样一种方式扩展他们的合作伙伴关系，即基于Apache Mesos构建的令人眼花缭乱的orchestrator DCOS将成为新Azure Container服务上提供的首选orchestrator。</p>
+<p class="translated">微软的Azure首席技术官Mark Russinovich在谈到新的堆栈时表示:“这是客户将容器化的应用程序部署到Azure的能力，只需几次点击就可以设置他们的集群。”</p>
+<blockquote><p class="translated">“我们与Mesosphere合作，在Mesos和DCOS开源部分的基础上构建容器服务……我们觉得这是一个很棒的合作伙伴关系，我们可以通过将容器服务扩展到开放的东西上，而不是建立在专有技术上。”</p></blockquote>
+<h2 class="translated">多世界假说</h2>
+<p class="translated">DCOS不会成为Azure新服务上管理容器工作负载的默认选项。但是正如Russinovich告诉新的堆栈，将不会有这样的默认选项。(只是提醒我们的读者，我们正在与微软对话。)</p>
+<p class="translated">Azure首席技术官说:“在容器服务的这个初始版本中，我们不知道那些应用程序在集群上的部署管理是如何发生的。“不同的人会构建不同的解决方案，其中一种可能性是他们会在基础上使用像DCOS这样的东西。另一个是他们将通过Visual Studio使用一些持续集成/持续部署管道来将应用程序部署到集群，在一个更加面向DevOps的世界中。然后，您可能仍然会有锁定的、活跃的IT场景，其中一些IT管理员决定部署什么和管理什么，与开发人员无关。</p>
+<blockquote><p class="translated">“我认为你会看到完整的光谱，”他继续说道。“我们建立在Mesos之上的好处之一是，生态系统正在建立起来，以支持所有这些不同的情况。”</p></blockquote>
+<p class="translated">这是一种不可知论，开发者，尤其是来自Linux的开发者，不会马上联想到微软。在面向容器的会议上，每当供应商或开源贡献者展示开发人员将容器部署到生产环境中的轻松程度时，通常都会有欢呼。但是在大型企业中，尤其是那些保持严格的遵从性指导方针的企业，是it部门决定什么从开发转移到生产，以及如何完成。</p>
+<p class="translated">当Windows Server仍然被认为至少在数据中心的基础设施上有一个立足点时，微软帮助巩固了IT驱动的部署作为最佳实践。它专门为管理员开发应用程序部署系统，并将这些系统硬连接到其主要管理工具包System Center中。开发人员和管理员之间的适当工作流被融入到公司的团队集成工具中，这些工具的名字暗示了他们之间关系的难度:例如，<a href="http://blogs.msdn.com/b/visualstudioalm/archive/2013/04/19/system-center-and-intellitrace.aspx" target="_blank" class="ext-link" rel="external ">微软Visual Studio Team Foundation Server 2010工作项同步的系统中心管理包</a>。</p>
+<p class="translated">在现代世界中，有竞争力的云服务提供商别无选择，只能提供容器部署。这意味着解决开发人员的问题，至少给他们部署控制的希望。</p>
+<p class="translated">微软将暂时置身事外，拥抱并扩展其新的企业哲学。但是已经证明自己是以开发者为中心的部署的冠军<a href="https://mesosphere.github.io/marathon/docs/deployments.html" target="_blank" class="ext-link" rel="external ">的Mesosphere又如何呢？</a></p>
+<p class="translated">“这真的取决于组织真正想要如何运行他们的容器，”Mesosphere的创始人和Apache Mesos的创建者Ben Hindman说，他也谈到了新的堆栈。“可能有一个管理员接收人们的容器，并使用DCOS的接口来启动这些容器；或者它可以是类似Jenkins的东西，或者其他类型的持续集成设置，可能直接从Visual Studio连接。DCOS不会固执己见，强迫一个组织以这样或那样的方式部署它。它将尽可能简化这些部署策略。”</p>
+<h2 class="translated">重新组合</h2>
+<p class="translated">现在，向公共云快速部署可扩展的容器化系统的选择比以往任何时候都多，我们是否有可能看到容器化工作负载的设计方式发生变化？Hindman认为需要发生的主要建筑变化已经发生了。</p>
+<p class="translated">“在Linux世界中，如果你正在编写一个LAMP stack应用程序，期望你在完全相同的机器上有Apache和MySQL，并且你已经用那种方式编码了它们，你最好分解应用程序。即使在Twitter，这个应用也是一个单一的应用，但它是针对Linux的，我们仍然需要花费大量时间将它分解成微服务。所以这种心态适用于两种视角[Windows和Linux]；这实际上是关于你如何考虑应用程序的架构。</p>
+<p class="translated">“有了微服务架构，将会有不同的组件，有些是为Linux编写的，有些是为Windows编写的，它们仍将一起通信和交谈，”Hindman继续说道。</p>
+<blockquote><p class="translated">“这就是微服务架构的整个前提:你可以将碎片分解成这些通信组件，并且可以专注于正确的技术来解决工作，但然后你需要一种方法来部署所有这些应用程序，并使它们能够一起通信。”</p></blockquote>
+<p class="translated">“我认为，教育在于定义这些接口，并理解如何分解组件。我们的工作是，一旦你编写了一个组件，[确保]你可以尽可能高效地运行这些东西。这就是Azure Container Service和Apache Mesos和Mesosphere真正走到一起的地方。”</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/cmichel67/" target="_blank" class="ext-link" rel="external "> Christopher Michel </a>的《<a href="https://www.flickr.com/photos/cmichel67/11826271726/in/photolist-j23JyE-f2cwht-qHcnEC-fpwA5a-kgjrVy-mYNXHu-f398LY-jvfbfE-qGHPrr-oQeoLz-vqtWTG-dMfviP-pJDvg3-hH88dq-hkG9bR-nKFXz4-gPJEKq-nNQ8uL-p2Yk5f-s5rjV4-qXe8HE-gSt7EL-qDpL5t-qFU1yL-tEJCrS-uXRHEJ-jRg1WW-uyKV6y-tHRE2h-fvQhJu-dykFj9-hhnAjj-oiaQ79-vCYFzs-dD6tgh-eZzPsE-e9K51c-efZBk4-prAb8Z-tHyMFA-mkJNJh-e7ZspX-tKTRmw-xxkJkU-oJ3Tu2-rC9bp3-u5pXc7-fFS38A-p8QCH2-toMpYA" target="_blank" class="ext-link" rel="external ">继续走，你就快到了</a>由2.0 的<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" class="ext-link" rel="external "> CC授权。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

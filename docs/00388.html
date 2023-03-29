@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Create the Next-Generation Cloud Management Platform with Model-Driven Service Orchestration</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">借助模型驱动的服务编排创建下一代云计算管理平台</h1>
+<blockquote>原文：<a href="https://thenewstack.io/creating-next-generation-cloud-management-platform/#0001-01-01">https://thenewstack.io/creating-next-generation-cloud-management-platform/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="http://cloudify.co/" class="clearfix infoBlock " target="_blank"><div class="infoBlockTextBlock"><p class="infoBlockTitle">Nati Shalom</p><p class="infoBlockText">Nati Shalom负责定义Cloudify产品的技术路线图和愿景，并负责与技术合作伙伴建立战略关系。Nati为Cloudify带来了他在分布式计算方面的多年经验，他是大规模部署中所涉及的挑战和解决方案方面的行业专家。作为云计算领域的思想领袖，Nati是cloud.org.il联盟的创始人，经常出席行业会议，并积极参与宣传基于空间的架构、数据网格模式和大数据应用的实时分析。</p> </div> </a></p><p class="translated">在这个新兴的<a href="/category/devops/" target="_blank">devo PS</a>时代，企业IT协作的呼声达到了白热化。不幸的是，传统的云管理平台(CMP)和多种云环境已经在软件交付流程中创造了IT孤岛，更不用说业务部门和中央IT部门之间的不信任了，这阻碍了生产力和创新。</p>
+<p class="translated">在最近的一篇博文<a href="http://cloudify.co/2017/04/26/the-end-cloud-management-as-we-know-it.html" target="_blank" rel="noopener noreferrer external " class="ext-link">中，我比较了云应用程序管理的替代方法——云管理平台、平台即服务和流程编排框架——并得出结论，没有一种方法可以同时服务于业务部门和中央IT部门，而不会造成重大损失。</a></p>
+<p class="translated">这需要新的思维:我们需要下一代CMP——一个以通用工具集和集中管理为特色，旨在为协作、高效的IT环境提供动力的CMP。</p>
+<h2 class="translated">满足所有企业IT用户的需求</h2>
+<p class="translated">让我们首先考虑企业IT的三种角色，以及每种角色对下一代CMP的需求:</p>
+<div id="attachment_2480114" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2480114" decoding="async" loading="lazy" class="size-full wp-image-2480114" src="../Images/f77ec217ee748dba27014bce93738e31.png" alt="" data-id="2480114" data-original-src="https://cdn.thenewstack.io/media/2017/06/ef85a26d-cloudify-01.png"/><p id="caption-attachment-2480114" class="wp-caption-text translated">企业IT中的三个角色(Cloudify)。</p></div>
+<p align="center" class="translated">在业务部门，我们通常会发现两种类型的用户。第一类是最终用户，他们希望通过简单的点击体验获得所需的服务，而不必担心基础架构的管理。相比之下，超级用户是应用程序的所有者，负责确保应用程序的性能和配置；这个超级用户需要对基础设施有更大的控制权。</p>
+<p class="translated">在中央IT(运营)部门，我们的用户是组织中的云服务提供商，负责管理公共环境，并确保所有业务部门都能运营和交付其应用程序。运营部门还负责提供一组不依赖于特定应用程序的通用服务，如数据库服务、分析服务、自动化和监控，并负责解决安全性、法规和成本等问题。</p>
+<h2 class="translated">下一代CMP有什么不同？</h2>
+<p class="translated">下一代CMP考虑了企业IT中所有三种角色的需求，因此满足以下要求:</p>
+<ul>
+<li class="translated">让业务部门在选择云、基础架构资源甚至应用框架方面拥有更高的灵活性。</li>
+<li class="translated">提供容器支持，因为云原生应用是作为一组<a href="/category/microservices/" target="_blank">微服务</a>构建的，而不是作为一个整体应用。</li>
+<li class="translated">集成了用于监控、计费和日志记录的同类最佳开源解决方案，为用户提供即插即用的单一控制台体验。</li>
+<li class="translated">简化并加快新框架和应用程序的采用，通过托管服务(例如数据库即服务、报告即服务和应用程序服务器即服务)消除管理应用程序的复杂性。</li>
+<li class="translated">使用通用工具实现一切自助服务，允许中央IT部门快速交付所需服务。</li>
+<li class="translated">提供应用驱动的关键性能指标(KPI)和活动监控，例如部署的应用数量、每个云的实例数量以及每个部署的规模和状态，业务部门的应用用户可以通过API轻松访问所有这些内容。</li>
+<li class="translated">分享关于成本和利用率的可行见解，从而触发适当的响应，例如故障切换、扩展或关闭未使用的资源。</li>
+<li class="translated">将网络和应用程序管理结合在一起，使网络跟随应用程序，不仅由网络运营商配置和控制，也由应用程序所有者配置和控制。</li>
+</ul>
+<h2 class="translated">由模型驱动、编排优先的方法带给你</h2>
+<p class="translated">实现上述要求的关键促成因素是采用模型驱动、流程优先的云管理方法，而不是像传统云管理那样采用基础架构优先的方法。这实质上意味着使用通用模型和自动化流程编排将应用程序转变为自我管理的服务。它是这样工作的:</p>
+<div id="attachment_2480116" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2480116" decoding="async" loading="lazy" class="size-full wp-image-2480116" src="../Images/872d09617fe49ce96e38f0fd25753000.png" alt="" data-id="2480116" data-original-src="https://cdn.thenewstack.io/media/2017/06/85dbab19-cloudify-02.png"/><p id="caption-attachment-2480116" class="wp-caption-text translated">编排提供了一个通用的自动化引擎(Cloudify)。</p></div>
+<ol>
+<li class="translated">使用模型驱动的模板，开发人员定义应用程序描述和特定的目标堆栈，包括管理它的方式，而orchestrator负责将这些模板映射到与底层资源交互的自动化执行计划中(见上文)。</li>
+<li class="translated">作为共享多云环境的服务提供商，中央IT使用orchestrator来控制应该向应用程序开发人员公开哪些资源以及如何公开(见下文)。</li>
+</ol>
+<div id="attachment_2480117" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2480117" decoding="async" loading="lazy" class="size-full wp-image-2480117" src="../Images/b9316345e521b47b63478cebe7679bc9.png" alt="" data-id="2480117" data-original-src="https://cdn.thenewstack.io/media/2017/06/adcac5d2-cloudify-03.png"/><p id="caption-attachment-2480117" class="wp-caption-text translated">模型驱动的编排提供了业务单元和中央IT (Cloudify)之间的接口。</p></div>
+<h2 class="translated">了解下一代CMP的工作情况</h2>
+<p class="translated">这里，用更实际的术语来说，是下一代CMP如何为所有企业IT用户提供价值的几个例子:</p>
+<h3 class="translated">应用程序开发人员:选择您的堆栈和环境</h3>
+<ul>
+<li class="translated"><strong> Catalog: </strong>为开发人员提供了一种通过自管理服务选择和激活目标环境的简单方法。</li>
+<li class="translated"><strong>为流行的云环境提供内置集成和支持:</strong>在不暴露“最小公分母”的情况下提供支持这包括Docker和Kubernetes等容器框架以及数据库即服务(DBaaS)等服务。</li>
+<li class="translated"><strong>简单的CLI体验:</strong>允许开发人员通过命令行界面从本地桌面环境运行应用程序进行开发和测试。</li>
+</ul>
+<h3 class="translated">超级用户:对环境及其资源行使更大的控制权。</h3>
+<ul>
+<li class="translated"><strong>模型驱动的蓝图:</strong>提供了自动化关键工作流的接口，这些工作流是管理应用程序和与底层资源交互所必需的。</li>
+<li class="translated"><strong>模型驱动设计</strong>:提供对CMP中暴露的资源的Restful API访问，从基础设施资源到监控系统。</li>
+<li class="translated"><strong>通过插件的扩展</strong>:提供一个接口来扩展CMP，以支持任何需要成为应用程序生命周期一部分的资源或API端点。</li>
+<li class="translated">CLI接口:与构建系统集成的流行选择。</li>
+</ul>
+<h3 class="translated">中央IT操作员:管理和控制资源组合</h3>
+<ul>
+<li class="translated"><strong>多租户、自助服务门户</strong>:提供一个中央界面来控制访问和资源分配。</li>
+<li class="translated"><strong>应用/服务报告和洞察</strong>:跟踪每个应用的关键KPI。</li>
+<li class="translated"><strong>活动监控</strong>:监控一段时间内每个应用程序的每个用户的活动。</li>
+</ul>
+<h2 class="translated">最后一点:开发者自由也就是商业成功</h2>
+<p class="translated">中央IT在企业中的现代角色是支持和授权业务单元中的开发人员；相反，开发人员必须作为主动的合作伙伴而不是中央IT的被动消费者进行协作。此处描述的下一代CMP通过提供一个通用平台和一组自我管理的服务来实现这种富有成效的合作关系，为开发人员提供了更高的自由度，使他们能够随时访问推动业务成功所需的资源。</p>
+<p class="attribution translated">图片由<a href="http://cloudify.co/" class="ext-link" rel="external "> Cloudify </a>提供。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>LinkedIn Finalizes its New Search Architecture, Galene</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">LinkedIn完成了新的搜索架构Galene</h1>
+<blockquote>原文：<a href="https://thenewstack.io/linkedin-finalizes-its-new-search-architecture-galene/#0001-01-01">https://thenewstack.io/linkedin-finalizes-its-new-search-architecture-galene/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+<p class="editors-note">
+ 
+ 
+ 
+ 
+</p>
+
+<p class="translated">上周，专业社交网络服务LinkedIn将其搜索业务完全转移到一个名为Galene的新架构上，这是为其特定用户群定制的。</p>
+<p class="translated">“我们100%的搜索流量都来自Galene搜索栈，”LinkedIn搜索和订阅基础设施总监约什·沃克说。这意味着网站上所有37个不同的搜索服务现在都由Galene提供支持，Galene是以一个象征平静大海的希腊女神命名的。</p>
+<p class="translated">“作为一名用户，你每次做搜索都会看到LinkedIn的图形特性，”沃克说。例如，搜索一个用户的名字，就会显示出你们两人之间的联系数量。求职者可以使用搜索者的简历来帮助确定最合适的职位。</p>
+<p class="translated">超过15名工程师致力于建造Galene，公司其他人也提供了大量的投入。总之，超过50年的人力<a href="https://thenewstack.io/the-open-road-to-galene-linkedins-new-search-architecture/" class="local-link">超过两年的时间</a>被投入到这个项目中。</p>
+<p class="translated">该架构还为LinkedIn正在管理的一组相互关联的信息奠定了基础，这些信息被称为<a href="https://www.linkedin.com/pulse/20121210053039-22330283-the-future-of-linkedin-and-the-economic-graph" target="_blank" class="ext-link" rel="external ">经济图</a>。</p>
+<p class="translated">LinkedIn是为人们分享专业信息和联系他人而创建的网站。对于像LinkedIn这样庞大的用户群来说，这本身就是一个挑战。根据最新统计，LinkedIn积累了超过4亿个账户，其中充满了关于人、工作、公司、学校、团体和其他专业内容的事实。经济图表可以通过聚集这些用户数据并从其他数据源交叉索引来收集大量的附加信息。</p>
+<p class="translated">LinkedIn首席执行官杰夫·韦纳在博客<a href="https://www.linkedin.com/pulse/20121210053039-22330283-the-future-of-linkedin-and-the-economic-graph" target="_blank" class="ext-link" rel="external ">中解释了经济图表</a>的概念，他解释说:“有了经济图表的存在，我们可以查看任何给定地区的工作岗位，确定该地区增长最快的工作岗位，获得这些工作岗位所需的技能，那里现有总劳动力的技能，然后量化差距的大小。”。“更重要的是，我们可以将这些数据提供给当地的职业培训机构、初级学院等。因此，他们可以开发一个及时的课程，为当地求职者提供获得现在和将来的工作所需的技能，而不仅仅是曾经的工作。</p>
+<p class="translated">对于搜索服务，该公司一开始使用的是Apache Lucene、text search和T2 ngine，尽管由于该公司专注于用户认为最有价值的特定搜索，公司工程师在原有Lucene的基础上增加了额外的功能层。Walker说:“Lucene是核心，但还有更多东西进入平台。”</p>
+<p class="translated">LinkedIn搜索基础设施负责人泰-于萍解释说，搜索经济图表与常规的谷歌风格的网络搜索有一系列不同的挑战。首先，该服务必须真正根据人们更新个人资料的频率进行调整，因为许多用户更新个人资料的频率非常高。LinkedIn还在努力引入第三方信息来源，以自动更新用户资料，至少对那些不太习惯自己更新的用户来说是这样。</p>
+<div id="attachment_811855" class="wp-caption aligncenter"><a href="https://engineering.linkedin.com/search/did-you-mean-galene" class="ext-link" rel="external "><img aria-describedby="caption-attachment-811855" decoding="async" loading="lazy" class="wp-image-811855 size-full" src="../Images/bb4dd41bcdeffb17084d139467bf3086.png" alt="Galene-stack" data-id="811855" data-original-src="https://thenewstack.io/wp-content/uploads/2015/11/Galene-stack.png"/></a><p id="caption-attachment-811855" class="wp-caption-text translated">伽林建筑。</p></div>
+<p class="translated">最初，搜索团队<a href="https://engineering.linkedin.com/search/did-you-mean-galene" class="ext-link" rel="external ">在扩展Lucene时遇到了问题</a>。随着用户群的增长，他们越来越多地发现自己要花更多的时间来找出保持系统运行的方法。投入使用的多个现成组件(许多是开源的)不具备所需的灵活性。重建索引非常耗时，而且当时Lucene不支持动态索引。更新实体需要删除旧的实体并用新的实体替换它，这是一个计算量很大的过程。</p>
+<p class="translated">这个想法是让Galene作为一个统一的系统工作，而不是作为离散组件的集合。通过这种方式，从事排名和相关性算法工作的工程师不必担心基础设施问题，例如多线程代码或跨系统扩展大量工作负载。Galene还为工程师提供了开发新型搜索相关功能的灵活性。</p>
+<p class="translated">“我们并不试图预先假定搜索的是什么实体或数据结构，”沃克说。</p>
+<p class="attribution translated">地中海的特征图像<a href="https://pixabay.com/en/aphrodite-beach-birthplace-coast-15710/" target="_blank" class="ext-link" rel="external ">通过</a> Pixabay。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

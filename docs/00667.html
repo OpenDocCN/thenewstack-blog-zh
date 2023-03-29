@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: A Look at the Neutis N5 Microcontroller</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:看看Neutis N5微控制器</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-a-look-at-the-neutis-n5-microcontroller/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-a-look-at-the-neutis-n5-microcontroller/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">作为一名演讲者、未来学家和专栏作家，我的工作是寻找新技术并将其介绍给观众，以便他们可以在自己的项目中利用它。我通常通过建立和写我喜欢的项目来做这件事。其他时候，我会拿到新的小玩意，简单地插上电源，看一眼。</p>
+<p class="translated">本周关于<a href="https://neutis.io/" class="ext-link" rel="external "> Neutis N5微控制器</a>的专栏就是如此。</p>
+<p class="translated">目前，我不构建商业产品，通常专注于一次性的原型。类似Arduino和基于Linux的设备如Raspberry Pi满足了我的物理计算需求。它们非常可靠和坚固。我在观众面前使用过这两个平台，当时设备必须启动并为演示工作。您完全可以用这些平台构建一些极其复杂的项目，尽管它们通常不被认为是“商业”或“生产”主流。</p>
+<p class="translated">Neutis N5是通向商业世界的一扇窗户。<a href="https://emlid.com/" class="ext-link" rel="external "> Emlid </a>，该板背后的公司，非常友好地给我发了一个开发工具包来探索。该模块旨在集成到产品中。</p>
+<h2 class="translated">还记得英特尔爱迪生公司吗？</h2>
+<p class="translated">首先，一点历史。</p>
+<p class="translated">英特尔爱迪生公司的模块计算机将彻底改变物联网世界。爱迪生被设计成其他产品的组件。它有一个运行速度为500 MHz的双核Atom处理器和一个运行速度为100 MHz的32位Quark微控制器。额外的处理器在实时操作系统下卸载了外设和GPIO引脚的管理，独立于Atom上的Yocto。夸克在内部与原子相连，用于来回发送数据。还有各种常见的微控制器接口，包括串行、I2C、SPI等。该板有2GB的内存，WiFi和蓝牙。</p>
+<p class="translated">Edison上的第二个处理器起到了与<a href="https://beagleboard.org/bone" class="ext-link" rel="external "> BeagleBone </a>上的实时处理单元(rpu)类似的作用。这就像一个Arduino和一个Raspberry Pi在同一个模块上。</p>
+<p class="translated">BeagleBone、Raspberry Pi和Edison之间的巨大差异在于包装。Edison使用一对直插式连接器将其安装在项目中。在设计产品的电路板时，会使用与爱迪生连接器相匹配的插座。爱迪生不支持试验板，也没有像其他电路板那样的跳线。它是为嵌入商业产品而设计的。</p>
+<p class="translated">可悲的是，爱迪生已于2017年停产。正如你所料，很多人都很沮丧。</p>
+<h2 class="translated">制造一个开关</h2>
+<p class="translated">位于俄罗斯圣彼得堡的Emlid公司在其<a href="https://emlid.com/reachrs/" class="ext-link" rel="external ">精密GPS接收器</a>系列中使用了爱迪生。显然，在英特尔停产后，它不得不争先恐后地寻找替代品。</p>
+<p class="translated">该公司的解决方案是开发自己的模块化计算机，名为Neutis N5。</p>
+<div id="attachment_5762221" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5762221" decoding="async" loading="lazy" class="size-full wp-image-5762221" src="../Images/23ee9d53f88b62a582bf874c26c21f49.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/10/deb39fc8-neutis.png"/><p id="caption-attachment-5762221" class="wp-caption-text translated">安装在显影分线板上的Neutis N5</p></div>
+<p class="translated">Neutis模块是一款四核64位ARM Cortex A53处理器，运行频率高达1.3GHz，具有512MB内存、8 GB板载存储、WiFi、蓝牙和HDMI功能。该器件还具有60个通用输入/输出(GPIO)引脚、5条UART(串行)线、两条I2C线、两条PWM线、麦克风输入/输出端口、一个摄像头输入端口以及各种其他接口。我还没有注意到一个额外的处理器，像爱迪生的夸克，所以将不得不在这方面深入一点。也许在中性里不需要。</p>
+<p class="translated">与Edison非常相似，Neutis使用一对连接器来匹配分线板或商用电路板上的插座。</p>
+<p class="translated">Emlid在他们的GPS接收器中使用Neutis，其精度为1厘米。很尖锐。看看这个<a href="https://www.youtube.com/watch?v=3nkkaIZY_V8" class="ext-link" rel="external ">视频</a>关于他们的产品线设备:</p>
+<p class="translated"><iframe loading="lazy" title="$49 Neutis N5 system on module Allwinner H5 for pro makers and hardware startups" src="https://www.youtube.com/embed/3nkkaIZY_V8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">将Neutis模块放在那里让其他人购买并集成到他们自己的产品中是有意义的。</p>
+<h2 class="translated">插上电源并通电</h2>
+<p class="translated">我收到了标准开发套件，其中Neutis模块计算机安装在一个4”x 6”的分线板上。包装中还包含几根USB电缆、一些跳线和一个带状电缆摄像头模块。</p>
+<p class="translated">按照“快速启动”指南，我将分线板连接到我的Linux笔记本上，并按照指示开始刻录最新的固件。我没有想到在刻录固件之前，简单地将模块插入HDMI显示器，看看它是否会预订。</p>
+<p class="translated">不管怎样，在按照启动说明操作后，我从笔记本上取下，转到了HDMI显示器上。一个普通的5伏2.0安培三星手机充电器似乎可以很好地为Neutis供电。我还插上了可靠的罗技无线键盘/鼠标垫。</p>
+<p class="translated">主板正常启动，我看到了正常的命令行登录。我输入“root ”,然后按回车键进入命令行提示符。不需要密码。</p>
+<p class="translated">当我插上电缆时，有线以太网工作正常，我可以毫无问题地远程ssh到Neutis。快速入门指南<a href="https://docs.neutis.io/connectivity/wifi/" class="ext-link" rel="external ">概述了通过无线</a>连接，我用它连接到我的接入点，没有任何问题。</p>
+<p class="translated">我检查了8GB板载存储的可用空间。Linux和任何相关软件占用了大约420MB，还有6.1GB用于其他用途。</p>
+<p class="translated">Python也是开箱即用的，这可能是我在Neutis上编写应用程序的第一站。<a href="https://docs.neutis.io/" class="ext-link" rel="external ">网页</a>有各种基本功能示例，用于试验GPIO引脚、音频、摄像头等。</p>
+<p class="translated">不用说，您应该能够熟练地使用Linux命令行，并且熟悉Linux机器的常规操作和配置，以便有效地探索。</p>
+<h2 class="translated">对未来竖起大拇指</h2>
+<p class="translated">Neutis肯定是为商业产品开发者准备的。Linux和将Neutis模块放在电路板上对于业余爱好者或刚开始的现成黑客来说无疑是一个挑战。</p>
+<p class="translated">请记住，虽然技术仍在快速发展，但有一天，拥有一个可以从少量接口接收大量数据、将其全部浓缩并提供1厘米精度的位置数据的商业计算模块可能会在您的产品中有用。中等先进的现成黑客正在使用相当便宜的电路板设计服务来采购他们自己的多层板产品。这已经持续了好几年了。</p>
+<p class="translated">无论您处于物理计算之旅的哪个阶段，了解哪些是现成的，哪些可能是趋势，总是有好处的。</p>
+<p class="translated">我正在研究Neutis N5如何给我的机器人头骨<a href="https://thenewstack.io/off-the-shelf-hacker-adjusting-my-robotic-skulls-vision/" class="local-link">赫德利</a>增加功能。突破板视觉可以想象到适合我的蒸汽朋克主题。我还没有考虑过商业版的赫德利。</p>
+<p class="translated">保持好奇，我的朋友们。你永远不知道这些东西在现成的生活方式中会走向何方。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

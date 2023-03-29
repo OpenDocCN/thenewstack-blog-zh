@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>The Role of Site Reliability Engineering in Microservices</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现场可靠性工程在微服务中的作用</h1>
+<blockquote>原文：<a href="https://thenewstack.io/the-role-of-site-reliability-engineering-in-microservices/#0001-01-01">https://thenewstack.io/the-role-of-site-reliability-engineering-in-microservices/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">你总能发现技术领域的热门职位:它们是10年前不存在的。虽然网站可靠性工程师(sre)在十年前确实存在，但他们大多在谷歌和少数其他硅谷创新者中。然而今天，SRE的角色无处不在，从优步到高盛，每个人都在从事保持网站在线和稳定的业务。</p>
+<p class="translated">虽然sre是行业中的热门人物，但他们在微服务环境中的角色不仅仅是像花生酱和果冻一样的天然搭配。相反，尽管SREs和微服务在全球软件公司内部并行发展，但前者实际上让后者的日子要艰难得多。</p>
+<p class="translated">这是因为sre的生死取决于他们维护和优化的整个系统的完整堆栈视图。该角色将开发人员的技能与管理员的技能结合在一起，当事情完全失控时，产生一个能够在生产环境中调试应用程序的员工。</p>
+<p class="translated">由于谷歌工程师基本上发明了这个角色，该公司提供了大量关于他们如何管理每天处理多达<a href="https://cloudplatform.googleblog.com/2016/04/lessons-from-a-Google-App-Engine-SRE-on-how-to-serve-over-100-billion-requests-per-day.html" class="ext-link" rel="external ">1000亿次请求的系统的见解。他们将可靠性归结为一个基本要素，与速度和创新同样重要。</a></p>
+<p class="translated">“第一步是认真对待可靠性和可管理性的重要性。谷歌SRE主管<a href="https://www.linkedin.com/in/todd-underwood-501a02/" class="ext-link" rel="external ">托德·安德伍德</a>说:“我与之交谈的人花了很多时间考虑功能和速度，但他们没有花时间考虑可靠性这一特性。</p>
+<p class="translated">安德伍德说，可靠性和可用性应该在项目的每一个层面上加以考虑。他举了一个例子，Gmail失败的原因是退回到纯粹的HTML体验，而不是完全停止。“我就拿难看的HTML[版本]吧，不过可以看邮件。可用性是一个特性，也是最重要的特性。如果你没空，就没有用户来评价你的其他特点。组织需要选择优先考虑可靠性。”</p>
+<p class="translated">安德伍德指出，每个组织都是不同的，谷歌遇到的一些问题并不典型。但是他提倡一些更全面的实践。</p>
+<p class="translated">“对于分布式应用，我们运行某种类型的<a href="http://www.cs.yale.edu/homes/aspnes/pinewiki/Paxos.html" class="ext-link" rel="external "> Paxos </a>一致系统。我们有一整个<a href="https://landing.google.com/sre/book/chapters/managing-critical-state.html" class="ext-link" rel="external ">章节</a>关于分布式共识。安德伍德说:“这看起来像是一门计算机科学，但实际上，如果你想拥有流程并知道哪些流程在哪里，没有Paxos是不可能的。Paxos是分布式共识收集算法，通常用于解决分布式系统中可能出现的不一致问题。</p>
+<p class="translated">然而，安德伍德强调了SRE工作的另一个重要方面:能见度。当微服务在基于云的服务器、容器和数据库的不断变化的生态系统中扔出数十亿个数据包时，找出哪里出了问题对于解决任何类型的问题都至关重要。这就是SRE工作的所有方面发挥作用的地方。</p>
+<p class="translated">谷歌最近推出了一些专门针对这类工作的工具。</p>
+<p class="translated">过去几年来，整个市场一直在有意转向微服务。我们从Kubernetes和Istio以及从数据中心向云的总体迁移中看到了这一点。前进的道路上有一些挑战。如果你有100个容器，像在一个整体上做堆栈跟踪这样的事情就变得非常困难。谷歌云平台产品经理<a href="https://www.linkedin.com/in/morganmclean/" class="ext-link" rel="external ">摩根·麦克林</a>说。</p>
+<blockquote><p class="translated">“要了解整个应用的健康状况，并了解交易如何流经所有这些不同的微服务，您必须有一个系统来帮助您导航。你需要的是能够从交易角度思考的东西，”AppDynamics的Matt Chotin说</p></blockquote>
+<p class="translated">为了补救这一点，谷歌最近发布了<a href="https://cloud.google.com/trace/" class="ext-link" rel="external "> Stackdriver Trace </a>、<a href="https://cloud.google.com/debugger/" class="ext-link" rel="external "> Stackdriver调试器</a>和<a href="https://cloud.google.com/profiler/" class="ext-link" rel="external "> Stackdriver剖析器</a>。这些工具听起来像传统企业供应商的老派测试和操作工具，这是有原因的:它们执行开发人员和操作人员习惯的更传统的故障排除任务，但重点是微服务和在云中执行这些任务。</p>
+<p class="translated">Stackdriver Profiler处于测试阶段，但允许对运行在云内部的应用程序进行直接的CPU利用率监控，而Stackdriver Debugger提供了一种在基于云的微服务应用程序中插入断点的方法，Stackdriver Trace提供了McLean提到的全栈跟踪功能。</p>
+<p class="translated">Stacktrace Profiler的McLean说:“这对于总体性能的提高和成本的降低都是非常有效的。“Snapchat进行了测试，在收集数据的一天内，他们意识到一段非常小的代码(我认为是正则表达式)实际上消耗了大量的CPU，这段代码甚至不应该出现在Profiler中。这可能发生在任何人身上。谷歌就是这样。Snapchat的演示很好地展示了这种分析技术的威力。”</p>
+<p class="translated">“没有这样的工具，这通常是不可能的。追踪正在成为一种普遍的行业做法。在我们的产品中，性能分析和产品调试更加独特，”McLean说。</p>
+<h2 class="translated">新思维</h2>
+<p class="translated"><a href="https://www.appdynamics.com/" class="ext-link" rel="external "> AppDynamics </a>的技术推广高级主管<a href="https://www.linkedin.com/in/mchotin/" class="ext-link" rel="external "> Matt Chotin </a>也关注新型工具。他说，一旦从整体应用转移到微服务，团队需要重新思考他们确定整个应用健康状况的方式。</p>
+<p class="translated">“你们有无数的系统。微服务的乐趣在于，您可以选择适合特定产品的堆栈。每样东西都可能有自己的监控方式，自己的衡量标准，等等。为了了解整个应用的健康状况，并了解事务如何流经所有这些不同的微服务，您必须有一个系统来帮助您导航。你想要的东西会从交易的角度来考虑，”乔丁说。</p>
+<p class="translated">Chotin说，工程师不应该考虑服务是上升还是下降。“您的DevOps团队关心查看服务以了解总体可用性，但至于您是否正确地为业务提供服务，您需要能够贯穿整个生态系统的监控，从应用程序代码到基础架构代码，”Chotin说。</p>
+<p class="translated">谷歌的安德伍德说，SRE在公司内部的总体目标是限制他们的增长，同时促进谷歌的增长。这意味着，正如Underwood所说，“对我们来说，SREs与Google的次线性增长是非常重要的。我们希望继续提高效率。”</p>
+<p class="translated">他说，为此，谷歌特别关注他们的应用程序。“我们专注于我们所从事的特定服务的深层次。从事谷歌文档的团队，从事广告服务的团队；每个团队都非常关注这些服务的细节。与此同时，我们的SRE团队构建了供所有SRE团队使用的通用基础架构。”</p>
+<p class="attribution translated"><a href="https://www.appdynamics.com/" class="ext-link" rel="external "> AppDynamics </a>和<a href="https://cloud.google.com/kubernetes-engine" class="ext-link" rel="external ">谷歌</a>是新堆栈的赞助商。</p>
+<p class="attribution translated">Eberhard Grossgasteiger 在<a href="https://unsplash.com/search/photos/layer?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash上拍摄的特写图片。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

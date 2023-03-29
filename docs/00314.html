@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>How Joyent Manta Aims to Simplify Object Storage at Scale</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Joyent Manta如何大规模简化对象存储</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tns-analysts-show-101-joyent-manta-aims-simplify-object-storage-scale/#0001-01-01">https://thenewstack.io/tns-analysts-show-101-joyent-manta-aims-simplify-object-storage-scale/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">不可否认，容器正迅速成为当今应用程序开发过程的基石，尽管最常用于存储容器的技术的采用仍然落后。以容器为中心的对象存储直到2011年末才引起托管容器提供商Joyent的注意，当时它开始开发其分布式对象存储和集成计算服务<a href="https://www.joyent.com/manta" class="ext-link" rel="external "> Manta </a>。</p>
+<p class="translated"><a href="https://twitter.com/bcantrill" class="ext-link" rel="external ">Joyent的首席技术官Bryan Cantrill </a>指出“灯泡在2011年末为我们点亮。重要的是，容器不仅仅与计算有关，如果您可以拥有这种权威的对象存储，您可以在其上安全地旋转一个容器，该容器可以看到底层对象，而不能看到其他对象，也不能破坏系统，在它自己的完全隔离的容器中。”</p>
+<p class="translated">随着时间的推移，Joyent继续开发软件和服务，如其容器即服务平台Triton。这些项目引起了三星的注意，三星最近宣布<a href="https://www.joyent.com/blog/samsung-acquires-joyent-a-ctos-perspective" class="ext-link" rel="external ">将收购Joyent </a>，这将给Joyent带来额外的灵活性和可扩展性。</p>
+<p class="translated">在第101集的<a href="https://thenewstack.io/podcasts/" class="local-link">中，下面嵌入了新的堆栈分析师</a>，我们将深入探讨处理当今企业面临的海量数据的陷阱，Joyent为什么要建立名为<a href="https://github.com/joyent/manta-thoth" class="ext-link" rel="external "> Thoth </a>的设施来自动化其故障转储管理，以及在大规模工作时，源上的对象计算对于充分利用数据是如何至关重要的。新堆栈创始人<a href="https://twitter.com/AlexWilliams" class="ext-link" rel="external "> Alex Williams </a>采访了Cantrill，听听他对这些话题的想法。</p>
+<p class="translated"><br/><span class="media-direct-link"><a href="https://thenewstack.simplecast.com/episodes/102-how-joyent-manta-aims-to-simplify-object-storage-at-scale" class="ext-link" rel="external "># 102:Joyent Manta如何大规模简化对象存储</a> </span></p>
+
+<p class="translated">采访<a href="https://www.youtube.com/watch?v=DkP2sdTsYa0" class="ext-link" rel="external ">也可以在YouTube </a>上听到。</p>
+<p class="translated">Cantrill指出，许多组织已经创建了无法处理的海量数据。“现在，我们有如此大规模和海量的数据，以至于它实际上变得不可移动，如果您想离开这些数据并采用亚马逊冰川方法，这是很好的，在亚马逊冰川方法中，长期冷数据可能位于一个关闭的主轴上，仅用于灾难恢复。那么也许你可以使用这些更传统的解决方案，”坎特里尔解释道。</p>
+<p class="translated">除了开源Manta之外，Joyent还利用了分布式系统的力量，在其Triton container技术的基础上构建它，Triton container技术也与Manta一起开源。Manta利用Oracle的<a href="https://docs.oracle.com/cd/E23824_01/html/E24456/storage-4.html" class="ext-link" rel="external "> ZFS </a>来存储对象，直到它们被调用进行计算。</p>
+<p class="translated">除了为对象存储引入分布式系统的能力，Joyent后来意识到修改Manta的崩溃自动化对他们的开发团队至关重要。“我们写了一个叫做透特的设施，一个我们在曼塔上建立的系统。Thoth允许我们对我们的核心和崩溃系统进行自动分析。当一个新的核心转储进入Manta时，我们可以自动分析它，看看它是否与各种已知错误的模式匹配，如果匹配，我们可以标记它，”Cantrill说。</p>
+<p class="translated">坎特里尔后来解释说，大规模处理大量数据的关键是找到源头。“你需要大量的数据来探索这些假设和挑战，你不希望为了适应它们而移动数据。你希望能够在它所在的对象上进行计算。”</p>
+<p> </p>
+<p class="attribution translated"><a href="https://www.joyent.com/" class="ext-link" rel="external "> Joyent </a>是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片<a href="http://nos.twnsnd.co/image/148451757537" class="ext-link" rel="external ">途经</a>的<a href="http://nos.twnsnd.co/" class="ext-link" rel="external ">新老股</a>站点。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

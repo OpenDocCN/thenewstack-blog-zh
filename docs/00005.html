@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>An "All New" GitHub Enterprise Now Supports AWS</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">一个全新的GitHub企业现在支持AWS</h1>
+<blockquote>原文：<a href="https://thenewstack.io/an-all-new-github-enterprise-now-supports-aws/#0001-01-01">https://thenewstack.io/an-all-new-github-enterprise-now-supports-aws/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">GitHub Enterprise现在支持亚马逊网络服务(AWS ),作为其服务“全新”更新的一部分。这个消息是今天早上从GitHub博客传来的，同时还有一系列其他新的更新。</p>
+<p class="translated">GitHub提供了三种在AWS上使用GitHub Enterprise的方法。</p>
+<p class="translated">【T2<img decoding="async" loading="lazy" class="aligncenter wp-image-122570 size-full" src="../Images/3eab011f0994fe6222858110581780cb.png" alt="GitHub_Enterprise_-_The_best_way_to_build_and_ship_software" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/GitHub_Enterprise_-_The_best_way_to_build_and_ship_software.png"/></p>
+<p class="translated">这一整合显示了AWS在生态系统中的强大。客户正在使用他们自己的基础架构，但AWS上的工作负载仍在继续扩展。这是GitHub为适应向AWS迁移所做的努力。它还展示了GitHub如何努力使这项服务对开发人员和It人员来说更加可行，因为他们在历史上并不是代码共享和协作技术的深度用户。</p>
+<p class="translated">很明显，AWS服务非常环保。用户必须确保他们使用的是更高版本的GitHub Enterprise，特别是11.10.344到11.10.348。GitHub在GitHub Enterprise和AWS上构建了自己的基础设施，以适应新的服务。设置完成后，用户就可以备份他们现有的实例，并上传到AWS，这样就可以进行访问了。</p>
+<p class="translated">在视频说明中，整个过程看起来相当简单，视频说明了如何在AWS上使用EC2托管GitHun，如何添加EDS卷、标记、安全组和SSH密钥对。</p>
+<p class="translated">值得注意的是带有GitHub Enterprise许可证的AWS认证过程。管理员设置实例，然后与团队中的其他人共享密码。这似乎有点不安全，因为密码共享是一种实践，攻击者可以利用它来访问实例本身。</p>
+<p class="translated">GitHub高管在电子邮件中表示:</p>
+<p class="translated">我们的安全团队建议使用安全的密码管理服务，如LastPass，在团队中共享密码。此外，管理员可以通过防火墙或安全组限制对端口8443 / 8080的访问，从而锁定对GitHub企业管理控制台的访问。</p>
+<p class="translated">下面是设置的进入:</p>
+<p/>
+<p class="translated">更详细的视频展示了如何迁移到新的AWS服务:</p>
+<p/>
+<p class="translated">GitHub Enterprise还提供了许多新服务:</p>
+<ul>
+<li class="translated">GitHub Enterprise现在使用Ubuntu 12.04 LTS，利用Ubuntu提供的基础组件的长期更新和安全修复。</li>
+<li class="translated">在线备份实用程序:无需在备份运行期间将设备置于维护模式。根据Gi GitHub的说法，这意味着开发团队没有停机时间。</li>
+<li class="translated">GitHub Enterprise在改进其复制模式方面做出了新的努力。这使得能够“配置第二个相同的实例(带热备用的故障转移)，以便在主实例发生任何情况时立即采取行动。”</li>
+</ul>
+<p class="translated">GitHub Enterprise有许多新特性，包括可以与OneLogin、PingIdentity、Okta和Shibboleth等服务集成的SAML支持。这些集成允许与这些“身份提供商”进行单点登录，以便从一个位置管理您组织的用户，或者一次管理一组用户的应用程序访问，而不是单独管理。”</p>
+<p class="translated">正如我在2012年为TechCrunch写的文章一样，GitHub企业服务被认为是GitHub的成功之路。该公司在2012年从Andreessen Horowitz获得了1亿美元，因此它可以建立一种内部技术，开发人员可以部署代码并与其他开发人员合作。它可以与任何开放式虚拟化格式(OVF)集成。软件包系统旨在使开发人员能够轻松地从软件的当前版本升级到最新版本。升级将每周和每季度进行。</p>
+<p class="translated">尚不清楚GitHub取得了多大的成功。它与Atlassian等公司的服务相比如何也不清楚。但毫无疑问，与AWS的集成有助于使社交编码更适用于分布式基础设施上的开发过程。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

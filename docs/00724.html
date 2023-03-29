@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>AWS Extends Lambda Service with a Custom Runtime, Layered Libraries</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">AWS通过定制的运行时、分层库来扩展Lambda服务</h1>
+<blockquote>原文：<a href="https://thenewstack.io/aws-extends-lambda-service-with-a-custom-runtime-layered-libraries/#0001-01-01">https://thenewstack.io/aws-extends-lambda-service-with-a-custom-runtime-layered-libraries/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">亚马逊网络服务在2014年通过推出其<a href="https://aws.amazon.com/lambda/" target="_blank" class="ext-link" rel="external "> Lambda服务</a>向世界介绍了无服务器计算的概念，并继续在将Lambda扩展到云原生it运营的其余部分方面开辟新天地。</p>
+<p class="translated">周四，该公司在本周于拉斯韦加斯举行的<a href="https://reinvent.awsevents.com/" target="_blank" class="ext-link" rel="external "> AWS Re:Invent </a>年度用户大会上推出了Lambda的一系列新集成功能。</p>
+<p class="translated">最值得注意的是，这个云巨头引入了两项新技术，进一步将无服务器整合到其他基于云的IT运营中，<a href="https://aws.amazon.com/blogs/aws/new-for-aws-lambda-use-any-programming-language-and-share-common-components/" target="_blank" class="ext-link" rel="external "> Lambda层和Lambda运行时API </a>。Lambda Layers提供了一种集中管理代码和数据的方式，这样就可以在多个函数之间共享代码和数据。Lambda运行时API提供了一个简单的接口，可以在Lambda中使用任何编程语言或特定的语言版本。</p>
+<p class="translated">该公司还引入了对Websockets、负载平衡和多集成开发环境(ide)的支持</p>
+<p class="translated">有了Lambda运行时API，用户可以用Lambda官方支持的编程语言之外的语言编写无服务器函数(JavaScript、Python、Java、C#、Go，以及本周的Ruby)。合作伙伴们已经开发了一些包来运行用Rust、C++、Erlang甚至Cobol编写的代码，以便在Lambda上运行。</p>
+<p class="translated">使用层，开发人员只需将他们的组件或库打包到一个ZIP文件中，并将其作为Lambda层上传，该层可以在多个环境中共享。每个函数可以有多达五层，包括支持另一种语言的运行时。例如，Python函数可以包含Python的NumPy和SciPy流行科学库。</p>
+<p class="translated"><a href="https://aws.amazon.com/blogs/aws/new-for-aws-lambda-use-any-programming-language-and-share-common-components/" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-6144595" src="../Images/8993bab74daaca9946e75e6bbfe79370.png" alt="" data-id="6144595" data-original-src="https://cdn.thenewstack.io/media/2018/11/5a51b2a2-aws-function-layers-1.png"/> </a></p>
+<p class="translated">通过层，公司<a href="https://thenewstack.io/serverless-thundra-adds-observability-to-aws-lambda/" class="local-link">正在提供</a>他们的服务，包括来自Datadog、Epsagon、IOpipe、NodeSource、桑德拉、Protego、PureSec、Twistlock、Serverless和Stackery的服务。</p>
+<p class="translated">AWS已经<a href="https://aws.amazon.com/blogs/aws/new-compute-database-messaging-analytics-and-machine-learning-integration-for-aws-step-functions/" target="_blank" class="ext-link" rel="external ">为Lambda扩展了它的工作流服务</a>，称为<a href="https://aws.amazon.com/step-functions/" target="_blank" class="ext-link" rel="external "> AWS步骤函数</a>，这样开发者可以将其他AWS服务合并到他们的函数中。现在支持八种服务:</p>
+
+<p class="translated">除了扩展Step函数，AWS还允许您使用AWS无服务器应用程序模型，通过AWS无服务器应用程序存储库中的多个函数来<a href="https://aws.amazon.com/about-aws/whats-new/2018/11/sam-supports-nested-applications-using-serverless-application-repository/" target="_blank" class="ext-link" rel="external ">组装嵌套应用程序</a>。</p>
+<p class="translated">在AWS Re:Invent的主题演讲中，AWS首席技术官<a href="https://twitter.com/Werner" class="ext-link" rel="external ">沃纳·威格尔</a>解释说，通过嵌套应用，“你可以将存储库中的多个组件和服务组合成无服务器应用”。</p>
+<p class="translated">该公司还扩展了其他一些服务，包括与Lambda的连接。功能<a href="https://aws.amazon.com/about-aws/whats-new/2018/11/alb-can-now-invoke-lambda-functions-to-serve-https-requests/" target="_blank" class="ext-link" rel="external ">现在可以通过AWS应用程序负载平衡器跨多个实例进行负载平衡</a>。并且<a href="https://aws.amazon.com/api-gateway/" class="ext-link" rel="external ">API网关</a>，作为访问Lambda函数的管道，现在支持<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="ext-link" rel="external "> WebSockets </a>，为从Lambda函数构建有状态应用程序提供了一条路径。</p>
+<p class="translated">“你可以把东西从Ec2转移到无服务器，而不必改变你的API，”Werner说。</p>
+<p class="translated">AWS还为第三方集成开发环境(IDE)扩展了Lambda支持。现在开发者可以用<a href="https://www.jetbrains.com/pycharm/" target="_blank" class="ext-link" rel="external "> PyCharm </a>、<a href="https://www.jetbrains.com/idea/" target="_blank" class="ext-link" rel="external "> IntelliJ </a>和<a href="https://code.visualstudio.com/" target="_blank" class="ext-link" rel="external "> Visual Studio代码</a>编写他们的Lambda函数。</p>
+<p/>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

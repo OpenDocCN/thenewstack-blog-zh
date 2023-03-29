@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Dockercon 2017: How Docker Changed Windows So Windows Could Change Docker</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Docker con 2017:Docker如何改变Windows，让Windows也能改变Docker</h1>
+<blockquote>原文：<a href="https://thenewstack.io/docker-changed-windows-windows-change-docker/#0001-01-01">https://thenewstack.io/docker-changed-windows-windows-change-docker/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">十年前，微软公开声明的对Linux的政策是通过各种手段迫使其供应商获得付费许可，不管他们是否直接或间接窃取了Windows技术。上周在奥斯汀举行的DockerCon 2017上，微软最忙碌的两名工程师展示了他们如何重新布线<a href="https://www.microsoft.com/en-us/cloud-platform/windows-server" class="ext-link" rel="external "> Windows Server 2016 </a>(将在几周内进行重大更新)，使其能够在Windows内的Linux子系统上管理和运行基于Linux的容器。</p>
+<p class="translated">微软首席项目经理<a href="https://twitter.com/Taylorb_msft" class="ext-link" rel="external ">泰勒·布朗描述道:“我们希望有一个类似‘这是所有东西的入口’的层。</a></p>
+<p class="translated">从技术上讲，布朗解释了为什么微软有意重新设计其Hyper-V虚拟化系统，以包括一种名为主机计算服务(HCS)的东西。他的团队观察到，在Linux系统中，容器系统的多种排列是如何同时ping同一个控制组(cgroup)接口的。</p>
+<p class="translated">“我们担心的是，有一天你会看到Docker和rkt以及其他东西放在一起，”他继续说道，“而谈论这些东西根本不会有共同的方式。”</p>
+<h2 class="translated">所有事物的入口</h2>
+<p class="translated">两年前，微软在自己的公司会议上首次推出Docker支持后不久，<a href="https://thenewstack.io/the-windows-and-linux-container-era-is-here/" class="local-link">它让我们第一次看到了Windows和Linux互操作性的方案。2015年8月，泰勒·布朗解释了为什么微软选择生产两种容器的实现:一种只是标记为“Windows容器”，另一种是“</a><a href="https://thenewstack.io/microsoft-secures-the-windows-docker-container/" class="local-link"> Hyper-V容器</a>”他说，出于安全目的，你可能需要在完全隔离的情况下运行容器，而Hyper-V提供了这一点。</p>
+<p class="translated">当然，无论如何，隔离是在Linux中创建cgroups的最初想法。所以有一个挥之不去的问题，为什么Windows开发人员或管理员不希望在所有情况下都实现Hyper-V。</p>
+<p class="translated">星期二，对这个问题有了一个冗长、详尽、而且有些迂回的回答。</p>
+<p class="translated">“当你运行一个Windows服务器容器时，那就是一个共享的内核，”Brown解释道，他小心翼翼地在短语中加入了“服务器”一词，原因很快就会变得显而易见。“如果我运行第二个，同样的内核。它们还与主机共享同一个内核。”</p>
+<p class="translated">事实证明，启用这种内核共享与微软客户端操作系统Windows 10的架构背道而驰。</p>
+<p class="translated">“尽管Windows 10和[Windows] Server的内核相同，”布朗在回答一位与会者的问题时说，“但它们的操作方式不同。你得到不同的调度参数，你得到不同的内存管理技术。因此，如果你试图达到一种状态，在这种状态下，你可以明确地说，‘这将会以同样的方式运行’，这些将会干扰并改变事物的运行方式。”</p>
+<p class="translated">换句话说:如果Docker启发的共享内核的方法既适用于Windows 10又适用于Windows Server，那么您试图在两种环境中平衡容器的性能特征的几乎所有努力都会导致不平衡。这是微软以前遇到过的问题，特别是其长期存在的网络服务器IIS。从版本6.0(2003年发布)开始，它使用内核模式设备驱动程序HTTP。SYS——在Windows术语中，是一个仅用于Windows基础层的库。这是微软将其网络服务器的核心硬连线到其操作系统中。</p>
+<p class="translated">尽管微软统一了客户机和服务器操作系统的内核，但它们的支持结构却大相径庭。他们的时间和进程调度概念现在是基于独立的结构。因此，IIS在这两种操作系统中的表现截然不同。现在，确保所有支持的实现的行为一致是任何容器化平台的要求。布朗说，尽管几个月前发布的文档解释了如何在Windows 10上运行这两种容器类型，但展望未来，客户端操作系统将只运行Hyper-V容器。</p>
+<p class="translated">“这种形象在不同的环境下会有不同的表现，”布朗继续说道，“这与我们对Docker的整体精神和目标是背道而驰的。这就是为什么我们以我们的方式实施它，至少现在是这样。”</p>
+<h2 class="translated">整个精神和目标</h2>
+<p class="translated">如果Docker从一开始就想构建两个可以在两个操作系统上相同地运行工作负载的平台，这个项目可能永远也不会完成。从建筑学的角度来看，这与在岛上建造一座摩天大楼和在海上平台上建造一座功能相同的摩天大楼没有太大区别。</p>
+<p class="translated">简单地说，在引擎盖下，这两个码头工人的工作不一样。更重要的是，微软已经对Windows Server进行了重大修改，使任何类型的容器化都能够发生。</p>
+<p class="translated">微软变革的关键与网络有关。尽管虚拟交换机(或vSwitch)迄今为止在公认的倾向于Linux的新堆栈中扮演的角色很少，在Docker for Linux中也没有扮演任何角色，但它对Windows如何感知虚拟网络至关重要。所有Docker容器的连接都发生在IP网络上；在Linux中，这些连接的模型简单地说就是<a href="http://linux-ip.net/html/routing-intro.html" class="ext-link" rel="external "> Linux路由</a>。同样简单，Windows中没有Linux路由。因此，微软和Docker的工程师不得不为vSwitch配备Windows版本的容器平台。</p>
+<p class="translated">回到Windows Vista和“Longhorn”项目的时代，微软的Windows工程师创造了一个叫做<em> IP路由区间</em>的概念。其初衷是保证虚拟专用网(VPN)内路由的隔离。Windows上的Docker网络不使用VPN但是，它确实利用了隔离舱的概念。Hyper-V首先利用它来支持多个虚拟服务器在一台物理服务器上运行。具体来说，划分确保每个虚拟服务器与所有其他虚拟服务器隔离开来。</p>
+<p class="translated">如果您还记得Linux容器是如何发展的，那么这个概念是从cgroup开始的，它导致了隔离的名称空间。给每个空间分配指定的IP地址进行网络隔离，然后就产生了Linux开发人员所理解的容器。Windows的发展方向相反，至少微软首席工程主管<a href="https://www.linkedin.com/in/dinesh-kumar-govindasamy-0a0a108/" class="ext-link" rel="external "> Dinesh Govindasamy </a>上周二在DockerCon与布朗的会谈中解释了这一点。首先，Hyper-V为Windows工程师提供了任何容器都需要的网络隔离组件。从那里，这些工程师必须建立一种方法来共享内核，通过IP网络共享资源，并整合<a href="https://thenewstack.io/finally-linux-containers-really-will-run-windows-linuxkit/" class="local-link">子系统，从而使Linux容器能够在Windows </a>中运行。</p>
+<p class="translated">Govindasamy宣布，尽管软件定义的网络(SDN)已经存在了很长一段时间，但Windows Server现在才开始正式支持覆盖网络模式——实现Docker Swarm orchestration引擎的一个关键功能——最新的更新补丁将在几天内发布。</p>
+<p class="translated">“Docker网络架构是建立在这个容器网络模型之上的，”他继续说道，展示了一个看起来像是为Piet Mondrian做的一堆煎饼的图表。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="size-full wp-image-2213810 aligncenter" src="../Images/f1075fe659e14b9d334449df38d69ef1.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/8be7c41d-170418-container-networking-model-slide.jpg"/></p>
+<p class="translated">为了将这种架构应用于类似的Windows组件，需要有一种方法让应用程序安全地构建网络——这是Windows所不具备的。</p>
+<p class="translated">因此，Govindasamy和他的同事们设计了一个叫做主机网络服务(HNS，HCS的网络对等物)的组件。Docker for Windows依靠HNS来创建虚拟交换机和虚拟防火墙(Windows称之为<a href="https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/" class="ext-link" rel="external "> WinNAT </a>)。他向与会者解释说，HNS还建立网络端点，将它们绑定到vSwitch端口，并对端点应用策略。</p>
+<p class="translated">“我们在Linux中的默认网络模式是<em> <a href="https://wiki.archlinux.org/index.php/Network_bridge" class="ext-link" rel="external ">桥接模式</a> </em>。我们在Windows中的默认网络模式是<em> <a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network" class="ext-link" rel="external "> NAT模式</a> </em>，”他继续说道，粗略地说明了这两个操作系统具有完全不同的网络优先级的事实。从某种意义上说，他们的性格截然不同；Linux想连接，Windows想抽象。</p>
+<p class="translated">“对于NAT模式，我们创建一个内部vSwitch，”Govindasamy解释道。“[它是]一个私有虚拟交换机，在主机分区中添加了网关NIC[<em>虚拟网络接口卡</em>]。然后，我们在网关网卡和外部网卡之间创建一个NAT。因此，由于有了vSwitch，您添加到此NAT网络的任何容器都应该能够相互通信，并且任何流出此NAT网络的流量都将使用WinNAT进行NAT处理。”</p>
+<h2 class="translated">常见组件</h2>
+<p class="translated">为什么所有这些都很重要？有几个原因，我保证很有趣。</p>
+<p class="translated">首先，虽然容器编排的目标是提供跨平台的一致方法，但是对Kubernetes进行的<a href="http://blog.kubernetes.io/2016/07/update-on-kubernetes-for-windows-server-containers.html" class="ext-link" rel="external ">调整以支持Windows容器网络</a>肯定会导致不同的性能特征。不一定更差，也许更好，但肯定是不同的。</p>
+<p class="translated">这就引出了另一个重要的原因:虽然Docker的原始Linux路由架构不能被翻译成Windows，但理论上，没有什么能阻止微软面向vSwitch的方法在某个时候被翻译成Linux实现，即使只是实验性的。<a href="https://thenewstack.io/vmware-hands-oversight-open-vswitch-linux-foundation/" class="local-link"> Open vSwitch不再是VMware项目</a>；它现在由Linux基金会管理，微软是该基金会的成员之一。</p>
+<p class="translated">此外，在周二DockerCon的主题演讲中，<a href="https://thenewstack.io/finally-linux-containers-really-will-run-windows-linuxkit/" class="local-link">介绍了莫比项目</a>，Docker首席技术官<a href="https://twitter.com/solomonstre" class="ext-link" rel="external "> Solomon Hykes </a>谈到了标准化Docker底盘的必要性——就像汽车制造商所做的那样——以便更容易实现各种平台的专业化。</p>
+<p class="translated">“很明显，他们重复使用相同的零件——相同的车轮、发动机等。Hykes说，“但他们也在这些组件的通用组件上进行合作。这使得他们不需要重复劳动…所以我们窃取了这个想法，并将其应用到我们的工程问题中。结果是一些非常有效的东西。我们在Docker中创建了一个地方，我们所有的团队都可以在这里就通用装配进行协作。”</p>
+<p class="translated">联网是Docker运营方式的基础，因此很难想象Docker的工程师会以某种方式避免考虑采用微软的vSwitch/vNIC/NAT模型的可能性，或者在未来的某一天将该模型的某种标准化形式应用于其所有版本，包括Linux。因此，微软为在Windows Server上启用Docker而解决的问题很可能为Docker在其他地方的未来指明了方向。</p>
+<p class="translated">毕竟，生态系统厌恶不平衡。</p>
+<p class="attribution translated">特征图片:一个<a href="https://en.wikipedia.org/wiki/File:Balance_scale_IMGP9728.jpg" class="ext-image" rel="external "> Roberval天平</a>，由Nikodem Nijaki拍摄，在Creative Commons 3.0下获得许可。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

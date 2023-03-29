@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>IBM 'BlockDrop' Research Speeds Neural Networks</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">IBM“block drop”研究加速神经网络</h1>
+<blockquote>原文：<a href="https://thenewstack.io/ibm-blockdrop-research-speeds-neural-networks/#0001-01-01">https://thenewstack.io/ibm-blockdrop-research-speeds-neural-networks/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">IBM Research在德克萨斯大学奥斯汀分校和马里兰大学的帮助下，创造了一项名为<span class="il"> BlockDrop </span>的技术，该技术有望在不损失任何保真度的情况下加快卷积神经网络的运行。这可能会进一步超越神经网络的使用，特别是在计算能力有限的地方。</p>
+<p class="translated">BlockDrop的工作原理是在深层网络中寻找不需要计算来实现所需精确度的层，然后即时删除这些层，使系统能够以更有效的方式分配资源。根据IBM的数据，在测试中，BlockDrop将标准<a href="http://www.image-net.org/" class="ext-link" rel="external "> ImageNet </a>数据集的神经网络图像识别速度平均提高了20%，有些提高了36%。</p>
+<p class="translated">IBM研究经理<a href="https://researcher.watson.ibm.com/researcher/view.php?person=us-rsferis" class="ext-link" rel="external ">罗杰奥·费里斯</a>将于本周在盐湖城举行的2018年计算机视觉和模式识别大会(<a href="http://cvpr2018.thecvf.com/" class="ext-link" rel="external "> CVPR 2018 </a>)上展示<a href="https://arxiv.org/abs/1711.08393" class="ext-link" rel="external "> BlockDrop作品</a>。</p>
+<p class="translated">虽然越来越多的组织正在深入研究用于图像识别和相关任务的神经网络，如自动车辆导航，但由于需要更高的准确性和清晰度，这种深度学习所需的计算要求可能会呈指数级增长，从而加重计算资源的负担。此外，越来越多的工作预计将由计算资源有限的平台来处理，如边缘计算节点和移动设备。</p>
+<p class="translated">Feris在接受新堆栈采访时表示，需要围绕提高人工智能和机器学习技术的可扩展性进行更多研究。今天的深度学习系统倾向于采取一刀切的方法，不管图像本身是复杂还是简单。神经网络通过数据“学习”识别物体，数据通过一系列节点<a href="https://www.quora.com/How-do-artificial-neural-networks-work" class="ext-link" rel="external ">传递</a>将图像与物体的模型进行比较。但研究人员发现，神经网络不一定要求每项工作都有相同数量的节点。</p>
+<p class="translated">“如果你有一个非常简单的图像要处理，比如一只干净背景上的狗，我们真的需要运行100层神经网络来做出决定”来确定图像中的对象是否确实是一只狗？费里斯问道。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/06/d736170c-blockdrop.jpg" class="ext-image" rel="external "><img decoding="async" loading="lazy" class="aligncenter wp-image-4999894 size-full" src="../Images/cd292a74220032c1b259b41bade6c0a7.png" alt="" data-id="4999894" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/06/d736170c-blockdrop.jpg"/>T2】</a></p>
+<p class="translated">已经做了一些工作来简化神经网络，尽管在数据压缩方面已经做了很多，但这种方法仍然需要完成整个工作。相反，BlockDrop确定正确分类给定输入图像所需的层或块的最小配置，删除那些没有唯一编码有意义的视觉信息的块。图像越简单，可以删除的图层越多，节省的时间就越多。</p>
+<p class="translated">研究人员在论文中指出，这种方法大致模仿了人类大脑的工作方式。“人类感知系统的一个重要特征是它能够自适应地为视觉识别分配时间和检查。例如，一瞥足以识别一些物体和场景，而要清楚地理解被遮挡或复杂的物体和场景则需要更多的时间和注意力，”他们指出。</p>
+<p class="translated">Feris的工作是IBM为加速基于人工智能的计算机视觉操作而采取的一系列举措之一。在CVPR，公司研究人员还将<a id="m_-5253921471735530386LPlnk151128" href="http://researcher.watson.ibm.com/researcher/files/us-aandreo/cvpr2018.pdf" target="_blank" class="ext-link" rel="external ">向</a>展示一个基于IBM TrueNorth神经形态芯片的实验系统的性能结果，该系统将一对视觉传感器连接在一起，就像一双眼睛一样。研究人员声称，该系统比使用传统硬件的可比系统每像素需要的功率少200倍。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

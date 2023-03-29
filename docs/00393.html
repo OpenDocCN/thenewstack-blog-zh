@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>The Codefresh Build Platform Gets a Free Private Docker Registry</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Codefresh构建平台获得了一个免费的私有Docker注册表</h1>
+<blockquote>原文：<a href="https://thenewstack.io/codefresh-build-platform-gets-free-private-docker-registry/#0001-01-01">https://thenewstack.io/codefresh-build-platform-gets-free-private-docker-registry/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://codefresh.io/" class="ext-link" rel="external "><img decoding="async" loading="lazy" class="alignright wp-image-2680778 size-medium" src="../Images/e81d16894d74b8bbac3b77d6a697c9aa.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/07/25e33ae3-codefresh-300x180.jpg"/>T2】</a></p>
+<p class="translated">正如开发人员非常了解的那样，传统的开发管道并不适合容器和云服务。由于这种体系结构预先存在着像容器化和分布式应用平台这样的新技术，这是可以理解的，但也是有问题的。</p>
+<p class="translated">Docker-native持续集成/持续交付(CI/CD)平台和服务的制造商Codefresh 进入。有了一个专门与<a href="https://www.docker.com/" class="ext-link" rel="external "> Docker </a>和云服务一起工作的全新平台，所有这些都在<a href="https://kubernetes.io/" class="ext-link" rel="external "> Kubernetes </a>上本地运行，Codefresh用户可以简化他们的整个管道，并快速轻松地构建、测试和使用web应用。</p>
+<p class="translated">从现在开始，Codefresh还在菜单中添加了一个完整的私人内置注册表，这意味着所有用户都可以向Codefresh的注册表添加无限的公共和/或私人回购，没有网络或存储费用，也没有合作者的上限。当然，开发人员仍然可以连接他们喜欢的所有外部注册中心——但是现在，这里有一个现成的。</p>
+<p class="translated">Codefresh联合创始人兼首席执行官<a href="https://www.linkedin.com/in/razielt/" class="ext-link" rel="external ">拉结尔·塔比布</a>表示:“我们非常高兴能够免费为我们的用户提供完整的注册表。“通过将我们的Docker Registry与Codefresh的CI/CD和按需暂存环境相结合，开发人员拥有了交付容器的完整工具链。”</p>
+<p class="translated">免费的全规格注册表——由<a href="https://cloud.google.com/container-registry/" class="ext-link" rel="external ">谷歌的容器注册表</a>提供支持——将Codefresh与类似的CI/CD服务区分开来。拥有一个可用的内置注册表可能会减少开发周期中的一个步骤，从而加快构建和测试。部署后，它也使得删除和调试损坏的映像变得更加容易。</p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/8bc569d48a86ecd1610655b34bcdc7cc.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/07/8f8dfb90-cloudfreshpipelinewithregistry.jpg"/></p>
+<p class="translated">Codefresh新的嵌入式注册表并不打算取代生产注册表。相反，它为测试和开发提供了一个以开发人员为中心的平台。嵌入式注册表维护开发所需的映像，而生产注册表则成为“生产级映像的唯一真实来源”</p>
+<p class="translated">塔比布说，这种方法还有其他几个很大的优势:</p>
+<ul>
+<li class="translated">图像质量控制更高，因为它内置于测试流程中。</li>
+<li class="translated">构建辅助映像(例如，那些与Java和其他编译语言一起使用的映像)在开发空间中组织得很好。</li>
+<li class="translated">Codefresh使用有价值的元数据(例如，测试结果、提交信息、构建SHA、日志、问题id等)扩展映像。)，为开发者创建一个类似沙盒的注册表。</li>
+<li class="translated">构建速度更快，因为嵌入式注册表“更靠近”构建机器。</li>
+</ul>
+<p class="translated">此外，嵌入式注册表允许开发人员从构建流程中通过标记和扩展元数据调用图像。例如，如果您想基于一个服务如何与另一个服务的不同版本一起工作来测试它，您可以基于它们的git commit ID (build SHA)来引用映像。</p>
+<p class="translated">“在与我们的用户交谈时，他们最兴奋的是能够根据需要为注册表中的任何图像或图像集旋转环境，”Tabib说。"在没有供应的情况下在应用程序环境中启动映像是巨大的."</p>
+<p class="translated">Codefresh生产环境由运行在Google容器引擎上的<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>容器编制器管理。该公司增加了Kubernetes部署图像，可在UI和Codefresh YAML中使用，使推送新图像成为传递凭证的简单事情。自动化部署变得简单，而且，当与分支机构权限配合使用时，任何获得授权的人都可以批准代码并将其投入生产。瞧啊。一键式部署到<a href="https://cloud.google.com/container-engine/" class="ext-link" rel="external ">谷歌的容器引擎，由Kubernetes支持的</a>。</p>
+<p class="translated">“作为Docker原生，CI/CD Codefresh对Docker用户需求有着深刻的理解。使用Codefresh的团队大大加快了他们的构建、测试和部署，这要归功于我们缓存层的能力，所有这些都包含在一个简单易用的用户界面中，”Tabib说。</p>
+<p class="translated">注册Codefresh的免费介绍计划只需要一个GitHub帐户，并提供一个托管的暂存环境、五个并发构建以及无限的用户和存储库，尽管构建每月限于200个。Codefresh Pro提供打折的年度和月度现收现付计划，起价为每月249美元，并根据您的项目所需的托管暂存环境和并发构建的数量而上涨。</p>
+<p class="translated">此外，Pro plan还提供嵌入式注册表、端口映射、静态IP和支持，其中包括一个专用的Slack通道。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/@trapnation" class="ext-link" rel="external "> Andre Benz </a>通过Unsplash拍摄的特写图片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Google Offers Physical Key Authentication to Developers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">谷歌向开发者提供物理密钥认证</h1>
+<blockquote>原文：<a href="https://thenewstack.io/three-years-later-google-offers-physical-key-authentication-developers/#0001-01-01">https://thenewstack.io/three-years-later-google-offers-physical-key-authentication-developers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">本月早些时候，在三藩市举行的Google Cloud Next(T1)大会的两场主题演讲中，负责技术基础设施的高级副总裁T2向观众展示了一系列安全技术。它们中的一些，当剩下的部分缝合在一起时，可以组成一个平台。</p>
+<p class="translated">有一种技术被称为<a href="https://cloud.googleblog.com/2015/12/google-for-work-security-announcing-DLP.html" class="ext-link" rel="external ">数据丢失预防(DLP)库</a>，但从技术上讲，它实际上是一个隐私安全网，能够扫描数码照片，并自动编辑信用卡号、社会安全号和其他可能是私人数据的常见模式。在同一个演示中，有一个USB key——具体来说，是FIDO U2F(通用第二因子)key，可能来自<a href="https://www.yubico.com/" class="ext-link" rel="external ">yubi co</a>——它验证用户对<a href="https://gsuite.google.com/" class="ext-link" rel="external "> G Suite Enterprise </a>应用程序的访问，或者可能是托管在<a href="https://cloud.google.com/" class="ext-link" rel="external ">谷歌云平台</a>上的任何应用程序。</p>
+<p class="translated">“这项功能可以让您对域中的所有成员强制使用安全密钥，”lzle解释道，他站在一个手指像短笛一样操作U2F键的动画前面。"这意味着现在对你所有应用程序的访问都有很强的防钓鱼能力."</p>
+<p class="translated">该演示使其看起来好像DLP库和U2F密钥都是一个有凝聚力的新安全平台的一部分，以及一个名为<a href="https://cloud.google.com/iap/" class="ext-link" rel="external ">身份感知代理</a>的新软件库，加上一个由谷歌制造的实际芯片，以在服务器内部建立一个<em>信任根</em>，它被称为Titan。此外，该安全平台的杠杆点是谷歌云平台。</p>
+<p class="translated"><a href="https://cloud.googleblog.com/2015/12/google-for-work-security-announcing-DLP.html" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2102270" src="../Images/f22465f22eb4ec25451eb786c0e77bcf.png" alt="" data-id="2102270" data-original-src="https://cdn.thenewstack.io/media/2017/03/ff6f0ec5-security-1.png"/> </a></p>
+<p> </p>
+<h2 class="translated">祖先</h2>
+<p class="translated">谷歌实际上正在围绕其建立的模型——在演示文稿中只是间接提到了它的存在——可以追溯到2014年。然后，一位名叫<a href="https://research.google.com/pubs/RoryWard.html" class="ext-link" rel="external ">罗里·沃德</a>的爱尔兰谷歌网站可靠性工程师与技术作家<a href="https://www.linkedin.com/in/betsy-beyer-5b80712/?locale=de_DE" class="ext-link" rel="external ">贝特西·拜尔</a>合作，开发了一个他们称为“<a href="https://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/43231.pdf" class="ext-link" rel="external "> BeyondCorp:企业安全新方法</a>的安全模型[PDF] Ward和Beyer的论文<a href="http://www.datacenterknowledge.com/archives/2015/05/15/googles-wholesale-move-cloud-take-security-makes-cloud-apps-enterprise-friendly/" class="ext-link" rel="external ">被认为引发了Google的行动</a>将几乎所有的内部应用程序迁移到一个<em>非特权托管模型</em>——一个废除虚拟专用网络(VPN)的模型，这样任何服务器，任何地方托管应用程序都可以可靠地验证客户端。</p>
+<p class="translated">这种模式支持任何服务器驱动的系统或任何公共平台即服务(PaaS)向经过身份验证的用户可靠地提供应用和数据，同时拒绝所有其他用户的访问。通过将安全负担转移给客户，BeyondCorp模型将重新定位攻击面，从一个容易破解的软壳生物，变成大约100万个硬壳坚果。</p>
+<p class="translated">Google现在称之为云身份感知代理(Cloud IAP)是由BeyondCorp模型引入的，它有一个相似的名字:面向互联网的访问代理。“访问代理是为每个应用程序配置的，”Beyer和Ward在2014年写道，“并提供通用功能，如全局可达性、负载平衡、访问控制检查、应用程序健康检查和拒绝服务保护。在访问控制检查完成后，此代理将请求适当地委托给后端应用程序。</p>
+<p class="translated"><a href="https://cloud.google.com/iap/" class="ext-link" rel="external ">几周前发布的谷歌云IAP新文档</a>的序言将它的存在归功于BeyondCorp，它将其描述为“一种企业安全模式，使每个员工都能在不使用VPN的情况下从不受信任的网络工作。”</p>
+<p class="translated">BeyondCorp模式极其重要的一点——比其无VPN、无边界访问控制的原则更重要——是它在Google 内部引发的浪潮，它反过来影响了我们所有人。BeyondCorp预示着向面向应用的基础设施的转变，不仅是针对谷歌的主要服务，如搜索，而是针对它所做的一切。事实上，正是重新设计其所有服务的迫切需要，导致谷歌将其<a href="https://thenewstack.io/google-learned-borg-container-management/" class="local-link"> Borg </a> staging模型应用于低层用户应用。正是这种努力向谷歌工程师揭示了<a href="https://thenewstack.io/google-lifts-the-veil-on-borg-revealing-apache-auroras-heritage/" class="local-link">将容器调度器分离出来作为一个独立进程</a>的必要性。这个决定直接导致了Kubernetes的诞生。</p>
+<p class="translated">IAP可能是历史上最重要的软件创新之一的催化剂。然而，在谷歌Next，它被奇怪地描述为——与其起源相反——GCP向用户提供的一种保护机制。</p>
+<p class="translated">“我们认为对资源的每一个访问决策都不是关于用户的凭证，也许是他们的第二个因素，”lzle说，“而是真正应该基于周围环境的东西，例如，用户设备的状态，他们的位置，等等。我们称之为“上下文感知安全性”。用户的环境决定了访问权限，而不仅仅是他们所在的网络或他们是谁。我们今天使用IAP代理的上下文只是用户身份和安全密钥，也就是身份认证的强度。但是随着时间的推移，你可以期待我们未来的版本使用越来越丰富的上下文，以更好地保护对你的云应用或G套件的访问。"</p>
+<h2 class="translated">激励</h2>
+<p class="translated">虽然微软曾经锁定的平台的一些部分已经相互分离，但该公司仍然拥有的优势之一(我不会使用“王牌”一词)是Active Directory身份管理软件的市场份额仍然超过90%。微软显然正在利用其在上下文丰富的身份方面的领导地位，作为Azure和Office 365的支柱。</p>
+<p class="translated">正如身份市场领域的一些人猜测的那样，谷歌感受到了来自微软的压力，要找到一种与Azure平起平坐的方式，或许还能保持竞争优势。这就是Yubico的用武之地。</p>
+<p class="translated">早在2014年，就在一名谷歌安全工程师告诉同样的观众，“我们目前在社区中没有比基于密码的身份认证更好的选择”后几天，一群安全工程师联合起来，成立了<a href="https://fidoalliance.org/" class="ext-link" rel="external ">快速身份在线(FIDO)联盟</a>。在谷歌的合作下，Yubico生产了第一批消费级FIDO U2F钥匙。</p>
+<p class="translated">U2F不是一个身份机制；表示身份的问题就留给别人了。相反，U2F寻求涉及身份的认证过程的标准化，然而，它可能被标记化，以及在所涉及的三方之间的交换中使用的语言:会话中的服务器和客户端，加上担保客户端真实性的<em>依赖方</em>。</p>
+<p class="translated">随着首款Yubikey的上市，Gmail成为谷歌第一款利用这些密钥进行二次身份认证的应用。今天，你可以设置所有谷歌的网络应用程序来识别你的U2F键。</p>
+<p class="translated">“从FIDO U2F的角度来看，这项工作是为了消除对用户名和密码的依赖，增加一个强大的第二个因素，”Yubico负责解决方案工程的副总裁<a href="https://www.linkedin.com/in/jerrod-chong-527b633/" class="ext-link" rel="external "> Jerrod Chong </a>在谈到新的堆栈时解释道。“因此，开发人员编写的代码，而不是构建使用密码的应用程序或网站，他们可以选择允许一个强大的第二因素。市场上还有许多次要因素，但迄今为止，我们在FIDO U2F安全密钥方面所做的工作确实是最先进、最安全的。”</p>
+<h2 class="translated">选择的诅咒</h2>
+<p class="translated">Chong认为，如今认证面临的主要问题是选择的多样性。</p>
+<p class="translated">“老实说，我们给身份产业制造了这个烂摊子，”他告诉我们。“每一家安保公司都对我们今天的混乱局面负有责任。认证也不例外；生态系统中有很多专有的东西。所以我们需要继续前进。安全社区合作比相互对抗更有价值。”</p>
+<p class="translated">据Chong说，Yubico对与谷歌合作的兴趣不是为了推进单一云平台的事业，而是为了帮助为每个人都可以使用的认证标准奠定进一步的基础。</p>
+<p class="translated">“总的来说，我们需要转向一种模式，在这种模式下，一切都可以相互配合，”他说。“云平台也是如此。云平台和银行没什么区别。如果每个云平台都需要与您拥有的任何认证者(无论是软件、手机还是硬件)建立某种一对一的关系，这对每个人来说都是一种糟糕的情况。因为一个公司要和多个云服务合作，不管喜欢不喜欢。这些云公司在这方面可能是邪恶的，但每个人都在使用AWS，每个人都在使用Azure，每个人都在使用Google。三到四种不同的产品试图进入这些系统都不起作用。每个人都必须一起工作。好消息是，我们实际上已经在这件事情上取得了进展，大型互联网服务提供商说，“伙计们，你们真的必须为生态系统解决这个问题。”"</p>
+<p class="translated">因此，倡导工作负载协调公平竞争的公司(远在其收入流之外)正被其合作伙伴敦促对云平台服务采取同样的立场(远在其收入流之内)。这就是关于公平的事情:除非你平均分配，否则作为一项政策，它不会很好地发挥作用。</p>
+<p class="attribution translated">来自<a href="https://www.yubico.com/press/images/" class="ext-link" rel="external "> Yubico </a>的特色照片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

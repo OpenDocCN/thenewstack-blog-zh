@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>LinkedIn Stands Up a Private Cloud to Speed Development</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">LinkedIn建立私有云以加速开发</h1>
+<blockquote>原文：<a href="https://thenewstack.io/linkedins-private-cloud-links-internal-apps/#0001-01-01">https://thenewstack.io/linkedins-private-cloud-links-internal-apps/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">希望降低开发和硬件成本，并建立一个管道来加速新功能的开发，LinkedIn推出了自己的私有云，称为LPS (LinkedIn平台即服务)。</p>
+<p class="translated">“LPS将整个数据中心作为单一资源池呈现给应用程序开发人员。它允许他们在几分钟内部署自己的应用程序，零票，”LinkedIn的工程总监Steven Ihde在宣布该计划的博客文章<a href="https://engineering.linkedin.com/blog/2016/04/faster-and-easier-service-deployment-with-lps--our-new-private-c" class="ext-link" rel="external ">中写道。“这使得开发人员可以专注于构建，而不是浪费时间寻找机器资源或等待部署。”</a></p>
+<p class="translated">Ihde在后续采访中表示:“我们很高兴能够将自动化提升到一个新的水平。“我们现在正在自动化管理应用程序的整个流程。”</p>
+<p class="translated">Ihde指出，LinkedIn已经在更新软件版本等底层流程方面实现了良好的自动化。就在两个月前，该公司宣布了一条快速发布流水线的<a href="https://thenewstack.io/need-speed-linkedins-rapid-release-pipeline-mobile-app-development/" class="local-link">自动化。但像设置新应用程序这样更复杂的操作需要一个基于票证的系统，需要人工干预。</a></p>
+<p class="translated">“LPS将整个数据中心作为一个资源池呈现给应用程序开发人员，”Ihde在宣布发布的博客帖子中写道。“当组成LPS的所有系统都完成时，我们的整个托管环境将作为一个整体系统存在，我们的内部用户可以只通过API调用在线提供新服务，而不是多个JIRA票证。”</p>
+<p class="translated">那肯定是下一级。</p>
+<p class="translated">LinkedIn拥有近千项服务和数十万个服务实例，这些服务使网站得以运行。LPS取代了许多手动或半自动的流程来分配资源、决定在哪里运行什么以及最有效地利用硬件。</p>
+<p class="translated">Ihde写道:“我们一直在探索从更小的硬件空间中获取更多资源的方法，同时通过使我们的软件栈更加面向应用来提高生产率。”“LPS还将某些工作负载的硬件占用空间减少了50%或更多。简而言之，这个新的内部平台将使我们的工程师更具生产力、灵活性和创新性，同时为公司节省资金。”</p>
+<h2 class="translated"><strong>开头</strong></h2>
+<p class="translated">工程师们为他们的新的理想主机环境在实践中需要做的事情制定了标准:</p>
+<ul>
+<li class="translated">使服务所有者和工程师能够管理其服务的生命周期。</li>
+<li class="translated">坚持不懈地优化我们的基础设施，以获得最佳性能，同时保持稳健性和适应性。</li>
+<li class="translated">通过让更多应用程序或资源在线来保持高可用性，自动补偿人为错误和意外事件。</li>
+<li class="translated">没有“黑客”或额外的技术债务，以实现上述要点。</li>
+</ul>
+<p class="translated"><img decoding="async" loading="lazy" class="wp-image-1161316 alignleft" src="../Images/0ecb937805db85eebc364840725abbaf.png" alt="LPS2" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/LPS2-300x214.png"/></p>
+<p class="translated">LPS是一个定制的云解决方案。工程师们从拉动现有的LinkedIn服务开始，包括<a href="https://www.linkedin.com/pulse/invisible-infrastructure-alex-vauthey" class="ext-link" rel="external "> Nuage </a>、<a href="https://engineering.linkedin.com/blog/search?q=ingraphs" class="ext-link" rel="external "> inGraphs </a>和<a href="https://engineering.linkedin.com/blog/search?q=autoalerts" class="ext-link" rel="external "> AutoAlerts </a>以“提供自动供应数据存储、提供运营和性能指标以及监控应用程序的功能，以确保新的应用程序实例在需要时启动。”</p>
+<p class="translated">即使LPS是定制的，也尽可能利用开源解决方案。在审查了包括<a href="https://www.docker.com/" class="ext-link" rel="external "> Docker </a>和<a href="https://linuxcontainers.org/" class="ext-link" rel="external "> LXC </a>在内的几个可能选项后，该公司决定选择<a href="https://runc.io" class="ext-link" rel="external "> runC </a>，它最适合LinkedIn已经在使用的定制应用程序。</p>
+<p class="translated">LPS是多方面的，但LinkedIn在发布会上详细介绍了四个部分:Rain，RACE，Orca和Maestro。</p>
+<h3 class="translated"><strong>下雨</strong></h3>
+<p class="translated">Rain”将容器化资源限制与主机分配相结合，以便在主机上安全地运行作业。Rain知道在哪里运行它以及如何运行它，”Ihde说。</p>
+<p class="translated">在他的博客上，他说得更详细，称Rain为“LinkedIn对资源分配和容器化的回答，它直接使用Linux cgroups和名称空间，还通过<a href="https://runc.io/" class="ext-link" rel="external "> runC </a>利用libcontainer。”</p>
+<p class="translated">“它不仅旨在为应用程序提供资源保证和安全隔离，还旨在与我们现有的基础设施无缝集成，”Ihde写道。“在部署Rain之前，部署一项服务有时需要两天以上的时间。下雨后，这个时间减少到10分钟，节省了95%的时间。”</p>
+<h3 class="translated"><strong>种族</strong></h3>
+<p class="translated">Ihde说，RACE(资源分配和控制引擎)是一个“套件管理系统”。RACE将RAIN带到了一个新的高度:一个进程可能需要大量的实例，RACE可以自动管理实例——根据需要添加或减少，确保在任何给定的时间运行正确数量的实例。它还重定向流量以响应故障或需求激增。</p>
+<h3 class="translated"><strong>虎鲸</strong></h3>
+<p class="translated">Orca这个名字是对orchestration这个术语的一种发挥，这个应用程序专注于编排一次性的工作。Ihde写道:“工程师们经常要求的一项能力是能够为短期实验和其他工作启动大量主机。”</p>
+<p class="translated">在使用Rain和RACE的过程中，工程师们意识到LPS已经拥有了创建工作、资源分配、运行工作和记录结果的自动化部件，但是这些系统并没有绑定在一起。</p>
+<p class="translated">Orca允许利用暂时可用的资源来运行实验和其他短期项目，预计将进行测试并取代当前的配置短期工作。</p>
+<p class="translated">目前，Orca每天提供2000个工作岗位，Ihde估计这一数字到年底将增加到50000个。</p>
+<h3 class="translated">大师</h3>
+<p class="translated"><img decoding="async" loading="lazy" class=" wp-image-1161315 alignright" src="../Images/68d4f78f496a3a49177933d25d649536.png" alt="LPS2a" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/LPS2a-300x165.png"/> Maestro是LPS symphony的“指挥”，提供了“LPS系统的全局视图，使<br/> Maestro能够“管理我们平台上应用配置的各个方面”，Ihde写道。</p>
+<p class="translated">Maestro是“为一个长期的过程汇集一堆资源，例如，分配一个数据库，或者注册一项新的服务；它将所有部分连接在一起。Maestro旨在作为“一站式商店”，为支持平台的应用程序维护一个持久的设置和配置库。</p>
+<p class="translated">持久性存储”为将应用程序部署到LPS提供数据、计划和执行模型。蓝图定义了应用程序的理想状态，Maestro通过采取必要的措施使数据中心的现实与理想相匹配来“实施”…通过为这些系统中的每一个构建控制平面API，我们可以自动响应需求突然增加或网络中断等事件。”</p>
+<p class="translated">不是所有的东西都会被转移到LPS。例如，没有计划移动该公司的Oracle数据库。但Ihde写道，最终大多数内部应用程序和“目前使用的相关基础设施服务，如卡夫卡和<a href="https://github.com/linkedin/pinot" class="ext-link" rel="external ">皮诺</a>最终都将在这个新平台上找到家。”</p>
+<h2 class="translated"><strong>开源？</strong></h2>
+<p class="translated">Ihde计划审查可能向开源社区发布的部分LP。目前还没有时间表，但他预计它们将是较低层次的片段，从雨或雨的片段开始。</p>
+<p class="translated">他解释说:“在堆栈的底层，依赖性越少，所以这个过程对其他人就越有用。”RACE，Orca，Maestro都是用Rain来运行jobs，所以从Rain开始最有意义。此外，他建议该公司可以“用Python创建Rain，用Python围绕Docker和runc构建一些东西，这些都是对开源社区有用的例子。”</p>
+<p class="translated">令LinkedIn团队兴奋的是，他们刚刚开始探索有限合伙人的可能性。</p>
+<p class="translated">一个有趣的潜力是使用Nuage有限合伙人可以给在线和离线世界带来合作。通过LPS提供的自动化意味着在数据处理作业和在线服务作业之间共享硬件资源。在较慢的流量高峰期间，有限合伙人可以将资源从在线服务重新分配给开发或数据处理工作。对储蓄的影响可能是巨大的。</p>
+<p class="attribution translated">Docker是新堆栈的赞助商。</p>
+<p class="attribution translated">特写图片:大峡谷。照片由T.C. Currie拍摄。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

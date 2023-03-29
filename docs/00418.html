@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Confluent Brings SQL Querying to Kafka Streaming Data</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">合流为Kafka流数据带来SQL查询</h1>
+<blockquote>原文：<a href="https://thenewstack.io/confluent-brings-sql-querying-kafka-streaming-data/#0001-01-01">https://thenewstack.io/confluent-brings-sql-querying-kafka-streaming-data/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着数据量的不断增长，处理这些数据的需求也在不断增加。Confluent通过其阿帕奇卡夫卡的商业包装帮助企业处理永无止境的数据流。现在，在本周于三藩市举行的<a href="https://kafka-summit.org" class="ext-link" rel="external "> Kafka峰会</a>上，<a href="https://www.confluent.io/" class="ext-link" rel="external "> Confluent </a>推出了一个新的开源项目，名为KSQL，据说它将允许用户对流媒体数据应用SQL查询。</p>
+<p class="translated">在这一举措中，Confluent是越来越多的公司之一，如SQLSteam，试图将SQL的严格性应用到实时数据分析领域。</p>
+<p class="translated">Confluent的首席技术官和联合创始人Neha Narkhede 表示，KSQL为企业提供了许多潜在的用例，从处理进入组织的数据到处理数据仓库和系统间数据传输的提取、转换和加载(ETL)等工作。</p>
+<p class="translated">Narkhede说，“KSQL是Apache Kafka的完全交互式分布式SQL引擎。它可以让你对流经卡夫卡的无限流进行各种连续的流处理和转换。”</p>
+<p class="translated">Narkhede说，传统上，通过Kafka处理流数据需要开发人员编写Java或Python代码。KSQL将数据开发人员和SQL专家带入了流处理领域。Narkhede说，KSQL将成为一个独立的产品，并且已经在GitHub上可用。该项目目前处于开发者预览阶段，应该在几个月后正式发布。</p>
+<p class="translated">Narkhede说KSQL与ANSI SQL相似，但不完全兼容。它是SQL的修改版本，专门为查询数据流而定制。在数据库中，SQL用于查询过去的事务。</p>
+<p class="translated">“从某种意义上说，这是把数据库翻了个底朝天，你开始查询未来，而不是查询过去，”Narkhede说。“目前语法相当不错，但我们计划增加更多功能，比如在卡夫卡的主题中插入语句。”</p>
+<p class="translated">虽然KSQL第一次将SQL引入Confluent的产品线，但它并不是第一个这样的基于流的SQL系统。例如，<a href="http://www.striim.com/" class="ext-link" rel="external "> Striim </a>、<a href="https://www.kinetica.com/product/" class="ext-link" rel="external "> Kinetica </a>和<a href="http://sqlstream.com/" class="ext-link" rel="external "> SQLStream </a>等公司已经提供类似的功能将近十年了。事实上，SQLStream已经在Kafka上提供了SQL。</p>
+<p class="translated">那么是什么让KSQL与众不同呢？Narkhede说这是分布式处理模型。“KSQL建立在Kafka分区模型之上。您可以轻松地在集群上分发查询，这样您就可以使用正常大小的盒子，像Kafka一样将它们耦合在一起。它与Kafka的基本构建模块紧密集成，能够并行运行多个查询。Kafka负责一台机器停机时的负载平衡，以及查询如何随着时间推移而变化。”</p>
+<p class="translated">例如，<a href="https://www.confluent.io/product/ksql/" class="ext-link" rel="external ">下面是ETL工作的KSQL查询</a>:<br/></p>
+<div id="crayon-642310ec47941092190196" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+
+</td>
+<td class="crayon-code translated"><div class="crayon-pre"> <p class="crayon-line" id="crayon-642310ec47941092190196-1"> <span class="crayon-e">创建</span> <span class="crayon-e">流</span><span class="crayon-e">VIP _ actions</span><span class="crayon-e">AS</span></p><p class="crayon-line crayon-striped-line" id="crayon-642310ec47941092190196-2"><span class="crayon-e">SELECT</span><span class="crayon-i">userid</span>，<span class="crayon-h"> </span> <span class="crayon-i">页面</span>，<span class="crayon-h"/><span class="crayon-e">action</span></p><p class="crayon-line" id="crayon-642310ec47941092190196-3"><span class="crayon-e">FROM</span><span class="crayon-i">点击流</span> <span class="crayon-h"> </span> <span class="crayon-i"> c </span><span class="crayon-i">userid</span><span class="crayon-h"/>=<span class="crayon-h"/><span class="crayon-i">u</span><span class="crayon-st">。</span><span class="crayon-e">user _ id</span></p><p class="crayon-line" id="crayon-642310ec47941092190196-5"><span class="crayon-i">其中</span><span class="crayon-h"/><span class="crayon-i"/><span class="crayon-st">。</span> <span class="crayon-i">级别</span><span class="crayon-h"/>=<span class="crayon-h"/><span class="crayon-s">‘白金’</span>；</p> </div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="translated"><br/><a href="https://www.linkedin.com/in/damian-black-1186/" class="ext-link" rel="external "/>SQLStream的首席执行官兼创始人达米安·布莱克(Damian Black)说，纳尔克赫德和她的团队一年前来参观过，显然当时正在做笔记。目前，他的公司最大的用户来源是<a href="https://aws.amazon.com/kinesis/" class="ext-link" rel="external ">亚马逊Kinesis </a>，它是使用亚马逊的Kafka-like流媒体系统和SQLStream的SQL处理系统构建的。他说SQLStream受亚马逊欢迎的原因是它的速度。</p>
+<p class="translated">“事实是，我们的速度快得多，您需要的只是服务器数量的一小部分。我们的一个客户有一项工作需要180台服务器[运行<a href="https://mapr.com/" class="ext-link" rel="external ">MapR</a>]三个小时。我们需要12台服务器以40%的速度运行来实时处理数据，”Black说。</p>
+<p class="translated">Black说，在Kafka内部构建SQL处理的最大问题之一是Kafka是用Java编写的。SQLStream实际上在JVM内部运行，但它是用C++构建的，并且经过高度优化，不会在JVM中产生垃圾。这意味着SQLStream以真正的实时速度运行它的查询。</p>
+<p class="translated">Black说现在评论KSQL的能力还为时过早，但他提到另一个流SQL处理引擎，Apache Spark的引擎是基于批处理的，不能实时处理查询。</p>
+<p class="translated">SQLStream也在Kafka上运行，所以Black说他的团队熟悉Confluent在那里的工作。“合流是一个伟大的信息系统。这就是我们使用它的原因。它是免费的，考虑到它是用Java编写的，它的性能很好。我们还与亚马逊Kinesis和AMQP合作。我们提供更丰富的体验。它不像SQL，而是真正基于标准的SQL。它是用C++写的，是无锁的。32位整数就是32位整数，”布莱克说。</p>
+<p class="translated">自从八年前推出以来，SQLStream一直在提供类似的功能。Black说，他感觉自己像是市场的先驱，许多企业仍然刚刚意识到使用SQL进行流处理的潜力。</p>
+<p class="translated">然而，对于大多数企业来说，决策过程的一个方面是这种系统将基于的云。然而，这可能意味着许多数据处理系统的巨大变化。Narkhede说，她认为目前的增长很大一部分来自谷歌的云。这是由<a href="https://cloud.google.com/bigquery/" class="ext-link" rel="external "> BigQuery </a>的采用推动的，她说，这也是该团队正在努力将Kafka与BigQuery集成的原因。</p>
+<p class="translated">这可能意味着数据处理方式的巨大变化，因为团队放弃了现场IT管理的方法，而倾向于简单地使用谷歌自己的按需服务。从这个意义上来说，KSQL和SQLStream可能只是谷歌赢得市场之前的首选解决方案。这听起来可能对Confluent不利，但Narkhede说，她看到谷歌内部正在大力推动将Kafka引入系统，以便与BigQuery合作。</p>
+<p class="translated">“BigQuery让人们转向谷歌，”Narkhede说。“[谷歌]希望卡夫卡与BigQuery合作。有很多人向他们要卡夫卡的作品，而BigQuery是吸引他们的地方。这是世界上最令人惊叹的数据系统之一。”</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

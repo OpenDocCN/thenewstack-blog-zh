@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>IBM Delves into Serverless Function Orchestration with the Open Source Composer Tool</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">IBM利用开源的Composer工具深入研究了无服务器功能编排</h1>
+<blockquote>原文：<a href="https://thenewstack.io/ibm-composer-provides-way-orchestrate-multiple-serverless-functions/#0001-01-01">https://thenewstack.io/ibm-composer-provides-way-orchestrate-multiple-serverless-functions/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着开发人员越来越习惯于使用基于云的<a href="/category/serverless/" target="_blank">无服务器</a>或“功能即服务”服务，他们可能会发现协调他们的功能集合本身就是一项越来越艰巨的任务。</p>
+<p class="translated">为此，<a href="http://www.research.ibm.com/" class="ext-link" rel="external "> IBM Research </a>开发了一款名为<a href="https://github.com/ibm-functions/composer" class="ext-link" rel="external "> Composer </a>的新软件，它提供了一种方式来轻松编排运行在<a href="https://console.bluemix.net/openwhisk/" class="ext-link" rel="external ">IBM Cloud Functions</a>service或IBM开源无服务器软件<a href="https://github.com/apache/incubator-openwhisk" class="ext-link" rel="external "> Apache OpenWhisk </a>上的许多无服务器作业的操作。与<a href="/category/kubernetes/" target="_blank">非常相似，Kubernetes </a>提供了一种编排大量容器操作的方法，因此Composer也可以将无服务器功能链接到复杂的应用程序中。</p>
+<p class="translated">“构建复杂的应用程序不仅仅是编写简单的函数。你可能有几十个功能，”IBM Research的研究人员Paul Castro说。开发人员必须找到一种“将这些功能缝合在一起”的方法，即通过指定功能如何协同工作的控制流，以及建立传递数据所需的管道。此外，开发人员将需要一种方法来显示多种功能和其他资源是如何组合在一起的。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/01/0aa4113a-ibm-composer.jpg" class="ext-image" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-large wp-image-3911690" src="../Images/1543aad4723a18446c1a5c93fd359bea.png" alt="" data-id="3911690" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/01/0aa4113a-ibm-composer-1024x629.jpg"/> </a></p>
+<p> </p>
+<p class="translated">Castro说，在Composer之前，开发人员必须将协调代码写成客户端脚本，或者将控制流嵌入功能本身。Composer不同于其他的，比如微软的<a href="https://azure.microsoft.com/en-us/services/functions/" class="ext-link" rel="external "> Azure Functions </a>，它不依赖函数直接调出其他函数。这种方法抽象出了整个应用程序的流程。</p>
+<p class="translated">卡斯特罗说:“我们希望揭露这种逻辑，让人们清楚地了解正在发生的事情。”。</p>
+<p class="translated">Castro指出，Composer提供了一个“简单的编程模型”，一个基于基于JSON的参数的模型，以指定函数如何协同工作。该模型支持if-then语句，用于逻辑分支、函数链接和错误捕捉功能。还有一些管理数据流的构造，比如向多个端点发送数据的能力。</p>
+<p class="translated">卡斯特罗说，有了composer，开发人员可以从独立的功能中构建整个应用程序，包括逻辑流程本身。该设置支持OpenWhisk或IBM Cloud函数识别的所有语言:JavaScript、Swift、Java、PHP、Python或封装在Docker容器中的任何代码。</p>
+<p class="translated">组合本身是用JavaScript编写的。这里有一个简单的例子<a href="https://www.ibm.com/blogs/bluemix/2017/10/serverless-composition-ibm-cloud-functions/" class="ext-link" rel="external ">，来自IBM博客</a> : <br/></p>
+<div id="crayon-64231107f2312650659794" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+
+</td>
+<td class="crayon-code translated"><div class="crayon-pre"> <p class="crayon-line" id="crayon-64231107f2312650659794-1"> <span class="crayon-i">作曲家</span> <span class="crayon-st">。</span> <span class="crayon-e">序列</span> ( <span class="crayon-h"> </span> <span class="crayon-c"> //程序化作曲</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-64231107f2312650659794-2"> <span class="crayon-h"> </span> ' <span class="crayon-i">当前温度</span>'，<span class="crayon-h"> </span> <span class="crayon-c"> //调用云函数或者API</span></p><p class="crayon-line" id="crayon-64231107f2312650659794-3"><span class="crayon-h"/><span class="crayon-i">作曲</span> <span class="crayon-st">。</span> <span class="crayon-e">如果</span> ( <span class="crayon-h"> </span> <span class="crayon-c"> //条件控制流</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-64231107f2312650659794-4"> <span class="crayon-h"> </span> <span class="crayon-i">结果</span><span class="crayon-h"/>=<span class="crayon-sy">&amp;gt；</span> <span class="crayon-h"> </span> <span class="crayon-i">结果</span> <span class="crayon-st">。</span><span class="crayon-i"/><span class="crayon-h"/><span class="crayon-sy">&amp;lt；</span> <span class="crayon-h"> </span> <span class="crayon-cn"> 60 </span>，<span class="crayon-h"/><span class="crayon-c">//mix inline JavaScript</span></p><p class="crayon-line" id="crayon-64231107f2312650659794-5"><span class="crayon-h"/>'<span class="crayon-i">turnOnHeat</span>')<span class="crayon-h"/><span class="crayon-c">//第三方服务接口</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-64231107f2312650659794-6"> ) </p> </div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="translated"><br/>作曲家有两部分。一个是用于描述组合的库，目前在Node.js中呈现。为了帮助处理“组合”，IBM还发布了<a href="https://www.npmjs.com/package/@ibm-functions/shell" class="ext-link" rel="external ">IBM Cloud Functions Shell</a>(FSH)，这是一个基于<a href="https://electronjs.org/" class="ext-link" rel="external "> Electron </a>的可视化Shell开发工具，运行在开发人员的机器上。它提供了可视化合成和运行时的能力，以及历史性能图，并能够深入到源代码。</p>
+<div id="attachment_3913306" class="wp-caption alignright"><a href="https://www.npmjs.com/package/@ibm-functions/shell" class="ext-link" rel="external "><img aria-describedby="caption-attachment-3913306" decoding="async" loading="lazy" class="wp-image-3913306 size-medium" src="../Images/a420958aec75a4d98b43d61b6b7b28e7.png" alt="" data-id="3913306" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/01/d0141a11-hello-composition-300x225.png"/></a><p id="caption-attachment-3913306" class="wp-caption-text translated">显示控制流的IBM Cloud Shell。</p></div>
+<p class="translated">“我们认为这是在云中开发功能的一种更简单的方式，无需进行任何上下文切换。他们可以呆在一个地方创作他们的作品，”卡斯特罗说。这种方法还提供了潜在的成本节约，因为功能在需要时才被调用到运行时，而不是让它们在云服务上闲置，等待来自其他地方的工作。</p>
+<p class="translated">一个应用程序的JavaScript组合，即函数调用的集合，被上传到IBM Cloud Functions或OpenWhisk，并通过一个名为Conductor的组件呈现到一个有限状态机中，因此它可以在云中作为一个无服务器的函数执行自身。</p>
+<p class="translated">Composer是整体编程模型的参考实现，就像IBM的OpenWhisk开源版本一样，IBM正在寻求社区的反馈。该公司希望其他公司能为该软件开发其他语言和运行时间的绑定。</p>
+<p class="translated">卡斯特罗说:“我们希望人们尝试一下，并提供反馈，告诉我们如何做得更好。”</p>
+<p class="attribution translated">微软是新堆栈的赞助商。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash上的<a href="https://unsplash.com/photos/3cM5Vw3UjaY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external ">Juss ara romo</a>拍摄的特写图片。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

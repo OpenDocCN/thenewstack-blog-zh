@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>This Week in Programming: Gophers Dig into Generics, Go 2.0 and Gophercon 2018</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">本周编程:地鼠挖掘泛型，Go 2.0和Gophercon 2018</h1>
+<blockquote>原文：<a href="https://thenewstack.io/this-week-in-programming-gophers-dig-into-generics-go-2-0-and-gophercon-2018/#0001-01-01">https://thenewstack.io/this-week-in-programming-gophers-dig-into-generics-go-2-0-and-gophercon-2018/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在过去的一周里，将近2000只地鼠(你们这些Golang人是这么称呼自己的，对吗？)来到一英里高的城市参加第五届年度Gophercon(T1)，希望不会有太多的人因为像T2的仿制药(T3)或T4最近采用的vgo语义版本控制(T5)之类的事情爆发打斗。正如你可能预料的那样，这次活动为Golang世界提供了一些重大消息，包括即将发布的最新版本的Go，对下一个大版本Go的窥探，以及一些关于如何确定下一个大版本的过程的讨论。所以，从本周开始，我们将为你的Golang爱好者们快速浏览一下最新消息。</p>
+<p class="translated">首先，最新版本Go 1.11，<a href="https://blog.golang.org/go1.11" class="ext-link" rel="external ">在大会之前发布</a>，它见证了“对工具链、运行时和库的许多改变和改进，但有两个特性特别令人兴奋:模块和WebAssembly支持。”</p>
+<p class="translated"><iframe loading="lazy" title="Brad Fitzpatrick   Go 1 11 and beyond" src="https://www.youtube.com/embed/rWJHbh6qO_Y?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">正如我们上周所讨论的，这个最新版本“为一个叫做“模块”的新概念<a href="https://golang.org/doc/go1.11#modules" class="ext-link" rel="external ">、</a>增加了初步的支持，这个新概念仍然“被认为是实验性的”，并且是前面提到的、有点争议的vgo的重命名版本。Go 1.11还为<a href="https://golang.org/doc/go1.11#wasm" class="ext-link" rel="external "> WebAssembly </a>增加了一个实验端口，该端口“允许程序员将Go程序编译成兼容四大web浏览器的二进制格式。“当然，到现在为止，你已经阅读了所有关于1.11版本的内容。但是如果你还没有，总会有<a href="https://golang.org/doc/go1.11#minor_library_changes" class="ext-link" rel="external ">发布说明</a>，以及<a href="https://jaxenter.com/go-1-11-modules-webassembly-148629.html" class="ext-link" rel="external "> JAXEnter </a>和<a href="https://www.infoworld.com/article/3201037/google-go/whats-new-in-googles-go-language.html" class="ext-link" rel="external "> InfoWorld </a>中的一个特性综述，它们做得很好。</p>
+<p class="translated">当然，Gophercon的最大亮点可能是“对错误处理和泛型更改的可能设计的初步草案的一瞥”，你可以观看Go项目负责人Russ Cox在这里讨论的内容:</p>
+<p class="translated"><iframe loading="lazy" title="Go 2 Drafts Announcement" src="https://www.youtube.com/embed/6wIP3rO6On8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">科技博客<a href="https://hub.packtpub.com/go-2-design-drafts-include-plans-for-better-error-handling-and-generics/" class="ext-link" rel="external "> PacktHub提供了关于Go 2.0 </a>的快速阅读，指出Cox似乎还不太相信泛型的必要性。在上面的视频中，Cox说“我最近一直在研究泛型，但是我对Go用户需要泛型来解决的详细、具体的问题没有清晰的印象。结果，我无法回答像是否支持泛型方法这样的设计问题。”Cox还讨论了采用新功能的过程，并评论说Go 2.0目前正处于“识别和解释问题”阶段，这必然是在提出和讨论解决方案之前。(这是否感觉像是“请不要对任何事情过于生气？”对其他人吗？)</p>
+<p class="translated">当然，我们可以详细讨论Go 2.0，但在继续本周的其他新闻之前，还有更多值得注意的地方！微软本周也加入了Golang新闻周期，在<a href="https://open.microsoft.com/2018/08/28/announcing-project-athens-gophersource-go-community/" class="ext-link" rel="external ">宣布了Project Athens和GopherSource </a>，它说这“代表了微软一直在做的工作中的一个重要里程碑，使Go开发者能够构建和运行更好的应用和服务，在Visual Studio Code和Visual Studio Team Services等工具中以及在我们的Azure云平台上支持Go。”开源项目Athens 致力于为围棋模块创建第一个代理服务器，而<a href="https://gophersource.com/" class="ext-link" rel="external "> GopherSource </a>则是一个社区空间，据<a href="https://jaxenter.com/go-athens-gophersource-148902.html" class="ext-link" rel="external "> JAXEnter </a>称，用于“为围棋提供反馈和评论，提出官方围棋建议并加以实施，培养更好的围棋社区，并为开源做出贡献”。万一你错过了…</p>
+
+<p/>
+<h2 class="translated">本周的节目中</h2>
+<ul>
+<li class="translated"><strong> GitHub介绍了一个善意但可能命名不当的“项目剪纸”:</strong>我不知道你，但当我想到剪纸时，我会退缩。嗯，这是GitHub最新努力的名字，<a href="https://blog.github.com/2018-08-28-announcing-paper-cuts/" class="ext-link" rel="external ">项目剪纸</a>，它声称要解决“每天困扰你的可用性挑剔，但可能不是我们更大的产品计划的一部分。”我明白了。剪纸很小。这些问题都很小。但是“千刀万剐”(如果你喜欢，也可以叫剪纸)指的是<a href="https://www.investopedia.com/terms/d/death-1000-cuts.asp" class="ext-link" rel="external ">，通常是</a>，指的是“许多小问题导致的失败”哦，好吧，我想我们正在翻转这一个在它的头上并且谈论申请一些液体绷带到这些剪纸？是啊，就这么办吧。无论如何，剪纸项目“致力于直接与社区合作，解决中小型工作流问题，迭代UI/UX，并通过更仔细地倾听和“观察更广泛的GitHub社区创建的自组织<a href="https://github.com/isaacs/github" class="ext-link" rel="external ">“功能请求”存储库</a>和<a href="https://github.com/collections/github-browser-extensions" class="ext-link" rel="external ">浏览器扩展</a>，以及<a href="https://twitter.com/lukehefson/status/1022553956466216960" class="ext-link" rel="external ">积极寻求反馈</a>，找到其他最重要的快速改进方法”撇开我自己对这个名字的问题不谈，这听起来是一个很大的进步。</li>
+</ul>
+<p class="translated">https://Twitter . com/aero drive _ India/status/1033779730653241344</p>
+<ul>
+<li class="translated"><strong> GitHub为GitHub for Visual Studio添加检查和状态:</strong>同样在GitHub的世界里，一个<a href="https://blog.github.com/2018-08-28-checks-and-status-GfVS/" class="ext-link" rel="external ">对GitHub for Visual Studio的快速更新</a>，现在支持pull请求中的检查和状态。根据公告，检查和状态有助于确定是否满足为存储库设置的条件，它们的添加将允许每次提交显示每个检查的挂起、通过或失败状态，并提供“审查和合并拉请求的必要信息”，并“使我们离构建完整的拉请求工作流更近一步。”</li>
+<li class="translated"><strong>平台风险、锁定和关心:</strong>本周有几篇关于平台风险、锁定以及这些公司是否关心API和依赖它们的开发者/用户的文章值得注意。首先，ProgrammableWeb写道<a href="https://www.programmableweb.com/news/23andme-to-shutter-public-api-gives-developers-two-weeks-notice/brief/2018/08/24" class="ext-link" rel="external "> 23andMe将关闭其公共API，给开发者两周的通知</a>，并跟随许多其他公司的脚步，似乎在一毛钱上放弃了他们的开发者。该API已经存在了六年，“旨在让开发者能够利用该公司的基因数据集来构建应用和工具。”不幸的是，23AndMe告诉其开发者，它计划“专注于基于我们向客户提供的解释和结果的应用程序”，仅此而已。与此同时，网站上的另一个故事讲述了两个开发者和他们对<a href="https://www.programmableweb.com/news/time-to-challenge-google-maps-pricing/elsewhere-web/2018/08/26" class="ext-link" rel="external ">挑战谷歌地图定价</a>的呼吁。他们说，谷歌地图“客观上是其市场上最好的产品”，但该产品“最近价格的大幅上涨使其成本远远高于替代品。”最后，像这样的故事，以及Twitter最近的头条新闻再次关闭API，不得不让人怀疑——正如API传播者Kin Lane沉思的那样——公司是否对API带来的互操作性感兴趣。剧透一下，他们不是。</li>
+</ul>
+
+<p/>
+<ul>
+<li class="translated"><strong> Babel 7现支持TypeScript: </strong>没错，微软本周宣布<a href="https://blogs.msdn.microsoft.com/typescript/2018/08/27/typescript-and-babel-7/" class="ext-link" rel="external "> TypeScript和Babel 7 </a>现已狼狈为奸。显然“Babel用户中的一个共同主题是试图设置TypeScript太难了”，所以现在微软已经与Babel团队合作，使之变得容易。对于不熟悉的人，<a href="https://babeljs.io/" class="ext-link" rel="external "> Babel </a>将最新的JavaScript特性转换到旧的运行时和浏览器上，但是，正如微软指出的，“不做类型检查，我们的团队相信这可以将体验带到另一个水平。”虽然TypeScript可以做这两种事情，他们写道，“我们希望在不强迫用户从Babel切换的情况下，更容易获得这种体验。”因此，新发现的支持。对于那些希望使用这个组合的人，请确保进一步阅读，因为“用户应该知道的第一件事是，Babel不会对TypeScript代码执行类型检查；它只会转换您的代码，不管是否存在类型错误，它都会编译。”</li>
+<li class="translated"><strong>期待JavaScript 2018: </strong>最后，Mary Branscombe从我们自己的页面中查看了JavaScript 2018 中的<a href="https://thenewstack.io/whats-coming-up-in-javascript-2018-async-generators-better-regex/" class="local-link">，写道“2018年6月发布的最新年度</a><a href="http://www.ecma-international.org/ecma-262/9.0/index.html" class="ext-link" rel="external "> ECMAScript更新</a>，是迄今为止最大的年度发布。”根据Brandscombe的说法，“这个版本中最大的两个开发人员特性是异步生成器和一些期待已久的正则表达式改进，以及rest/spread属性”，但这篇文章提供了几个进一步的细节。</li>
+</ul>
+
+<p/>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

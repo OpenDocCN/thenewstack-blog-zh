@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>How Cloud Foundry Connects with the Google Cloud Platform Using Bosh</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Cloud Foundry如何使用Bosh与Google云平台连接</h1>
+<blockquote>原文：<a href="https://thenewstack.io/google-cloud-platform-connects-cloud-foundry-using-bosh/#0001-01-01">https://thenewstack.io/google-cloud-platform-connects-cloud-foundry-using-bosh/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">上周，谷歌<a href="https://cloud.google.com/solutions/cloud-foundry-on-gcp" class="ext-link" rel="external ">在其云平台上推出了</a>一项服务，使得运行基于云计算的工作负载变得非常容易。当使用可抢占的虚拟机(ML)时，该配对将允许快速供应和扩展，或者节省成本。</p>
+<p class="translated">Cloud Foundry的<a href="https://thenewstack.io/bosh-hooks-cloud-foundry-google-cloud-platform-offers-large-scale-vm-lifecycle-management/" class="local-link"> Bosh </a>部署软件有助于实现这种集成。谷歌最近完成了云提供商接口(CPI)的构建，该接口允许在<a href="https://cloud.google.com/" class="ext-link" rel="external ">谷歌云平台</a>上运行的云铸造工作负载管理他们的计算引擎虚拟机。</p>
+<p class="translated">上个月，在Cloud Foundry Europe峰会上，我们与Bosh GCP CLI背后的两位谷歌软件工程师,<a href="https://twitter.com/ccbriant" class="ext-link" rel="external ">科琳·布里安特</a>和<a href="https://github.com/erjohnso" class="ext-link" rel="external ">埃里克·约翰逊</a>进行了交谈，以了解如何在谷歌和其他公共云和私有云部署中使用CLI。收听最新一期<a href="https://thenewstack.io/podcasts/makers/" class="local-link">新堆栈制造商</a>播客的采访:</p>
+<p class="translated"><br/><span class="media-direct-link"><a href="https://thenewstack.simplecast.com/episodes/how-cloud-foundry-connects-with-the-google-cloud-platform-using-bosh" class="ext-link" rel="external ">Cloud Foundry如何使用Bosh连接Google云平台</a> </span></p>
+
+<p class="translated">采访<a href="https://www.youtube.com/watch?v=AbhBzNIA49I" class="ext-link" rel="external ">也可以在YouTube </a>上观看。</p>
+<p class="translated">Johnson解释说，在Cloud Foundry领域，CLI是Bosh用来与外部云提供商(如GCP)进行交互的模块。“Bosh允许Cloud Foundry安装在云提供商上。Bosh CPI将为Cloud Foundry增加虚拟机，”他说。</p>
+<p class="translated">Bosh负责虚拟机的生命周期管理。拥有操作系统的云铸造虚拟机被称为干细胞。“Bosh将处理这些虚拟机的配置。stemcells中内置了代理，允许Bosh director通过该代理与虚拟机进行通信和管理。”</p>
+<p class="translated">结果是“应用程序开发人员不再关心操作系统。更重要的是他们编写应用程序的环境，”约翰逊说。</p>
+<p class="translated">Briant一直致力于一套Cloud Foundry服务代理，向Cloud Foundry用户公开GCP服务，包括<a href="https://cloud.google.com/sql/docs/" class="ext-link" rel="external "> Cloud SQL </a>、<a href="https://cloud.google.com/bigquery/" class="ext-link" rel="external "> BigQuery </a>、<a href="https://cloud.google.com/products/machine-learning/" class="ext-link" rel="external ">机器学习</a>和<a href="https://cloud.google.com/pubsub/docs/overview" class="ext-link" rel="external "> PubSub </a>。</p>
+<p class="translated">“Cloud Foundry Service Broker支持在Cloud Foundry中本地使用这些GCP服务。布里安特说:“因此，开发人员不必去[GCP]控制台(开发人员可能连访问权限都没有)或请求其他人来创建这些服务，他们只需创建实例并为他们的应用程序开发绑定它们就可以了。”。</p>
+<p class="translated"><a href="https://www.eventbrite.com/e/openstack-summit-pancake-breakfast-tickets-27692501016" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1502638" src="../Images/19403431e61caee7d8e0ebecb3ae0718.png" alt="barcelona" data-id="1502638" data-original-src="https://thenewstack.io/wp-content/uploads/2016/10/barcelona.jpg"/> </a></p>
+<p class="attribution translated"><a href="https://www.cloudfoundry.org/" class="ext-link" rel="external ">Cloud Foundry Foundation</a>是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

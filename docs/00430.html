@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Serverlessconf New York: Monitoring Serverless Performance to Manage Cost</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">纽约:监控无服务器性能以控制成本</h1>
+<blockquote>原文：<a href="https://thenewstack.io/serverlessconf-new-york-monitoring-serverless-performance-manage-cost/#0001-01-01">https://thenewstack.io/serverlessconf-new-york-monitoring-serverless-performance-manage-cost/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">大规模监控<a href="/category/serverless/" target="_blank">无服务器应用</a>以确保性能、可靠性和全球可访问性，现在也有助于生产采用者理解和调整他们的架构成本决策。虽然开发速度可能是无服务器的主要优势，但“不要为闲置资源买单”的口号通常是引入无服务器的商业驱动力。通过确保成本最小化和性能优化来证明价值成为新的<a href="/category/devops/" target="_blank"> DevOps </a>的最终目标。</p>
+<p class="translated">周三在纽约市的<a href="https://nyc.serverlessconf.io/agenda" class="ext-link" rel="external "> Serverlessconf </a>上，几位发言者重申，无服务器实现“易于启动和运行”，但接下来发生的事情最终难倒了采纳者:性能监控、成本管理和管理外部因素，通常是最初可能没有想到的下游因素，都成为了潜在的障碍。</p>
+<h2 class="translated">无服务器实验项目</h2>
+<p class="translated">New Relic的开发者支持者Clay Smith描述了一个在AWS Lambda 上运行<a href="https://medium.com/clog/running-selenium-and-headless-chrome-on-aws-lambda-fb350458e4df" class="ext-link" rel="external "> Headless Chrome的项目。他建议无服务器生产采用者必须不断监控的三个主要性能问题是:</a></p>
+<ul>
+<li class="translated">快吗？</li>
+<li class="translated">并发快吗？</li>
+<li class="translated">潜在的最坏情况是什么——也就是说，异常值是什么——为什么？</li>
+</ul>
+<p class="translated">他举了一个使用新的<a href="https://aws.amazon.com/xray/" class="ext-link" rel="external "> AWS X射线追踪产品</a>来区分猜测和现实的例子。冷启动(调用和启动一个新的Lambda函数所需的时间，这可能会造成延迟，从而降低应用程序的整体性能)通常被认为是主要原因。</p>
+<p class="translated">但是使用X射线，Smith分析了几天的数据，查看了他的应用程序架构中每四分钟运行一次的函数。到目前为止，Smith必须创建一个lambda函数来分析X射线数据。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3249331" src="../Images/0897a6b5664250e1aa5d2c714acd24fc.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/10/377c1170-img_4965.jpg"/></p>
+<p class="translated">冷启动仅占时间的1.49%，因此不是性能延迟的关键驱动因素。相反，需要考虑其他因素，如语言运行时和函数大小。Smith发现调整内存使用是最强大的性能使能因素。</p>
+<p class="translated">这就是成本管理进入生产部署决策的地方。与直觉相反，Smith建议增加函数使用的CPU，虽然意味着每个请求支付更多，但函数执行的持续时间会下降，所以“存在一个性能最佳点，因为函数运行得更快，所以增加的内存变得更便宜，”Smith分享道。</p>
+<h2 class="translated">来自企业的无服务器应用</h2>
+<p class="translated">对于运行在Azure功能堆栈上但集成了AWS Lambda的Quest Software来说，理解监控并使用它来确定成本影响也是生产实现的关键部分。</p>
+<p class="translated">Quest on Demand是Quest的<a href="https://www.office.com/" class="ext-link" rel="external "> Office 365 </a>管理解决方案，这是一款SaaS产品，允许企业管理其Office 365用户，并制定政策来确定个人用户可以使用的功能，同时还确保如果任何用户按错按钮，备份可以回滚。该产品已经上市3个月了，到目前为止已经处理了100多万个客户对象。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3249332" src="../Images/de8482fa1aeef50ebd5ee7e8a047bdee.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/10/4ea25467-img_4971.jpg"/></p>
+<p class="translated">该架构将静态内容存储在内容交付网络上的S3中，用户通过身份代理进行身份验证，然后身份代理发布一个<a href="https://jwt.io/" class="ext-link" rel="external "> JWT令牌</a>，定义用户的许可和访问权限。然后，这些信息被输入到Quest的微软技术管理包<a href="https://www.quest.com/community/products/on-demand/" class="ext-link" rel="external "> Quest on Demand </a>的核心服务中(该包运行在<a href="https://azure.microsoft.com/en-us/blog/introducing-azure-functions/" class="ext-link" rel="external "> Azure Functions </a>上)。所有业务逻辑组件都是专用功能，按业务目的分组。从那里，可以引入特定的服务，包括<a href="https://azure.microsoft.com/en-us/services/key-vault/" class="ext-link" rel="external "> Vault </a>，以及跨平台集成到AWS Lambdas中，例如。</p>
+<p class="translated">Quest杰出工程师兼微软MVP Curtis Johnstone认为，要在生产环境中大规模实施无服务器应用，预防性策略至关重要。安全需要成为首要的发展问题。约翰斯通警告说:“如果你需要回去并增加安全措施，这将花费两到三倍的费用。”。类似地，性能和可伸缩性测试(不仅仅是功能测试)需要在整个开发过程中进行，最好是在模拟生产的环境中进行。</p>
+<h2 class="translated">无服务器调试的局限性</h2>
+<p class="translated">但是，首席技术官兼Lambda绩效管理公司<a href="https://www.iopipe.com/" class="ext-link" rel="external "> IOpipe </a>的联合创始人<a href="https://twitter.com/ewindisch" class="ext-link" rel="external ">埃里卡·温迪施</a>说，开发测试并不总是像传统应用程序开发那样简单明了。“在AWS Lambda上运行之前，您可以调试代码。但是如果你在云中运行，很多调试工具都是不可用的。“在Lambda中，应用程序插装很困难。尤其是本地开发+测试方法在Lambda下仍在不断成熟。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3249334" src="../Images/5054d9113b03cebf1beaa3cf6bf84e30.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/10/629dd4e1-fullsizerender.jpg"/></p>
+<p class="translated">Smith、Johnstone和Windisch都主张在生产环境中部署无服务器应用程序时，应用程序规范应该到位。对于Quest on Demand，Johnstone的团队使用<a href="https://azure.microsoft.com/en-us/services/application-insights/" class="ext-link" rel="external "> Azure Application Insights </a>并将数据导出到ELK，以便他们可以添加Lambda数据，并获得跨云平台的整个应用性能的单一视图。</p>
+<h2 class="translated">性能监控和成本决策</h2>
+<p class="translated">但是监控不仅仅是确保性能。相反，分析帮助Quest更好地管理与无服务器架构相关的成本。“在一个地理区域使用无服务器产品可能会对性能造成很大影响，所以你需要关注平台的产品路线图，以确保你正在使用的产品在你的应用服务的地理区域内可用，”Johnstone说。</p>
+<p class="translated">Johnstone表示，监控分析有助于确定最合适的无服务器成本模型。能够选择与工作负载的资源需求和成本概况相匹配的无服务器计划变得至关重要，而监控数据提供了这种洞察力。成本决策会影响绩效，形成恶性循环:选择错误计划的风险是资源更快耗尽，然后绩效下降。</p>
+<p class="translated">企业和初创公司都在寻找降低云选择的成本开销的方法，无服务器解决方案是一个很有吸引力的解决方案。在这种商业环境下，开发人员被驱动到允许足够监控的解决方案，以确保实现成本优势，即使架构变得更加复杂并添加更多功能。在无服务器环境中，性能监控和预算决策形成共生关系。</p>
+<p class="attribution translated">微软是这一新技术的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

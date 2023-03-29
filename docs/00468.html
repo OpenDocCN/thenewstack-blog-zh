@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Deep Learning Dissected: Use The Force to Simplify Data Training</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">深度学习剖析:使用原力简化数据训练</h1>
+<blockquote>原文：<a href="https://thenewstack.io/deep-learning-dissected-use-force-simplify-data-training/#0001-01-01">https://thenewstack.io/deep-learning-dissected-use-force-simplify-data-training/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><em>这篇文章是IBM撰写的“</em>深度学习剖析<em>”系列文章的一部分，探讨了采用基于深度学习的认知系统的挑战</em></p>
+<p class="translated">我刚从丹佛的<a href="https://sc17.supercomputing.org/" class="ext-link" rel="external "> SC2017 </a>大会回来，这是超级计算和高性能计算行业的顶级盛会。这很合适，因为数据科学和大数据分析的第一次体现真正开始于高性能计算(HPC)领域。它还汇集了一些最大的“星球大战”粉丝，许多展示和演示都有星球大战主题。</p>
+<p class="translated">在HPC的早期，问题是如此之大，以至于HPC的先驱，数据科学的第一个绝地武士，是我们首先得到集群的原因；我们无法构建足够大的系统来解决大数据问题。但是，计算的发展和非结构化数据黑暗面的崛起使得数据科学家Jedis有必要再次使用他们的深度学习知识，他们的力量，来恢复宇宙的平衡。</p>
+<h2 class="translated">很久以前，在一个不远的星系里</h2>
+<p class="translated">计算机视觉的应用正在各行各业迅速普及。辅助或自动驾驶引起了媒体的广泛关注，但我遇到了利用计算机视觉阻止蒙面人破坏自动取款机的银行，使用视觉在生产过程早期识别错误的大规模制造商，以及帮助医生识别医学图像异常的视觉。</p>
+<p class="translated">毫无疑问，图像分类和目标检测具有广泛的适用性。但是神经网络需要大量的数据才能变得足够精确以用于生产。<a href="http://cocodataset.org/#home" class="ext-link" rel="external "> COCO </a>数据集，通常用于训练物体检测模型，由超过20万张标记图像和150万个物体实例组成。但不言而喻的事实是，数据科学家花费80%的时间在如此庞大的数据集中准备数据，这是他们工作中最不愉快的部分。</p>
+<p class="translated">这是因为您不只是将数据转储到存储库中，并期望模型从中学习。在任何有效的训练开始之前，您需要标记或注释数据，并将其转换为适当的格式。虽然无监督训练能够在没有标记数据的情况下进行推断，但正如我的同事江泽龙·普吉特最近指出的那样，这些方法没有预测性，你最好花一个月时间标记数据，而不是找出一种无监督学习算法。</p>
+<p class="translated">有一些工具可以方便注释过程，当然还有Mechanical Turk。正如IBM计算机视觉工程师尼克·布尔达科斯<a href="https://medium.freecodecamp.org/tracking-the-millenium-falcon-with-tensorflow-c8c86419225e" class="ext-link" rel="external ">所讨论的</a>，这些工具仍然需要大量的手工工作，无论你是自己做还是外包。尽管尼克才华横溢，工具一应俱全，但他还是连续工作了四个小时，为他的<a href="https://medium.freecodecamp.org/tracking-the-millenium-falcon-with-tensorflow-c8c86419225e" class="ext-link" rel="external ">千年隼和TIE战斗机目标探测模型注释了309张图像。</a></p>
+<h2 class="translated">数据标签的新希望</h2>
+<p class="translated">我建议走一条不同的路。就像绝地武士训练学习原力之道，然后利用原力给世界带来平衡一样，我建议数据科学家利用他们的原力和算法知识，最大限度地减少一项不受欢迎的任务:繁琐的数据注释。通过主动学习，数据科学家只需要标记他们更广泛数据的子集，然后训练神经网络模型来标记剩余的和更大的数据集。</p>
+<p class="translated">从SC17返回后，我们的团队也受到启发，创建了一个星球大战物体探测模型。使用我们的<a href="https://developer.ibm.com/linuxonpower/deep-learning-powerai/technology-previews/powerai-vision/" class="ext-link" rel="external "> PowerAI视觉平台</a>，手动标记55幅图像需要13分钟:用这些标记的图像训练神经网络需要6分钟，模型自动标记近两倍数量的图像需要7分钟，总共146幅标记的图像。如果我们对更多的胶片应用该模型，自动标记图像的数量会更高。</p>
+<p class="translated">还有额外的5分钟来审核和修复标签，但通过这种主动学习所花费的总时间(53分钟)远远少于Nick Bourdakos必须投入的多个小时来注释他的图像，即使是使用现有的工具。再增加22分钟重新训练你的模型，你就有了一个物体探测模型，不仅能识别千年隼和TIE战斗机，还能识别同一部电影剪辑中的雷伊、芬恩和BB-8。这比尼克的模型识别的对象多了三个。原力很强，有主动学习和强大的视野。</p>
+<h2 class="translated">一股活跃的力量觉醒了</h2>
+<p class="translated">具有直观用户界面的主动学习解决了一个双重难题:实际标记大量数据的繁琐过程，以及在此过程中需要主题专家的参与。我在上面强调的现实生活中的例子利用一个组织的内部数据和监督学习来训练他们的计算机视觉模型。</p>
+<p class="translated">虽然数据科学家通常负责收集标记数据，但识别医学图像异常的是医生，识别生产周期早期故障零件的是主题专家，而不是数据科学家。虽然我不期望医生或质量工程师利用Python脚本来标记图像，但他们可以轻松地审核由较小数据集上的训练模型自动标记的图像。</p>
+<p class="translated">想了解更多关于如何应用主动学习的信息吗？观看我在SC17上关于通过PowerAI Vision采用企业就绪深度学习的演示:</p>
+<p class="translated">https://www.youtube.com/watch?v=BNPPmAsu05c</p>
+<p class="attribution translated">Jack Moreh <a href="https://freerangestock.com/photos/40002/illuminated-lightbulb-amid-dim-bulbs--creativity-and-innovation.html" class="ext-link" rel="external ">通过</a>散养牲畜拍摄的特写图片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

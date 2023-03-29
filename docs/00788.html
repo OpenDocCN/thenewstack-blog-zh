@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Apache Kafka: A Primer</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">阿帕奇卡夫卡:初级读本</h1>
+<blockquote>原文：<a href="https://thenewstack.io/apache-kafka-primer/#0001-01-01">https://thenewstack.io/apache-kafka-primer/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Apache Kafka正迅速成为处理当代以数据为中心的工作负载(如物联网、游戏和在线广告)的首选消息传递基础设施。以闪电般的速度接收数据的能力使其成为构建复杂数据处理管道的理想选择。在<a href="https://thenewstack.io/apache-kafka-cornerstone-iot-data-platform/" class="local-link">之前的文章</a>中，我们讨论了Kafka如何充当物联网传感器数据的网关，以处理热路径和冷路径分析。</p>
+<p class="translated">在本文中，我们将介绍<a href="https://kafka.apache.org/" class="ext-link" rel="external "> Apache Kafka </a>的核心概念和术语以及高层架构。</p>
+<h2 class="translated">为什么是卡夫卡？</h2>
+<p class="translated">在引入Apache Kafka之前，面向消息的中间件(MOM)如<a href="https://qpid.apache.org/" class="ext-link" rel="external "> Apache Qpid </a>、<a href="https://www.rabbitmq.com/" class="ext-link" rel="external "> RabbitMQ </a>、<a href="https://msdn.microsoft.com/en-us/library/ms711472(v=vs.85).aspx" class="ext-link" rel="external ">微软消息队列</a>和<a href="http://www.ibm.com/software/products/en/ibm-mq" class="ext-link" rel="external "> IBM MQ系列</a>被用于跨各种组件交换消息。虽然这些产品擅长实现发布者/订阅者模式(Pub/Sub ),但它们并不是专门为处理来自数千个发布者的大量数据流而设计的。大多数MOM软件都有一个代理，它公开了用于异步通信的高级消息队列协议(AMQP)。</p>
+<p class="translated">卡夫卡的设计是从头开始的，以应对数百万个快速连续产生的消防水管式事件。它保证低延迟，“至少一次”，向消费者传递消息。Kafka还支持为离线消费者保留数据，这意味着数据可以实时或离线处理。</p>
+<blockquote><p class="translated">面向消息的中间件和Kafka之间的根本区别在于，客户端永远不会自动接收消息。当他们准备好处理时，他们必须明确地请求一个消息。</p></blockquote>
+<p class="translated">进一步扩展持久性和保留性，Kafka被设计成一个分布式提交日志。与关系数据库非常相似，它可以提供所有事务的持久记录，可以回放这些记录来恢复系统的状态。要理解的关键是，数据是按照可以确定读取的顺序持久存储的。由于分布式设计，Kafka提供了冗余，即使其中一台服务器面临中断，也能确保数据的高可用性。</p>
+<p class="translated">这种架构使得Kafka成为所有数据的门户。多个事件源可以同时向Kafka集群发送数据，该集群将可靠地向多个目的地发送数据。</p>
+<h2 class="translated">关键概念和术语</h2>
+<p class="translated">Apache Kafka使用的命名法与传统的发布/订阅系统略有不同。让我们探讨一下术语，以便更好地理解它。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1939883" src="../Images/d0e629d486e33b18d13cd12f5631f68c.png" alt="" data-id="1939883" data-original-src="https://cdn.thenewstack.io/media/2017/02/5648a9e9-kafka-arch.png"/></p>
+<p class="translated"><strong>消息</strong>——在卡夫卡那里，消息代表了数据的基本单位。每条消息都是一个键/值对。不管数据类型如何，Kafka总是将消息转换成字节数组。</p>
+<p class="translated"><strong>生产者</strong> —生产者映射到发布者或发布/订阅架构的作者。它们是生成消息的来源，这些消息被接收到系统中。在卡夫卡的语境中，生产者通常被称为客户。需要注意的是，客户端是数据的来源，不要与消费者混淆。</p>
+<p class="translated"><strong>消费者</strong> —消费者是接收数据的订户或读者。他们在卡夫卡基础设施的另一边。与MOM中的订阅者不同，Kafka消费者是有状态的，这意味着他们负责记住光标位置，这被称为<strong>偏移</strong>。消费者也是Kafka cluster的客户。每个消费者可能属于一个消费者组，这将在后面的章节中介绍。</p>
+<p class="translated">MOM和Kafka的根本区别在于客户端永远不会自动接收消息。当他们准备好处理时，他们必须明确地请求一个消息。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1939884" src="../Images/6feb154ae0564f2275da916b913eda36.png" alt="" data-id="1939884" data-original-src="https://cdn.thenewstack.io/media/2017/02/768c57c2-kafka-prod-cons.png"/></p>
+<p class="translated"><strong>主题</strong> —主题表示属于一个组的消息的逻辑集合。它们类似于《妈妈》中的主题。生产者发送的数据存储在主题中。消费者订阅他们感兴趣的特定主题。</p>
+<p class="translated"><strong>分区</strong> —分区是Apache Kafka所独有的，在传统的消息队列系统中看不到。每个主题被分成一个或多个分区。在发送数据时，生产者不提及分区，但消费者知道可用的分区。Kafka可以使用消息密钥将相似的消息自动分组到一个分区中。这个方案使Kafka能够动态扩展消息传递基础设施。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1939885" src="../Images/44231cb7cfa20bba3017e1d309a78d61.png" alt="" data-id="1939885" data-original-src="https://cdn.thenewstack.io/media/2017/02/2208989d-kafka-log.png"/></p>
+<p class="translated">分区冗余地分布在Kafka集群中。消息被写入一个分区，但是被复制到至少另外两个分区，这两个分区在集群的不同代理上维护。</p>
+<p class="translated">分区和消费者组的概念允许系统的水平可伸缩性。</p>
+<p class="translated"><strong>消费者群体</strong> —如前所述，消费者属于至少一个消费者群体，该群体通常与一个主题相关联。组中的每个消费者被映射到主题的一个或多个分区。Kafka将保证一条消息只被群体中的一个消费者阅读。Kafka还将确保属于同一主题的所有消息都被发送给一个组的所有注册消费者。</p>
+<p class="translated">每个消费者将在跟踪偏移量的同时从一个分区中读取数据。如果属于特定消费者组的消费者离线，Kafka可以将分区分配给现有消费者。类似地，当一个新的消费者加入组时，它平衡分区与可用消费者的关联。</p>
+<p class="translated">多个消费者群体订阅同一主题是可能的。例如，在物联网用例中，消费者群体可能通过Apache Storm集群接收消息进行实时处理。不同的使用者组也可以接收来自相同主题的消息，以便将它们存储在HBase中进行批处理。</p>
+<p class="translated">分区和消费者组的概念允许系统的水平可伸缩性。</p>
+<p class="translated"><strong>代理</strong> —属于一个集群的每个Kafka实例被称为一个代理。它的主要职责是接收来自生产者的消息，分配偏移量，最后将消息提交给磁盘。基于底层硬件，每个代理每秒可以轻松处理数千个分区和数百万条消息。</p>
+<p class="translated">一个主题中的分区可以分布在多个代理中。这种冗余确保了消息的高可用性。</p>
+<p class="translated"><strong>集群</strong>——一群卡夫卡式的经纪人组成了集群。集群中的一个代理被指定为控制器，负责处理管理操作以及将分区分配给其他代理。控制器还跟踪代理故障。</p>
+<h2 class="translated">动物园管理员的角色</h2>
+<p class="translated">大多数当代的分布式编排系统，比如Kubernetes和Swarm，都依赖于一个分布式的键/值对来维护集群的全局状态。<a href="https://www.consul.io/" class="ext-link" rel="external "> Consul </a>，<a href="https://github.com/coreos/etcd" class="ext-link" rel="external "> etcd </a>，甚至<a href="https://redis.io/" class="ext-link" rel="external "> Redis </a>都是用于服务发现和集群状态管理。Apache Kafka的设计远远早于这些轻量级服务的构建。</p>
+<p class="translated">像大多数其他基于Java的分布式系统一样，如<a href="http://hadoop.apache.org/" class="ext-link" rel="external "> Apache Hadoop </a>，Kafka使用<a href="https://zookeeper.apache.org/" class="ext-link" rel="external "> Apache ZooKeeper </a>作为分布式配置存储。它构成了Kafka集群的主干，持续监控经纪人的健康状况。当新的代理被添加到集群中时，ZooKeeper将通过在集群上创建主题和分区来开始利用集群。</p>
+<p class="translated">除了集群管理，Kafka的初始版本使用ZooKeeper来存储每个消费者的分区和偏移信息。从0.10开始，这些信息已经转移到一个内部的Kafka主题。</p>
+<p class="translated">在本系列的下一篇文章中，我们将构建一个利用Apache Kafka进行实时数据处理的端到端物联网应用程序。敬请关注。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

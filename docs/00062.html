@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Twitter's Aurora and How it Relates to Google's Borg (Part 1)</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Twitter的Aurora及其与Google的Borg的关系(第1部分)</h1>
+<blockquote>原文：<a href="https://thenewstack.io/twitters-aurora-relates-googles-borg-part-1/#0001-01-01">https://thenewstack.io/twitters-aurora-relates-googles-borg-part-1/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+<div class="editors-note">
+<p class="attribution translated">这是我们关于Twitter的极光项目系列的第一部分。在第二部分中，Scott探索了Aurora如何应用于任何公司，无论其规模如何。</p></div>
+
+<p class="translated">21世纪剩下的时间里，信息工作将不再由操作系统来管理。今天，我们认为Twitter是极少数以“互联网规模”运行的服务之一——其规模如此之大，以至于其域名的大小毫无意义。然而，Twitter实际上是一个例子，说明在我们有生之年的大部分时间里，有一天，Twitter将被视为一项日常工作，那种你希望由成千上万的集群服务器网络来做的事情。</p>
+<p class="translated">Twitter正在建立一个名为<a href="http://aurora.incubator.apache.org/" class="ext-link" rel="external ">极光</a>的服务自动化平台。这还没有完成；它的当前版本号是0.7。这是一种作业控制系统，但它不是控制运行作业的服务器(就像操作系统在控制数据中心时所做的那样),而是控制约束服务器的作业。</p>
+<p class="translated">但与首要的“互联网规模”服务谷歌不同，Twitter正在公开构建Aurora。</p>
+<blockquote><p class="translated">这是为了塑造一个推特、谷歌和脸书不再是超能力的世界……仅仅是权力。</p></blockquote>
+<h2 class="translated">一个大的操作系统</h2>
+<p class="translated">“像Twitter这样的平台运行在数万台机器上，每天有数百名工程师部署软件，”<a href="https://blog.twitter.com/2015/all-about-apache-aurora" class="ext-link" rel="external ">上周在Twitter的工程博客</a>上的一篇帖子写道。“Aurora是一种软件，可在多种类型的故障面前保持服务运行，并为工程师提供了一种方便、自动化的方法来创建和更新这些服务。”</p>
+<p class="translated">Aurora的灵感来自于谷歌的一个内部项目，名为Borg(这是谷歌的习惯)。这是该公司在其整个全球基础设施中实现服务自动化的首批努力之一。</p>
+<p class="translated">Aurora的首席工程师比尔·法纳(Bill Farner)之前在谷歌工作，并亲自观察了博格的转移。在与新堆栈的电子邮件交流中，Farner指出，谷歌从一开始就全力投资Borg，本质上，它的目标是尽快将谷歌现有的基础设施吸收到一种新的更自动化的运营方法中。</p>
+<p class="translated">“但是，在我看来，博格软件本身变得非常复杂，难以管理，”法纳说。“在这方面，当开发Aurora时，我们(Twitter)能够从Borg那里借鉴一些我们应该做的事情，但更重要的是，一些我们不应该实施或支持的事情。”</p>
+<p class="translated">Twitter对Aurora的态度有些不同，首先是因为它在早期的态度更加谨慎，但也因为它的透明度。Aurora是作为Apache项目Mesos的框架而构建的，旨在为互联网规模的工作构建一个操作系统，这是从底层硬件中移除的一个抽象层。</p>
+<p class="translated">在去年9月制作的YouTube视频中，两位适马系统架构师David Greenberg解释了类似于Linux的Mesos。他提醒圣路易斯的StrangeLoop会议的与会者，在Linux系统中，当操作系统给一个进程自己的内存地址空间、一组专用的文件描述符和单独的默认数据流“标准输出”(stdout)时，进程隔离就完成了。</p>
+<p class="translated">Greenberg把Mesos描述为一个独立的操作系统，它通过在Linux容器中运行作业来实现互联网规模的进程隔离。这种容器——随着Docker的惊人成功，最近几个月变得更加流行——为其中包含的进程获得独占的CPU、内存和名称空间。</p>
+<p class="translated">“因此，当我们在Mesos上的这些Linux容器中运行我们的应用程序时，”Greenberg说，“那么您可以在同一台物理机上运行两个或三个或四个不同的系统，Linux容器将确保每个系统都获得分配的配额，并且每个系统都不会耗尽其他系统的网络、磁盘、内存或CPU。”</p>
+<p class="translated">可以把Mesos想象成逆向虚拟化。虚拟机在物理机内部构建了一个抽象层，其中封装了一个独立的操作系统及其自己的应用程序集。通常，虚拟机有自己的桌面，驱动程序认为它们在直接运行硬件，而实际上并不是。</p>
+<p class="translated">Mesos是物理机器之外的一个抽象层，它升华了物理机器，使它们充当非独特服务器的池。通过这种方式，可以将任务分配给这些服务器，并提供容错和受控冗余。Mesos使用开放的API，而不是桌面，这使得它可以通过任何标准的Web客户端进行远程监控。</p>
+<p class="translated">Aurora成为了这个环境中的任务主。与操作系统将进程线程分配给单台计算机中的各个内核一样，Aurora将作业(实际上，“作业”是一个技术术语)部署到网络中的多个集群。但是，与传统的操作系统模型不同，出于Twitter的目的，Aurora可以分阶段部署作业。Aurora不会强迫Mesos在其域中编排相同版本的作业，而是可以将较新的版本分发到指定的故障域，如果发现部署有问题，还可以回滚部署。</p>
+<h2 class="translated">人的因素</h2>
+<p class="translated">当一个作业的两个或多个版本在同一个域中同时运行时，Aurora如何缓解这种情况？有没有可能，一个任务的未来版本，泄露到与它自己的前任相同的系统中，会破坏更广泛的工作？想象一下如果Microsoft Windows必须管理多个版本的。NET框架不断。(哦，等一下…)</p>
+<p class="translated">我向Twitter的法纳提出了这些问题，他回答说，其中一些因素仍然被人类所缓解。</p>
+<p class="translated">“这里有几个因素，不仅仅是勤奋的API和数据模型管理，”Farner说。</p>
+<blockquote><p class="translated">他说，通过严格使用界面描述语言，可以将理智注入到过程中。</p></blockquote>
+<p class="translated">Twitter选择的IDL是<a href="https://thrift.apache.org/docs/idl" class="ext-link" rel="external "> Apache Thrift </a>，它详细说明了函数期望接收的输入数据类型、函数输出的明确类型以及这些期望可能受限的领域。IDL允许函数变得可变并自然进化，同时保持对将要交换的数据的固定预期。</p>
+<p class="translated">换句话说，IDL是现代服务所绑定的契约的通用语言。法纳补充道，或者，乔布斯可以利用更复杂的<em>数据序列化系统</em>，该系统定义了交换数据集应该遵循的更复杂的模式或结构。例如，Farner提供了<a href="https://developers.google.com/protocol-buffers/" class="ext-link" rel="external "> Google Protocol Buffers </a>，它利用一种形式的源代码来定义更结构化的数据表示，以及<a href="http://avro.apache.org/" class="ext-link" rel="external "> Apache Avro </a>，它使用JSON来定义丰富的数据模式，使用动态数据类型而不是静态数据类型，尽管不生成代码。</p>
+<p class="translated">Farner补充说，对于负责帮助确保分阶段升级顺利进行的开发人员来说，更广泛的动机是“接受分布式服务系统不能安全地以原子方式更新。扳动开关并开始向新代码发送流量是非常危险的。相反，优雅的更新可以让人们及早发现故障，而且只影响一小部分流量。”</p>
+<p class="translated">这里的关键是观察。虽然Aurora提供了分布式系统可能从未有过的自动化程度，但它也引入了人工干预、监控和最佳实践实施的新任务——完全“控制论”自动化系统(由“Borg”名称的原始灵感所暗示)可能缺乏的功能。</p>
+<p class="translated">由于不同的服务器集群表现出不同的性能特征(延迟、访问时间、可用性)，Aurora如何在不对服务产生负面影响的情况下实时解决这些差异？在我们讨论的第二部分，这是我将向Twitter的Bill Farner提出的问题之一。</p>
+<p class="attribution translated">图片<a href="https://www.flickr.com/photos/16927804@N07/8608176284/in/photolist-e7F9Uu-5VGWSd-dEK365-cxjCms-8KtqdM-6ehBWy-e7zsj2-7Q5KDt-dStNbB-dSznT5-dT2UFG-htZpk6-cxjDNw-4uq8Vc-e4b6br-fHodPG-bBXQ4R-q5pub8-dUVUc8-9k4MpQ-kyukDH-gngYNC-htXHVP-ekjAeS-3bGjb-6YqrcW-8JZzoA-dStNkv-5SM563-eFc7to-nY6EHZ-kFudt9-q7uu7W-ps4Hvo-56Qbwc-iWQDa-98auvz-7ALQRH-9hkB2k-htXWsT-k9GTfD-8Roph6-m4nq9p-oeQKVu-oeHPyn-6rhssr-nXwfjb-98asTg-dc2rHP-2XiTsU" class="ext-link" rel="external "> via </a> Flickr知识共享。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

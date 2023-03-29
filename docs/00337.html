@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>How Pernod Ricard Uses Amazon Web Services to Coordinate International Marketing Efforts</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">保乐力加如何利用亚马逊网络服务协调国际营销工作</h1>
+<blockquote>原文：<a href="https://thenewstack.io/irish-distillers-uses-amazon-web-services-manage-international-web-sites/#0001-01-01">https://thenewstack.io/irish-distillers-uses-amazon-web-services-manage-international-web-sites/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://www.linkedin.com/in/petemcvicar/" class="ext-link" rel="external ">Pete MC vicar</a>,<a href="https://www.pernod-ricard.com/en" class="ext-link" rel="external ">保乐力加</a>烈酒和葡萄酒公司销售解决方案的IT营销主管在今年的圣帕特里克节休息得更轻松了，因为该公司已经完成了大约三分之二的技术革新。</p>
+<p class="translated">当他在2015年圣帕特里克节到达时，美国、加拿大和南非市场的网站正在重建。该公司见证了移动应用的巨大爆炸。麦克维卡在都柏林接受电话采访时说，撒哈拉以南非洲几乎完全是移动的。美国有超过60%的移动设备，并且主要是iOS，而非洲则是不同设备的混合体。</p>
+<p class="translated">他面临的挑战是:让公司的网站尽快在所有这些设备上运行。</p>
+<p class="translated">他负责数字工程团队，为保乐力加17个战略品牌中的11个开发营销工具、服务和平台，包括爱尔兰都柏林最大的爱尔兰威士忌生产商爱尔兰蒸馏器公司，包括詹姆森；英国的芝华士兄弟；瑞典斯德哥尔摩的Absolut。</p>
+<div id="attachment_2048310" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2048310" decoding="async" loading="lazy" class="wp-image-2048310 size-large" src="../Images/1743211e6a2a000f8316ac654aded38c.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/03/c4153a09-screen-shot-2017-03-13-at-12.57.20-pm-1024x258.png"/><p id="caption-attachment-2048310" class="wp-caption-text translated">爱尔兰酒厂的母公司保乐力加提供的一些品牌</p></div>
+<p class="translated">旧系统本质上是一堆静态XML文件，这些文件是在一台服务器上的定制平台上生成的，没有任何洞察能力。“我会在第二天收到电子邮件，说‘我收到报告说网站很慢，’”他说，但没有数据显示具体情况。他决定开始研究优化性能。新平台的关键问题是“它快吗？对于尽可能多的市场和人群来说，它快吗？”</p>
+<p class="translated">此外，所有营销项目都必须由位于都柏林的McVicar的五人团队进行编码，因为只有他们有权访问定制的XML代码。因此，新平台除了要快速之外，还需要更加动态，让本地营销团队能够自己开展活动，而不是必须联系中央品牌团队来编码这些变化。</p>
+<p class="translated">他的团队使用亚马逊网络服务(AWS)建立了第二个平台，遵循关于设置的最佳实践，使用<a href="https://aws.amazon.com/lambda" class="ext-link" rel="external ">λ函数</a>来搅动数据。一切都很好，但50个左右的市场中的每一个都必须逐个添加。过渡到让每个市场都进行内容管理和管理数据本地化是一项非常具有挑战性的工作。挑战的一部分是管理酒精的国际和地方法律的复杂结合。</p>
+<h2 class="translated">酒精广告的法律</h2>
+<p class="translated">酒精是地球上最受管制的物质之一。McVicar的团队必须本地化到每个国家的限制性法律，或者在美国各州保留品牌。</p>
+<p class="translated">例如，在法国，公司不允许展示一个人拿着一杯酒，它必须是一个直的瓶子或容器。在一些东欧国家，它不能显示一个人或一个动物拿着一个装有酒精的杯子。(人们不禁要问，米兰塔斯的伏特加大口熊是如何在这些市场生存下来的。)但不仅仅是成像。</p>
+<div id="attachment_2048309" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2048309" decoding="async" loading="lazy" class="wp-image-2048309 size-full" src="../Images/b298357ab5d2602537d687ac3988271a.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/03/c8f4529c-screen-shot-2017-03-14-at-11.59.22-am.png"/><p id="caption-attachment-2048309" class="wp-caption-text translated">贾米森网站要求按照美国法规进行年龄验证</p></div>
+<p class="translated">有些国家要求在网站上注明年、月、日，有些国家只要求注明年份。有些国家没有年龄限制，但有些国家(如美国)非常严格。</p>
+<p class="translated">所有这些复杂性都被加载到AWS中并在那里进行管理。例如，它最近完成了法国版詹姆森威士忌的网站加载，增加了跟踪饼干的功能，满足了在每一页上都有“负责任地饮酒”信息的要求，并在每一件产品上都有一个关于负责任饮酒的图像——所有这些都同时牢记了保乐力加的品牌。</p>
+<p class="translated">因此，他的团队开始完全在新的平台上建立新的市场网站。如果是旧站点，他们会保留旧系统，并通过虚拟专用网络访问AWS。</p>
+<h2 class="translated">崩溃</h2>
+<p class="translated">2016年2月，他们仍然有麦克维科所说的“时髦的软糖”。爱尔兰的升级在他们的待办事项清单上，但一直被推下了待办事项清单。直到当地的营销团队开始发布一个免费的圣帕特里克节派对，并邀请了一个名为<a href="https://itunes.apple.com/us/album/in-a-perfect-world/id696982655" class="ext-link" rel="external ">柯达线</a>的爱尔兰流行乐队，这个派对才刚刚开始。这将是一次全面的媒体推广，包括免费门票、广播广告和媒体博客。没有人向它提到这种推动。</p>
+<p class="translated">突然，公司的系统崩溃了。开发团队惊慌失措，认为系统受到了外部攻击。</p>
+<p class="translated">“那是一个混乱的夜晚,”麦克维科说，满嘴脏话。这个团队完全没有准备。他们没有工具去发现发生了什么。</p>
+<p class="translated">其中一个团队记得新闻稿，他们检查了推荐日志，发现大部分流量来自一个著名的博客。</p>
+<p class="translated">事实证明，虚拟专用网无法处理营销推广产生的流量。由于爱尔兰网站没有切换到AWS，系统正在从旧平台向AWS进行代理传递，旧服务器无法处理负载。</p>
+<p class="translated">“这就是我们失败的地方，”麦克维卡说。“这对品牌来说是好事，因为它获得了大量曝光，但对品牌来说是坏事，因为网站似乎要关闭了。”</p>
+<p class="translated">经验教训:“最好把它放在适当的地方，而不是为了亏损而瞎搞。”此后，他们增加了<a href="https://newrelic.com/" class="ext-link" rel="external "> New Relic </a>监控功能，提供系统速度和健康状况的实时数据和可见性。</p>
+<h2 class="translated">新功能</h2>
+<p class="translated">工程团队一直在努力将这些站点从XML平台转移出去，现在已经完成了三分之二。新系统已成为保乐力加的内容营销管理平台。他们内置了比赛、活动、饮料和产品信息的模板，所有这些都可以在本地进行定制。</p>
+<p class="translated">该平台允许他们在跨市场功能的最佳实践基础上进行构建。例如，为德国市场建立的竞争也可以被日本或阿根廷市场利用。</p>
+<p class="translated">“我们可以为营销人员内置一些非常酷的功能，让他们兴奋不已，”麦克维卡说。它正在从爱尔兰酿酒厂扩展到其他品牌公司，这样他们就可以利用已经完成的工作。</p>
+<p class="translated">都柏林的团队负责技术后台。他们构建功能，在sprints中为本地公司处理来自营销人员的功能请求，以便本地市场可以添加他们的内容，与团队或本地代理机构一起创建新功能。</p>
+<p class="translated">当地团队还会了解当地法律，以确保其合规。</p>
+<h2 class="translated">回报</h2>
+<p class="translated">今年的圣帕特里克节，营销团队正在开展一项名为“为詹姆森欢呼”(cheers for Jameson)的国际比赛，要求消费者与为詹姆森欢呼的伴侣自拍，并贴上标签，然后放到Instagram上，以参加他们的全球比赛。获胜者将获得明年圣帕特里克节的都柏林之旅。</p>
+<p class="translated">在<a href="http://datasift.com/" class="ext-link" rel="external "> DataSift </a>的帮助下，这种竞赛管理通过几个Lambda函数来完成，以通过竞赛系统验证参赛作品。图像通过<a href="https://copyclear.ie" class="ext-link" rel="external "> CopyClear </a>程序运行，以确保在上传到系统之前符合所有当地法律。坦桑尼亚、阿根廷、摩洛哥、马耳他、肯尼亚、加拿大、西班牙、拉托维亚、莫桑比克和波兰都参加了这次比赛。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Hunting Down Asteroids with Machine Learning and a World of Programmers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">用机器学习和程序员世界搜寻小行星</h1>
+<blockquote>原文：<a href="https://thenewstack.io/hunting-down-asteroids-with-machine-learning-and-a-world-of-programmers/#0001-01-01">https://thenewstack.io/hunting-down-asteroids-with-machine-learning-and-a-world-of-programmers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">太空中有数百万颗小行星。如果其中一个命中，我们知道结果。它可能会在到达地球表面之前解体，或者该空间物体可能有<a href="https://en.wikipedia.org/wiki/Comet_Shoemaker%E2%80%93Levy_9" class="ext-link" rel="external ">彗星苏梅克-利维9 </a>那么大，该彗星于1994年与直径两公里的小行星撞击木星表面，速度约为每小时216，000公里。大约是134000英里每小时。</p>
+<p class="translated">这一发现稍微改变了我们对如何探测这些小行星的看法。但是我们的检测率仍然没有完全提高。截止日期正在迅速临近。2004年，美国国会要求美国宇航局在2020年前发现90%以上直径大于140米的近地天体。我们正在实现这一目标，但不仅仅是因为我们有杰出的研究人员和强大的望远镜。我们现在有成千上万的开发人员和业余天文学家，他们可以使用编程来帮助完成曾经完全由穿着白大褂的人完成的研究。</p>
+<p class="translated">NASA决定向程序员寻求一些帮助。他们与<a href="http://www.topcoder.com/" class="ext-link" rel="external "> TopCoder网站</a>组织了一场竞赛。这类似于<a href="https://en.wikipedia.org/wiki/Netflix_Prize" class="ext-link" rel="external "> Netflix奖</a>，一个用来帮助向客户提供更好推荐的公开竞赛。</p>
+<p class="translated">美国宇航局和TopCoder小行星数据猎人项目从2014年3月持续到2015年1月，目标是改进探测小行星的算法。竞赛获胜者比目前识别火星和木星之间轨道运行的小行星的方法提高了15%。</p>
+<p class="translated">TopCoder <a title="Link to Asteroid Data Hunter on topcoder.com" href="http://www.topcoder.com/asteroids/asteroiddatahunter/" class="ext-link" rel="external ">小行星数据猎人</a>网站提供包括源代码的下载，也可以在Github 上作为开源<a title="Link to Asteroid Data Hunter on Github" href="https://github.com/nasa/NTL-Asteroid-Data-Hunter" class="ext-link" rel="external ">获得。420 MB的下载包括Windows和Mac的图像、文档和安装程序。注意，也有Linux的源代码，只是还没有安装程序。主要的猎人软件是用Java编写的，算法用C++编码。该算法可以在笔记本电脑或台式机上运行。</a></p>
+<h2 class="translated">它是如何工作的？</h2>
+<p class="translated">代码分为两个不同的部分。第一部分—数据管理、上传等。—全部用Java编写，包括一个在8080端口上运行的本地web服务器，用于浏览器用户界面。执行比较的第二部分是用C++编写的。</p>
+<p class="translated">在你理解它是如何工作的之前，你需要了解一点关于<a href="https://en.wikipedia.org/wiki/FITS" class="ext-link" rel="external ">灵活图像传输系统(FITS) </a>文件格式的知识。这是保存天文图像的一种流行格式，得到了T2、美国国家航空航天局和国际天文学联合会的认可。这是一种奇怪的格式，因为它包括一个人类可读的头和图像数据，并且可以有多个数据部分，包括非图像数据。简而言之，你可以放入任何你想要的结构化数据。现代望远镜可以输出FITS格式的数据，所以我们鼓励你也可以用你自己的数据来使用这个程序。</p>
+<p class="translated"><a href="https://thenewstack.io/wp-content/uploads/2015/03/AsteroidDataHunter.png" class="local-link"> <img decoding="async" loading="lazy" class="alignnone size-full wp-image-291853" src="../Images/59b5f7acdaa4d76f655c111368df4495.png" alt="Asteroid Data Hunter Screenshot" data-original-src="https://thenewstack.io/wp-content/uploads/2015/03/AsteroidDataHunter.png"/> </a></p>
+<p class="translated">小行星数据猎人包括四个FITS图像文件的例子和一个读取它们的Java类。前五名得分者编写的算法都在一个头文件中，长度从1，021到14，328行不等，但大多数都在2，000行以下。五种算法中的每一种都进行了不同的比较，尽管有几种使用了相同的算法:随机森林分类器。这是一种用于分类和回归的机器学习技术。在这种情况下，分类是确定观察到的像素是恒星还是小行星。</p>
+<p class="translated">竞赛获胜者预处理输入FITS图像以生成背景图像，在每个像素周围制作一个区域以获得中值。然后，他过滤这些照片，试图检测出可以从背景中去除的物体。之后，他的算法试图将不同图像中的物体联系起来，从而让他移除静止的物体，并希望留下移动的物体。通过观察与运动速度和方向相关的七个特定特征来识别运动物体:</p>
+<ul>
+<li class="translated">总(欧几里得)速度。</li>
+<li class="translated">全(欧几里得)运动。</li>
+<li class="translated">RA-分量(<a title="Link to Wikipedia about Right ascension" href="https://en.wikipedia.org/wiki/Right_ascension" class="ext-link" rel="external ">右提升</a>)速度。</li>
+<li class="translated">RA组件移动。</li>
+<li class="translated">DEC-分量(变分)速度。</li>
+<li class="translated">DEC-组件移动。</li>
+<li class="translated">运动的角度(atan2)。</li>
+</ul>
+<p class="translated">在两张图像上确定了一个移动物体的路径后，他的代码通过比较另外两张图像的像素值来验证它是一颗小行星。FITS图像包括时间戳，因此可以通过计算小行星在时间间隔内沿直线移动的距离来确定小行星在其他两幅图像中的位置。</p>
+<p class="translated">这不是一个探测小行星的静态程序，而是一个从输入中学习的改进算法，并对在其他数据集中探测小行星做出预测。</p>
+<h2 class="translated">结论</h2>
+<p class="translated">我们需要探测小行星，这既是为了发现，也是为了保护我们所知道的地球。这种兴趣使我们有可能考虑如何建造一台重力拖拉机，轻轻地推动一颗巨大的小行星，使它不会与地球相撞。与此同时，机器学习技术的简化使程序员能够以新的方式参与进来，因此我们可以检测小行星，避免好莱坞式的灾难，例如天空中的"<a href="https://www.imdb.com/title/tt0077553/" class="ext-link" rel="external ">大火</a>"或者天文学家喜欢说的:"小行星吃掉了凤凰城。"</p>
+<p class="attribution translated">专题图片<a href="http://www.topcoder.com/asteroids/asteroiddatahunter/" class="ext-link" rel="external ">通过</a> BBC。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

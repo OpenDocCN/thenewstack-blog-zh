@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Gremlin Now Treats Containers as First-Class Failures</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Gremlin现在将容器视为一级故障</h1>
+<blockquote>原文：<a href="https://thenewstack.io/gremlin-now-treats-containers-as-first-class-failures/#0001-01-01">https://thenewstack.io/gremlin-now-treats-containers-as-first-class-failures/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">没有多少公司愿意失败。然而，我们的创业文化建立在从错误中学习的基础上。按照这种快速学习的习惯，如果我们可以通过不断注入失败来创造一种稳定感——在它击垮你(或你的银行)之前先击垮它？这就是<a href="https://thenewstack.io/how-chaos-engineering-can-drive-kubernetes-reliability/" target="_blank" class="local-link">混沌工程</a>背后的想法，这是一个不断增长的网站可靠性工程，人们将虚拟化水槽扔向虚拟机，现在是容器。</p>
+<p class="translated"><a href="https://thenewstack.io/chaos-engineering-can-give-distributed-systems-stability/" class="local-link">混沌工程</a>是一种对你的系统进行安全破坏的好习惯，就像一只猴子对你的办公室进行破坏一样。多年前，以正常运行时间和狂欢闻名的流媒体服务网飞通过开源其<a href="https://github.com/netflix/simianarmy" target="_blank" class="ext-link" rel="external ">混沌猴子</a>软件，在分布式系统上自动执行定期停机，“以便建立对系统承受生产中动荡条件的能力的信心”，开创了这一现在正在出现的最佳实践</p>
+<p class="translated">混沌工程是关于承认、解决和拥抱你的系统以及建造和使用它们的人的复杂性和不可预测性。通过首先关注关键的、面向客户的服务，这种有意的混乱有助于公司限制停机和事故对业务和财务的影响，进而限制服务级别协议的破坏和客户流失。</p>
+<p class="translated">Gremlin 首席技术官兼联合创始人<a href="https://www.linkedin.com/in/mattforni/" class="ext-link" rel="external ">Matthew fornacari</a>说:“我们喜欢用疫苗来类比:注射少量的伤害可以建立主动避免灾难的免疫力。</p>
+<p class="translated">我们已经写过<a href="https://thenewstack.io/gremlins-tammy-butow-on-the-business-side-of-chaos-engineering/" class="local-link"> Gremlin Chaos作为服务平台</a>。当混沌猴随机地一次终止一个系统的时候，小妖精会带来更多的同步混乱。</p>
+<p class="translated">现在，作为服务平台的两年失败已经被更新，不仅在虚拟机级别而且在容器级别管理恶作剧。</p>
+<p class="translated">“随着今天对Gremlin平台的更新，DevOps团队将能够大幅提高Docker在生产中的可靠性，”Fornaciari说。</p>
+<p class="translated">谁可能从中受益？Gremlin根据客户需求添加了这一功能，为使用或迁移到容器化基础设施的任何人提供服务，无论是通过Kubernetes还是其他orchestrators编排的。这通常用于已经建立了足够的产品或产品集的公司，他们至少有一个站点可靠性工程师，但它也可以用于任何在orchestrator中运行自己的容器服务的服务所有者或平台团队。</p>
+<p class="translated">Gremlin作为Docker服务的失败现在允许用户模拟丢弃主机，确保底层基础架构稳定。已经在像安德玛这样的选定客户中处于测试阶段，这一更新允许组织在Gremlin用户界面中自动发现Docker容器，然后在其上运行混沌工程实验。这已经是一种服务发现，在这种情况下，该工具会扩展您的网络，并找出服务所在的位置以及如何访问它们，但它现在也在容器级别上这样做。</p>
+<p class="translated">“我们为基础设施故障提供一切，就像我们为容器提供的一样，”Fornaciari说，并指出有一些开源软件解决方案专门针对Kubernetes或Docker，但不是像Gremlin这样的所有软件。</p>
+<p class="translated">通过Gremlin将容器视为一等公民，组织能够对CPU和内存过载等资源进行攻击，模拟延迟和DNS问题，甚至随机关闭容器。这都允许团队意识到当事情出错时他们的架构如何反应，以及如何修复任何不好的反应。</p>
+<p class="translated">Fornaciari告诉New Stack，当团队开始迁移到容器化架构时，他们并不总是理解行为、功能和缺陷。混沌工程允许你提前测试容器级别的粒度。</p>
+<p class="translated">“许多客户努力将容器视为主机。Gremlin给了他们生产码头工人的信心，”他说。</p>
+<p class="translated">Gremin的新功能与自动修复功能并行工作，即属于同一组的虚拟机或容器集群进行健康检查。如果容器或虚拟机变得不健康并被Gremlin标记，它将进入自动修复并退出生产使用，并获取另一个实例。这种自动修复通常在Amazon Web Services中完成，要么将自己从负载平衡器中拉出，要么用一个健康的事件替换自己。</p>
+<p class="translated">虽然Gremlin最初在裸机上执行虚拟化混乱，但现在它也在主机之上的基于容器的抽象级别上执行虚拟化混乱。它是同类产品中第一个像对待一等公民一样对待容器的，而不是在主机级别安装，然后在容器上运行。</p>
+<p class="translated">Gremlin的产品和公司价值观是简单、安全和可靠。Fornaciari表示，第一个价值与这一工具更新密切相关，它允许用户只需点击四五次就可以点击并启动容器标签。</p>
+<p class="translated">“容器发现的简单性在于我们为您填充潜在的目标。您不必记住标记和识别信息，只需点击几个简单的框，浏览用户界面，就可以了。”</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

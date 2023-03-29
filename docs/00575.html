@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Hasura Focuses on Making Kubernetes Easier with GitOps</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Hasura专注于通过GitOps简化Kubernetes</h1>
+<blockquote>原文：<a href="https://thenewstack.io/hasura-focuses-on-making-kubernetes-easier-with-gitops/#0001-01-01">https://thenewstack.io/hasura-focuses-on-making-kubernetes-easier-with-gitops/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Kunjan Chauhan 着手减少印度食品供应链中的浪费，并帮助确保街头水果和蔬菜摊贩在购买农产品时获得公平交易。他的公司<a href="http://www.bompod.com/" class="ext-link" rel="external "> Bompod Solutions </a>，开发了一种手持<a href="http://www.bompod.io/" class="ext-link" rel="external ">销售点系统</a>，即使是文盲也可以使用。小型物联网设备可以测量蔬菜的重量和账单条目。</p>
+<p class="translated">但是他的开发者越来越生他的气。</p>
+<p class="translated">“在开发我的技术之前，我喜欢实地学习。非常迭代。我从来不确定我在建造什么，我一直在改变它。所以我和开发人员的关系变得非常紧张。变革的成本非常高。每次我做出改变，他们都会很不高兴，”他说。</p>
+<p class="translated">大约一年半前，其中一名开发人员建议使用<a href="https://hasura.io/" class="ext-link" rel="external "> Hasura </a>微服务堆栈，旨在帮助对Docker和Kubernetes缺乏经验的IT团队入门。</p>
+<p class="translated">“我不是搞技术的人；我是个商人。设计对我来说很容易。[设置服务器]，维护服务器，我不需要为此雇佣任何人。因为用Hasura维护集群非常非常容易，”他说。</p>
+<h2 class="translated">使开发更容易</h2>
+<p class="translated">Hasura的联合创始人Rajoshi Ghosh和Tanmai Gopal最初打算建立一个食品配送市场。为了节省反复构建相同组件的时间，Gopal组装了一个名为“Procrust.es”的后端和DevOps工具包。这是一个数据库平台，结合了NoSQL API的易用性和处理事务的能力。</p>
+<p class="translated">随着两人在印度Bengaluru成立了一个开发机构，该工具包不断发展，最终成为2017年2月首次亮相的Hasura平台。</p>
+<p class="translated">“我们一开始并不知道最终结果会是什么样。Ghosh说:“我们最初的想法是让开发变得更容易。</p>
+<p class="translated">Gopal说，他们在GraphQL问世之前创建了自己的GraphQL版本，并最终在Postgres之上建立了一个GraphQL层，该层自动化了在数据库之上提供API的过程，以部署任何类型的代码，而不必为每个应用程序构建底层代码。</p>
+<p class="translated">Hasura平台为开发者提供了高性能的数据层(GraphQL和JSON)、带有认证中间件的API网关和GitOps automation。</p>
+<p class="translated">它具有访问控制、高性能和可扩展性。</p>
+<p class="translated">“我们开发的其他东西有助于加快部署，”Gopal说。“我们的想法是，你想要那种Heroku式的体验，因为它令人惊叹，但你想要那种在企业或大范围内你可以控制的环境中的体验。所以它最终成为了一个Docker，基于Kubernetes的工具。”</p>
+<p class="translated">这是一个名为<a href="https://github.com/hasura/gitkube" class="ext-link" rel="external "> Gitkube </a>的开源项目。</p>
+<p class="translated">“[它]说，‘嘿，你可以拿一个Docker文件，你可以拿一个Kubernetes YAML规范，你可以做git推送，并获得相同的体验’……我们已经让开发人员更容易、更快地使用它们。这是捆绑在一起的。那就是Hasura平台，”Gopal说。</p>
+<p class="translated">它计划在接下来的几个月里将所有的Kubernetes原生组件开源。</p>
+<h2 class="translated">PaaS+BaaS</h2>
+<p class="translated">他们将Hasura描述为PaaS(平台即服务)加BaaS(后端即服务),可以让您快速构建和部署。</p>
+<p class="translated">你<a href="https://blog.hasura.io/how-hasura-works-in-doodles-ba03d6ce6044" class="ext-link" rel="external ">通过创建Hasura项目开始</a>，该项目采用微服务来自动化后端任务。几乎没有现成的微服务，如data、auth和filestore，它们可以提供即时后端API，可以直接在应用程序中使用。用户还可以创建自己的微服务，如API服务或web应用程序。</p>
+<p class="translated">Hasura还提供了特定于语言和用例的初学者工具包，如Python、data science或chatbots，它们消除了编写大量样板代码的需要。</p>
+<p class="translated">第二步是在云中创建一个Hasura集群来托管Hasura项目。目前，它支持DigitalOcean、谷歌云平台、AWS和微软Azure，并与部署到其他平台的客户合作。该公司表示，该平台实现了它们之间的自动迁移。</p>
+<p class="translated">然后，开源工具Gitkube使用git将您的代码作为容器部署在您的Hasura集群上。配置、数据库模式和您的微服务都将通过运行<strong> git push hasura master </strong>来部署。</p>
+<p class="translated">他们称这种方法为GitOps。Gopal最近在KubeCon + CloudNativeCon 2018欧洲大会上谈到了git push。</p>
+<p class="translated"><iframe loading="lazy" src="https://www.youtube.com/embed/gDGT4Gf_4JM?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">视频</iframe></p>
+<p class="translated">“只要一切(基础设施配置、应用程序依赖性、环境配置、有状态迁移、测试)都是声明性的，git就是开发人员驱动他们的DevOps任务所需的唯一工具，”Gopal在一篇博客文章<a href="http://vmblog.com/archive/2018/04/19/can-gitops-solve-the-developer-ops-boundary-once-and-for-all.aspx#.Wuw7c9Mvz9A" class="ext-link" rel="external ">中说。</a></p>
+<p class="translated">他解释说，只使用git减少了所需的工具集，并提供了完全的可扩展性:git-hooks和webhooks允许操作员实现无限的定制和工具，而不会影响开发人员的工作流程。</p>
+<p class="translated">他说，一个学习如何编写docker文件和Kubernetes基础知识的全栈开发者可以完全控制他们的栈。他们完全可以自己为数百万用户构建、部署、操作和扩展他们的微服务应用。</p>
+<p class="translated">“这是前所未有的力量。一旦企业内部的人可以使用它，这将改变应用程序构建的动态，”他说。</p>
+<h2 class="translated">CNCF认证</h2>
+<p class="translated">今年4月，这家总部位于旧金山和印度的公司宣布了由Nexus Venture Partners和GREE Ventures牵头的160万美元的种子轮投资。</p>
+<p class="translated"><a href="https://nexusvp.com/" class="ext-link" rel="external "> Nexus Venture Partners </a>的董事总经理萨梅尔·布里杰·维尔马当时说:“使用Hasura的平台，开发者现在可以在几分钟内创建云原生的、可移植的和‘弹性’的应用程序，而不需要一开始对Kubernetes有任何了解。”。</p>
+<p class="translated"><a href="https://www.cncf.io/" class="ext-link" rel="external ">云本地计算基金会</a>最近在22家新的<a href="https://www.cncf.io/certification/software-conformance/" class="ext-link" rel="external ">认证的Kubernetes供应商</a>中提名Hasura。据Gopal称，该公司约有4万名开发人员。</p>
+<p class="translated">“通常是开发人员和系统管理员在关注Kubernetes。但最终，应用程序开发人员将在Kubernetes基础上构建应用程序。Ghosh说:“我们正在加速将Kubernetes带给应用开发者的过程。”</p>
+<p class="translated">“从一家公司的角度来看，从第一天开始，您就有了一个Kubernetes集群，它具备了编写应用程序所需的所有自动化功能，并且您可以访问底层。…您可以慢慢获得使用Kubernetes的经验，尝试一下，因为您拥有这些层，并且可以使用这些Kubernetes命令。”</p>
+<p class="translated">Chauhan说，Hasura与他合作定制功能，例如启用<a href="https://realm.io/products/realm-database/" class="ext-link" rel="external "> Realm </a>，这可以帮助你在多个设备之间同步。</p>
+<p class="translated">他过去不得不审视整个项目，而不是其中的一小部分，因为开发人员不喜欢构建小部分——而且他还不知道自己希望整个项目是什么样的。</p>
+<p class="translated">“现在我只是向他们展示，‘这就是采购订单格式的样子’，这就是API端点。从这里取出数据，放入这个表格。现在是一个非常简单的API调用。我可以将一组非常有用的API中的每个特性可视化。因此，这有助于我更详细地了解情况，我现在可以在更小的范围内工作。我可以构建很小很小的功能并进行测试，然后将它们集成到项目中。”</p>
+<p class="attribution translated">云本地计算基金会和T2是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

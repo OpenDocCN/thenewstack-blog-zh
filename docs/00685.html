@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>100-Year-Old Fitch Ratings Upgrades to DevSecOps</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">百年惠誉评级升级至DevSecOps</h1>
+<blockquote>原文：<a href="https://thenewstack.io/100-year-old-fitch-ratings-upgrades-to-devsecops/#0001-01-01">https://thenewstack.io/100-year-old-fitch-ratings-upgrades-to-devsecops/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">当米尔·阿里在2015年加入T2惠誉评级公司时，已经有很多关于改变他们软件流程的讨论，这是由他们堆栈的不可靠性引起的。<span class="Apple-converted-space"> </span>惠誉评级是一家金融公司，与穆迪和标准普尔是美国证券交易委员会(SEC)指定的三家国家认可的统计评级机构之一。<span class="Apple-converted-space"> </span></p>
+<p class="translated">惠誉指出，在一家有100年历史的公司中对DevSecOps进行改变并不容易，他现在是shared services的主管。<span class="Apple-converted-space"> </span>但问题不能再忽视了。阿里说，基本上，他们不明白生产中发生了什么。<span class="Apple-converted-space"> </span>有太多的停机，没有可追溯性，也没有很多跨管道的协作。当一个事件发生时，没有人知道为什么或该怎么办。<span class="Apple-converted-space"> </span>标准程序是重启数据库服务。对于一家受到SEC监控的公司来说，这显然是不可接受的。</p>
+<h3 class="translated">主要挑战</h3>
+<p class="translated">一个挑战是普遍缺乏安全知识。其次是缺乏协作或对个人责任的理解。最后是自动化程度不够。</p>
+<p class="translated">起初，要做的事情太多了，很难分清轻重缓急。团队后退一步，创建一个他们想要的远景，这个远景通知了他们所有的后续决策。</p>
+<p class="translated">他们决定把安全缺陷推到首位。<span class="Apple-converted-space"> </span>剩下的任务分为三个方面。他们想在整个开发过程中应用这种安全性，并在整个公司范围内标准化这一过程。最后，他们想尽可能简化流程。</p>
+<p class="translated">简单地说，阿里说，DevSecOps正在扩展DevOps的合作，以包括安全性。</p>
+<blockquote><p class="translated">“DevSecOps的目的和意图是建立在‘每个人都对安全负责’的思想基础上，目标是在不牺牲所需安全性的情况下，以一定的速度和规模将安全决策安全地分配给那些拥有最高级别上下文的人。”—devsecops.org</p></blockquote>
+<h3 class="translated"><b>在整个开发过程中应用安全性</b></h3>
+<p class="translated">阿里说，将安全性集成到DevOps管道中非常关键，因此它是整个软件开发过程中不可或缺的一部分。</p>
+<div id="attachment_5763779" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5763779" decoding="async" loading="lazy" class="wp-image-5763779 size-large" src="../Images/7e0f016ff21e0744b3d4ee26baf95c83.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/10/6a438079-security-checkpoint-1024x528.png"/><p id="caption-attachment-5763779" class="wp-caption-text translated">惠誉DevSecOps管道中的安全检查站</p></div>
+<p class="translated">管理团队首先在每个团队中安排安全专家，因为他们打破了DevOps管道中的孤岛。<span class="Apple-converted-space"> </span>“让他们感到自己是团队的一部分，”他说，<span class="Apple-converted-space"> </span>“接受他们的投入，利用他们的技能。<span class="Apple-converted-space"> </span>使其成为自动化的一部分<span class="Apple-converted-space">安全专家为您提供背景信息、专业知识、最新的风险是什么、我们需要注意什么？安全成了每个人的工作。</span></p>
+<p class="translated">接下来，他们安装安全工具。“这不全是关于工具，”阿里说，“但你必须有工具在适当的位置，使安全成为可能。”<span class="Apple-converted-space"> </span>例如，良好的仪表板是自动化的关键。<span class="Apple-converted-space"> </span>持续交付管道安全性的首要任务是适当的访问控制、锁定构建系统以及标准化命名约定。</p>
+<p class="translated">他们开始追求唾手可得的水果。<span class="Apple-converted-space"> </span>雅虎的数据泄露是因为其系统没有密码保护，所以有人干脆克隆了数据库。他说，没有最高安全级别的人不可能做到这一点。<span class="Apple-converted-space"> </span>所以第一步是将访问权限默认为none。<span class="Apple-converted-space"> </span>权限必须被授予，并且完全基于角色和自动化。</p>
+<p class="translated">“加密一切”成为新的座右铭。<span class="Apple-converted-space"> </span>可见进入管道是另一个关键区域。<span class="Apple-converted-space"> </span>“确保日志条目对人类有意义，”<span class="Apple-converted-space"> </span>阿里建议。<span class="Apple-converted-space"> </span>很多日志读起来像是胡言乱语，在故障排除时毫无帮助。</p>
+<h3 class="translated">设立安全检查站</h3>
+<p class="translated">一旦基本的整体安全性到位，他们就开始在管道中构建自动化的安全检查点。他说:“如果事情没有通过，工程师会把它关掉，说‘我以后再来’，但他们从来不这样做。”。通过自动化检查站，你不会给他们这样的机会。他们使用Gauntlt，它允许用户编写专门针对安全性的自动化测试。</p>
+<div id="attachment_5763791" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5763791" decoding="async" loading="lazy" class="wp-image-5763791 size-large" src="../Images/5629dbb1d817c8b141cc9e3a7165b38f.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/10/8ecdf998-fitch-pipline-1024x578.png"/><p id="caption-attachment-5763791" class="wp-caption-text translated">惠誉DevSecOps管道</p></div>
+<p class="translated">当Ail到达时，工程师们已经将扩展数据的解决方案部署到位，但每个团队都是独立工作的，因此有各种各样的解决方案，工程师们提出了大量不同的选项。虽然花了一些时间，但他们为每一条管道选择了满足其需求的最佳解决方案，并使之成为标准。</p>
+<p class="translated">类似于<a href="https://thenewstack.io/pagerdutys-3-year-journey-to-devops-culture/" class="local-link"> PagerDuty自己的DevOps改造</a>，该项目耗时约三年。</p>
+<h3 class="translated"><b>DevSecOps的神话</b></h3>
+<p class="translated">阿里说:“有一些关于开发公司的神话需要被打破。<span class="Apple-converted-space"> </span>第一个误区是，如果你将安全自动化，你就会放弃控制权。<span class="Apple-converted-space"> </span>事实是，这会让你的公司<i>更加</i>合规。<span class="Apple-converted-space"> </span>自动化提供了一致性和可追溯性。</p>
+<p class="translated">下一个神话是简单地添加安全工具会创建DevSecOps。<span class="Apple-converted-space"> </span>不是增加新工具，也不是增加更多开发者。他说，这不是一种能力，而是一种心态。<span class="Apple-converted-space"> </span>“你可以很容易地用你拥有的开发人员做到这一点。”让安全成为他们工作的一部分和绩效评估的一部分。"</p>
+<h3 class="translated"><b>从哪里开始</b></h3>
+<p class="translated">还是不知所措？从小处着手。<span class="Apple-converted-space"> </span>阿里以邮件整合起家。慢慢地，他们增加了工具，开始打破孤岛，改变期望。<span class="Apple-converted-space"> </span>电子邮件整合后，公司开始使用<a href="https://www.pagerduty.com/" class="ext-link" rel="external ">page duty</a>的警报服务，这导致了Atlassian的<a href="https://www.atlassian.com/software/jira" class="ext-link" rel="external ">吉拉</a> bug跟踪系统的整合，整个管道被集中化，并有日志记录和智能监控。<span class="Apple-converted-space"> </span></p>
+<p class="translated">三年后，他们现在在失败前捕捉事物。</p>
+<h3 class="translated">开发者面临的最大挑战<span class="Apple-converted-space"> </span></h3>
+<p class="translated">必须设身处地为他们着想。<span class="Apple-converted-space"> </span>如果你告诉他们，你必须实现自动化，你必须使用DevOps工具，而现在我说的是‘同样内置安全性’，从他们的角度来看，突然间我有了三份工作，而不是一份。</p>
+<p class="translated">“鉴于这一点，我会讨厌我的工作，”阿里说。<span class="Apple-converted-space"> </span>所以我来了，积极提供教练传福音和支持。他告诉他的团队，他们将提供培训、工具和框架，并支持他们的工作。<span class="Apple-converted-space">T41】</span></p>
+<p class="translated">看到大多数<span class="Apple-converted-space"> </span>的工作实际上已经完成，开发团队意识到他们只需要利用自动化。<span class="Apple-converted-space"> </span>现在，没有人签入他们的代码，大家都很自然地在做。<span class="Apple-converted-space"> </span>部署不再是问题。</p>
+<p class="translated">“仍然存在挑战，但我们已经为他们开辟了一条道路，让他们开始采纳，而不是退缩，”他说。</p>
+<h3 class="translated"><strong>最终提示</strong></h3>
+<p class="translated">“你必须知道你把数据放在哪里，弄清楚里面有什么，你如何检查数据，谁与数据交互，以及如何保护数据，”他说。</p>
+<p class="translated">“在你提出这些问题之前，你的应用和数据是不安全的。”</p>
+<p class="attribution translated">PagerDuty是新栈的赞助商。</p>
+<p class="attribution translated">图片由T.C. Currie提供。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

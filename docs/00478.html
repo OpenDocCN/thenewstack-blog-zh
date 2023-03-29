@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>A Tale of Two Times: How News Publishers Address Change in the Data Center</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">两个时代的故事:新闻出版商如何应对数据中心的变化</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tale-two-times-news-publishers-address-change-data-center/#0001-01-01">https://thenewstack.io/tale-two-times-news-publishers-address-change-data-center/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">众所周知，美国报业继续经受着收入下降的风暴。去年6月，<a href="https://www.pewresearch.org/fact-tank/2017/06/01/circulation-and-revenue-fall-for-newspaper-industry/" class="ext-link" rel="external ">皮尤研究中心</a>报告称，2016年美国日报的平日发行量比2015年平均下降了10%。众所周知，在线广告正在吸收这些收入，同时产生新的收入:与皮尤报告几乎同时，互联网广告局报告称，仅在2017年第一季度，美国媒体的数字广告收入同比增长23%，达到196亿美元。</p>
+<p class="translated">报纸，如他们继续被称为，也在数字媒体业务。但直到最近，从业务部门的角度来看，数字业务部门通常是与印刷部门分开的。为了自身的生存，报纸出版商需要在所有媒体中重新确立自己的新闻出版商地位。这意味着这些独立的业务部门必须整合，也意味着他们的技术平台必须立即整合在一起。</p>
+<p class="translated">如果“集成”意味着将这些单位的旧软件焊接在一起，那就不是一个选项。但这可能意味着将他们分散的数据仓库连接起来，或者至少让员工和记者看起来已经这样做了。</p>
+<p class="translated">“我们已经被技术严重破坏了，”<a href="https://twitter.com/nicksrockwell?lang=en" class="ext-link" rel="external ">尼克·洛克威尔</a>，纽约时报公司<a href="https://twitter.com/nicksrockwell?lang=en" class="ext-link" rel="external ">的首席技术官，谈到新的堆栈时说，“然而我们对我们的采用有点保守。我认为这是一个让我们真正走出舒适区，走在前沿的必要和重要的时刻，因为优势是如此深远，实际上非常适合我们的工作，它实际上可以对我们的业务产生巨大的影响。如果我们没有从技术颠覆的积极方面获益，那我们就是在伤害自己。”</a></p>
+<p class="translated">“我们想要的是一种将我们所有不同的数据源统一到一个单一视图的方式，”Tronc(该公司前身为Tribune Publishing)洛杉矶时报媒体集团负责数据的副总裁Alejandro Cantarero说，“这是该公司以前没有实现的。”</p>
+<p class="translated">在另一条海岸线上，NYT公司实际上已经看到了数字方面的收入增长，上个月报告数字广告收入同比增长11%，这要归功于令人瞠目的数字用户69%的年增长率。这还不足以关闭印刷收入的分水岭，同期下降了20%，公司整体季度同比下降了9%。</p>
+<p class="translated">出于这样或那样的原因，两家公司都有明确的任务，围绕一个单一的数字基础重新调整他们的平台重点。但是他们这样做的技术策略却大相径庭。</p>
+<h2 class="translated">Tronc的旧巨石现在是它的安全网</h2>
+<p class="translated">“我们从零开始重建了大数据平台，”Tronc的Cantarero说。</p>
+<p class="translated">“基本上没有大数据平台。当我去年初加入公司时，是为了构建我们的大数据解决方案，并将数据科学作为公司的核心竞争力。”</p>
+<p class="translated">可以说，任何报纸最有价值的数据存储都是由其内容管理系统(CMS)管理的。去年三月，Tronc已经开始了将CMS迁移到Arc T5的任务，Arc T5是在华盛顿<em>邮政</em>建立的一个平台。因此，无论Tronc工程团队将构建什么样的数据平台，都需要有效地与CMS分离，依赖于它的数据馈送，但不永久绑定到它。</p>
+<p class="translated">“当从零开始建设时，我非常喜欢跳跃前进，”坎塔雷罗在接受我们采访时说。“我不想落后很多年。如果你是在好的、稳定的基础上构建的，那么当你的整个平台建立并运行起来的时候，你就已经远远落后于前沿了。我认为一段时间以来，微服务是一切发展的方向，这一点已经很明显，而且有很多优势。”</p>
+<p class="translated">Tronc团队的策略包括立即建立一个数据驱动的平台，目的是在以后的阶段为系统添加机器学习能力。没有太多时间来评估选项，它在发布的那个星期就采用了<a href="https://d2iq.com/" class="ext-link" rel="external ">中间层数据中心操作系统(DC/OS) 1.0 </a>。有了DC操作系统，它将执行一种非同寻常的反向迁移，这是一种在生产中有效测试新代码时保持安全的方法:它将旧论坛报公司的整个数据平台快速迁移到传统的基于AWS EC2的虚拟机。然后，该团队创建了Mesos框架，以分阶段承担某些数据驱动任务的责任。</p>
+<p class="translated">“在Tronc，我们能够在几周内复制四名工程师花了一年半时间建造的东西，”Cantarero说。他指出，如果Kubernetes在当时发展到今天的程度，它可能会被视为一种选择。他告诉我们，在他之前在另一家公司的职位上，他和他的同事们发现自己在为Kubernetes构建垫片，以实现其路线图上的功能，但尚未发布。Mesos，以及DC/OS，在更早的时候已经发展成为一个完整的平台。</p>
+<p class="translated">Tronc的高级数据工程师Matt Chapman表示，即使有一个完全进化的Kubernetes作为选择，他和他的同事也可能会拒绝它，因为他们必须在容器中而不是本地运行Spark和Cassandra——Tronc的分析和即将到来的ML操作的重要成分。Chapman告诉我们，在他看来，容器化的Spark存在性能问题。他相当尖锐地指出，在Docker的控制下运行大多数服务不是一个选项。</p>
+<p class="translated">“我不是Docker守护进程的忠实粉丝，所以我喜欢在没有它的情况下运行，”Chapman说。“我认为Mesos更接近金属，能够运行轻量级的本地集装箱化。我们正在处理一些事情，我们希望降低到微秒级的延迟，以实时分析网络流量，对于某些依赖于速度的事情，例如卡夫卡，我们使用<em>和</em>。我们会为你的下一本书推荐即时内容。”</p>
+<p class="translated">随着新服务的分阶段实施，如果遇到问题，Tronc可以回到其旧平台——仍可通过EC2使用。因此，旧的巨石现在作为一个安全网。Chapman和Cantarero承认，有时候，他们不得不将服务从DC/OS中抽出来，退回到EC2平台，特别是当DC/OS升级，新的配置与Tronc添加的代码不匹配时。</p>
+<h2 class="translated">NYT通过谷歌的BigQuery避免了管理上的麻烦</h2>
+<p class="translated">纽约时报公司的数字战略受到了无服务器概念的启发，正如它向CTO Nick Rockwell解释的那样:在没有操作系统的情况下运行代码。这是一个比<a href="https://thenewstack.io/guide-serverless-technologies-functions-backends-service/" class="local-link">更宽松的定义，它通常在新的堆栈</a>中呈现为功能即服务平台。</p>
+<p class="translated">正如Rockwell为我们定义的那样，“任何自我扩展、自力更生和可用的环境，在那里你不必处理扩展和可用性的问题。”</p>
+<p class="translated"><a href="https://thenewstack.io/caching-hadoop-new-york-times-embraces-new-technology/" class="local-link">去年4月</a>，新的堆栈描述了罗克韦尔和他的数字团队，就在他们决定绕过Hadoop，将NYT的数据存储从他们的数据仓库转移到使用<a href="https://cloud.google.com/bigquery/" class="ext-link" rel="external "> Google BigQuery </a>的公共云中之后。从那时起，罗克韦尔接受了对<a href="/category/serverless/" target="_blank">无服务器</a>的更宽松定义，分解现有应用程序，并在<a href="https://cloud.google.com/appengine/" class="ext-link" rel="external ">谷歌应用引擎</a>上重建它们的对应应用程序。</p>
+<p class="translated">“如何迭代变化是技术管理的核心挑战之一，”Rockwell在最近与我们的采访中断言。“我认为真正的答案往往取决于每个人的具体情况。但对我们来说，如果你有一个相当模块化的整体应用程序架构，开始移动部件就相当容易了。”</p>
+<p class="translated">NYT数字团队及其管理层确实研究了在集装箱化环境中运营的可能性。他们确实决定利用<a href="https://cloud.google.com/kubernetes-engine" class="ext-link" rel="external "> Google Kubernetes引擎</a>来实现一些功能。但像Tronc一样，NYT决定不管理自己的集装箱化平台，这将涉及将Kubernetes置于其管理战略的中心。洛克威尔认为，一个原因是:完全在内部管理卡夫卡——这对NYT目前的书库至关重要——太耗时了，在这个过程中产生的价值太少。</p>
+<p class="translated">“如果你订阅了一个特定的云以及他们做事的方式，”CTO说，“很多关于如何分解服务的工作已经为你完成了。你必须配合它。我发现这很强大，因为软件开发中努力和低效的一个重要来源是，我们作为开发人员必须做出的所有选择。每次你坐下来做一个项目，如果你是从一张白纸开始，你必须重新做出每一个基础技术的选择。如果你在一个受约束的环境中工作，比如说App Engine，大多数选择已经为你做好了，你别无选择，只能着手创建你真正需要的实际逻辑。”</p>
+<p class="translated">Rockwell认为，开源对基础设施现代化的贡献是有价值的。但他告诉我们，这种情况即将结束，因为亚马逊、微软和谷歌进入这个领域，开始做出开发团队可能会做出的决定，只是在这个过程中消耗了更多的时间。</p>
+<p class="translated">“我们倾向于在未来使用比过去更少的开源软件，”Rockwell说，“因为相反，我们将依赖于诸如BigQuery、Pub/Sub、<a href="https://cloud.google.com/spanner/" class="ext-link" rel="external "> Cloud Spanner </a>、App Engine等等……我们自己运行Kafka，我真的不想这么做。我们将在明年看到<a href="https://www.atlassian.com/software/confluence" class="ext-link" rel="external ">融合管理的卡夫卡</a>；我们还将看看像<a href="https://cloud.google.com/pubsub/" class="ext-link" rel="external "> Pub/Sub </a>这样更简单的队列是否可以做我们需要的事情，或者是否可以进化来做我们需要的事情。因为坦率地说，如果可以避免的话，我真的不想运行一个开源应用程序，也不想被管理一个像Kafka这样复杂的应用程序所困扰。”</p>
+<p class="translated">尽管NYT公司和Tronc采用了两种不同的方法来快速过渡各自的数据平台，但两家公司的IT团队都将Kubernetes和集装箱化视为岔路口。他们没有接受，而是绕道而行，以避免承担更大的管理工作量。对于希望用较小的IT团队赢得较大企业的容器平台开发人员来说，这里可能有一个教训:完全管理的选项可能最终赢得他们，并将他们转移到实际上使用容器的平台上。但是顾客不会知道，也不会在意。</p>
+<p class="attribution translated">专题图片:大约1942年纽约时报新闻发布室的照片，最初由美国陆军部出版，现在在公共领域。</p>
+<p class="attribution translated">谷歌和<a href="https://d2iq.com/" class="ext-link" rel="external ">中间层</a>是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

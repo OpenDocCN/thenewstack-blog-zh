@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Google Firebase Trims the Middle Tier for Faster App Dev</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Google Firebase精简中间层以加快应用程序开发</h1>
+<blockquote>原文：<a href="https://thenewstack.io/google-firebase-trims-middle-tier-faster-app-dev/#0001-01-01">https://thenewstack.io/google-firebase-trims-middle-tier-faster-app-dev/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">上个月在纽约举行的<a href="http://serverlessconf.io/" class="ext-link" rel="external "> Serverlessconf </a>会议上，谷歌工程师<a href="https://twitter.com/asciimike" class="ext-link" rel="external ">迈克·麦克唐纳</a>和<a href="https://twitter.com/puf" class="ext-link" rel="external ">弗兰克·范·普夫伦</a>解释了<a href="https://firebase.google.com/" class="ext-link" rel="external ">谷歌Firebase </a>的秘密武器:也就是说，应用程序不需要查询数据库，而是从数据库本身监听变更通知。</p>
+<p class="translated">“我们已经淘汰了中间层。麦克唐纳说:“你的客户会直接与托管服务部门沟通。</p>
+<p class="translated">存储在Firebase数据库中的数据是通过将异步侦听器附加到数据库引用来检索的。对于数据的初始状态，监听器将被触发一次，并且在数据发生变化的任何时候都会被触发一次，”<a href="https://www.firebase.com/docs/web/guide/retrieving-data.html" class="ext-link" rel="external ">文档说明</a>。</p>
+<p class="translated">该软件还提供了其他优势。例如，用户不必担心数据库服务是由一台机器还是一个集群来处理。对他们来说，它是一个数据库服务的API，可以扩展到任何工作负载，细节从操作员那里抽象出来。</p>
+<p class="translated">Firebase属于<a href="https://thenewstack.io/serverless-computing-growing-quickly/" class="local-link">无服务器技术</a>范畴，因为它消除了设置大量基于服务器的基础设施来运行应用程序的需要。但它提供的服务比亚马逊的Lambda、IBM的OpenWhisk、甚至是博格自己的谷歌云功能都更加定制化。</p>
+<p class="translated">Firebase是由两位工程师在十年前创建的，扩展了他们创建的综合在线聊天服务。他们发现这项服务也可以传递其他形式的应用数据。两人在2012年创办了一家公司，谷歌在2014年收购了这家公司。</p>
+<p class="translated">Serverlessconf的Puffelen说，对于project，“我们的目标是去除中间件”。简而言之，Firebase是一组集成的服务，可用于快速构建应用程序。</p>
+<p class="translated">谷歌还将Firebase视为其他更丰富的谷歌云平台服务的温和引入。该团队正在将Firebase与<a href="https://cloud.google.com/" class="ext-link" rel="external ">谷歌云平台</a>服务进行集成，以便随着开发人员及其应用程序变得更加复杂，为他们提供一个简单的升级途径。</p>
+<p class="translated">“我们希望随着您的扩展而扩展，当您构建应用程序并获得知识时，您将拥有一整套基础架构的惊人入口。很多是服务器端的，但很多是无服务器的，”McDonald说。“事件刚刚发生，你可以对它们做出反应，并结合你需要的片段。”</p>
+
+<p/>
+<p class="translated">那么你能用Firebase做什么呢？主要服务是<a href="https://firebase.google.com/docs/database/" class="ext-link" rel="external "> Firebase实时数据库</a>将数据存储为JSON字符串，并实时同步到每个连接的客户端。</p>
+<p class="translated">在此基础上，还建立了各种其他专业服务。<a href="https://firebase.google.com/docs/cloud-messaging/" class="ext-link" rel="external ">消息</a>用于发送通知，并为用户提供即时消息。<a href="https://firebase.google.com/docs/auth/" class="ext-link" rel="external ">认证</a>服务提供后端服务、软件开发工具包和现成的UI库来认证用户。身份认证可以通过使用密码或联合身份提供商(如谷歌、脸书和Twitter)来完成。Firebase <a href="https://firebase.google.com/docs/storage/" class="ext-link" rel="external ">存储</a>可用于存储和提供用户生成的内容，如照片或视频。</p>
+<p class="translated"><a href="https://firebase.google.com/" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1258322" src="../Images/6ac440f96482330d00d516733cecc002.png" alt="Firebase" data-id="1258322" data-original-src="https://thenewstack.io/wp-content/uploads/2016/05/Firebase.png"/> </a></p>
+<p class="translated"><a href="https://firebase.google.com/docs/hosting/" class="ext-link" rel="external ">静态网页托管</a>、<a href="https://firebase.google.com/docs/remote-config/" class="ext-link" rel="external ">远程手机app配置</a>、<a href="https://firebase.google.com/docs/remote-config/" class="ext-link" rel="external ">安卓app测试</a>、<a href="https://firebase.google.com/docs/crash/" class="ext-link" rel="external ">崩溃报告</a>也有。</p>
+<p class="translated">表面上是一个移动开发平台，Firebase可以用于Android和iOS，以及Web应用程序、C++应用程序和一般的基于服务器的应用程序。服务器应用程序<a href="https://firebase.google.com/docs/server/setup#prerequisites" class="ext-link" rel="external ">需要服务器上的Java SDK或节点SDK </a>。从Firebase控制台，您创建一个项目并下载一个带有您的服务帐户凭证的JSON文件，然后将它放在您的Web应用程序/页面中。<a href="https://firebase.google.com/docs/server/setup#initialize_the_sdk" class="ext-link" rel="external "> For Node.js </a> : <br/></p>
+<div id="crayon-6423109fcbcbe043638022" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+
+</td>
+<td class="crayon-code translated"><div class="crayon-pre"> <p class="crayon-line" id="crayon-6423109fcbcbe043638022-1"> <span class="crayon-h"> &lt; </span> <span class="crayon-e">跨度</span> <span class="crayon-i">类</span>=<span class="crayon-s">【KWD】</span><span class="crayon-h">&gt;</span><span class="crayon-i">var</span><span class="crayon-h">&lt;</span>/<span class="crayon-i">跨度</span><span class="crayon-h">&gt;</span><span class="crayon-h">&lt;</span><span class="crayon-e">跨度</span> <span class="crayon-i">类</span>=<span class="crayon-s">【pln】</span><span class="crayon-h"> <span class="crayon-i">跨度</span><span class="crayon-h">&gt;</span><span class="crayon-h">&lt;</span><span class="crayon-e">跨度</span> <span class="crayon-i">类</span> = <span class="crayon-s">【双关】</span><span class="crayon-h">&gt;</span>=&lt;</span>/<span class="crayon-i">跨度</span><span class="crayon-h">&gt;<span class="crayon-h"/><span class="crayon-h">&lt;</span><span class="crayon-e">跨度</span> <span class="crayon-i">跨度</span><span class="crayon-h">&gt;</span><span class="crayon-h">&lt;</span><span class="crayon-e">跨度</span> <span class="crayon-i">类</span> = <span class="crayon-s">【双关】</span><span class="crayon-h">&gt;</span>(<span class="crayon-h">&lt;/<span class="crayon-i">跨度</span><span class="crayon-h">&gt;</span><span class="crayon-h"><span class="crayon-i"/><span class="crayon-e">跨度 <span class="crayon-h">&lt;</span>/<span class="crayon-i">span</span><span class="crayon-h">&gt;</span></span></span></span></span></p><p class="crayon-line crayon-striped-line" id="crayon-6423109fcbcbe043638022-2"/><p class="crayon-line" id="crayon-6423109fcbcbe043638022-3"><span class="crayon-h">&lt;</span><span class="crayon-e">span</span><span class="crayon-i">class</span>=<span class="crayon-s">【pln】</span><span class="crayon-h">&gt;</span><span class="crayon-i">firebase</span><span class="crayon-h"><span class="crayon-h">&lt;</span>/<span class="crayon-i">span</span>&gt;</span><span class="crayon-h">&lt;</span><span class="crayon-e">span</span><span class="crayon-i">class</span>=<span class="crayon-s">【pln】</span><span class="crayon-h">&gt;</span><span class="crayon-i">initialize app</span><span class="crayon-h">&lt;</span>/<span class="crayon-i"> <span class="crayon-i">跨度</span><span class="crayon-h">&gt;</span><span class="crayon-h">&lt;</span><span class="crayon-e">跨度</span> <span class="crayon-i">类</span>=<span class="crayon-s">【pln】</span><span class="crayon-h">&gt;</span></span></p><p class="crayon-line crayon-striped-line" id="crayon-6423109fcbcbe043638022-4"><span class="crayon-h"/><span class="crayon-i">service account</span><span class="crayon-h">&lt;</span>/<span class="crayon-i">跨度 <span class="crayon-i">span</span><span class="crayon-h">&gt;</span><span class="crayon-h"/><span class="crayon-h">&lt;</span><span class="crayon-e">span</span><span class="crayon-i">class</span>=<span class="crayon-s">【str】</span><span class="crayon-h">&gt;</span><span class="crayon-s">path/to/&lt;/span&gt;&lt;var&gt;&lt;span class JSON "</span><span class="crayon-h">&lt;</span>/<span class="crayon-i">span</span><span class="crayon-h">&gt;<span class="crayon-h">&lt;</span><span class="crayon-e">span</span><span class="crayon-i">class</span>=<span class="crayon-s">【双关】</span> <span class="crayon-h"> &gt; </span>， <span class="crayon-h">&lt;</span>/<span class="crayon-i">span</span><span class="crayon-h">&gt;</span><span class="crayon-h">&lt;</span><span class="crayon-e">span</span><span class="crayon-i">class</span>=<span class="crayon-s">【pln】</span><span class="crayon-h">&gt;</span></span></span></p><p class="crayon-line" id="crayon-6423109fcbcbe043638022-5"><span class="crayon-h"/><span class="crayon-i">database URL</span><span class="crayon-h"> <span class="crayon-i">span</span><span class="crayon-h">&gt;</span><span class="crayon-h"><span class="crayon-h">&lt;</span><span class="crayon-e">span</span><span class="crayon-i">class</span>=<span class="crayon-s">【str】</span>【T3330】&gt;</span>【T3332】【https://&lt;/span&gt;&lt;var&gt;&lt;span class <span class="crayon-h"> &lt; </span> / <span class="crayon-i">跨度</span><span class="crayon-h">&gt;</span></span></p></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="translated"><br/>在会议上，两人展示了一个样本<a href="https://github.com/firebase/friendlypix" class="ext-link" rel="external ">照片分析应用</a>，它将显示Firebase的功能。</p>
+<p class="translated">麦克唐纳用他的智能手机给观众拍了一张照片，然后他把照片上传到了Firebase的存储器中。这个动作启动了一个<a href="https://thenewstack.io/google-cloud-functions-arrives-challenge-aws-lambda/" class="local-link"> Google Cloud Function </a>功能，该功能可以由对象故事的变化或发布/订阅通知触发。在这种情况下，该函数自动调用<a href="https://cloud.google.com/vision/" class="ext-link" rel="external "> Google Cloud Vision API </a>，这是一种可以根据主题对照片进行分类的服务，然后将结果显示回来。</p>
+<p class="translated">麦克唐纳说，这个应用程序全部由不到145行代码组成，包括HTML、JavaScript、CSS和JSON代码。</p>
+<h2 class="translated">Firebase和10X开发车间</h2>
+<p class="translated">Firebase的意义不仅仅在于它提供了一套快速开发工具。这也是无服务器服务应该如何工作的先兆，<span>观察到</span><a href="https://twitter.com/JoeEmison" class="ext-link" rel="external ">Joe Emison </a> <span>,</span><a href="https://www.buildfax.com/" class="ext-link" rel="external ">build fax</a><span>(也是本网站</span><a href="https://thenewstack.io/author/joe-emison/" class="local-link"/><span>的定期撰稿人)的创始人兼首席技术官Joe Emison<span>在Serverlessconf的另一次演讲中说道。</span></span></p>
+<p class="translated">“Firebase是一个非常棒的工具。没有任何东西能与之媲美。但是你不能把它当成数据库。Emison说:“位于它之上的微服务使你作为开发人员能够非常快速地做事情——这是一个很好的API，它的响应速度非常快——它更像是一种满足组织某些需求的服务。”</p>
+<p class="translated">Emison说他不相信10x开发人员(比他或她的同行高10倍的开发人员)，但是相信10x开发车间。这些商店的秘密是快速迭代，这将是企业向前发展的竞争需要。</p>
+<p class="translated">“10倍开发是关于最小化依赖性。不要让你的开发人员等待数据库管理员或it运营人员。"这是我关心的无服务器环境."</p>
+<p class="translated">https://twitter.com/JoeEmison/status/736380070638587904</p>
+<p class="translated">Emison概述了他使用一套定制的无服务器技术构建的应用程序。</p>
+<p class="translated">这个名为CommercialSearch.com<a href="https://www.commercialsearch.com/" class="ext-link" rel="external ">的网站是一个面向商业的房地产搜索服务网站，每月有大约30万独立访问者。由两位开发人员在四个月内创建，它运行在大约13，000行代码上。大部分工作由无服务器服务完成:搜索由</a><a href="https://www.algolia.com/" class="ext-link" rel="external "> Algolia </a>、<a href="http://cloudinary.com/" class="ext-link" rel="external "> Cloudinary </a>负责图像托管。Firebase处理列表和验证。</p>
+<p class="translated">Emison解释说，Firebase是一种代理服务，或者是一种定制服务，使一些技术更容易使用。在这种情况下，它提供定制的数据库管理服务。同样，Algoria也是Elasticsearch的代理服务。</p>
+<p class="translated">尽管许多IT架构师认为中间层是开发的核心，但是今天的大部分开发都发生在前端。而后端往往由管理员来处理。“我认为<a href="https://thenewstack.io/why-the-middle-tier-including-docker-wont-matter-to-most-of-us/" class="local-link">中间层正在消失</a>。如果我们看看软件开发的发展方向，它是关于胖客户端的。是关于移动应用的。它是关于单页应用程序的。这是关于将许多流程转移到客户端。我们过去放在中间层的代码正在转移到客户端，”他说。</p>
+<p class="translated">他说，AWS Lambda等更通用的无服务器服务“只是我所需的一小部分”。他正在寻找能够带来更快发展的定制服务，比如Firebase。</p>
+<p class="translated">“我更需要Firebase，而不是某个地方来执行代码，”Emison说。</p>
+<p class="translated">Google Firebase serving是Google提供的一项服务，它有一个三层定价模型<a href="https://firebase.google.com/pricing/" class="ext-link" rel="external ">和一个面向原型开发和爱好者的免费层，一个面向可预测工作负载的25美元固定定价模型，以及面向大规模使用的商品定价。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

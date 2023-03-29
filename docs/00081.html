@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>A Different VMware: An API-Driven Hypervisor and a Docker Oriented vSphere</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">不同的VMware:API驱动的虚拟机管理程序和面向Docker的vSphere</h1>
+<blockquote>原文：<a href="https://thenewstack.io/a-different-vmware-an-api-driven-hypervisor-and-a-docker-oriented-vsphere/#0001-01-01">https://thenewstack.io/a-different-vmware-an-api-driven-hypervisor-and-a-docker-oriented-vsphere/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">VMware的云原生应用程序团队继续努力让开发人员成为数据中心的一流用户，今天在DockerCon上推出了两项新技术预览版— VMware AppCatalyst和Project Bonneville。</p>
+<p class="translated">VMware产品管理和架构高级总监Jared Rosoff表示:“我们已经花了大量时间来研究开发人员实际上是如何构建这些云原生应用程序的，并寻找我们可以减少开发人员工作流和IT数据中心工作流之间摩擦的方法。</p>
+<ul>
+<li class="translated">AppCatalyst是一种API和命令行界面(CLI)驱动的管理程序，旨在为开发人员提供一种在桌面上复制私有云的简单方法。它的特点是<a href="https://thenewstack.io/the-role-for-vmwares-project-fargo-in-the-docker-ecosystem/" class="local-link">项目光子</a>，一个开源的最小Linux容器主机，Docker机器和一个与流浪者的集成。</li>
+</ul>
+<p class="translated">这是Mac OS X的免费产品<a href="http://www.vmware.com/go/communities-appcatalyst" class="ext-link" rel="external ">在这里</a>(需要注册)。</p>
+<ul>
+<li class="translated"><strong> Project Bonneville </strong>将Docker容器无缝集成到VMware vSphere平台中，允许管理员使用他们现有的管理流程和工具。这仅仅是一个预览；罗塞夫说，VMware尚未决定如何最好地将其包装成一种产品。</li>
+</ul>
+<p class="translated">Rosoff说，虽然开发人员使用其Fusion和工作站产品，但该公司看到了一个机会，可以通过AppCatalyst为他们创造更好的体验。</p>
+<p class="translated">他说:“我们希望在你的数据中心使用所有的API、存储、网络抽象和其他类型的服务，并在你的桌面上模拟它们。”虽然它计划最终添加网络和存储抽象，但目前还不可用。</p>
+<p class="translated">他说，大多数软件开发人员都在分布式系统上工作，但是很难在桌面上运行这些分布式系统。部分原因是虚拟机管理程序旨在运行基于图形用户界面的工作流来创建虚拟机，而不是API驱动的工作流。Fusion不像ESX那样基于相同的虚拟机管理程序，它没有虚拟存储和虚拟网络，这些东西可能会在您的应用程序中使用。</p>
+<p class="translated">AppCatalyst利用了与Fusion或Workstation或ESX相同的虚拟机管理程序，“但我们已经删除了GUI，因为它碍事，”他说。这是第一个捆绑了VMware在4月份推出的Photon container主机运行时的虚拟机管理程序。</p>
+<p class="translated">“关于AppCatalyst的事情是，如果你正在运行容器工作负载，你根本不需要担心虚拟机或Linux实例，你只需要启动AppCatalyst，你可以指向Docker，就好像你的Mac有本机容器支持一样，”他说。</p>
+<p class="translated">与此同时，Bonneville项目基本上是Docker容器引擎和ESX系统管理程序的合并。</p>
+<p class="translated">对于开发人员来说，它使vSphere基础架构看起来像一个Docker主机。他们可以创建容器，使用Docker Hub或任何存储库中的任何映像，但每个容器实际上都通过vSphere封装在虚拟机中。</p>
+<p class="translated">“它融合了两个世界的精华——开发人员可以在他们的桌面上使用真正简单的Docker工作流，但对于数据中心管理员和It运营人员来说，容器在所有管理系统中都以虚拟机的形式出现。你可以使用数据中心管理工具的整个生态系统，”他说。</p>
+<p class="translated">虽然开发人员喜欢Docker，但运营人员一直担心管理和安全问题。Rosoff说，容器内的应用程序对他们来说是不可见的，并且在他们的日志聚合平台之外运行。</p>
+<p class="translated">因此，虽然VMware希望为开发人员保留Docker的用户体验，但它希望提高运营方面的管理能力。</p>
+<p class="translated">对于开发人员来说，数据中心看起来就像Docker主机在笔记本电脑上的样子。</p>
+<p class="translated">“在后端，Bonneville将Docker API与我们在vSphere 6中引入的VAS VM clone技术相集成，”他解释道。这是该公司集成分叉技术的地方，以前被称为<a href="https://thenewstack.io/the-role-for-vmwares-project-fargo-in-the-docker-ecosystem/" class="local-link"> Project Fargo </a>，这是一种启动速度更快的轻量级虚拟机，看起来和感觉上都像一个容器。</p>
+<p class="translated">“因此，当你启动一个容器时，正如Bonneville所做的那样，它会派生出虚拟机，并在虚拟机中运行你的容器。对于开发人员来说，您可以获得无缝体验。它在其他地方看起来就像一个Docker运行时。有了运营团队，您可以从包装这些容器的虚拟机中获得非常强大的安全隔离。它们以虚拟机的形式出现在您的管理工具中，您可以应用与现有数据中心相同的安全模式和治理模式，”Rosoff说。</p>
+<p class="translated">十个月前，VMware宣布计划通过与Docker和Google Kubernetes的<a href="https://thenewstack.io/vmware-teams-with-docker-and-google-further-boosting-the-container-ecosystem/" class="local-link">合作来拥抱容器技术。VMware副总裁兼云原生应用首席技术官Kit Colbert表示，公司将在未来几个月</a>发布一系列<a href="https://thenewstack.io/amid-container-vs-vm-hype-vmware-draws-docker-closer/" class="local-link">公告。</a></p>
+<p class="translated"><a href="https://thenewstack.io/vmware-announces-cloud-native-tools/" class="local-link">4月，它宣布了Project Lightwave </a>，一个容器身份和访问管理解决方案；它的轻量级Linux操作系统Photon而它的分拆公司Pivotal宣布了Lattice，这是Cloud Foundry的集群化容器调度、路由和日志聚合的轻量级包装。</p>
+<p class="translated">IDC分析师Gary Chin是云和虚拟化系统软件的研究经理，他认为AppCatalyst是为了吸引开发人员，开发人员是该公司的新受众。它的传统客户群一直在运营方面。他认为AppCatalyst更多的是为了获得VMware更大平台的采用。</p>
+<p class="translated">他指出，通过Bonneville项目，VMware正在优化容器的虚拟机管理程序，而不仅仅是将容器主机插入虚拟机。</p>
+<p class="translated">“很明显，VMware在虚拟机管理程序方面有着悠久的历史和投资，你可以看到他们为什么更喜欢这种模式，”他说。</p>
+<p class="translated">在业界关于裸机与虚拟化容器的讨论中，虚拟化为容器提供了额外的安全性和特性。他说，大多数客户已经有了虚拟化，而且技术非常成熟，所以开始部署容器是合乎逻辑的。</p>
+<p class="translated">“然而，虚拟化给容器带来了一些开销和低效，这是VMware试图消除的异议。我们也看到英特尔用Clear Containers展示了类似的东西，微软也暗示了在下一代Windows服务器中使用Windows containers和Hyper-V的类似模型。</p>
+<p class="translated">“每个人都在试图减少虚拟化容器的启动时间和内存使用，试图实现两全其美，”他说。“在商业企业市场，我们已经看到大多数容器都是虚拟化部署的，这很可能将成为未来的主流模式，裸机容器则留给更多的利基场景。”</p>
+<p class="translated">“如果这种混合虚拟机管理程序/容器技术确实可行，并且能够提供两者的最佳优势，那么客户就不必非要选择其中一个。”</p>
+<p class="attribution translated">VMware、Pivotal和Docker是新体系的赞助商。</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/senoranderson/" class="ext-link" rel="external "> Thomas Anderson </a>的<a href="https://www.flickr.com/photos/senoranderson/3363262014/in/photolist-68cAC7-qApHxE-kATkk-9w8eWL-3f2msW-4x2VzV-57CQyi-scyJrC-dtNMk2-6qnFNw-39cTno-5yoD2z-nWLzWw-5ysWZE-94DQwV-meZASP-dcr6LN-95ZYQH-sPhey-p29BJ2-6HsUwj-nK5Uuy-ekmC86-qrcSxK-fnu1NJ-dC4vsD-pQoLRf-6YWwXp-jH3uEM-8PEwKj-dGFJ4M-b5nAqK-cfs16N-meZE2e-dHT3Q3-vRLVd-iNmvEe-pLnSeN-dYdqhF-95sjWq-sYsSp-o5UjiH-o1bEXY-5c57BW-qutH67-dum3Ah-wEM4b-aNMMCt-5a5XJH-ss52zb" class="ext-link" rel="external ">驾驶沃尔沃</a>，2.0 的<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC授权。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

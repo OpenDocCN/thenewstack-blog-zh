@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Kubernetes Saves Spire Service During AWS Outage</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Kubernetes在AWS停机期间节省Spire服务</h1>
+<blockquote>原文：<a href="https://thenewstack.io/kubernetes-credited-saving-spire-service-s3-outage/#0001-01-01">https://thenewstack.io/kubernetes-credited-saving-spire-service-s3-outage/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">周二下午亚马逊网络服务的S3云服务US-EAST-1可用区的<a href="http://www.businessinsider.com/aws-outage-hurt-internet-retailers-except-amazon-2017-3" class="ext-link" rel="external ">中断可能已经持续了长达四个小时，尚未得到诊断。接下来的周三下午，亚马逊支持论坛上要求该公司发表声明的几个帖子中，有一个被官方留为“未回复”。不过，一位顾客确实留下了这样的评论:“在大停电后一天保持沉默一点也不酷。你需要时间，说出来。我们大多数人都会理解。我们是那些在听到你的验尸报告后有自己的验尸报告要完成的人。”<em>(编者注:AWS已经在<a href="https://aws.amazon.com/message/41926/" class="ext-link" rel="external ">贴出了一份关于中断根本原因的摘要</a>)。</em></a></p>
+<p class="translated">但是一个亚马逊AWS客户——一个在目标可用性区域使用服务器的客户——没有事后分析可做。员工参与服务提供商<a href="https://spire.me/" class="ext-link" rel="external "> Spire </a>受到了中断的影响，尽管其首席工程师之一——Spire负责软件架构的副总裁<a href="https://www.linkedin.com/in/robertjscott1/" class="ext-link" rel="external ">Rob Scott</a>——周三报告称，其<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>驱动的服务部署立即减轻了这种影响，将其活动节点转移到其他EC2可用性区域，而他的团队则坐在一旁高兴地看着。</p>
+<p class="translated">“实际上，像周二这样的一天发生这种故障可能会导致数小时的停机时间，”斯科特周三在一篇中型博客文章中写道。“有了Kubernetes，就不会有片刻的恐慌，只有一种敬畏感，看着自动缓解发生。”</p>
+<p class="translated">如果有更多的事件发生，斯科特就有故事可讲了。事实证明，Spire因其数据中心的就绪状态而实现了零停机，据他自己说。</p>
+<p class="translated">他认为Kubernetes的命令行工具<a href="https://github.com/kubernetes/kops" class="ext-link" rel="external "> <strong> kops </strong> </a>的使用对于Spire服务在S3停机期间的恢复能力至关重要，该工具用于自动化整个集群的部署——包括在EC2上。</p>
+<p class="translated">Scott告诉新堆栈:“<strong>Kops</strong>使配置多个可用性区域变得非常简单。“作为<strong>创建集群</strong>命令的一部分，您可以简单地选择您希望在其中调配实例的可用性区域。”</p>
+<p class="translated">在他的博客文章中，Scott建议读者使用<strong> kops </strong>在多个可用性区域中分配节点，并确保每个节点都能够故障转移到另一个节点。他说，不分配足够的故障转移容量的危险是，利用率可能会超过60%的容忍水平，可以想象会上升到令人吃惊的80%的水平。</p>
+<p class="translated">我们问斯科特，如果利用率跨过这个门槛，Spire会有什么危险？</p>
+<blockquote><p class="translated">“有了Kubernetes，就不会有片刻的恐慌，只有一种敬畏感，看着自动缓解发生。”</p></blockquote>
+<p class="translated">“当我们的利用率水平超过80%时，我们开始触发警报，因为这不会给我们留下太多的增长空间，”Spire副总裁回应道。“虽然80%的利用率可能不会很明显，但100%肯定会，当你开始接近这一水平时，你就要小心了。</p>
+<p class="translated">“如果您接近100%的利用率，任何系统上的使用高峰都可能意味着其他系统变慢甚至可能崩溃，”他继续说道。“根据定义，您的利用率会有所不同，因此为使用高峰留出一些空间非常重要。这也取决于节点的大小。如果你在亚马逊上使用类似于<a href="https://aws.amazon.com/ec2/instance-types/" class="ext-link" rel="external "> <strong> t2.medium </strong> </a>实例的4 GB内存，80%的利用率意味着你真的没有太多的内存用于任何类型的峰值。另一方面，如果你使用一个有32 GB内存的4.2倍大的，80%的利用率仍然会给你留下超过6 GB的内存。我想这就是说，80%对每个人来说都不是一个完美的数字；而是为各种用途留出一些额外空间。”</p>
+<p class="translated">Scott的博客文章还建议使用<a href="https://www.ianlewis.org/en/using-kubernetes-health-checks" class="ext-link" rel="external "> <em>就绪探测器</em></a>——Kubernetes的另一个本地特性，用作心跳机制。orchestrator停止向任何配备了无响应的就绪探测器的pod发送流量。然后它可能开始发射一个新的吊舱来取代它的位置。</p>
+<p class="translated">Spire是否会受益于使用更全面的监控系统，如Prometheus？还是准备就绪探测器提供了Spire需要的所有预防措施？</p>
+<p class="translated">“即使监控工具能够重新分配节点，”Scott回应道，“我也不愿意把这种控制权交给这样的工具。另一方面，像Prometheus这样功能强大的监控解决方案无疑具有重要价值。Kubernetes并不完美，肯定会有第三方工具发现Kubernetes可能忽略的异常。在运营中，冗余是关键。仅仅依靠普罗米修斯号或战备探测器是目光短浅的。最好的方法永远是在其中一个部分(无论是服务器还是监控工具)出现故障时仍能工作的方法。”</p>
+<p class="translated">社交媒体上对S3停电的很大一部分回应可以归结为，“冷静点，人们，这些事情会发生的。”Rob Scott的故事提供了一些急需的证据，证明这些事情不会发生——至少不会发生在那些有应变计划的组织身上。</p>
+<p class="translated"><em>【本文经过编辑，以反映Rob Scott周四下午做出的澄清。] </em></p>
+<p class="attribution translated">特征图片:<a href="https://commons.wikimedia.org/wiki/File:Oklahoma_City_National_Memorial_4878.jpg" class="ext-image" rel="external ">幸存者树</a>，它在1995年俄克拉荷马城Murrah联邦大楼爆炸中幸存，由Dual Freq制作，在知识共享<em>下授权。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

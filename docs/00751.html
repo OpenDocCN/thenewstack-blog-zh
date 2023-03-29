@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>GitLab Uses TriggerMesh to Offer Knative-Based Serverless Workflows</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">GitLab使用TriggerMesh来提供基于Knative的无服务器工作流</h1>
+<blockquote>原文：<a href="https://thenewstack.io/gitlab-uses-triggermesh-to-offer-knative-based-serverless-workflows/#0001-01-01">https://thenewstack.io/gitlab-uses-triggermesh-to-offer-knative-based-serverless-workflows/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">多亏了最近发布的Knative的强大和灵活性，GitLab已经为用户提供了从他们的存储库到Kubernetes集群上自动执行他们的无服务器代码的能力</p>
+<p class="translated">一家名为<a href="https://triggermesh.com/" target="_blank" class="ext-link" rel="external "> TriggerMesh </a>的新公司已经为GitLab提供了这种能力。</p>
+<p class="translated">GitLab Serverless于上个月底随着GitLab 11.6的发布而上线，它可以使用谷歌的开源软件<a href="https://cloud.google.com/knative/" target="_blank" class="ext-link" rel="external "> Knative </a>在Kubernetes上执行无服务器功能，该软件提供了一种方式<a href="https://www.youtube.com/watch?v=CylT5O6IfkU" target="_blank" class="ext-link" rel="external ">和其他功能</a>、<a href="/with-knative-google-brings-multicloud-serverless-to-the-enterprise/" target="_blank">来封装然后无服务器地运行Kubernetes </a>的工作负载。</p>
+<p class="translated">这是一个及时的提议。随着GitHub在今年早些时候推出了自己的高级工作流工具<a href="https://github.com/features/actions" target="_blank" class="ext-link" rel="external "> GitHub Actions </a>，GitHub lab正面临着越来越激烈的竞争。</p>
+<p class="translated">开发人员可以使用GitLab Serverless来编排整个“GitOps”风格的生命周期，其中代码一旦提交，就可以自动投入生产，或者自动转移到一组测试中，或者进行进一步的审批。这些服务为您提供了对权限和运行时间表的细粒度控制。</p>
+<p class="translated">该服务建立在TriggerMesh的无服务器管理平台上，该平台提供编排功能、事件库和用于管理无服务器功能的web控制台。它可以运行在用户自己的数据中心，或者作为TriggerMesh本身的托管服务。目前，该服务支持Python和JavaScript/Node.js。</p>
+<p class="translated">第一个目标将是Knative/Kubernetes在<a href="https://cloud.google.com/" target="_blank" class="ext-link" rel="external ">谷歌云平台</a>上的部署。之后，该公司将考虑支持其他环境，如亚马逊网络服务的Lambda。该公司已经有了一个开源项目，在配备了Knative的Kubernetes集群上运行Lambda函数。</p>
+<p class="translated">随着时间的推移，TriggerMesh可能会变成一辆“跨云活动巴士”，TriggerMesh联合创始人马克·辛克尔(Mark Hinkle)在最近于西雅图举行的<a href="https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/" target="_blank" class="ext-link" rel="external ">kube con+CloudNativeCon 2018</a>会议期间的一次会议上表示。用户可以拥有一个跨越多个云的事件驱动架构，其中一个云中的事件可以触发另一个云中执行的服务。“我们在那里看到的许多研究表明，无服务器将是跨云和多云的，”他说。</p>
+<p class="translated">今后，TriggerMesh可以帮助用户对他们的云使用做出高级决策，例如允许他们比较多个不同提供商的相同工作负载，以确定哪一个成本最低或执行时间最快。</p>
+<p class="translated">Hinkle说:“这是我们在很长一段时间内看到的云的第一次演变，我们认为这对企业来说是真正的变革。”“在内部为开发人员部署自助式IT仍然需要一定程度的系统管理知识。无服务器真正允许企业开发人员自助服务。他们可以将代码放入常规工作流程中。”</p>
+<p class="translated">该公司是在KNative发布后不久成立的，创始人认为kna tive有助于使Kubernetes在企业环境中易于使用，而Kubernetes的专业知识仍然短缺。TriggerMesh的目标是减少企业开发人员获取部署代码所需的运行时资源的时间。该公司的另一位联合创始人<a href="https://twitter.com/sebgoa" target="_blank" class="ext-link" rel="external ">塞巴斯蒂安·戈阿斯根</a>曾致力于KNative的前身<a href="https://kubeless.io/" target="_blank" class="ext-link" rel="external "> Kubeless </a>。</p>
+<p class="translated">“它允许开发人员直接部署，你允许操作人员进行检查和平衡，允许开发人员单独操作，”Hinkle说。无服务器可以提供更短的价值实现时间，但它仍然需要一个支持开发者的结构，TriggerMesh正在提供这种结构。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

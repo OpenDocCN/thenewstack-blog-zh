@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Reaching 1.0, HashiCorp Vault Comes into Its Own</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">达到1.0时，HashiCorp Vault开始发挥作用</h1>
+<blockquote>原文：<a href="https://thenewstack.io/reaching-1-0-hashicorp-vault-comes-into-its-own/#0001-01-01">https://thenewstack.io/reaching-1-0-hashicorp-vault-comes-into-its-own/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">经过近四年的开发，<a href="https://www.hashicorp.com/" target="_blank" class="ext-link" rel="external "> HashiCorp </a>宣布其秘密管理和数据保护工具库<a href="https://github.com/hashicorp/vault/blob/master/CHANGELOG.md" target="_blank" class="ext-link" rel="external ">1.0版</a>正式上市。</p>
+<p class="translated">它带来了新的功能，包括开源版本的<a href="https://www.vaultproject.io/docs/concepts/seal.html" class="ext-link" rel="external ">云自动解封</a>，据联合创始人兼联合首席技术官<a href="https://github.com/armon" class="ext-link" rel="external "> Armon Dadgar </a>称，这是社区一直渴望的，以及批量令牌，这是一种用于大规模和短暂工作负载的新型令牌。</p>
+<p class="translated">该公司于10月在旧金山举行的2018年HashiConf会议上宣布了Vault 1.0里程碑。这只是其产品套件中的<a href="https://thenewstack.io/hashicorp-aims-to-lighten-management-of-the-multicloud/" target="_blank" class="local-link">增强功能</a>之一，旨在降低多云环境的管理复杂性。</p>
+<p class="translated">Dadgar解释了为什么花了这么长时间才达到1.0，他说Hashicorp产品必须满足四个复选框:</p>
+<ul>
+<li class="translated">公司了解所有主要的用例，并支持95%到99%的用例。</li>
+<li class="translated">技术架构已经成熟。</li>
+<li class="translated">而且它有足够的时间投入生产，有足够多的用户使用它，找到错误并修复它们。</li>
+</ul>
+<p class="translated"><iframe loading="lazy" title="The Journey to Vault 1.0" src="https://www.youtube.com/embed/2wI0IMSl0ZE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">Dadgar说，云自动解封的开源版本诞生于其企业产品中，是用户最需要的功能之一。</p>
+<p class="translated">他说，过去的启封就像电影《猎杀红色十月》中的场景一样，启动一艘船意味着两个人必须同时插入钥匙并转动它们。</p>
+<p class="translated">“如果我是一名黑客，我可以获得你的密钥，我无法单独获得数据。手动很难做到，”他谈到为所有用户存储和重新组装Shamir的密钥的过程。</p>
+<p class="translated">它的解决方案是与云服务集成，如AWS KMS、Azure Key Vault和GCP CKMS，以自动化Vault的解封过程。</p>
+<p class="translated">“这归结于利用能够访问这些密钥的云提供商，对其进行配置，以便云提供商是唯一能够解封保险库的提供商。你有一把用途单一的钥匙，就是开启金库，仅此而已。它最终是一个非常狭窄的表面区域，你可以使用云原生许可系统，”他说。</p>
+<p class="translated">自动解封和密封包装—由两套不同的密钥保护的加密和静态存储的数据—仍将是企业产品的一部分。</p>
+<p class="translated">新的批处理令牌专为大数据等大规模工作负载和无服务器等短暂工作负载而设计。</p>
+<p class="translated">“如果我要运行一个机器学习模型，或者每天晚上我要处理一堆数据，突然之间，我可能会有数百或数千台机器同时开始运转并访问凭据。您试图平衡需求，因为我的数据管道运行在许多机器上。Dadgar解释说:“面临的挑战是大量的工作同时出现在许多许多机器上。</p>
+<p class="translated">同时，无服务器环境会产生真正短暂的工作负载。</p>
+<p class="translated">“因此，工作负载最终会变得非常具有突发性。您可能会从没有工作负载到有数千个请求，再回到零。</p>
+<p class="translated">“这两种模式都有点困难。你要么有一个非常大规模的模式，要么有一个非常突发的模式。这两者都给Vault带来了一些挑战，因为它试图跟踪所有用户。批处理令牌就是为这两个问题而设计的。它允许Vault处理这两种模式，而不会使Vault服务器不堪重负。”</p>
+<p class="translated">他是这样解释的:</p>
+<p class="translated">在标准模式下，Vault会跟踪与用户相关的所有信息。如果我登录到Vault，它会发送一个cookie显示，但在内部，它会跟踪我，我可以访问的东西。所有元数据跟踪的问题是，如果有很多用户，Vault需要处理大量元数据。如果我有一群用户，但是他们消失了，那么元数据就没用了。</p>
+<p class="translated">与Vault跟踪信息本身不同，它使用批处理令牌对所有元数据进行加密，并在cookie中将其返回给客户端。客户不知道Vault给了什么，因为它是加密的。但是，当它与Vault交互时，Vault解密元数据并处理请求，而不必在服务器端跟踪所有数据。</p>
+<p class="translated">该公司警告称，这些令牌不会写入磁盘，从而降低了Vault内任何操作的性能成本，但也不适合在遇到故障时需要持久性或弹性的操作。</p>
+<p class="translated">OpenAPI标准支持1.0版中其他值得注意的特性，它为API调用提供了一种与供应商无关的描述格式。</p>
+<p class="translated">“它可以让您自动为每种语言生成客户端库。您不必为Javascript、PHP、Nodejs和所有其他东西开发定制的SDK，而是可以从开放API规范中自动生成一个库。它让我们有一个更一致的图书馆，也有一个更广泛的社区，”他说。</p>
+<p class="translated">另一个是与阿里云更紧密的集成。阿里云身份验证方法现在是Vault Agent中自动身份验证的支持界面。</p>
+<p class="translated">Dadgar说，达到1.0并不意味着跳马完成。</p>
+<p class="translated">“这是跳马之旅的开始，”他说。“我们将Vault视为一个安全平台。我们把它设计成非常基于插件的。由于客户有不同的问题，他们可以通过启用我们提供的不同插件来扩展Vault。如果您从秘密管理开始，您希望如何解决证书管理或SSH代理？我们如何让您快速轻松地扩展Vault，以提供其他功能？”他说。</p>
+<p class="translated">在这种情况下，该公司正在寻找插件可以用核心平台解决的邻近问题。</p>
+<p class="attribution translated">Twistlock是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="https://www.flickr.com/photos/zeevveez/" class="ext-link" rel="external ">zeevweez</a>的<a href="https://www.flickr.com/photos/zeevveez/6089266689/in/photolist-ah65QH-a16qMn-mWtbXX-Nz7HE-53wBsY-2tfR44-91z4qu-53snpD-4VgjA1-e46Ube-7XPUmY-n9So12-6bhYKg-nYPhwv-dEDK6N-7JsFTQ-4keYNu-4mgwu5-g4x4e-a61r1g-pDfgN-pDh2i-kmcuS-6bn9MQ-dgMDn8-ipy2Ch-4cQmrw-a7npZp-7jTUVo-9V4hwF-d69Nk1-5k9rRK-4uVemC-91Hkk2-pDea1-7XPVnG-4qgHa7-onRjDW-adPKPd-oysvPj-Y8ZztA-oNVj9J-7fwWB6-Jzpu78-6gRie4-BN2AG-pGYcpS-8SoPRt-8GzJUt-8FWMM8" class="ext-link" rel="external ">键入手电筒</a>。根据<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC BY-SA 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+ </g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

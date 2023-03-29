@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>RisingStack's Trace Can Monitor Your Microservices</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">RisingStack的Trace可以监控你的微服务</h1>
+<blockquote>原文：<a href="https://thenewstack.io/risingstack-trace-microservice-monitoring-heats-closed-beta/#0001-01-01">https://thenewstack.io/risingstack-trace-microservice-monitoring-heats-closed-beta/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">似乎有一个新的监控平台供开发人员每天到达现场进行测试。最新提供的服务之一是来自<a href="https://risingstack.com/" class="ext-link" rel="external "> RisingStack </a>的完全开源的微服务监控服务<a href="https://trace.risingstack.com" class="ext-link" rel="external "> Trace </a>。</p>
+<p class="translated">随着公司开始从单片应用程序转向微容器以配合其微服务，大规模运行数千个实例的企业的需求也随之不断增长。尽管仍处于封闭测试阶段，Trace解决了开发人员在扩展其微服务时面临的常见问题——事务跟踪、监控、警报和基础设施可视化。</p>
+<h2 class="translated">在人群中脱颖而出</h2>
+<p class="translated">具有分析和警报功能的微服务监控PaaS解决方案并不新鲜。RisingStack从<a href="https://research.google.com/pubs/pub36356.html" class="ext-link" rel="external ">谷歌Dapper </a>获得了Trace的灵感——一个大规模分布式系统追踪基础设施。Trace实现了跨越请求生存期的服务器和客户端发送/接收事件。当服务器请求传入时，它被记录在Trace中，并在传出请求上分配一个请求ID，该ID在整个事务中持续存在。</p>
+<div id="attachment_1040334" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/02/trace_6beacb0c6099624cbd6b8c2419b7330a.png" rel="attachment wp-att-1040334" class="local-link"><img aria-describedby="caption-attachment-1040334" decoding="async" loading="lazy" class="size-full wp-image-1040334" src="../Images/ae9fd3852b6201340c50cebd98ca728a.png" alt="RisingStack Trace ServerRecieve, ServerSend, ClientRecieve, &amp; ClientSend between A/B Servers" data-original-src="https://thenewstack.io/wp-content/uploads/2016/02/trace_6beacb0c6099624cbd6b8c2419b7330a.png"/></a><p id="caption-attachment-1040334" class="wp-caption-text translated">RisingStack在A/B服务器之间跟踪ServerRecieve、ServerSend、ClientRecieve和ClientSend</p></div>
+<p class="translated">这种堆栈跟踪可视化特性允许开发人员识别和隔离他们的体系结构中可能出现的任何正在发生的问题。通常，宝贵的时间花在识别运行故障服务的服务器或集群上，而更多的时间花在调试上。通过实现跟踪可视化，开发人员能够在工作流中的任何点更好地监控他们的堆栈。</p>
+<p class="translated">“Trace还提供了连接服务的详细拓扑视图，以便更好地理解和跟踪服务如何相互通信。RisingStack的联合创始人兼首席执行官Gergely Németh说:“这样，平均响应时间、网络延迟和请求数的数据就可以在地图上看到，同时还可以显示节点及其之间的关系。</p>
+<div id="attachment_1040445" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/02/distributed_stacktrace_view.png" rel="attachment wp-att-1040445" class="local-link"><img aria-describedby="caption-attachment-1040445" decoding="async" loading="lazy" class="size-large wp-image-1040445" src="../Images/bcfde7d68b440ca63ab2a13bc5c79937.png" alt="RisingStack Trace: Distributed Stack" data-original-src="https://thenewstack.io/wp-content/uploads/2016/02/distributed_stacktrace_view-1024x576.png"/></a><p id="caption-attachment-1040445" class="wp-caption-text translated">RisingStack跟踪:分布式堆栈</p></div>
+<p> </p>
+<h2 class="translated">定制、扩展等</h2>
+<p class="translated">目前，Trace通过将HTTP头添加到传出请求中在后端工作，这对服务器开销的影响很小。“增加前端支持也在我们的路线图中，包括Java、Go和。NET，”Németh说。</p>
+<p class="translated">如果开发人员想在注册封闭测试版后试用Trace，他们只需将一行代码粘贴到根目录中即可运行。Trace支持内部解决方案和基于云的基础设施，这对于有兴趣使用它来监控其应用程序的开发人员来说至关重要，这些应用程序可能会受到严格的数据隐私或用户隐私限制。</p>
+<div id="attachment_1040446" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/02/topology_view.png" rel="attachment wp-att-1040446" class="local-link"><img aria-describedby="caption-attachment-1040446" decoding="async" loading="lazy" class="size-large wp-image-1040446" src="../Images/1de4975c9a6083739f9cc9f20624335a.png" alt="RisingStack Trace Microservice Topology View" data-original-src="https://thenewstack.io/wp-content/uploads/2016/02/topology_view-1024x576.png"/></a><p id="caption-attachment-1040446" class="wp-caption-text translated">RisingStack跟踪微服务拓扑视图</p></div>
+<p class="translated">用户可以将自己的控制器添加到Trace，或者在获得API密钥后，在Trace自己的服务器上运行收集器。将跟踪作为一个依赖项添加到应用程序中就像用NPM(节点包管理器)将它设置为一个需求一样简单。</p>
+<p class="translated">如果你想亲自尝试RisingStack的Trace，你可以在这里注册封闭测试版<a href="https://trace.risingstack.com/?utm_source=trace-microservice-monitoring-and-debugging&amp;utm_medium=lastbutton" class="ext-link" rel="external ">。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

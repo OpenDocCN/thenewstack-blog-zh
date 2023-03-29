@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Hyper, a Hypervisor-Agnostic Docker Engine</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Hyper，一个虚拟机管理程序无关的Docker引擎</h1>
+<blockquote>原文：<a href="https://thenewstack.io/hyper-a-hypervisor-agnostic-docker-engine/#0001-01-01">https://thenewstack.io/hyper-a-hypervisor-agnostic-docker-engine/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+<p class="editors-note translated">我们将考虑与大规模应用程序开发和管理相关的新项目的提交。超级适合这个要求。它使用Linux内核来调度容器，避免了初始化客户操作系统的需要。这是管理容器的一种不同方式，似乎值得解释一下。更新:作者今天联系了我们，对故事进行了一些更新，以更准确地反映HyperD的运作方式。上一篇:HyperD守护进程运行在超级内核之上的虚拟机中。更新:HyperD守护程序直接在裸机服务器上运行，以确保远程客户端和虚拟机(VM)之间的通信。</p>
+
+<p class="c0 translated">Hyper是一个包含Linux内核、init进程和管理工具的集合，它对容器进行虚拟化，以改善它们对多租户应用程序的隔离和管理。</p>
+<p class="c0 translated"><a href="https://thenewstack.io/wp-content/uploads/2015/07/image001.png" class="local-link"><img decoding="async" loading="lazy" class="alignnone wp-image-470360 size-full" src="../Images/cd4d9537a857d9f1ac6ec35942a4e1b5.png" alt="image00" data-original-src="https://thenewstack.io/wp-content/uploads/2015/07/image001.png"/>T2】</a></p>
+<h2 class="c0 translated">【Hyper如何工作:结合虚拟机和容器</h2>
+<p class="c0 translated">Hyper只做一件事:提供隔离的环境(虚拟机),可移植的环境(容器)可以在其上轻松调度。Hyper使用共享和专用内核环境，认为这是部署多租户平台的正确方法。</p>
+<p class="c0 translated">Hyper有四个组件:</p>
+<h3 class="c0 translated">来宾内核(超内核)</h3>
+<ul>
+<li class="translated">Hyper的主要组成部分。超级内核是一个定制的Linux内核。</li>
+<li class="translated">它可以由一个管理程序运行(目前是KVM和Xen，这个列表还在增加)。</li>
+<li class="translated">超内核运行HyperStart和HyperD。</li>
+</ul>
+<h3 class="translated">带有REST APIs的守护程序(HyperD)</h3>
+<ul>
+<li class="translated">HyperD守护程序直接在裸机服务器上运行，以确保远程客户端和虚拟机(VM)之间的通信。</li>
+<li class="translated">HyperD能够与HyperStart和Hyper CLI通信。</li>
+</ul>
+<h3 class="translated">来宾初始化服务(HyperStart)</h3>
+<ul>
+<li class="c0 c18 translated">HyperStart是一个加载在init RAM文件系统(initramfs)中的微型init服务，由超级内核启动。</li>
+<li class="c0 c18 translated">它启动Docker图像。</li>
+</ul>
+<h3 class="c0 translated">CLI(超级)</h3>
+<ul>
+<li class="c0 translated">Hyper通过使用提供的REST API与HyperD守护进程通信来调度容器。</li>
+<li class="c0 translated">Hyper直接在虚拟化的Linux内核上调度容器，消除了对客户操作系统、其配置及其带来的所有沉重组件的需要。</li>
+</ul>
+<p class="c0 translated"><a href="https://thenewstack.io/wp-content/uploads/2015/07/image011.png" class="local-link"> <img decoding="async" loading="lazy" class="alignnone wp-image-470361 size-full" src="../Images/40e29a0918e547776b7d3c130e2e49f0.png" alt="image01" data-original-src="https://thenewstack.io/wp-content/uploads/2015/07/image011.png"/> </a></p>
+<h2 class="c0 translated"><span class="c8 c23"> Hyper的方法</span></h2>
+<p class="c0 translated">性能下降通常与虚拟机有关。以下是一些原因:</p>
+<ul class="c26 lst-kix_36v36n1y212h-0 start">
+<li class="c0 c18 translated">根据定义，模拟硬件比裸机硬件慢，因为虚拟机管理程序需要将指令从模拟硬件“翻译”到真实硬件(CPU、RAM、硬盘驱动器等)。).</li>
+<li class="c0 c18 translated">虚拟机启动时需要初始化来宾操作系统，想想启动一台机器需要多长时间。</li>
+<li class="c0 c18 translated">来宾操作系统加载的后台进程会消耗资源。</li>
+</ul>
+<p class="c0 translated">Hyper带来了一种不同的方法:</p>
+<ul class="c26 lst-kix_5mw7qyxcz4k0-0 start">
+<li class="c0 c18 translated">虚拟机管理程序比过去强大得多，内核是“虚拟化优化的”，硬件虚拟化是“<span class="c2"> <a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FX86_virtualization%23Hardware-assisted_virtualization&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE7OX_p6iUQVQunIHdgJIWiUuu9og" rel="external ">”硬件辅助虚拟化</a> </span>”(即，英特尔VT-x允许客户操作系统直接访问CPU)。由硬件仿真引起的性能损失是有限的，在某些情况下可以忽略不计。问题出在别的地方:软件。</li>
+<li class="c0 c18 translated">通过使用Linux内核来调度容器，Hyper避免了初始化客户操作系统。Linux内核的加载很轻，不到半秒钟就能启动。</li>
+<li class="c0 c18 translated">HyperD直接调度容器；因此，没有额外的进程正在运行(严格来说是最少的)，从而避免了资源消耗。</li>
+</ul>
+<h2 class="c0 translated"><span class="c7"> Hyper的打火方式</span></h2>
+<p class="c0 translated">部署容器即服务(CaaS)平台并不简单。虽然容器的隔离还没有遇到严重的问题，但是在同一个内核上运行数百(甚至数千或数百万)个容器听起来确实很可怕。在多租户应用程序的情况下，需要第二级隔离。</p>
+<p class="c0 translated">一种典型的方法是构建一个混合解决方案，既有虚拟机又有容器。工作流程如下:</p>
+<p class="c0 translated">首先，作为用户，您必须构建一个虚拟机集群来运行您的容器。然后，用一个调度器(Mesos加马拉松，Swarm等。)，您可以在集群中调度容器。</p>
+<p class="c0 translated">Hyper为建筑过程和工作流程提出了一种更轻松的方式:</p>
+<h3 class="c0 translated"><a href="https://thenewstack.io/wp-content/uploads/2015/07/image021.png" class="local-link"> <img decoding="async" loading="lazy" class="alignnone size-full wp-image-470362" src="../Images/d5fec2dbe6fc0dc679415310330115bd.png" alt="image02" data-original-src="https://thenewstack.io/wp-content/uploads/2015/07/image021.png"/> </a></h3>
+<h3 class="c0 translated"><span class="c8 c23">更容易管理</span></h3>
+<p class="c0 translated">通过消除来宾操作系统的存在，并保持HyperD与Linux内核紧密相关，容器可以直接在虚拟化内核旁边调度。这组在虚拟机内调度的容器遵循<a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fdocs.hyper.sh%2Fget_started%2Fpod.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGjYS1pgXnhecVzmpeU3Z_de65QnA" rel="external "/><span class="c2"><a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fdocs.hyper.sh%2Fget_started%2Fpod.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGjYS1pgXnhecVzmpeU3Z_de65QnA" rel="external ">pod</a></span>的原则。消除来宾操作系统的存在表明需要构建一个虚拟机集群，因此需要配置一个“来宾操作系统”</p>
+<h3 class="c0 translated"><span class="c8 c23">性能</span></h3>
+<p class="c0 translated">Hyper的性能比虚拟机更接近本机容器。</p>
+<p class="c0 translated">初始化一个pod需要不到半秒钟的时间，并且正在运行的进程是非常被动的。在标准(英特尔至强四核、32GB内存、400GB固态硬盘、Ubuntu 14.04 x64)服务器上，性能测量如下:</p>
+<h3 class="c0 translated"><span class="c8"> Pod启动时间</span></h3>
+<p class="c0 translated">运行一个新的pod只需要336毫秒。</p>
+<p class="translated"><a href="#" name="a262f09f9e32e63dd7b1f23292c20026b1d487d3"/>T11】</p>
+
+<h3 class="c0 translated"><span class="c8">Pod中的内存使用量</span></h3>
+<p class="c0 translated">当使用最小启动内存启动一个pod时，一个正在运行的pod中会有9 MB剩余的空闲内存，因为HyperKernel只占用11 MB内存。</p>
+<p class="translated"><a href="#" name="251556b16b3a20878e3265f03bccda6ecc87ce8f"/>T15】</p>
+
+<h3 class="c0 translated"><span class="c8"> CPU性能</span></h3>
+<p class="c0 translated">资源分配:2个CPU，2048 GB内存。</p>
+<p class="c0 translated">下表是sysbench CPU性能测试的结果。Hyper中的CPU性能非常接近主机操作系统。</p>
+<p class="translated"><a href="#" name="ca3d02c9be9f9dd3052afac5b0f9d08d7e6534b8"/>T19】</p>
+
+<p class="c0 translated">更多详情可以访问Hyper的<a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fdocs.hyper.sh%2Fperformance.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHLcLY_kZTn7lRxi2SGDVcLIaKAgw" rel="external "> </a> <span class="c2"> <a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fdocs.hyper.sh%2Fperformance.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHLcLY_kZTn7lRxi2SGDVcLIaKAgw" rel="external ">演出页面</a> </span>。</p>
+<h3 class="c0 translated"><span class="c8 c23">最佳安全性</span></h3>
+<p class="c0 translated">通过提出第二级隔离，使用Hyper构建的平台确保了比裸机容器解决方案更高级别的安全性。</p>
+<h2 class="c0 translated">虚拟化容器…但是，为什么呢？</h2>
+<p class="c0 translated">容器不是虚拟机。是的，容器是主机操作系统中的隔离环境，共享相同的内核和资源。但是内核本身执行容器的隔离。虚拟机也是隔离的环境，但它们在虚拟化硬件上运行自己的操作系统。</p>
+<p class="c0 translated">主要区别在于容器依赖于主机的内核，而虚拟机依赖于虚拟机管理程序，虚拟机管理程序运行自己的内核。</p>
+<h3 class="c0 translated"><span class="c8 c23">共享内核与专用内核</span></h3>
+<p class="c0 translated">在Linux操作系统中，内核是系统的一部分，它管理驱动程序和库，然后创建硬件和软件之间的通信。</p>
+<p class="c0 translated">在多个隔离的环境之间共享同一个内核，实际上是在来宾环境中的上下文切换，而不是适当的虚拟化。Linux内核，通过类似于<a class="c4 ext-link" href="https://www.google.com/url?q=http%3A%2F%2Fman7.org%2Flinux%2Fman-pages%2Fman7%2Fnamespaces.7.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF1Q-LghTaLNriC1Zh6T2kp7q0rBw" rel="external "> </a> <span class="c2"> <a class="c4 ext-link" href="https://www.google.com/url?q=http%3A%2F%2Fman7.org%2Flinux%2Fman-pages%2Fman7%2Fnamespaces.7.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF1Q-LghTaLNriC1Zh6T2kp7q0rBw" rel="external ">名称空间</a> </span>和<a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fwww.kernel.org%2Fdoc%2FDocumentation%2Fcgroups%2Fcgroups.txt&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGAUtV7EN8hdLh9SrXqlt2iQSddZA" rel="external "> </a> <span class="c2"> <a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fwww.kernel.org%2Fdoc%2FDocumentation%2Fcgroups%2Fcgroups.txt&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGAUtV7EN8hdLh9SrXqlt2iQSddZA" rel="external "> cgroups </a>，</span>这样的特性，无形中隔离了一组进程和库，并赋予了对主机硬件的直接访问。创建的环境——由内核直接管理——具有不改变性能的优势。</p>
+<p class="c0 translated">另一方面，专用内核环境需要<a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHypervisor&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFzStcH-mj2U-1f_1k-hJ3G_bSODQ" rel="external "> </a> <span class="c2"> <a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHypervisor&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFzStcH-mj2U-1f_1k-hJ3G_bSODQ" rel="external ">管理程序</a> </span>来运行。管理程序负责<span class="c20">模拟</span>硬件，以便运行一个客户操作系统，该系统由一个专用内核和一组工具和库组成。由于硬件虚拟化，使用专用内核的环境通常会出现性能下降。但是它们有一个很大的优势:它们提供了更好的隔离。</p>
+<h3 class="c0 translated"><span class="c8 c23">容器格式</span></h3>
+<p class="c0 translated">我们讨论过容器是共享相同内核的“虚拟环境”。但是容器不仅仅如此。今天，容器由<a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fdocs.docker.com%2Fuserguide%2Fdockerimages%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGph7WwPZCwv8HF7PuZj3GJ2vn01Q" rel="external "> </a> <span class="c2"> <a class="c4 ext-link" href="https://www.google.com/url?q=https%3A%2F%2Fdocs.docker.com%2Fuserguide%2Fdockerimages%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGph7WwPZCwv8HF7PuZj3GJ2vn01Q" rel="external ">图片</a> </span>提供。这些图像是Hyper的本质。“虚拟化容器”背后的想法是提供<span class="c8">高度隔离的环境</span>来运行<span class="c8">高度可移植的</span>容器。它们是分发高度可移植的应用程序的新方法，并且已经被一些人认为是新的包管理系统。</p>
+<p class="c0 attribution translated">Docker是新堆栈的赞助商。</p>
+<p class="c0 attribution translated">专题图片:<a href="https://www.flickr.com/photos/mralsultan/" class="ext-link" rel="external ">默罕默德·苏丹</a>的《<a href="https://www.flickr.com/photos/mralsultan/3579132008/in/photolist-6sgZfy-8xrCmy-6DfEHh-dB22EZ-5tWu3y-9dUQkw-sgU2d4-3nbnzX-5ikFKB-7JreyG-2ojA8h-7gpxDj-nz2Pv5-5vSzB1-7abZW9-3fF6HV-bkRtyp-8vBW8X-6Ftxea-8DDnkP-nvBRCq-3bUvm7-8vBW9D-7QffZN-4zExYe-pvTJXY-aYXzNz-o51tbH-a2iA6W-9enQPC-bhuWhD-dpPYN5-58nHNW-7zzitS-NvRUK-i8QTdU-4KmTZ7-ekBTR1-6edFYV-bWDHha-9gub9D-9gub74-Hp82w-ca22iy-ihw43N-9QL1sd-9yuX22-6p7pNb-9gxgfQ-9zrYy7" class="ext-link" rel="external ">试图尽快找到你……尽快</a>》由2.0 授权<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

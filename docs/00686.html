@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Run a LCD Display with a Raspberry Pi</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:用树莓皮运行液晶显示器</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-run-a-lcd-display-with-a-raspberry-pi/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-run-a-lcd-display-with-a-raspberry-pi/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">15，000 mAh锂离子电池和<a href="https://www.banggood.com/10_1-Inch-1280x800-HD-Display-TFT-LCD-Module-Kit-For-Raspberry-Pi-p-1109750.html?rmmds=buy&amp;cur_warehouse=CN" class="ext-link" rel="external "> 10.1英寸彩色LCD HDMI显示器</a>已于上周到货，因此，想象一下我终于有了一种便携式方式来与Raspberry Pi或任何其他支持HDMI的设备进行交互，而无需墙上插座或外部Linux笔记本电脑，我会有多兴奋。</p>
+<p class="translated">一个高分辨率的LCD显示屏对于【Torq博士式的持续开发来说意义重大。我在会议发言人休息室、我的家庭办公室、我爸爸的家里和其他地方从事物理计算项目，比如Panera Bread。即使是我的19英寸LG显示器也太大了，以至于在组装我的小工具时无法携带。LG也需要插在墙上的插座上。</p>
+<p class="translated"><a href="https://www.banggood.com/10_1-Inch-1280x800-HD-Display-TFT-LCD-Module-Kit-For-Raspberry-Pi-p-1109750.html?rmmds=buy&amp;cur_warehouse=CN" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="alignright size-medium wp-image-5906890" src="../Images/11a090984fbcc5612fd7cd31fa991a66.png" alt="" data-id="5906890" data-original-src="https://cdn.thenewstack.io/media/2018/10/0468c4f0-lcd-251x300.png"/> </a></p>
+<p class="translated">10英寸的电池供电液晶显示器，我将把它变成一个坚固的蒸汽朋克主题移动显示器，这正是我在现场(有时是字面上的)物理计算开发工作中所需要的。</p>
+<h2 class="translated">拆箱显示</h2>
+<p class="translated">这款裸露的液晶显示器来自中国，装在一个纸箱里，夹在两块闭孔泡沫之间。该盒子还包含匹配的驱动器板、小型显示器控制板、控制板电缆和将显示器钩到驱动器板上的电缆。显示器电缆的电线非常细，连接器非常脆弱，因此处理时应小心。</p>
+<p class="translated">我不得不笑。说明？我们不需要讨厌的指示。事实上，里面根本没有任何文件。哦，好吧。无论如何，现成的黑客最终会写出方向。插上所有的电缆只花了一会儿时间。</p>
+<p class="translated">显示驱动板通过一根25英尺的HDMI电缆连接到赫德利的树莓Pi 3上。我点了这个和一点18寸的线，和显示器同时点的。长电缆负责将赫德利放置在离投影仪一定距离的地方，而短电缆将用于近距离演示，例如当显示器就在他旁边时。</p>
+<p class="translated">驱动板还可以处理VGA和复合视频输入。如果我想为项目复活旧的“古董”PC板或查看来自硬连线摄像机的视频源，这将非常方便。</p>
+<p class="translated">从中国订购零件，至少是向美国订购零件，有一点是你永远不知道它们会在什么时候送到。我希望一切通常在两到四周内完成。</p>
+<h2 class="translated">给显示器供电</h2>
+<p class="translated">液晶面板有两种供电方式，15，000锂离子电池或壁式电源。</p>
+<p class="translated">15000毫安时的锂离子电池配有12.6伏的壁式电源。不幸的是，Banggood运送的欧洲型号有两个圆形尖头，而不是美国使用的双刀片式。我可能会找一个欧洲到美国的适配器，或者在某个时候插入一个标准的美国电源插头。适配器可能是最简单的，因为我很想带赫德利去欧洲科技会议之旅。在《T4》过去的一篇文章中，我报道了在欧洲给<a href="https://thenewstack.io/stackie-pancakebot-steampunk-pals-hit-silicon-valley/" class="local-link">的胰腺机器人</a>供电的挑战。运行<a href="https://thenewstack.io/off-the-shelf-hacker-hedley-the-robotic-skull-tours-portland/" class="local-link">赫德利</a>，我的机器人说话头骨，和他的小显示器呈现了类似的情况。</p>
+<p class="translated">好的一面是，我有一个备用的12伏壁式电源插头，它有正确的电源接头，可以给电池充电。这是一个大电池，充满电可能需要大约20个小时。电池直接插入LCD驱动板上的电源端口。当主板连接到电源时，绿色LED会亮起。</p>
+<p class="translated">12伏的壁式电源本身也能很好地为显示器供电。</p>
+<h2 class="translated">桌面怎么样？</h2>
+<p class="translated">我很高兴地报告，屏幕明亮清晰。1280×800的分辨率非常棒，开箱即用。较低的分辨率需要你左右滚动才能看到整个屏幕。更高的分辨率，你需要一个放大镜来阅读小文本。</p>
+<p class="translated">我想为赫德利设计一个小型便携式显示器的主要原因是，通过他的<a href="http://jevois.org/" class="ext-link" rel="external "> JeVois智能传感器</a>让他以第一人称观看所看到的东西。电池供电的显示器将真正有助于我们在波特兰的下班后酒吧演示。我没有调整好设置，让赫德利在光线不足的环境下跟踪我。该显示屏允许我在演示过程中优化<a href="http://guvcview.sourceforge.net/" class="ext-link" rel="external "> guvcview </a>设置。</p>
+<p class="translated">看看赫德利的“骷髅顶”展览。看起来像任何其他桌面，当然，它是。</p>
+<div id="attachment_5900111" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5900111" decoding="async" loading="lazy" class="size-full wp-image-5900111" src="../Images/80e181741690640fcc87c3d919ef155b.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/10/ca61311d-lcd-desktop.png"/><p id="caption-attachment-5900111" class="wp-caption-text translated">赫德利头骨的“头骨顶部”展示</p></div>
+<p class="translated">该显示器将方便地向一到三个人的小观众展示赫德利如何对JeVois传感器中的不同人工智能算法做出反应。每种算法都与您选择的视频观看应用中选择的特定摄像机分辨率相关。桌面上有一个弹出窗口，用于选择分辨率和JeVois算法。我通常在命令行中使用所选的分辨率运行<a href="http://manpages.ubuntu.com/manpages/trusty/man1/luvcview.1.html" class="ext-link" rel="external "> luvcview </a>。不管浏览器程序是什么，在常规大小的桌面界面上调整设置都是简单快捷的。</p>
+<h2 class="translated">下一步是什么？</h2>
+<p class="translated">下周<a href="https://minn18.mapyourshow.com/7_0/sessions/session-details.cfm?ScheduleID=31" class="ext-link" rel="external ">赫德利和我将在明尼阿波利斯</a><a href="https://escminn.com/" class="ext-link" rel="external ">嵌入式系统会议上展示</a>。我们总是很高兴与读者交谈，所以如果你在会议上，一定要停下来打个招呼。</p>
+<p class="translated">当我回来的时候，为LCD显示器建造一个坚固的便携式蒸汽朋克外壳将是当务之急。我还有<a href="https://www.banggood.com/NodeMcu-Lua-WIFI-Internet-Things-Development-Board-Based-ESP8266-CP2102-Wireless-Module-p-1097112.html?rmmds=buy&amp;cur_warehouse=CN" class="ext-link" rel="external ">三节点MCU ESP8266板</a>放在我的桌子上，等待安装在一些新项目中。</p>
+<p class="translated"><em>每周三查看Torq博士的<a href="https://thenewstack.io/tag/Off-The-Shelf-Hacker" class="local-link">现成黑客专栏</a>，仅在新堆栈上。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

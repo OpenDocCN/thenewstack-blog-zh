@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>The Latest to Integrate JSON: MapR for In-Memory Operational Analytics</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">最新集成的JSON: MapR用于内存操作分析</h1>
+<blockquote>原文：<a href="https://thenewstack.io/latest-integrate-json-mapr-memory-operational-analytics/#0001-01-01">https://thenewstack.io/latest-integrate-json-mapr-memory-operational-analytics/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">不管你喜不喜欢，JavaScript不会安静地进入那个温柔的夜晚，不管狄兰·马尔莱斯·托马斯说了什么。就在NGINX宣布将在它的每个连接中集成一个微型JavaScript解释器后一周，商业Hadoop提供商MapR周二宣布，它将发布一个基于JSON的文档数据库的开发者预览版，供Hadoop内部使用。其目的将是直接通过Hadoop提供运营数据，绕过为MongoDB等NoSQL数据库单独处理日志文件、物联网传感器数据和其他标准化数据集的需要。</p>
+<p class="translated">MapR的CMO杰克·诺里斯(Jack Norris)在接受New Stack采访时表示:“在开放这种持续分析的过程中，我们谈论的是这些运营类型的应用程序，到目前为止，这些应用程序在某种程度上是相互独立的。“如果看看传统环境，您会发现生产流程被加载到运营数据存储中，而运营数据存储又被加载到数据仓库中；在数据收集和最终分析之间有很长的时间间隔。</p>
+<h2 class="translated">回家去欧康</h2>
+<p class="translated">今天，在以JSON为中心的数据仓库类别中，已经出现了一个家庭手工业。不管是好是坏，JSON已经成为传输中数据的通用表达格式。由于格式严格，JSON表达的数据也是高度规范化的。因此，对于即席报告，将数据转换成NoSQL数据库可以有效应用分析的格式的工作并不复杂，只是非常庞大。</p>
+<p class="translated">一家名为jSONAR的公司就是基于这一理念成立的[ <a href="http://www.jsonar.com/wp-content/uploads/2015/05/jSONAR_WhitePaper_3_v04_web.pdf" target="_blank" class="ext-link" rel="external ">详见本PDF白皮书</a> ]，为NoSQL数据库开发了一个名为SonarW的纯JSON数据仓库系统，以利用来自Hadoop的规范化数据。</p>
+<p class="translated">MapR的创新将有效地切断SonarW的通路，产生分析工具可以立即引用的JSON数据，而无需额外的步骤。</p>
+<p class="translated">“直接获得分析的能力是关键。”诺里斯说。“无论是了解当前广告活动进展情况的开胃仪表板，还是整合到在线零售环境中的推荐应用引擎(当客户个性化其体验时)，所有这些都需要实时数据库。事实上，现在您可以直接针对JSON文件运行这些应用程序，这是一个巨大的优势。”</p>
+<p class="translated">最新的MapR DB版本将利用开放的JSON应用程序接口(创建的部分原因是为了使用缩写OJAI)通过API访问内存中的文档结构。<a href="https://www.mapr.com/blog/faster-application-development-open-json-application-interface-ojai#.VgsW4JdWNuw" target="_blank" class="ext-link" rel="external ">在周二</a>的一篇博客文章中，MapR首席软件工程师Bharat Baddepudi解释了典型的JSON内存文档是如何出现的，以及如何编写API函数调用来执行在普通数据存储库中执行的典型CRUD(创建、读取、更新、删除)操作。</p>
+<p class="translated">Baddepudi写道，“OJAI包括一个称为表的后端文档存储接口，用于插入和检索文档以及执行其他类似的CRUD操作。每个这样的用户文档都存储为表中的一行，使用唯一的行键来访问它。</p>
+<p class="translated">JSON数据集被表示为一个文档，使用的语法可以很容易地被人类和语言解释者解析。因此，如果在一个这样的文档中，字段名被赋予表中的每个属性或列，那么可以使用API方法<code>.set</code>将这些字段的值写入到对象<code>MapRDB</code>中，其中字段名和设置作为参数传递。对单个记录的更新可以作为对存储器的“突变”来执行，对存储器的内容进行寻址，就好像它们是具有数字索引的数组一样。</p>
+<p class="translated">这是一个看似简单的系统，但关键在于:与为MongoDB生成一组类似的脚本相比，为解析MapR DB直接提供的JSON数据而创建脚本所花费的精力肯定不会更多，也可能更少。但是，由于您是直接处理数据库，而不是渲染数据库，因此您可以获得Hadoop实时处理的所有好处。</p>
+<h2 class="translated">又到了和解时间</h2>
+<p class="translated">这种处理模式可能会带来潜在的架构转变。现实世界中的数据库应用程序在过去依赖于操作分析和报告功能来触发功能，现在可能假设这些功能已经完成。也许在以后的版本中，这些应用程序可以简单地处理内存中不断更新的变量的结果。</p>
+<p class="translated">MapR的Jack Norris谈到了这一点:“在我们的平台中，我们目前支持表复制，现在支持JSON文档复制，不仅从数据的角度，而且以首选的格式。因此，您可以将它作为搜索索引使用——您可以拥有一个基于搜索的应用程序，与数据库表的数据空间同步。这样，当您拥有一个面向客户的应用程序时，就不存在数据加载时间的批量依赖性，因此客户可以从不同的角度查看他们的支持单或账单。”</p>
+<p class="translated">Norris还发现了一种可能性，即毫秒级的运营分析将变得至关重要，例如，实时欺诈检测，即零售店中服务器生成的运营日志全天候扫描异常活动。</p>
+<p class="translated">“如何简化组织内的数据流？您如何简化应用程序，从而缩短数据创建和数据收集之间的周期？”诺里斯问道，不可否认是修辞性的。“我认为这一点越来越明显:平台的差异在更大程度上支持这种实时差异功能，并在发生时影响业务。”</p>
+<p class="attribution translated">特征图片:<a href="https://www.flickr.com/photos/xewboy/" target="_blank" class="ext-link" rel="external "> Szabolcs </a>的:<a href="https://www.flickr.com/photos/xewboy/6875251890/in/photolist-btxsRG-p1dFth-9aXEaY-bpRq43-4WzyER-bkGkZG-95BGcn-2iu9rL-gMQDZV-5zd5RP-epkxxH-d39CQA-egTvoz-f868eV-8YVgwr-m2nsTe-2waLN-fo6EJd-fcu9vY-LC3RP-74bQpz-8cwntk-tvUMWi-8gda91-e8QX-dtbCrk-4Za7TG-xyTXfZ-5RarjN-aHqYhB-5r7gf4-4EGaoG-bvsW8m-c8oK9U-qN465y-fpXjAD-3J2Voo-7HcYX5-8tzC2y-tATzc-7GJA42-pfXkSb-37pxYj-nJfWqd-6Vai98-qaExCo-rdFNpM-qcWQeV-6eQHUV-f8ERhQ" target="_blank" class="ext-link" rel="external ">Blue spirit-BY texture place</a>获得<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" class="ext-link" rel="external "> CC BY-SA 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

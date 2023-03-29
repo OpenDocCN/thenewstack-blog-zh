@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Single Sign-On for Kubernetes: Dashboard Experience</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Kubernetes的单点登录:仪表板体验</h1>
+<blockquote>原文：<a href="https://thenewstack.io/single-sign-on-for-kubernetes-dashboard-experience/#0001-01-01">https://thenewstack.io/single-sign-on-for-kubernetes-dashboard-experience/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://pusher.com/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle"> Joel Speed，云基础架构工程师，推动者</p> <p class="infoBlockText"> Joel Speed是一名DevOps工程师，在Kubernetes工作了最后一年。他从事软件开发已经超过3年，目前正在帮助Pusher构建他们的内部Kubernetes平台。最近，他一直专注于改善Kubernetes内部的自动伸缩、弹性、身份验证和授权的项目，并为Pusher的工程团队构建了一个ChatOps机器人Marvin。在学习期间，他深入参与了沃里克学生电影院，将他们的基础设施集装箱化，并定期放映电影。</p> </div> </a></p><p class="translated">在我的前两篇文章(<a href="https://thenewstack.io/kubernetes-single-sign-one-less-identity/" class="local-link">第1部分</a>和<a href="https://thenewstack.io/single-sign-kubernetes-command-line-experience/" class="local-link">第2部分</a>)中，我研究了Kubernetes中的用户认证以及如何在Kubernetes生态系统中创建单点登录体验。到目前为止，我已经解释了Open ID Connect (OIDC)如何工作，如何开始使用OIDC，以及如何从命令行执行登录。</p>
+<p class="translated">这个拼图的最后一块是Kubernetes仪表板，我们的工程师经常和kubectl一起使用它。为了完成向SSO的迁移，我们希望确保在使用仪表板时，我们的工程师登录到他们用于kubectl的同一个帐户。</p>
+<p class="translated">从Kubernetes版本1.7.0开始，仪表板就有了一个登录页面。它允许用户上传kubeconfig文件或输入不记名令牌。如果您已经登录到命令行，这允许您将kubeconfig文件中的OIDC id-token复制到无记名token字段并登录。然而，这有几个问题:</p>
+<ul>
+<li class="translated">登录页面有一个跳过按钮—如果您没有使用任何授权(RBAC)，那么这将允许任何人以有效的管理权限访问仪表板。</li>
+<li class="translated">从文件中复制和粘贴令牌对用户来说并不友好。</li>
+</ul>
+<p class="translated">或者，仪表板支持使用授权头来提供无记名令牌(Authorization: Bearer <oidc-id-token>)。这允许预先生成OIDC id-token，并在装载仪表板之前注入报头。如果我们能够确保对仪表板的每个请求都包含这个标题，那么我们就可以跳过仪表板登录屏幕，避免前面提到的问题。</oidc-id-token></p>
+<h2 class="translated">认证代理</h2>
+<p class="translated">在<a href="https://www.pusher.com" class="ext-link" rel="external ">推手</a>，我们已经在使用Bitly OAuth2代理来保护我们的一些内部网站。它支持OIDC，因此与Dex兼容。最初，看起来好像我可以用它来生成仪表板的授权头。然而不幸的是，它还没有为这个用例做好准备:</p>
+<ul>
+<li class="translated"><strong>访问id令牌</strong>:虽然代理可以连接到Dex并对用户进行身份验证，但它没有公开授权头所需的ID令牌。有了这个PR，OAuth2代理可以在代理模式和Nginx Auth请求模式下运行时公开一个与Kubernetes仪表板兼容的授权头。</li>
+<li class="translated"><strong>集中运行代理</strong>:我们希望设计尽可能可扩展的系统。如果我们要在我们的每个Kubernetes集群上运行OAuth2代理的副本，那么我们的Dex配置将需要在每次添加新集群时更新，新的回调URI将需要指向每个集群。有了这个PR，OAuth2代理可以接受重定向请求到白名单域的子域。通过将Kubernetes集群所属的域列入白名单，我们可以托管一个中央OAuth2代理，当我们添加新集群时，它不需要任何重新配置。</li>
+</ul>
+<p class="translated">通过对OAuth2代理的这些添加，我们将其添加到现有的Dex集群中，并将其配置为Dex的客户端。我已经包含了与上述PRs相关的代理配置片段，例如:<br/></p>
+<div id="crayon-6423111682ca0625305120" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+
+</td>
+<td class="crayon-code translated"><div class="crayon-pre"><p class="crayon-line" id="crayon-6423111682ca0625305120-1"><span class="crayon-p">【kube . pusher platform . io的#子域允许重定向</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-6423111682ca0625305120-2"> - <span class="crayon-i">白名单</span> - <span class="crayon-i">域</span> =。<span class="crayon-i">kube</span>T12】。 <span class="crayon-i">例</span> <span class="crayon-st">。</span><span class="crayon-i">com</span></p><p class="crayon-line" id="crayon-6423111682ca0625305120-3"><span class="crayon-p"># Cookie需要覆盖所有白名单域</span></p><p class="crayon-line crayon-striped-line" id="crayon-6423111682ca0625305120-4">-<span class="crayon-i">Cookie</span>-<span class="crayon-i">域</span> =。<span class="crayon-i">kube</span>T32】。 <span class="crayon-i">例</span> <span class="crayon-st">。</span><span class="crayon-i">com</span></p><p class="crayon-line" id="crayon-6423111682ca0625305120-5"><span class="crayon-p">#在auth响应中设置授权头</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-6423111682ca0625305120-6"> - <span class="crayon-i">设置</span> - <span class="crayon-i">授权头</span>-<span class="crayon-i"/>=<span class="crayon-v">真</span> </p> </div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p/>
+<h2 class="translated">注入集管</h2>
+<p class="translated">在我们的身份验证集群上配置了OAuth2代理之后，现在是时候将仪表板连接到它了。为此，我们利用入口控制器中Nginx的Auth Request模块。</p>
+<p class="translated">通过将下面的代码片段添加到仪表板的入口对象，我们可以使用Nginx检查OAuth2代理(反过来检查Dex和Google)来确定用户是否登录，然后才允许用户访问仪表板。<br/></p>
+<div id="crayon-6423111682ca5123520928" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+
+</td>
+<td class="crayon-code translated"><div class="crayon-pre"> <p class="crayon-line" id="crayon-6423111682ca5123520928-1"> <span class="crayon-p"> #对于在https://auth.example.com/oauth2托管的OAuth2代理</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-6423111682ca5123520928-2"> </p> <p class="crayon-line" id="crayon-6423111682ca5123520928-3"> <span class="crayon-p"> #配置Nginx授权请求模块</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-6423111682ca5123520928-4"> <span class="crayon-i">入口</span> <span class="crayon-st">。</span> <span class="crayon-i"> kubernetes </span> <span class="crayon-st">。</span><span class="crayon-i">io</span>/<span class="crayon-i">auth</span>-<span class="crayon-i">URL</span>:<span class="crayon-h"/><span class="crayon-s">" https://auth . example . com/oauth 2/auth "</span></p><p class="crayon-line" id="crayon-6423111682ca5123520928-5"><span class="crayon-i">ingress</span><span class="crayon-st">。</span><span class="crayon-i"/><span class="crayon-st">。</span><span class="crayon-i">io</span>/<span class="crayon-i">auth</span>-<span class="crayon-i">sign in</span>:<span class="crayon-h"/><span class="crayon-s">"https://auth.example.com/oauth2/start？rd = https://$ host $ request _ uri $ is _ args $ args "</span></p><p class="crayon-line crayon-striped-line" id="crayon-6423111682ca5123520928-6"/><p class="crayon-line" id="crayon-6423111682ca5123520928-7"><span class="crayon-p">#代理认证头到仪表板</span> </p> <p class="crayon-line crayon-striped-line" id="crayon-6423111682ca5123520928-8"> <span class="crayon-i">入口</span> <span class="crayon-st">。</span> <span class="crayon-i"> kubernetes </span> <span class="crayon-st">。</span> <span class="crayon-i"> io </span> / <span class="crayon-i">配置</span> - <span class="crayon-i">片段</span>:<span class="crayon-h"/>|</p><p class="crayon-line" id="crayon-6423111682ca5123520928-9"/><p class="crayon-line crayon-striped-line" id="crayon-6423111682ca5123520928-10"><span class="crayon-p">#为kubernetes-dashboard添加授权头</span></p><p class="crayon-line" id="crayon-6423111682ca5123520928-11"><span class="crayon-h"/><span class="crayon-i">auth _ request _ set</span><span class="crayon-h"/><span class="crayon-i">token</span></p><p class="crayon-line crayon-striped-line" id="crayon-6423111682ca5123520928-12"><span class="crayon-h"/><span class="crayon-e">proxy _ set _ header</span><span class="crayon-i">授权</span><span class="crayon-h"/><span class="crayon-i">token</span>；</p>T107】</div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="translated"><br/>在这种配置下，对仪表板的请求会发生以下情况:</p>
+<ol>
+<li class="translated">Nginx向OAuth2代理的auth端点auth-URL发送一个请求</li>
+<li class="translated">如果用户登录，OAuth2代理返回202，如果用户未登录，则返回401。<ul>
+<li class="translated">如果Nginx接收到一个202，它将允许对仪表板的请求，并在对仪表板的auth响应中代理授权头。</li>
+<li class="translated">如果Nginx收到一个401，它会将用户重定向到<em> auth-signin </em>端点，然后该端点启动登录流程。</li>
+</ul>
+</li>
+</ol>
+<p class="translated">当用户第一次访问仪表板时，他们会通过Dex透明地重定向到Google进行登录。一旦他们登录谷歌，他们就会被重定向回原来的位置。此时，他们将面对仪表板，跳过登录屏幕，因为他们现在使用授权头进行身份验证。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/4d5a6190-k8s-sso-01.gif" class="ext-image" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4456927" src="../Images/52e629ee1a70f06c05eacc38c3e93c31.png" alt="" data-id="4456927" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/4d5a6190-k8s-sso-01.gif"/> </a></p>
+<h2 class="translated">结论</h2>
+<p class="translated">有了上面的系统，我们现在可以确保对Kubernetes仪表板的每个请求都经过了身份验证。我们的工程师倾向于已经登录到Google，他们甚至经常没有注意到仪表板登录流程，他们的浏览器只是将他们直接重定向到仪表板。</p>
+<p class="translated">结合我在上一篇文章中讨论的命令行体验，我们已经将Pusher的Kubernetes身份验证迁移到了单点登录系统。每个工程师都单独登录集群，重要的是，我们不需要管理额外的用户帐户。</p>
+<p class="translated">虽然最初的单点登录设置花费了一些时间，但我们对结果和我们的工程师现在拥有的用户友好的体验非常满意。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

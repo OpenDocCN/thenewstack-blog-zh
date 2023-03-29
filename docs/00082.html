@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Declaring Format Wars Over, Docker Slips a Universal Runtime Into All Containers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Docker宣布格式战争结束，将一个通用运行时嵌入到所有容器中</h1>
+<blockquote>原文：<a href="https://thenewstack.io/declaring-format-wars-over-docker-slips-a-universal-runtime-into-all-containers/#0001-01-01">https://thenewstack.io/declaring-format-wars-over-docker-slips-a-universal-runtime-into-all-containers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">正是在技术发展的这个阶段，围绕它形成了某种“开放”标准。我们已经在开源操作系统、云服务平台以及最近的大数据产业中看到了这一点。一个或多个不同的联盟可能会围绕集装箱化标准的一些变体而形成，如果有多个联盟，它们会为了谁最“开放”而相互争斗。周一在DockerCon 2015上的问题是，一个开放的容器联盟在多大程度上是真正包容的——换句话说，对开放的想法开放？</p>
+<p class="translated">如果你想一想，Docker Inc .很可能已经宣布自己是集装箱领域的主导者，并建立了一种行业共识联盟，使其与<strong> appc </strong>、<a href="https://thenewstack.io/coalition-for-app-container-spec-shows-docker-is-not-the-standard-for-everyone/" class="local-link">一种仅在几个月前由CoreOS管理的替代标准</a>直接竞争。它已经有了微软的支持，并有可能正式支持VMware。拿下IBM和亚马逊，Docker就能垄断市场。</p>
+<p class="translated">在周一旧金山举行的DockerCon 2015主题演讲上，Docker CTO Solomon Hykes在数千名与会者面前与CoreOS首席执行官Alex Polvi握手，温暖了许多人的心。这是一个迹象，表明两位高管已经意识到，就本应简单的组织形式展开公开争吵，将对两个品牌造成更大的损害。</p>
+<p class="translated">他们的握手标志着非官方的，但非常引人注目的，开放容器基金会的启动。</p>
+<p class="aligncenter translated">“有一件事我特别不喜欢:毫无理由地争论盒子的大小和形状等细节，”Hykes说，然后邀请Polvi。“在业内，我们称之为‘标准战争’“标准战争”是一件丑陋、可怕的事情。如果可能的话，它们既糟糕又无聊。我们的行业以前经历过标准战争，我认为有一段时间，我们中的许多人都不清楚这是否会发生在我们身上，即使是现在。我决定我很高兴，因为我可以告诉你很明显这不会发生。"</p>
+<p class="translated">Hykes和Polvi不同意统一他们的格式。然而，他们的握手代表了一种共同的愿望，即共同参与加强他们将参与竞争的行业的基础。</p>
+<p class="translated">然而，那次握手所代表的协议并不是在没有一定的知识产权交换的情况下达成的。几分钟前，Hykes向观众介绍了一些真正令他们惊讶的东西:一个为容器生产通用运行时的项目，使它们的构造或CTO所说的“管道”可以通过一种公共语言来访问。</p>
+<p class="translated">它的名字将会是<strong> runC </strong>，以小写的“r”和大写的“C”结尾，只是为了迷惑所有的编辑。“它基本上是我们为管理操作系统容器而编写的所有代码，被分成一个小型的轻量级工具…它基本上是在低级系统上运行容器所需的一切，除此之外别无其他。”</p>
+<p class="translated"><strong> RunC </strong>的目的，根据<a href="https://blog.docker.com/2015/06/runc/" class="ext-link" rel="external ">周一</a>的这篇博客文章，是让容器用来访问系统服务的代码，可以被外部通信访问。据说芯片制造商英特尔、IBM、高通和ARM以及微软都在为这一新工具做出贡献，尽管这些公司都没有派代表出现在周一的舞台上。(微软定于周二向DockerCon做演示。)</p>
+<p class="translated">Hykes说Docker已经向Linux基金会捐赠了runC，这是一个令人惊讶的举动，表明最直言不讳的开源倡导者可以在需要时保守秘密。但Docker的这一举动可能是明智的，因为另一个原因:仅凭借其完成的方式，以及与CoreOS首席执行官的握手，Docker Inc .确保了开放容器项目基线的关键组件之一[在此插入不适当的RoboCop参考]将是一个严格遵循Docker架构的可管理性平台。</p>
+<p class="translated">这样，一个与CoreOS最强的支持者Google结盟的,<strong>appc(</strong>,将无法产生一个比主要或单独支持Docker的版本更好的Kubernetes。现在，Docker Inc .因成为和平缔造者而获得赞誉，与CoreOS一起获得了荣耀，同时又注入了一个庞大的Docker DNA的胚胎开放容器项目。</p>
+<p class="translated">“随着我们开始在OCP规范上的合作，我们开发应用容器的经验将发挥关键作用，”<a href="https://coreos.com/blog/app-container-and-the-open-container-project/" class="ext-link" rel="external ">Alex Polvi周一在CoreOS的博客文章中写道。“我们预计App Container的大部分将直接集成到OCP规范中，并进行调整，以提供与现有Docker生态系统的更大兼容性。最终目标是汇聚到一个标准容器格式的单一统一规范上，OCP的成功将意味着App Container的主要目标得到满足。”</a></p>
+<p class="translated">Polvi接着说appc的Brandon Philips和Vincent Batts将会签约成为OCP的维护者。但是他结束了这一段，称从T2到OCP的过渡是“平稳的迁移”“今天<strong> rkt </strong>是<strong> appc </strong>的领先实现，”Polvi写道，“我们计划让它成为OCP的领先实现。”</p>
+<p class="translated">周一，CoreOS没有打出白旗，但某种程度上，它的产品身份确实被放弃了。虽然我们期望行业能够共同制定所有容器格式的基本原则，但似乎Docker Inc .在规定该基本原则的高度方面发挥了主导作用。否则，<strong> runC </strong>不可能发生。</p>
+<p class="attribution translated">CoreOS和Docker是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

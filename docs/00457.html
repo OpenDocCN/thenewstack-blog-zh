@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Prometheus 2.0 Arrives with a Speedy New Local Storage Engine</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">普罗米修斯2.0带来了一个快速的新的本地存储引擎</h1>
+<blockquote>原文：<a href="https://thenewstack.io/prometheus-2-0-bulks-local-storage/#0001-01-01">https://thenewstack.io/prometheus-2-0-bulks-local-storage/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">据<a href="https://coreos.com/" class="ext-link" rel="external "> CoreOS </a>软件工程师、<a href="https://prometheus.io/" class="ext-link" rel="external "> Prometheus </a>监控系统的核心开发者<a href="https://fabxc.org/" class="ext-link" rel="external "> Fabian Reinartz </a>称，改进的本地存储是Prometheus 2.0新版本的核心。</p>
+<p class="translated">Reinartz在一篇博客文章中指出，随着分布式系统协调软件如Kubernetes和Mesos的出现，监控环境变得越来越动态。运动软件需要自己的专用存储来确保在这些动态环境中的响应能力。</p>
+<p class="translated">尽管Prometheus 1.6引入了自动调优功能，但该团队一直在开发一个性能更高的时间序列数据库。“这样更可靠、更快。理想情况下，你不希望总是不得不重新配置，所以普罗米修斯只是对需求的变化做出反应，所以运行它的人要做的事情少得多，”Reinartz在采访中说。</p>
+<p class="translated">它从数百万个点收集数据来监控应用程序和基础架构，并将其存储在收集数据的同一个节点上。</p>
+<p class="translated">“我们谈论的是每分钟都有数百万个数据点涌入。存储引擎将这一点提高了几个数量级。内存使用率提高了五倍，CPU提高得更多，”他说。</p>
+<p class="translated">Reinartz解释说，Prometheus 2.0最显著的改进是写入磁盘的数据减少了两个数量级。这增加了固态硬盘的寿命，从而降低了成本。在高序列变动的情况下，即使使用相同的时间序列压缩算法，也可以观察到显著的磁盘空间节省。</p>
+<div id="attachment_3449388" class="wp-caption aligncenter"><a href="https://coreos.com/blog/prometheus-2.0-released" class="ext-link" rel="external "><img aria-describedby="caption-attachment-3449388" decoding="async" loading="lazy" class="size-full wp-image-3449388" src="../Images/b250e3dcd1f36c0f4e9969003e2b6f4f.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/11/87146032-prometheus.png"/></a><p id="caption-attachment-3449388" class="wp-caption-text translated">Prometheus 2.0写入磁盘的数据减少了两个数量级。这增加了固态硬盘的寿命，从而降低了成本。在高序列变动的情况下，即使使用相同的时间序列压缩算法，也可以观察到显著的磁盘空间节省。</p></div>
+<p class="translated">查询延迟更加一致，并且在面对高系列变动时具有更好的伸缩性。</p>
+<p class="translated">在去年8月举行的慕尼黑普罗米修斯大会<a href="https://promcon.io/2017-munich/" class="ext-link" rel="external "> PromCon 2017 </a>上，Reinartz描述了新存储层是如何从头开始设计的，并深入探讨了他如何为监控软件<a href="https://fabxc.org/blog/2017-04-10-writing-a-tsdb/" class="ext-link" rel="external ">创建时间序列数据库</a>，该数据库现在由<a href="https://www.cncf.io/" class="ext-link" rel="external ">云本地计算基金会</a>管理。</p>
+<p class="translated"><iframe loading="lazy" title="PromCon 2017: Storing 16 Bytes at Scale - Fabian Reinartz" src="https://www.youtube.com/embed/b_pEevMAC3I?list=PLoz-W_CUquUlnvoEBbqChb7A0ZEZsWSXt" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">新设计提供了高效的索引技术来处理监控目标的高周转率，并提供一致的查询性能。它还降低了资源需求，为热备份和动态保留策略等高级功能铺平了道路。</p>
+<p class="translated">新的存储引擎“使用受全文搜索启发的倒排索引，在Prometheus中的时间序列可能具有的任意维度上提供快速查找。一种新的磁盘格式确保了相关时间序列数据的良好搭配，而预写日志使Prometheus 2.0能够抵御崩溃，”Reinartz在博客中解释道。</p>
+<p class="translated">2.0版本还增加了陈旧处理，这是最受欢迎的路线图项目之一。现在可以精确跟踪消失的监控目标，减少查询伪影和警报响应。</p>
+<p class="translated"><iframe loading="lazy" title="PromCon 2017: Staleness and Isolation in Prometheus 2.0 - Brian Brazil" src="https://www.youtube.com/embed/GcTzd2CLH7I?list=PLoz-W_CUquUlnvoEBbqChb7A0ZEZsWSXt" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">普罗米修斯2.0还提供:</p>
+<ul>
+<li class="translated">对整个数据库快照备份的内置支持。</li>
+<li class="translated">YAML格式的记录和警报规则，使其更容易与配置管理和模板集成。</li>
+</ul>
+<p class="translated">简单开放的存储格式和库还允许用户轻松构建自定义扩展，如动态保留策略。这使得存储层能够满足广泛的需求，而不会给Prometheus本身带来复杂性；Reinartz在博客中说，这使它能够专注于其核心目标，并补充说，远程API将继续发展，以满足长期存储的要求，而不会牺牲普罗米修斯通过简单实现可靠性的模式。</p>
+<p class="translated">Reinartz说，Prometheus背后的任何长期存储环境的本地读/写集成(T4)仍在未来。</p>
+<p class="translated">Prometheus最初由<a href="https://thenewstack.io/soundcloud-relies-open-source-prometheus-monitoring/" class="local-link"> Soundcloud开发，供内部使用</a>，是一个基于谷歌<a href="https://research.google.com/pubs/pub43438.html" class="ext-link" rel="external "> Borgmon </a>思想的分布式监控工具，它使用时间序列数据和指标让管理员深入了解他们的运营情况。</p>
+<p class="translated">通过将数据流标识为键值对，Prometheus聚合并过滤指定的指标，同时允许进行细粒度的查询。</p>
+<p class="translated">它的<a href="https://thenewstack.io/contributing-prometheus-history-alertmanager/" class="local-link">成熟、可扩展的数据模型</a>允许用户为每个时间序列附加任意的键值维度，相关的查询语言允许你进行聚合、切片和切割。</p>
+<p class="translated">它对多维数据收集和查询的支持被<a href="https://prometheus.io/docs/introduction/overview/#architecture" class="ext-link" rel="external ">标榜为一种特殊的优势，尽管对于诸如按请求计费这样的应用来说并不是最好的选择。</a></p>
+<p class="translated">普罗米修斯成为继<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>之后<a href="https://www.cncf.io/" class="ext-link" rel="external ">云原生计算基金会</a> (CNCF)采用的<a href="https://thenewstack.io/cloud-native-computing-foundation-prometheus-second-hosted-project/" class="local-link">第二个项目</a>。CNCF采用Prometheus的部分原因是它适合云原生技术，如容器和微服务。</p>
+<p class="translated">在上个月的<a href="http://events.linuxfoundation.org/events/open-source-summit-europe" class="ext-link" rel="external ">开源峰会</a>上，CNCF在其项目组合中增加了关注安全的<a href="https://github.com/theupdateframework/notary" class="ext-link" rel="external ">公证人</a>和<a href="https://github.com/theupdateframework/specification" class="ext-link" rel="external ">更新框架(TUF) </a>，并宣布了<a href="http://markets.businessinsider.com/news/stocks/The-Cloud-Native-Computing-Foundation-Announces-30-New-Members-1005308286" class="ext-link" rel="external "> 30名新成员</a>。</p>
+<p class="attribution translated">云本地计算基金会和CoreOS T21是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="https://www.flickr.com/photos/ambs/" class="ext-link" rel="external ">阿尔贝托</a>的<a href="https://www.flickr.com/photos/ambs/112083914/in/photolist-aUsDh-eGZRyq-eGZJJj-eGTxDV-7TEwXH-arMg6q-ii6Co6-H4qoe9-vXNkeJ-kYGYi-H4qvW3-HSTy9a-H4qxV3-HQBaPA-akDXLK-cLycFA-HyP6LA-aZnFvH-HZm1gM-cE9owW-92TgSs-HWfouq-H4qHQy-oBpaAt-HQxka7-eGTzwF-eGZDhJ-eG" class="ext-link" rel="external ">普罗米修斯</a>，以<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC BY-SA 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

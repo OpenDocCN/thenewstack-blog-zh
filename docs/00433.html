@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Grafeas: A New Way to Track the DevOps Supply Chain</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Grafeas:追踪DevOps供应链的新方法</h1>
+<blockquote>原文：<a href="https://thenewstack.io/grafeas-new-way-track-devops-supply-chain/#0001-01-01">https://thenewstack.io/grafeas-new-way-track-devops-supply-chain/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">新推出的开源倡议<a href="https://github.com/grafeas" class="ext-link" rel="external "> Grafeas </a>定义了一种开放、统一的元数据交换格式和API，它将提供一种一致的方式来聚集和消费来自软件组件的元数据。</p>
+<p class="translated">这个元数据的中央存储库<a href="https://cloudplatform.googleblog.com/2017/10/introducing-grafeas-open-source-api-.html" class="ext-link" rel="external ">承诺</a>提供一个全新的软件供应链可见性层——并增强审计和治理能力。</p>
+<p class="translated">Grafeas从在<a href="https://cloud.google.com/kubernetes-engine" class="ext-link" rel="external ">谷歌</a>的工作中成长起来，但是JFrog、<a href="https://www.openshift.com/" class="ext-link" rel="external ">红帽</a>、IBM、黑鸭、<a href="https://www.paloaltonetworks.com/prisma/cloud" class="ext-link" rel="external "> Twistlock </a>、Aqua Security和<a href="https://coreos.com/" class="ext-link" rel="external "> CoreOS </a>都加入了这个倡议。</p>
+<p class="translated">“现代(软件开发)过程在很多情况下让事情变得更难——创建彼此独立的较小服务，”谷歌产品经理、开发者平台的Stephen Elliott说。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/10/d4da8037-grafeasart.png" class="ext-image" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3271434" src="../Images/02d2e13c7c6174147751eb9485f274ba.png" alt="" data-id="3271434" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/10/d4da8037-grafeasart.png"/> </a></p>
+<p class="translated">这一过程加剧了一些问题，例如首席信息官们是否确信交付生产的产品是安全的，是最新的，是内部制造的，并且拥有正确的许可证。</p>
+<p class="translated">“我们从顾客那里听说这个问题越来越严重，”他说。</p>
+<p class="translated">“我们收到的一个常见问题是，‘我如何判断组件X是否正在生产中运行？’或者‘我如何判断这个最新的漏洞是否会影响到我即将投入生产的任何东西？'</p>
+<p class="translated">“这些都不是因为容器而产生的新问题。这只是事情开放和分布的方式，只是更难回答。”</p>
+<p class="translated">Google内部也有同样的问题，处理大量的容器和发布，拥有一个灵活可信的系统，可以跟踪所有的组合组件。</p>
+<p class="translated">Grafeas(希腊语中的“scribe”)为跨软件开发团队和管道跟踪和执行策略提供了一个核心的事实来源。</p>
+<p class="translated">“如果你有一个关于你的工件的真正强大的知识库，那么你可以建立一个真正强大的治理工具，”Elliott说。</p>
+<p class="translated">通过第二个部分，Kritis(希腊语中的“法官”)组织可以实时地为Kubernetes集群执行治理策略，这些策略来自Grafeas元数据。</p>
+<p class="translated">对于电子商务平台<a href="https://www.shopify.com/" class="ext-link" rel="external "> Shopify </a>来说，每天有6000个容器构建，其主要容器注册表中有33万个图像，跟踪所有组件一直是一个挑战。该公司在一篇<a href="https://shopifyengineering.myshopify.com/blogs/engineering/how-shopify-governs-containers-at-scale-with-grafeas-and-kritis" class="ext-link" rel="external ">博客文章</a>中解释说，它使用Grafeas来回答以下问题:</p>
+<ul>
+<li class="translated">该容器是否已部署到生产环境中？</li>
+<li class="translated">这个容器从我们的注册表中取出(下载)的时间是什么时候？</li>
+<li class="translated">这个容器中安装了什么包？</li>
+<li class="translated">这个容器包含任何安全漏洞吗？</li>
+<li class="translated">这个集装箱符合我们的安全控制吗？</li>
+</ul>
+<p class="translated">“通过将Grafeas和Kritis集成到我们的Kubernetes管道中，我们现在能够自动存储漏洞并构建我们创建的每个容器映像的信息，并严格执行由Shopify构建的策略:我们的Kubernetes集群只运行由我们的构建者签名的映像，”Shopify的高级安全工程师<a href="https://twitter.com/jonpulsifer" class="ext-link" rel="external "> Jonathan Pulsifer </a>说。</p>
+<p class="translated">谷歌正在托管其alpha Grafeas API，但它希望围绕它建立一个生态系统。因为它没有与任何特定的行业技术或打包技术相结合，所以它可以在任何地方运行并存储元数据，即使在混合云用例中也是如此。它集成和聚合了来自现有工具的元数据。</p>
+<p class="translated">“我们希望我们的合作者在他们自己的系统中实现它，但是他们都能够相互交流。因此，对于JFrog，我们正在进行双向同步，因此，如果他们在自己的私有云上使用Artifactory和[Jfrog] XRay或谷歌产品，他们都可以相互交谈。这对拥有混合环境的金融服务公司等客户来说非常重要，”Elliott说。</p>
+<p class="translated">他把它比作基本的互联网管道。有了供应链强大的中央元数据存储，构建仪表板就变得容易多了。</p>
+<p class="translated">“你不必做大量的定制工程来将每个不同的工具集成到某种仪表板中，”他说。“如果将API插入用于构建/测试/部署的工具中，仪表板不必查询所有不同的工具，它只需查询Grafeas，并且只查询您需要的元数据，因此您不会得到一些单一的报告。它可以处理简单的查询，比如“QA团队已经在这张图片上签字了吗？”更丰富的查询，例如，“我是首席信息官，我想查看我部署的所有组件中某些漏洞的状态。"</p>
+<p class="translated">根据一篇博客文章，它为进一步的自动化开辟了可能性:</p>
+<p class="translated">“如果所有组件都以标准格式呈现其元数据，那么从使用不同技术创建的组件中添加和提取元数据的过程更容易实现自动化，并且您可以使用标准API提取元数据。但这仅仅是开始。当您开始使用相同的标准添加自己的私有元数据时，您就为正在使用的软件组件的自动化审计和治理开辟了新的机会，无论它们是开源组件还是内部创建的专有组件。”</p>
+<p class="translated">预计本季度发布:</p>
+<ul>
+<li class="translated">JFrog的Grafeas API的x射线实现</li>
+<li class="translated">Grafeas的Google工件元数据API实现，以及Google容器注册表漏洞扫描</li>
+<li class="translated">JFrog Xray和Google工件元数据API之间的双向元数据同步</li>
+<li class="translated">Black Duck与Grafeas和Google工件元数据API的集成</li>
+</ul>
+<p class="attribution translated"><a href="https://coreos.com/" class="ext-link" rel="external "> CoreOS </a>、<a href="https://cloud.google.com/kubernetes-engine" class="ext-link" rel="external "> Google </a>、<a href="https://www.openshift.com/" class="ext-link" rel="external "> Red Hat </a>和<a href="https://www.paloaltonetworks.com/prisma/cloud" class="ext-link" rel="external "> Twistlock </a>是新栈的赞助商。</p>
+<p class="attribution translated">通过Shopify展示艺术。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

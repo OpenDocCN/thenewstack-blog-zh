@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Grindr Settles into a Scalable Platform to Expand its Range of Services</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Grindr建立了一个可扩展的平台，以扩展其服务范围</h1>
+<blockquote>原文：<a href="https://thenewstack.io/grindr-settles-scalable-platform-expand-range-services/#0001-01-01">https://thenewstack.io/grindr-settles-scalable-platform-expand-range-services/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">是什么将一个平台与一堆软件区分开来？首先，一个平台可以让企业轻松地扩展到新的服务和市场，而没有相应的扩展痛苦。</p>
+<p class="translated">这可能是从移动社交网络服务<a href="http://www.grindr.com/" class="ext-link" rel="external "> Grindr </a>如何管理IT中获得的经验。Grindr是一个非常成功的纯移动地理社交网络应用，旨在帮助同性恋和双性恋男子与附近志同道合的人联系，Grindr正计划将其服务扩展到联系之外，以满足一系列生活方式的需求。想想附近美味餐馆的Grindr，或者寻找好节目的Grindr。</p>
+<p class="translated">有了新平台，由于平台的可扩展性，这种扩展变得更加容易。</p>
+<p class="translated">“我们有一个巨大的机会。Grindr首席技术官卢卡斯·斯利卡(Lukas Sliwka)说:“我们正在谈论我们多年来建立的一个庞大的用户生态系统。“我们的愿景是，在接下来的几年里，把我们的平台变成一个地方，让同性恋者不仅可以了解他周围的人，还可以了解他周围发生的事情。”</p>
+<p class="translated">大约两年前，Sliwka在那里成立，当时公司只有4名软件工程师(现在已经增加到40名)。当他第一次签约时，斯利卡最初并不担心拓展新市场。相反，他有一个更紧急的任务:稳定公司的平台，并达到一些SLA(服务水平协议)。</p>
+<p class="translated">作为一个社交网络服务，Grindr是巨大的。这项服务有大约200万活跃用户，他们经常使用这项服务。每个用户平均每天花大约一个小时在网站上，比脸书用户平均每天花的时间还多。目前，该公司的使用高峰是太平洋时间周日下午3点30分左右，超过100万用户可以使用这项服务。这可以转化为每秒10，000到20，000个API请求，以及大约1，5000到2，000条聊天消息。</p>
+<h2 class="translated">第一项任务:建立SLA</h2>
+<p class="translated">当Sliwka加入时，该平台主要基于Ruby-on-Rails，并运行“团队从零开始构建的一系列不同的定制技术，”Sliwka回忆道。</p>
+<p class="translated">因此，所有这些定制工作相当于“一个管理和维护成本非常高且相当脆弱的基础设施”，斯利卡说。“因为它是定制的基础架构，所以没有定期更新的好处。”</p>
+<p class="translated">例如，Grindr作为一种位置辅助服务，需要强大的地理空间算法，这是该公司自己创造的，尽管谷歌提供了非常合适的算法。另一个特性chat最初是由Jabber拼凑而成的。</p>
+<blockquote><p class="translated">“你不想浪费这些人的周期来管理已经解决的事情”——Lukas sli wka。</p></blockquote>
+<p class="translated">Sliwka的第一个任务是找到那些可以被一些更容易管理的现成技术取代的自制组件。</p>
+<p class="translated">Jabber被一个更易管理的<a href="https://www.erlang-solutions.com/products/mongooseim.html" class="ext-link" rel="external ">mongoseem</a><span>栈取代了<span>，它得到了Erlang Solutions的支持。该公司还引入了</span> <a href="http://objectrocket.com/" class="ext-link" rel="external "> ObjectRocket </a> <span>，它基本上将MongoDB打包为服务，因此可以轻松部署。</span></span></p>
+<p class="translated">在一年之内，在重构客户端并向“拥挤率”或最大可能的流量调整后，团队能够保持一致的SLA，最大限度地减少中断。</p>
+<h2 class="translated">下一步:构建可扩展的平台</h2>
+<p class="translated">因此，在2014年年中，Sliwka采取了下一个合乎逻辑的步骤，即制定一个更具可扩展性的架构。他召集了一个架构团队，让他们躲在一个僻静的地方，构建一个将成为公司“新堆栈”的蓝图，并在接下来的一年中实施。</p>
+<p class="translated">Ruby-on-Rails将一去不复返，取而代之的是一系列强调非阻塞I/O的技术，包括高度可扩展的基于Scala的框架。</p>
+<p class="translated">对于这个框架，该团队考虑了Node.js和Go框架，尽管该公司担心他们无法找到足够的开发人员来覆盖这项技术，至少无法达到Grindr所需的规模。</p>
+<p class="translated">“我不觉得我们的开发者生态系统有必要的经验，我们可以从中招聘，”斯利卡说。“我可以告诉你，即使是Java，雇佣大规模工作过的Java人也容易得多，因为Java作为一个企业已经存在了很长时间。即使是Java人员，也很难找到熟悉解决这种规模问题的工程师。”</p>
+<p class="translated">对于配置管理，Grindr使用了<a href="https://zookeeper.apache.org/" class="ext-link" rel="external "> Apache ZooKeeper。</a> Amazon Web Services提供了基础设施，所以应用程序是通过<a href="https://aws.amazon.com/elasticbeanstalk/" class="ext-link" rel="external "> Amazon Elastic Beanstalk </a>打包和部署的。</p>
+<p class="translated">该公司使用开源的RabbitMQ进行后端消息传递，但该公司没有试图在内部维护它，而是购买了<a href="https://www.cloudamqp.com/" class="ext-link" rel="external "> CloudAMQP </a>的服务。对于缓存层，<a href="https://redis.com/" class="ext-link" rel="external "> Redis Labs </a>提供了一个高度可扩展的Redis集群。<a href="https://saucelabs.com/" class="ext-link" rel="external ">酱实验室</a> <span>和</span> <a href="http://appium.io/" class="ext-link" rel="external "> Appium </a> <span>用于自动化大部分所有的功能测试。</span></p>
+<p class="translated">一家名为<a href="https://www.treasuredata.com/" class="ext-link" rel="external "> Treasure Data </a>的公司处理数据捕获、摄取和加密。MongoDB的规模可能很大，它被剥离了许多职责，转而支持<a href="https://www.elastic.co/" class="ext-link" rel="external ">弹性搜索</a>。为了帮助将延迟降至最低，Grindr使用<a href="https://www.cloudflare.com" class="ext-link" rel="external "> CloudFlare </a>内容交付网络(CDN)来传输文本和照片等静态材料。</p>
+<p class="translated">斯利卡说，所有这些外包背后的想法是“最大限度地减少对我们内部DevOps团队的依赖”。</p>
+<p class="translated">“我非常支持的一件事，尤其是对初创公司或中型公司而言，是随着你的成长，你希望确保你的工程部门专注于对竞争优势贡献最大的事情。你不希望浪费这些人的周期来管理已经解决的事情，”斯利卡说。</p>
+<p class="translated">到2015年6月，新的堆栈已经启动并运行。现在，下一步是重新定义API，将功能扩展到新的面向用户的特性。许多服务已经或正在被重新架构为微服务，因此它们可以在多种用例中使用。</p>
+<p class="translated">有了基础设施，Sliwka现在能够集中精力为附加服务获取正确的数据。Sliwka说，Grindr现在正在雇用一个数据科学团队，“扩展我们的数据处理能力，以便能够开始将一些深度学习应用到我们去年收集的数据中”。</p>
+<p class="translated">“这非常令人兴奋，因为我们采取的方法是真正专注于建立一个平台，专注于提供微服务和可重复使用的组件，”斯利卡说。“因此，当我们构建所有这些不同的部分时，约会和会面引擎只是公司平台的一个应用程序。”</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

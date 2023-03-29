@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>The Capital One Serverless Architecture for Peer-to-Peer Payments</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">用于点对点支付的Capital One无服务器架构</h1>
+<blockquote>原文：<a href="https://thenewstack.io/capital-one-serverless-architecture-p2p-payments/#0001-01-01">https://thenewstack.io/capital-one-serverless-architecture-p2p-payments/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="p1 translated">美国银行Capital One引入了一种无服务器架构来帮助管理其点对点支付系统。在美国，银行和Visa/MasterCard网络合作提供点对点支付网络。基于Clear xChange网络，<a href="https://www.zellepay.com/" class="ext-link" rel="external "> Zelle </a>是银行业对<a href="https://venmo.com/" class="ext-link" rel="external "> Venmo </a>的竞争性回答，自2017年年中以来一直处于更名状态。第一资本是这一努力的一部分。</p>
+<p class="p1 translated">虽然Zelle是一个独立的应用程序，但它也集成到了大多数美国银行的移动应用程序中，因此任何银行的客户都可以通过电话号码或电子邮件向朋友或亲戚汇款，就像他们在Paypal广受欢迎的Venmo中一样。据<a href="http://www.tearsheet.co/payments/zelle-is-winning-the-peer-to-peer-payments-war-sort-of" class="ext-link" rel="external "> <span class="s1"> Tearsheet </span> </a>报道，点对点支付(P2P)是一个巨大且不断增长的交易市场，Paypal的Venmo在2017年第三季度报告了94亿美元的交易，而Zelle则处理了超过6000万笔交易，总价值为175亿美元。</p>
+<p class="p1 translated">预计点对点支付将会增长，并成为各种科技巨头的核心产品:例如，脸书可以在其平台以及聊天应用Messenger和WhatsApp上提供自己的支付基础设施。</p>
+<p class="p1 translated">从本质上来说，P2P是一种数字技术，这通常会使银行在构建和提供与其传统堆栈集成的可行解决方案方面处于明显的劣势。</p>
+<p class="p1 translated">Capital One零售和直接技术副总裁Srini Uppalapati在最近于纽约举行的Serverlessconf活动上表示，与许多银行一样，Capital One也在努力开发一个他们的Zelle系统本应基于其上的单一应用程序</p>
+<p class="p1 translated">“我们在perm上有许多遗留服务，它们是大型、笨重的SOAP服务，上面有一个新的REST层，”Uppalapati描述道。但是除了老派的技术，他们的组织基础设施增加了复杂性:“数据模型的所有权属于银行内不同的团队和不同的业务线。”</p>
+<p class="p1 translated">Uppalapati表示，这带来了许多传统企业都熟悉的挑战:由于共享数据所有权，发布新功能需要花费大量时间，协调是“管理的噩梦”，实现新功能的任何问题都需要大量回滚，团队必须进行手动集成测试才能发布新功能。</p>
+<p class="p1 translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3489810" src="../Images/41d0515278f082c4e1030c09f363c1ad.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/11/f181dc91-srini-1.jpg"/></p>
+<p class="p1 translated">因此，Capital One寻求无服务器架构设计模式来帮助克服这些挑战，并为客户创建更加即时的支付服务。</p>
+<p class="p1 translated">Uppalapati指出，与亚马逊网络服务的<a href="https://aws.amazon.com/lambda/" class="ext-link" rel="external ">λ</a>结合使用的各种亚马逊服务使无服务器架构成为可能，包括:</p>
+<ul>
+<li class="p1 translated">RDS Aurora，使用超过15个RDS Aurora实例</li>
+<li class="p1 translated">网站内容的云前端</li>
+<li class="p1 translated">路由53和弹性负载平衡器</li>
+<li class="p1 translated">API凭据加密和解密的预定义密钥的KMS</li>
+<li class="p1 translated">Amazon ECS在Amazon EC2实例中运行和管理Docker容器</li>
+<li class="p1 translated">用于度量和监控的Amazon Cloud Watch和Amazon Cloud Trail。</li>
+</ul>
+<p class="translated">Uppalapati描述了新的无服务器支付架构中的典型工作流，其中需要报告信用卡和借记卡的使用情况，以处理Zelle支付。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3489838" src="../Images/64ad4357969365d6b17894b2d62c9e9a.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/11/0cafa47a-reporting.jpg"/></p>
+<p class="p1 translated">这需要对交易数据进行一些检查，以确定这些支付是否与客户账户相符，并作为银行全球金融工作的一部分进行处理。Uppalapati介绍了整个流程:</p>
+<p class="p1 translated">“CapitalOne从万事达卡和维萨卡接收文件。当这些被接收到简单存储服务[S3]中时，CloudWatch查看它们并触发Lambda为分析师过滤数据，然后调用微服务来匹配来自Zelle的交易，将它们分类为匹配或不匹配，或者是否应该发送到全球财务部门。”</p>
+<p class="p1 translated">然后，这些单独的列表被添加到数据库中，Lambda会在每天的预定时间触发报告，即一天的所有处理预计都已完成的时间。“这将创建三个文件:所有匹配、所有不匹配和所有全球金融安置，Lambda将这三个文件放入S3桶中，”Uppalapati描述道。然后Lambda查询存储桶，并使其可供注册会员下载。代理映射输入参数，并有一个前端，以便员工能够下载或手动处理报告数据，例如资金转账。”</p>
+<p class="p1 translated">其他主要的无服务器用例包括报告和分析系统，以及Capital One的开源项目<a href="https://medium.com/@gaurang.bhatt04/beamlinejs-b07e2ecae4da" class="ext-link" rel="external "> <span class="s1"> BeamlineJS </span> </a>，这是一个用于Lambda函数的开源CI/CD管道。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

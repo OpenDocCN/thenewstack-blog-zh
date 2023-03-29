@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Gravity Clones Clusters to Simplify Kubernetes Management</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Gravity克隆集群以简化Kubernetes管理</h1>
+<blockquote>原文：<a href="https://thenewstack.io/gravity-clones-clusters-to-simplify-kubernetes-management/#0001-01-01">https://thenewstack.io/gravity-clones-clusters-to-simplify-kubernetes-management/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Gravity的一款名为<u> <a href="https://gravitational.com/gravity/" target="_blank" class="ext-link" rel="external "> Gravity </a> </u>的新工具借鉴了虚拟化的快照概念，允许用户创建数千个相同的集群，以减轻设置和管理Kubernetes的痛苦。</p>
+<p class="translated">“问题是Kubernetes的管理和15或20年前的服务器管理一样复杂，”gravity首席执行官<a href="https://github.com/kontsevoy" target="_blank" class="ext-link" rel="external "> Ev Kontsevoy </a>说。</p>
+<p class="translated">“Gravity允许您拍摄群集的快照并创建数以千计的其他群集…它允许您创建群集、销毁它们并重新创建它们，每次群集启动时，安全性已经配置好，它已经强制执行了您公司的合规性…并且所有群集都是自我修复的，因此管理一个群集的成本等于管理一千个群集的成本。”</p>
+<p class="translated">Gravity允许用户拍摄Kubernetes集群的快照，包括所有应用程序和依赖项，并将其打包到一个文件中，该文件可以轻松安装到任何环境中。Gravity还包括流行的开源特权访问管理解决方案<u> <a href="https://gravitational.com/teleport/" target="_blank" class="ext-link" rel="external "> Teleport </a> </u>，该解决方案整合了访问和记录整个集群活动的安全最佳实践，以满足企业合规性要求。</p>
+<p class="translated">“你可以把它放在亚马逊、谷歌、你的私人数据中心、你的绝密实验室的地下室里。Kontsevoy说:“你可以把它放在一个连互联网都没有的服务器房间里，叫做空气间隙。</p>
+<p class="translated">“我们有运行Gravity的用户，他们需要在极度受限、极度封闭、高度合规、高度安全的环境中运行Kubernetes。”</p>
+<p class="translated">他说，公司倾向于使用内部拼凑的解决方案来解决跨不同环境运行许多Kubernetes集群的复杂问题，这既耗时又不安全。</p>
+<p class="translated">Gravity创建了跨部署的一致性，并允许团队远程管理集群的许多实例，即使这些实例位于防火墙之后。</p>
+<p class="translated">Gravity是开源的，有社区版和企业版。社区版可以从<a href="https://gravitational.com/gravity/benefits/cloud-native-applications/" class="ext-link" rel="external ">引力网站</a>下载。企业版允许您将Gravity与您的企业安全集成，包括基于角色的访问控制和跨许多集群的安全同步。它为您提供了跨多个集群的访问管理聚合。</p>
+<p class="translated">在快照过程中，它:</p>
+<ul>
+<li class="translated">提供完整的应用程序自省。</li>
+<li class="translated">查找所有容器并删除其层的重复项。</li>
+<li class="translated">打包所有必需的二进制文件。</li>
+<li class="translated">添加具有基础架构要求的群集元数据。</li>
+<li class="translated">将嵌入式Docker注册表添加到输出中。</li>
+<li class="translated">重写所有要在嵌入式注册表外托管的图像。</li>
+<li class="translated">输出包括用于远程管理的SSH bastion和Kubernetes网关。</li>
+</ul>
+<p class="translated">输出是一个tarball形式的自包含映像，可以加载到USB驱动器上，并带到一个有空气间隙的服务器机房，以重新创建原始集群的完整副本。</p>
+<p class="translated">它还通过特定于应用程序的挂钩自动升级，并提供回滚能力，具有全自动、逐步或手动模式。</p>
+<p class="translated">虽然有些商店使用SSH安全协议，而其他商店只依赖Kubernetes协议，但Gravity允许您同时使用这两种协议，并使它们同步。</p>
+<p class="translated">Kontsevoy说，gravity为甚至没有经验的Kubernetes用户提供简单性的方法可能不适合每个公司的口味。</p>
+<p class="translated">“当我们提供一个集群的快照时，它以一种非常固执己见的方式提供，这是我们与Kubernetes一起使用的网络类型，也是一种安全措施。这些是我们认为的最佳实践。我们不允许用户调整每一个可用的配置设置。</p>
+<p class="translated">“我们说，‘如果您信任我们的技术，开箱即用，就按原样使用它。’但是深层次的配置变化，他们是根本不允许的。…您得到的是完全自主的配置。集群可以自我运行、自我修复、自我管理。这对一些公司来说行得通，但最终对其他公司可能行不通，”他说。</p>
+<p class="translated">“有一些不同的网络拓扑，不同的部署方式。…我们以牺牲灵活性为代价来实现简单性。”</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/andrewmalone/" class="ext-link" rel="external ">安德鲁·马龙</a>的<a href="https://www.flickr.com/photos/andrewmalone/2995097315/in/photolist-5yEE5T-9jhVFR-9jhTT4-9jm4iY-6bAHer-ds7iys-Tb8Bot-6E7mrg-2fDPvW-dLEjfa-cQwvUy-3wHsWs-7sbQLi-T5E167-5JBMbc-3fUVK-6514A5-5JC96t-23kdYEa-23sPtWb-23sPpD3-6cwZ85-sUidh-o7DAg4-23sPmLE-c8XhTb-nfnwyE-nQ3NbF-9MWaJV-6EbvM1-b4SEh8-7sfBQW-8Xt9Wo-7sbw9i-9UUBUf-UQXWh8-X3voyD-4UBfsR-VTXdgq-N4M72-8fEuzg-TBpo4Z-23j4C9b-258EuJo-ETwLgZ-9jm3xA-WamcWu-2aZnLwv-pCrasQ-eaEHcf" class="ext-link" rel="external ">玉米糖排</a>。根据<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC BY-SA 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Building Your Own Compact Portable Power Brick</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:构建自己的紧凑型便携式电源模块</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-building-your-own-compact-portable-power-brick/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-building-your-own-compact-portable-power-brick/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">向便携式或移动物理计算设备供电可能非常具有挑战性。幸运的是，现代现成的零件价格合理，所以你几乎可以得到你需要的任何东西。诀窍在于，你必须自己建造它。</p>
+<p class="translated">例如，我需要一个便携式电源给机器人头骨<a href="/hedley-the-robotic-skulls-orthognathic-surgery/" target="_blank">赫德利</a>。去年7月，我被安排在波特兰当地的一家酒吧做现场演示。赫德利和我的笔记本都需要110伏交流电。遗憾的是，我没有带一根100英尺长的延长线去会场。我试着用我笔记本上的USB接口和外部电源模块来运行赫德利。没有骰子。演示有点令人失望。</p>
+<p class="translated">我决定想出一个便携式的解决方案，这样我就可以在没有电源插座的情况下运行赫德利。他需要为他的主要Raspberry Pi 3微控制器、<a href="http://jevois.org/" target="_blank" class="ext-link" rel="external "> JeVois智能视觉传感器</a>、用于平移伺服的Arduino Duemilanove和用于下颚伺服的Arduino Nano供电。Raspberry Pi和JeVois传感器都在5伏电压下运行。我还用的是便携式<a href="https://thenewstack.io/off-the-shelf-hacker-building-the-skull-top-computer-monitor/" target="_blank" class="local-link"> 10.1寸彩色HDMI显示器</a>配赫德利，需要12伏。我的要求要求至少三个标准的5伏USB端口和一个12伏的连接来为显示器供电。</p>
+<h2 class="translated">一个大而轻的电池</h2>
+<p class="translated">我从Banggood订购了一个<a href="https://www.banggood.com/DC-12V-15000mAh-Super-Rechargeable-Protable-Lithium-ion-Battery-Pack-p-970196.html?rmmds=search&amp;cur_warehouse=CN#jsReviewsWrap" target="_blank" class="ext-link" rel="external ">15000 mAh超级聚合物锂离子电池</a>开始建设。它的尺寸约为5×3英寸×2英寸厚，并且出奇的轻。它有标准的母充电和公输出桶连接器。电池配有一个12.6伏的充电器和一个欧式双头插头。我一直在用一个12伏的壁式电源插座给电池充电，可能很快就会插入一个标准的美国110伏插头。</p>
+<p class="translated">电池在显示器开箱后就能正常工作。我把它插在驱动板上，显示器立刻活跃起来。电池在电源线的对面有一个开/关开关。说明书上说给电池充电时，你应该把开关转到开的位置。</p>
+<h2 class="translated">USB端口丰富</h2>
+<p class="translated">小USB电源很容易买到，也不贵。亚马逊有一套五块电路板，价格约为9美元。它们的输入电压为4.5至24伏，输出电压为1.8至12伏，最大电流为3安培。其他供应商也有类似的主板。</p>
+<p class="translated">我没有从亚马逊订购，而是在当地的一元树旁停下来，买了三个12伏转USB汽车充电器插头。自然，它们是1美元一个。每个都有两个USB端口，额定电流为2.1安培。</p>
+<div id="attachment_6307989" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-6307989" decoding="async" loading="lazy" class="size-full wp-image-6307989" src="../Images/511b469ead9049b0b26d46db88dc70ee.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/12/e6aa0e65-car-charger.png"/><p id="caption-attachment-6307989" class="wp-caption-text translated">1美元车载充电器</p></div>
+<p class="translated">带切割轮的Dremel快速移除了塑料外壳，这样我就可以释放充电板了。然后，用大约16号绞线和一个可安装在面板上的母筒连接器连接三块电路板就很简单了。连接器上的中心引脚连接到电路板的正极电源输入侧，而外部连接器外壳接地。电池上的公输出连接器直接插入USB充电器板母连接器。我用电池开关打开/关闭电路板的电源。我还从一个旧的壁式电源插座上回收了一根12英寸长的双线电缆，带有一个插头，可以插入10.1英寸的显示器并为其供电。</p>
+<div id="attachment_6307985" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-6307985" decoding="async" loading="lazy" class="size-full wp-image-6307985" src="../Images/6edfd22cb2dfa7b936d6a761bdd4e542.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/12/069ac4ae-top-side.png"/><p id="caption-attachment-6307985" class="wp-caption-text translated">三个USB充电器焊接在一起(俯视图)</p></div>
+<div id="attachment_6307986" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-6307986" decoding="async" loading="lazy" class="size-full wp-image-6307986" src="../Images/91882369f8d2d3bc07852de1d74692e3.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/12/143b0531-bottom-side.png"/><p id="caption-attachment-6307986" class="wp-caption-text translated">三个USB充电器焊接在一起(仰视图)</p></div>
+<h2 class="translated">它是如何工作的</h2>
+<p class="translated">电池与赫德利和显示器配合得很好。我把他带到我的办公室，Panera Bread，他和显示器用电池运行了几个小时，没有任何问题。我注意到当所有的电子设备都启动并运行时，Raspberry Pi 3偶尔会在显示器上显示“低电压”警告符号。</p>
+<p class="translated">Pi 3对USB线的质量非常敏感。使用高质量的电缆，Pi会很高兴。廉价电缆中的小直径电线和劣质连接器根本无法通过所需的电流量。使用短电缆也是一个好主意。</p>
+<p class="translated">我将不得不忍受使用赫德利，显示器和电池一段时间，看看系统的表现如何。一个小型音频放大器正在工作中，用来驱动赫德利口腔顶部的扬声器。听到赫德利说话的同时看到他的嘴在动，这不是很酷吗？这将增加电池的负载，我很想看看在做“便携式”演示时它是如何工作的。期待不久的更新。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

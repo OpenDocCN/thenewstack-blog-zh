@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>OpenStack’s New Public Passport Program Could Kickstart Federated Cloud Management</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">OpenStack的新公共通行证计划可以启动联合云管理</h1>
+<blockquote>原文：<a href="https://thenewstack.io/openstacks-new-public-passport-program-kickstart-federated-cloud-management/#0001-01-01">https://thenewstack.io/openstacks-new-public-passport-program-kickstart-federated-cloud-management/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在悉尼的OpenStack峰会上，OpenStack推出了<a href="https://www.openstack.org/passport" class="ext-link" rel="external ">全球Passport计划</a>，这是一种企业通过使用OpenStack新passport marketplace中可用的免费增值类型包之一在公共云中测试OpenStack的方法。</p>
+<p class="translated">该方法的想法是允许企业和机构试用提供OpenStack服务的公共云提供商。<a href="https://www.openstack.org/" class="ext-link" rel="external "> OpenStack Foundation </a>首席运营官<a href="https://www.linkedin.com/in/markcollier/" class="ext-link" rel="external ">马克·科利尔</a>宣布:“公共云工作组为此付出了巨大努力。</p>
+<p class="translated">但是这项工作可以超越一次测试一片云的能力。“他们还在考虑未来的功能，以便更容易地在OpenStack公共云之间移动，”Collier说。</p>
+<p class="translated">换句话说，如果OpenStack的passport的“未来功能”转向同时开放其网络中所有公共云提供商的访问，而不是为客户提供尝试一个公共云提供商的机会，会怎么样？</p>
+<blockquote><p class="translated">“基本上，联盟的核心思想是提供商‘拥有’客户”——Mariano Cunietti，EnterCloudSuite</p></blockquote>
+<p class="translated">EnterCloudSuite 的首席技术官Mariano Cunietti 说:<a href="https://twitter.com/mcunietti" class="ext-link" rel="external ">EnterCloudSuite</a>是一家基于OpenStack的云提供商，提供全面的网络和云服务。在不久的将来，他设想一个新的联合公共云基金会，它可以来自OpenStack的合作伙伴，并为所有提供OpenStack服务的公共云提供商提供多个网关。</p>
+<p class="translated">“如果OpenStack提供商能够联合起来，并能够在定义的边界内，在某个值得信赖的合作伙伴的基础架构上创建用户、租户和资源，会怎么样？如果小型提供商能够利用多区域、多可用性区域的全球超大规模提供商的可扩展性、弹性和可靠性，会怎么样？”库涅蒂问道。</p>
+<h3 class="translated">联合云管理如何大规模扩展全球应用分布</h3>
+<p class="translated">Cunietti举了一个需要运行不同类型工作负载的客户的例子。其中一些任务可能需要低延迟，以便对用户的请求做出快速响应。这些工作负载必须更贴近网络上的用户，然后由本地提供商托管。但是，作为一家媒体公司，该客户还要求每晚使用1，000个内核来对视频文件进行批量编码。该提供程序太小，无法容纳此重载，该请求将被拒绝，以支持大型超大规模提供程序。</p>
+<p class="translated">如果有联合，提供商可以激活联合供应商(即另一个云公共提供商)上的资源池，以使用资源。供应商很高兴，因为这些资源被闲置，消耗电力而不产生收入。</p>
+<p class="translated">现在，Cunietti补充说，客户还需要在美国、远东和南美开展业务，而欧洲供应商并没有在这些地区开展业务。如果客户正式同意，供应商可以列出能够满足全球存在请求的外部联合供应商的区域。Cunietti概述说，除了地理位置之外，其他特定需求的驱动因素可能是实例和存储的价格、电力成本、容量、某些功能的可用性或其他基础设施要求。</p>
+<p class="translated">“基本上，联合的核心思想是提供商‘拥有’客户，但也可以表现为来自远程提供商的本地资源。计费是背对背管理的，合规性是通过让客户直接接受第三方供应商的SLA来管理的，”Cunietti说。可以说，这种“合作竞争”可以改善“每个供应商的能力和上市时间。”</p>
+<p class="translated">“我们已经看到，在设计、部署和迁移应用程序方面的直接支持是小型、熟练的提供商能够以快速、有效和廉价的方式提供的价值。客户更喜欢它:有时你需要一个教练来帮你，而不是一堆文件，”Cunietti说。</p>
+<h3 class="translated">联合云管理的工具集</h3>
+<p class="translated">随着最近Docker对Kubernetes编排引擎的支持，这一计划成为了“完美风暴”。一个标准终于在基础设施的较低层被定义，而Docker/containerd已经是上层部署的标准。现在可以实现多云，原生可移植性比以往任何时候都更近。”</p>
+<p class="translated">OpenStack在实现上一直饱受碎片化之苦。它生来就是被定制的，当用户从一个云迁移到另一个云时，它缺乏标准。</p>
+<p class="translated">但现在是时候看看<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>如何成为轻松运行复杂基础设施的基础了，在许多可用工具的帮助下实现这一点:<a href="https://wiki.openstack.org/wiki/Openstack-helm" class="ext-link" rel="external "> Helm </a> charts和它的<a href="https://kubeapps.com/" class="ext-link" rel="external ">单眼</a> UI，例如，一个界面，它使选择库和将一切作为Kubernetes集群自动部署变得容易。</p>
+<p class="translated">在这场风暴中，另一个关键组件是使OpenStack联盟可行的软件:<a href="https://github.com/entercloudsuite/openstack-sentinel" class="ext-link" rel="external "> Sentinel </a>，OpenStack的一个管理工具，由<a href="https://www.linkedin.com/in/spjmurray/" class="ext-link" rel="external ">马世民</a>与英国云运营商DataCentred合作开发，它允许一个提供商利用一个安全的代理，让另一个云提供商在其云中创建用户。</p>
+<p class="translated">为了在联盟中赚钱，每个云提供商在公开OpenStack标准API时已经有了自己的API端点。Cunietti表示，在这种系统下，可以很容易地明确列出每个最终客户的云使用情况，如果客户通过另一家云供应商访问服务，会计报告可以传递给最终客户开具发票。</p>
+<p class="translated">cunietti——他的EnterCloudSuite是唯一一家完全欧洲化的开源提供商，由欧盟委员会数字部门T10聘请来管理52个机构的云基础设施——称之为“应用于云提供商的微服务”</p>
+<p class="translated">Cunietti表示，EnterCloudSuite迄今为止的成功是因为他们理解(并接受)了云(无论是私有还是公共)是一种过渡，而不是转换:“我们不仅仅提供基础设施，它还是一个路线图。云是一段你必须走过的旅程，你不能跳跃，我们帮助你理解-或记住-你的业务是什么。”</p>
+<p class="translated">如果云管理提供商被商品化，那么满足业务和本地需求的能力就是价值所在。</p>
+<p class="translated">“我们都听说过这句老话，但我想说相反的话:立足本地，放眼全球，”库涅蒂说。</p>
+<p class="attribution translated">OpenStack基金会是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:让·法布尔雕塑“测量云的人”的照片，由马克·博伊德拍摄。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

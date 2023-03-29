@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Microsoft Secures the Windows Docker Container</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">微软保护Windows Docker容器</h1>
+<blockquote>原文：<a href="https://thenewstack.io/microsoft-secures-the-windows-docker-container/#0001-01-01">https://thenewstack.io/microsoft-secures-the-windows-docker-container/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">微软继续致力于在Windows上为Docker创建一个主页。周四发布的Windows Server 2016 release candidate 4(RC 4)引入了一种新的Docker Windows容器，该容器安全地位于该公司的虚拟化机器Hyper-VM中。</p>
+<p class="translated">Hyper-V容器使用与Windows上运行的Docker容器相同的图像格式，该公司在今年早些时候以预览形式推出了Docker容器，但是它们提供了虚拟机所提供的更大的隔离。</p>
+<p class="translated">虽然微软在一年前首次宣布了Hyper-V容器的想法，但“这是世界第一次开始使用它们，”微软首席编程管理主管泰勒·布朗说。</p>
+<p class="translated">Hyper-V容器可以使用许多用于常规Windows容器的相同命令来控制。您使用相同的Docker命令来启动Hyper-V容器，就像您对常规的Microsoft Docker容器所做的那样，只添加了一个隔离标志。</p>
+<p class="translated">Docker技术人员Patrick Chanezon指出，目前，所有Docker Compose命令在两个平台上都可以正常工作，Windows Swarm的原型也正在测试中。</p>
+<p class="translated">性能呢？毕竟，容器相对于传统虚拟机的一个很大的优势是，它们可以更快地创建，因为它们共享服务器的内核，而不是启动自己的内核。</p>
+<p class="translated">布朗承认，事实上，Hyper-V容器确实需要多花几秒钟来创建。他补充说，与未虚拟化的容器相比，Hyper-V容器占用了更多的内存空间，因此可以打包到单个服务器上的容器更少。</p>
+<p class="translated">但这是为了更高的安全性而付出的代价。根据设计，Hyper-V容器提供的攻击面要小得多。例如，如果在Windows内核中发现漏洞，恶意用户就无法从Hyper-V容器中挣脱出来，从而利用主机服务器上的故障。</p>
+<p class="translated">“最糟糕的情况是让虚拟机崩溃。他们无法走出集装箱的界限，”布朗说。</p>
+<h2 class="translated">没有用于Windows的libc</h2>
+<p class="translated">布朗说，将基于Linux的用Go编写的Docker交叉编译到Windows上是一项合作努力，涉及微软、Docker和第三方贡献者。</p>
+<p class="translated">事实上，在过去的一年里，微软实际上已经成为Docker最大的贡献者之一。根据Docker的数据，在过去一年的319个拉取请求中，就代码行数而言，微软是第五大贡献者。</p>
+<p class="translated">请记住，Windows Docker容器提供Windows系统调用，而不是Linux系统调用。像Linux Docker容器一样，Windows容器共享主机OS内核，只是内核是Windows，而不是Linux。</p>
+<p class="translated">“当你在一个Windows容器中时，感觉就像一个Windows环境。Docker工程师Arnaud Porterie在本周于巴塞罗那举行的Dockercon欧盟会议上谈论Windows容器时说道。</p>
+<p class="translated">微软工程师约翰·斯塔克斯指出，尽管Docker代码库是共享的，但基于Windows的Docker和基于Linux的Docker容器在体系结构上有许多不同，他也出席了Dockercon欧盟Windows容器会议。</p>
+<p class="translated">首先，基于Linux的Docker容器在主机系统上只能产生一个进程，而Microsoft容器会产生多个进程。</p>
+<p class="translated">然而，对于Hyper-V容器来说，情况并非如此，因为它们在hypervisor中有自己的轻量级内核，而不是共享主机的内核。因此，“从Docker的角度来看，它看起来像一个容器，但你不会在主机上看到它的进程，”Starks说。</p>
+<p class="translated">此外，Linux调用依赖于一些共享库，如<strong> libc </strong>。相比之下，Windows依赖于一组更广泛的<strong>dll</strong>(动态链接库)，其中许多dll交织在一起提供服务。因此，每个Windows容器实际上都在主机操作系统上运行几个进程，而不是一个。</p>
+<h2 class="translated">为了胜利的敌意多重租赁</h2>
+<p class="translated">所以基于Linux的Docker容器将不能在Windows机器上本地运行，反之亦然。布朗说，但两者都将能够由相同的Docker管理软件控制，允许开发人员将Windows和Linux的最佳组件混合到一个应用程序中。</p>
+<p class="translated">完全隔离的容器可能会吸引许多出于各种安全和行业合规性考虑而不愿使用该技术的企业用户。</p>
+<p class="translated">微软Azure本身将使用安全容器来更有效地提供多租户托管服务，如Azure机器学习(ML)服务。</p>
+<p class="translated">“我们可以以更高的密度将客户的脚本彼此完全隔离，这比我们为每个客户建立完整的虚拟机要高得多，”Brown说。</p>
+<p class="translated">完全生产就绪的Hyper-V容器技术将随着Windows Server 2016的完全商业发布而到来，预计将于明年某个时候推出。完整的Windows Server 2016和精简的Nano版本都将运行这些容器。</p>
+<p class="translated">一旦微软更新其管理程序，Hyper-V容器也将在微软的Azure容器服务上得到支持。</p>
+<p class="attribution translated">Docker是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:Docker技术人员Patrick Chanezon在Dockercon EU 2015上，两侧是微软Azure架构师John Gossman(左)和微软首席编程经理Taylor Brown。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

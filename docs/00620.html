@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Google Next Brings Kubernetes, Serverless, and VM-Like Isolation to the Cloud</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Google Next将Kubernetes、无服务器和类似虚拟机的隔离带到了云中</h1>
+<blockquote>原文：<a href="https://thenewstack.io/google-next-brings-kubernetes-serverless-and-vm-like-isolation-to-the-cloud/#0001-01-01">https://thenewstack.io/google-next-brings-kubernetes-serverless-and-vm-like-isolation-to-the-cloud/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">今天，谷歌在三藩市召开了一年一度的云大会，<a href="https://cloud.withgoogle.com/next18/sf/" class="ext-link" rel="external "> Google Next </a>。该活动包括教程、讲座和主题演讲，详细介绍了该公司云产品的复杂性，同时还展示了谷歌提供的最新最棒的服务。包括在所有会议活动中的主题演讲详细介绍了谷歌围绕Kubernetes所做的努力，以及其在服务器内部更安全地隔离应用程序的工作。</p>
+<p class="translated"><a href="https://www.linkedin.com/in/teich/" class="ext-link" rel="external ">谷歌云</a><a href="https://cloud.google.com" class="ext-link" rel="external ">的产品管理总监柳文欢·泰奇</a>首先发布了用于<a href="https://cloud.google.com/appengine/" class="ext-link" rel="external ">谷歌应用引擎</a>的新<a href="https://github.com/google/gvisor" class="ext-link" rel="external "> Gvisor </a>。AppEngine是该公司的第一个云服务托管产品，自发布以来已经有了很大的发展。去年，该公司扩大了可以在App Engine上运行的应用程序的范围，修复了多年来给许多用户带来痛苦的一个主要平台缺陷。Gvisor允许应用程序彼此完全隔离，就像虚拟化应用程序一样。</p>
+
+<p/>
+<p class="translated">现在，Google AppEngine功能更强，可以运行更高效地连接外部资源的应用程序，Google通过添加自己的类似VM的功能，将目光转向了整个平台的安全性。“Gvisor是一种新的虚拟化技术，可为您提供虚拟机的安全性和容器的性能。几个月前，我们将它作为Kubernetes的一部分进行了开源。我们已经在AppEngine和云函数的生产中使用它很长时间了。从历史上看，App Engine有很多限制。有了新的基于Gvisor的运行时，我们可以用基于Gvisor的新一代PHP 7、Node 8和其他运行时来绕过它。它速度更快，不是专有的，而且完全符合习惯。</p>
+<p class="translated">谷歌一直在做的另一件事是可移植性。该公司与IBM、T2、SAP、T4、思科和其他公司联手，将无服务器功能扩展到更多的无服务器平台。这个项目被称为<a href="https://github.com/knative" class="ext-link" rel="external "> Knative </a>，它专注于构建必要的基础，以便在<a href="https://kubernetes.io/" class="ext-link" rel="external "> Kubernetes </a>上运行无服务器应用程序。由于项目的每个参与者对无服务器都有自己的看法，这项工作的重点是确保这些应用程序可以在Kubernetes的安装之间移植。</p>
+<p class="translated">“Knative是一个开源项目，引入了无服务器概念——特别是三源构建、服务和事件绑定——并将它们作为自定义CRD引入Kubernetes。这是一个常见的建立在Kubernetes顶部的基础。这允许工作负载的可移植性。无服务器不仅仅是一种操作模式，也是一种编程模式。您最终会编写特定于该无服务器平台的代码。这就把它拿走了。”泰克说。</p>
+
+<p/>
+<p class="translated">“这也使我们能够提供自己的产品，”泰奇说。“这被称为谷歌Kubernetes引擎无服务器插件。这将Knative包装成一个我们可以使用的产品。现在，在谷歌云存储容器的支持下，谷歌计算引擎将所有这些整合在一起；您可以运行容器，将它部署到GCE，几分钟后改变主意，将它部署到Google Kubernetes引擎集群或其他纯开源的地方。它给你带来了便携性。”</p>
+
+<p/>
+<p class="translated">谷歌Kubernetes引擎的使用也不再局限于该公司的云。随着Google Kubernetes On-Premises的发布，Google在此次Google Next上完全接受了混合云的理念。这个Kubernetes的现场版本为企业提供了一种在谷歌云和他们自己的数据中心之间建立桥梁的快捷方式。有了统一版本的Kubernetes，管理员将能够远程访问Google Kubernetes引擎，并在那里创建服务器，或者在内部旋转它们，并在准备就绪时将它们移动到外部。</p>
+<p class="translated">Istio 1.0将在平滑内部和外部Kubernetes之间的路径方面发挥重要作用，谷歌正计划将另一个CNCF项目大量集成到其产品中。谷歌云首席执行官黛安·格林(Diane Greene)表示，今年的谷歌Next“比往年要大得多。我们有超过20，000人参加，超过250名客户参与讨论，能够真正看到这一切走到一起，对我们来说很有趣。”</p>
+<p class="translated">Google Next将持续到本周的剩余时间。</p>
+
+<p/>
+<p class="attribution translated">谷歌是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

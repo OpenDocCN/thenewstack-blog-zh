@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>How Predefined Dashboards in InfluxData's Chronograf Make Metrics Simple</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">InfluxData的Chronograf中的预定义仪表板如何简化指标</h1>
+<blockquote>原文：<a href="https://thenewstack.io/how-predefined-dashboards-in-influxdatas-chronograf-make-metrics-simple/#0001-01-01">https://thenewstack.io/how-predefined-dashboards-in-influxdatas-chronograf-make-metrics-simple/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="attribution translated"><a href="https://www.influxdata.com/" class="ext-link" rel="external "> InfluxData </a>赞助了这篇文章。</p>
+<p class="translated">我经常谈论度量标准。通常，我一边看YouTube上猫<em>而不是</em>跳跃的视频，一边嘀咕监控的重要性。现在，我们将讨论一种可以轻松访问这些指标的方法。就像我是一个有时希望看到猫失败的动物爱好者，我是一个有时需要可视化数据的命令行爱好者。</p>
+<h2 class="translated">问题是</h2>
+<p class="translated">可视化数据是一个特别困难的问题，但是当我们使用可视化工具时，我们不希望必须考虑这个问题。我们希望我们的数据能够尽可能快捷方便地获得。鉴于此，我特别兴奋地看到了Chronograf的最新版本(1.7.3)，其中包括改进的onboarding，这正是我所寻找的。</p>
+<h2 class="translated">体验</h2>
+<a href="https://www.influxdata.com/" class="clearfix infoBlock " target="_blank">
+
+<div class="infoBlockTextBlock">
+<p class="infoBlockTitle translated">凯蒂·法默</p>
+<p class="infoBlockText translated">凯蒂和她的丈夫以及两条狗住在加州的奥克兰(其中至少有一条会和她聊一些有趣的科技话题)。她喜欢试验代码，破坏东西，并试图修复它。她在科罗拉多州丹佛市的图灵软件与设计学院学习编码，这给了她一个绝好的机会，在她知道如何修复之前就把东西弄坏了。</p>
+</div>
+</a>
+<p class="translated"><img decoding="async" loading="lazy" class="size-medium wp-image-6144029 alignright" src="../Images/58726c108f857add4bacecbcde82a1cd.png" alt="" data-id="6144029" data-original-src="https://cdn.thenewstack.io/media/2018/11/5479b0bf-farmer1-274x300.png"/></p>
+<p class="translated">我正在使用MySQL作为我的几个Rails应用程序的数据库，并且我希望当不可避免地出现问题时有一个仪表板来访问(毕竟，这些应用程序是由past Katy开发的，她不可信)。关于我的数据库，我关心一些特定的指标，当事情开始出错时，我不一定想写一个查询。</p>
+<h2 class="translated">使用Telegraf收集指标</h2>
+<p class="translated">关于数据库的指标存在于内部性能数据库中，对于MySQL来说是<em> performance_schema </em>数据库(以及更易于阅读的<em> sys </em>数据库)。现在，我们可以查询这个数据库来找到我们要找的东西，但是我们可以通过使用<a href="https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mysql" class="ext-link" rel="external "> Telegraf MySQL插件</a>将这些指标直接发送到InfluxDB来加快这个过程。如果您认为将指标从一个数据库发送到另一个数据库听起来很愚蠢，那么您是对的——但如果我们的计划是长期保存数据或从中构建有用的可视化，那就不是这样了。请记住，我们想要的是一个仪表板，以便在事情出现危险时查看。</p>
+<h2 class="translated">构建仪表板</h2>
+<p class="translated">我们已经完成了最难的部分，这相当简单:Telegraf正在将我们的MySQL指标发送到InfluxDB。现在让我们做更简单的部分:在<a href="https://www.influxdata.com/time-series-platform/chronograf/" target="_blank" class="ext-link" rel="external "> Chronograf </a>中构建仪表板。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136086 size-full" src="../Images/d3fe43e619402f4bc44e83067e53cec9.png" alt="" data-id="6136086" data-original-src="https://cdn.thenewstack.io/media/2018/11/b5240998-farmerpicture3.png"/></p>
+<p class="translated">安装Chronograf (1.7.3或更高版本)后，我们受到热烈欢迎，这是1.7.x系列的新功能。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136087 size-full" src="../Images/f104326f668bab049b1291306ff3fd2a.png" alt="" data-id="6136087" data-original-src="https://cdn.thenewstack.io/media/2018/11/35eef52a-farmerpicture4.png"/></p>
+<p class="translated">通过这些入门步骤，我们可以配置我们的InfluxDB设置，或者暂时将它们保留为默认设置。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136088 size-full" src="../Images/8a7d08278efc5a0b7d6645963b2be208.png" alt="" data-id="6136088" data-original-src="https://cdn.thenewstack.io/media/2018/11/433af615-farmerpicture5.png"/></p>
+<p class="translated">当我们到达“仪表板”部分时，我们可以看到为我们的源提供了建议的仪表板；在这种情况下，MySQL和System(收集本地CPU使用情况、内存等信息。)的建议。除了通过Telegraf发送这些指标之外，我们不需要做任何事情。所以，让我们把两者都设置好！谁知道我们(好吧，<em>我</em>可能会打破什么？</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136089 size-full" src="../Images/99287852b07de35679e2cd4213bae5a4.png" alt="" data-id="6136089" data-original-src="https://cdn.thenewstack.io/media/2018/11/1005cbcf-farmerpicture6.png"/></p>
+<p class="translated">onboarding中剩下的工作就是设置Kapacitor，但是我们可以暂时保留默认设置，然后继续。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136090 size-full" src="../Images/f740345fb7803695e51718e121a20895.png" alt="" data-id="6136090" data-original-src="https://cdn.thenewstack.io/media/2018/11/9e189605-farmerpicture7.png"/></p>
+<p class="translated">我们已经设置好了超时空格拉夫。我们点击了大概五次，所以希望我们不会累到不能再点击几次。我们所要做的就是访问Dashboards选项卡，查看我们预定义的控制面板的运行情况。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136092 size-full" src="../Images/56ef1e894c7bf8346b797299e0af542c.png" alt="" data-id="6136092" data-original-src="https://cdn.thenewstack.io/media/2018/11/faeb4b2b-farmerpicture8.png"/></p>
+<p class="translated">我们在设置过程中选择的两个仪表板都列出来了(MySQL和System ),但是让我们确保它们实际上可以工作。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136093 size-full" src="../Images/4b96926aef49479f9e46e7f2f984bb78.png" alt="" data-id="6136093" data-original-src="https://cdn.thenewstack.io/media/2018/11/65580cc5-farmerpicture9.png"/></p>
+<p class="translated">看看所有这些漂亮的指标。我们可以看到MySQL连接的数量、每秒的查询次数、每秒发送和接收的字节数等等。我所要做的就是利用我已经从Telegraf收集的指标。</p>
+<p class="translated">让我们检查一下系统仪表板。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignnone wp-image-6136094 size-full" src="../Images/01b7579efec049460dd414346d915972.png" alt="" data-id="6136094" data-original-src="https://cdn.thenewstack.io/media/2018/11/0c319293-farmerpicture10.png"/></p>
+<p class="translated">像往常一样，我的本地机器需要重新启动，但在其他方面工作得很好。</p>
+<h2 class="translated">摘要</h2>
+<p class="translated">在Chronograf中设置预定义的仪表盘比以往任何时候都更容易，这是我一直在等待的。虽然这个功能以前就有，但是有点笨重，而且不方便。现在，我可以做我最擅长的事情了:点击默认设置。还有针对Kubernetes、Redis、Apache等指标的预定义仪表板，因此我们可以尽可能轻松地监控对我们至关重要的服务。用InfluxDB设置最新版本的Chronograf，告诉我它是如何为你工作的——我将在慢动作中观看狗错过食物的片段。</p>
+<div id="attachment_6136095" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-6136095" decoding="async" loading="lazy" class="wp-image-6136095 size-full" src="../Images/9ead288536614cce7e500b8495c4e6cc.png" alt="" data-id="6136095" data-original-src="https://cdn.thenewstack.io/media/2018/11/359cf6f8-farmerpicture11.png"/><p id="caption-attachment-6136095" class="wp-caption-text translated">说真的，谷歌一下。</p></div>
+<p class="attribution translated"><a href="https://www.influxdata.com/" class="ext-link" rel="external "> InfluxData </a>是新堆栈的赞助商。</p>
+<p class="attribution translated">凯蒂·法默的原创作品。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

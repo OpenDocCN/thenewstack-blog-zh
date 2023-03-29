@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Mesos and Docker Swarm Race to Improve ‘Health Checks’</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">梅索斯和码头工人竞相改善“健康检查”</h1>
+<blockquote>原文：<a href="https://thenewstack.io/little-friendly-competition-mesos-swarm-race-improve-health-checks/#0001-01-01">https://thenewstack.io/little-friendly-competition-mesos-swarm-race-improve-health-checks/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">本月早些时候，中间层工程师<a href="https://www.linkedin.com/in/gkleiman/" class="ext-link" rel="external ">加斯顿·克雷曼</a>透露了<a href="http://mesos.apache.org/" class="ext-link" rel="external "> Apache Mesos </a>项目的<a href="https://d2iq.com/blog/introducing-mesos-native-health-checks-apache-mesos-part-1" class="ext-link" rel="external ">打算为即将发布的1.2.0版本实现一个本地健康检查机制</a>。克雷曼写道，这样一来，依赖于Apache Aurora和Mesosphere自己的马拉松(<a href="https://thenewstack.io/mesospheres-data-center-operating-system-now-includes-scheduler-orchestrator/" class="local-link">现在是DC/OS </a>的一部分)等Mesos的调度程序框架就不再需要“推出自己的”方法来跟踪分布式服务。</p>
+<p class="translated">“我们的意图之一，”克雷曼写道，“是将框架作者从设计他们自己的健康检查API中解放出来。为了实现这一点，我们更新了Mesos API，使得跨所有调度器和执行器一致地表达命令、TCP和HTTP(S)健康检查的定义和结果成为可能。”</p>
+<p class="translated"><a href="https://thenewstack.io/containers-container-orchestration/" class="local-link">分布式应用通常使用心跳</a>或健康检查来使它们的性能监视器、调度器和协调器能够跟踪大量服务。如果服务不能通过请求或定期being发送回某种“我还活着”的信号，它们的管理人员就很容易失去对它们的跟踪。包括物联网在内的所有类型的分布式架构都依赖于这些机制之一。<del>T11】</del></p>
+<p class="translated">如果Mesos的健康检查工程师有时间回头看一眼，他们可能只是看到一张满是鲸鱼的脸。</p>
+<p class="translated">去年11月，Docker项目的贡献者透露，对于1.13版本——似乎是为1月18日的发布做准备——它正在更新它为1.12引入的健康检查机制。这一更新将使Swarm能够真正让系统投入工作——在这种情况下，根据它从健康检查中收到的数据来修改正在运行的应用程序的服务记录。通过这种方式，Swarm可以更容易地移除不健康的容器，而不会影响负载均衡器。</p>
+<h2 class="translated">Mesos:授权治理</h2>
+<p class="translated">Mesos传统上处理健康检查的方式是通过它的<em>调度器</em>。在高可用性(HA)场景中，可能有多达三个调度程序同时在网络中运行，其中一个被“选举”为领导者。调度程序维护与Mesos集群主节点的连接。至少有一个，可能更多的<em>执行器</em>充当在从节点上启动任务的组件。</p>
+<p class="translated">Mesos集群中的每个节点都包括一个代理，用于执行主节点指定的功能。如果你愿意的话，这种主人和代理人之间的联系是Mesos的“生命线”。它利用了TCP网络协议的“默认”功能，为多个HTTP请求保持开放。</p>
+<p class="translated">在这个持久的TCP连接上，两个组件交换字面上描述的“ping”和“pong”在Mesos的情况下，被乒乓切换的信息是有意义的:它通常包含Mesos所谓的<em>检查点</em>数据，其中代理描述了它正在处理的内容，而主机将该数据与它期望看到的内容进行比较。就像一个编辑在等待一篇姗姗来迟的文章一样，一个站长可能会选择采取措施中止与代理的关系。</p>
+<p class="translated">在一些人看来，这个协议可能没有什么特别的缺陷。但是正如Mesosphere的克雷曼指出的那样，当一个调度程序和按照该调度程序运行的任务位于不同的节点上时，乒乓游戏可能会消耗过多的网络流量。更重要的是，运行在Mesos上的其他框架——让我们面对现实吧，它们可能是同时运行的——对游戏的玩法都有不同的解释。</p>
+<p class="translated"><a href="https://github.com/apache/mesos/blob/608e2006e394824f4b74261fcfa59bc8e33eac77/docs/health-checks.md" class="ext-link" rel="external ">GitHub上的Mesos公共文档目前提供了关于Mesos API变化的细节</a>，这些变化将在Mesos版本1.2.0中引入。它解释了Mesos工程师如何引入一个用于所有健康检查的通用API，无论是作为一个显式命令还是通过HTTP(S)或TCP协议。</p>
+<p class="translated">但也许更值得注意的是，执行这些健康检查的责任从调度者转移到了执行者。这样，当节点被广泛分区(包括跨域)时，Mesos代理能够管理这个过程。</p>
+<p class="translated">从数量上来说，文档解释说，这将减少分布式应用程序组件之间的流量，使它们更具可伸缩性。不过，这是有代价的:由这些远程代理将它们任务的明确健康状态消息发送回它们的主节点。更重要的是，目前还没有协议让外部资源手动指定一个任务为不健康，尽管可以想象这个问题可能会得到解决。</p>
+<h2 class="translated">Docker确实改善了它的服务记录</h2>
+<p class="translated">Docker工程师<a href="https://twitter.com/nishanttotla" class="ext-link" rel="external "> Nishant Totla </a>上个月展示了Docker的新健康检查(T1)，展示了以这样一种方式扩展分布式应用程序的能力，即一个服务的实例在被认为健康之前不会接收请求。这种能力发生在现在所谓的“Swarm模式”(Docker，打开嵌入式Swarm)中。</p>
+<p class="translated"><iframe loading="lazy" title="Docker Meetup #50, Video 1 of 2: Swarm Mode and Healthchecks to Deploy Applications Without Loss" src="https://www.youtube.com/embed/xTfEdoNhH9U?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">当一个符号被自动添加到它们的类的服务记录中时，新添加的服务实例被认为是健康的。通过这种方式，Swarm的负载平衡器不会将HTTP请求委派给新容器，直到它们完全正常工作，从而减少了请求无法接收响应并最终超时的情况。</p>
+<p class="translated">Totla接着展示了一个正在更新到新版本的服务，而它的旧版本正在运行。Swarm以前可以做到这一点，但不是以同样的方式。这一次，负载平衡器将在任务的新版本和旧版本之间更均匀地分配并发请求，直到旧版本被删除。同样，服务记录将在后台使用健康检查数据进行修改，从而使过渡更加平稳。</p>
+<p class="translated">根据Docker工程师<a href="https://github.com/dongluochen" class="ext-link" rel="external "> Dongluo Chen </a>的说法，任何向<a href="https://github.com/docker/containerd" class="ext-link" rel="external "> <strong> containerd </strong> </a>发出的声明容器健康(或不健康)的命令，都会将该声明推入网络数据库。该声明然后通过八卦协议传播到群集群中的所有其他节点(Docker的选择是<a href="https://www.serf.io/docs/internals/gossip.html" class="ext-link" rel="external "> HashiCorp的Serf </a>)。</p>
+<h2 class="translated">保证与流言</h2>
+<p class="translated">正如长期的新堆栈读者将证明的那样，Apache Mesos和Docker通常不被认为是相互竞争的。事实上，Mesosphere以Docker容器的形式实现了Mesos，并且<a href="https://thenewstack.io/mesos-simplifies-support-container-formats-unified-containerizer/" class="local-link"> Mesos本身从版本0.20.0开始就支持</a>启动Docker容器映像。</p>
+<p class="translated">但去年，Mesosphere开始采取明确的措施来区分其数据中心操作系统(DC/OS)和Mesos框架，宣布它们是他们称为“容器2.0”的下一代打包系统(T2)的一部分</p>
+<p class="translated">因此，随着越来越多的企业熟悉这种新的堆栈，套用一句话，将Docker和Swarm的优点与Mesos和Mesosphere <a href="https://mesosphere.github.io/marathon/" class="ext-link" rel="external ">马拉松</a>调度程序的优点进行比较，他们将在某个时候调查各自消息系统的优点。</p>
+<p class="translated">Mesos的消息传递架构在设计上是不可靠的，尽管这在出版物中可能会显得很奇怪。主服务器和代理服务器等组件直接相互发送消息。虽然不能保证接收者会收到消息，但至少它收到的消息是有序的。这是为了权宜之计的权衡。然而，早期的任务状态更新是一个例外，它保证至少交付一次。</p>
+<p class="translated">为Mesos 1.2.0实现的健康检查系统意味着健康消息将在主设备和代理设备之间交换，更接近这些消息所涉及的组件。这意味着调度器将管理失败任务的责任委托给了一个较低级别的组件，这也可能意味着任何中央编排者都必须乐于成为监督者而不是霸主。</p>
+<p class="translated">相比之下，Docker使用gossip协议确保了高可用性，以及更高的接收健康状态消息的概率。消息的接收可能是无序的，但是一个叫做Lamport时钟的时间戳有助于接收者按顺序重组它们。这里的权衡是，当应用程序的宽度线性扩展时，消息流量可能呈指数级扩展。</p>
+<p class="translated">测试不同架构优点的最佳场所是在竞争激烈的市场中，最好是有成千上万尚未拿定主意的评委。</p>
+<p class="attribution translated">Docker和Mesosphere是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="https://commons.wikimedia.org/wiki/Category:Plate_spinning_in_France#/media/File:Juggling_aus_Frankreich_Teller.JPG" class="ext-image" rel="external ">Usien的专业杂耍师</a>，在知识共享3.0下授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

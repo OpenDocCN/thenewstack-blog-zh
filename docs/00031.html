@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>A Guide to Developer Contributions in the OpenStack Juno Blueprints</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">OpenStack Juno蓝图中的开发人员贡献指南</h1>
+<blockquote>原文：<a href="https://thenewstack.io/a-guide-to-developer-contributions-in-the-openstack-juno-blueprints/#0001-01-01">https://thenewstack.io/a-guide-to-developer-contributions-in-the-openstack-juno-blueprints/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+<div class="editors-note">
+<strong>Editor’s Note</strong><p>: </p><em>OpenStack is one of the largest open source projects in recent history. It is written in Python and works on a six-month release cycle with each component of the project getting developed at its own pace. Github shows the breadth of OpenStack with more than 100 projects being part of the overall ecosystem.  It would be well beyond our scope to cover all of these projects. </em><em>Instead, The New Stack focused on the 11 integrated projects in the OpenStack ecosystem that are part of <a href="http://www.openstack.org/software/juno/press-release">Juno</a>,  released October 16. Atul Jha, our community manager and data research lead, analyzed the <a href="https://wiki.openstack.org/wiki/Blueprints" target="_blank">blueprints</a>  from these integrations to give a picture of some of OpenStack’s most significant developments. </em>
+</div>
+
+<p class="translated">OpenStack现在在巴黎举行一年两次的活动，本周的活动中，有一个开发者峰会，重点关注OpenStack的技术方向。从这些讨论中，开发人员开始制定蓝图，将新特性集成到未来的版本中。他们还讨论了需要的错误和修复。<a href="https://wiki.openstack.org/wiki/Kilo_Release_Schedule" class="ext-link" rel="external "> Kilo </a>是下一个版本，计划于2015年4月30日发布。</p>
+<p class="translated"><em> Atul在OpenStack上有几年的工作经验。他是最早的文档核心贡献者之一。在2011年4月发布的第三版<a href="https://wiki.openstack.org/wiki/ReleaseNotes/Cactus" class="ext-link" rel="external "> Cactus </a>之后，他开始从事OpenStack的工作，就在<a href="https://wiki.openstack.org/wiki/ReleaseNotes/Bexar" class="ext-link" rel="external "> Bexar </a>之后。他是印度的社区领袖之一。他利用关于OpenStack的知识来定义他认为社区添加的最有趣的新功能，这些功能总体上有益于项目的健康发展。</em></p>
+<p class="translated">开源云计算平台OpenStack背后的管理机构OpenStack Foundation宣布发布Juno。对于那些不熟悉OpenStack的人来说，这是一个提供基本软件的技术堆栈，允许用户挑选和选择如何构建自己的公共/私有/混合云。</p>
+<h3 class="translated"><b>新星</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Nova" target="_blank" class="ext-link" rel="external "> Nova </a>是OpenStack的计算部分。它的蓝图表明该项目已经增加了50项新功能。</p>
+<p class="translated"><a href="https://thenewstack.io/wp-content/uploads/2014/11/novaBP.png" class="local-link"> <img decoding="async" loading="lazy" class="aligncenter wp-image-104864 size-full" src="../Images/273002c1ed142ae180480e271a4f4b78.png" alt="novaBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/novaBP.png"/> </a></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">允许多个接口连接到同一个网络。</li>
+<li class="translated">Nova调度程序已与Nova分离。现在它的新项目叫做甘特。</li>
+<li class="translated">安全组规则重构以更可伸缩的方式处理RPC调用。</li>
+<li class="translated">从虚拟机向Openstack用户提供串行端口。</li>
+</ol>
+<p class="translated">完整的蓝图清单。</p>
+<h3 class="translated"><b>一瞥</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Glance" target="_blank" class="ext-link" rel="external "> Glance </a>是OpenStack项目的图像库。根据Glance蓝图，已经实现了五个新功能。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-104865 size-full" src="../Images/da124e73c0fef014704357e726356d8f.png" alt="glanceBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/glanceBP.png"/></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">基于策略限制用户下载图像。</li>
+<li class="translated">元数据定义目录的实现。</li>
+</ol>
+<p class="translated"><strong> <br/> </strong>全<a href="https://blueprints.launchpad.net/glance/juno" class="ext-link" rel="external ">蓝图</a>列表。</p>
+<h3 class="translated"><b>迅捷</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Swift" target="_blank" class="ext-link" rel="external "> Swift </a>是OpenStack的对象存储组件。这是OpenStack最初推出时的核心项目之一。需要注意的是，Swift遵循自己的发布周期。根据Swift蓝图，仅实施了15项新功能</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-104866 size-full" src="../Images/59ed2f50a007fc8400aca5a879cd83c7.png" alt="swiftBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/swiftBP.png"/></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">存储策略已实施。</li>
+<li class="translated">支持Keystone V3 API。</li>
+<li class="translated">实现了并行对象审计功能。</li>
+</ol>
+<p class="translated"><strong> <br/> </strong>完整的<a href="https://blueprints.launchpad.net/swift/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>列表。</p>
+<h3 class="translated"><b>地平线</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Horizon" target="_blank" class="ext-link" rel="external "> Horizon </a>是OpenStack仪表盘，用于管理和配置整个生命周期管理。它是用Python/Django框架编写的。已经实现了51项新功能。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-104867 size-full" src="../Images/87b7b7854afa13ca76f0688463466f62.png" alt="horizonBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/horizonBP.png"/></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">撒哈拉仪表板已合并。</li>
+<li class="translated">基于角色的Nova访问控制支持的实现。</li>
+<li class="translated">支持快速卷备份</li>
+<li class="translated">从主机上迁移所有实例的功能(撤离主机)</li>
+</ol>
+<p class="translated">完整的<a href="https://blueprints.launchpad.net/horizon/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>列表。</p>
+<h3 class="translated"><b>梯形</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Keystone" target="_blank" class="ext-link" rel="external "> Keystone </a>是OpenStack的认证组件。根据Keystone蓝图，已经实现了23项新功能。</p>
+<p class="translated"><strong> <img decoding="async" loading="lazy" class="aligncenter wp-image-104868 size-full" src="../Images/a8ecd948c76cea2baa92640daf81dbe3.png" alt="keystone" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/keystone.png"/> </strong></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">按用户id筛选凭据。</li>
+<li class="translated">拱顶石呼叫拱顶石联盟。</li>
+<li class="translated">端点策略分配。</li>
+</ol>
+<p class="translated"><strong> <br/> </strong>完整<a href="https://blueprints.launchpad.net/keystone/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>列表。</p>
+<h3 class="translated"><b>中子</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Neutron" target="_blank" class="ext-link" rel="external ">中子</a>驱动OpenStack的联网组件。根据中子蓝图，已经实现了53个新特性。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-104954 size-full" src="../Images/b0cd1ffe9c056eacf54dc7fd2c0890f1.png" alt="neutronBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/neutronBP.png"/></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">改进的安全组实现。</li>
+<li class="translated">通过oslo的RPC消息传递</li>
+<li class="translated">虚拟路由器上的高可用性功能。</li>
+<li class="translated">支持ML2中的扩展</li>
+</ol>
+<p class="translated"><strong> <br/> </strong>完整的<a href="https://blueprints.launchpad.net/neutron/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>列表。</p>
+<h3 class="translated"><b>煤渣</b></h3>
+<p class="translated">Cinder项目旨在为实例提供持久存储。根据cinder蓝图，已经实施了29项新功能。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-104955 size-full" src="../Images/cc46239e346ab6e2c035e098e564e381.png" alt="cinderBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/cinderBP.png"/></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">i18n-启用，日志可以用许多不同的语言查看</li>
+<li class="translated">限制卷复制的带宽以获得更好的实例性能。</li>
+<li class="translated">备份重置状态已启用。</li>
+<li class="translated">对cinder卷的复制支持。</li>
+</ol>
+<p class="translated"><strong> <br/> </strong>完整的<a href="https://blueprints.launchpad.net/cinder/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>清单。</p>
+<h3 class="translated"><b>遥测</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Ceilometer" target="_blank" class="ext-link" rel="external ">遥测</a>项目旨在为各种OpenStack组件提供计量服务。根据遥测蓝图，已经实施了26项新功能。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-107313" src="../Images/1553b1a591b6df6ea2c70db8e7f6d709.png" alt="telemetryBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/telemetryBP.png"/></p>
+<p class="translated">感兴趣的特征:</p>
+<ol>
+<li class="translated">遥测消耗的离子通知。</li>
+<li class="translated">SNMP检查器的改进。</li>
+<li class="translated">在资源元数据中包含实例的状态。</li>
+</ol>
+<p class="translated"><strong> <br/> </strong>完整的<a href="https://blueprints.launchpad.net/ceilometer/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>清单。</p>
+<h3 class="translated"><b>加热</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Heat" target="_blank" class="ext-link" rel="external "> Heat </a>旨在为OpenStack组件提供基于模板的编排&amp;组件的整体生命周期管理。根据heat蓝图，已经实施了27项新功能。</p>
+<p class="translated"><strong><img decoding="async" loading="lazy" class="aligncenter wp-image-104957 size-full" src="../Images/d30761a355518a80ec85534d50a94e46.png" alt="heatBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/heatBP.png"/>T2】</strong></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">Swift TempURL部署元数据轮询。</li>
+<li class="translated">让Heat了解可用的网络服务。</li>
+<li class="translated">将配置部署到服务器集合的资源。</li>
+</ol>
+<p class="translated">完整的<a href="https://blueprints.launchpad.net/heat/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>列表。</p>
+<h3 class="translated"><b> Trove </b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Trove" target="_blank" class="ext-link" rel="external "> Trove </a>项目旨在为关系和非关系数据库引擎提供云数据库即服务供应功能。根据trove蓝图，已经实施了14项新功能。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-104958 size-full" src="../Images/d936a468ac8cf49d5ac1431c4786f399.png" alt="troveBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/troveBP1.png"/></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">MySQL的复制V1实现。</li>
+<li class="translated">可插拔的trove导体管理器。</li>
+<li class="translated">使用装卸器动态加载扩展。</li>
+<li class="translated">用PostgreSQL补充现有的MySQL实例。</li>
+</ol>
+<p class="translated">完整<a href="https://blueprints.launchpad.net/trove/juno" target="_blank" class="ext-link" rel="external ">蓝图</a>列表。</p>
+<h3 class="translated"><b>撒哈拉</b></h3>
+<p class="translated"><a href="https://wiki.openstack.org/wiki/Sahara" target="_blank" class="ext-link" rel="external "> Sahara </a>项目提供了一种在OpenStack上配置数据密集型应用集群(Hadoop或Spark)的简单方法。根据撒哈拉蓝图，已经实施了32项新功能。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-104959 size-full" src="../Images/a19a80f119c541f26776662c3ace8c02.png" alt="saharaBP" data-original-src="https://thenewstack.io/wp-content/uploads/2014/11/saharaBP.png"/></p>
+<p class="translated">有趣的新功能:</p>
+<ol>
+<li class="translated">支持多区域安装</li>
+<li class="translated">与遥测技术集成</li>
+<li class="translated">在集群对象中保持撒哈拉配置</li>
+</ol>
+<p class="translated">完整的蓝图清单。</p>
+<p class="attribution translated">通过 Flickr知识共享<a href="https://www.flickr.com/photos/henry_marion/15493484625/in/photolist-pB7acg-nakZds-nrSMuy-nakTsB-nakRxB-npMTFA-nrSLLQ-nakRQa-nry9xb-5TaiQs-5TaiUJ-fyM9mT-poTFWJ-5T5XMi-5TaiL3-5TaiFm-nVAbQi-7VSwC-64vjyN-4vDm7o-7mTaat-7bkYUu-6cqDk8-4QpEBQ-7nBMm5-6f46ig-jpZey2-6f8gdE-6f8god-im7ddp-5Ax6B8-omfaBA-hDbg65-omaC4k-omaEhP-ojphDs-o4XgM4-omr1L8-7VSxg-fyMbuz-4GmQj7-bnqmne-ghCwXg-6o2mGH-6o6swL-6q597E-6o2hwF-g6K8PN-8jHz8X-7VSvo" target="_blank" class="ext-link" rel="external ">的专题图片。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

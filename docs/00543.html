@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: If One Gauge Is Good, More Are Definitely Better</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:如果一个标准是好的，那么更多的标准肯定会更好</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-if-one-gauge-is-good-more-are-definitely-better/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-if-one-gauge-is-good-more-are-definitely-better/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">我最近一直在屏幕上看电视。<a href="https://thenewstack.io/hacking-hardware-the-never-ending-saga-of-steampunk-name-badge-development/" class="local-link">蒸汽朋克会议徽章</a>有一个超声波测距仪，通过前置3.5英寸液晶屏幕上的模拟仪表显示到物体的距离。仪表面上的蒸汽朋克字体和装饰与徽章的整体主题相得益彰。</p>
+<p class="translated">嗯，如果<a href="https://thenewstack.io/off-shelf-hacker-use-processing-build-screen-gauge/" class="local-link">一号</a>好，二号肯定更好。谁知道呢，你可能有一个项目，你想跟踪速度，温度，光照水平和其他类似的事情，所有这些都在某种风格化的仪表板上。</p>
+<p class="translated">我想用一个计量器来显示测距仪数据，用一个计量器来测量落在光电池上的环境光。光电管将是徽章侧面的几个之一，我将使用它来代替按钮。用手指盖住光电池，它就会有效地按下一个按钮。在仪表上显示亮度是测试“照片按钮”操作和学习使用多个仪表的一种方式。</p>
+<p class="translated">我们今天将讨论Arduino部分。下周，我们将讨论树莓Pi加工计量方面的模型。</p>
+<h2 class="translated">更新两个数据流的Pro Mini代码</h2>
+<p class="translated">单个超声波传感器的操作非常简单。</p>
+<p class="translated">我们使用Arduino Pro Mini从传感器读取测距数据，然后将数据转换为文本流。文本流然后通过串行或USB线路发送到Linux计算机上的<a href="https://thenewstack.io/off-shelf-hacker-use-processing-build-screen-gauge/" class="local-link">处理脚本</a>。该脚本在模拟仪表上显示数据。在便携式会议徽章操作期间使用有线串行线。在开发和编程期间使用USB连接。</p>
+<p class="translated">因为我们想显示来自超声波测距仪和光电池的值，我们需要通过USB线发送两组数据。每个额外的仪表将需要一个新的数据流。</p>
+<p class="translated">我很遗憾地告诉大家，我还没有真正把光电池焊接到徽章上。项目总是需要更长的时间，生活的挑战有时会对你不利。不过不用担心，因为我们可以使用我在第一次世界大战中学到的一个老技巧。</p>
+<p class="translated">没错……一个模拟。</p>
+<p class="translated">说真的，没有必要仅仅因为我们没有一个“真正的”传感器就停止这个项目。模拟数据相当容易。为将来的项目记住一个不错的小技巧。</p>
+<p class="translated">基线代码来自Arduino示例中的HC-SR04超声波测距仪程序。我简单地添加了几行代码，将第二个数据值从0增加到100，并将其放在要通过USB发送的串行打印代码行中。当数据值达到100时，它会重置为0，并不断重复。看着屏幕上的标尺，我们会看到指针慢慢扫过100，然后跳回0，重复这个过程。当我开始在实际的光电池中布线时，我将更改代码来读取连接到光电池的模拟引脚，并张贴值来代替递增的模拟值。这有多简单？<br/></p>
+<div id="crayon-6422690e60f9f656851527" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums translated" data-settings="show">)(这)(就)(是)(这)(些)(事)(,)(我)(们)(在)(这)(些)(事)(上)(没)(有)(什)(么)(可)(能)(看)(到)(这)(么)(的)(情)(况)(,)(只)(是)(这)(些)(事)(,)(只)(是)(在)(这)(些)(事)(上)(才)(有)(一)(个)(实)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)(验)( )(我)(们)(都)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(有)(些)(什)(么)(好)(的)(情)(情)(。</td>
+<td class="crayon-code translated"><div class="crayon-pre"><p class="crayon-line" id="crayon-6422690e60f9f656851527-1"><span class="crayon-c">/*</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-2"><span class="crayon-c">【HC-SR04 Ping距离传感器】</span> </p> <p class="crayon-line" id="crayon-6422690e60f9f656851527-3"> <span class="crayon-c"> VCC到arduino 5vGND到arduino GND</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-4"><span class="crayon-c">Echo到Arduino第7针；Trig到Arduino引脚8</span></p><p class="crayon-line" id="crayon-6422690e60f9f656851527-5"><span class="crayon-c">*/</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-6"/><p class="crayon-line" id="crayon-6422690e60f9f656851527-7"><span class="crayon-p">#包含</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-8"/><span class="crayon-e">伺服</span><span class="crayon-i">my Servo</span>；<span class="crayon-h"> </span> <span class="crayon-c"> //创建伺服对象来控制一个伺服</span><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-10"/><p class="crayon-line" id="crayon-6422690e60f9f656851527-11"><span class="crayon-p">#定义echo pin 8</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-12"><span class="crayon-p">#定义trig pin 7</span></p><p class="crayon-line" id="crayon-6422690e60f9f656851527-13"><span class="crayon-e">int</span><span class="crayon-i">val</span>，<span class="crayon-h"/>g；</p> <p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-14"> </p> <p class="crayon-line" id="crayon-6422690e60f9f656851527-15"> <span class="crayon-e">作废</span> <span class="crayon-e">设置</span>()<span class="crayon-h"/>{</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-16"><span class="crayon-h"/><span class="crayon-i">连载</span> <span class="crayon-st">。</span> <span class="crayon-e">开始</span><span class="crayon-h"/>(<span class="crayon-cn">115200</span>)；</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-17"><span class="crayon-h"/><span class="crayon-e">pin mode</span>(<span class="crayon-i">trig pin</span>，<span class="crayon-h"/>T92】OUTPUT)；</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-18"><span class="crayon-h"/><span class="crayon-e">pin mode</span>(<span class="crayon-i">echo pin</span>、<span class="crayon-h"/><span class="crayon-i">INPUT</span>)；</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-19"><span class="crayon-h"/><span class="crayon-i">my servo</span><span class="crayon-st">。</span> <span class="crayon-e">附上</span>(<span class="crayon-cn">9</span>)；</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-20">}</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-21"/><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-22"><span class="crayon-e">void</span><span class="crayon-e">loop</span>()<span class="crayon-h"/>{</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-23"><span class="crayon-h"/><span class="crayon-c">//在trigger引脚上发送一个脉冲以启动测量</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-24"><span class="crayon-h"/><span class="crayon-e">digital write</span>(<span class="crayon-i"/></p> <p class="crayon-line" id="crayon-6422690e60f9f656851527-25"> <span class="crayon-h"> </span> <span class="crayon-e">延迟微秒</span>(<span class="crayon-cn">2</span>)；</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-26"><span class="crayon-h"/><span class="crayon-e">digital write</span>(<span class="crayon-i">trig pin</span>、<span class="crayon-h"/><span class="crayon-i">HIGH</span>)；</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-27"><span class="crayon-h"/><span class="crayon-e">delay微秒</span>(<span class="crayon-cn">10</span>)；</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-28"><span class="crayon-h"/><span class="crayon-e">digital write</span>(<span class="crayon-i">trig pin</span>、<span class="crayon-h"/><span class="crayon-i">LOW</span>)；</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-29"/><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-30"><span class="crayon-h"/><span class="crayon-c">//echo引脚上脉冲的长度与距离成正比</span></p><p class="crayon-line" id="crayon-6422690e60f9f656851527-31"><span class="crayon-h"/><span class="crayon-e">长</span><span class="crayon-i"/><span class="crayon-h"/>=<span class="crayon-h"/><span class="crayon-e">pulse in</span>(<span class="crayon-i">echo引脚</span>，)</p> <p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-32"> <span class="crayon-h"> </span> <span class="crayon-e">长</span> <span class="crayon-i">远</span><span class="crayon-h"/>=<span class="crayon-h"/>(<span class="crayon-i">持续时间</span><span class="crayon-h"/>/<span class="crayon-h"/><span class="crayon-cn">2</span>)<span class="crayon-h">/<span class="crayon-h"/><span class="crayon-cn">29.1<span class="crayon-cn">3937</span><span class="crayon-h"/>；</span></span></p><p class="crayon-line" id="crayon-6422690e60f9f656851527-33"/><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-34"><span class="crayon-h"/><span class="crayon-e">如果</span> <span class="crayon-h"> </span> ( <span class="crayon-i">距离</span><span class="crayon-h"/><span class="crayon-sy">&amp;gt；</span>=<span class="crayon-h"/><span class="crayon-cn">200</span><span class="crayon-h"/>|<span class="crayon-h">|</span><span class="crayon-i">距离</span><span class="crayon-h"/><span class="crayon-sy">&amp;lt；</span>=<span class="crayon-h"/><span class="crayon-cn">0</span>)<span class="crayon-h"/>{</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-35"><span class="crayon-h"/><span class="crayon-c">//serial . println("超出范围")；</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-36"><span class="crayon-h"/>}</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-37"><span class="crayon-h"/><span class="crayon-e">其他</span><span class="crayon-h"/>{</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-38"><span class="crayon-h"/><span class="crayon-i">连载</span> <span class="crayon-st">。</span>打印 ( <span class="crayon-i">距离</span>)；</p> <p class="crayon-line" id="crayon-6422690e60f9f656851527-39"> <span class="crayon-h"> </span> <span class="crayon-i">序号</span> <span class="crayon-st">。</span> <span class="crayon-e">打印</span> ( <span class="crayon-s">，</span>)；</p> <p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-40"> <span class="crayon-h"> </span> <span class="crayon-e">如果</span><span class="crayon-h"/>(<span class="crayon-i">g</span><span class="crayon-h"/>=<span class="crayon-h"/><span class="crayon-cn">100</span>)<span class="crayon-h"/>{</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-41"><span class="crayon-h"/><span class="crayon-i">g</span><span class="crayon-h"/>=</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-42"><span class="crayon-h"/>}</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-43"><span class="crayon-h"/><span class="crayon-e">else</span><span class="crayon-h"/>{</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-44"><span class="crayon-h"/><span class="crayon-i">g</span>++；</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-45"><span class="crayon-h"/>}</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-46"><span class="crayon-h"/><span class="crayon-i">连载</span> <span class="crayon-st">。</span><span class="crayon-e">println</span>(<span class="crayon-i">g</span>)；</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-47"><span class="crayon-h"/><span class="crayon-c">//serial . println(" in ")；</span></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-48"><span class="crayon-h"/>}</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-49"><span class="crayon-h"/></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-50"><span class="crayon-h"/><span class="crayon-i">val</span><span class="crayon-h"/>=<span class="crayon-h"/><span class="crayon-e">map</span>(<span class="crayon-i">距离</span>，<span class="crayon-h"> </span> <span class="crayon-cn"> 1 </span>，】<span class="crayon-h"> </span> <span class="crayon-c"> //缩放它以使用它与伺服(值在0和180之间)</span></p><p class="crayon-line" id="crayon-6422690e60f9f656851527-51"><span class="crayon-h"/><span class="crayon-i">my servo</span><span class="crayon-st">。</span> <span class="crayon-e">写</span>(<span class="crayon-i">val</span>)；</p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-52"><span class="crayon-h"/><span class="crayon-c">//serial . println(val)；</span></p><p class="crayon-line" id="crayon-6422690e60f9f656851527-53"><span class="crayon-h"/></p><p class="crayon-line crayon-striped-line" id="crayon-6422690e60f9f656851527-54"><span class="crayon-h"/><span class="crayon-e"/>(<span class="crayon-cn">300</span>)；</p><p class="crayon-line" id="crayon-6422690e60f9f656851527-55">}</p>T473】</div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="translated">更好的是，为了在Pro Mini上编辑代码，我们可以在Raspberry Pi上加载Arduino IDE并在那里进行修改。</p>
+<h2 class="translated">让它变得更好</h2>
+<p class="translated">在过去的文章中，我用我的Linux笔记本和最新的Arduino IDE来编程Pro Mini。一根<a href="https://www.sparkfun.com/products/9718" class="ext-link" rel="external "> FTDI串行转USB电缆</a>非常适合这种特殊的Arduino。只需将其插入板载连接器，另一端插入USB端口，您就可以尽情摇滚了。Pro Mini的电源开关需要处于关闭位置，因此与Raspberry Pi的常规有线串行连接没有冲突。</p>
+<p class="translated">如果您使用带有附加微控制器板(如Arduino)的Raspberry Pi，则无需外部笔记本。连接一个HDMI显示器和外部键盘/鼠标垫，在Pi上完成所有的编码和开发工作。无需将Pro Mini电缆连接到Linux笔记本电脑，只需将其插入Pi上的一个可用USB端口即可。</p>
+<p class="translated">会议徽章有一个Raspberry Pi 2 model B，它绝对足够快，可以使用Arduino或处理IDE应用程序。</p>
+<p class="translated">要安装Arduino IDE，请在Raspberry Pi上打开浏览器，并从Arduino网页下载最新版本。</p>
+<p class="translated">下载完tar文件后，用下面的命令展开该文件。<br/></p>
+<div id="crayon-6422690e60fa4388977417" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+
+</td>
+<td class="crayon-code translated"><div class="crayon-pre"><p class="crayon-line" id="crayon-6422690e60fa4388977417-1"><span class="crayon-e">tar</span><span class="crayon-e">xvf</span><span class="crayon-i">arduino</span>-<span class="crayon-cn">1 . 8 . 5</span>-<span class="crayon-i">Linux arm</span><span class="crayon-st">。</span> <span class="crayon-i">焦油</span> <span class="crayon-st">。</span> <span class="crayon-v"> xz </span> </p> </div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="translated"><br/>别忘了下载文件的ARM版。在撰写本文时，最新版本是1.8.5。此外，请确保您的Pro Mini已连接到串行转USB电缆，然后将目录更改为Arduino目录。</p>
+<p class="translated">您可能还想用stty命令设置串行端口。<br/></p>
+<div id="crayon-6422690e60fa6473679203" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+
+</td>
+<td class="crayon-code translated"><div class="crayon-pre"><p class="crayon-line" id="crayon-6422690e60fa6473679203-1"><span class="crayon-i">stty</span><span class="crayon-h"/>-<span class="crayon-i">raw</span><span class="crayon-h"/>-<span class="crayon-i">icrnl</span><span class="crayon-h"/>-<span class="crayon-m">F</span><span class="crayon-h"/>/<span class="crayon-i">dev</span>/<span class="crayon-i">TT yama 0</span><span class="crayon-h"/><span class="crayon-cn">115200</span></p></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="translated">使用以下命令启动Arduino IDE。<br/></p>
+
+
+<p/>
+<h2 class="translated">下一步是什么</h2>
+<p class="translated">既然我们已经看到了徽章的Arduino端需要的更改，下一步就是修改Raspberry Pi上的代码。我们将获取具有两个值的数据流，并将其分解，以便它们可以进入各自的仪表。这将是下周的话题。</p>
+<p class="translated">随着我们的项目变得越来越复杂，我们的编程技术也越来越复杂，我们需要执行的任务也越来越多。徽章非常简单，一个Pro Mini与一个Raspberry Pi相连。</p>
+<p class="translated">什么样的项目可能会使用一个以上的Arduino或几个以上的传感器，为树莓Pi提供数据？你能想到任何可能需要不止一个Pi的工作吗？</p>
+<p class="translated">如果一个是好的，几个可能会很棒。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>OpenAI Bots Create Own Language to Communicate with Each Other</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">开放式人工智能机器人创造自己的语言相互交流</h1>
+<blockquote>原文：<a href="https://thenewstack.io/ai-bots-create-language-communicate/#0001-01-01">https://thenewstack.io/ai-bots-create-language-communicate/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着人工智能在复杂的游戏中击败人类，如<a href="https://thenewstack.io/google-ai-beats-human-champion-complex-game-ever-invented/" target="_blank" class="local-link">围棋</a>和<a href="https://thenewstack.io/computers-can-now-bluff/" target="_blank" class="local-link">扑克</a>以及开发“<a href="https://thenewstack.io/deep-learning-neural-networks-google-deep-dream/" target="_blank" class="local-link">做梦</a>、<a href="https://thenewstack.io/googles-deepmind-ai-now-capable-deep-neural-reasoning/" target="_blank" class="local-link">推理</a>和<a href="https://thenewstack.io/mits-new-ai-data-extraction-system-teaches-surfing-web/" target="_blank" class="local-link">自学</a>的能力的消息，最近对人工智能的研究似乎正在以极快的速度发展。语言也不例外。在最近发布的<a href="https://arxiv.org/abs/1703.04908" target="_blank" class="ext-link" rel="external ">研究结果</a>中，非营利实验室<a href="https://openai.com/" target="_blank" class="ext-link" rel="external "> OpenAI </a>的研究人员现在表明，人工智能可能能够开发自己的语言，这种语言与经验和他们对世界的感知联系在一起，而不是吐出一些之前强行灌输给他们的东西。</p>
+<p class="translated">像Siri这样的人工智能助理已经通过自然语言的处理与人类用户进行交流(至少是人类语言)，但是任何曾经与这些数字助理打交道的人都知道，即使有成堆的数据来训练它们，它们仍然感觉与它们交流不自然。</p>
+<p class="translated">问题是，我们真的不确定机器是否真的理解它们使用的词语，至少在经验意义上。例如，当我们使用“太阳”这个词时，我们会联想到一个照亮天空的遥远的燃烧的氢气球的视觉图像。我们可能还会在脑海中回忆起太阳热量的记忆和经历，但这是机器在使用同一个词时所理解的吗？</p>
+<p class="translated">为了解决这个问题，OpenAI的研究人员训练这些机器人以一种特定的方式进行交流，这种方式鼓励了“根植”和“组合”语言的出现——根植于说话者对现实世界的体验，而组合是指说话者可以将多个单词串成一个句子来传达一个想法或意图。</p>
+<h2 class="translated">自然语言</h2>
+<p class="translated">研究人员在一篇帖子中描述了他们如何将人工智能代理放置在一个简单的二维世界中，分配给他们简单的任务来完成。在<a href="https://thenewstack.io/reinforcement-learning-ready-real-world/" target="_blank" class="local-link">强化学习</a>的训练框架内使用一个试错过程，在被要求查看或移动到白色空间内的指定地标或让另一个代理完成任务后，机器人被释放到这个白色正方形世界中执行任务。代理人之间的合作受到鼓励，使用共享奖励系统，如果每个代理人帮助了另一个代理人，奖励就会增加。人工智能机器人的紧急语言实际上是用数字表达的，研究人员不得不用英语单词来标记它，但尽管如此，观看这种人工智能培养皿还是很有趣的:</p>
+<p class="translated"><iframe loading="lazy" title="Emergence of Grounded Compositional Language in Multi-Agent Populations" src="https://www.youtube.com/embed/liVFy7ZO4OA?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">代理可以四处移动或查看他们世界中的物体，或者与周围的其他机器人通信。这里最有趣的是，这种交流的语言不是由研究人员预先编程到机器人中的，而是似乎是自己出现的。部署到场景中的代理越多，代理的“句子”就变得越复杂。通过尝试不同的方式来完成任务，每个机器人都可以通过自己的递归神经网络来记录他们的失败、成功和奖励，这种神经网络充当了一种记忆存储。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2122078" src="../Images/5733641539154176da4668d6a75cbdee.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/03/1205b653-openai-ai-agent-emergent-language-2.png"/></p>
+<p class="translated">在实验过程中，团队遇到了一些挑战。第一个是人工智能倾向于创造一种不可理解的“莫尔斯电码语言”,这种语言是非合成的。另一个障碍涉及代理人将整个句子的意思压缩成一个单一的“单词”，这可能是可行的，但不是一种容易被人类理解的语言。</p>
+<p class="translated">在每种情况下，团队都相应地修改了奖励系统，以鼓励机器人更好地合作，并开发一种可理解的组合语言。更令人惊讶的是，该团队还观察到机器人之间自发的“非语言交流”形式，如在语言交流不可能的情况下指示和指导。</p>
+<p class="translated">该团队的下一步是继续探索我们如何开发能够以他们自己的语言交流的机器，这种语言是基于他们对世界的感知。为了帮助人类理解这种新兴语言，该团队计划与加州大学伯克利分校的研究人员合作，建立这些机器人与讲英语的代理人交流，作为翻译这种新发现的人工智能语言的一种方式。</p>
+<p class="translated">“我们认为，如果我们慢慢增加他们环境的复杂性和代理人本身被允许采取的行动范围，他们可能会创建一种表达性语言，其中包含的概念超出了在这里进化的基本动词和名词，”研究人员说。</p>
+<p class="translated">在某种程度上，这个实验似乎很好地模仿了人类的经历。面对生存所需的许多任务，人类不得不学会如何合作，并不得不发展某种共同语言使之成为可能。现在，进化出自己语言的机器似乎离我们不远了。</p>
+<p class="translated">在团队的<a href="https://arxiv.org/abs/1703.04908" target="_blank" class="ext-link" rel="external ">论文</a>和<a href="https://blog.openai.com/learning-to-communicate/" target="_blank" class="ext-link" rel="external ">公开赛</a>上阅读更多内容。</p>
+<p class="attribution translated">图片:OpenAI</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

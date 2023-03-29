@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>In Defense of Bare Metal</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">为了保护裸露的金属</h1>
+<blockquote>原文：<a href="https://thenewstack.io/in-defense-of-bare-metal/#0001-01-01">https://thenewstack.io/in-defense-of-bare-metal/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">移动广告平台提供商Taptica 已经将其几乎所有的工作负载从云转移到裸机服务器上——目前它正在使用大约100台，并且每月增加大约4台——并表示它现在获得了更好的性能和更好的价格。</p>
+<p class="translated">该公司实际上一直在使用Rackspace的各种产品，包括专用服务器、Rackspace的第一代云产品及其更新的云服务。Taptica首席技术官托默·魏茨曼(Tomer Weizman)说，这种设置变得越来越笨拙，随着预期的未来增长，Taptica开始考虑各种选择。</p>
+<p class="translated">该公司首先密切关注亚马逊网络服务。“亚马逊在基础设施方面非常成熟，但我们需要改变一切才能搬到那里，”魏茨曼说。“我们将来会依赖亚马逊。当你进入亚马逊，就很难出去。”</p>
+<p class="translated">魏茨曼说，它还考虑了谷歌，部分原因是谷歌提供了“令人惊讶的价格来测试它”。然而，不到一个月前被Marimedia收购的Taptica发现，谷歌云的性能没有达到标准。在将一些工作负载转移到谷歌后，Taptica发现延迟比Rackspace、亚马逊或Internap高出约50%。</p>
+<p class="translated">“我们需要确保我们的基础设施运转正常，”他说。他说，这种延迟可能会导致客户不高兴，他们可能会决定取消与Taptica的协议。</p>
+<p class="translated">该公司最终选择了Internap，现在大约90%的工作负载都在那里的裸机服务器上运行。</p>
+<p class="translated">魏茨曼说，Taptica在测试中发现，当它不必与其他用户共享服务器资源时，它可以获得最佳性能。</p>
+<p class="translated">此外，Taptica发现，像Rackspace这样易于使用的云服务可能很难控制。“你认为你有最好的解决方案，因为它易于使用，很容易打开一个新的服务器。但是到了月底，你会收到一大笔账单，”他说。</p>
+<p class="translated">他说，这不是一个无法克服的问题，但对于Taptica这样的小公司来说，这已经成为一个挑战。</p>
+<p class="translated">与其他一些在线企业相比，Taptica的情况很独特，因为它支持相对可预测的流量。当它签下一个新客户时，客户预先同意它想要多少流量。这意味着Taptica确切地知道它需要多少台服务器，并且不会最终订购空着的服务器。</p>
+<p class="translated">此外，在订购新的裸机服务器之前，it部门有时会使用虚拟化云来研究流量。“云可以为我们提供一个桥梁，让我们决定长期购买多少和购买什么，”他说。</p>
+<p class="translated">魏茨曼说，在这样一个可预测的工作量下，Taptica如果建立自己的数据中心，花费甚至会更少——但前提是不考虑管理该设施的成本。“扩展您的数据中心非常困难，”他指出。</p>
+<p class="translated">他说，未来当公司规模变得更大时——它只有大约35名员工——它可能会考虑自己的数据中心。</p>
+<p class="translated">如今，围绕裸机的许多讨论都与对容器技术日益增长的兴趣有关，在虚拟化环境上运行并不总是有好处。但是Taptica没有使用容器技术。</p>
+<p class="translated">此外，虽然裸机对Taptica有效，但并不适合所有人。CoreOS的Kelsey Hightower说:“裸机带来了云用户没有的管理难题。</p>
+<p class="translated">例如，裸机用户必须管理操作系统和相关的升级，而云服务为用户处理这些。</p>
+<p class="translated">此外，Hightower不认为裸机是服务提供商的可持续商业模式。他认为，比如像亚马逊网络服务这样的供应商，可以通过分割一台服务器供许多不同的客户使用来赚取更多的钱。他说，试图与AWS竞争的服务提供商可能会以非常微薄的利润提供裸机，作为赢得客户的一种方式。</p>
+<p class="translated">一名软件工程师本周参加了西雅图的新堆栈派对，他要求不透露姓名，他说他的公司将大部分工作负载从AWS转移到裸机，这是一场噩梦。他的公司最近想从其提供商处订购更多的服务器，但提供商无法满足这一要求，因为他们没有多余的服务器，也无法建立新的数据中心。</p>
+<p class="translated">此外，他说，管理裸机服务器通常需要提交票据，并等待服务提供商完成工作，有时需要24小时。</p>
+<p class="translated">Internap，<a title="The  New Stack" href="https://thenewstack.io/softllayer-cto-big-data-containers-driving-interest-in-bare-metal/" target="_blank" class="local-link"> SoftLayer </a>和其他一些现在提供裸机服务器使用。</p>
+<p class="attribution translated">图片来自<a title="Flickr" href="https://www.flickr.com/photos/torkildr/" target="_blank" class="ext-link" rel="external "> Flickr </a>知识共享</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

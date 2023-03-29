@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Carina by Rackspace: OpenStack-powered Software for Running Containers-as-a-Service</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Rackspace的carina:open stack驱动的软件，用于运行容器即服务</h1>
+<blockquote>原文：<a href="https://thenewstack.io/rackspace-carina-bare-metal-caas-based-openstack/#0001-01-01">https://thenewstack.io/rackspace-carina-bare-metal-caas-based-openstack/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Rackspace的Carina于2015年10月在东京OpenStack峰会上推出，目前处于预览模式，是新兴的<a href="https://thenewstack.io/the-year-ahead-ops-and-the-rise-of-container-as-a-service/" class="local-link">集装箱即服务</a> (CaaS)市场的早期参与者之一。Carina由<a href="https://wiki.openstack.org/wiki/Magnum" class="ext-link" rel="external "> OpenStack </a>提供支持，旨在提供集装箱和裸机基础设施的最佳选择。</p>
+<h2 class="translated">Rackspace为什么要造Carina？</h2>
+<p class="translated">Rackspace投资集装箱有多种原因。Rackspace杰出的建筑师Adrian Otto创建了Project Magnum，这是一项旨在使Docker Swarm、Apache Mesos和Kubernetes等容器编排引擎(COE)成为OpenStack生态系统中的一等公民的计划。奥托在Rackspace积极参与CaaS的建设，这使他成为领导Magnum项目的自然选择。他和他的团队正在Rackspace构建Carina，以获得在OpenStack上交付COE所需的第一手经验。</p>
+<blockquote><p class="translated">Rackspace希望Carina成为在云中运行容器的参考实现。</p></blockquote>
+<p class="translated">Rackspace一直将裸机服务器视为其云的关键差异化因素之一。该服务被称为<a href="https://www.rackspace.com/cloud/servers/onmetal" class="ext-link" rel="external "> OnMetal，</a>它使用<a href="https://wiki.openstack.org/wiki/Ironic" class="ext-link" rel="external "> OpenStack的Project Ironic </a>来交付不同类别的IaaS。这是首批基于OpenStack的商业裸机产品之一。Carina层叠在裸机平台上，以提供最佳性能。CoreOS是面向容器的精简Linux操作系统<a href="https://coreos.com/blog/coreos-on-rackspace-onmetal-cloud-servers/" class="ext-link" rel="external ">,支持裸机基础设施</a>,使其成为运行容器化工作负载的最佳平台。裸机和CaaS的结合使得Carina成为市场上独一无二的平台。</p>
+<p class="translated">托管私有云业务对Rackspace非常重要。它的许多客户运行由Rackspace工程师维护和管理的隔离基础设施。Carina在技术上设计为既可以在公共云上运行，也可以在私有云上运行。随着Rackspace通过与AWS和微软的合作关系进入<a href="https://www.rackspace.com/en-in/managed-aws" class="ext-link" rel="external ">托管服务业务</a>，它甚至可能提供Carina作为托管CaaS，可以在Rackspace团队管理的环境中部署。与<a href="https://www.joyent.com/blog/understanding-triton-containers" class="ext-link" rel="external "> Joyent Triton </a>一样，Carina是一个运行公共云的CaaS，但可以选择部署在私有云上。这使得Carina成为CaaS市场的主要竞争者。</p>
+<p class="translated">凭借OpenStack的强大根基，Rackspace希望Carina成为在云中运行容器的参考实现。该公司不希望将COE的选择局限于特定的实现。Carina旨在运行Docker Swarm、Kubernetes，将来可能还会运行其他Coe。Project Magnum分享了运行多个编排引擎的相同理念。目前版本的Carina仅针对Docker Swarm进行了优化。</p>
+<p class="translated">Rackspace非常清楚在裸机上的多租户环境中运行CaaS的风险。当它的竞争对手选择提供在虚拟机中运行的容器时，Rackspace却不遗余力地为裸机设计CaaS。在没有虚拟化的情况下实现多租户是一件艰难的事情。Rackspace的工程团队在不牺牲性能和安全性的情况下找到了一个折中的办法。他们利用Linux内核的能力在壁垒之间建立起强大的壁垒。在Carina的未来版本中，客户可以在虚拟机和裸机之间进行选择。</p>
+<p class="translated">Carina的另一个设计目标是保留原生API和工具体验。配置集群后，Carina不再碍事，让开发人员和运营团队通过本机工具处理编排引擎。在Docker Swarm的情况下，Carina的用户可以依靠熟悉的工具，如<strong> docker-compose </strong>来管理工作负载。对于客户来说，使用Carina的体验是流畅和无缝的。在支持本地工具和API方面，相同的理念被扩展到Project Magnum。</p>
+<h2 class="translated">船底座上的码头工人群</h2>
+<p class="translated">Carina支持的第一个COE是<a href="https://thenewstack.io/docker-swarm-wins-scaling-benchmark-dont-take-gospel/" class="local-link"> Docker Swarm </a>，这使得它成为公共云中运行Docker本机集群和编排引擎的少数CaaS产品之一。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-1193508 size-large" src="../Images/b5d55d540142f245c8885864bef7891b.png" alt="Carina" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/Carina-1024x516.png"/></p>
+<p> </p>
+<p class="translated">开发人员可以使用门户或CLI开始使用Carina。部署容器化应用程序的第一步是创建集群。每个集群运行一个或多个Carina节点。Carina环境中的节点主要是由物理机中的<strong> libvirt </strong>提供的LXC容器。它们不应该与Docker群节点混淆，后者通常是指带有群代理的机器。</p>
+<p class="translated">Rackspace使用<a href="https://linuxcontainers.org/" class="ext-link" rel="external "> LXC </a>作为隔离的基本单位，而不是使用昂贵且较慢的虚拟机。Docker容器被安排在每个Carina节点中，这有一些含义。与传统环境不同，不可能通过SSH进入节点。将主机文件系统装载为Docker卷也有限制。每个Carina节点都有20GB的磁盘空间、4GB的RAM、两个vCPUs和一个IPv4地址。</p>
+<p class="translated">一旦创建了包含一个或多个节点的Carina集群，就可以将凭证包下载到本地机器上。这附带了TLS证书和环境变量，用于配置本地Docker客户机与集群的群端点进行对话。运行附带的shell脚本后，开发人员可以使用docker-compose等工具来部署和管理应用程序。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-1178011 size-full" src="../Images/bd5f63bace6870eeca8425c0b36c7ddb.png" alt="935ee44d-6201-49fd-bd84-c113af5eeff2" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/935ee44d-6201-49fd-bd84-c113af5eeff2.png"/></p>
+<p> </p>
+<p class="translated">当Carina将来支持更多Coe(如Kubernetes)时，体验将几乎是相似的。</p>
+<h2 class="translated">关键特征</h2>
+<p class="translated">为什么开发人员和运营团队应该使用Carina？以下是使其成为独一无二的CaaS的一些功能:</p>
+<h3 class="translated">自动缩放</h3>
+<p class="translated">Carina的底层基础设施由运行时不断监控和管理。客户可以提供为容器预留内存和计算能力的提示。当80%的保留内存或CPU被消耗时，Carina会触发自动扩展操作来增加节点。但是，永远不会缩减或删除集群，以避免可能的数据丢失。</p>
+<h3 class="translated">表演</h3>
+<p class="translated">Rackspace声称，Carina经过优化，可以提供最佳性能。这是由于与裸机服务器的集成和用于隔离的LXC架构。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-1178012 size-large" src="../Images/56a44653de686398d8c34148e12aa699.png" alt="456462e6-a4e1-43bd-858f-bea5101839e8" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/456462e6-a4e1-43bd-858f-bea5101839e8-1024x512.png"/></p>
+<p> </p>
+<h3 class="translated">开发者体验</h3>
+<p class="translated">Carina在管理容器的生命周期方面有着精心设计的经验。该门户有一个直观的界面，用于配置、扩展和重建集群。CLI提供了一个简单而强大的机制来处理CaaS基础设施。对于自动化需求，Carina有一个专用的API，CLI也使用它。</p>
+<h3 class="translated">数据卷容器和覆盖网络</h3>
+<p class="translated">Carina支持Docker的最新功能，如专用卷容器和覆盖网络。可以创建前端和后端网络，将面向公众的容器与包含敏感应用程序的容器分开。Docker数据卷容器支持将持久数据移动到专用容器，这些容器可以与应用程序容器一起移动。由于Rackspace使Carina保持最新，Docker的新功能可以很容易地利用。</p>
+<h2 class="translated">摘要</h2>
+<p class="translated">随着CaaS领域的竞争加剧，Rackspace必须与Carina一起快速前进。它在OpenStack中的领导地位正在帮助该公司在其公共云上推出一些创新，如Project Magnum和Project Ironic。Carina的成功取决于它在混合场景中的运行情况，在混合场景中，客户可以在私有云与公共云之间无缝移动容器。看看Carina是否会支持Windows容器和Hyper-V容器也很有趣。</p>
+<p class="attribution translated">CoreOS、Docker和Joyent是新堆栈的赞助商。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/samscrim" class="ext-link" rel="external "> Samuel Scrimshaw </a>根据<a href="https://unsplash.com/license" class="ext-link" rel="external "> cc0 </a>授权拍摄的专题图片。</p>
+<p class="attribution translated"><em>这篇文章于4月22日更新，添加了更新的图形和术语。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

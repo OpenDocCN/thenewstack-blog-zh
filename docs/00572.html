@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>'Choose Your Own Adventure': EmberJS Co-Creator Tom Dale</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">“选择你自己的冒险”:EmberJS的联合创始人汤姆·戴尔</h1>
+<blockquote>原文：<a href="https://thenewstack.io/choose-your-own-adventure-emberjs-co-creator-tom-dale/#0001-01-01">https://thenewstack.io/choose-your-own-adventure-emberjs-co-creator-tom-dale/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">如今，汤姆·戴尔是LinkedIn的高级软件工程师。他的科技行业血统是真实的:戴尔共同创立了<a href="http://www.tilde.io/" class="ext-link" rel="external "> Tilde </a>，并在<a href="https://www.skylight.io/" class="ext-link" rel="external "> Skylight </a>工作，这是Rails应用的性能分析器，此外他还在Strobe(一个基于HTML5的移动网络应用平台，被脸书收购)和苹果工作过。</p>
+<p class="translated">然而，戴尔最为人所知的是他帮助创建了Ember.js的工作，这是一个开源的JavaScript网络框架，在二月份发布了Ember 3.0.0。《新堆栈》采访了戴尔，他谈到了在LinkedIn的生活，在那里他继续培养Ember.js核心，同时致力于通过<a href="https://glimmerjs.com/" class="ext-link" rel="external "> Glimmer.js. </a>等项目推动该平台走向未来</p>
+<p class="translated"><strong>那么，你是一个自学成才的程序员，没有计算机科学学位，但你最终以某种方式共同创建了最持久的JavaScript框架之一，这是真的吗？</strong></p>
+<p class="translated">这是真的，我没有计算机科学学位！我或多或少自学了编程，自学了Rails，这样我就可以创建一个魔兽世界网站。是的。那发生了。那是我20出头的时候，我在苹果天才吧工作。我有一个在苹果公司办公室工作的朋友，他知道我在编程，他找到我说，“我们想建立一个项目，但是我们没有预算去雇佣真正的软件开发人员。”他们基本上有这种流氓操作，他们拉了一些零售员工开始这个网站开发项目的工作，从那里我加入了MobileMe团队…</p>
+<p class="translated">所以基本上，我很幸运，在我的第一份编程工作中就被推到了最深处！苹果在SproutCore中建立了所有的MobileMe网站和网络应用，而SproutCore是查尔斯·乔利创造的。因此SproutCore是一个开源项目，它采用了Cocoa，即用于构建Mac应用程序的苹果Objective C框架，并将其移植到JavaScript上。我认为SproutCore确实是革命性的。它真的没有得到足够的信任。这确实是第一个流行的主流框架来做客户端渲染；所有的UI和DOM都是在路由器上创建的，而不是在服务器上。我们今天认为这一切都是理所当然的，但在2007年，这确实是一个有争议的想法。在那里，我和查尔斯以及MobileMe团队一起工作。我对JavaScript一无所知，是在工作中学会的。</p>
+<p class="translated">所以说实话，主要是在正确的时间出现在正确的地点。</p>
+<p class="translated">最终，SproutCore变成了Ember.js？</p>
+<p class="translated">这发生在苹果公司之外…基本上，当查尔斯离开去创办一家名为Strobe的公司时，我正在开发SproutCore，将MobileMe过渡到iCloud。他与[Ember.js联合创始人] <a href="http://yehudakatz.com/" class="ext-link" rel="external ">耶胡达·卡茨</a>合作，后者已经名声在外，他曾在jQuery和Rails上工作过。那是我遇见耶胡达的时候。</p>
+<p class="translated">所以SproutCore是JavaScript和web的一个接口，这意味着尝试从CSS和DOM中提取一些东西，使得构建web应用程序就像构建本地应用程序一样。但事实证明，web开发人员真的很喜欢在浏览器中工作——他们的工具是HTML和CSS。这就是浏览器的优化之处，围绕这一点已经有了丰富的资源。SproutCore意味着大量的手工DOM工作。与此同时，耶胡达刚刚编写了客户端JavaScript模板引擎<a href="https://handlebarsjs.com/" class="ext-link" rel="external "> Handlebars </a>。所以他建议我们将这种模板语言添加到SproutCore中，为那些想在浏览器中工作，想写HTML，但不想经历这种痛苦的定制过程的人服务。</p>
+<p class="translated">这是正确的做法，但它有点有争议，也令人困惑，所以我们没有使用SproutCore 2.0，而是更名为Ember。那是八年前的事了。</p>
+<p class="translated"><strong>在JavaScript框架时间/尺度上，八年实际上是八十年？</strong></p>
+<p class="translated">我们是古老的。和其他人相比，我更喜欢这座山的白发巫师。人们很容易陷入这样的想法，“Ember来自2011年，这是JavaScript术语中的中生代——所以那一定是不同世界的JavaScript，事情已经发生了如此大的变化。”但当我们开始时，我们决心建立一个持续十年的框架。或者甚至两个。当时，这似乎是一个愚蠢的声明，因为JavaScript是这样一个月的味道环境。人们使用术语“JavaScript疲劳”来描述我们使用的工具不可避免地每一两年都会改变的感觉…即使你从人们那里得到的态度是，“你仍然在使用grunt？”。</p>
+<p class="translated">Ember是JavaScript疲劳的解药。我们看到了变化的到来，并为之进行了优化，内置了一个适应性公式。因此，我们可以适应最前沿的功能，同时让社区与我们同行。所以我们仍然是那个时代唯一还在的框架。Ember的代码库从未如此健康，Ember的技术债务从未如此之少，也从未比现在更先进。]</p>
+<p class="translated">所以现在我很自信地说，Ember现在是一个20年的框架。理想情况下，三个。</p>
+<p class="translated">LinkedIn支持你在职期间继续在Ember上进行开源工作？</p>
+<p class="translated">LinkedIn是我自己工作和标准开源核心团队工作的巨大支持者。我们这样做不是为了控制它——LinkedIn并不控制Ember，它只是雇佣了一些为框架做出贡献的人。这是一个开放的过程；没有一家大公司告诉我们该怎么做，让it符合他们的利益。我们不仅可以完全控制代码，还可以完全控制决策过程。</p>
+<p class="translated">术语“开源”强调代码，但是代码是副产品。社区文化和决策、管理才是真正重要的。</p>
+<p class="translated"><strong>而现在，Ember.js v3.0.0上线了。</strong></p>
+<p class="translated">Ember 3.0是一个非常令人兴奋的版本，它非常令人兴奋的原因是因为绝对没有新功能。我们对此感到无比自豪。</p>
+<p class="translated">反直觉，对吧？新版本应该都是关于热门的新功能。然而，这意味着我们与我们的愿景保持一致。我们不需要为了获得最新的热门功能而向您推销新的主要版本升级。相反，我们采用了所有我们想提供给用户的热门的新特性，并在2.x系列中做了所有这些。我们花了额外的时间，以向后兼容的方式来做好这件事。</p>
+<p class="translated">而且，一路走来，我们在Ember中做的一些东西——比如类——越来越多地落在语言本身中。</p>
+<p class="translated">Ember 3.0主要是关于垃圾收集和提高性能。我们弃用了一些功能，删除了不再使用的功能。总的来说，我们把框架做得更光滑、更小。要跳转到Ember 3.0，您只需获得v2 Ember的最新版本2.18。你要确保它运行时没有任何不赞成的警告，然后你只是移动到Ember 3.0，没有任何变化。</p>
+<p class="translated"><strong>这让我们想到了glimmer . js——一些开发者担心它是为了取代Ember。</strong></p>
+<p class="translated">Glimmer.js是我们的实验室，我们的实验性能空间，用于研究如果我们可以至少暂时抛开向后兼容性，拥抱新web技术的前沿，我们可以构建的绝对最快的web应用程序是什么。</p>
+<p class="translated">比如二进制数据，服务人员，网络组装。如果我们可以将所有这些因素结合起来，而不担心向后兼容性，那么我们可以从web中获得的绝对最高性能是什么？这个实验正在起作用:在LinkedIn，我们在Glimmer.js中重建了feed，哦，天哪，它在飞快地尖叫。</p>
+<p class="translated">然而，之后，从所有的实验中吸取教训，并将它们带回Ember。所以，最终，开发人员给出了一些你知道会很稳定的东西，你知道它会很成熟，你知道它会经过战斗考验，最重要的是，它会持续很长时间。恩伯哪儿也不会去。</p>
+<p class="translated"><strong>对于刚刚入行的开发者来说，为什么要拥抱Ember.js？</strong></p>
+<p class="translated">最大的原因是构建前端web应用程序真的很难——这是一个分布式计算问题，最终，许多新开发人员会震惊地发现这一点。作为一个没有计算机科学学位却跌跌撞撞进入这一行的人，我亲身体会到你是如何不知道自己所不知道的。</p>
+<p class="translated">这就像是世界上最复杂的选择你自己的冒险书——复杂性的组合爆炸，对于那些刚刚起步的人来说，甚至对于我们中许多已经做了一段时间的人来说，都是难以管理的。人们应该如何找到他们的路？你是如何进行状态管理的——Flux，Redux，MobX，或者一些刚刚登陆的热门新库？以及所有其他需要做出的决定。没完没了。</p>
+<p class="translated">所以Ember给你一个完整的前端栈。更重要的是，它带来了一个相信共享解决方案的社区，他们跨越公司边界一起工作，说:“这是我们都有的问题，所以让我们一起解决它。”</p>
+<p class="translated">也就是说，你没有穿紧身衣。有了Ember，你可以选择做任何你想做的事情。社区文化决定了软件最终会变成什么样。Ember吸引了那些不喜欢摆弄工具链或只是为了好玩而重新发明轮子的人。只想建造东西的人。</p>
+<p class="translated">最后一个问题:为什么是仓鼠？</p>
+<p class="translated">真正的问题是，为什么不是仓鼠？Go有一个gopher的logo，还有其他有毛绒动物吉祥物的。恩伯有一只仓鼠。</p>
+<p class="translated">它是如何发生的。嗯，我们正要推出余烬网站。我们有这个漂亮的设计，但有标志的占位符，因为，嗯，我不是设计师，所以在我们准备推出的周一之前的周四，我让帕特里克·吉布森继续运球，给我们找一个插画师，在周一之前给我们弄一个标志。他找到了林赛·威尔逊，她刚刚为一只在轮子里奔跑的仓鼠的网站设计了三张图片。我们从来没有告诉她，请给我们做一只仓鼠，但人们真的与仓鼠联系在一起。所以那是一只仓鼠。还因为这只仓鼠看起来有点像我——因为眼镜，至少他们是这么告诉我的——这只仓鼠被命名为汤姆斯特。</p>
+<p class="translated">性别平等是必须的，所以最终，林赛为汤姆斯特生了一个妹妹，名叫佐伊。他们去世界各地探险。我们每年都会为EmberConf制作不同的版本，作为对主办城市的致敬。这很有趣，也很愚蠢，这是这一切如此伟大的十亿个原因之一。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

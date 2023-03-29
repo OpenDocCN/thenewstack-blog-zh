@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Supergiant Builds on Kubernetes to Manage Multitenancy for Distributed Applications</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Supergiant构建于Kubernetes之上，用于管理分布式应用的多租户</h1>
+<blockquote>原文：<a href="https://thenewstack.io/supergiant-builds-kubernetes-manage-multi-tenancy-distributed-applications/#0001-01-01">https://thenewstack.io/supergiant-builds-kubernetes-manage-multi-tenancy-distributed-applications/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://thenewstack.io/parity-check-container-orchestration-mean/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockImageBlock"> <img class="infoBlockImage" src="../Images/cceae86d79f5a820537e14d55425326c.png" data-original-src="https://2.gravatar.com/avatar/b346af7b2d44aed08ce788ddc8cf8804?s=600&amp;d=blank&amp;r=g"/> </div> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">研究报告</p> <p class="infoBlockText">一个完整的公司生态系统正在被创建，以使Kubernetes成为企业级产品。虽然一些公司能够为其他容器环境提供支持，但其他公司只关注K8s领域。<br/> <br/> <strong> Supergiant </strong>是一个运行Docker容器的框架，托管有状态的集群应用。它在幕后利用Kubernetes，并在Kubernetes不能达到目的的情况下拥有自己的结构和代码，如持久存储和外部负载平衡。它提供了Kubernetes的调整版本。其主要产品是企业级支持。<br/> <br/> <strong> ElastiKube </strong>是Kubernetes的一个管理平台，目标是为容器化的应用程序提供自助服务体验。它由ElasticBox创建，后者于2016年6月被CenturyLink收购。<br/><br/><strong>StackPointCloud</strong>是一项测试服务，允许用户在他们选择的云提供商处轻松创建、扩展和管理任何规模的Kubernetes集群。——<strong>劳伦斯·赫特</strong> </p> </div> </a></p><p class="translated">提供托管弹性搜索服务的<a href="https://qbox.io/" class="ext-link" rel="external "> Qbox，</a>的团队喜欢讲述这家白手起家的公司是如何从工程师疯狂地通宵工作支持票和淹没在成本中，到在基础设施上节省50%，获得更好的稳定性和性能，以及获得一些睡眠。</p>
+<p class="translated">它很快发现专用的虚拟机模型不适合这种计算密集型应用程序。然而，虽然它决定考虑Docker容器，但它希望避免“嘈杂的邻居”问题，这种问题在具有SaaS产品的共享基础架构上很常见，并避免数据库等有状态应用程序的性能问题。</p>
+<p class="translated">Qbox将如何为客户的资源“爆发”需求提供扩展空间，同时提高利用率——利用率一直低于30%——以及相关的it浪费？</p>
+<p class="translated">它在开源集群管理器<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>中找到了答案，这使得在多租户环境中运行分布式应用程序更加容易，并提供了对资源共享的粒度控制。</p>
+<p class="translated">Qbox <a href="http://supergiant.io/about" class="ext-link" rel="external ">将其在该领域的三年经验与Kubernetes相结合，创建了开源项目<a href="http://supergiant.io/" class="ext-link" rel="external "> Supergiant </a>，这是一个管理Kubernetes集群上任何分布式应用的框架。它在GitHub </a>上可用，在Apache 2.0下获得许可。</p>
+<p class="translated">“当用户批量索引时，我们会遇到问题。他们的计算资源将被完全占用，因为他们在虚拟机上。Qbox首席执行官马克·布兰登说。</p>
+<p class="translated">“使用Elasticsearch，如果您达到计算资源的极限，它将停止提供搜索结果，我们的客户经常会遇到这个问题。取而代之的是Supergiant，它拥有单租户的所有优势，比如没有“吵闹的邻居”，但拥有多租户的所有优势。他们使用的硬件比分配给他们的大得多。</p>
+<p class="translated">“如果你有一个像Elasticsearch这样的突发应用，你可以优雅地控制过剩，而不是停止，”他说。</p>
+<p class="translated">所以它提供了更多的性能，更少的门票和更低的成本。以前只适用于AWS，Supergiant刚刚添加了Digital Ocean，并在路线图中加入了Google Cloud、Rackspace和OpenStack。</p>
+<h2 class="translated">Kubernetes扩展</h2>
+<p class="translated">根据Brandon的说法，容器和Kubernetes都不能很好地处理分布式应用，而这正是Supergiant的用途。</p>
+<p class="translated">“我们不是要取代Kubernetes，而是要增加Kubernetes。“Supergiant更像是Kubernetes的延伸，”他说。</p>
+<p class="translated"><a href="https://thenewstack.io/vendors-working-towards-k8s-docker-interoperability/" class="local-link"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1461938" src="../Images/679973f90471ff70272cb86ab02f262c.png" alt="chart_vendors-plan-to-interoperate-with-both-kubernetes-and-docker" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/Chart_Vendors-Plan-to-Interoperate-With-Both-Kubernetes-and-Docker.png"/>T2】</a></p>
+<p class="translated">Supergiant的核心功能是组件，本质上是一个微服务，在一个应用程序中只做一件事。一个组件是一个服务、复制控制器和pod，它们都被包装在一个对象中。它以一种易于管理的方式整合了部署复杂拓扑所需的所有Kubernetes和云操作。开发人员可以使用公开可用的配方，也可以保留自己的私有存储库。</p>
+<p class="translated">对于容器中的有状态应用程序,“您需要指定RAM、卷、处理器数量、实际的容器本身——它的位置、安全设置。有了Elasticsearch，你不必做主从配置，但你可以，”布兰登说。</p>
+<p class="translated">“使用Supergiant，只需一键操作。您需要多少节点就有多少节点，它将自动扩展，它将在节点可用时自动连接和重新连接卷，它将实现负载平衡，等等。”</p>
+<p class="translated">Supergiant自动设置入口点，将负载平衡器和<strong> <a href="http://kubernetes.io/docs/admin/kube-proxy/" class="ext-link" rel="external "> kube-proxy </a> </strong>设置包装到一个可配置对象中。Kube-proxy将流量从外部路由到内部的正确容器。入口点可以在组件和应用程序之间共享，尽管这不是Kubernetes的特性。</p>
+<p class="translated">与名称空间不同，Supergiant使用术语application来更容易地理解Supergiant API中的结构。API将所有配置放入一个简单的配置中，可以导出、导入或与其他Supergiant用户共享。</p>
+<p class="translated">Supergiant将重点放在四个方面:安装、持久存储、负载平衡和自动伸缩。</p>
+<p class="translated">它不使用Kubernetes的持久卷。相反，在AWS上，它使用弹性块存储(EBS)。这些卷会在节点服务器重新启动后保持不变，从而确保节点停机时数据不会丢失。</p>
+<p class="translated">Supergiant的工具管理持久存储的方式允许您动态迁移数据、更改硬盘大小或类型。</p>
+<p class="translated">据Brandon说，这个超级巨人团队还创建了自己的外部负载平衡，这对于使用Kubernetes的分布式应用程序来说“不够理想”。</p>
+<p class="translated"><a href="https://thenewstack.io/tns-research-multiple-clouds-multiple-orchestrators-what-a-mess-part-2/" class="local-link"> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1461940" src="../Images/8862f80a4569d63d0f955bc66ec5fce6.png" alt="clusterhq3" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/ClusterHQ3.png"/> </a></p>
+<h2 class="translated">前方的路</h2>
+<p class="translated">布兰登说，Supergiant很快获得了Qbox的足够兴趣，可以提供支持的版本。</p>
+<p class="translated">其用户包括平面设计市场<a href="https://99designs.co.uk" class="ext-link" rel="external "> 99designs </a>、餐厅外卖服务<a href="https://www.doordash.com/" class="ext-link" rel="external "> DoorDash </a>、手机应用开发公司<a href="https://3sidedcube.com/" class="ext-link" rel="external "> 3 Sided Cube </a>和课堂社区网站<a href="https://www.classdojo.com/" class="ext-link" rel="external "> ClassDojo </a>。</p>
+<p class="translated">不再自举，费耶特维尔，阿肯色州。总部位于美国的Qbox已经筹集了286万美元。</p>
+<p class="translated">Supergiant的路线图侧重于简化部署。布兰登预见了Elasticsearch、Redis、MongoDB和其他网站的一键式版本。该公司还希望在Kubernetes上添加自己的监控应用程序、安全应用程序等。</p>
+<p class="attribution translated"><a href="https://www.digitalocean.com/" class="ext-link" rel="external ">数字海洋</a>是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:NASA戈达德太空飞行中心的“恒星形成实验室”，获得CC BY-SA 2.0许可。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

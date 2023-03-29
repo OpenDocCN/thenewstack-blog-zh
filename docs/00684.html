@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Microsoft's Orleans Distributed App Framework Is Now Cross Platform</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">微软的奥尔良分布式应用框架现在是跨平台的</h1>
+<blockquote>原文：<a href="https://thenewstack.io/microsofts-orleans-distributed-app-framework-is-now-cross-platform/#0001-01-01">https://thenewstack.io/microsofts-orleans-distributed-app-framework-is-now-cross-platform/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">微软<a href="https://github.com/dotnet/orleans" class="ext-link" rel="external ">奥尔良</a>是一个开源编程框架。NET，最初由微软研究院的极限计算小组开发，使用虚拟角色简化分布式应用程序开发。这些是具有自己状态的单线程对象，不共享任何内存，通过使用异步远程过程调用交换消息来进行通信，按需激活，不再使用时进行垃圾收集，并根据需要无缝重新激活。</p>
+<p class="translated">因为运行时负责激活、清理和跨服务器分发虚拟角色(Orleans称之为grains ),开发人员可以编写他们的代码，就像它将在单台机器上运行一样，而不用担心并发性，并且可以根据需要扩展到任意多的服务器。</p>
+<p class="translated">当微软<a href="https://thenewstack.io/project-orleans-the-net-framework-from-microsoft-research-used-in-halo-4/" class="local-link">在2015年初</a>开源Orleans时，它需要。NET框架，这意味着它只能在Windows服务器上运行。2.0版通过迁移到使Orleans跨平台。NET Core，可以运行在Linux和macOS(都是。支持NET Core 2.0和2.1，开发者不用升级自己的版本。NET使用新奥尔良版本)。</p>
+<p class="translated">“我们看到很多人对在Linux上运行Orleans感兴趣，无论是微软内部还是Orleans社区外部，尤其是容器，”微软研究院Orleans团队的首席软件工程负责人<a href="https://github.com/sergeybykov" class="ext-link" rel="external "> Sergey Bykov </a>告诉New Stack。“当他们的堆栈的其他部分在该环境中运行时，他们自然希望在相同的环境中运行奥尔良。”</p>
+<p class="translated">但是尽管主要目标是兼容。NET Core，该团队借此机会做出了一些突破性的变化，Bykov说，否则可能很难证明。“我们让奥尔良对开发商更加友好；我们更新了API，使之与ASP.NET以及。NET核心与配置选项和依赖注入。干净多了；它更加结构化、更加灵活，开发者也更加开心。”</p>
+<p class="translated">虽然Orleans已经支持依赖注入，但它主要是允许开发人员在运行时将依赖注入到他们自己的应用程序代码中。“在Orleans 2.0中，我们重组了一切，所以几乎所有运行时的内部组件都是可注入的，”Bykov告诉我们；这意味着无论是测试还是生产，开发人员都可以替换运行时的基础部分。“依赖注入提供了在启动时组装东西的功能，所以你不会有2.0之前的僵化结构。他们可以为测试服务注入模拟和定制植入。”一个名为提醒的设施显示了你可以安排每天或每周要做的事情，当时间到了，谷物就会被激活和调用。如果您想要运行一个测试，并且运行速度超过一天或一周，您可以注入您自己的提醒服务的实现。</p>
+<p class="translated">Bykov将原始的Orleans代码库描述为“更加单一:随着时间的推移，我们变得更加去耦合，使用所有这些技术来灵活地构建运行时。”因为当项目在2010年开始时，该框架的许多部分都没有现成的API，所以团队不得不为日志记录之类的事情创建自己的代码。现在定制代码被移除，这样Orleans的开发人员(他们通常熟悉ASP.NET)可以使用更熟悉的工具和模式；例如，<a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging/" class="ext-link" rel="external ">日志实现</a>与ASP.NET核心中的实现相同。</p>
+<p class="translated">由于这种程度的解耦，运行时的组织方式也发生了变化；Bykov指出，虽然虚拟角色颗粒的抽象保持不变，但配置和启动它们运行的筒仓更像ASP.NET。“我们过去只是扫描文件夹中的颗粒组件，因此如果一个文件夹中有150个组件，启动需要一分钟左右的时间。在Orleans 2.0中，它们的API名称与ASP.NET相同。我们从这个程序集中加载它们，启动时间非常快，特别是对于测试用例，因此开发人员可以在更短的时间内运行他们的测试。配置更加灵活；这不是一个黑匣子，它会进行缩放。”</p>
+<h2 class="translated">打开奥尔良设计</h2>
+<p class="translated">让奥尔良使用熟悉的ASP.NET概念使新开发人员更容易学习，也使社区更容易为奥尔良做出贡献，这对项目越来越重要。</p>
+<p class="translated">“即将到来的2.1版本中最大的变化之一是调度程序，它处理竖井中数百万任务的执行，”Bykov指出。新的调度程序提供了30%的更好的吞吐量——它是由GitHub社区成员编写的，他只贡献了三年，但他的贡献在这段时间里使Orleans的性能翻了一番。</p>
+<p class="translated">另一个重要的特性是新的代码生成器。“奥尔良的一大价值主张是它易于使用。即使一个对象是远程的，你也可以像它是本地的一样编写你的代码；为此，我们生成透明代理类和序列化程序。你可以原生地编写代码，接受特定类型的参数，但需要神奇地从一台机器转移到另一台机器，我们编写序列化程序来完成这一任务。”</p>
+<p class="translated">Orleans 2.1中新代码生成包的大部分代码也是由社区贡献的。这用的是罗斯林。NET编译器的代码分析，以避免与不同版本的。NET Core SDK。“新版本的代码生成使用代码到代码的编译:它根本不加载程序集，也没有版本绑定—它只是查找代码并为序列化程序和代理引用生成代码。”</p>
+<p class="translated">奥尔良内部的分离水平使得社区更容易为奥尔良做出这些重大贡献，这也使得微软在该项目中的角色更加清晰。</p>
+<p class="translated">“去耦合允许我们无法扩展交付的创新，”Bykov解释道。“它允许我们继续专注于我们提供最大价值的关键功能，并允许其他人构建插件。也许你想取代奥尔良的信息传递方式；我们的信息传递很好，非常快速和灵活，但这是我们传递信息的方式。”</p>
+<p class="translated">另一个开发人员可能需要执行稍有不同的消息传递，现在他们可以使用依赖注入来取代对Orleans工作方式如此重要的东西。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

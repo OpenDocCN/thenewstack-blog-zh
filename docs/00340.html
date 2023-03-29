@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>The Latest Pivotal Cloud Foundry Sets the Stage for .NET Microservices</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">最新的Pivotal Cloud Foundry为。网络微服务</h1>
+<blockquote>原文：<a href="https://thenewstack.io/latest-pivotal-cloud-foundry-sets-stage-net-microservices/#0001-01-01">https://thenewstack.io/latest-pivotal-cloud-foundry-sets-stage-net-microservices/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">上周，<a href="https://pivotal.io/" class="ext-link" rel="external "> Pivotal </a>正式发布了其商业<a href="https://pivotal.io/platform" class="ext-link" rel="external "> Cloud Foundry </a>软件服务平台的最新版本1.10，宣传了一些重大的——或许是姗姗来迟的——改进，包括对姐妹公司<a href="http://www.vmware.com/products/nsx.html" class="ext-link" rel="external "> VMware的NSX </a>虚拟网络层的支持。对于一些希望跨云平台安装Cloud Foundry资产并需要在所有平台上扩展单一安全和访问控制层的组织来说，仅此一点就可能改变游戏规则。</p>
+<p class="translated">但是这一轮最引人注目的创新可能涉及到对一个你可能没有听说过的库的支持:<a href="http://steeltoe.io/" class="ext-link" rel="external "> Steeltoe </a>。这是一项开源工作，由Pivotal管理，旨在构建一个受网飞启发的微服务模型。NET框架应用——不仅仅是<a href="https://www.microsoft.com/net/core#windowsvs2017" class="ext-link" rel="external ">。NET Core </a>，不是<a href="https://www.xamarin.com/" class="ext-link" rel="external "> Xamarin </a>，而是完整的enchilada。</p>
+<p class="translated">Pivotal的产品高级主管Richard Seroter 在谈到新的堆栈时承认:“我已经做了15年的. NET开发人员，我还没有见过大规模运行Windows的平台。</p>
+<p class="translated">“您可以进行潜在的配置管理。我可以用厨师，我可以用木偶。但是，在拥有由Windows提供支持的基础架构方面，您可以将它视为一种服务…现在，我们正迈向另一个层次。我认为这是一件期待已久的事情。”</p>
+<h2 class="translated">流行的桌子</h2>
+<p class="translated">今天，尽管Windows Server仍然作为Windows客户端的管理平台和客户端/服务器整体的过渡平台而存在，但最新的云原生服务正在Linux上托管。这造成了一个技能缺口——一个多年无人问津的缺口，正在变成一个鸿沟。这并不是说Windows的原生架构依赖于集中化，而微服务依赖于分布，尽管这显然是正确的。而是那些合法的语言，包括C#，<a href="http://fsharp.org/" class="ext-link" rel="external "> F#，</a>，<a href="https://blogs.msdn.microsoft.com/gauravseth/2007/08/16/difference-between-jscript-jscript-net-and-managed-jscript/" class="ext-link" rel="external ">托管Jscript </a>，我敢说，Visual Basic (VB。NET)，因为在一个独立于使软件定义的基础设施成为可能的生态系统之外的生态系统中成长而面临着不适当的惩罚。</p>
+<p class="translated">“在Pivotal，我们谈论了很多关于<em>重新平台化</em>，并决定移动什么，”Seroter说，实际上并不需要填写从什么移动到什么的细节。</p>
+<p class="translated">“坦率地说，我认为我们的心态是，仅仅将你的旧东西装箱通常是不值得努力的，”他继续说道。“有一大堆东西在它们所在的地方可能还不错。它们不是业务关键型的，或者可能是，但是它们的变更率非常低，并且您在特性速度方面没有问题。您确实想在分布式系统中拥有的一些东西可能需要一些轻微的重构，这样它们就可以利用水平伸缩或新的数据存储。但是有一个好的变化，如果这些记录系统没有太大变化，它们可能仍然与另一个想要使用它们数据的微服务相关。所以，虽然这东西没什么变化，但其他人需要它来做事。我认为，随着越来越多的系统无法孤岛化，为了他们的生态系统，他们将不得不进行现代化，即使不仅仅是为了他们自己。”</p>
+<p class="translated">换句话说，Seroter认为，来自客户机/服务器领域的一些应用程序需要在一个新的架构中重新搭建平台，以便与云服务和世界上的其他应用程序共存，这种需求虽然不总是明确的，但也是可以衡量的。至少在某种程度上，这种转移确实需要一个熟练的开发人员，他了解客户机/服务器平台的工作方式或过去的工作方式。</p>
+<h2 class="translated">什么留下什么离开</h2>
+<p class="translated">我们之前在新堆栈中讨论过<a href="https://thenewstack.io/video-service-discovery-made-easy-spring-cloud-config/" class="local-link"> Spring Cloud </a>，它是Pivotal的框架，用于分布式系统和微服务的快速模式化和原型化。它包括现成的微服务，处理每个分布式应用程序将需要的功能——例如，使用<a href="https://github.com/Netflix/eureka" class="ext-link" rel="external ">网飞尤里卡</a>模型的服务发现；以及用于维护状态的<a href="https://github.com/SteelToeOSS/Configuration" class="ext-link" rel="external ">配置存储器</a>。</p>
+<p class="translated">“我需要将配置存储在机器外，”Seroter解释道。“我不希望我的文件夹中有任何<strong> web.config </strong>文件。NET app我不希望它出现在本地配置中。我需要一份服务登记表。我所有的服务都是可扩展的，IP是流动的，我不能在我的应用程序中硬编码对服务的引用。这是运行时查找。”</p>
+<p class="translated">您可能知道，Spring是围绕Java构建的。Steeltoe有效地有意地将这种关系从Java转移到. NET。</p>
+<p class="translated">从系统的角度来看，事情是这样的:Pivotal Cloud Foundry 1.10支持在Windows主机上暂存分布式工作负载。对于容器化，Pivotal使用<a href="https://github.com/cloudfoundry/garden-windows" class="ext-link" rel="external "> Garden Windows </a>，这是一套用于生产OCI格式容器的开源Go库。PCF的容器调度器是Windows 的<a href="https://docs.pivotal.io/pivotalcf/1-7/opsguide/deploying-diego.html" class="ext-link" rel="external "> Diego，它的部署机制使用BOSH命令行工具——同样是为Windows重写的——来安装Windows <em>单元</em> (PCF的登台平台)和</a><a href="https://docs.pivotal.io/pivotalcf/1-8/windows/push-windows-apps.html" class="ext-link" rel="external ">推送。这些细胞的网络应用</a>。</p>
+<p class="translated">“围绕配置、服务发现、断路器、<a href="https://oauth.io/home" class="ext-link" rel="external "> OAuth </a>的许多这些模式—所有这些功能都是Spring Cloud的一部分。每月下载数百万次。Steeltoe的出现是因为我们的成长。净练说，怎么来的。NET devs上不去这种乐趣？这个生态系统中没有任何东西有所帮助。NET devs构建微服务。因此，Steeltoe是一组让您能够接入该生态系统的组件。它延伸了。网芯和传统。NET Framework，并允许您挂接到配置子系统以使用远程配置服务器。”</p>
+<h2 class="translated">移居</h2>
+<p class="translated">这不是一个微不足道的转变，甚至不是你典型的心态转变。对于一个资深的Windows开发者来说，这是一次大脑移植。与所有程序一样，Visual Studio中构建的Windows应用程序有一个<em>范围</em>的概念。但即便如此。为了向下兼容，公共语言运行时为<em>全局范围</em>提供了静态变量，其值和引用超越了应用程序中的所有子部分。为了在应用程序之间交换数据，仍然有COM，它依赖于单个全局注册表的持久性(大写的“R”)。随着时间的推移，使每一个Windows安装运行得更慢的东西…就是注册表。</p>
+<p class="translated">直到最近，整个想法。NET开发是为了在Windows环境中运行一个表现得像客户机一样的应用程序，在这里一切都很舒适，共存不是问题，就像某些前全球化主义者的乌托邦式的愿景。因此，任何学习像C#这样的语言的人都可以深入了解各种Windows基础(取代Win32 API的库)。学习一门. NET语言，同时也是不可分割的，就是为Windows编程。</p>
+<p class="translated">对于一个. NET开发人员来说，使用Windows CLR语言为Cloud Foundry构建微服务意味着放弃她所学的一些东西。但不是全部，这就是吸引人的地方。拥抱网飞风格的建筑不再意味着放弃20年的技能，从“你好，世界！”开始</p>
+<p class="translated">Pivotal的Seroter说:“现在，一个. NET开发人员可以进行服务发现，并成为这个动态注册表的一部分——不是这个静态的、过时的、陈旧的集成管理数据库，而是一个依赖于心跳和健康检查的动态外观。我们在Steeltoe中有额外的连接器，所以我可以与流行的开源软件如Redis、MySQL、Postgres、RabbitMQ、OAuth进行交流。这些。NET开发者和其他人一样在生态系统中玩，没有那么多的摩擦。”</p>
+<p class="translated">虽然Cloud Foundry开发人员已经对Steeltoe框架进行了几个月的修补，但Pivotal 1.10版现在提供了商业支持。对于PCF和Steeltoe来说，试验阶段已经结束。</p>
+<p class="translated">现在所有的东西都重新组装好了，可以说从噪音和灰尘中显露出来的东西看起来不太像窗户。此外，它是使用为Windows开发的语言重申的云原生模型。毫无疑问，老兵。NET开发人员可能会在这个领域中度过最初的几个月，感觉像是在异乡的移民。他们是感到受欢迎还是被推到一边，就像自助餐厅的另一端，将取决于你读到的所有这些开放是否像人们所说的那样开放。</p>
+<p class="attribution translated">Cloud Foundry是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="https://en.wikipedia.org/wiki/Foundry#/media/File:Burmeister_og_Wain_(1885_painting).jpg" class="ext-image" rel="external ">弗拉·布尔迈斯特奥格·韦恩的铸铁厂</a>，1885年由佩德·塞弗林·克勒耶绘制，在公共领域。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

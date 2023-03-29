@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Containers and Hosts in the Age of Compute</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">计算时代的容器和主机</h1>
+<blockquote>原文：<a href="https://thenewstack.io/containers-and-hosts-in-the-age-of-compute/#0001-01-01">https://thenewstack.io/containers-and-hosts-in-the-age-of-compute/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">集装箱正在影响新烟囱的平衡。它们代表了一种全新的概念性方法来思考应用程序的开发和管理。与此同时，东道主一如既往地占据着主导地位。但是，由于传统的托管环境不太适合分布式架构，我们如何管理应用程序开发和管理呢？随着我们探索快速发展的新堆栈生态系统的新维度，这些问题不断浮出水面。</p>
+<p class="translated">以数据为中心的架构是这种混合环境开发场景的背景。每个企业都必须意识到大规模应用程序开发和管理的重要性。管理大规模数据只是做生意的现实。谷歌、Etsy、脸书、Airbnb和其他互联网公司现在是如何规模化开发和运营的典范。他们是我们寻求指导的人。这些公司告诉企业，这不再是一个严格孤立的环境。</p>
+<p class="translated">真正的目标是在一个网络平台上共享数据。IT策略必须在语义上集成到数据结构本身中。信任是最重要的。固有限制的过时系统除了迫使企业为更多的盒子付费之外什么也做不了。谁有时间、空间或资源去买更贵的盒子？</p>
+<p class="translated">Datadog首席技术官和联合创始人Alexis lê-quc在最近的一次播客中提到,“随着管理的数据量的增加，横向扩展的架构不应该发生根本性的变化。</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/34-monitoring-distributed-architectures" class="ext-link" rel="external "> #34:监控分布式架构</a> </span></p>
+
+<p class="translated">一切都必须以某种松散的方式耦合在一起。lê-quc写道，通过Apache Kafka或AWS Lambda等服务使用中央队列，流架构变得至关重要。唯一的正式契约是队列及其API，它位于生产者和消费者之间。在这种环境下，应用程序的开发和管理不可能存在于一个孤立的世界中。整个技术栈变得与开发者更加相关，开放了软件抽象硬件环境的能力。Vivek Juneja在关于Lambda的hos帖子中回应了这种新思维，称其为<a href="https://thenewstack.io/aws-lambda-is-a-step-towards-creating-a-new-normal/" class="local-link">新常态</a>:</p>
+<p class="translated">作为一名开发人员，我希望优化lambda函数的执行时间，以及我为此提供的内存。一个较小的微服务应该在几毫秒内相对完整地执行函数，并使用最少的内存。这是帮助架构师重新思考微服务架构组成的另一种方法。</p>
+<p class="translated">随着分布式体系结构改变了我们对主机以及它们与容器的关系的看法，开发人员越来越多地考虑到堆栈的较低层和监控需求。</p>
+<p class="translated">在他的笔记中，lê-quc解释说在大型机世界中只有一台主机。客户机/服务器时代把主机分解成更小的机器。现在，主机正在成为计算的接受者。有了容器，计算可以分布到一台主机上的数百甚至数千个容器中。</p>
+<p class="translated">历史上，主机跨越数天、数周甚至数月。借助亚马逊网络服务(AWS)等云服务，计算持续时间已经缩短，实例瞬间消失。容器更像是一个过程，随时都有可能出现和消失。</p>
+<p class="translated">这意味着计算将以一定的模式出现，涌向只充当CPU的主机。值得思考的是速度以及它如何适应分布式架构。</p>
+<p class="translated">这意味着从不同的角度思考监控。lê-quc说，宿主不再是监控宇宙的中心。他们只是计算的接收者。<strong><span/>T3】</strong></p>
+<p class="translated">开发人员有一个更复杂的任务。应用程序是如何部署的？容器如何影响应用在分布式环境中的行为？开发人员需要知道这些事情吗，还是管理架构的运营团队的责任？后端工程师的角色是一项复杂的工作，但是开发人员越来越需要了解操作，以确保应用程序相应地运行。在许多方面，这解释了为什么监测现在如此重要。重要的是客户体验。如果应用程序表现不佳，开发者应该想知道原因。这意味着访问仪表盘，了解应用程序的运行情况以及解决问题需要做些什么。</p>
+<p class="translated">考虑到所有这些，我们对我们想做的一系列帖子有一些问题。我们将在6月份的集装箱月报道中做更多关于这个主题的报道，所以我希望随着春季的到来，我们将更深入地讨论这些主题。</p>
+<h2 class="translated">现在，以下是我的问题</h2>
+<ul>
+<li class="translated">容器如何改变用户思考网络的方式？</li>
+<li class="translated">混合容器/VM环境怎么样，它们在分布式架构中是如何工作的？</li>
+<li class="translated">这种混合环境带来了哪些挑战？</li>
+<li class="translated">监控如何改变我们对主机的概念？</li>
+</ul>
+<p class="translated">这些问题说明了概念如何改变以适应分布式环境。例如，容器的出现几乎跨越了SDN，为网络带来了一系列新的挑战。</p>
+<p class="translated">VMware告诉世界如何不处理裸机。现在，对裸机的访问提供了速度和灵活性。随着容器成为交付微服务的一种方式，虚拟机管理程序及其在托管环境中的角色会发生什么变化？这似乎是企业和虚拟机环境面临的挑战，因为它们需要满足分布式架构带来的需求。云服务是否抽象了复杂性？位于网络顶部的服务真的是最重要的吗？我想到的是CoreOS，Kubernetes，Docker，Cloud Foundry，Red Hat在用多少etcd。最终用户不必担心etcd环境，但他们希望使用它来管理他们在分布式环境中运行的东西。</p>
+<p class="translated">正如Joe emisson本周在一篇文章中为我们解释的那样，真正需要考虑的是服务提供商，抽象出中间层。</p>
+<p class="translated">我们提出的问题有许多角度。如果你愿意，分享你的想法。我们一直在寻找更多的视角。</p>
+<p class="attribution translated">Datadog和Red Hat是新堆栈的赞助商。</p>
+<p class="attribution translated">特色图片<a href="https://www.flickr.com/photos/st3f4n/2825426347/in/photolist-" class="ext-link" rel="external ">通过</a> Flickr知识共享。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

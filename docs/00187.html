@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>How Intel is Working to Improve Deterministic Performance for Complex Workloads</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">英特尔如何努力提高复杂工作负载的确定性性能</h1>
+<blockquote>原文：<a href="https://thenewstack.io/intel-working-improve-deterministic-performance-complex-workloads/#0001-01-01">https://thenewstack.io/intel-working-improve-deterministic-performance-complex-workloads/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+<p class="editors-note translated">以下故事是两部分系列的第一部分，探讨英特尔如何帮助提高复杂系统的确定性性能，从基于容器的云工作负载到实时电信运营。第二部分将于周一播出。</p>
+
+<p class="translated">仔细划分计算堆栈的每个级别(包括操作系统、网络、互联网)是抽象层，这是有意设计的，以便一个级别的开发人员不需要关心所有其他级别的操作规范。Web开发之所以成功，是因为它独立于浏览器、操作系统，甚至互联网本身；至少到目前为止，虚拟化的成功之处在于虚拟机和容器与托管它们的操作系统保持独立和隔离。</p>
+<p class="translated">这些分区帮助每个级别的开发人员和工程师专注于他们面前的任务。但它们也保护这些人免受系统构建者现在面临的现实:在栈的最高层发生的事情将连锁反应发送到最底层，影响处理器本身。</p>
+<p class="translated">电信和有线电视公司等通信提供商尤其感受到了这些波动，他们的安全性和可用性标准远远高于典型的企业数据中心，甚至比谷歌或脸书的规模还要高。</p>
+<p class="translated">英特尔网络平台事业部的首席工程师Edwin Verplanke 解释道:“通信环境中的一个关键要求是实时性能确定性。“如果你有一个数据包流进来，你不想丢弃任何数据包，因为问题是，如果你有一个安全设备丢弃数据包，它不是很安全。”<img decoding="async" loading="lazy" class="alignright wp-image-1192320 size-medium" src="../Images/1da8d8f472ea3f9603b44eea207d5c70.png" alt="140604 Edwin Verplanke 01" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/140604-Edwin-Verplanke-01-300x300.jpg"/></p>
+<p class="translated">电信公司和宽带内容提供商需要<em>确定性</em>，也许比任何其他单一客户类别都更需要。最简单地说，确定性的质量就是保证一个过程将在一个性能范围内工作。</p>
+<p class="translated">因为电信公司的工作负载是实时编排的，它们的流量是实时处理的，所以它们需要每个执行周期都与前一个周期相同。即使是在性能稍有停顿的时候丢失一帧数据，信道加密也不再可行。加密不仅是安全的需要，也是在一个系统中产生虚拟通道的一种方式，该系统会无序地向下游发送数十亿个数据包。</p>
+<h2 class="translated">柏青哥</h2>
+<p class="translated">CPU是聪明的大理石机器。对于有史以来最简单的产品来说，它们的逻辑可以用滚珠轴承、齿轮和杠杆来模仿。说英特尔CPU极其复杂是错误的——除非你理解芯片逻辑是如何工作的。它们是巨大的，以一种非常压缩的方式。处理器加速处理过程的许多方式在模拟时会令人着迷。但它们也可能变得不可预测。</p>
+<p class="translated">这就是Verplanke和他的英特尔工程师同事们面临的问题。当逻辑单元或<em>核心</em>获取数据时，它并不直接进入DRAM的地址空间，而是进入大约三个<em>缓存</em>中的一个。这里，DRAM空间的连续区域的内容被临时复制。CPU中最大的缓存是<em>末级缓存</em>，在英特尔至强处理器中是L3。与其他缓存不同，L3被设计为在CPU中的所有内核之间共享。这意味着几个线程将同时命中该缓存。</p>
+<p class="translated">由于内核的下一个内存提取操作更有可能以内存中与前一个相邻的点为目标，因此L3高速缓存向内核提供数据的速度比DRAM快得多，但只能在指针超出高速缓存边缘之前。这会产生“未命中”，从而触发刷新缓存的新操作。这种刷新耗费时间。当一个进程产生较少的高速缓存未命中时，该进程被称为更具确定性。</p>
+<p class="translated">当高速缓存“属于”一个核心时，就像L1一样，甚至可以考虑高速缓存未命中，并且可以保持确定性。但是对于L3，它是各种线程之间的共享平台(在超线程系统中，每个内核可能有两个线程)，它们并不总是能够很好地相互协作。</p>
+<p class="translated">电信公司——英特尔最有利可图的客户群之一——报告了确定性进程性能的急剧下降，尤其是在多线程的情况下。</p>
+<p class="translated">当埃德温·弗普兰克和他的同事们找到罪魁祸首时，他们不用费多大力气就能找到。它是Linux内核。</p>
+<p class="translated">“我们的监控功能使我们能够确定哪些应用程序表现良好，哪些表现不佳，”他在最近的一次新闻发布会上告诉记者。“我们发现的一件事是，如果你不给操作系统分配任何工作，它们默认会非常非常吵。我们看到了很多差异，从一个Linux内核到另一个Linux内核，测试这个特性。”</p>
+<p class="translated">他的团队发现，并不是每个Linux发行版都小心地安排进程线程，尤其是在它们应该空闲的时候。一旦内核变得繁忙，它们很好地使用L3缓存的能力增加了，结果确定性也提高了。但是内核在繁忙期间会花大量时间做一些无所事事的工作，比如“垃圾收集”。</p>
+<h2 class="translated">争论点</h2>
+<p class="translated">在去年7月退休之前，Billy Cox是一名软件工程师，在英特尔工作了7年，之前在惠普工作了37年。正如考克斯在2014年的那一天告诉记者的那样，尽管中华电信等电信公司首先让英特尔注意到了不确定性问题，但他推断，同样的问题可能已经困扰着日常工作，即企业工作负载协调。</p>
+<blockquote><p class="translated">当工作负载以更大的规模部署在不断增加的云暂存空间容量中时，它们会被克隆。容器编排器产生数百个，也许数千个副本。在少数线程中克隆的同一个进程会产生最大的延迟，并成为自己最大的敌人。</p></blockquote>
+<p class="translated">为了解决这个问题，Cox的团队有效地模拟了这个问题，故意制作了拖三级高速缓存性能的软件例程，用于英特尔所谓的“噪音邻居”测试。这些例程被封装在虚拟机中，其中一些被编程为“攻击者”，而另一些则是“受害者”。</p>
+<p class="translated">“我的团队定义了一个叫做<em>争用</em>的概念，”他告诉记者。“在给定的套接字上发生了多少争用？我们主要围绕缓存占用率和未命中数进行测量。”Verplanke的团队将测量每个特定线程的延迟，而Cox的团队将测量争用对整体可感知的性能影响。</p>
+<p class="translated">Cox的想法是这样的:如果CPU能够实时监控和报告它们的争用分数，那么工作负载编排器可以使用这些分数来确定哪些服务器节点对于处理每个新进程来说是最佳的或噪音最小的。当通过简单的API调用将争用表示为可获得的原始值时，会使栈顶的操作者对栈底正在发生的事情产生一些兴趣——或者反过来，对栈底正在发生的事情负责。</p>
+<p class="translated">与英特尔相对的是使用VMware v realize Operations Manager等套件处理工作负载的IT经理，以及使用Apache Mesos等开源调度程序的新兴开发人员。</p>
+<p class="translated">工作负载影响决定论。如果没有确定性，即使是中等规模的虚拟机或容器也无法高效地协调最重要的实时工作负载。抽象层次越多，就越难隔离具体的原因，并以有效自动化的方式应用补救措施。</p>
+<p class="translated">考克斯的想法包括创造“最小公约数”——明显影响双方工作的测量数量，这也可能是他们感兴趣的。有了它，英特尔也许可以利用软件开发人员的帮助来清除下一系列硬件工程师无法独自清除的性能障碍。</p>
+<h2 class="translated">好好演奏，现在</h2>
+<p class="translated">英特尔在虚拟化方面的现有股份是其VT技术，即嵌入处理器的代码，使虚拟机管理程序能够在操作系统之下，在堆栈中更低的位置，达到处理器级别，以获得托管虚拟机所需的资源。不过，这还不够深——不适合这次任务。L3缓存位于CPU的核心。</p>
+<p class="translated">因此，首先，英特尔将创建一项名为<em>缓存监控</em>的技术，这是一种让栈中更高位置的开发人员任意标记属于某个进程的线程的方法。这样，第一次，当性能被认为滞后时，开发人员至少可以处理可能的肇事者。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-1192323 size-full" src="../Images/b9348f1feccef5fac72c46104c9a633c.png" alt="[SCM]actwin,0,0,0,0;Intel(R) Xeon(R) E5-2600 v3 Press Workshop Comms Update.pdf - Adobe Acrobat Reader DC AcroRd32 4/21/2016 , 11:01:54 AM" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/140604-Intel-cache-allocation-02.jpg"/></p>
+<p class="translated">接下来，英特尔将设计<em>高速缓存分配</em>，一种为指定工作负载划分高速缓存块的方法。分区将确保嘈杂的邻居不会相互干扰——从技术上讲，一个线程产生的缓存未命中不会降低其他线程的性能，从而降低确定性水平。</p>
+<p class="translated">Verplanke展示了一些数据，详细说明了执行普通任务的单个进程如何能够轻松地产生与拒绝服务攻击通常相关的相同程度的延迟。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="size-full wp-image-1192321" src="../Images/7aa4b9b4cd502418a2ac6cb64c687baf.png" alt="[SCM]actwin,0,0,0,0;Intel(R) Xeon(R) E5-2600 v3 Press Workshop Comms Update.pdf - Adobe Acrobat Reader DC AcroRd32 4/21/2016 , 10:58:18 AM" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/140604-Intel-cache-allocation-01.jpg"/></p>
+<p class="translated">“如果你没有能力对你的缓存进行分区，”他告诉记者，“你会有很多驱逐，你的中断处理程序会被调度出去，你会招致相当大的延迟增加。”这里显示的图表用红色描绘了潜伏期的激增。消除争用同一个L3缓存的进程之间的相互影响完全消除了延迟。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignright size-medium wp-image-1192322" src="../Images/090e5d24b530a78e424717df18ddbce4.png" alt="140604 Edwin Verplanke 02" data-original-src="https://thenewstack.io/wp-content/uploads/2016/04/140604-Edwin-Verplanke-02-300x300.jpg"/></p>
+<p class="translated">简而言之，这个测试只涉及一个过程，克隆。这是第一个确凿的证据，证明至强处理器附近最吵闹的邻居是同一进程的克隆体。</p>
+<p class="translated">这就是问题所在。当工作负载以更大的规模部署在不断增加的云暂存空间容量中时，它们会被克隆。容器编排器产生数百个，也许数千个副本。在少数线程中克隆的同一个进程会产生最大的延迟，并成为自己最大的敌人。</p>
+<p class="translated">大规模协调工作负载的行为正在削弱处理器大规模托管工作负载的能力。</p>
+<p class="translated">找到原因将为最终的解决方案指明道路:该解决方案将于2016年3月正式发布。在这个故事的第二部分，将于周一发布，我们将看到英特尔对这一解决方案的最新试验结果，并讨论在将软件开发人员和硬件工程师聚集到一起实施该解决方案的过程中仍然存在的障碍。</p>
+<p class="attribution translated">英特尔是新堆栈的赞助商。</p>
+<p class="attribution translated">斯科特富尔顿三世的照片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

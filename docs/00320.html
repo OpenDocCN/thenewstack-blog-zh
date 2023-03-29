@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>CNCF to Host CoreDNS, Boosting its Cloud-Native Portfolio with Service Discovery</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">CNCF将托管CoreDNS，通过服务发现提升其云原生产品组合</h1>
+<blockquote>原文：<a href="https://thenewstack.io/cncf-host-coredns-boosting-big-tent-service-discovery/#0001-01-01">https://thenewstack.io/cncf-host-coredns-boosting-big-tent-service-discovery/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">就在本周的第二次签约中，<a href="https://www.cncf.io/" class="ext-link" rel="external ">云原生计算基金会</a>周四上午正式宣布，它将接管<a href="https://coredns.io/" class="ext-link" rel="external "> CoreDNS </a>的管理工作，这个项目诞生于一年前，其想法是挖出一个名为<a href="https://caddyserver.com/" class="ext-link" rel="external "> Caddy </a>的网络服务器的内部，并使其对服务发现的复杂请求做出响应。</p>
+<p class="translated">“有许多不同的DNS服务器，甚至还有其他基于DNS的服务发现解决方案，”网络可见性服务提供商<a href="https://www.infoblox.com/" class="ext-link" rel="external "> Infoblox </a>的杰出架构师、CoreDNS的主要贡献者<a href="https://twitter.com/johnbelamaric" class="ext-link" rel="external "> John Belamaric </a>说道。“但CoreDNS的一大优点是它具有极强的可扩展性和灵活性。这使得它很容易适应云原生环境中频繁变化的动态世界。”</p>
+<p class="translated"><a href="https://www.miek.nl/" class="ext-link" rel="external ">Miek gie Ben</a>—<a href="https://github.com/skynetservices/skydns" class="ext-link" rel="external ">sky DNS</a>的原作者，他在几天内创建了CoreDNS征用了Caddy的底盘，因为它有一个有趣的扩展性模型。在解析查询时，它通过一系列插件函数传递标准，Gieben称之为“中间件”(把JBoss和WebSphere放在脑后，把它想象成事物中间的一个软件链。)使用用Go编写的函数向CoreDNS注册这样的函数。以一种完全不复杂的方式，标准从函数链的前端传递到后端，直到有人能够解决它。</p>
+<p class="translated">通过这种方式，可以非常容易地为服务发现的目的定制DNS的功能，这对于<a href="/category/microservices/" target="_blank">微服务</a>来说更加频繁。</p>
+<p class="translated">在周三的一篇博客文章中，Belamaric透露CoreDNS团队已经成功地扩展了他们服务器的功能，不仅服务于<strong> A </strong>，还服务于<strong> SRV </strong>、<strong> PTR </strong>和<strong> TXT </strong>记录，其方式基本上与用于Kubernetes 的<a href="https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/dns" class="ext-link" rel="external "> Kube-DNS插件兼容。</a></p>
+<p class="translated">“该架构的灵活性使我们能够轻松调整CoreDNS，以适应云原生环境中的不同用例，”Belamaric告诉新堆栈。他说，类似于他的团队为Kubernetes实现后端服务发现而插入的“中间件”，拥有一个链接到<a href="https://github.com/coreos/etcd" class="ext-link" rel="external "> <strong> etcd </strong> </a>键值存储的链式函数链接将非常容易，为任何其他编排器提供类似的功能。</p>
+<p class="translated">“像<a href="https://www.isc.org/downloads/bind/" class="ext-link" rel="external "> BIND </a>这样的传统DNS工具真的不是为那种你从<strong> etcd </strong>或Kubernetes中获得的动态交互水平而构建的，”他继续说道。他提醒我们，BIND将其数据存储在文件中，绑定使得系统很难被修改以呈现略有不同的数据。</p>
+<p class="translated">他说，BIND“是一个代码库，具有令人难以置信的大量特性。当然，正如我们在我们的行业中所知道的，随着一些东西的成长和增长，随着时间的推移而老化，并积累特性，修改变得越来越困难，尤其是在不破坏那些特性的情况下。因此，从开发的角度来看，尝试将后端数据存储换成BIND，从那些定期重新加载、记录上有相对较长[<em>生存时间</em>]的文件中换出，并增加序列号，以处理类似于<strong>etcd</strong>的东西，将是相当具有挑战性的。”</p>
+<p class="translated">服务发现——正如<a href="https://thenewstack.io/cncf-adds-googles-grpc-remote-call-project-big-tent/" class="local-link">周三CNCF接受gRPC所提醒我们的那样,</a> —是过去庞大、集中的面向服务模型和今天敏捷、轻量级系统之间的关键区别。对于微服务来说，在每次对话中互相重新介绍自己似乎是违反直觉的(就像Ellen DeGeneres描绘的鱼一样)，但它避免了使用集中、庞大、序列化数据库的代价。至少，这是目标，只要服务发现不被绑定到BIND的最小数据库引擎，这对于现代数据服务就像一个上紧发条的音乐盒对于爱乐乐团一样。</p>
+<p class="translated">Belamaric指出:“大多数现有的DNS服务发现解决方案都绑定到单独的编排环境，或者它们建立在不太灵活的架构上。“它的设计不涉及任何级别的并发性；BIND是一个单线程环境，而CoreDNS是多线程的。还有其他服务器，如<a href="https://calomel.org/unbound_dns.html" class="ext-link" rel="external "> Unbound </a>也是多线程的，但它们也有许多功能不一定适用于云原生世界。”</p>
+<p class="translated">Belamaric告诉New Stack，CoreDNS的贡献者希望获得更广泛的开发社区的更多可见性，以及来自CNCF众多用户成员的洞察力。</p>
+<p class="translated">“我们将能够利用对集群的访问来推动可扩展性测试，”他补充道。“就功能而言，我们确实希望将[<em>CoreDNS</em>]扩展到其他管弦乐队，而不仅仅是[CNCF的][T2的]Kubernetes。我们希望围绕服务注册建立更多的结构，并可能有一个服务注册和发现解决方案组合。”</p>
+<p class="translated">随着管理员和首席信息官期待集装箱化开发商解决其技术上悬而未决的安全问题，Belamaric预见到通过应用选择性政策来扩展CoreDNS的可能性。具体来说，他看到DNS服务器可以根据规则批准或拒绝请求，这可能是由一个开源策略框架来执行的，如<a href="https://github.com/open-policy-agent/opa" class="ext-link" rel="external ">开放策略代理</a>。</p>
+<p class="translated">这样，可能来自未经身份验证的来源或网络状态可能处于转换中的情况下的潜在危险查询可以被冷阻止，从而在潜在入侵或数据泄露开始之前就将其消除。Belamaric承认，这样的系统需要实现访问控制列表(ACL ),并且会导致性能损失。尽管如此，他认为，这些损失不会超过从一开始就转移到现代的多线程数据引擎所带来的净效率收益。</p>
+<p class="translated">无论CNCF是否会选择云原生平台托管，你都不能否认基金会正在将它们提升到一些非常高的基座上。</p>
+<p class="attribution translated">特征图片:<a href="https://commons.wikimedia.org/wiki/File:JBER_telephone_operators_connect_calls,_people_120124-A-ZY202-001.jpg" class="ext-image" rel="external ">阿拉斯加理查森埃尔门多夫联合基地的电话总机</a>，大约1950年，公共领域。</p>
+<p class="attribution translated">云计算原生计算基金会是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

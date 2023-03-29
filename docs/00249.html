@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Docker’s Unikernel Purchase and the Changing Role of the OS</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Docker的单核购买和操作系统角色的变化</h1>
+<blockquote>原文：<a href="https://thenewstack.io/dockers-unikernel-purchase-changing-role-os/#0001-01-01">https://thenewstack.io/dockers-unikernel-purchase-changing-role-os/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">周四宣布Docker Inc .将收购总部位于英国剑桥的Unikernel Systems ,这使得操作系统在现代数据中心堆栈中的角色问题成为人们关注的焦点。这是一个深深扎根于Linux阵营的开源开发者要么回避，要么还没有意识到正在讨论的问题。但早在2007年，学术开发人员就已经在构建虚拟机——不是容器，而是兼容Xen的虚拟机——用取自真实操作系统的库例程取代单独的操作系统，而是编译成应用程序。</p>
+<h2 class="translated">抓住微服务的尾巴</h2>
+<p class="translated">芬兰阿尔托大学的学生Antti Kantee【PDF】2012年在<a href="http://lib.tkk.fi/Diss/2012/isbn9789526049175/isbn9789526049175.pdf" class="ext-link" rel="external ">发表的博士论文记录了一个为期五年的项目，该项目旨在开发一种叫做<em> anykernel </em>的操作系统结构。按照最初的设想，这是一项可行性研究，研究与正在编译的应用程序相关的特定任务驱动程序是否可以与应用程序合并，而不是存档在一个单一的内核中。这样，内核可以缩小到只有通用的例程。</a></p>
+<p class="translated">在应用程序中，代表操作系统运行特定任务驱动程序的引导程序被古怪地命名为<em> rump </em>。正是这个项目的演化形式，仍然被称为Rump Kernels，它是去年11月在巴塞罗那DockerCon EU上的一次演示的核心，可能赢得了Docker Inc .高管的心。这种形式只有Docker本身的历史，它采用了一种可再发行的应用程序的形式，能够自己运行——这是unikernels和Docker容器的一个共同点。</p>
+<p class="translated">首席技术官所罗门·海克斯(Solomon Hykes)在最近与新堆栈的一次采访中说:“单核让你基本上摆脱了操作系统，而是将应用程序实际需要的操作系统的小部分编译进应用程序中。</p>
+<p class="translated">“换句话说，它需要将有效载荷缩小到绝对极限的想法，”CTO继续说道。VMs是很重量级的。您必须将整个操作系统与机器捆绑在一起。容器通过只包含几个操作系统组件来缩小有效负载。单核进一步缩小了内存占用。</p>
+<p class="translated">这并不是说操作系统真的不存在了。更重要的是，它不再是一个独立于编译后的应用程序的实体。因此，单核是计算逻辑不可分割的单元。作为一个微服务，它承载着无限可扩展性的承诺。作为虚拟机，它被设计为在Xen Type 1(硬件级)虚拟机管理程序下运行。</p>
+<p class="translated">作为一种建筑，统一中有某种优雅。因此，当“anykernel”首次构思八年后，这个概念首次在学术界之外出现时，<a href="https://gigaom.com/2015/10/09/why-unikernels-will-kill-containers-in-five-years/" class="ext-link" rel="external ">的竞争供应商将其称为下一个潜在的容器杀手</a>。</p>
+<p class="translated">在8月于<a href="http://lccocc2015.sched.org/event/20f3de07d9af141abb85b9c75201f44c" target="_blank" class="ext-link" rel="external ">举行的ContainerCon NA 2015上关于unikernels </a>的专题讨论会上，Docker撰稿人jérme Petazzoni将unikernels描述为处于容器和虚拟机之间的一种中间地带，通过重新引入虚拟机管理程序作为一种安全服务，解决了用户对容器不确定安全状况的持续担忧。</p>
+<p class="translated">虽然他当时承认单核是“有趣的”，但他确实将它们描述为解决容器的一系列独立挑战，在某种程度上有效地将它们区分开来。</p>
+<p class="translated">几个月后，<a href="https://gigaom.com/2015/10/09/why-unikernels-will-kill-containers-in-five-years/" class="ext-link" rel="external "> Apprenda首席执行官Sinclair Schuller为GigaOm </a>写道，“Docker和CoreOS等技术在使我们消费基础设施的方式现代化方面做了出色的工作，因此微服务可以成为现实。然而，这些服务需要改变和发展，才能在单核的崛起中生存下来。”</p>
+<h2 class="translated">潜在的对手变成了盟友</h2>
+<p class="translated">或者，它们可以简单地包含那些单核，并彻底解决这个问题。</p>
+<p class="translated">去年9月，在Strange Loop 2015大会上，总部位于科罗拉多州博尔德的Rally Software的基础设施自动化工程师Matt Bajor发表了题为“<a href="https://www.youtube.com/watch?v=W9F4pn9Lngc" class="ext-link" rel="external ">看，Ma，没有操作系统！用最简单的语言解释了单核架构是如何从普通堆栈中消除至少五层进化抽象的——这种方式与容器化的概念完全互补，而不是相反。</a></p>
+<p class="translated">在提醒开发人员现代应用程序堆栈的广泛本质后，包括持续集成/持续部署(CI/CD)平台、流程编排系统、虚拟机管理程序和配置管理系统，Bajor指出，“这些系统为我们工作，但它们极其复杂。它们很难作为一个整体进行推理，调试也很困难。原因之一…是几乎不可能一对一地复制您正在运行的环境。”</p>
+<p class="translated">事实上，CI/CD从业者确实证明了任何任务的自动化是不可能的，尤其是测试过程，当复制该任务所需的步骤如此复杂和可变以至于它们不能被复制时。集装箱化简化了秤前端测试和部署程序的自动化。但是Bajor指出，当容器进入生产阶段后，它就变成了一个如此独特的怪兽，以至于为了调试的目的而复制它变得不可能。</p>
+<p class="translated">CI/CD工程师会说，使用更紧凑的代码简单地重建容器，然后重新部署它，比试图诊断它要简单得多。虽然这可能确实是一种最佳的状态，但对于设计用来运行遗留软件的容器来说，这也是不切实际的，因为遗留软件与活动数据库保持着持久的联系。</p>
+<p class="translated">Bajor指出，更重要的是，操作系统本身是由一个完全独立于软件开发团队的团队构思、生产和部署的。在典型的容器驱动的环境中，是操作系统托管流程。因此，当操作系统被打补丁时，新的错误有可能悄悄进入流程，而这些错误在代码首次进入生产时并不存在。CI/CD工程师会再次指出，有一些方法可以维护已部署的代码和它们各自的操作系统之间的正确配对，还有一些平台可以让开发人员测试和部署适当的补丁。然而，即便如此，这些方法还是很复杂——巴约认为，这是不必要的。</p>
+<p class="translated">“打补丁并不是分为功能性和安全性，”他告诉奇怪的循环观众。“当我们进入并修补一个系统时，我们将<strong> yum update </strong>，并应用那里的一切，无论是安全性还是功能性。如果它没有被使用，我们为什么要为它付出代价？”</p>
+<p class="translated">几个月后，Unikernel Systems团队在DockerCon展示了它的集成容器方法。该团队包括阿米尔·乔德里，他也为<a href="https://mirage.io/" class="ext-link" rel="external ">米拉杰斯</a>做贡献。尽管名为MirageOS，但它并不是一个真正的操作系统，而是一个操作系统使用的所有东西的库，用OCaml (Objective Caml)编写，运行在Xen上——这是一种有20年历史的抽象机器语言的现代形式，具有功能性、声明性和无状态性。</p>
+<p class="translated">在随后不久发表的一篇博客文章中，Chaudhry提出了这样一个案例:由unikernels提供的简化和由containers提供的简化不仅是互补的，而且从一个角度来看，是互为目的的。</p>
+<p class="translated">“一方面，我们采用传统的方法，将完整的操作系统堆栈放在虚拟机中，在上面放一个应用程序。下一步自然是使用在单一操作系统上运行的容器，这样可以更好地利用资源，并允许每个应用程序更加独立。从这个角度来看，单核只是这条道路上的又一步，可以被认为是极端的、独立的应用程序。”</p>
+<h2 class="translated">整合积分器</h2>
+<p class="translated">Chaudhry写道，未来的挑战是让单核像Docker制造的容器一样容易实现。Docker CTO Hykes告诉New Stack，他的公司的目标将是以这样一种方式实现单核，即向开发人员隐藏它们的实现，有效地使单核的合并成为一个零步骤的过程。</p>
+<p class="translated">Hykes说:“它的美妙之处在于，如果你是一个使用Docker的开发者，基本上没有什么变化。开发人员将像以前一样继续编写Docker文件(构建清单)。他说，Docker将通过插件的方式增加新的功能。在这里可能需要额外的配置工具。“但是Docker的用户体验不变，Docker的标准界面不变。这就是这种结合的美妙之处。</p>
+<p class="translated">“你可以说，一切都发生在构建时，”他继续说道。“每次构建应用程序时，您都在构建一个一次性的、独一无二的操作系统，它只做一件事:运行您的应用程序。从这个角度来看，我们很少使用传统的Linux部署工具。现在，每个应用程序都是独一无二的。”</p>
+<p class="translated">在他9月份的演讲中，Matt Bajor列出了不少于8个当时正在进行的强大、健康、开源的单核项目，此外还加入了一个名为<a href="http://research.microsoft.com/en-us/projects/drawbridge/" target="_blank" class="ext-link" rel="external "> Drawbridge </a>的微软内部项目。根据这一标准，Docker周四的收购行动并没有将unikernels从开放容器倡议(<a href="https://www.opencontainers.org/" target="_blank" class="ext-link" rel="external "> OCI </a>)容器的潜在竞争对手名单中剔除，就像甲骨文收购其正在进行的平台消除了甲骨文未来的潜在竞争对手一样。</p>
+<p class="translated">尽管如此，这一举动确实证明了任何把单内核从根本上与容器对立起来的描述都是完全虚假的。Docker还没有为其开发工具中任何商业上可行的单内核外观设定时间表，可能还需要时间来消化这个概念。一个包含的unikernel的好处是可以很好地与Docker容器中已经存在的工具集集成。</p>
+<p class="translated">但是已经为现有的生态系统设计了一个独立的单核:Xen。如果Docker让单核流行起来，它实际上可以为其他人闯入并让单核进入市场扫清道路。</p>
+<p class="translated">然而，更重要的是，仅仅是由当今数据中心技术领域最具创新性的供应商之一对这一概念的验证，就带来了操作系统持续无处不在的整个问题。第一代虚拟机是桌面和服务器操作系统，让它们“相信”自己运行在通用硬件上；当前一代的容器是由操作系统托管的收缩包装的应用程序。我们已经习惯于在需要它的功能时简单地复制操作系统。现在，当我们面对一个充满微服务的未来时，旧的客户可能不会像我们想象的那样扩展。</p>
+<p class="translated">单核本质上是软件开发不断发展的故事的另一个象征，也是不断改善隔离和安全性的需要<a href="https://thenewstack.io/continuum-containers-unikernels-serverless-architectures/" target="_blank" class="local-link">只是应用程序开发和管理中的一部分</a>。技术人员已经实现了一定程度的兼容，下一步的努力是获得更好的性能。通过将unikernels引入Docker，可以让人们更加熟悉这项技术。考虑到Docker和容器技术的开发者工具生态系统，这一点尤其正确。</p>
+<p class="attribution translated">Apprenda和Docker是新堆栈的赞助商。</p>
+<p class="attribution translated">封面图片:<a href="https://commons.wikimedia.org/wiki/File:In_the_corn_field.jpg" class="ext-image" rel="external ">“在玉米田里”，作者Lars Plougmann </a>，通过知识共享2.0授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

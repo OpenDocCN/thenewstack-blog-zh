@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Reloaded: How Facebook Tweaked Browsers to Reduce Server Requests by 60 Percent</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">重装上阵:脸书如何调整浏览器以减少60%的服务器请求</h1>
+<blockquote>原文：<a href="https://thenewstack.io/saving-facebook-browser-tweak-shaved-60-percent-server-requests/#0001-01-01">https://thenewstack.io/saving-facebook-browser-tweak-shaved-60-percent-server-requests/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">脸书公布了谷歌Chrome和火狐浏览器的工作细节，以显著改善网页加载时间。据脸书称，由于这一共同努力，两家公司取得了以下成果:</p>
+<ul>
+<li class="translated">Chrome和Firefox中的新特性使它们的缓存效率显著提高。</li>
+<li class="translated">脸书能够将对其服务器的静态资源请求减少60 %,让这些服务器有更多的CPU空间来加载网页的其余部分。</li>
+<li class="translated">尤其是Chrome对重新加载按钮行为的改进，从63%的请求有条件变为24%。</li>
+</ul>
+<p class="translated">今天，脸书代码网站将会有一篇博文<a href="https://code.facebook.com/posts/557147474482256" class="ext-link" rel="external ">详细介绍它与谷歌和火狐共同完成的工作，以显著改善他们的网络程序——修改过时的、长期存在的网络行为，减少服务器流量并提高整体效率。</a></p>
+<p class="translated">这一合作带来了新的功能，使脸书能够将对其服务器的静态资源请求减少60%，并使Chrome和Firefox的浏览器缓存大大提高了效率。Chrome本身能够将浏览器的条件重载请求比例提高39%。</p>
+<div id="attachment_1853765" class="wp-caption alignright"><img aria-describedby="caption-attachment-1853765" decoding="async" loading="lazy" class="wp-image-1853765 size-medium" src="../Images/a567e01d535f4826aa7a755044e011bc.png" data-id="1853765" data-original-src="https://cdn.thenewstack.io/media/2017/01/e7053bb9-tasha-300x300.jpg"/><p id="caption-attachment-1853765" class="wp-caption-text translated">无偿脸书猫照片。</p></div>
+<p class="translated">更快的加载时间和减少的服务器流量，伟大的东西！但是对于我们这些在战壕中工作的web开发者来说，这在现实生活中意味着什么呢？当然，除了能够更快地看到脸书发布的搞笑猫咪视频之外。</p>
+<p class="translated">三家互联网巨头之间的这种特殊合作最有趣的结果并不是精简的代码，尽管它带来的效率提高确实很显著。相反，真正的价值在于它是如何发生的:退一步批判性地评估长期存在的网络行为。</p>
+<p class="translated">我们所有人都认为事情必须如此，因为事情一直都是这样。这些共同的假设为我们开发新的web应用程序和改进现有应用程序提供了参数。在匆忙启动下一个项目和修复所有到处都在坏掉的东西时，很难将资源投入到看起来像向后看而不是向前看的事情上。</p>
+<p class="translated">然而，这次合作的结果是一个令人印象深刻的例子，说明停下来问一个关于实际上没有损坏的东西的问题可以产生非常值得的性能改进。</p>
+<p class="translated">具体来说，脸书的工程师们非常想知道为什么63%的Chrome静态资源重新验证请求会返回“<a href="https://httpstatuses.com/304" class="ext-link" rel="external "> 304 Not Modified </a>”的响应，而Firefox的条件请求率是14%(Safari和Internet Explorer的性能水平类似)。由于静态资源很少改变，所以被称为静态资源，304响应表明了完全不必要的重新验证、请求和返回链，这不必要地浪费了资源。</p>
+<p class="translated">所以当务之急是“为什么，Chrome，为什么？？?"</p>
+<p class="translated">脸书的工程师们追踪到了Chrome中的一行代码，该代码询问浏览器为什么可能想要重新验证资源——例如当页面从POST请求加载时。这对于用户需要最新信息的邮件或企业网站很有意义。然而，许多网站(咳咳脸书咳咳)使用<a href="https://loadfocus.com/blog/2014/02/27/what-is-http-post-request/" class="ext-link" rel="external "> POST </a>请求登录，这意味着Chrome每次都忽略其缓存并下载整个enchilada。</p>
+<p class="translated">脸书和Chrome团队一起工作，确定这种行为(a)是Chrome独有的，(b)是不必要的。通过对其代码基础进行一些不太大的改动，Chrome的条件请求率从63%骤降至24%。</p>
+<p class="translated">然而，该团队并没有就此止步。他们认为对于所有浏览器来说，这个过程仍有改进的空间，他们是对的。阅读脸书的博客(以及一篇相关的<a href="https://blog.chromium.org/2017/01/reload-reloaded-faster-and-leaner-page_26.html" class="ext-link" rel="external ">谷歌博客</a>)了解具体细节，但简而言之，它涉及到认真审视网页设计的一个由来已久的特性:重新加载按钮。</p>
+<p class="translated">https://youtu.be/FhgcPjM16TE</p>
+<p class="translated">目前，这些性能改进适用于所有开发者和所有网站，没有任何其他变化。这很好。但是对于任何地方的工作的web开发人员来说，从这个声明中得到的最终收获是花时间停下来嗅嗅浏览器。</p>
+<p class="translated">很有可能，我们的集体习惯和对网络行为的想当然的假设隐藏了一些非常美味的低挂果实——也就是说，简单的改变可能会带来巨大的改进。整个故事提醒我们，技术每天都在向前发展，但重要的是也要看看我们从哪里来，看看我们是否带着不必要的行李走向未来。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

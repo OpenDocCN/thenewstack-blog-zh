@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Libcloud Pulls Together Cloud Services Under a Single API</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Libcloud将云服务整合在一个API下</h1>
+<blockquote>原文：<a href="https://thenewstack.io/libcloud-pulls-together-cloud-services-single-api/#0001-01-01">https://thenewstack.io/libcloud-pulls-together-cloud-services-single-api/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">云服务互操作性库Apache Libcloud已经准备就绪。开源包已经发布了1.0版本。</p>
+<p class="translated">该库结合了来自50多家云提供商的信息，并使用单个Python API来管理多个云环境和自动化服务器部署。</p>
+<p class="translated">系统管理软件提供商<a href="https://saltstack.com/about/" class="ext-link" rel="external "> SaltStack的首席技术官<a href="https://twitter.com/thatch45" class="ext-link" rel="external "> Thomas Hatch </a>表示:“Apache Libcloud已经成功创建了一个最稳定、最可用的API来管理云环境，如果没有它，几乎不可能从SaltStack Cloud创建云业务流程。</a></p>
+<p class="translated">LibCloud最初创建于2009年的Cloudkick，捐赠给了Apache孵化器，并于2011年成为Apache软件基金会的顶级项目。</p>
+<p class="translated">它现在支持超过50家供应商，包括亚马逊网络服务、Apache CloudStack、谷歌云平台、微软Azure、OpenStack和VMware。</p>
+<p class="translated">“当我们第一次组建Apache Libcloud时，为云提供商创建标准API规范的尝试失败了很多，”该项目的原始贡献者之一Apache Libcloud的副总裁<a href="https://github.com/Kami" class="ext-link" rel="external ">tomamuraus</a>说。</p>
+<p class="translated">他们从IaaS开始工作，支持托管KVM、VMware或XenServer虚拟机。该项目后来承担了DNS、负载平衡、存储和备份等问题。</p>
+<p class="translated">它现在有六个主要的API，涵盖计算、存储、DNS、容器和备份，尽管它警告说容器API和备份驱动程序只是实验性的。支持<a href="https://libcloud.apache.org/about.html#supported-python-versions" class="ext-link" rel="external "> Python 2.5、Python 2.6、Python 2.7、PyPy和Python 3 </a>。对Python 2.4的支持已经取消。</p>
+<p class="translated">1.0版本引入了两种新的驱动程序类型，容器即服务和备份即服务，并带有完整的<a href="https://libcloud.readthedocs.io/en/latest/changelog.html" class="ext-link" rel="external ">变更日志</a>。</p>
+<p class="translated">它提供了一个简单的API抽象来跨私有云和公共云部署Docker容器。</p>
+<p class="translated">它支持容器即服务(CaaS)提供商，包括Docker的、亚马逊EC2容器服务(ECS)、谷歌云容器引擎(GKE)以及Kubernetes和Docker的本地选项。</p>
+<p class="translated">Muraus表示，学术和非营利组织一直希望使用Libcloud来利用免费或低成本的云，但仍与公共云兼容，以供商业采用。</p>
+<p class="translated">云提供商也使用Libcloud来实现多云集成，并支持直接集成到API中。</p>
+<p class="translated">它是<a href="https://github.com/racker/rackspace-monitoring" class="ext-link" rel="external "> Rackspace云监控API </a>库的基础；<a href="https://github.com/jokull/kraftwerk" class="ext-link" rel="external ">发电厂乐团</a>服务管理工具将其作为命令行工具的一部分，用于部署和调试云服务器，基础设施管理平台<a href="https://github.com/mistio/mist.io" class="ext-link" rel="external "> mist.io </a>在其托管服务中使用，从任何web设备管理和监控跨多个云的服务器。</p>
+<p class="translated">Linux基金会合作项目<a href="https://cncf.io/" class="ext-link" rel="external ">Cloud Native Computing Foundation</a>(CNCF)，也在接受挑战<a href="https://thenewstack.io/cloud-native-computing-foundation-seeks-clarity-world-container-confusion/" class="local-link">让各种云技术</a>协同工作。</p>
+<p class="translated"><a href="https://cloudsoft.io/" class="ext-link" rel="external "> Cloudsoft </a>和<a href="http://www.incontinuum.com/" class="ext-link" rel="external "> InContinuum </a>的高管最近也与新的堆栈谈论了他们试图减轻<a href="https://thenewstack.io/cloudsoft-incontinuum-set-controller-fully-fungible-cloud/" class="local-link">管理多平台环境</a>的痛苦。</p>
+<p class="attribution translated"><a href="https://cloudsoft.io/" class="ext-link" rel="external ">云软</a>和<a href="https://www.mirantis.com/software/docker/kubernetes/" class="ext-link" rel="external "> Docker </a>是新栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="https://www.flickr.com/photos/kansasphoto/9189952695/in/photolist-f15ULg-d6Mdzh-otFhQh-d6Me59-avtPQq-nLgYf8-4zfoaJ-d6Mex1-eAh3rs-7iQrkR-9yMcHL-9Lz3iv-o12dtU-ag8rub-bvSFVm-dkn7At-qjgdsk-cpG6Wb-5xFtH9-2EJ7MC-9yzGqf-ck3Th1-a477YA-uzC2e2-5PRf57-7Juw58-dNjxNt-dNjxZV-rAAUfR-dNjxFB-on3FaD-cRxDQf-dNjw52-dNjxX8-6EdbJf-aovATQ-6bBPSV-eQywMW-cNRNo1-5F1jYi-9q46AT-ekg8wQ-7GpK16-4XHdXb-a7n55M-4xXFcT-fFafEn-d2aojW-4TEu99-eQn916" class="ext-link" rel="external ">暴风雨奏鸣曲</a>作者<a href="https://www.flickr.com/photos/kansasphoto/" class="ext-link" rel="external ">帕特里克爱默生</a>，授权<strong>CC BY-SA 2.0T27。</strong></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

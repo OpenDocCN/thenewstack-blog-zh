@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Mesosphere Makes a Big Ecosystem Play, Adding ‘Pods’ and an Apps Store for Services</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Mesosphere做了一个大的生态系统游戏，增加了“Pods”和一个服务应用商店</h1>
+<blockquote>原文：<a href="https://thenewstack.io/mesosphere-makes-big-ecosystem-play-adding-pods-apps-store-services/#0001-01-01">https://thenewstack.io/mesosphere-makes-big-ecosystem-play-adding-pods-apps-store-services/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="/category/kubernetes/" target="_blank"> Kubernetes </a>最近试图争夺容器/工作负载协调市场的核心，<a href="https://d2iq.com/" class="ext-link" rel="external "> Mesosphere </a>周二宣布，其<a href="https://mesosphere.com/product/" class="ext-link" rel="external ">数据中心操作系统</a> (DC/OS)的商业版本1.9将包括两个毫不掩饰的竞争特性。一个是支持一种叫做<em> pods </em>的自我管理的服务器集群。</p>
+<p class="translated">第二个是令人大开眼界的开源服务市场，可以直接从DC/OS内部的控制台获得，称为宇宙服务目录。将Universe Service Catalog [ <em>见上图</em> ]视为与Mesosphere的堆栈理念的直接连接，它将包括持久数据服务，以及包括Jenkins在内的CI/CD平台。</p>
+<h2 class="translated">市场经济</h2>
+<p class="translated">“如果你看看其他平台正在发生的事情——特别是公共云提供商——每个人都在让开源变得可访问，但他们是根据自己的条件做的，”Mesosphere的首席营销官彼得·瓜根蒂在与新堆栈的对话中说。“公共云内部经常发生的情况是，他们采用开源软件，并以他们的名字来称呼它，但它在幕后仍然是开源的。</p>
+<p class="translated">“然而，我们在这里试图做的是揭露生态系统，”瓜根蒂继续说。“如果你真的仔细看看，公共云和私有云基础架构与开源的结合，真的是我们在过去十年中创新爆炸的根源…所以它不仅仅是能够访问这些项目。能够接触到这些<em>公司</em></p>
+<p class="translated">最近几周，<a href="https://www.cncf.io/" class="ext-link" rel="external ">云原生计算基金会</a>——最初是围绕Kubernetes成立的——一直在<a href="https://thenewstack.io/cncf-adds-googles-grpc-remote-call-project-big-tent/" class="local-link">兑现其2015年的承诺</a>—<a href="https://thenewstack.io/cncf-host-coredns-boosting-big-tent-service-discovery/" class="local-link">围绕可扩展服务交付培育一个有凝聚力的堆栈</a>。现在，Mesosphere提出了一个相反的论点，即更多的老牌公司可能比一群初创公司更有能力提供强大的服务堆栈，所有企业都需要加入堆栈是一个很好的介绍词。</p>
+<p class="translated">Mesosphere产品营销副总裁Ed Hsu向我们讲述了一个故事，在最近的开发者大会上，他问与会者是否使用过Spark、Cassandra或Kafka。大多数人都举起了手。然后，他展示了一个视频剪辑，其中一个数据服务是通过DC操作系统的新门户使用“一键式”过程安装的。</p>
+<p class="translated">“我问房间，你安装这些服务的体验是这样的吗？我总是能得到巨大的笑声，”许说。“因为对于大多数了解这些技术的开发人员来说，很难让这些东西运行起来。他们甚至没有让它们在同一个集群上运行；它们运行在不同的集群中，因为这些分布式系统从未被设计成相互共享。”</p>
+<p class="translated">包含一种“应用程序市场”可能会使DC/OS更具特色——可与基于云的容器分级环境相媲美，如亚马逊的<a href="https://aws.amazon.com/ecs/" class="ext-link" rel="external "> EC2容器服务</a>。Hsu和Guagenti承认，Mesosphere有兴趣吸引更多的财富1000强客户；对于他们中的每一个人，通常都是首席信息官——他的观点更容易受到照片而不是代码样本的影响——做出购买决定。</p>
+<h2 class="translated">服务舱</h2>
+<p class="translated">到目前为止，中间层的马拉松调度程序(现在是DC/OS的一部分<a href="https://thenewstack.io/mesospheres-data-center-operating-system-now-includes-scheduler-orchestrator/" class="local-link">)已经利用了一个叫做<em>服务组</em>的概念。这是一种围绕一组服务包装名称空间的方式，以便策略引擎可以在每个用户级别上控制对服务的访问。然而，它的名字相当笼统，暗示着它可以有更多的用途。</a></p>
+<p class="translated">从1.9版本开始，DC/OS利用这个概念来支持<em>pods</em>——共享资源的相关容器的分组。在这种情况下，它们是由服务组名称控制的资源。</p>
+<p class="translated"><a href="https://cdn.thenewstack.io/media/2017/03/edf5d99c-170314-dc-os-pods.jpg" class="local-link"> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2047802" src="../Images/29287c314aa5cb45f5b8b8f5dfc75a52.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/03/edf5d99c-170314-dc-os-pods.jpg"/> </a></p>
+<p class="translated">“pod不会取代服务组，”公司博客周二解释道。“它们为部署应用程序添加了另一个抽象概念，这些应用程序也可以在服务组中使用。因此，现在您[<em>拥有了T14构建服务组的灵活性，该服务组同时包含单容器应用程序和多容器pod。”</em></p>
+<p class="translated">一个未来的考古学家，单独分析中间层在文件中的语言选择，可能会得出结论，它是豆荚概念的唯一发明者。今天没有人有这样的印象，当然中间层的代表也没有任何借口。</p>
+<p class="translated">尽管如此，这篇博客文章继续解释说，DC/OS pods可能被用作<em> sidecars </em>，或者容器化应用程序倾向于频繁使用的服务包，例如消息队列客户端和SSL加密。这个概念<a href="http://blog.kubernetes.io/2015/06/the-distributed-system-toolkit-patterns.html" class="ext-link" rel="external ">在几年前</a>在Kubernetes领域结出了果实，目的完全相同，并且它几次被质疑违背了分布式系统的最终目标:复制和附加服务，而不是分发它们和管理它们的通信。</p>
+<p class="translated">但是Mesosphere的文章揭示了重要的一点:如果组织要采用分布式系统环境，他们需要一种方法来带来以前时代的单片客户机/服务器应用程序。他们希望他们的必要资源就在附近，就像他们都被装在古老的200MB硬盘上一样。</p>
+<p class="translated">我问Ed Hsu，DC/OS的pods是否会采用类似于Kubernetes的委托代理系统，即利用<em> kubelets </em>作为代理，负责管理各自pods中容器的状态。他的回答表明，中间层并不认为这样的授权系统符合DC/OS的架构。。。暂时如此。将会有一条通过DC/操作系统API建立的与DC/操作系统舱的通信线路。</p>
+<p class="translated">在计算的历史上，从来没有一个完整的市场心甘情愿地围绕着任何一家厂商或任何一个平台聚集在一起。随着分布式系统被开源所主导，即使是平台主导的出现也是不被认可的，尤其是被主导平台所认可。因此，在这个市场上，多种选择已经形成，任何人都不会感到惊讶。</p>
+<p class="attribution translated"><a href="https://www.cncf.io/" class="ext-link" rel="external ">云本地计算基金会</a>和<a href="https://d2iq.com/" class="ext-link" rel="external ">中间层</a>是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

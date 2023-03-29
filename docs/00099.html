@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Google Container Engine is The Product Version of Kubernetes and It's Now Live</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">谷歌容器引擎是Kubernetes的产品版本，现在已经上线</h1>
+<blockquote>原文：<a href="https://thenewstack.io/google-container-engine-is-the-product-version-of-kubernetes-and-its-now-live/#0001-01-01">https://thenewstack.io/google-container-engine-is-the-product-version-of-kubernetes-and-its-now-live/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">仍然悬而未决的是(如果你原谅这个比喻的话)是否会出现一个首选的容器部署公共平台，从今天的市场混战中脱颖而出。周三，谷歌在生产“the”容器生态系统的努力中迈出了下一步，取消了其谷歌容器引擎服务的“beta”标签。</p>
+<p class="translated">容器引擎实际上是Google对Kubernetes的公共产品化。它充分肯定了Docker推广集装箱概念的努力。但它建立了一个业务模型，与其说是围绕容器，不如说是围绕编排。</p>
+<blockquote><p class="translated">从11月1日开始，Container Engine的定价模式开始生效，在一个帐户上的第五个集群之后，每个集群每小时收费15英镑。前五个集群仍然是免费的，让开发人员有时间在部署生产就绪的应用程序之前习惯这个系统。</p></blockquote>
+<p class="translated">但是说实话:由于Kubernetes的全部目的是使多个应用程序能够同时部署并具有高可伸缩性，所以前五个集群将很快被吸收，并且即使开发人员在他们的容器环境中播种新的测试应用程序，它们也将保持被吸收的状态。这个“前五个免费”的交易只是为了互相了解。</p>
+<p class="translated">容器引擎是附属于Google开发者控制台的容器部署工具。通过控制台，开发人员通过声明其规范来创建集群，包括其首选资源区域以及分配给它的机器类型(具有虚拟CPU的虚拟机)的数量。一旦将订单交给Google，集群创建过程就需要几分钟。</p>
+<p class="translated">目前，Container Engine上的集群由传统的虚拟机组成。在现代世界，这似乎仍然很实用。云基础设施平台的核心主要是一个虚拟机池。但这种模式是否类似于谷歌内部使用的模式，仍然只是一笔带过。我们确实知道该公司每周为自己的目的发布数百万个容器，但还没有出现这些容器托管在类似私有版本的容器引擎的东西上，这实际上是计算引擎的容器化版本。</p>
+<p class="translated">从Kubernetes的联合创始人、谷歌高级产品经理克雷格·麦克卢奇(Craig McLuckie)那里，我们确实看到了谷歌为实现最终目标而努力营造的环境。当<a href="https://thenewstack.io/google-officially-launches-kubernetes-1-0-promises-to-give-you-evolution/" class="local-link"> Kubernetes 1.0在7月</a>发布时，McLuckie描绘了一个传统虚拟机的底层基础设施不复存在的世界。</p>
+<p class="translated">“动态调度”——谷歌对“云原生计算”的定义的一个关键组成部分，正如<a href="https://www.youtube.com/watch?v=mPhjFYXoAD0" class="ext-link" rel="external ">麦克卢奇在</a>时所描述的那样——是“能够在没有操作员干预的情况下，主动、动态地将一段代码映射到一段物理基础设施——从你考虑物理基础设施的世界，按照机器或虚拟机，转移到你考虑逻辑计算资源的世界，在那里我只有大量的计算，我的容器由智能系统为我调度。</p>
+<p class="translated">“因为事实证明，在有些事情上，计算机比人做得更好，”麦克卢奇继续说道，“其中一件事就是，实时思考，您的应用程序应该部署在哪里，您的应用程序应该可以访问多少资源，您的应用程序是健康还是不健康，是否需要进行某种程度的补救。”</p>
+<blockquote><p class="translated">“从一个操作员驱动的范例世界(在这个世界中，您正在创建这些静态的、死气沉沉的东西)转移到一个世界，在这个世界中，您的应用程序是活的，由一个非常智能的系统主动管理、动态地、反应式地观察和监视，这改变了游戏规则。”</p></blockquote>
+<p class="translated">“它创造了令人难以置信的更高的资源效率…但也大大降低了运营开销。它创造了这些更加敏捷的环境，开发人员只需专注于开发。”</p>
+<p class="translated">如今，谷歌借用好莱坞的一个理念来解释麦克卢奇在7月份设定的目标和现实之间的关系。“受谷歌构建和运行基于容器的分布式系统的经验的启发，”<a href="https://cloud.google.com/container-engine/docs/" class="ext-link" rel="external ">该公司的产品页面上写着</a>，“容器引擎重新想象了一些谷歌最强大的内部系统，这样你就可以像谷歌的工程师一样开发和管理容器。”</p>
+<p class="translated">从开发人员的角度来看，今天的IaaS的以VM为中心的世界和McLuckie描述的以容器为中心的世界可能只是一个菜单选项从另一个菜单中删除。根据传统虚拟机选择集群规模并不困难，也不会让任何人感到困惑。事实上，您可能会说，如果容器引擎将来要删除这种选择，让部署控制台来决定托管被部署容器的基础设施的组成，他们可能会对底层发生的事情感到困惑。</p>
+<p class="translated">谷歌是云原生计算基金会的管理者，该基金会正试图以一种可能不太依赖Docker的方式塑造编排格局。因此，这取决于谷歌决定是否按照McLuckie概述的方向发展容器引擎——一种零点击部署——或者保持“即服务”模式，以便其关键基础设施商品可以被视为与亚马逊AWS和微软Azure竞争。</p>
+<p class="attribution translated">Docker是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/22711505@N05/" class="ext-link" rel="external "> Ron Cogswell </a>的集装箱船【MSC Chicago】于2012年7月进入萨凡纳港<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external ">CC 2.0</a>。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

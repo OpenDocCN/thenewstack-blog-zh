@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Kube-hunter: Aqua's New Open Source Tool for Hunting Kubernetes Security Issues</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Kube-hunter: Aqua的新开源工具，用于搜索Kubernetes安全问题</h1>
+<blockquote>原文：<a href="https://thenewstack.io/kube-hunter-aquas-new-open-source-tool-for-hunting-kubernetes-security-issues/#0001-01-01">https://thenewstack.io/kube-hunter-aquas-new-open-source-tool-for-hunting-kubernetes-security-issues/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">集装箱安全公司<a href="https://www.aquasec.com/" class="ext-link" rel="external "> Aqua Security </a>开源了一款名为<a href="https://kube-hunter.aquasec.com/" class="ext-link" rel="external "> Kube-hunter </a>的工具，帮助搜索Kubernetes集群中的安全问题。</p>
+<p class="translated">在<a href="https://blog.aquasec.com/kube-hunter-kubernetes-penetration-testing" class="ext-link" rel="external ">的博客文章</a>中，技术传道者<a href="https://twitter.com/lizrice?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="ext-link" rel="external "> Liz Rice </a>将Kube-hunter比作自动化渗透测试(pentesting)。还有一个<a href="http://kube-hunter.aquasec.com/" class="ext-link" rel="external ">网站</a>，在那里你可以注册获得一个令牌来在线查看和分享结果。该工具还提供了针对各种漏洞的补救建议。</p>
+<p class="translated">用Python写的源代码可以在<a href="https://github.com/aquasecurity/kube-hunter" class="ext-link" rel="external "> GitHub </a>上获得。</p>
+<p class="translated">Kube-hunter可以作为容器在你的集群之外的任何机器上运行——该公司警告说，它只能在你自己的集群上运行。提供集群的域名或IP地址，kube-hunter会在域或地址范围内搜索与Kubernetes相关的开放端口，并测试可能暴露给黑客的配置问题。与主机网络一起运行，它将能够仔细检查主机上的所有接口</p>
+<p class="translated">它也可以在集群中的机器上运行。第三种选择是在集群中作为一个单元运行，如果其中一个应用单元受到威胁，它可以报告暴露风险。</p>
+<p class="translated">它的默认状态仅用于被动搜索，并执行诸如搜索SSL证书的电子邮件和检查打开的端口、代理服务或仪表板等任务。在活动状态下，猎人可能会在集群上进行状态改变操作，这促使公司警告用户在使用它时要非常小心。在活动状态下，Kube-hunter将利用它发现的漏洞来探索进一步的漏洞。</p>
+<p class="translated">它提供了三个选项:远程扫描，内部扫描和网络扫描。用户将能够看到测试运行的列表，无论是被动还是主动模式，并设置他们想要看到的日志记录级别:调试、信息(默认)或警告。映射选项允许用户仅查看网络中节点的映射。</p>
+<p class="translated">Kube-hunter网页列出了漏洞、严重性、用户环境的详细信息以及用户可以与组织中的其他人共享的URL。</p>
+<p class="translated">Kube-hunter增强了Aqua一直致力于的另一个开源项目:kube-bench项目。这是一个Go应用程序，它检查Kubernetes的部署是否符合互联网安全中心<a href="https://www.cisecurity.org/benchmark/kubernetes/" class="ext-link" rel="external ">为Kubernetes </a>制定的基准中定义的最佳实践。</p>
+<p class="translated"><iframe loading="lazy" title="Lightning Talk: Why you Should Really Pay Attention to K8S Security Best Practices - Benjy Portnoy" src="https://www.youtube.com/embed/DYDoGYWk_rk?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">赖斯和纽约大学坦登工程学院计算机科学与工程副教授贾斯汀·卡波斯最近在哥本哈根KubeCon+CloudNativeCon录制的一集关于Kubernetes安全性的讨论中加入了TNS创始人亚历克斯·威廉姆斯。</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/security-for-kubernetes" class="ext-link" rel="external ">安全为Kubernetes </a> </span></p>
+
+<p class="attribution translated"><a href="https://www.aquasec.com/" class="ext-link" rel="external "> Aqua Security </a>是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a href="https://www.flickr.com/photos/vintage_illustration/29087257497/in/photolist-LjkNgB-phxkF9-SJfVKM-29z8oh-Qg754h" class="ext-link" rel="external ">1897年由Fr<u>éd<u>ér</u>IC Christol(1850-1933)出版的赫尔蒙附近一个洞穴</u></a>里的古画。根据CC BY-SA 2.0获得许可。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>
