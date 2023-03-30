@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Using OpenSource and IBM Watson to Extract Data from Video</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">使用开源软件和IBM Watson从视频中提取数据</h1>
+<blockquote>原文：<a href="https://thenewstack.io/using-opensource-watson-turn-videos-data/#0001-01-01">https://thenewstack.io/using-opensource-watson-turn-videos-data/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着近70%的互联网数据预计在明年以视频格式出现，很明显，从视频中提取文本数据的任务对数据工程师来说将是至关重要的，而且这个过程必须自动化。BlueChasm的首席技术官<a href="https://www.linkedin.com/in/ryanvanalstine" target="_blank" class="ext-link" rel="external ">瑞安·瓦纳斯坦</a>和软件开发者<a href="https://twitter.com/RobertFromBC" target="_blank" class="ext-link" rel="external ">罗伯特·里奥斯</a>在最近于三藩市举行的<a href="http://www.ibm.com/watson/developer-conference/" target="_blank" class="ext-link" rel="external ">沃森开发者大会</a>上演示了如何将原始视频转化为标记数据。</p>
+<p class="translated">使用各种开源工具和简单的算法，他们能够从视频中提取足够的意义来总结其内容。该程序能够在新视频提交时自动启动，整个过程无需人工干预。代码可以在他们的博客上找到。</p>
+<p class="translated">视频只是一系列图像，但是通过视觉识别发送所有图像在成本和时间上都是不允许的。关键是通过视频发送一个代表性的样本。从30帧中挑选一帧，代码将图像发送到沃森的视觉识别程序，该程序返回标记的图像。该程序将所有标签相加，以确定视频的内容。</p>
+<p class="translated">关键成分？IBM的<a href="https://console.ng.bluemix.net/home/" class="ext-link" rel="external "> Bluemix </a>服务平台，<a href="https://www.ffmpeg.org/" class="ext-link" rel="external "> FFmpeg </a>视频转换软件，<a href="http://opencv.org/" class="ext-link" rel="external "> OpenCV </a>在<a href="/tag/node.js/" target="_blank"> Node.js </a>之上的多核处理库，再加上一点点<a href="https://www.ibm.com/watson/developercloud/visual-recognition.html" class="ext-link" rel="external "> Watson的视觉识别API。</a></p>
+<div id="attachment_1586604" class="wp-caption alignright"><img aria-describedby="caption-attachment-1586604" decoding="async" loading="lazy" class=" wp-image-1586604" src="../Images/68d71976991fc6204e724973e55a818b.png" alt="BlueChasm's Video Recognition Program" data-original-src="https://thenewstack.io/wp-content/uploads/2016/11/WDC-BlueChasm-Train-video-300x225.jpg"/><p id="caption-attachment-1586604" class="wp-caption-text translated">BlueChasm的视频识别程序</p></div>
+<p class="translated">Rios将视频放入FFmpeg中，FFmpeg处理视频，创建静止图像，在30帧中选择一帧，并将这些帧作为jpeg图像发送到一个文件夹中。他说，1/30的帧数是一个任意的数字，选择这个数字是因为他知道视频速度较慢。如果视频有多个摄像机角度，或者有很多人，您可能希望降低比率以获得更多帧。</p>
+<p class="translated">与其他工具相比，他更喜欢FFmpeg，因为它为他提供了更大的视频灵活性，允许他添加时间戳和创建元数据。FFmpeg创建静态图像(每秒1帧)并将jpegs加载到一个文件夹中。</p>
+<p class="translated">产生的jpegs被发送到一个新创建的文件夹，并为每张图像设置一个循环，该循环将图像发送到Watson的视觉识别API，再到classify端点。</p>
+<p class="translated"><a href="http://blog.bluechasm.com/post/152964631846/turning-visual-recognition-into-video-recognition" class="ext-link" rel="external "><img decoding="async" loading="lazy" class="size-full wp-image-1610894 aligncenter" src="../Images/5f2b8fac2664f91cd4cfc8fac801da7c.png" alt="tumblr_inline_oge7ooltij1u5xmlp_500" data-id="1610894" data-original-src="https://thenewstack.io/wp-content/uploads/2016/11/tumblr_inline_oge7ooLtIJ1u5xmlp_500.png"/>T2】</a></p>
+<p class="translated">Rios说:“分类端点程序会做一些错误检查，因为有时分类器会空出来，或者加载标签时出现错误。”。节点同步发送图像，因此在接收结果时有时可能会导致错误，所以在将结果相加之前最好进行错误检查。如果图像返回错误，它会被标记为不可用。</p>
+<div id="attachment_1586605" class="wp-caption alignleft"><img aria-describedby="caption-attachment-1586605" decoding="async" loading="lazy" class="size-medium wp-image-1586605" src="../Images/7092d8285835fc44e32cab05058ec079.png" alt="The code that makes it work is on the BlueChasm blog" data-original-src="https://thenewstack.io/wp-content/uploads/2016/11/BlueChasm-sharing-code-300x225.jpg"/><p id="caption-attachment-1586605" class="wp-caption-text translated">让它工作的代码在BlueChasm博客上</p></div>
+<p class="translated">下一步是调用count方法，该方法计算标签，告诉您视频中有什么。</p>
+<p class="translated">该过程可以与音频处理相结合，以创建更有用的标签。例如，一个名人的视频将只返回名人的名字，剥离音频并将其发送到<a href="https://www.ibm.com/watson/developercloud/speech-to-text.html" class="ext-link" rel="external ">沃森的音频识别API </a>将确定视频是关于什么的。</p>
+<p class="translated">你也可以通过Watson <a href="https://www.ibm.com/watson/developercloud/tone-analyzer.html" class="ext-link" rel="external "> Tonal Analysis API </a>发送它，它将返回音频的情感内容，这将有助于评估客户服务响应或上传的产品评论以及其他有用的应用程序。</p>
+<p class="translated">要注意的是，VanAlstine说，面部识别比物体识别更昂贵，所以你要把它分开。在他们交付给客户的程序中，通常通过对象识别来运行视频过程，然后如果视频主要是关于人的，则通过面部识别来发送它。例如，你可以有一个关于汽车比赛的视频，有两个人在场边。没有理由将视频发送到面部识别，因为对象识别数据显示视频是关于一场汽车比赛的。</p>
+<p class="attribution translated">IBM是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+ </div>    
+</body>
+</html>

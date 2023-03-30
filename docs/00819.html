@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Bridging Realities: Orchestration and Programmable Infrastructure</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">桥接现实:编排和可编程基础设施</h1>
+<blockquote>原文：<a href="https://thenewstack.io/bridging-realities-orchestration-programmable-infrastructure/#0001-01-01">https://thenewstack.io/bridging-realities-orchestration-programmable-infrastructure/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">容器生态系统的不断变化意味着围绕虚拟机、容器以及它们在自动化、横向扩展环境中所扮演的角色存在相反的观点。还有许多未知因素，因为大多数技术专业人员几乎没有在分布式平台上开发的经验。大多数人作为管理员在单个主机或托管系统上开发，管理机器及其虚拟化环境。</p>
+<p class="translated">运行集群和编排数千个容器是一个全新的游戏。它将软件放在中心位置，比应用程序本身更需要监控组件。这是一个需要通过API和业务流程对自动化进行高级评估的世界，业务流程考虑了调度、集群管理和一系列其他事项的需求，如保护节点、运行状况检查和优先排序。</p>
+<blockquote><p class="translated">运行集群和编排数千个容器是一个全新的游戏。</p></blockquote>
+<p class="translated">今天，我们看到容器的编排如何改变我们看待应用程序的视角。微服务引导开发人员关注服务以及这些服务如何区分应用程序。容器是使这些应用程序根据分布式集群上的组件运行的催化剂。Apache Mesos、Docker Swarm、HashiCorp Nomad和Kubernetes就是很好的例子。它们帮助系统运营商对其集群进行建模，并使服务变得可访问。</p>
+<p class="translated">许多软件公司建立的平台几乎都是短暂的。对于采用弹性横向扩展平台的公司来说，概念通常是如何完全消除虚拟机，在裸机上构建并创建基于容器的集群。</p>
+<p class="translated">所有这些都意味着我们对自动化和流程编排的看法发生了变化。但有一个原则仍然存在:有一种实现可编程基础设施的推动力，将软件开发中建立的方法和工具应用到跨越数千种云的IT基础设施的管理中。这是一场运动，将导致许多新的实践和发现。</p>
+<h2 class="translated">面对当前复杂的现实</h2>
+<p class="translated">Docker创始人兼首席技术官Solomon Hykes 说，整个软件行业未能真正实现可编程基础设施背后的理念。没有十年或更长时间的编程经验，很难成为一名有效的开发人员。Hykes说，规模需要达到互联网的规模。</p>
+<p class="translated">Hykes说:“因此，集群、协调、容器之间的联网、跨多个容器的存储、共享存储、安全性等内容的验证，以便您可以跟踪您将要部署的容器的真实性和来源。”。“所有这些都是构建和部署分布式应用程序问题的一部分。所以这是一个很大的问题列表，你需要一个工具组合来解决这些问题。你需要这些工具来整合。他们需要一起工作来形成一个平台，否则你就有了一个巨大的拼图，而这些碎片将永远无法组合在一起。你永远也完成不了这个谜题。”</p>
+<p class="translated">[cyclone slider id = " ebook-3-赞助商"]</p>
+<p class="translated">Hykes会告诉你，Docker在工具开发上采取了一种渐进的方法，并没有试图通过开发一个平台来做所有的事情来“煮沸海洋”。这是一种适用于整个Docker和容器生态系统的方法。这部分是由于规模带来的复杂性和容器技术本身的本质。</p>
+<p class="translated">Docker和容器都是进程。它们使得组件的交付更加容易。容器并不携带操作系统。这使得集装箱更轻，更容易管理。它不需要对机器本身进行配置。容器是一次性的——它体现了不可变基础设施的概念；活动实例从不直接更改，而是随着其配置的更改而替换。由于其重量轻，易于复制，容器，在其目前的包装形式，引入了新的复杂性，以前没有理解。</p>
+<blockquote><p class="translated">容器是一次性的——它体现了不可变基础设施的概念。</p></blockquote>
+<p class="translated">随着容器的出现，数据中心将扮演的角色发生了变化。内部存在的研究和开发将向外转移到开源社区。这种变化可能发生在虚拟机上，但是由于容器易于管理和移植的强大工具和速度，这比虚拟机上的变化要自然得多。</p>
+<p class="translated">反过来，软件将继续以更快的速度发展，作为开发人员和操作人员的集成技术，他们不再能分开他们的职责。开发人员和运营人员之间不再有壁垒，只有持续交付的管道。</p>
+<p class="translated">随着容器的采用越来越普遍，开源开发加速了容器的采用，拆除开发和运营之间的那堵墙将是最重要的转变。管理集群的软件将是编排平台，在数据平面上工作，使基于容器的集群完全可移动。基础设施本身变得以应用程序为中心。组件将像线程一样，通过API和其他方式跨分布式平台连接，这取决于上下文。</p>
+<h2 class="translated">云原生可编程基础设施</h2>
+<p class="translated">原生云的概念为组织如何开发可编程基础设施奠定了基础，其复杂性令人震惊。</p>
+<p class="translated">有许多重叠的领域，特别是当我们想到容器管理的时候，<a href="http://www.ibm.com/cloud-computing/" class="ext-link" rel="external "> IBM Cloud </a>的杰出工程师兼开放技术首席技术官Chris Ferris 在接受新堆栈采访时说。有Kubernetes，Swarm，Mesos，围绕OpenStack Magnum的倡议等。，全部用于编排、管理和调度容器。此外，还有Cloud Foundry之类的产品，它们也在进行容器调度和编排，但更隐蔽一些。</p>
+<p class="translated">“所有这些技术都是在独立的团体、独立的社区中独立开发的……最终这些东西必须开始结合、走到一起，或者至少提供我们可以在OpenStack和Kubernetes之间集成的能力。例如，如果我在Kubernetes pod中运行容器，并且我希望将这些功能与我在VM和OpenStack中运行的功能集成，从网络和存储的角度来看，我该如何做到这一点，我该如何在这些平台之间共享网络存储？”</p>
+<p class="translated">费里斯说，关于下面、中间或上面有什么存在争议。OpenStack Magnum正在构建以提供Kubernetes和Mesos之类的功能。</p>
+<p class="translated">这可能会导致不同的集成，允许客户从适合他们需求的组件中构建，并潜在地构建一个每个人都同意的架构。我们需要的是容错、自我修复、轻松部署、版本控制以及轻松扩展或缩减的能力。容器应该运行在云服务或你自己的硬件上——让它们以任何必要的规模运行，永远不停机，永远不呼叫运营团队。这就是人们所说的配器。</p>
+<h2 class="translated">定义自动化和流程编排</h2>
+<p class="translated">IBM的<a href="https://thenewstack.simplecast.com/episodes/ibms-doug-davis-on-the-evolution-of-containers" class="ext-link" rel="external "> Doug Davis </a>向我们讲述了他对定义自动化和编排空间的想法:</p>
+<p class="translated">“我认为，在很大程度上，当我们想到自动化时，你会想到编写集成到平台中的脚本，如Chef、Jenkins或ansi ble……这实际上是在驱动实际行为；我们认为编排是平台本身提供的工具，能够编排事情进行的顺序。那是配器。自动化本身只是时间点脚本的实际执行。”</p>
+<p class="translated">[cyclone slider id = " ebook-3-赞助商"]</p>
+<p class="translated">我们向专家提出的第一批问题中，有许多都提到了自动化和流程编排之间的相同区别，专家们对此有多种思考方式。思科<a href="https://blogs.cisco.com/tag/mantl" class="ext-link" rel="external ">的创新架构师Ben Schumacher</a>同意自动化和流程编排之间的内在关系。“我们很快了解到，虽然专家和用户与每个标签最密切相关的内容有所不同，但他们本质上服务于相同的目的，”他说。他的同事，<a href="http://www.cisco.com/c/en/us/solutions/data-center-virtualization/cloud-infrastructure/index.html" class="ext-link" rel="external ">云基础设施服务(CIS) </a>的首席技术官<a href="https://thenewstack.simplecast.com/episodes/ken-owens-ben-schumacher-cisco-systems" class="ext-link" rel="external ">肯·欧文斯</a>，描述了关于这两个战略的更详细的想法:</p>
+<p class="translated">“当你移动到这个新的容器生态系统时，你会看到所有的底层基础设施都变成了代码形式的基础设施，”Owens说。“围绕容器和Mesos的生态系统，以及围绕Marathon的编排和调度的Kubernetes，带来了一个全新的有趣层面。从思科的角度来看，我们感兴趣的不仅仅是从云原生开发的角度来看该层发生了什么，我们还对围绕质量、围绕工作负载和集群管理的企业级功能集感兴趣，以满足我们的客户所需的粒度。我们如何通过更好的网络功能、更好的服务发现和服务管理功能以及更好的安全功能来增强这一点？”</p>
+<h2 class="translated">创建新的架构和管道</h2>
+<p class="translated">流程编排有助于以多种方式完成端到端开发运维管道。对于开发人员来说，首先是他们笔记本电脑上的本地环境。但是，要让这个平台发挥作用，就必须实现整个基础设施的自动化。</p>
+<p class="translated">这不仅仅是持续集成和持续交付。它是关于容器操作的，这说明了由<a href="https://d2iq.com/about" class="ext-link" rel="external "> Mesosphere </a>开发的数据中心操作系统<a href="https://mesosphere.com/product/" class="ext-link" rel="external "> DCOS </a>的概念。</p>
+<p class="translated">Mesosphere的数据中心应用架构师和DevOps倡导者Michael Hausenblas 说:<a href="https://thenewstack.simplecast.com/episodes/tns-interview-michael-hausenblas-mesosphere" class="ext-link" rel="external ">DCOS提供了一个操作系统，它抽象了整个机器集群的资源，并使它们像一个大盒子一样可供开发人员使用。框架在DCOS上运行。</a></p>
+<p class="translated">“对于很多人来说，我认为最重要的是，在Docker构建、Docker运行之后，你如何实现下一步？如何真正将容器投入生产并保持其运行，完成这些应用程序操作任务？其中一部分自然是CI/CD管道。对我们来说，这也是Mesos的独特之处，它能够运行各种不同的框架。”</p>
+<p class="translated">例如，Jenkins可能会与Cassandra、Kafka和Spark一起负责CI/CD管道，处理分析，并使用NGINX的一些web服务器为网站提供服务。在整个生命周期中，所有这些不同的应用程序和框架都可以在一个集群中一起运行。</p>
+<p class="translated">Hausenblas说，容器编排将主要要求开发人员开始制作新的项目、工具和解决方案。反过来，人们如何学习管理容器编排将会改变他们对自动化环境的看法。</p>
+<p class="translated">容器是构建这些新架构的现实机制，但是随着实现而来的是对新工具和自我修复的需求，以管理系统如何跨分布式平台工作。</p>
+<p class="translated">“对我来说，编排平台是一个可以编排多个其他系统工具、编排引擎的平台——我指的是特定的调度程序，如Zookeeper、Mesos和Marathon，”Owens说。“你试图编排的东西，加上配置管理系统，加上自动化工具、工具系统或平台，都是某种终点。因此，它有点像orchestrator中的orchestrator，运行时和配置管理工具或工具集的orchestrator。”</p>
+<p class="translated">仍然需要很多工具。例如，Yelp发现了使用容器时由信号问题产生的“僵尸进程”的问题。为了消除信号问题，Yelp开发了<a href="https://github.com/Yelp/dumb-init" class="ext-link" rel="external "> dumb-init </a>，这是一个运行在Docker容器内部的初始化系统。</p>
+<p class="translated">对工具的明确需求来自于容器编排环境中DevOps实践的假设。正如我们在自己的研究中所述，在考虑工具环境时，解决特定工作角色的需求变得很明显。在我们对容器用户的调查中，58%的人说用于应用程序开发和IT操作的集成工具极其重要。</p>
+<h2 class="translated">发现需要什么工具</h2>
+<p class="translated">工具问题需要一些时间来定义，因为容器编排的用例才刚刚出现。由于平台的不成熟，许多专家用户现在才发现这些分布式平台需要什么工具才能有效运行。</p>
+<p class="translated">面向横向扩展容器编排的集群管理仍处于初级阶段。它的不成熟意味着一些问题，比如工作负载的优先级，还没有被完全定义。</p>
+<p class="translated"><a href="https://www.ericsson.com/en/digital-services/edge-computing" class="ext-link" rel="external "> Apcera </a>的首席架构师<a href="https://thenewstack.simplecast.com/episodes/apceras-ken-robertson-on-cluster-and-container-management" class="ext-link" rel="external "> Ken Robertson </a>说，集群管理的定义需要关于谁可以管理集群以及何时、何地以及需要什么机制的政策。这些问题可以用集群管理工具来定义，但随之而来的问题是技术堆栈不同方面之间的推广和自动化通信。</p>
+<blockquote><p class="translated">在管理单个街区和整个门面方面，自动化程度很高。</p></blockquote>
+<p class="translated">此外，尽管努力转向应用程序架构，但决定如何管理资源调配的是组成集群的资源和机器。</p>
+<p class="translated">“这很大程度上取决于—组成这个群集环境的机器是什么？”罗伯逊说。“如果您在AWS、GCE或云环境中运行，您可以使用API来配置更多的机器。在某些情况下，比方说，您为机器提供了大量CPU和RAM，但是在讨论硬件映射时，您会发现某些东西一次只能被一个东西消耗。”</p>
+<p class="translated">这意味着用户一次可以运行的工作负载数量将会受到限制。运营商需要了解该资源的限制，并能够根据需要提供更多资源。但是供应中涉及的资源不是无限的。</p>
+<p class="translated">“你如何打开更多，在某些情况下，你如何在可能需要几周时间才能获得它们的地方获得更多？”罗伯逊问道。</p>
+<p class="translated">分布式系统的复杂性就在于此。必须管理不同代的硬件架构。对于集群管理，人们还对管理成本感兴趣。客户可能希望在某项服务降价时得到通知。输入将被输入到编排平台，以利用定价。集成将通过第三方服务实现，消除了对一个终端接口的需求。</p>
+<h2 class="translated">解决规模的复杂性</h2>
+<p class="translated">云软的联合创始人兼首席技术官<a href="https://thenewstack.simplecast.com/episodes/alex-heneveld-cloudsoft" class="ext-link" rel="external "> Alex Heneveld </a>说。这是一个梦想了几十年的概念，但对于基于容器的工作负载，至少现在有一个讨论点，因为人类无法管理横向扩展的架构并手动修复它们。需要自我修复的环境，将复杂的任务分解成更小的任务，子系统通常做他们需要做的事情。</p>
+<p class="translated">在自主系统中，有问题时会发出传感器。管理平台分析传感器。效应器，也称为杠杆，存在是为了做出改变。传感器提供度量，效应器让用户控制事物，这就是系统的封装。</p>
+<p class="translated">“系统可以由另一个本身具有传感器和效应器的系统来管理，”Heneveld说。“在it部门内部，it部门负责监控、分析、规划和执行，以保护底层系统。但是你几乎可以把它看作一个组织结构图或者一个层次结构。在这个领域，我们比一些非常严格的理论更宽松，但是这个想法是，你可以通过构建简单的系统来构建非常复杂的系统。如果我们看看围绕微服务发生的事情，我们正在从简单的系统构建复杂的系统。”</p>
+<p class="translated">这种系统层次结构与微服务有相似之处，微服务也是从简单的系统构建复杂的系统。</p>
+<p class="translated">Apache Brooklyn是一个开源项目，其核心是基于自治系统的原则构建的。它允许用户打开复杂系统的包装，查看其内部。如果需要的话，用户可以继续打开系统的包装来查看更深的内部，一直到下面的管道。</p>
+<p class="translated">“如果我很幸运，有人在托管我的一些基质，我不需要看那么远，”Heneveld说。“例如，如果我有一个托管的容器服务，我对它下面的管道不感兴趣。但我确实想知道这些容器中的每一个都在做正确的事情。因此，我们从每个部分获得的指标对于该模型来说是绝对必要的，使我们能够维护一个健康的系统，并在需要时纠正和改进它，无论是扩展、故障转移还是灾难恢复。在我们的世界里，这些都是作为策略来实现的，这种‘监控、分析、规划、执行’逻辑位于自主框架内。”</p>
+<h2 class="translated">结论</h2>
+<p class="translated">对于存在于VM主导的世界和基于容器的世界之间的用户和供应商来说，这不是问题；相反，这是一个充满新兴实践、技术和问题解决方案的空间。当前力量的平衡使开发和运营团队比以往任何时候都更加紧密。即使空间开始发生变化，并且关于虚拟机和容器在大规模自动化环境中的作用的评论逐渐成熟，关于管理虚拟化环境，仍有许多东西需要学习；对于许多用户和供应商来说，这个领域仍然是一个新领域，有许多未知因素，但这只是更加强调了管理和协调各种组件的需要。</p>
+<p class="translated">从自动化和流程编排到调度、集群管理、服务发现、安全性等等，所有这些都改变了我们对自动化和流程编排的看法。拥抱这种变化，并学会专注于开发最佳实践，是整个容器生态系统的一个更大的旅程；这是一次由开源软件、对连接的需求、热情的用户社区以及供应商商业模式中的经济因素推动的旅程。</p>
+<p class="attribution translated"><a href="https://www.ericsson.com/en/digital-services/edge-computing" class="ext-link" rel="external "> Apcera </a>、<a href="https://cloudsoft.io/" class="ext-link" rel="external "> Cloudsoft </a>、<a href="https://www.mirantis.com/software/docker/kubernetes/" class="ext-link" rel="external "> Docker </a>、<a href="https://www.ibm.com/cloud" class="ext-link" rel="external "> IBM </a>和<a href="https://d2iq.com/" class="ext-link" rel="external "> Mesosphere </a>是新堆栈的赞助商。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/@wombat" class="ext-link" rel="external "> Jan Schulz </a>、<a href="https://unsplash.com/photos/iE9k36TlRmI" class="ext-link" rel="external ">通过</a> Unsplash拍摄的特征图像。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+
+</div>
+</div>    
+</body>
+</html>

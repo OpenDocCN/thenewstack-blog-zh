@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Finally, Linux Containers Could Run on Windows with Docker's LinuxKit</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">最后，Linux容器可以通过Docker的LinuxKit在Windows上运行</h1>
+<blockquote>原文：<a href="https://thenewstack.io/finally-linux-containers-really-will-run-windows-linuxkit/#0001-01-01">https://thenewstack.io/finally-linux-containers-really-will-run-windows-linuxkit/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">自从两年前第一次展示Windows容器以来，Windows容器还没有做过的一件事就是在Windows环境中，在围绕Linux构建的容器中运行为Linux构建的应用程序。实现这一壮举所必需的是所谓的<em> Linux子系统。</em>尽管<a href="https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/" class="ext-link" rel="external ">微软确实在一年前</a>发布了这样一个东西，奇怪的是，它并没有解决容器可移植性的问题。</p>
+<p class="translated">四月似乎是Docker和微软共同进步的月份。周二上午，在奥斯汀举行的DockerCon 2017大会上，Docker Inc .首席技术官<a href="https://twitter.com/solomonstre" class="ext-link" rel="external "> Solomon Hykes </a>宣布向开源发布一套用于构建Linux子系统的工具，由Docker Inc .和微软在Docker的管理下共同开发。名为<a href="https://github.com/linuxkit/linuxkit" class="ext-link" rel="external "> LinuxKit </a>，它将在应用程序下面的<em>层提供足够的基于Linux的平台，让容器在任何操作系统平台上运行基于Linux的应用程序，包括Mac OS和Windows在任何主流云平台上，包括AWS或者，令人惊讶的是，在裸露的金属上。</em></p>
+<p class="translated">“Linux显然是一个安全的操作系统，”Hykes宣称。“它不需要我们的帮助。但是，事情是这样的:当你假设所有的东西都是一个容器时，那么你就可以将安全性提升到一个新的水平。你可以做很多假设。例如，您可以制作专门的补丁和配置，进一步强化系统。”</p>
+<p class="translated">Hykes花了一些时间来证实他的观点，但他的内容可能会将一些人的畏缩转化为瞪大的眼睛。当容器化在一个独立的世界中由其他主机运行时——比如另一个Linux操作系统，或者在第一代VM中——所有最严重的潜在漏洞都与发生在主机和客户机之间的事务有关。</p>
+<p class="translated">在所有系统都容器化的环境中，不存在这样的界限。因此，任何专门解决容器安全性和真实性问题的组件—例如，<a href="https://docs.docker.com/notary/getting_started/" class="ext-link" rel="external "> Docker公证人</a> —也可以用作底层系统的安全网关。想象一下对包含Linux子系统的容器进行基于角色的访问，您就明白了。</p>
+<p class="translated">“我们认为Docker不应该负责保护你的Linux子系统，”Hykes承认。“事实上，我们不认为任何一家公司应该对此承担全部责任。Linux太大了，太重要了。因此，您所依赖的安全流程必须是开放的、由社区驱动的，这一点非常非常重要。在过去的几年里，Linux社区已经做了很多非常好的工作来构建它。我们从第一天起就加入并参与到这些开放的过程中，而不是在我们的小角落里做所有的事情。”</p>
+<p class="translated">这不仅是对“开放”的回归，也是对Docker Inc .在2015年采用的<em>邀请</em>精神的回归，但去年当<a href="https://thenewstack.io/dockers-plan-dominate-enterprise-data-center/" class="local-link">公司将Docker Swarm </a>融入其企业级平台时，它似乎放弃了这种精神。事实上，Hykes再次将容器生态系统描述为一个组件社区，Docker Inc .对其贡献有限，没有任何一个组件构成了其他组件的轴心。</p>
+<p class="translated">该公司的明确战略是限制Kubernetes或任何其他人对整个容器生态系统的主张。任何人都不会忘记，站在Docker旁边的是微软。</p>
+<p class="translated">“如你所知，Docker最初是一个针对Linux的项目，”代表微软Azure核心开发团队的<a href="https://twitter.com/gossmanster?lang=en" class="ext-link" rel="external ">约翰·戈斯曼</a>说。“Docker将一些复杂的内核特性结合到一个我们都喜爱的简单易用的开发体验中。Windows团队希望为Windows开发人员提供同样的开发体验。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="size-full wp-image-2203968 aligncenter" src="../Images/a7e0aa4335dcc59a015da381fe533d42.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/04/edcc8f8e-170418-dockercon-2017-01-john-gossman.jpg"/></p>
+<p class="translated">戈斯曼讲述了我们都知道的微软为什么开发Windows容器(现在称为<a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server" class="ext-link" rel="external "> Windows服务器容器</a>和<a href="https://thenewstack.io/microsoft-secures-the-windows-docker-container/" class="local-link"> Hyper-V容器</a>)作为两种独立格式的故事。前者共享Windows内核，就像基于Linux的Docker容器共享Linux内核一样，而Hyper-V容器使来宾操作系统能够通过虚拟机在不同的主机平台上运行本机应用程序。因此，对于Windows Server 2016，微软为基于Windows的Hyper-V容器创建了一种隔离，最大限度地减少了虚拟机的占用空间。</p>
+<p class="translated">Gossman说，通过合并LinuxKit，这种隔离正在扩展到基于Linux的容器。</p>
+<p class="translated">Gossman的演示充分证明了Windows平台上的开发人员使用Windows工具在Windows平台上的Hyper-V隔离包装内的Linux容器映像中开发、构建、汇编和运行Linux应用程序的理论能力。他的演示包括一个嵌入Linux容器的BusyBox的图像，Gossman证明了它的Linux内核是活跃的，并且在他的Windows笔记本电脑上运行。它还展示了<em>任何</em>Linux——不仅仅是企业级的，不仅仅是像CoreOS这样的最小化内核——都可以作为应用程序的主机。</p>
+<p class="translated">当然，观众中肯定有不少开发者考虑过<a href="https://thenewstack.io/docker-calls-out-red-hat/" class="local-link">将SELinux作为独立内核</a>运行的可能性。</p>
+<p class="translated">Docker Inc .的Hykes指出，“你的平台的安全性取决于它最薄弱的部分”，这样做完全颠覆了Docker将安全责任转嫁给Linux的论点。</p>
+<p class="translated">“你必须担心那里的每一层，”他继续说道。“Docker有很多组件。我们一直在担心所有东西的安全性，以及它们是如何组合在一起的。”</p>
+<p class="translated">在主题演讲的早些时候，Hykes认为Docker的整个发展是“投诉驱动的”。开发者抱怨，工程师组装修改，平台改进。两年前，开发者确实大声抱怨过。如果历史要证明Hykes是正确的，Docker Inc .将需要记住它对这一投诉的反应。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

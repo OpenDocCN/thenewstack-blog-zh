@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: The Wired and Headless Raspberry Pi</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:有线和无头的树莓派</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-the-wired-and-headless-raspberry-pi/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-the-wired-and-headless-raspberry-pi/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">我想在一个没有120伏电源插座的地方演示一个树莓Pi 3项目。没问题，只需将Pi插入USB手机模块，我们就可以开始了，对吗？问题是，我还必须使用几个桌面应用程序进行演示。这通常由显示器和无线键盘来处理。</p>
+<p class="translated">没有显示器你怎么运行桌面程序？</p>
+<p class="translated">通过Wi-Fi或路由器的有线连接登录到Raspberry Pi，并使用<a href="https://www.ssh.com/ssh/protocol/" class="ext-link" rel="external "> ssh </a>从另一台联网的机器上执行应用程序是很常见的。没有Wi-Fi，没有网络，没有路由器怎么办？好消息是，你可以用一根<a href="https://www.amazon.com/InstallerParts-CAT5E-Ethernet-Cable-Black/dp/B008ILCY1G/ref=sr_1_10?s=pc&amp;ie=UTF8&amp;qid=1533651101&amp;sr=1-10&amp;keywords=6ft+cat+5+cable" class="ext-link" rel="external ">备用以太网电缆</a>将一个Pi连接到你的Linux笔记本电脑，甚至是另一个带微型LCD显示屏的Pi。这就是所谓的点对点网络，也是我们今天要讨论的内容。我们也会成为<a href="https://en.wikipedia.org/wiki/Headless_computer" class="ext-link" rel="external ">无头</a>。</p>
+<h2 class="translated">基本设置</h2>
+<p class="translated">实际上，您需要使用监视器和键盘/鼠标垫在您的目标Raspberry Pi上进行初始对等网络设置。一旦一切正常，你就可以运行Pi headless(没有显示器或键盘)并访问外部机器上的所有程序。对等网络技术可以在任何带有RJ-45以太网端口的Raspberry Pi上工作。</p>
+<p class="translated">特别是Pi 3，它还内置了Wi-Fi收音机。我们的修改设置不会影响现有的Wi-Fi配置，所以当你回到一个友好的AP的范围内时，只需ssh通过Wi-Fi进行远程登录。</p>
+<p class="translated">为了方便起见，我将有线连接配置为点对点连接，因为当连接到Wi-Fi接入点时，我通常不需要它来连接互联网。</p>
+<p class="translated">启动Pi并确保您已连接到Wi-Fi接入点(AP)。检查工具栏右上角的小Wi-Fi指示器。它应该显示熟悉的电弧信号线。您也可以单击该符号，在您的AP名称旁边应该会有一个复选标记。如果没有，请连接到您的本地AP。</p>
+<p class="translated">接下来，使用基于curses的NetworkManager前端程序来配置对等网络。</p>
+<h2 class="translated">什么是基于诅咒的？</h2>
+<p class="translated">Linux有几种用户界面模式。一个是桌面。应用程序以图标的形式出现，并在运行时显示各种窗口。桌面可能在顶部有一个任务栏和颜色装饰来控制窗口。</p>
+<p class="translated">还有就是命令行。命令行在终端中运行。它可以在桌面上的终端窗口中，也可以在串行终端上，没有桌面环境。你输入命令并使用回车键来执行它们。</p>
+<p class="translated">另一个用户界面叫做<a href="https://en.wikipedia.org/wiki/Ncurses" class="ext-link" rel="external "> curses </a>或者最近的新curses (ncurses)。curses应用程序创建了一种文本菜单驱动的数据输入方式。您可以使用箭头键和tab键在菜单中移动。Curses可以在桌面环境下工作，也可以不在桌面环境下工作，但是它比命令行更容易使用。您甚至可以通过ssh使用它。因为它是基于文本的，所以您不需要像通常运行远程桌面应用程序那样在ssh中使用“-X”选项。</p>
+<p class="translated">在这种情况下，我们使用一个名为<a href="https://developer.gnome.org/NetworkManager/stable/nmtui.html" class="ext-link" rel="external "> nmtui </a>的程序来改变以太网电缆上点对点网络的网络参数。Nmtui是<a href="https://developer.gnome.org/NetworkManager/stable/NetworkManager.html" class="ext-link" rel="external ">网络管理器包</a>的一部分，所以你应该可以使用Raspbian的最新标准版本。</p>
+<p class="translated">首先在Pi上打开一个终端，并从命令行运行nmtui。典型的诅咒式显示将出现在监视器上。所有的curses应用程序看起来都像这样:</p>
+<div id="attachment_5354968" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5354968" decoding="async" loading="lazy" class="size-full wp-image-5354968" src="../Images/77978da7bd48144d3851c894ac3109d0.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/07651975-ss-nmtui.png"/><p id="caption-attachment-5354968" class="wp-caption-text translated">nmtui主菜单</p></div>
+<p class="translated">箭头指向“<edit a="" connection="">”菜单项，并按回车键。将出现一个新窗口，并且“有线连接1”项目应以红色突出显示。切换到“<edit>”菜单项，并再次点击回车。</edit></edit></p>
+<div id="attachment_5354973" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5354973" decoding="async" loading="lazy" class="size-full wp-image-5354973" src="../Images/3c2dc610a2685e565297dfc063064fa2.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/00ebaa70-ss-edit-connection.png"/><p id="caption-attachment-5354973" class="wp-caption-text translated">编辑连接菜单</p></div>
+<p class="translated">下一个屏幕显示配置文件和设备名称以及各种其他参数。向下箭头至“&lt;= IPv4 CONFIGURATION&gt;”选项，然后按回车键。</p>
+<div id="attachment_5354974" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5354974" decoding="async" loading="lazy" class="size-full wp-image-5354974" src="../Images/c48a9228b371b977c122c1ac3db10305.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/40342866-ss-profile-device.png"/><p id="caption-attachment-5354974" class="wp-caption-text translated">配置文件和设备菜单</p></div>
+<p class="translated">一个新的列表将会弹出。</p>
+<div id="attachment_5354975" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5354975" decoding="async" loading="lazy" class="size-full wp-image-5354975" src="../Images/2b1462bf10fc967ab62565343eb504ec.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/7187c27c-ss-shared-pop-up.png"/><p id="caption-attachment-5354975" class="wp-caption-text translated">IPv4配置弹出菜单</p></div>
+<p class="translated">向下箭头至“<shared>”，然后按回车键。“IPv4配置”项现在将显示“<shared>”。切换到右边的“确定”，然后按回车键。向下移动到“<back>”并按回车键。</back></shared></shared></p>
+<p class="translated">您现在应该回到主网络管理器TUI窗口。向下箭头到“退出”，最后一次按回车键。</p>
+<p class="translated">差不多就是这样。如果您想返回使用常规有线以太网，比如说互联网访问，只需返回IPv4配置值，回到“自动”</p>
+<p class="translated">现在使用<a href="https://linux.die.net/man/8/ifconfig" class="ext-link" rel="external "> ifconfig </a>查看Pi 3上运行的网络接口。如果你想成为新学校，使用<a href="https://blog.ubuntu.com/2017/07/07/if-youre-still-using-ifconfig-youre-living-in-the-past" class="ext-link" rel="external "> ip命令</a>。<br/></p>
+
+
+<p class="translated"><br/>您应该会在顶部看到有线以太网设备，其次是lo设备，底部是Wi-Fi (wlan0)设备。我的Pi的有线连接显示为10.42.0.1 IP地址。Wi-Fi设备连接为192.168.1.107。这些是相当标准的IP地址。</p>
+<p class="translated">您的网络接口应该类似于下面的屏幕截图。</p>
+<div id="attachment_5354979" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-5354979" decoding="async" loading="lazy" class="size-full wp-image-5354979" src="../Images/5bd0d1a7a5566fb3702656dacbc6e6df.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/d72a62ed-ss-ifconfig2.png"/><p id="caption-attachment-5354979" class="wp-caption-text translated">树莓Pi 3的ifconfig结果</p></div>
+<h2 class="translated">有线和无头</h2>
+<p class="translated">将以太网电缆的一端插入Raspberry Pi的端口，另一端插入您的Linux笔记本。笔记本应该立即连接到新的有线对等网络，并将任务栏上的网络管理器图标更改为向上/向下箭头。</p>
+<p class="translated">滑到Linux笔记本上，打开一个终端。在此计算机上运行ifconfig以检查网络接口。请注意，有线以太网地址现在与Pi具有相似的IP地址。Pi地址大约是10.42.0.1，Linux笔记本大约是10.42.0.224。把Pi想象成服务器，所以它的末尾会有一个1。</p>
+<p class="translated">这很棒，因为当你在现场时，你不必像通过Wi-Fi那样四处搜索树莓Pi 3的IP地址。</p>
+<p class="translated">此外，现代有线以太网端口可以使用两端都有RJ-45连接器的标准跳线。不需要像过去那样的<a href="https://en.wikipedia.org/wiki/Ethernet_crossover_cable" class="ext-link" rel="external ">“交叉”电缆</a>。</p>
+<p class="translated">接下来，使用ssh从笔记本登录到Pi。比如:<br/></p>
+<div id="crayon-642311b475adb408450651" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">drtorq</span>-<span class="crayon-i">notebook</span>%<span class="crayon-h"> </span><span class="crayon-i">ssh</span><span class="crayon-h"> </span>-<span class="crayon-st">X</span><span class="crayon-h"> </span><span class="crayon-i">pi</span>@<span class="crayon-cn">10.42.0.1</span>
+</pre>
+</div>
+</div>
+
+<p class="translated">输入密码，我们现在应该在无头码头上直播了。当你在野外时，WiFi连接无法工作，因为它没有连接到已知的接入点。别理它。</p>
+<p class="translated">连接到Pi后，我们可以随心所欲地运行桌面应用程序。我的项目需要guvcview和luvcview。他们都工作得很好。与WiFi相比，它们通过机器之间的有线连接也非常快。</p>
+<p class="translated">在您的下一个超便携的Raspberry Pi项目中尝试一下这种技术。我想你会发现它非常有用。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/photos/43E513RKDug?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external ">美嘉</a>在<a href="https://unsplash.com/search/photos/headless?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash </a>上拍摄的特征图像。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

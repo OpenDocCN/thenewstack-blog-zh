@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Red Hat OpenShift 4.2 Addresses Requirements of Both Development and Operations</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Red Hat OpenShift 4.2解决了开发和操作两方面的需求</h1>
+<blockquote>原文：<a href="https://thenewstack.io/red-hat-openshift-4-2-addresses-requirements-of-both-development-and-operations/#0001-01-01">https://thenewstack.io/red-hat-openshift-4-2-addresses-requirements-of-both-development-and-operations/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">本周，Red Hat 发布了OpenShift 4.2，今年早些时候在<a href="/red-hats-openshift-4-adds-knative-key-coreos-features/" target="_blank">发布的OpenShift 4 </a>中引入的许多功能都朝着正式发布的方向发展。虽然<a href="https://blog.openshift.com/red-hat-openshift-service-mesh-is-now-available-what-you-should-know/" target="_blank" rel="noopener noreferrer external " class="ext-link"> OpenShift服务网格</a>、<a href="https://www.openshift.com/learn/topics/serverless" target="_blank" rel="noopener noreferrer external " class="ext-link"> OpenShift无服务器</a>和<a href="https://www.openshift.com/learn/topics/pipelines" target="_blank" rel="noopener noreferrer external " class="ext-link"> OpenShift管道</a>继续成熟，后两者在OpenShift 4.2的技术预览版和开发者预览版中可用，但最新版本的Red Hat托管Kubernetes扩展了其多云支持，包括AWS、Azure和Google云平台，以及OpenStack等私有云，以及air-gap安装。</p>
+<p class="translated">“我们将继续投资该平台，但会更积极地扩展到两个领域。一个是为开发者提供更高效的服务——让开发者在平台上更高效的新功能，”Red Hat产品副总裁Joe Fernandes在接受New Stack采访时说。“其次是为管理员改进第一天和第二天的操作。这项投资可以追溯到Red Hat对CoreOS的收购，我们对运营商技术的投资，以及我们对全栈自动化和第二天监控等的投资。”</p>
+<p class="translated">OpenShift服务网格在OpenShift 4最初发布几个月后<a href="/red-hat-creates-service-mesh-for-openshift/" target="_blank">发布</a>，它结合了开源项目<a href="https://github.com/istio/istio" target="_blank" rel="noopener noreferrer external " class="ext-link"> Istio </a>、<a href="https://www.kiali.io/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Kiali </a>和<a href="https://www.jaegertracing.io/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Jaeger </a>，以及<a href="https://prometheus.io/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Prometheus </a>和<a href="https://grafana.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Grafana </a>，以提供一个易于实现的服务网格，并在第二天的操作中强调了这一点。随着OpenShift Serverless和OpenShift Pipelines进入预览，开发人员可以分别获得Knative和Tekton的托管实例，使用Red Hat操作符可以轻松安装这些实例。OpenShift 4.2中包含的<a href="https://developers.redhat.com/products/codeready-containers" target="_blank" rel="noopener noreferrer external " class="ext-link"> CodeReady Containers </a>也说明了Fernandes关于提高开发人员生产力的第一点，即作为本地开发人员环境，开发人员可以在笔记本电脑上安装预先构建的OpenShift环境。</p>
+<p class="translated">OpenShift 4.2的另一个重点是将平台带到更多地方，因此将Azure和Google云平台添加到现有的AWS支持中。除了多云支持，Fernandes解释说，还有一些OpenShift客户对非传统操作环境有特殊要求，如空气隙网络，这些网络不连接到外部网络，使得安装和更新很困难。</p>
+<p class="translated">“将Kubernetes带给企业客户意味着解决他们希望如何运行it的需求。我们已经从OpenShift 3中看到，现在继续到OpenShift 4，政府客户和一些金融服务客户需要在空气间隙环境中运行，”Fernandes说。“今天，我想OpenShift上有超过1300个客户，其中一些包括政府客户，他们希望在飞机、轮船、潜艇等设备上运行它。这带来了挑战。”</p>
+<p class="translated">与任何非SaaS产品版本一样，让客户更新到最新版本也是一个挑战，Red Hat为此发布了迁移工具。</p>
+<p class="translated">“自我们发布以来，我们已经看到数百名客户安装了OpenShift 4，但还有更多客户仍在评估它并计划全面迁移，因为在他们的OpenShift 3部署中，他们可能有几十个集群。他们有许多大型环境，所以一般来说，这个过程是你在OpenShift 4上踢轮胎，理解它，并确保它会按照你想要的方式工作，”费尔南德斯说。</p>
+<p class="translated">他解释说，迁移工具将检查当前的OpenShift 3部署，发现所有的名称空间、pod和服务，然后允许用户选择他们想要迁移的部分。</p>
+<p class="translated">“最酷的是，它不仅仅是将应用程序移动到它上面。它有一个状态的概念，因此如果您的应用程序连接到存储，它可以移动存储卷或将它们重新连接到在您的OpenShift 4集群中运行的相同pods。这不仅仅是移动豆荚那么简单，”他说。</p>
+<p class="translated">最后，OpenShift 4.2还支持<a href="https://blog.openshift.com/red-hat-openshift-container-storage-4-driving-innovation-through-collaboration/" target="_blank" rel="noopener noreferrer external " class="ext-link"> OpenShift容器存储4 </a>，这是一个目前在测试版中可用的软件定义的存储栈。今天发布的OpenShift 4.2将在未来几周内推出，并可在try.openshift.com<a href="https://try.openshift.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">进行预览。</a></p>
+<p class="attribution translated">红帽是新堆栈的赞助商。</p>
+<p class="attribution translated">人物形象由<a href="https://unsplash.com/@zhang54213?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external ">张</a>在<a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash </a>上。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

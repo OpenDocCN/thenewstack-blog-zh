@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Reinforcing the Trust Factor for Cloud Foundry</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">增强云铸造的信任因素</h1>
+<blockquote>原文：<a href="https://thenewstack.io/reinforcing-trust-factor-cloud-foundry/#0001-01-01">https://thenewstack.io/reinforcing-trust-factor-cloud-foundry/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">直到最近，我在软件市场的位置还是在客户方面。听到一个又一个供应商声称他们提供给我的软件是“企业级”的，我变得相当厌倦。一个特别激进的供应商会声称其竞争对手没有提供“企业级软件”</p>
+<p class="translated">因此，我用这个短语来描述云铸造厂是不无讽刺的。</p>
+<p class="translated">让“企业级”一词与Cloud Foundry相关的是信任——具体来说，用户对我们社区的信任会导致采用率的增长。这种增长使Cloud Foundry迅速成为数十亿美元全球商业活动所依赖的平台。</p>
+<p class="translated">Cloud Foundry社区非常认真地承担起支持我们整个生态系统的责任。对我们来说，“企业级”可以归结为四个关键主题:它是一个高度安全的平台，它可以很好地集成到您的现有环境中，它是可扩展的和高性能的，它提供了一种出色的体验，使开发人员可以自由地创建令人惊叹的软件。</p>
+<p class="translated">云铸造正在企业中腾飞。在上次云铸造峰会的1650多名与会者中，超过三分之一的用户代表了好事达、康卡斯特、快递脚本、家得宝、威瑞森和大众等企业。我们从他们那里反复听到的是他们的公司如何使用Cloud Foundry作为他们转型的基础，如何更快地开发软件，如何应对使用多种云的挑战，以及如何确保他们的平台和应用程序能够很好地集成。这对任何关注这个领域的人来说都不是什么新闻，因为超过一半的财富500强都在使用云铸造。</p>
+<p class="translated">越来越多的企业软件要么基于开源，要么完全开源。这是一个似乎正在加速的趋势，很高兴看到这一点。然而，Cloud Foundry技术社区有一些独特之处:他们生产并向上游提交的是一个真正的企业级平台，它分布在我们的发行版生态系统及其客户中。</p>
+<p class="translated">Cloud Foundry社区努力确保提供一个在高度安全的环境中值得信赖的平台，这有两种形式:流程和设计。</p>
+<h2 class="translated">这一切都归结于信任</h2>
+<p class="translated">如果您试图从头开始构建一个像Cloud Foundry这样的平台，集成许多不同的开源或商业软件组件，您将面临大量的项目和产品来跟踪更新。软件，无论是开放的还是封闭的，都有漏洞。您应该问自己的问题是，当这些漏洞公开时，您的组织是否会做出响应。</p>
+<a href="https://www.cloudfoundry.org/" class="clearfix infoBlock " target="_blank">
+
+<div class="infoBlockTextBlock">
+<p class="infoBlockTitle translated">Chip Childers</p>
+<p class="infoBlockText translated">Chip在大规模计算和开源软件方面已经花了超过18年的时间。2015年，他成为云铸造基金会的联合创始人，担任技术参谋长。他是Apache CloudStack的第一任副总裁，在SunGard领导企业云服务时，他帮助推动了该平台的发展，后来又在Cumulogic担任产品战略副总裁。在SunGard之前，他领导了包括IRS.gov、USMint.gov、美林和SEI Investments在内的组织的任务关键型应用程序的重建工作。Chip是OSCON、LinuxCon North America、LC Japan、LC EU、ApacheCon、O ' Reilly Software Architecture Conference等活动的资深演讲者。在空闲时间，奇普喜欢带着他的黑色实验室徒步旅行，驾驶双体船和太阳鱼，并试图跟上他年轻的女儿。</p>
+</div>
+</a>
+<p class="translated">Cloud Foundry技术社区有一个独特的责任:确保整个平台，从操作系统开始，作为一个单一的发布集交付——协调、测试、频繁和及时。我们非常密切地跟踪用于构建Cloud Foundry的操作系统、基础架构组件、数据库甚至库的发布。当一个补丁出来时，它会很快进入发布过程。我们的整个生态系统充分利用了这一成果，包括下游商业发行版、基于Cloud Foundry的在线服务以及开源平台的直接用户。</p>
+<p class="translated">这种漏洞修补方法扩展到开发人员用来在平台上编写应用程序的语言和框架。总是使用最新构建包部署应用程序的用户可以获得每种语言的最新版本，从而改善他们的安全状况和体验。</p>
+<p class="translated">在设计方面，我们的社区一直专注于两个独立的领域:减轻开发人员编写安全应用程序的负担，以及确保我们的平台具有一些世界上最安全的环境所需的安全功能。</p>
+<p class="translated">这意味着所有的通信都经过加密和适当的保护，并且应用程序具有可靠的身份。这种安全性扩展到了容器级别。我们的<a href="https://docs.cloudfoundry.org/concepts/architecture/garden.html" class="ext-link" rel="external "> Garden </a>团队有一个长期的目标，那就是成为“多租户应用平台最安全的容器运行时”我们是Docker之外的第一批社区，接受并完全采用了来自开放容器倡议的runC库。在这个行业标准的基础上，我们通过默认启用关键的内核级特性来确保每个容器都受到保护:通过cgroups、用户名间距、AppArmor和seccomp的资源约束。</p>
+<p class="translated">作为一个社区，我们正在酝酿一个凭证管理产品，它将被深度集成到平台的其余部分:<a href="https://github.com/cloudfoundry-incubator/credhub" class="ext-link" rel="external "> CredHub </a>。您需要一个地方来生成、加密、存储，甚至在平台和应用程序中提供凭证轮换。CredHub允许管理员、基础设施本身和应用程序本身根据访问控制和生命周期策略访问适当的凭证。</p>
+<p class="translated">由于Cloud Foundry社区对安全性的关注，该平台出现在高度安全、高度监管的环境中，甚至以非常公开的方式出现。拿18F来说，<a href="https://18f.gsa.gov/2017/02/27/to-get-things-done-you-need-great-secure-tools/" class="ext-link" rel="external ">美国政府服务管理局技术事务办公室</a>。当18f获得了<a href="https://www.fedramp.gov/" class="ext-link" rel="external "> FedRAMP </a>对<a href="https://cloud.gov/" class="ext-link" rel="external ">cloud.gov</a>的认证(这并不是一件容易的事情)时，它的人们公开分享了他们如何利用这个纯粹的开源平台，并为其获得政府机构的使用授权而努力。</p>
+<h2 class="translated">很好地集成到企业中</h2>
+<p class="translated">当今的企业在一个复杂的世界中工作，拥有多个平台和多个抽象级别，包括虚拟机、容器、PaaS抽象、事件驱动的框架。我们希望这些不同的系统能够很好地协同工作，不管你做出什么样的选择。因为Cloud Foundry被设计成允许从任何地方获得支持服务，所以我们处于一个很好的位置来帮助从旧的过渡到新的。我们的<a href="https://thenewstack.io/cloud-foundrys-vision-services-ecosystem-transcends-containers/" class="local-link"> Open Service Broker API项目</a>允许我们与其他开源社区和生态系统共享这个关键抽象。这个API在Cloud Foundry峰会期间作为跨生态系统的成果首次正式发布，在整个行业中的重要性日益增加。</p>
+<p class="translated">另一个对企业非常重要的领域是微软的技术堆栈。我们与微软的关系——现在是Cloud Foundry Foundation的黄金会员——始于<a href="https://github.com/IronFoundry" class="ext-link" rel="external "> IronFoundry </a>，这是Windows上第一个Cloud Foundry的实现，旨在支持。NET框架。从那以后，我们一直致力于改进对整个微软技术体系的支持和集成。BOSH是我们的部署和操作层，它现在可以像管理Linux主机一样运行和管理Windows主机。</p>
+<p class="translated">这是我们关注集成的另一个例子:Kubo，一个由Google和Pivotal发起的项目，现在是一个基金会项目，它将Kubernetes打包，由BOSH进行部署和管理。对于某些工作负载，Kubernetes更倾向于将容器作为主要的抽象。我们的目标是确保Kubernetes和Cloud Foundry运行时能够很好地相互集成。</p>
+<p class="translated">除此之外，谷歌和微软身份提供商最近与我们的<a href="https://github.com/cloudfoundry/uaa" class="ext-link" rel="external ">用户帐户和认证服务器(UAA) </a>模块进行了集成，Cloud Foundry继续增强集成能力的轨迹变得清晰起来。</p>
+<h2 class="translated">大规模高性能</h2>
+<p class="translated">很明显，云铸造在大型组织中的使用已经从部门利益转移到业务范围的采用，通常是有机的。例如，Comcast参与Cloud Foundry的规模很小，但很快扩大到平台上的1，000多名开发人员，支持10，000多种应用程序。这一采用率推动了我们在社区项目团队中的扩展和性能工作。</p>
+<p class="translated">在2016年末，我们的社区成功完成了平台的规模测试，达到了250，000个完全可操作(即非平凡)的容器，包括各种具有不同特征的应用程序大小。这些测试工作负载中有许多是专门设计来将故障注入系统、使其失败并自行关闭的。这让我们不仅可以测试配置，还可以测试平台大规模管理这些应用运行状况的能力。</p>
+<p class="translated">我们在大规模提高性能方面的工作超越了平台的控制平面，延伸到了应用的数据路径(我们的路由层)和遥测的数据路径(我们的日志和指标管道)。在去年2月的一次发布中，路由项目团队成功地将路由层的吞吐量提高了三倍多，延迟为5毫秒。一次又一次的发布，这个团队成功地提高了吞吐量。</p>
+<h2 class="translated">令人愉悦的学习平台</h2>
+<p class="translated">关于软件平台的企业就绪性的讨论通常集中在IT部门要求的功能性和非功能性需求上。不幸的是，在努力适应每个潜在客户的不同需求时，用户体验通常会受到影响。我们当中有多少人遇到过完全无法使用的所谓“企业软件”，尽管所有的IT需求框都被勾选了？</p>
+<p class="translated">开发者体验(DX)绝对是Cloud Foundry社区的重中之重。毕竟，如果DX不满意，我们帮助企业开发人员更快发展的目标就无法实现。全球成千上万的开发者欣赏这种专注，但我们知道我们可以做得更多。</p>
+<p class="translated">从新用户到有经验的用户，我们一直听到的一个主要问题是，Cloud Foundry需要本地开发人员的笔记本电脑体验。在Cloud Foundry Summit上，我有幸强调了名为<strong> cflocal </strong>的社区创建项目。该项目将Cloud Foundry经验与您的本地环境相集成，同时帮助您实现更高效的本地开发流程。开发人员现在可以用构建包准备他们的应用程序，包括本地和远程支持服务，并在本地运行它们。他们还可以从远程Cloud Foundry环境中推送和提取应用，帮助进行故障排除和调试。</p>
+<p class="translated">我们期望看到对核心云铸造开发者体验的演变的重新关注。例如，今天的用户经常利用CLI插件来编排复杂的分布式系统部署模式(例如，金丝雀节点部署、蓝/绿部署)。Cloud Foundry v3 APIs开始成形，为该平台提供了原生支持这些部署模式的可能性。</p>
+<p class="translated">引用Cloud Foundry Runtime负责人Dieu Cao的话来说，我们社区的新目标是在<strong> cf push </strong>体验成功的基础上，提供一个“令人愉悦的学习平台”我们将在我们的项目仍然符合我们生态系统的“企业级”需求的情况下完成所有这些工作。</p>
+<p class="attribution translated"><a href="https://www.cloudfoundry.org/" class="ext-link" rel="external ">云铸造基金会</a>是新堆栈的赞助商</p>
+<p class="attribution translated">专题图片:<a href="http://maxpixel.freegreatpicture.com/Clouds-Sky-Chimney-Industry-Power-Plant-Factory-1351294" class="ext-link" rel="external ">多云天空下的发电厂</a>由Max Pixel提供，在Creative Commons Zero许可下发布。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

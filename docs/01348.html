@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>How to Create and Destroy ZFS Snapshots on Ubuntu 19.10</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">如何在Ubuntu 19.10上创建和销毁ZFS快照</h1>
+<blockquote>原文：<a href="https://thenewstack.io/how-to-create-and-destroy-zfs-snapshots-on-ubuntu-19-10/#0001-01-01">https://thenewstack.io/how-to-create-and-destroy-zfs-snapshots-on-ubuntu-19-10/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">正如我们上周提到的<a href="/ubuntu-19-10-promises-an-improved-experience-for-ai-ml-developers/" target="_blank">，</a><a href="https://ubuntu.com/download" class="ext-link" rel="external "> Ubuntu 19.10 </a>已经正式到来，它带来了许多真正令人兴奋的功能。尽管这些新选项中的大部分是针对桌面用户的，但有一个特别令人兴奋的特性将使桌面和服务器用户都受益。该功能是ZFS支持的。</p>
+<p class="translated">最初由<a href="/sun-microsystems-a-look-back-at-a-tech-company-ahead-of-its-time/" target="_blank"> Sun Microsystems </a>为其<a href="https://en.wikipedia.org/wiki/ZFS" class="ext-link" rel="external ">Solaris Unix发行版</a>开发的ZFS是一个128位文件系统和逻辑卷管理器的组合，它提供以下特性:</p>
+<ul>
+<li class="translated">是可扩展的。</li>
+<li class="translated">支持高存储容量和更高效的数据压缩。</li>
+<li class="translated">包括快照和回滚。</li>
+<li class="translated">支持写入时拷贝克隆。</li>
+<li class="translated">进行连续的完整性检查和自动修复。</li>
+<li class="translated">128位寻址</li>
+<li class="translated">还有更多。</li>
+</ul>
+<p class="translated">问任何管理员，他们都会同意ZFS的加入对Ubuntu来说是一件大事。为什么？仅快照和回滚功能就值入门费(顺便说一下，这是免费的)。借助此功能，管理员可以将系统回滚到工作状态(或包含意外删除的数据的状态)。这是一件大事。</p>
+<p class="translated">当然，快照和回滚并不是新事物。事实上，许多平台已经包含这个工具很多年了。所以也许Ubuntu在这方面有点落后。但是对于任何使用Ubuntu的人来说，这是一个“迟到总比不到好”的例子。</p>
+<p class="translated">但是ZFS是如何在Ubuntu上工作的呢？很高兴你问了。让我展示给你看。</p>
+<h3 class="translated">警告</h3>
+<p class="translated">在深入研究之前，要知道Ubuntu 19.10中的ZFS支持是实验性的。尽管我发现它非常稳定，但在生产环境中使用它时，您可能会三思而行(直到它不再被列为“实验性的”)。</p>
+<p class="translated">另外，请注意，ZFS支持目前仅在桌面版本安装期间提供。这并不意味着您不能在服务器版本上添加对文件系统的支持，但是事情并不那么简单。正因为如此，我将在Ubuntu 19.10的桌面版上进行演示。</p>
+<h3 class="translated">装置</h3>
+<p class="translated">第一步是在安装Ubuntu 19.10时启用ZFS。在安装过程中，您会在安装类型阶段发现一个新选项(<b>图1 </b>)。</p>
+<div id="attachment_8991636" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8991636" decoding="async" loading="lazy" class="wp-image-8991636 size-full" src="../Images/1a9f239631933fb41b39a7765dfe55ae.png" alt="" data-id="8991636" data-original-src="https://cdn.thenewstack.io/media/2019/10/eea12793-zfsa.jpg"/><p id="caption-attachment-8991636" class="wp-caption-text translated">图1:在安装期间选择ZFS选项。</p></div>
+<p class="translated">安装完成后，重新启动并登录。</p>
+<p class="translated">如果你使用的是Ubuntu 19.10的服务器版本，你总是可以用命令安装ZFS支持:<br/></p>
+<div id="crayon-64231238e4be4710628983" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">sudo </span><span class="crayon-i">apt</span>-<span class="crayon-e">get </span><span class="crayon-e">install </span><span class="crayon-i">zfsutils</span>-<span class="crayon-v">linux</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>当然，如果你走这条路，你必须采取一些额外的步骤(比如创建数据集)。对于桌面安装，您会发现整个目录层次结构都由ZFS数据集组成，因此需要做的工作要少得多。</p>
+<h2 class="translated">与ZFS的第一步</h2>
+<p class="translated">登录到桌面后，您会希望打开一个终端窗口并获得数据集列表。对于不使用ZFS的Ubuntu安装，您通常会使用/home/jack或/usr/local/这样的目录路径。启用ZFS的系统则不是这样。相反，他们使用数据集。数据集是一种共享存储池(ZFS最基本的构造块)的文件系统。</p>
+<p class="translated">要查找数据集，发出命令:<br/></p>
+
+
+<p class="translated"><br/>正如您所见(在<b>图2 </b>)，每个目录都可以在bpool(引导)或rpool(根)池中找到。<b> </b></p>
+<div id="attachment_8991632" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8991632" decoding="async" loading="lazy" class="wp-image-8991632 size-full" src="../Images/afe022e098f6b7989015823f91861703.png" alt="" data-id="8991632" data-original-src="https://cdn.thenewstack.io/media/2019/10/417c78d7-zfsa.jpg"/><p id="caption-attachment-8991632" class="wp-caption-text translated">图2:我们的数据集列表。</p></div>
+<p class="translated">让我们使用用户的主目录。在这种情况下，数据集<i>r pool/user data/jack _ bw cn 4 u</i>。</p>
+<h2 class="translated">创建快照</h2>
+<p class="translated">我们要做的第一件事是创建/home/jack目录的新快照(记住，它是<i>rpool/user data/jack _ bw cn 4 u</i>数据集)。假设我们想要创建一个用今天的日期标记的快照。这个命令应该是:<br/></p>
+<div id="crayon-64231238e4c08432551907" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">sudo </span><span class="crayon-e">zfs </span><span class="crayon-e">snapshot </span><span class="crayon-i">rpool</span>/<span class="crayon-i">USERDATA</span>/<span class="crayon-i">jack_bwcn4u</span>@<span class="crayon-i">FRIDAY10</span>-<span class="crayon-cn">18</span>-<span class="crayon-cn">19</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>你可以这样包含<i>日期</i>命令:<br/></p>
+<div id="crayon-64231238e4c09505355676" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">sudo </span><span class="crayon-e">zfs </span><span class="crayon-e">rollback </span><span class="crayon-i">rpool</span>/<span class="crayon-i">USERDATA</span>/<span class="crayon-i">jack_bwcn4u</span>@`<span class="crayon-i">date</span><span class="crayon-h"> </span>+%<span class="crayon-m">F</span>`
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>要验证是否拍摄了快照，请发出命令:<br/></p>
+
+
+<p class="translated"><br/>您应该会看到列出的所有当前快照(<b>图3 </b>)。</p>
+<div id="attachment_8991633" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8991633" decoding="async" loading="lazy" class="wp-image-8991633 size-full" src="../Images/8ba89d20acc54ecb1cea2a2753ce59e4.png" alt="" data-id="8991633" data-original-src="https://cdn.thenewstack.io/media/2019/10/4a45d42d-zfs2.jpg"/><p id="caption-attachment-8991633" class="wp-caption-text translated">图3:我们的新快照已经创建。</p></div>
+<h2 class="translated">回滚快照</h2>
+<p class="translated">假设，不管出于什么原因，某个目录被意外地从主目录中删除了。你是做什么的？幸运的是，您已经创建了一个快照，并且可以回滚该快照，这样删除的目录就会返回。</p>
+<p class="translated">首先，让我们用命令删除~/Documents目录:<br/></p>
+<div id="crayon-64231238e4c0b417410368" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">rm</span><span class="crayon-h"> </span>-<span class="crayon-i">rf</span><span class="crayon-h"> </span>/<span class="crayon-i">home</span>/<span class="crayon-i">jack</span>/<span class="crayon-v">Documents</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>发出<i> ls </i>命令，可以看到文档目录不见了(<b>图4 </b>)。</p>
+<div id="attachment_8991634" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8991634" decoding="async" loading="lazy" class="wp-image-8991634 size-full" src="../Images/fa1071688d497434740a23481545d7be.png" alt="" data-id="8991634" data-original-src="https://cdn.thenewstack.io/media/2019/10/f438b044-zfs3.jpg"/><p id="caption-attachment-8991634" class="wp-caption-text translated">我们的文档目录已被删除。</p></div>
+<p class="translated">现在，我们将回滚星期五的快照以恢复该目录。为此，发出命令:<br/></p>
+<div id="crayon-64231238e4c0c723484349" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">sudo </span><span class="crayon-e">zfs </span><span class="crayon-e">rollback </span><span class="crayon-i">rpool</span>/<span class="crayon-i">USERDATA</span>/<span class="crayon-i">jack_bwcn4u</span>@<span class="crayon-i">FRIDAY10</span>-<span class="crayon-cn">18</span>-<span class="crayon-cn">19</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>命令完成后，再次发出<i> ls </i>查看文件已返回(<b>图5 </b>)。</p>
+<div id="attachment_8991660" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8991660" decoding="async" loading="lazy" class="wp-image-8991660 size-full" src="../Images/62c63667ccbb3112cc58e951e94dc4e8.png" alt="" data-id="8991660" data-original-src="https://cdn.thenewstack.io/media/2019/10/ce78df02-zfs4.jpg"/><p id="caption-attachment-8991660" class="wp-caption-text translated">图5:文档又回来了。</p></div>
+<h2 class="translated">销毁快照</h2>
+<p class="translated">假设您创建了许多快照，或者某个特定的快照有损坏或丢失的数据。您可能需要删除该快照。假设我们要删除<i>rpool/user data/jack _ bwcn 4 u @ Friday 10-18-19</i>快照。为此，命令应该是:<br/></p>
+<div id="crayon-64231238e4c0f818285935" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">sudo </span><span class="crayon-e">zfs </span><span class="crayon-e">destroy </span><span class="crayon-i">rpool</span>/<span class="crayon-i">USERDATA</span>/<span class="crayon-i">jack_bwcn4u</span>@<span class="crayon-i">FRIDAY10</span>-<span class="crayon-cn">18</span>-<span class="crayon-cn">19</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>一旦销毁了快照，就无法恢复，因此请小心使用该命令。如果你碰巧有一个特别重要的快照，你不想销毁它，你可以把它保留下来。要暂停我们的<i>rpool/user data/jack _ bwcn 4 u @ Friday 10-18-19</i>快照，您可以发出命令:<br/></p>
+<div id="crayon-64231238e4c10739871347" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">sudo </span><span class="crayon-e">zfs </span><span class="crayon-e">hold </span><span class="crayon-e">keep </span><span class="crayon-i">rpool</span>/<span class="crayon-i">USERDATA</span>/<span class="crayon-i">jack_bwcn4u</span>@<span class="crayon-i">FRIDAY10</span>-<span class="crayon-cn">18</span>-<span class="crayon-cn">19</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>现在，如果您尝试销毁该快照，您将看到一个错误(<b>图6 </b>)。</p>
+<div id="attachment_8991661" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8991661" decoding="async" loading="lazy" class="wp-image-8991661 size-full" src="../Images/193c15d75805ceeaf0b86717e488a9ab.png" alt="" data-id="8991661" data-original-src="https://cdn.thenewstack.io/media/2019/10/3e91b173-zfs5.jpg"/><p id="caption-attachment-8991661" class="wp-caption-text translated">图6:无法销毁此快照。</p></div>
+<p class="translated">要销毁保存的快照，您必须像这样添加-d选项:<br/></p>
+<div id="crayon-64231238e4c11926015476" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h">&lt;</span><span class="crayon-m">i</span><span class="crayon-h">&gt;</span><span class="crayon-e">sudo </span><span class="crayon-e">zfs </span><span class="crayon-i">destroy</span><span class="crayon-h"> </span>-<span class="crayon-r">d</span><span class="crayon-h"> </span><span class="crayon-i">rpool</span>/<span class="crayon-i">USERDATA</span>/<span class="crayon-i">jack_bwcn4u</span>@<span class="crayon-i">FRIDAY10</span>-<span class="crayon-cn">18</span>-<span class="crayon-cn">19</span><span class="crayon-h">&lt;</span>/<span class="crayon-m">i</span><span class="crayon-h">&gt;</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>就这样，held住的快照没了。</p>
+<p class="translated">这就是Ubuntu 19.10中新增的ZFS功能创建和销毁快照的基础。在测试环境中尝试一下，看看效果如何。到目前为止，我只发现了一个问题，即在尝试回滚快照时，我必须重新启动机器，回滚命令才能成功运行。除了这个问题，ZFS和Ubuntu 19.10都很顺利。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

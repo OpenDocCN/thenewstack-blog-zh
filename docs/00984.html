@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Single Sign-On for Kubernetes: An Introduction</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Kubernetes的单点登录:简介</h1>
+<blockquote>原文：<a href="https://thenewstack.io/kubernetes-single-sign-one-less-identity/#0001-01-01">https://thenewstack.io/kubernetes-single-sign-one-less-identity/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://pusher.com/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle"> Joel Speed，云基础架构工程师，推动者</p> <p class="infoBlockText"> Joel Speed是一名DevOps工程师，在Kubernetes工作了最后一年。他从事软件开发已经超过3年，目前正在帮助Pusher构建他们的内部Kubernetes平台。最近，他一直专注于改善Kubernetes内部的自动伸缩、弹性、身份验证和授权的项目，并为Pusher的工程团队构建了一个ChatOps机器人Marvin。在学习期间，他深入参与了沃里克学生电影院，将他们的基础设施集装箱化，并定期放映电影。</p> </div> </a></p><p class="translated">我不是世界上最有条理的人。对我来说，必须记住我个人和工作访问的服务的大量登录变成了一场噩梦。</p>
+<p class="translated">每当我注册一个新网站时，我会立即寻找“登录…”链接，看看它是否能从谷歌或脸书等网站获取我的详细信息。我发现单点登录体验是一种享受，它让我不必创建更多的帐户，并减少了我一天中必须登录的次数。</p>
+<p class="translated">作为<a href="https://pusher.com" target="_blank" rel="noreferrer  noopener external" data-target-href="https://pusher.com" class="ext-link"> Pusher </a>的云工程师，我每天都和Kubernetes一起工作。有一段时间，使用我们的Kubernetes集群进行身份验证远不是理想的单点登录体验。自Kubernetes之旅开始以来，我们一直使用单一的共享证书进行身份验证，但我们希望让每个工程师都有自己的证书。为此，我开始让我们的Kubernetes登录体验变得简单易用，就像我从其他服务中熟悉的“登录”体验一样。</p>
+<p class="translated">Kubernetes的一大优点是它完全分离了身份验证和授权。身份验证(Authn)意味着识别用户身份的行为，授权(Authz)意味着确定用户是否被允许执行某些操作的行为。这可以从护照和签证的角度考虑。在边境检查站，他们检查我的护照(Authn ),看看我是不是我声称的那个人，然后他们检查我的签证(Authz ),上面写着我可以去他们的国家旅行。</p>
+<p class="translated">在这篇文章中，我将讨论Kubernetes中的身份验证，特别是它的单点登录方法。我不会详细介绍我们的具体设置，但是，我会接着写一篇更具技术性的文章，解释我们当前的身份验证流程，以及您可以如何自己进行配置。</p>
+<h2 data-usually-unique-id="550507331384479003041693" class="translated">Kubernetes支持哪些认证方式？</h2>
+<p class="translated">对于与API交互的工程师，Kubernetes有三种主要的身份验证方法。有一个<a href="https://kubernetes.io/docs/admin/authentication/" target="_blank" rel="noreferrer  noopener external" data-target-href="https://kubernetes.io/docs/admin/authentication/" class="ext-link">页面</a>列出了更多的身份验证方法，但是下面的三种是用户身份验证更常用的方法。</p>
+<h3 class="translated">静态密码</h3>
+<p class="translated">这也称为基本身份验证。这不能很好地扩展，因为添加新用户需要更新每个API服务器节点上的文件，然后重新启动每个API服务器。我们很快就排除了这种方法。</p>
+<h3 class="translated">X.509客户端证书</h3>
+<p class="translated">使用这种方法，每个开发人员都有自己的证书，在建立连接时，他们会将证书提交给API服务器。然后，API服务器验证证书，并使用证书中的信息来识别该会话的用户。</p>
+<p class="translated">证书身份验证存在一些问题:</p>
+<ul>
+<li class="translated">证书有一个到期时间，该时间是在颁发证书时设置的。他们将验证用户直到这个时候(无论如何没有<a href="https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol" target="_blank" rel="noreferrer  noopener external" data-target-href="https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol" class="ext-link"> OCSP </a>)。</li>
+<li class="translated">证书必须由某个公共证书颁发机构(CA)签名。Kubernetes需要此CA证书的副本来验证客户端证书。如果您允许访问这些CA证书的人签署他们自己的证书，他们将能够授予他们自己想要的任何组凭据或身份。这将允许特权升级，因此您必须设法集中颁发证书。</li>
+<li class="translated">颁发证书并不容易，因此这些证书通常具有很长的有效期。</li>
+<li class="translated">在浏览器中提供认证证书是很困难的，例如对于K8s仪表板。</li>
+</ul>
+<p class="translated">虽然这种解决方案会给我们提供可单独识别的用户，但它似乎不是非常用户友好，所以我决定尝试找到一种更简单的解决方案。</p>
+<h3 class="translated">OpenID连接(OIDC)</h3>
+<p class="translated">OIDC是Kubernetes对单点登录的回答。但是，这是一个很大的但是，目前很少有提供商支持OIDC。虽然这个选项最初看起来很糟糕，但看起来我们似乎可以不用为每个工程师创建新的登录帐户，因此，这是我的团队选择进一步研究的途径。</p>
+<h2 data-usually-unique-id="056053561196903326161419" class="translated">什么是开放ID连接？</h2>
+<p class="translated">在Pusher，我们使用谷歌的G套件来托管我们的电子邮件，因此，如果我们能够建立一个由谷歌支持的单点登录，每个工程师都可以使用一个登录。由于谷歌支持OIDC作为他们平台的一部分，我们决定调查OIDC是什么和它是如何工作的。</p>
+<p class="translated">OpenID Connect基于OAuth 2.0。然而，它在设计时更多地考虑了身份验证。OIDC的明确目的是生成所谓的id-token。</p>
+<p class="translated">这个id-token采用JSON Web Token或<a href="https://jwt.io/" target="_blank" rel="noreferrer  noopener external" data-target-href="https://jwt.io/" class="ext-link"> JWT </a>(发音为jot)的形式，可能看起来像这样:<br/></p>
+<div id="crayon-64223939e004f037272767" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span><span class="crayon-st">.</span><span class="crayon-i">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9</span><span class="crayon-st">.</span><span class="crayon-v">TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>这个字符串实际上由三部分组成，每一部分都是Base64编码的JSON。第一部分为令牌提供元数据。第二部分提供身份信息，称为有效载荷。第三部分是签名，用于验证令牌是由可信方颁发的。</p>
+<p class="translated">如果你解码有效载荷，它可能看起来像这样:<br/></p>
+<div id="crayon-64223939e0055077063358" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-s">"iss"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://auth.pusherplatform.io/dex"</span>,
+<span class="crayon-s">"sub"</span>:<span class="crayon-h"> </span><span class="crayon-s">"ChUxMDk0MzA2MjQwNTcwNDc3MDE4MTkSBmdvb2dsZQ"</span>,
+<span class="crayon-s">"aud"</span>:<span class="crayon-h"> </span><span class="crayon-s">"kubernetes"</span>,
+<span class="crayon-s">"exp"</span>:<span class="crayon-h"> </span><span class="crayon-cn">1519123284</span>,
+<span class="crayon-s">"iat"</span>:<span class="crayon-h"> </span><span class="crayon-cn">1519036884</span>,
+<span class="crayon-s">"at_hash"</span>:<span class="crayon-h"> </span><span class="crayon-s">"X2G33w55vEm39VwyOMMjzg"</span>,
+<span class="crayon-s">"email"</span>:<span class="crayon-h"> </span><span class="crayon-s">"joel.speed@pusher.com"</span>,
+<span class="crayon-s">"email_verified"</span>:<span class="crayon-h"> </span><span class="crayon-i">true</span>,
+<span class="crayon-s">"name"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Joel Speed"</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>有效负载包含识别发起OIDC登录流的用户的信息。它通常包含他们的姓名和电子邮件，但也可能包括额外的信息，如他们的组成员。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4280220" src="../Images/1cf2a34dda4bf83c9f560085279ba425.png" alt="" data-id="4280220" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/2a24c4ec-image_preview2.png"/></p>
+<p class="translated">生成这些令牌的正常过程与<a href="https://oauth.net/2/" class="ext-link" rel="external "> OAuth 2.0 </a>中的过程非常相似:</p>
+<ol start="1">
+<li class="translated">用户点击网站上的登录按钮，</li>
+<li class="translated">网站将他们重定向到身份提供者，</li>
+<li class="translated">浏览器加载身份提供者登录屏幕，</li>
+<li class="translated">用户使用他们的用户名和密码登录，</li>
+<li class="translated">身份提供商使用查询字符串中的身份验证代码将它们重定向回网站，</li>
+<li class="translated">浏览器在查询字符串中加载带有验证码的网站，</li>
+<li class="translated">网站服务器将代码交换为ID令牌。</li>
+</ol>
+<p class="translated">一旦服务器有了这个令牌，它可以使用它来验证用户本身，或者它可以将它提供给用户，以便他们可以将它提供给信任身份提供者的其他服务。</p>
+<p class="translated">Kubernetes本身不提供任何用于OIDC认证的登录网站。只有当你从其他途径获得令牌时，它才会消耗这些令牌。这可能会让您想知道Kubernetes和身份提供者之间的信任关系是在哪里形成的。</p>
+<p class="translated">如前所述，令牌的第三部分是签名，由OIDC提供者生成的每个ID令牌都用加密密钥(通常是RS256，由提供者定期生成和轮换)进行签名。通过向Kubernetes提供OIDC提供商的URL，Kubernetes可以检索这个密钥的公开部分，并验证令牌确实是由OIDC提供商签名的。此时，Kubernetes将接受令牌，并信任令牌关于用户身份的声明。</p>
+<h2 data-usually-unique-id="382093928285689659993732" class="translated">OIDC的局限性</h2>
+<p class="translated">虽然OIDC离“好”的登录体验更近了一步，但它也有其局限性。</p>
+<p class="translated">id-token一旦生成就不能撤销。与颁发auth证书非常相似，id-token有一个截止时间，它将对用户进行身份验证，直到该时间到来。这意味着令牌通常只发放1小时，但一些提供商确实支持刷新令牌的请求。可以使用刷新令牌(通常是无限期的)来授予新的id令牌并继续使用服务。</p>
+<p class="translated">另一个问题是缺乏支持，Kubernetes文档只列出了三个提供商，如果你没有使用Salesforce、Azure AD或Google中的一个，那么就没有内置的SSO体验。</p>
+<h2 data-usually-unique-id="896970838701191370172366" class="translated">介绍Dex</h2>
+<p class="translated">在调查OIDC的时候，我偶然发现了CoreOS的一个开源产品，它可以帮助解决这些问题。</p>
+<p class="translated"><a href="https://github.com/coreos/dex" target="_blank" rel="noreferrer  noopener external" data-target-href="https://github.com/coreos/dex" class="ext-link"> Dex </a>在认证链中充当中间人。它成为Kubernetes的身份提供者和ID令牌的发行者，但它本身没有任何身份感。相反，它允许您配置上游身份提供者来提供用户的身份。</p>
+<p class="translated">和任何OIDC提供商一样，Dex支持从GitHub、GitLab、SAML、LDAP和微软获取用户信息。它的提供者插件极大地增加了与现有用户管理系统集成的可能性。</p>
+<p class="translated">Dex带来的另一个优势是能够控制ID令牌的发布，例如指定生命周期。它还使得强制您的组织重新进行身份认证成为可能。使用Dex，您可以轻松地撤销所有令牌，但是无法撤销单个令牌。</p>
+<p class="translated">Dex还为用户处理刷新令牌。当用户登录Dex时，他们可能会被授予一个id令牌和一个刷新令牌。当id-token过期时，kubectl之类的程序可以使用这些刷新令牌来重新认证用户。因为这些令牌是由Dex发布的，所以这允许您通过撤销特定用户的刷新令牌来停止他们的刷新。这在丢失笔记本电脑或手机的情况下非常有用。</p>
+<p class="translated">此外，通过使用像Dex这样的中央认证系统，您只需要配置一次上游提供者。我们有一个设置，我们的上游身份提供者只知道Dex。然后，Dex有多个客户端对内部网站的用户进行身份验证，特别是我们集群上的Kubernetes APIs。</p>
+<p class="translated">这种设置的一个优点是，如果任何用户想要向SSO系统添加新的服务，他们只需要向我们的Dex配置打开一个PR。此设置还在上游身份提供者中为用户提供了一键“撤销访问”功能，以撤销他们对我们所有内部服务的访问。同样，这在出现安全漏洞或笔记本电脑丢失时非常有用。</p>
+<p class="translated">通过使用Dex作为Pusher的中间身份提供者，我们现在可以对用户身份令牌的发布和撤销进行细粒度的控制。然而重要的是，用户不需要管理另一个身份。</p>
+<h2 data-usually-unique-id="826650900265346320363702" class="translated">结论</h2>
+<p class="translated">当审查我们的选择时，我和我的团队决定我们确实将使用OIDC进行我们的Kubernetes认证。我们喜欢这个想法，我们可以使用我们的G套件帐户，并认为这对我们的工程师来说比在他们到达时颁发证书更容易。我们还喜欢Dex提供的控制，它不仅允许我们将令牌生命周期设置得非常短，还允许我们控制工程师会话，如果需要，还允许我们将用户从集群中注销。</p>
+<p class="translated">OIDC让我们更接近于为我们的工程师提供用户友好的登录体验，并允许我们开始限制他们使用RBAC访问。</p>
+<p class="translated">在我的下一篇文章中，我将更详细地解释Pusher中设置的特定SSO。我将详细介绍用户如何生成他们自己的ID令牌，以及他们在命令行和web浏览器中的身份验证体验。然后，我将更详细地解释如何在您自己的组织中复制这种经验。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

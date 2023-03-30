@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Thinking About a Robotic Coffee Maker</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:思考机器人咖啡机</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-thinking-robotic-coffee-maker/#0001-01-01">https://thenewstack.io/off-shelf-hacker-thinking-robotic-coffee-maker/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">最近，一个开发机器人咖啡机的请求在晚餐时浮出水面。我们需要一些东西来赞美“Stackie”，这是新Stack的PancakeBot，一种用于在会议上推广播客和煎饼早餐的3D煎饼打印机。将一个引人注目的自动化咖啡递送设备与Stackie配对，可以帮助人们在清晨的播客小组讨论中进行交谈。</p>
+<p class="translated">将这个模糊的概念转化为一个可行的物理计算装置是一个挑战。</p>
+<p class="translated">解决方案:应用<a href="/tag/off-the-shelf-hacker/" target="_blank">现成的黑客</a>技术！</p>
+<h2 class="translated">最小可行原型101</h2>
+<p class="translated">不管是有意识的还是无意识的，我总是在通往一个功能性的最小可行原型(MVP)的路上经历以下步骤:</p>
+<ul>
+<li class="translated">头脑风暴/研究。</li>
+<li class="translated">初始设计和布局。</li>
+<li class="translated">原型。</li>
+<li class="translated">测试。</li>
+<li class="translated">公开演示/使用。</li>
+<li class="translated">反馈、分析、最佳实践、操作方法文章、讲座、事后分析。</li>
+<li class="translated">决定新功能/变化，对于2.0版，从第1步开始重复。</li>
+</ul>
+<p class="translated">请记住，这个过程经常在不同的主题之间摇摆，当然不是一个线性过程。当你经历这个过程的各个步骤时，给自己梦想的自由，让想法在你的头脑中滚动。养成在“黑客笔记本”上记录自己想法的习惯记录想法、对话、设计并做笔记。在你的超级手机上使用高分辨率摄像头。我故事中的许多图片都来自于在项目的探索和构建阶段用我的手机快速拍摄的照片。</p>
+<p class="translated">在开发咖啡机器人时，我们将松散地遵循现成的黑客MVP列表。</p>
+<h2 class="translated">我们能改变什么吗？</h2>
+<p class="translated">扎实的研究和头脑风暴要求我们检查并看看世界上是否有现有的小工具可以满足需求。使用“现有技术”是由来已久的黑客传统。虽然网络可能会也可能不会带来完美甚至可能的解决方案，但探索产品和其他人的发明是帮助你集思广益设计和考虑可能性的好方法。确保在你的黑客笔记本上记下笔记和缩略图，这样你就不会忘记一些有趣的事情。</p>
+<p class="translated">咖啡机器人最近已经进入了公众的视野。例如，CNET在一月份的2017年<a href="http://www.ces.tech/" class="ext-link" rel="external ">消费电子展</a>上有一个关于咖啡服务机器人的<a href="https://www.cnet.com/news/the-battle-of-the-ces-2017-coffee-and-tea-robots/" class="ext-link" rel="external ">故事</a>。博世、奥博、电装用大臂和各种接口为与会者冲咖啡。这些机器只是有点太远了，无法与我们卑微的斯塔基煎饼打印机相匹配。</p>
+<p class="translated"><a href="https://hackaday.com/tag/coffee-maker/" class="ext-link" rel="external "> Hackaday发表了一篇文章</a>讲述了在<a href="http://hack.osu.edu/" class="ext-link" rel="external ">俄亥俄州黑客OHI/O 24小时黑客马拉松</a>上的一些人，他们制作了一个可爱的小咖啡机器人，有几个伺服系统，一个树莓派和一个Arduino。他们计划在某个时候将Alexa集成到设备中。机器的顶部有一张脸，盖子会自动打开，有点像嘴。它还将过滤器插入到机器中，带有伺服系统，因此设计更接近我认为我们想要的。</p>
+<p class="translated">在<a href="https://www.hackster.io/" class="ext-link" rel="external "> Hackster </a>社区论坛上，一些用户展示了一台<a href="https://www.hackster.io/bastiaan-slee/coffee-machine-amazon-alexa-raspberry-pi-cbc613" class="ext-link" rel="external "> Alexa指导的咖啡机</a>实际上可以工作。他们用的是树莓派和飞利浦Senseo咖啡机。构建相当复杂，需要在Senseo内部的Pi和电路板之间进行大量黑客攻击。他们做得很好，尽管我认为我们需要一些更生动的东西。</p>
+<p class="translated">在我的初步研究中，我有了一个倒咖啡臂的灵感。下面是一个手臂的想法，它可以摆动和倾斜玻璃瓶，使用现有的商业滴煮咖啡机。该臂也可以插入/取出过滤器。</p>
+<p class="translated">我的思维也进入了一个用光电二极管(作为传感器)和发光二极管(作为光束)测量杯子高度的“栅栏”。这些想法记在了我的笔记本上。</p>
+<div id="attachment_2055080" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2055080" decoding="async" loading="lazy" class="size-large wp-image-2055080" src="../Images/4ac147bdd8337de4545f084476a8cea3.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/03/d78f88ff-arm-design1-1024x397.png"/><p id="caption-attachment-2055080" class="wp-caption-text translated">咖啡机器人手臂设计缩略图绘图</p></div>
+<p class="translated">除了上面的例子，我在谷歌上粗略搜索了一下，没什么可看的。我也找不到任何功能的蒸汽朋克机器人咖啡机。蒸汽朋克吸引眼球。我们必须有蒸汽朋克！</p>
+<h2 class="translated">要求</h2>
+<p class="translated">从一张白纸，或者在这个案例中，一张写有问题的餐巾纸，创造一些东西，会导致“可能性瘫痪”我的思绪飞来飞去，很难想象MVP。我们当然不能永远梦想未来。嗯…我想我们可以。但迟早，我们必须把这些碎片拧在一起，并在人们面前展示我们的创作。下一个煎饼播客就在眼前。</p>
+<p class="translated">和往常一样，写下我们想要完成的事情是明智的。是的，回到清单上。清单缩小了我们的范围，让我们可以管理，更重要的是，可以做。将清单分成几个主题，尽可能具体可行。</p>
+<p class="translated">这是我在咖啡制作机器人列表中的第一个片段:</p>
+<h3 class="translated">无形的（不可捉摸的）东西</h3>
+<ul>
+<li class="translated">吸引注意力并开始对话。</li>
+<li class="translated">与煎饼机器人一起工作。</li>
+<li class="translated">实际上是冲咖啡的。</li>
+<li class="translated">建立并推广新的Stack品牌。</li>
+<li class="translated">推广现成的黑客和物理计算堆栈。</li>
+</ul>
+<h3 class="translated">技术的</h3>
+<ul>
+<li class="translated">安全的110，220伏操作——机器人必须在美国和海外工作。</li>
+<li class="translated">紧凑且独立。</li>
+<li class="translated">通过航空托运行李轻松运输—物理尺寸限制。</li>
+<li class="translated">可能会和煎饼机器人装在同一个盒子里。</li>
+<li class="translated">使用现成(OTS)微控制器，传感器，电机，伺服，冷却机制。</li>
+</ul>
+<h3 class="translated">应用蒸汽朋克主题</h3>
+<ul>
+<li class="translated">越稀奇古怪越好，为了吸引眼球。</li>
+<li class="translated">支持探索物理计算堆栈，非常有趣。</li>
+<li class="translated">添加到现成的黑客蒸汽朋克小工具库存。</li>
+<li class="translated">将故事和主题联系在一起。</li>
+</ul>
+<h2 class="translated">现在怎么办？</h2>
+<p class="translated">我还没准备好清理工作台，开始将电线和铜管焊接在一起。</p>
+<p class="translated">看看其他人如何构建他们的咖啡机器人，并概述我们的一般要求，这对于在我们构建之前缩小范围至关重要。</p>
+<p class="translated">您还需要了解对构建有用的可用部件。显然，我将使用Arduino、Raspberry Pi或BeagleBone Black board作为微控制器。我需要不断更新可用原材料的心理库存。这是我漫无目的地在家得宝、Ace五金店和社区旧货店里走来走去的一个原因。我可能会遇到一些我可以立即使用或在未来项目中使用的东西。这是现成黑客的一个持续的习惯。</p>
+<p class="translated">我想过买一个便宜的滴滤式咖啡机，把里面的东西拿出来，设计一个新的蒸汽朋克外壳，加入机械臂。这个手臂可能来自于一个现成的黑客项目。</p>
+<p class="translated">百得为美国和欧洲市场生产两种类似的产品，型号分别是<a href="https://www.amazon.com/Black-Decker-BCM1411B-Coffee-CANADA/dp/B01G5ZWB4G" class="ext-link" rel="external "> BCM1411B </a>和<a href="https://www.amazon.com/BLACK-DECKER-CM1160B-Programmable-Stainless/dp/B01GJOMWVA/ref=sr_1_fkmr1_2?s=home-garden&amp;ie=UTF8&amp;qid=1489671354&amp;sr=1-2-fkmr1&amp;keywords=110+volt+coffee+black+decker+12+cup" class="ext-link" rel="external "> CM1160B </a>。它们的功能是相似的，在引擎盖下很可能是相同的。根据我们使用咖啡机器人的地方，可能只是更换加热元件。</p>
+<p class="translated">我很可能会将商业部分改造成一个定制的蒸汽朋克外壳，可能会有一个活动臂，因此使东西可以互换(用于110或220伏操作)是一个非常容易满足的要求。</p>
+<p class="translated">另一种可能性是研究来自中国制造商的裸露的咖啡机部件，然后制作蒸汽朋克外壳并围绕这些部件。我们很可能不会走这条路。</p>
+<p class="translated">现在是时候让这个想法酝酿一下了。下一期咖啡机器人专栏将总结头脑风暴/研究阶段，并进入设计决策和布局。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

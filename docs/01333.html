@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>After Six Years, Mesos Hits Version 1.0. Now the Real Fun Begins</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">六年后，Mesos推出了1.0版本。现在真正的乐趣开始了</h1>
+<blockquote>原文：<a href="https://thenewstack.io/six-years-later-mesos-makes-version-1-0-now-real-fun-begins/#0001-01-01">https://thenewstack.io/six-years-later-mesos-makes-version-1-0-now-real-fun-begins/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">去年的这个时候，威瑞森(许多人认为是北美领先的语音通信服务提供商)选择了meso sphere DC/操作系统(当时还没有斜线)作为其数据中心服务的编排平台。因此，对于威瑞森和其他生活在财富100强上游稀薄空气中的中间层客户来说，这应该是一种安慰，Apache Mesos——商业DC/OS构建的平台——正式发布了最终的生产就绪版本1.0。</p>
+<p class="translated">那么，除了众所周知的鸡蛋计时器之外，Mesos 1.0的声明实际上意味着什么吗？毕竟，Mesos和来自Mesosphere的基于Mesos的商业产品已经进入了世界上的许多主要组织，而不仅仅是处于试验阶段。</p>
+<p class="translated">“1.0 API的引入真的会让所有运行在上面的框架受益，”Apache Mesos的联合创始人<a href="https://twitter.com/benh?lang=en" class="ext-link" rel="external "> Ben Hindman </a>和<a href="https://d2iq.com/" class="ext-link" rel="external "> Mesosphere </a>的创始人兼首席架构师在接受New Stack采访时宣称。“因为我们引入了1.0 API，Mesosphere实际上将能够在框架上迭代得快得多。”</p>
+<h2 class="translated">转换</h2>
+<p class="translated">在过去，对于Mesos以及历史上的许多其他软件平台，版本化的挑战一直围绕着依赖项的同步，包括库。新版本的平台通常会带来新的库，这些库会覆盖并取代旧的库。但是这种替代会对平台的旧版本产生不利影响，旧版本必须与新版本共存，尤其是在多租户环境中。</p>
+<p class="translated">因此，Mesos 1.0的重要之处在于，它将所有东西都打包成了一个更好、更紧凑的包。</p>
+<p class="translated">“我们认识到，在如今的开源项目世界中，人们并没有真正很好地坚持版本化，”Hindman说，“尤其是在API版本化方面。我们真的很想这么做。我们认为发布一个API，并对其进行适当的版本化是非常重要的。我们已经看到开源领域的许多其他项目，包括容器领域和大数据领域，都滥用了这一点，这对用户和开发人员来说真是一个巨大的痛苦。”</p>
+<p class="translated">Mesos的新HTTP API——Hindman承诺，从这一点开始，将对<a href="http://semver.org/" class="ext-link" rel="external ">进行适当的版本化</a>——旨在使开发人员能够使用任何语言编写框架(Mesos的术语，指在其平台上运行的应用程序)。以前，开发人员通常不得不使用为数不多的Mesos库之一<a href="http://mesos.apache.org/documentation/latest/api-client-libraries/" class="ext-link" rel="external ">，其中一些是用Go编写的，但其他的是用更经典的语言，如Java和C++。</a></p>
+<p class="translated">具有讽刺意味的是，这使得数据中心有史以来最大的敏捷性催化剂之一的版本变更慢得令人痛苦。</p>
+<p class="translated">因此，Hindman和他的Mesos工程师同事们围绕HTTP开发了一个远程过程调用协议，类似于为HTTP/2开发的<a href="http://www.grpc.io/" class="ext-link" rel="external "> GRPC协议</a>。调用本身的语法要么是<a href="https://developers.google.com/protocol-buffers/" class="ext-link" rel="external "> Google的<strong> protobuf </strong> </a>要么是简单的JSON。现在，发展API可以是一件更明智、迭代的事情。Hindman说，Mesos确实计划在未来的版本中直接支持GRPC，因为“未来”可以划分为更多的近期区间。</p>
+<p class="translated">“我认为最终，我们的想法是，在我们目前拥有的所有不同终端上，这是一个更加一致的API，”Hindman说，“这对我们的用户来说更好。我们只是想在称之为“1.0”之前推出它，不是因为1.0对我们来说是关于稳定性和成熟度的，而是因为它真的是关于用户的，在1.0到2.0的周期中，给他们一个他们会感到舒适的API。”</p>
+<h2 class="translated">统一集装箱</h2>
+<p class="translated">只有在像我们这样的行业里，某样东西才能被称为“集装箱”，而且很多从业者都知道它的确切含义。自从Mesos开始以来——在进化的规模上比Docker晚了很多很多周——它通过称为“容器”的Mesos组件完成了进程的划分。尽管从0.20.0版本开始，Mesos提供了自己的容器，但它允许操作员用一个外部容器来代替。</p>
+<p class="translated">“回到2009年我们刚开始的时候，集装箱化是我们正在做的事情的一个大前提，”Hindman告诉我们。“我们的想法是，我们可以通过容器化技术实现轻量级资源隔离，这种技术存在于Solaris等设备中，在Linux中也逐渐成熟。因此，我们不得不“自己”进行容器化，在引用中，我们直接使用Linux的底层技术—控制组和名称空间—来容器化我们正在运行的应用程序。”</p>
+<p class="translated">当Docker出现时，它引入了自己的容器化守护进程，随后很快推出了自己的容器映像格式。</p>
+<p class="translated">“所以我们显然不会扔掉我们现有的所有容器化运行时，”他继续说道，“因为我们有一些用户无论如何都会继续使用它——苹果、PayPals、Netflixes和Twitters。我们不能只是说，'嘿，伙计们，你们现在都必须转移到这个Docker守护进程，因为我们将停止做容器化。'他们会奋起反抗的。"</p>
+<p class="translated">因此，Mesos增加了对Docker格式以及CoreOS的appc的支持，并计划在最终的OCI标准发布后立即支持它。在每一种情况下，Mesos都不需要与格式相关的容器引擎的本地守护进程——他解释说，这可能是不确定的，因此难以自动化。Hindman解释说，Mesos 1.0在不调用外部容器的情况下正式支持Docker图像。</p>
+<p class="translated">unified containerizer的另一个新特性是能够在不关闭已经启动的容器的情况下关闭Mesos代理。他说，当升级Mesos或DC/OS时，这将被证明是有价值的，因为这个过程现在可以发生，而不需要关闭当前正在运行的任务。</p>
+<p class="translated">还增加了嵌套容器支持——这意味着容器中的应用程序能够作为一个平台，在从属控制级别下旋转自己的容器。Hindman指出，在1.0之前，Mesos下的一个容器确实可以旋转另一个容器，但是作为一个<em>兄弟</em>。但这一进程开始带来严重的安全问题。</p>
+<p class="translated">“从你开始引入兄弟容器的那一刻起，你就遇到了各种各样的架构问题，”他解释道，“包括诸如，如果你的容器死了会发生什么？你如何正确地知道清理兄弟容器？在这个同级容器中应该限制多少资源？如果你能任意启动兄弟容器，你能压倒机器吗？”</p>
+<p class="translated">相比之下，嵌套容器只能访问授予父容器的相同资源。我们被告知，这将使<a href="https://thenewstack.io/microservices-transforming-jenkins-cloud-platform/" class="local-link">在容器</a>中运行Jenkins的用例更加可行，也更加安全。</p>
+<h2 class="translated">第二天</h2>
+<p class="translated">然后，Hindman告诉我们一个主要的Mesosphere客户的故事，他采用了通用容器器，很快发现它不能在Mesos平台上部署它的一个应用程序——一个使用外部容器器和Docker守护进程运行得很好的应用程序。经过长时间的调试，Hindman和他的同事们追踪到了这个客户使用的特定Linux发行版的内核。这个bug会阻止容器的正确创建，虽然它会将该消息报告给Docker，但守护进程会忽略该报告并尝试执行容器。</p>
+<p class="translated">Mesos会让Docker乐意自己运行的同一个容器失败。虽然这个问题现在已经解决了，但Hindman说这次经历让他明白了两个平台在方法论上的不同。</p>
+<p class="translated">“我们一直非常关注稳定性、正确性和资源隔离——这些是我们在大规模运行时真正关心的因素，”他说。“我认为Docker守护进程仍在不断成熟，所以你会在这样的例子中看到它。你可能会说你更喜欢Docker守护进程的体验，也就是“无论如何都要运行我的应用程序。”但这是其中的一件事，也许你让应用程序启动并运行，但后来当事情开始真正中断时会发生什么，然后你会想，'为什么会中断？我不明白！然后你意识到，哦，这是因为你没有被适当地隔离，所以你遇到了这个问题，而我们却提前发现了这个问题。</p>
+<p class="translated">“我认为，一般来说，这是我们在Mesos社区中真正思考我们正在建设的东西的方式。我们真正考虑的是运营商，什么能给运营商最好的体验？”他说。</p>
+<p class="translated">Hindman将这种方法称为“第二天操作”，并向我们解释了纯配置驱动的自动化(如Chef和Puppet的原始风格)与通过DC/OS以及Kubernetes和Docker Swarm实现的更广泛的实时集群管理概念之间的差异。</p>
+<p class="translated">“如果我们不只是转移部署责任，而是为运营商创造新的机会和新的增值，那就太好了，”他继续说道。“对我来说，我们需要的具体项目是第二天的操作。它实际上是在操作这些东西，不是在我们第一次部署它们的时候，而是在您想要升级它们、在您的集群中进行维护以及其他这些事情的时候。这是我们在构建集装箱化功能时真正仔细考虑过的事情。”</p>
+<p class="attribution translated">中间层是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

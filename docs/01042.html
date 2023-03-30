@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Behold! The Steampunk Eyeball is Complete</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">看哪！蒸汽朋克眼球完成了</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-behold-steampunk-eyeball-complete-part-5/#0001-01-01">https://thenewstack.io/off-shelf-hacker-behold-steampunk-eyeball-complete-part-5/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">打造一个蒸汽朋克眼球(<a href="https://thenewstack.io/off-shelf-hacker-make-steampunk-eyeball/" class="local-link">第一部</a> <a href="https://thenewstack.io/off-shelf-hacker-make-steampunk-eyeball/" class="local-link">第一部</a><a href="https://thenewstack.io/off-shelf-hacker-make-steampunk-eye-ball-part-2/" class="local-link">第二部</a><a href="https://thenewstack.io/off-shelf-hacker-now-start-building-steampunk-eyeball/" class="local-link">第三部</a><a href="https://thenewstack.io/off-shelf-hacker-steampunk-eyeball-frame-servos-software-part-4/" class="local-link">第四部</a>)一直很好玩。我学到了很多，希望读者也一样。</p>
+<p class="translated">在这一期，我们将总结过去一周的制作，分析项目的结果，总结挑战和解决方案，然后看看未来蒸汽朋克眼球增强可能会发生什么。</p>
+<p class="translated">但首先，让我们花一点时间来欣赏完成的眼球在其完成的荣耀:</p>
+<p class="translated"><iframe loading="lazy" title="Steampunk Eye Ball Live Demo" src="https://www.youtube.com/embed/Q6BBI3yKTgg?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<h2 class="translated"><strong>完成1.0版的Fab</strong></h2>
+<h3 class="translated">建造基地</h3>
+<p class="translated">蒸汽朋克眼球平移/倾斜机制是相当没有价值的，没有一个有趣的方式来展示它并让它做些什么。当然，某种类型的固体基地是必要的。我在<a href="http://oldtimepottery.com/" class="ext-link" rel="external ">旧时代陶器</a>找到了一个装饰性的金属烛台，它成了一个很好的基础。我原本以为它会作为眼球部分本身。然后，我有了一个好主意，用一个铜避雷针球。令人高兴的是，烛台正好适合潘枢轴管安装，并有明显的蒸汽朋克外观，所以它被压入服务。</p>
+<p class="translated">烛台被倒置安装在一对1/2英寸厚的胶合板圆盘上，这些圆盘安装在顶部和底部。我用了一个5/8英寸直径的铲形钻头，在钻床上为铜盘枢轴管打孔。四个4-40 x 1英寸的圆头黄铜机器螺钉将枢轴管支架固定在烛台的顶部及其1/2英寸厚的圆盘上。烛台的开口端(现在是底部)有一个匹配的1/2英寸厚的木制圆盘和5/8英寸的孔，用于枢轴管的底部。烛台的底部用支架固定在一块废弃的层压木地板上，形成底座。层压地板是完美的，因为它有致密的泡沫橡胶作为防滑底部，允许在各种表面上保持稳定。它还有那种古色古香的黑木蒸汽朋克风格。当眼球不在储存盒中时，它可能会放在桌子或讲台上。</p>
+<h3 class="translated">测试</h3>
+<p class="translated">本周我也做了相当多的测试和调整。令人惊讶的是，用一个接近完成的设备来测试是多么的容易(和有趣)。完成底座和稳定眼球后，我可以专注于探索它如何与世界互动，以及需要做哪些调整才能获得最佳性能。我将在Linux机器上使用PixyMon应用程序来获得更多关于眼球行为的经验，因为它与周围环境相互作用。不难想象使用来自Pixy的数据进行各种场景分析和视觉传感器命令单元功能。当然，这些数据可以与尚未确定的Raspberry Pi或Arduino物理计算任务进行交互。</p>
+<p class="translated">每当你创建复杂的小工具，尤其是物理计算设备时，都需要花一点时间来理解你的新生儿的所有怪癖和能力。并且，不要忘记1.0版本是第一个完全可操作的原型。在使用1.0版的实际“座位时间”之前，您不可能知道后续版本的发展方向。</p>
+<p class="translated">记得享受成就，继续学习。</p>
+<h3 class="translated"><strong>眼球构建结果分析</strong></h3>
+<p class="translated">最大的问题是:“它跟着我吗？”。</p>
+<p class="translated">是啊！当我穿着一件普通的蓝色t恤衫时，眼球忠实地跟着我在大约120度的范围内移动大约10英尺。许多变量会影响跟踪，例如环境照明强度、光色温度以及t恤上是否有文字或图片。有时，我会看到眼睛朝一个疯狂的随机方向移动，却意识到我已经离开了它的视野，它已经开始跟踪其他一些蓝色物体。我可能会打包几件不同颜色的衬衫，然后在到达一个场地时适当调整颜色。</p>
+<p class="translated">每个看到这个装置的人都印象深刻。是的,“哇”的因素要求肯定是符合的。</p>
+<p class="translated">“它喜欢玛格丽特，”我女儿的一个朋友在参加了一次即兴演示后评论道。效果是眼睛偶尔会看到玛格丽特衬衫上的蓝色斑点，然后沿着枢轴上的粘性点，使它看起来像有个性。确保在你的项目中注意并利用这些“社会无形资产”。虽然听起来很疯狂，但这些线索有助于向你的观众推销真实性和可信度。</p>
+<p class="translated">当我把这个设备带到外面的世界时，我意识到安全地携带这个设备可能是一个问题。因此，一个明确的增强将是一个手提箱。我在想，一个配有皮革铰链和黄铜装饰的短木箱，会在我去参加科技讲座时增加一点神秘感和档次。我想知道当我在机场办理登机手续时，美国运输安全管理局会如何看待这个设备。</p>
+<h2 class="translated"><strong>发现挑战/解决方案</strong></h2>
+<h3 class="translated">花了太长时间</h3>
+<p class="translated">蒸汽朋克眼球花的时间比我想象的要长，尽管它总共只有大约50个小时(超过5周的系列)。这是相当合理的，考虑到我想要的东西，通过多次技术会谈，可以在实际使用中存活下来。</p>
+<p class="translated">由于我对细节的关注和工程上的吹毛求疵，我偶尔会被指责为“德国人”。我想这是可以理解的，因为我的祖父理查德·沃格特是圣母大学的化学教授，他的远亲霍华德是别克的发明家兼工程师。我的父亲安迪·赖利，作为一名工程师，对“冲刺导弹”做了压力分析……尽管他显然是爱尔兰人。</p>
+<h3 class="translated">平稳运行的机制</h3>
+<p class="translated">伺服机制相当健壮，尽管它们需要相当多的调整，才能很好地工作。对于超平滑操作，滚珠轴承安装可能是更好的选择。它们会增加一些重量，并且需要设计合适的支架和轴。</p>
+<p class="translated">把倾斜伺服系统放在眼睛里是正确的决定。我最终决定，我想要更干净的铜球内的伺服外观。设计传动轴不在最初的计划中。幸运的是，它在tilt pivot框架的末尾添加了一个有趣的视觉蒸汽朋克细节。</p>
+<p class="translated">焊接沉重的铜部件是有问题的。我的100/140 Weller焊枪，只是没有放出足够的热量来将1/2英寸的铜管连接到小黄铜支架或巨大的铜球体表面积上。解决方案:使用更大的烙铁、更薄、散热更少的材料，或者实施不同的枢轴设计。</p>
+<h2 class="translated"><strong>零零碎碎</strong></h2>
+<p class="translated">这里有一个简短的清单，需要把所有东西绑在一起。</p>
+<ul>
+<li>
+ 
+<ul>
+<li class="translated">我在平底锅枢轴管里放了一个开口销，所以如果有人试图拿起它，眼球不会从枢轴上掉下来。</li>
+<li class="translated">我仍然需要将摇摄伺服系统牢固地连接到它的安装支架上，这样我就可以移除固定它的临时鳄鱼夹。</li>
+</ul>
+</li>
+</ul>
+<div id="attachment_1235230" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1235230" decoding="async" loading="lazy" class="size-large wp-image-1235230" src="../Images/6a80b8d7267530e10e0399d8d01f0142.png" alt="The cotter pin and servo mount temporary alligator clips" data-original-src="https://thenewstack.io/wp-content/uploads/2016/05/cotter-pin-alligator-clips-1024x576.png"/><p id="caption-attachment-1235230" class="wp-caption-text translated">开口销和伺服安装临时鳄鱼夹</p></div>
+<ul>
+<li class="translated">你可以使用热胶来“吸收”伺服臂枢轴槽中的一点点松弛。</li>
+<li class="translated">我计划用一些彩色的外部帕拉科德编织带覆盖USB线，让它看起来像古董。我对蒸汽朋克会议徽章线使用了相同的技术，该线将粗锉Pi连接到显示单元。细多颜色的USB线，在眼睛上，不是很蒸汽朋克。这种改变需要切断电线，缠绕在编织物上，然后将电线重新焊接在一起，因为每一端都有一个连接器。</li>
+</ul>
+<h2 class="translated"><strong>2.0及以上版本</strong></h2>
+<p class="translated">我想补充的几件事是额外的位置传感器，这将有助于记录眼球指向的数据。虽然Pixy可以根据它在物体周围生成的盒子的大小进行粗略的距离测量，但添加超声波传感器可以提供更高的精度。</p>
+<p class="translated">X-Y位置(在Pixy的视野中)和到目标的距离(你真的在我的蓝色t恤中)数据，将使开发用于摄像机和灯光的无线从属机器人设备成为可能，当我在舞台上走动时，这些设备将自动跟踪我。</p>
+<p class="translated">自然，从眼球获取数据将由高性能的ESP8266 WiFi微控制器处理。使用8266还可以带来远程伺服控制，并可能对Pixy相机配置进行空中调整。</p>
+<p class="translated">我希望你喜欢蒸汽朋克眼球构建项目，并受到启发来开发自己的物理计算项目。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-1235159" src="../Images/3aa8ce3fc4982d428cb1b3974d2a77d4.png" alt="Dr. Torq's Steampunk Eye Ball" data-original-src="https://thenewstack.io/wp-content/uploads/2016/05/eye-ball-with-mount-636x1024.jpg"/></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

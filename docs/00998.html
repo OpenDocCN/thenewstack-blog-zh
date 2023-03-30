@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>The New Open Source Security Stack</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">新的开源安全堆栈</h1>
+<blockquote>原文：<a href="https://thenewstack.io/the-new-open-source-security-stack/#0001-01-01">https://thenewstack.io/the-new-open-source-security-stack/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://www.linkedin.com/in/degio/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">洛里斯·德吉奥安尼</p> <p class="infoBlockText">洛里斯·德吉奥安尼是云原生可见性和安全公司Sysdig的首席技术官和创始人。他还是流行的开源故障排除工具Sysdig和开源容器安全工具Falco的创造者。在创立Sysdig之前，洛里斯参与创建了Wireshark，这是一款开源网络分析器，目前拥有2000多万用户。洛里斯拥有都灵理工大学的计算机工程博士学位，现居加州戴维斯。</p> </div> </a></p><p class="translated">认识到没有完美的安全这种东西，从业者喜欢分层来增加阻止坏人的机会，即所谓的深度防御策略。</p>
+<p class="translated">容器环境带来了一些新的挑战，因此需要一些额外的安全层。</p>
+<p class="translated">幸运的是，在开源世界中有许多创新可以利用，包括Linux内核中的许多进步，这些进步使我们能够更紧密地控制在这个核心级别上允许的活动。这是一件好事，因为容器以一些独特的方式改变了安全游戏。</p>
+<p class="translated">首先，开发人员在决定将什么打包到容器中时有很大的自由——语言选择、运行时间、他们将使用什么数据存储等等。这可能会让运营人员有些不知所措，因为他们不一定知道他们刚刚投入生产的容器中有什么。</p>
+<p class="translated">此外，还有容器的短暂特性。随着环境规模的扩大和缩小，它们来来去去。但是如果其中一个受到威胁呢？即使容器在使用后不久就被销毁了，但是如果这种危害使得攻击者能够在容器被销毁之前扩展到环境的其他部分呢？</p>
+<p class="translated">这里回顾了一些可用的开源工具——用于容器安全堆栈的基础设施、构建和运行时层——以帮助您保护您的环境免受此类威胁。</p>
+<p class="translated">显然，这只是一个示例，意在吊起你的胃口，因为还有很多开源容器安全选项。同样显而易见的是，我希望这些工具不能替代基本的防火墙和其他传统的安全工具。它们是您可以添加到纵深防御策略中的附加层。</p>
+<h2 class="translated">基础设施</h2>
+<p class="translated">在基础设施方面，可以从策略和网络过滤入手。</p>
+<p class="translated"><strong> * Pod安全策略:</strong>为了方便起见，许多开发人员简单地跳过了Kubernetes中许多基本的基于策略的安全控制，这是一个遗憾，因为即使打开一些最基本的检查也会极大地改善您的容器安全状况。有开源项目，如<a href="https://sysdig.com/blog/enable-kubernetes-pod-security-policy/" class="ext-link" rel="external "> K </a> <a href="https://sysdig.com/blog/enable-kubernetes-pod-security-policy/" target="_blank" rel="noopener noreferrer external " class="ext-link"> ubernetes Pod安全策略顾问</a>，它将从Kubernetes资源中扫描现有的安全上下文，如部署、daemonsets和副本集，然后自动为整个集群生成推荐的Pod安全策略。</p>
+<p class="translated">正如我们可以限制容器可以消耗的主机资源，比如内存和CPU，我们可以使用Pod安全策略来非常精确地了解容器可以访问哪些Linux内核资源。这通常是通过Kubernetes使用一个叫做pod安全策略的对象来完成的。您定义策略，然后当您定义pod时，您指示pod订阅这些策略。</p>
+<p class="translated">政策可能非常复杂(这可能是它们经常被忽略的原因？)，使您能够指定诸如容器是否可以提升特权、它可以访问内核的哪些部分以及文件的所有权是否可以更改之类的事情。</p>
+<p class="translated">您还可以限制容器可以挂载的卷(因此它们只能使用这些特定的对象)，限制它可以使用的组，指定文件系统是否是只读的，以及规定容器是以root用户还是非root用户身份运行。如果不做其他事情，限制root访问将极大地提高容器环境的安全性。</p>
+<p class="translated">但是，请记住，即使您花时间详细说明了安全策略，pod仍然必须订阅策略才能使控件生效。但是工具箱中还有其他选项来帮助确保您想要的控件实际上已经启用，我们将在后面讨论。</p>
+<p class="translated"><strong> *纤毛进行网络过滤。</strong>你可能要考虑的第二个基础设施开源安全工具是<a href="https://cilium.io/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Cilium </a>，它具有网络过滤功能。Cilium被描述为“为Docker和Kubernetes等Linux容器框架带来了API感知的网络安全过滤。”</p>
+<p class="translated">基本上，Cilium是一个内核插件(通过BPF)，允许您在第3层、第4层甚至第7层过滤网络流量。您可以创建过滤器规则，并使用端点选择器指定规则的应用位置。</p>
+<p class="translated">规则可以指定什么可以进出容器。例如，该规则可能允许来自任何组织“帝国”的入站流量，但仅限于端口80。因此，帝国可以访问端口80，但没有帝国作为定义组织属性的星球大战叛军将被阻止。</p>
+<p class="translated">你可以得到更多的颗粒。假设Empire被允许访问端口80，但是你只允许Empire向一个特定的URL发送数据。如果他们试图在任何其他网址上做Git，他们将被拒绝。</p>
+<p class="translated">如果您有一个处理敏感数据的服务，并且您只希望某些URL端点能够访问某些主机或容器，那么这很有用。你可以使用Cilium说，“我只想接受来自我的银行前端的请求，而这个前端应该只对这10个URL发出这10个请求。”这有效地建立了一个门，防止任何人访问任何其他东西。</p>
+<h2 class="translated">建设</h2>
+<p class="translated">在构建容器时，我们要考虑许多安全选项，包括图像扫描、准入控制器和另一层策略。</p>
+<p class="translated"><strong> *图像扫描锚点。</strong>扫描集装箱图像是一个关键步骤，因为受损的图像可能会在短时间内导致一船受损的集装箱。</p>
+<p class="translated">你会想知道你的容器图像的出处，并且需要考虑诸如签名、可信注册和准入控制之类的事情。但是当涉及到映像本身时，您需要能够将完全构建的映像作为不可变的工件进行扫描，确保它符合安全最佳实践，并检查所有的合规性框。</p>
+<p class="translated"><a href="https://anchore.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Anchore </a>被描述为“一个开放的容器合规性平台，用于发现、分析和认证内部或云中的容器映像。”</p>
+<p class="translated">Anchore作为一个带有API的服务运行，并且有一个广泛的、可定制的、基于策略的扫描方法。您将Anchore作为构建引擎的一部分。例如，如果您使用Jenkins，您将使用Jenkins构建您的应用程序，然后构建容器映像并通过Anchore analyzer运行它。</p>
+<p class="translated">好的一面是，您可以使用Anchore策略来定义如果发现了什么应该发生什么。例如，如果发现低安全漏洞，您可以让Anchore发出警告，要求具有中等漏洞的图像进行另一次审查，并彻底拒绝任何具有严重漏洞的图像。</p>
+<p class="translated"><strong> *Kubernetes录取控制员。</strong>准入控制器也可以支持所谓的变异网络钩子。因此，如果您正在进行本机部署，并向Anchore或公证人抛出一个webhook，询问该映像是否可以安全使用，控制器可以将该映像标记为有问题，而是推荐一个安全可靠的更新版本。</p>
+<p class="translated"><strong> * Kubesec.io进行部署检查。</strong>图像扫描只是一个时间点的合规性检查。您还需要担心您运送到Kubernetes的部署。而且，如前所述，您还需要确保容器pods实际上符合您所要求的安全策略。</p>
+<p class="translated">这就是像<a class="utm-none ext-link" href="https://kubesec.io/" target="_blank" rel="noopener noreferrer external "> Kubesec.io </a>这样的工具派上用场的地方。Kubesec.io允许您检查您的Kubernetes部署，以查看您是否正在运行不可取的东西(测试，然后向您返回可能出错的信息)，并检查以确保您有适当的安全策略(或者您是否正在定义糟糕的策略)。</p>
+<p class="translated">可以将Kubesec.io看作是一种强制机制，您可以在构建阶段将其指定为测试。您让Kubernetes部署YAML定义如何部署您的容器——包括所有的配置要求，如应用程序的名称、应用程序的标签、要使用的图像、实例的数量等。—但在它全部上线之前，会向Kubesec.io发出一个调用，看看是否一切都符合标准。</p>
+<h2 class="translated">运行时间</h2>
+<p class="translated">容器映像是不可变的，但是一旦你启动了容器，如果你不是在一个只读文件系统上运行，人们可以进入并进行修改。这就是为什么有一个运行时工具来检测异常行为也很重要。</p>
+<p class="translated"><strong> * Falco进行异常行为检测。</strong>考虑一下<a href="https://sysdig.com/opensource/falco/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Falco </a>，这是一个基于规则的检测引擎，用于云原生架构内的运行时安全性(以及一个CNCF沙盒项目)。据说Falco提供了“容器和应用程序行为的可见性”</p>
+<p class="translated">容器倾向于运行独立的进程，所以你对容器应该做什么有预期。您不希望进程产生、随机打开端口或创建随机出站internet连接。Falco会观察这些行为，并在出现可疑情况时发出警报。</p>
+<p class="translated">虽然有一些工具可以让您进行主机入侵检测，但是它们不能从诸如Kubernetes之类的orchestrators或Docker运行时引擎中获取数据，所以当涉及到容器时，它们基本上是无知的。</p>
+<p class="translated">有了Falco，您可以创建安全行动手册，这样，当Falco检测到可疑行为时，您就有一个针对警报采取行动的计划，无论是涉及杀死pod、污染Kubernetes节点以便无法安排新的工作负载，还是简单地通过您选择的渠道(Slack等)通知某人。).</p>
+<p class="translated"><strong>* Sysdig Inspect for Forensics:</strong>Sysdig Inspect是一个基于电子的GUI，用于系统调用分析。开源项目使用捕获规则来提供系统级的可观察性。</p>
+<p class="translated">取证归结为一个数据挑战。对于企业来说，能够访问所有容器上的数据(包括那些已经被杀死的容器)以及上下文以便他们能够快速确定问题并进行补救是非常重要的。Sysdig Inspect提供了简化的取证功能，允许轻松深入查看进程活动、文件系统活动、网络活动以及更多详细的事后分析。</p>
+<p class="translated">Inspect的用户界面旨在直观地导航包含Linux系统的粒度系统、网络和应用活动的数据密集型sysdig捕获。它附带了旨在支持性能和安全性调查的特性，并具有深度容器自省功能。</p>
+<h2 class="translated">做点什么！</h2>
+<p class="translated">这里重要的一点是，容器改变了安全计算，您需要重新审视您的深度防御策略，并确定可以用来保护这些快速变化的环境的新工具。</p>
+<p class="translated">好消息是:有许多开源工具可以用来保护这个环境。</p>
+<p class="translated">坏消息是:容器世界中的资源隔离没有虚拟机世界中的那么强。如果一个容器受损，攻击者可能会发现将权限提升到主机操作系统并从那里进入任何和所有其他本地容器相对容易。</p>
+<p class="translated">您需要一种多层次的方法来实现容器安全性，并且您需要强制使用您使用这些或其他开源工具构建的策略。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Microsoft Windows Gets an Open Source Terminal with Tabs, Rich Text Rendering</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">微软Windows获得了一个带有标签、富文本呈现的开源终端</h1>
+<blockquote>原文：<a href="https://thenewstack.io/microsoft-windows-gets-an-open-source-terminal-with-tabs-rich-text-rendering/#0001-01-01">https://thenewstack.io/microsoft-windows-gets-an-open-source-terminal-with-tabs-rich-text-rendering/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">虽然驱动Windows控制台和命令行的引擎一直在更新，以支持Unicode、UTF-8、24位颜色、VT序列和丰富的命令行界面使用的<a href="https://blogs.msdn.microsoft.com/commandline/2018/12/10/new-experimental-console-features/" target="_blank" rel="noopener noreferrer external " class="ext-link">其他技术，但由于遗留原因，Windows控制台应用程序本身未能充分利用它们。</a></p>
+<p class="translated">但是，微软不仅在内部使用控制台来完成Windows构建过程等关键任务，而且向后兼容性对于许多依赖它的工业应用程序来说也是至关重要的，即使是对用户界面最简单的更改也可能破坏它们。</p>
+<p class="translated">为了在不影响兼容性的情况下为开发人员带来最新体验，微软将推出一款全新的Windows终端应用，该应用基于更新和重构的Windows控制台子系统，支持丰富的字体、可配置的主题、多个选项卡、扩展和GPU加速的文本渲染。</p>
+<div id="attachment_7477758" class="wp-caption aligncenter"><a href="https://cdn.thenewstack.io/media/2019/05/4a547cf6-windows-term-01.png" class="local-link"><img aria-describedby="caption-attachment-7477758" decoding="async" loading="lazy" class="wp-image-7477758 size-large" src="../Images/35dc5678d1883d111227bf1d7ec17789.png" alt="" data-id="7477758" data-original-src="https://cdn.thenewstack.io/media/2019/05/4a547cf6-windows-term-01-1024x669.png"/></a><p id="caption-attachment-7477758" class="wp-caption-text translated">新的Windows终端中的PowerShell核心选项卡设置为25%的背景模糊透明度。</p></div>
+<p class="translated">“新的Windows终端是对命令行体验的彻底更新，”Windows开发者平台公司副总裁凯文·加洛告诉新堆栈。“我们的目标是建造有史以来最好的航站楼。”</p>
+<p class="translated">“它有主题和许多定制。它有捷径。您可以不同地控制窗口；你可以有标签，你可以定义你如何做工作流程。我们支持Unicode等现代功能，因此您可以使用表情符号，并且支持东亚字体，这是一个非常受欢迎的功能。从文本可视化的角度来看，这是一种非常现代的体验。”</p>
+<p class="translated">Windows终端是一个Win32应用程序，因为它需要连接到通用Windows平台(UWP)沙箱无法访问的服务，但它是在XAML使用XAML群岛构建的，这种技术使得使用UWP的新用户界面元素成为可能。这意味着选项卡式用户界面使用新的Windows 10 Fluent设计系统，从透明度到主题，无所不包。</p>
+<div id="attachment_7477760" class="wp-caption aligncenter"><a href="https://cdn.thenewstack.io/media/2019/05/5f80dbf8-windows-term-03.png" class="local-link"><img aria-describedby="caption-attachment-7477760" decoding="async" loading="lazy" class="size-large wp-image-7477760" src="../Images/9bef5b3aea43e36d19483ca3800ca980.png" alt="" data-id="7477760" data-original-src="https://cdn.thenewstack.io/media/2019/05/5f80dbf8-windows-term-03-1024x551.png"/></a><p id="caption-attachment-7477760" class="wp-caption-text translated">选择不同的命令行shells作为Windows终端中选项卡的配置文件。</p></div>
+<p class="translated">你可以打开多个标签，每个标签都连接到一个命令行外壳或应用程序，你可以拖移一个标签，将其作为一个新窗口。终端支持Windows 10可用的所有WSL发行版，以及PowerShell (Core和Windows)和CMD，但您也可以有一个选项卡，通过SSH连接到远程设备，如Raspberry Pi。(如果开发人员需要当前的Windows控制台应用程序来实现带宽兼容性，他们仍然可以通过直接运行CMD或PowerShell来启动它。)</p>
+<p class="translated">每个用户的设置和配置选项都存储在一个结构化的文本文件中，开发人员可以直接编辑该文件，或者第三方工具可以用来自定义Windows终端体验。您可以将字体大小和样式、颜色主题、背景模糊和透明度等设置的组合保存为配置文件，并选择在每个选项卡或外壳中使用哪个配置文件。</p>
+<p class="translated">除了多个标签，你还可以将每个标签分成多个不同大小的窗格，使用类似于<strong> tmux </strong>的工具一次显示几个应用程序。丰富的颜色支持让开发人员可以做一些在Linux上是标准的事情，但在Windows控制台上一直是个问题——比如从《财富》等应用程序中获取文本，通过<strong> cowsay </strong>和lolcat传输，所以“每日名言”看起来就像是由多种颜色的奶牛说的。</p>
+<div id="attachment_7477803" class="wp-caption aligncenter"><a href="https://cdn.thenewstack.io/media/2019/05/435f6d94-windows-term-04.png" class="local-link"><img aria-describedby="caption-attachment-7477803" decoding="async" loading="lazy" class="size-large wp-image-7477803" src="../Images/06dd98aee8e85f8a0e95d46e5ebe6e1c.png" alt="" data-id="7477803" data-original-src="https://cdn.thenewstack.io/media/2019/05/435f6d94-windows-term-04-1024x335.png"/></a><p id="caption-attachment-7477803" class="wp-caption-text translated">Windows终端中显示Unicode和表情符号字符的Ubuntu标签。</p></div>
+<p class="translated">Gallo说，文本渲染是硬件加速的，使用DirectWrite和DirectX提供更快的性能；"如果你输入‘dir’，在一个很长的目录列表中滚动会快得多."GPU驱动的渲染在处理大型GitHub repos时有着特殊的作用。“当你在GitHub repo中工作时，你有一长串文本在屏幕上飞舞，你最不希望的就是渲染速度变慢。”</p>
+<p class="translated">该GPU加速的文本渲染引擎未来也将出现在传统的Windows控制台中，可以渲染Unicode、UTF 8和字体中的字形和符号，包括编程连字、图标和电力线符号。这不仅仅是让开发者在变量名中使用表情符号，更重要的是能够支持所有语言中变量和函数名的所有Unicode字符，以及软件在中国发布所需的中文/日文/韩文表意文字。</p>
+<div id="attachment_7477832" class="wp-caption alignright"><a href="https://cdn.thenewstack.io/media/2019/05/8636bcb8-windows-term-05.png" class="local-link"><img aria-describedby="caption-attachment-7477832" decoding="async" loading="lazy" class="size-medium wp-image-7477832" src="../Images/48a5e44632c2ed9722e140b828f06499.png" alt="" data-id="7477832" data-original-src="https://cdn.thenewstack.io/media/2019/05/8636bcb8-windows-term-05-300x220.png"/></a><p id="caption-attachment-7477832" class="wp-caption-text translated">Windows终端的图标。</p></div>
+<p class="translated">Gallo说，开发者可以添加功能，用扩展来定制Windows终端界面，微软将在扩展市场中托管这些功能。“我们有一个显示网页链接的预览；当你将鼠标悬停在“终端”中的一个HTTP地址上时，你会看到该网站的预览。</p>
+<p class="translated">但这并不是开发者扩展新Windows终端的唯一方式；微软正在开源该应用程序，其第一个版本将于本周在GitHub上发布(该应用程序也将于今年夏天在Windows Store上发布，完整版本将于年底发布)。</p>
+<p class="translated">其中包括用于构建Windows终端的控件。其中一些是用户界面控件，如Fluent选项卡控件，Windows开发人员将能够将其用于自己的应用程序(包括使用XAML群岛的Windows桌面应用程序)。但是也有用于构建终端本身的控件(它现在使用标准模板库C++组件来处理链表之类的事情)。事实上，开源Windows终端意味着微软也在开源标准的Windows控制台和Windows控制台子系统，后者托管所有的Windows命令行基础设施。向这些项目提交pull请求可能意味着社区贡献将被合并到Windows代码库中。</p>
+<p class="translated">微软已经开源的Windows组件一直是更独立的产品，比如计算器。这不太可能是Windows操作系统的大部分成为开源的先驱，但这仍然是该平台的一个重大发展。Windows控制台子系统是基础设施的一个关键部分，可以追溯到Windows和开源的早期，它表明了微软对于让Windows成为开发者的更好平台的认真态度。这将是一个长期的项目，但像Windows终端和WSL 2这样的步骤是一个良好的开端。</p>
+<p class="attribution translated">特征图片:使用<strong> tmux </strong>将Windows终端中的一个Ubuntu标签分割成多个窗格，运行不同的应用程序，如午夜指挥官、<strong> htop </strong>和<strong> cowsay </strong>。所有图片均由微软提供。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

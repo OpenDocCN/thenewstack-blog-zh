@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Living in a Multicloud World: Bosh, Kubo and the Open Service Broker API</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">生活在一个多云的世界:Bosh，Kubo和开放服务代理API</h1>
+<blockquote>原文：<a href="https://thenewstack.io/living-multi-cloud-world/#0001-01-01">https://thenewstack.io/living-multi-cloud-world/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://www.cloudfoundry.org/" class="clearfix infoBlock " target="_blank"><div class="infoBlockTextBlock"><p class="infoBlockTitle">Childers</p><p class="infoBlockText">Childers在大规模计算和开源软件方面已经花费了超过18年的时间。2015年，他成为云铸造基金会的联合创始人，担任技术参谋长。他是Apache CloudStack的第一任副总裁，在SunGard领导企业云服务时，他帮助推动了该平台的发展，后来又在Cumulogic担任产品战略副总裁。在SunGard之前，他领导了包括IRS.gov、USMint.gov、美林和SEI Investments在内的组织的任务关键型应用程序的重建工作。Chip是OSCON、LinuxCon North America、LC Japan、LC EU、ApacheCon、O ' Reilly Software Architecture Conference等活动的资深演讲者。在空闲时间，奇普喜欢带着他的黑色实验室徒步旅行，驾驶双体船和太阳鱼，并试图跟上他年轻的女儿。</p> </div> </a></p><p class="translated">随着云原生计算在企业中的兴起，支持各种风格的云原生计算的平台正在不断完善。到目前为止，每一个已经出现的平台——包括<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>、Mesos和像<a href="https://www.cloudfoundry.org/platform/" class="ext-link" rel="external "> Cloud Foundry </a>这样的云原生应用平台——都是在考虑特定用例的情况下构建的。</p>
+<p class="translated">一些平台是通用的，但是是从特定的架构角度设计的。其他的则更具体于它们被设计来处理的用例。例如，Kubernetes是一个通用的容器管理平台，它是从一个非常特定于容器的角度设计的。同样，Apache Mesos是一个通用的计算资源管理平台，但它的根源是管理大数据系统的方法，主要是在Hadoop和Spark生态系统中，这一点很清楚。<a href="https://www.cloudfoundry.org/platform/" class="ext-link" rel="external ">Cloud Foundry Elastic Runtime</a>的用例更具体一些。它专注于尽可能快地从代码到运行和可操作的应用程序。</p>
+<p class="translated">作为一个实用主义者，我从来不相信“一个平台统治所有人”的思维模式。现实是企业使用多个平台。他们一直是，也将永远是。在当今的云原生世界中，我们需要一种方法来让这些多个平台协同工作。</p>
+<p class="translated">在过去的几个月里，几个项目同时启动，共同使这种企业涅槃成为可能，包括<a href="https://pivotal.io/kubo" class="ext-link" rel="external "> Kubo </a>和<a href="https://www.openservicebrokerapi.org/" class="ext-link" rel="external ">Open Service Broker API</a>(OS papi)。也许令人惊讶的是，这些新的努力使用了在云铸造生态系统中已经存在多年的工具:<a href="http://bosh.io/" class="ext-link" rel="external "> BOSH </a>。</p>
+<h2 class="translated">为什么BOSH对多平台世界有意义</h2>
+<p class="translated">为了正确看待Kubo和OSBAPI，让我们从BOSH开始，它是Cloud Foundry生态系统中的一个分布式系统工程工具，可以简化发布工程、部署和生命周期管理。BOSH回答了您希望在哪个平台上安装软件的问题。BOSH提供了Cloud Foundry的多云功能。它有一个抽象层，让您可以与几乎任何基础架构类型进行对话，无论是像Amazon或Azure这样的公共云、私有云还是虚拟化基础架构OpenStack部署、vSphere集群或裸机。最重要的是，BOSH旨在支持部署的“第二天”需求。</p>
+<p class="translated">许多不同的软件都是为BOSH打包的，它非常适合云原生应用程序部署和生命周期管理。Cloud Foundry Elastic Runtime使用BOSH作为其部署工具。</p>
+<h2 class="translated">Kubo:为Kubernetes带来多重云</h2>
+<p class="translated">一些采用BOSH和Cloud Foundry的大型企业也在使用Kubernetes。然而，Kubernetes集群的生命周期管理正在成为一个棘手的问题。去年秋天，谷歌和Pivotal合作创建了Kubo T1，这是一个开源项目，使用BOSH来管理Kubernetes集群。BOSH为多个平台提供了一致且强大的运营和生命周期管理能力。Kubo是一个很好的例子，它展示了开源项目如何协同工作，为拥有复杂环境的用户提供更好的服务。</p>
+<p class="translated">除了Kubo作为一种简化多平台管理的方式，Kubernetes也在不断发展。在上个月的KubeCon大会上，有很多关于另一项努力的讨论，即<a href="https://www.openservicebrokerapi.org/" class="ext-link" rel="external ">开放服务代理API </a>，因为Kubernetes社区正在用OSBAPI构建其新的Kubernetes服务目录。</p>
+<p class="translated">Open Service Broker API是一组抽象，是一种使平台和后端服务协同工作的方式。例如，它可以在数据库即服务和平台之间创建一个契约，使平台能够请求一个新的数据库实例，然后将其与应用程序相关联。</p>
+<p class="translated">OSBAPI可以快速地将多种服务集成到一个平台中。它还解放了开发人员，使他们可以专注于自己的应用程序代码，而不是供应和绑定服务。使用Kubo可以最大限度地降低成本，并且可以为他们提供单击式部署。你可以在这里了解奥斯巴皮<a href="https://thenewstack.io/cloud-foundrys-service-broker-api-role-in-kubernetes-and-open-source-platforms/" class="local-link">的历史和背景。</a></p>
+<p class="translated">与其将API视为云控制器团队决定的东西，不如将其视为您在云控制器中实现的东西。通过这种方式，可以将各种能力带入到多云环境中。</p>
+<p class="translated">就其本身而言，Kubernetes服务目录可以进一步简化异构系统的管理。服务可以存在于任何平台上，但您将有一种统一的方式来管理基于容器的工作负载、适合作为容器推出的内容或您希望作为代码推出的内容。</p>
+<h2 class="translated">欢迎来到现实世界</h2>
+<p class="translated">不是挑一个单一的平台。我们接受了企业是复杂环境的现实，我们专注于让竞争系统也能很好地协同工作。我们没有强迫用户做出选择；我们给了他们选择。</p>
+<p class="translated">所有这些努力加在一起，为正在努力处理多个复杂系统的大型IT企业创造了更好的体验。通过让他们一起工作，每个人都赢了。</p>
+<p class="attribution translated">Cloud Foundry Foundation基金会是新堆栈的赞助商。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/@gianpaololapaglia" class="ext-link" rel="external ">吉安保罗·拉·帕格利亚</a>通过<a href="https://unsplash.com/photos/bWI4Vd4vI3w" class="ext-link" rel="external "> Unsplash </a>拍摄的特写图片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

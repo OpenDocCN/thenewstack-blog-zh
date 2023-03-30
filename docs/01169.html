@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>LOGAN Is a Deep Learning AI That Transforms 3D Shapes Seamlessly</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">LOGAN是一个深度学习人工智能，可以无缝转换3D形状</h1>
+<blockquote>原文：<a href="https://thenewstack.io/logan-is-a-deep-learning-ai-that-transforms-3d-shapes-seamlessly/#0001-01-01">https://thenewstack.io/logan-is-a-deep-learning-ai-that-transforms-3d-shapes-seamlessly/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">你可能听说过最近围绕着<a href="https://en.wikipedia.org/wiki/Generative_adversarial_network" target="_blank" rel="noopener noreferrer external " class="ext-link">生成敌对网络</a> (GANs)的讨论——一种机器学习技术，它使得创建令人难以置信的<a href="/deep-learning-ai-generates-convincing-deepfake-videos-of-mona-lisa/" target="_blank">“深度伪造”视频</a>，或者作为一种“去识别”工具，<a href="/deepprivacy-ai-uses-deepfake-tech-to-anonymize-faces-and-protect-privacy/" target="_blank">匿名化照片以保护个人隐私</a>，或者作为一种方式<a href="/deep-learning-ai-generates-realistic-game-graphics-by-learning-from-videos/" target="_blank">在视频游戏中生成逼真的城市景观</a>。GANs是无监督的深度学习算法，其工作原理是将一个“生成器”神经网络与一个“鉴别器”神经网络相比较——“生成器”的目标是一遍又一遍地产生图像，直到它产生一个最终欺骗“鉴别器”网络的图像，从而产生一个有说服力的假图像。</p>
+<p class="translated">正如人们所看到的那样，生成敌对网络非常通用，现在一个来自西蒙弗雷泽大学、深圳大学和特拉维夫大学的研究小组正在将GANs作为一种变换形状的工具——例如，将球体无缝变形为金字塔——这在计算机图形学和几何建模领域将非常有用。</p>
+<p class="translated">他们的<a href="https://arxiv.org/abs/1903.10170" target="_blank" rel="noopener noreferrer external " class="ext-link">作品</a>将于今年晚些时候在SIGGRAPH Asia上展示，其特点是一个深度神经网络，可以自动学习如何将一个“源”对象的形状转换为另一个“目标”对象的形状。这种深度神经网络——被称为LOGAN(“潜在过完全GAN”的缩写)——能够进行这样的形状转换，而无需接受中间步骤可能是什么样子的培训，从而产生一种工具，可以对物体进行更自然的和通用的转换。虽然这听起来似乎没什么大不了的，但这里有一点很重要:与其他模型相比，LOGAN可以在两个“不成对”的对象之间执行转换，这意味着该模型不一定需要手动输入如何转换特定对象对的数据，例如，一把特定的椅子转换成一张特定的桌子，它可以进行更广泛的推广，这意味着它可以以无人监督的方式将任何椅子转换成任何桌子。</p>
+<p class="translated">“在现实世界中，配对数据集并不总是可用的，”西蒙弗雷泽大学博士生兼主要作者康雪尹解释说。“例如，很难从一套椅子和一套桌子中找到一对一配对关系。此外，人类捕捉的室内场景的真实3D扫描和艺术家创作的3D场景是两个不能很好配对的数据集。”</p>
+<h2 class="translated">一个“共同的潜在空间”</h2>
+<div>
+<dl id="attachment_9120599">
+<dt>
+<p/><div class="wp-caption alignnone"><img decoding="async" loading="lazy" src="../Images/5415e19f64724d1f770bf8fec64ab574.png" alt="" data-id="9120599" data-original-src="https://cdn.thenewstack.io/media/2019/10/79b1477e-logan-simon-fraser-university-3.jpg"/><p class="wp-caption-text translated">洛根的网络架构图。</p></div></dt>
+</dl>
+</div>
+<p class="translated">为了创造洛根，该团队首先训练一个神经网络作为“自动编码器”，计算从两个对立形状中获取的数据，并将这些数据编码到团队所谓的“公共潜在空间”，由源对象和目标对象共享。不同于在输入形状上直接发生形状转换(如在图像的相应像素到像素转换的情况下),这里的转换发生在这个公共潜在空间中，提供了其他传统形状转换模型所提供的类似对应。</p>
+<p class="translated">“编码允许我们把所有的形状放入一个共同的空间，提供了对应关系，”尹说。“一般来说，自动编码器被训练来重建形状。我们的自动编码器学习的代码是过完备的，这意味着我们不需要完整的代码来重建形状；有些部分代码也可以做很好的重构。”</p>
+<p class="translated">为了确保该算法实现正确的重建，以便清楚地看到目标形状是从源形状演变而来的，它还加入了一个基于生成对抗网络(GANs)的“翻译”网络，允许它执行团队所说的“特征保留损失”，这意味着源对象和目标对象共有的一些特征被保留，而其他特征则根据给定的形状而改变。</p>
+<dl id="attachment_9120597">
+<dt>
+<p/><div class="wp-caption alignnone"><img decoding="async" loading="lazy" src="../Images/8454298ea113758f2d533914fcf7b425.png" alt="" data-id="9120597" data-original-src="https://cdn.thenewstack.io/media/2019/10/b8e9985b-logan-simon-fraser-university-5.jpg"/><p class="wp-caption-text translated">由LOGAN和其他现存的GANs完成的保持原始字母(第一行)风格的变换的比较。</p></div></dt>
+</dl>
+<dl id="attachment_9120601">
+<dt>
+<p/><div class="wp-caption alignnone"><img decoding="async" loading="lazy" src="../Images/8546de5b6558981b1b1009c4599c49c0.png" alt="" data-id="9120601" data-original-src="https://cdn.thenewstack.io/media/2019/10/8e4e8abf-logan-simon-fraser-university-1.jpg"/><p class="wp-caption-text translated">LOGAN将桌子从较低的高度改造成较高的高度。</p></div></dt>
+</dl>
+<dl id="attachment_9120600">
+<dt>
+<p/><div class="wp-caption alignnone"><img decoding="async" loading="lazy" src="../Images/d399b97f6c7c5b17c69c7470f4a36562.png" alt="" data-id="9120600" data-original-src="https://cdn.thenewstack.io/media/2019/10/9a80d640-logan-simon-fraser-university-2.jpg"/><p class="wp-caption-text translated">LOGAN的autoencoder从表单中获取数据，并将这些数据编码成“点云”。</p></div></dt>
+</dl>
+<p class="translated">该团队指出，像LOGAN这样的工具可以应用于许多不同的领域。例如，无论是设计字体还是设计家具，网络都可以被赋予一个字母或一件以特定风格制作的家具，然后它会产生一个相同风格的新字母或家具。正如人们可能预期的那样，LOGAN只是开发真正通用的形状变换算法的许多步骤中的第一步——目前，需要一些技术改进，以便类似的系统有一天能够更智能地理解形式之间的更深层关系，以便进一步扩展<a href="https://medium.com/@flawnsontong1/what-is-geometric-deep-learning-b2adb662d91d" target="_blank" rel="noopener noreferrer external " class="ext-link">几何深度学习</a>的边界。</p>
+<p class="attribution translated">图片:西蒙·弗雷泽大学、深圳大学和特拉维夫大学</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

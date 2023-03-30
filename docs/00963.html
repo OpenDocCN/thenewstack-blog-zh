@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Tutorial: APIs Explained, Using Beer and Legos</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">教程:API解释，使用啤酒和乐高</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tutorial-apis-explained-using-beer-and-legos/#0001-01-01">https://thenewstack.io/tutorial-apis-explained-using-beer-and-legos/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">当我开始学习前端web开发并第一次遇到这个术语时，“API”听起来像是某种精酿啤酒。然后，我艰难地发现，如果你去酒吧，试图订购一个API，酒保会抛出一个“404:资源未找到”的错误。哦嗬嗬，我笑破了肚皮。</p>
+<p class="translated">所以！API是我们一直都在使用的东西。尽管它们无处不在，但是许多人——甚至是技术人员——对它们是什么以及它们是如何工作的理解非常模糊。严肃地说:让你的同事快速解释API。如果他们能做的不仅仅是告诉你，“API代表应用程序编程接口。它是允许软件应用程序相互通信的接口……”我会亲自给这个人买一杯啤酒。因为，说真的，我们大多数人真的不能有效地解释它，如果有的话。</p>
+<p class="translated">让我们改变这一点。</p>
+<h3 class="translated">" A "代表申请。</h3>
+<p class="translated">这个术语的第一部分非常依赖于上下文。根据具体的用例，“应用程序”实际上可以指很多东西:整个服务器。整个应用程序本身及其所需的数据。或者只是app的一小部分。</p>
+<p class="translated">让我们看看这些环境:服务器、整个应用程序、应用程序的较小部分。我们首先把网络想象成一个巨大的连接服务器的全球网络。互联网上的每一页都存储在这些远程服务器中的某个地方，即，位于远程的计算机，该计算机被优化来处理将该特定网站提供给你的浏览器的请求。</p>
+<p class="translated">因此，如果你在浏览器栏中键入<a href="https://www.github.com" class="ext-link" rel="external ">www.github.com</a>，Chrome(或Firefox或Safari yadda yadda)会向GitHub的服务器发送一个请求，后者会礼貌地发回所有必要的代码，以便在你的本地计算机上显示页面及其内容。当您的浏览器收到此响应时，它会解释代码并显示页面。</p>
+<p class="translated">服务器作为API:对于你的浏览器(也称为客户端)，GitHub的服务器就是一个API。这意味着每次你访问网页时，你都要与一些远程服务器的API进行交互。在这种情况下，API与远程服务器不是一回事。相反，它是服务器接收请求和发送响应的一部分。</p>
+<p class="translated">作为API的整个应用程序:在初始调用时，GitHub服务器发送整个web应用程序:表示结构(站点的布局，外观)，加上网站的所有内容。表示部分已经设置好了，并作为HTML代码发送，由浏览器呈现。内容——网站中包含的动态信息——通常以JSON格式作为数据发送，然后呈现在页面的适当位置。</p>
+<p class="translated">因此，如果我们在看一个典型的GitHub页面，呈现部分——比如顶部的导航栏，左边的用户照片和简历，中间的固定存储库——基本保持不变。但是那些代表每日GitHub活动水平的绿色小方块呢？这根据用户的贡献而变化。当我们将项目工作推送到GitHub，然后去检查以确保它已被记入我们的个人资料页面时，API会告诉我们的浏览器将今天的正方形涂成绿色，以及它应该使用什么样的阴影。然而，其他一切都保持不变。</p>
+<p class="translated">不同种类的API允许我们的浏览器调用特定种类的信息，并只更新相关的数据——而不需要重新加载所有其他的东西，这一点没有改变。</p>
+<p class="translated">作为API的应用程序部分:当构建一个web应用程序时，从预先存在的部分构建它要快得多，也容易得多(通常也更可靠)。如果你能想象得到，很有可能有一个库、预建平台或*“即服务”来提供它。</p>
+<p class="translated">但是，这些组件如何相互交流，以便作为一个统一的应用程序一起执行呢？</p>
+<h3 class="translated">“P”代表协议，“I”代表接口</h3>
+<p class="translated">一个API的应用程序端可以有很大的不同，但是不管我们在谈论什么样的上下文，API的最终工作是相同的:通信和协调。</p>
+<p class="translated">API或协议中的“P”指的是为其他软件设置商定的方法，以与给定的API对话，并从其请求/接收相关信息。</p>
+<p class="translated">接口指的是API的中介方面，即使两个应用程序能够相互通信的实际功能。</p>
+<p class="translated">因此，从根本上说，API可以被认为是两个软件之间的一种协议或契约，是使它们能够接口并一起工作的“粘合层”。实质上，API是在说，“如果你给我这个指令，我将执行这个动作/返回这个信息。”</p>
+<p class="translated">隐喻时间:API就像微型啤酒厂的啤酒龙头。每一个龙头对应一种特定的啤酒，所以当你拉下标有“波特”的龙头手柄时，你知道你的杯子会装满一杯浓郁的棕色大麦香味的啤酒，而“比尔森啤酒”会带来一杯淡而脆的黄色啤酒。同样，请求API输出的客户端知道要“点击”哪些数据才能获得想要的输出。举例来说，波特酒应该是从波特酒龙头里出来的，而不是黑啤酒或淡啤酒。同时，用户甚至不需要知道或关心水龙头内部发生了什么。你可以在不影响用户的情况下重新安排产品线或优化你的产品(你提供的brew或应用)，因为界面保持不变。</p>
+<p class="translated">API不仅仅是推出数据；他们也接受了。这就是我们的啤酒比喻不起作用的地方，因为啤酒只能单向流动。因此，让我们混合我们的比喻来说明数据是如何进入API的。想象一下那些给小孩子玩的形状分类玩具。形状像圆形、星形和三角形的零件通过适当形状的开口插入；一颗星星只能通过星形的洞进去。在API中，数据以定义的形式提供(想象一下，比如圆形或三角形)，并且只能通过相应的开口通过接口。API需要某种格式，并将拒绝不适合的数据。不要试图将三角形数据放入方孔。因此，客户被迫根据API构建器的规范(即，协议)来组织输入，该规范设置了对交易的期望。</p>
+<p class="translated">无论我们用什么比喻来解释它，API都可以被认为是两个软件之间的一个协议或契约，它说:“如果你给我这个指令，以这种方式格式化，我将执行这个指定的动作或返回这个信息。”</p>
+<h3 class="translated">作为产品的原料药</h3>
+<p class="translated">除了作为浏览器、服务器、软件和数据库之间信息交换的载体，API还可以作为产品打包出售。例如，Weather Underground出售其<a href="https://www.wunderground.com/weather/api" class="ext-link" rel="external ">天气数据API </a>的使用权。这是一组返回纯数据响应的专用URL，在本例中，是最新的天气预报，供您链接到自己的应用程序并用于提供数据。只是事实，夫人:你没有得到Weather Underground在它自己的应用程序或网站上使用的演示材料。你可以自己构建自己的图形用户界面。</p>
+<p class="translated">也就是说，您完全可以用浏览器向API发出请求，并查看结果数据，不管有没有GUI。由于所请求数据的实际HTTP传输是以文本形式出现的，因此您的浏览器通常能够呈现响应。比如，你可以用浏览器直接访问GitHub的API，甚至不需要访问令牌。这是你在浏览器中访问GitHub用户的API路径时得到的JSON响应——让我们来看看<a href="https://api.github.com/users/mgienow" class="ext-link" rel="external ">我的</a> : <br/></p>
+<div id="crayon-642311b3b177b225415410" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>{
+<span class="crayon-h">  </span><span class="crayon-s">"login"</span>:<span class="crayon-h"> </span><span class="crayon-s">"mgienow"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"id"</span>:<span class="crayon-h"> </span><span class="crayon-cn">19556217</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"node_id"</span>:<span class="crayon-h"> </span><span class="crayon-s">"MDQ6VXNlcjE5NTU2MjE3"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"avatar_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://avatars2.githubusercontent.com/u/19556217?v=4"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"gravatar_id"</span>:<span class="crayon-h"> </span><span class="crayon-s">""</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"html_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://github.com/mgienow"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"followers_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/followers"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"following_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/following{/other_user}"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"gists_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/gists{/gist_id}"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"starred_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/starred{/owner}{/repo}"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"subscriptions_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/subscriptions"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"organizations_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/orgs"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"repos_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/repos"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"events_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/events{/privacy}"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"received_events_url"</span>:<span class="crayon-h"> </span><span class="crayon-s">"https://api.github.com/users/mgienow/received_events"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"type"</span>:<span class="crayon-h"> </span><span class="crayon-s">"User"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"site_admin"</span>:<span class="crayon-h"> </span><span class="crayon-i">false</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"name"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Michelle Gienow"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"company"</span>:<span class="crayon-h"> </span><span class="crayon-i">null</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"blog"</span>:<span class="crayon-h"> </span><span class="crayon-s">""</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"location"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Baltimore, MD"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"email"</span>:<span class="crayon-h"> </span><span class="crayon-i">null</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"hireable"</span>:<span class="crayon-h"> </span><span class="crayon-i">true</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"bio"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Front-end web developer &amp;amp; recovering journalist - I write web dev/JS/Node/Python @TheNewStack"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"public_gists"</span>:<span class="crayon-h"> </span><span class="crayon-cn">1</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"followers"</span>:<span class="crayon-h"> </span><span class="crayon-cn">11</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"following"</span>:<span class="crayon-h"> </span><span class="crayon-cn">2</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"created_at"</span>:<span class="crayon-h"> </span><span class="crayon-s">"2016-05-24T16:33:09Z"</span>,
+<span class="crayon-h">  </span><span class="crayon-s">"updated_at"</span>:<span class="crayon-h"> </span><span class="crayon-s">"2018-01-27T03:26:14Z"</span>
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>因此，当你访问我的GitHub页面时，它调用GitHub API获取显示页面的表示代码(HTML/CSS ),并调用另一个不同的GitHub API获取我独有的数据。对于页面其他区域的内容，还有其他几个对其他API的调用。浏览器接收所有这些数据，然后知道将数据插入页面以生成最终的统一表示。</p>
+<h3 class="translated">把所有的放在一起</h3>
+<p class="translated">基本上，任何可以从运行时环境中分离出来的软件都可以成为特定环境下API中的“A”。它本身可能也有某种API。例如，假设您在代码中使用了第三方库。一旦合并到你的代码中，这个库就成为你的整个应用程序的一个永久的部分。然而，作为一个独特的软件，该库使用一个API(它是预先打包好的，不用担心)来允许与代码的其余部分进行交互。</p>
+<p class="translated">所以:API可以是任何东西，真的。服务器、应用程序，甚至是可以买卖的产品。这就是为什么他们有点难以解释，即使对我们这些每天和他们一起工作的人来说。</p>
+<p class="translated">也许定义API本质的最恰当的方式是使用乐高。乐高积木有一种通用的方式，通过一个积木上的小钉系统相互连接，并使这些小钉与其他积木上的凹槽相关联。这提供了一种简单和结构化的方式，允许所有部分以相同的方式咬合在一起。同时，棋子可能的组合也是无穷无尽的。类似地，软件可以使用API来连接我们寻找的信息和查看信息的界面，从而创建一个独特的服务组合，共同形成一个应用程序。</p>
+<p class="translated">对于开发者来说，乐高的确是理解API价值的一种有益方式。有了API，开发者不用每次写新程序都要从头开始。他们不再需要构建一个试图做所有事情的核心应用程序。相反，他们可以通过使用已经创建的可以更好地完成工作的部分来外包某些职责。所以API是软件开发的乐高积木:软件与其他软件通信的标准化工具，导致更快的构建和部署。谢天谢地，每个人都有更快的加载时间。</p>
+<p class="attribution translated">由Behance.net知识共享许可的Michael Kulesca制作的专题图片</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

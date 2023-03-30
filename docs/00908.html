@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>MIT Robot Uses Tactile Reasoning AI to Play Jenga Like a Human</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">麻省理工学院机器人使用触觉推理人工智能像人类一样玩叠人偶</h1>
+<blockquote>原文：<a href="https://thenewstack.io/mit-robot-uses-tactile-reasoning-ai-to-play-jenga-like-a-human/#0001-01-01">https://thenewstack.io/mit-robot-uses-tactile-reasoning-ai-to-play-jenga-like-a-human/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">越来越明显的是，在执行专门的认知任务时，机器具有优势(或者至少正在迅速赶上)，比如在国际象棋中控制人类，在T2围棋中控制人类，或者在T4扑克游戏中学习如何虚张声势。虽然能够完成各种任务的全面的、类似人类的人工通用智能还有一段路要走，但智能机器还有其他领域要征服——例如掌握叠人龙。</p>
+<p class="translated">为此，麻省理工学院的研究人员现在开发了一种机器人，它可以使用类似人类的分层学习模型来玩Jenga。虽然对我们来说这看起来并不复杂，但是对于机器来说，叠树实际上很难理解。以斯瓦希里语单词<i> kujenga </i>命名，意思是“建造”，jenga是一种需要玩家处理大量触觉信息的游戏，因为他们试图通过逐步提取和堆叠棋子来仔细重新排列它们，而不推翻越来越不稳定的结构。这是一个有趣的挑战，大多数人可以在几场比赛内学会玩得相当好，但看看团队的机械臂是如何表现的:</p>
+<p class="translated"><iframe loading="lazy" title="MIT Robot Learns How to Play Jenga" src="https://www.youtube.com/embed/o1j_amoldMs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-7097972" src="../Images/ddcde964a0386870fcee048a407c3e68.png" alt="" data-id="7097972" data-original-src="https://cdn.thenewstack.io/media/2019/03/e6e78640-jenga-robot-mit-4.jpg"/></p>
+<p class="translated">麻省理工学院的机器人让它看起来很容易，但实际上在引擎盖下有很多事情要做。对于大多数机器人来说，学习玩好叠人偶很困难，因为它们并不特别擅长所谓的触觉推理，即利用从身体接触和与物体互动中收集的线索来执行任务的能力。</p>
+<p class="translated">“与更纯粹的认知任务或游戏(如国际象棋或围棋)不同，玩叠人龙游戏还需要掌握物理技能，如探测、推、拉、放置和排列棋子，”麻省理工学院工程学教授阿尔伯托·罗德里格斯解释道，他也是发表在<a href="http://robotics.sciencemag.org/content/4/26/eaav3123" target="_blank" class="ext-link" rel="external ">科学机器人学</a>上的研究报告的合著者。“它需要交互式感知和操作，你必须去触摸塔，以了解如何以及何时移动砖块。这很难模拟，所以机器人必须在现实世界中学习，通过与真实的叠木塔互动。关键的挑战是通过利用关于物体和物理的常识，从相对较少的实验中学习。”</p>
+<h2 class="translated">结合视觉和触觉推理</h2>
+<p class="translated">为了建造一个具有更发达触觉推理能力的机器人，该团队创建了一个人工智能模型，模拟人类可能如何实现这一壮举——首先通过短暂的试错期来学习游戏，然后使用之前尝试的触觉和视觉数据来推断未来的行动可能如何影响积木的行为。</p>
+<p class="translated">更具体地说，该团队使用了ABB IRB 120机械臂，此外还有一个<a href="https://en.wikipedia.org/wiki/Hierarchical_temporal_memory" class="ext-link" rel="external "/><a href="https://en.wikipedia.org/wiki/Bayesian_network" target="_blank" class="ext-link" rel="external ">贝叶斯模型</a>。每当机器人肢体试图推动和重新定位一块积木时，系统都会记录下视觉和触觉测量结果，以及尝试是否成功。然后，系统将根据它当前的动作和它做出的推断来调整它的行为。与可能需要通过数万次方块操作尝试来训练的传统人工智能模型相比，该团队的模型仅在大约300次尝试中得到了足够的训练，这要归功于它对某些方块行为的数据以及相关物理信息进行“聚类”的能力。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-7097970" src="../Images/87d132b3b18362e63ca8dcb23a50a7fc.png" alt="" data-id="7097970" data-original-src="https://cdn.thenewstack.io/media/2019/03/fb7d6548-jenga-robot-mit-2.jpg"/></p>
+<p class="translated">根据该团队的说法，这种数据聚类技术通过允许机器人根据以前的经验对可能的结果进行分组，从而提高了机器人学习游戏的效率，因此使它能够使用当前的视觉和触觉数据预测它是否能够成功移动特定的块。</p>
+<p class="translated">“机器人建立集群，然后学习每个集群的模型，而不是学习一个捕捉所有可能发生的事情的模型，”麻省理工学院研究生兼主要作者尼玛·法泽利指出。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-7097971" src="../Images/0f96345db4753d4fa2f02c3a26aa4762.png" alt="" data-id="7097971" data-original-src="https://cdn.thenewstack.io/media/2019/03/9dd1bf6c-jenga-robot-mit-3.jpg"/></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-7097973" src="../Images/b3a4e35d008940fb8a67ff2d97c92bd0.png" alt="" data-id="7097973" data-original-src="https://cdn.thenewstack.io/media/2019/03/069240a5-jenga-robot-mit-5.jpg"/></p>
+<p class="translated">当在模拟中测试他们的模型与其他机器学习算法时，该团队发现其他模型需要“数量级更多的塔”才能成功学习游戏。该团队甚至将他们的系统与人类志愿者进行了对比，发现机器人手臂的表现几乎与人类一样好，尽管在他们的机器人能够与人类叠罗汉冠军进行战略性竞争之前，仍有一些改进的空间。</p>
+<p class="translated">然而，拥有一个不仅能看，还能从动作中“感觉”的机器人，在除了玩游戏之外的其他应用中是必不可少的。例如，这种灵巧的机器人军队将非常适合组装微小的电子部件或协助<a href="https://thenewstack.io/autonomous-robot-surgical-cuts-better-human-surgeon/" target="_blank" class="local-link">外科手术</a>——尽管这种实现无疑将加速已经在进行的<a href="https://thenewstack.io/will-happen-robots-take-jobs/" target="_blank" class="local-link">机器人接管</a>。</p>
+<p class="translated">在<a href="http://robotics.sciencemag.org/content/4/26/eaav3123" target="_blank" class="ext-link" rel="external "> <em>科学机器人</em> </a>阅读论文。</p>
+<p class="attribution translated">图片:麻省理工学院</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>With Project Eirini, Cloud Foundry Adapts to a New Open Source Ecosystem</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">通过项目Eirini，Cloud Foundry适应了一个新的开源生态系统</h1>
+<blockquote>原文：<a href="https://thenewstack.io/with-project-eirini-cloud-foundry-adapts-to-a-new-open-source-ecosystem/#0001-01-01">https://thenewstack.io/with-project-eirini-cloud-foundry-adapts-to-a-new-open-source-ecosystem/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Cloud Foundry的年轻时代已经过去了。这一点在本周费城举行的云铸造峰会上显而易见。现在，从用于启动12因素应用程序的开源平台到尊重其根源但继续通过<a href="https://www.cloudfoundry.org/project-eirini/" target="_blank" rel="noopener noreferrer external " class="ext-link">项目Eirini </a>扩展的平台的持续过渡，ei rini是一个用于Cloud Foundry的Kubernetes后端，它使用OCI映像和Kubernetes部署将Cloud Foundry应用程序部署到Kubernetes后端。</p>
+<p class="translated">在GitHub上被描述为“<a href="https://github.com/cloudfoundry-incubator/eirini" target="_blank" rel="noopener noreferrer external " class="ext-link">Orchestrator Provider Interface</a>”(OPI)，Eirini可以用来翻译为Diego编写的运行时指令，Diego是为Cloud Foundry构建的调度程序，因此它们可以被Kubernetes理解。Eirini是作为一个后端调度程序构建的，带有一个API，从Cloud Foundry的控制平面抽象出编排。它可以与任何调度程序，无论是迭戈，Kubernetes或Docker群。在其核心，OCI拥抱长期运行过程(LRP)的概念和映射到编排器的任务。目前，这意味着对Kubernetes的支持。只要有针对目标平台的OPI层的实现，就可以集成其他编排器。</p>
+<p class="translated">Eirini最初是由IBM开发的，它在由<a href="https://twitter.com/jrmcgee" target="_blank" rel="noopener noreferrer external " class="ext-link"> Jason McGee </a>和<a href="https://twitter.com/FranklyBriana" target="_blank" rel="noopener noreferrer external " class="ext-link"> Briana Frank </a>主持的云铸造峰会主题演讲中展示了一个用例。</p>
+
+<p/>
+<p class="translated">在Cloud Foundry峰会上，Eirini是关注的焦点。它反映了随着成员组织的成熟和开发他们的开发团队所带来的变化和适应。随着开源社区成为应用程序开发的中心，供应商正在适应这些变化。这种变化对所有参与者来说都是外在的。这些社区开发技术，然后开发人员使用这些技术构建现代应用程序，这些应用程序使用多种服务，我们通常称之为微服务方法。</p>
+<h2 class="translated">云铸造打造未来</h2>
+<p class="translated">Cloud Foundry Foundation不得不适应这些年，尤其是像Kubernetes这样的开源技术受到了如此多的关注。Cloud Foundry领导人经常会喜欢谈论Kubernetes是如何被炒作的。他们的观点是，不总是新的和闪亮的是需要的。财富500强公司的客户需要不断发展的开发团队所需的基础知识。对于刚接触持续集成和持续交付的组织来说，12个因素的应用程序仍然足够复杂。解决办法一直是提供专业服务，帮助会员组建团队，并开始大规模开发、部署和管理流程。</p>
+<p class="translated">领先的CF提供商Pivotal构建了一个平台，该平台使用结对编程模型来帮助组织建立开发人员团队。该公司的方法受到康卡斯特(Comcast)等客户的欢迎，他们利用这种模式超越了有线电视提供商的范围，成为多频道娱乐提供商。</p>
+
+<p/>
+<p class="translated">因此，关于云铸造的未来的讨论仍在继续。以及它的方向。但这不再仅仅是关于Cloud Foundry，而是Cloud Foundry如何与不同的运行时、云服务、调度程序和编排引擎进行互操作。Kubernetes可能会得到很多关注，但它的未来也受到质疑，以至于即使Kubernetes享有如此广泛的人气，客户仍然希望迭戈活着，过得好。</p>
+<p class="translated">《财富》500强中约有一半的公司使用Cloud Foundry，如Comcast、Liberty Mutual和Home Depot。即使它不再是过去的“一个”平台，它仍然生机勃勃。</p>
+<p class="translated">认为只有一个平台是荒谬的。当有如此多的其他服务相互依赖时，专注于一个平台的宣传也是荒谬的。CF必须适应这个新的世界，它的客户也是如此，他们长期以来一直依赖Diego作为他们的调度选择。但是Diego与CF紧密相关，并且这种转变，正如多年来一样，是为了跨分布式系统的更松散耦合的架构。</p>
+<p class="translated">尽管如此，离开迭戈的担忧是真实的。开发人员传统上使用Cloud Foundry API (CAPI)将他们的代码推送到他们的应用程序中。此外，Diego对于使用Diego来监控应用程序、其弹性和许多其他因素的平台运营商来说是至关重要的。</p>
+<p class="translated">但现实是，经济在很大程度上发挥了作用。没有一家公司能开发这种软件。他们只是没有足够的人力来构建、部署和支持技术堆栈，然后以数十万美元的价格出售。这对他们来说太贵了，开发商有太多的选择。</p>
+<p class="translated">对于开源社区来说，这也是一个经济问题。像Cloud Foundry这样的组织必须进行调整，以满足他们的社区和Pivotal这样的大型供应商的需求，这些供应商将工程师投入到项目中。</p>
+<p class="translated">而用户本身呢？对于Cloud Foundry Foundation的赞助商来说，比如Comcast，对开发人员工具的关注带来了好处。</p>
+<p class="translated"><iframe loading="lazy" title="How Eirini Integrates Cloud Foundry and Kubernetes" src="https://www.youtube.com/embed/wT1ZImIYkrs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="attribution translated">Cloud Foundry和Pivotal是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

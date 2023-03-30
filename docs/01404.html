@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>OCI's Long-Awaited Container Runtime and Image Specifications Hit the Streets</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">OCI期待已久的容器运行时和映像规范问世了</h1>
+<blockquote>原文：<a href="https://thenewstack.io/oci-specification-1-0-arrives/#0001-01-01">https://thenewstack.io/oci-specification-1-0-arrives/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">经过两年的努力，<a href="https://www.opencontainers.org/" class="ext-link" rel="external ">开放容器倡议</a>已经发布了针对容器映像和容器运行时格式的<a href="https://github.com/opencontainers/runtime-spec" class="ext-link" rel="external "> 1.0版本规范</a>。由<a href="https://www.linuxfoundation.org/" class="ext-link" rel="external "> Linux基金会</a>支持的OCI试图确保整个行业的容器系统之间的兼容性，包括从主要的云提供商到<a href="https://www.docker.com/" class="ext-link" rel="external "> Docker </a>本身的每一个人。</p>
+<p class="translated">OCI执行董事Chris Aniszczyk 说，OCI的大部分工作最初是基于Docker的工作。该项目从Docker的<a href="https://github.com/docker/libcontainer" class="ext-link" rel="external "> Libcontainer </a>组件获得了代码捐赠，这成为了OCI的最小运行时规范<a href="https://github.com/opencontainers/runc" class="ext-link" rel="external "> runC </a>。OCI图像格式源于Docker的V2图像格式。</p>
+<p class="translated">OCI和红帽公司的首席软件工程师Vincent Batts在过去的六个月里帮助完成了规范。他说，很多最后的工作都围绕着正确的措辞，以便所有相关方，包括那些代表微软Windows生态系统的人，甚至甲骨文的一些Solaris人员，都感到满意和兼容。</p>
+<p class="translated">Batts说，图像格式标准最终必须出现。“这是我认为没有人真的想要有一个规范或标准的事情之一。我认为生态系统中的许多人都希望出现一个事实上的标准，但是标准出现的问题是有很多不灵活的地方。Batts说:“我们需要的用例没有一个听众来倾听他们如何需要所有的灵活性和特性，而这些都需要成为事实上的标准。</p>
+<p class="translated">Docker开源项目主管Stephen Walli表示同意，图像规范对可移植性尤为重要。“人们已经考虑虚拟机映像很长时间了。“我想你看到的是，当Docker的首席技术官T2说‘这是非常快速地构建容器的简单方法’时，那套开源项目成为了事实上的标准，”Walli说。</p>
+<p class="translated">“在很多方面，”Batts说，“Docker图像格式有某些事实上的标准，但事实是它是定制的，所以它只会存在于Docker生态系统中。如果您创建了自己的根文件系统构建器，并且有很多工具可以生成根文件系统，如果他们要将其定制为Docker映像，就会出现转换缺口，如果您不使用Docker工具来生成它，您就必须不断地跨越障碍，以使您的映像成为Docker容器映像。”</p>
+<h2 class="translated">Linux、Windows、Solaris</h2>
+<p class="translated">因此，OCI 1.0规范应该允许多种工具产生兼容的容器。这也应该扩展到云中，供应商可以使用现有的兼容运行时，或者像<a href="https://thenewstack.io/oracle-opens-oci-container-runtime/" class="local-link">甲骨文的新轨道车</a>一样，编写自己的运行时规范实现。</p>
+<p class="translated">Batts说:“对于还不存在的工具，我们需要更具体的东西。”“从很多方面来说，这已经够无聊的了，有些人可能不会去谷歌他们需要的OCI工装。他们只是要发现他们在用例中寻找的任何容器工具，理想情况下，它将支持OCI映像。他们将有一个兼容层，并重用更多的基础设施，而不仅仅是如果我们不使用工具“X”构建映像，我们必须将所有东西都取出来，使用其他东西。对于许多规避风险的公司来说，这可能是完全不可能的，”Batts说。</p>
+<p class="translated">OCI 1.0规范是40多家公司合作的结晶，包括微软和T2的甲骨文。这也意味着该规范涵盖了Windows和Solaris。<a href="https://www.linkedin.com/in/davidmessina/" class="ext-link" rel="external ">Docker营销和社区高级副总裁David Messina </a>表示，微软和甲骨文“非常合作，对解决方案的成功至关重要，因为关注的焦点不仅仅是Linux容器。重点是Windows、Linux和Solaris，这也是1.0规范中的最终内容。有许多供应商参与其中，但有一组核心的贡献者，由于一些真正伟大的跨公司合作，我们现在拥有1.0规范。”</p>
+<p class="translated">至于最终用户，大多数参与该项目的人都希望最终用户不会注意到他们日常工作流程中的许多差异。</p>
+<p class="translated">“人们应该期待什么？”巴茨问道。"理想情况下，我觉得总的来说，人们可能不会受到日常影响."他补充说，他预计OCI图像将成为大多数注册中心及其工具链的输出向量。“这正是亚马逊的<a href="https://aws.amazon.com/ecr/" class="ext-link" rel="external "> EC2容器注册中心</a>已经做的事情。你可以将一个图像放到他们的注册表中，然后从注册表中请求OCI图像的MIME类型。它会侧着身子翻译，然后推或拉。”</p>
+<p class="translated">“最重要的是，你可以有各种各样的工具用于各种各样的用例，并且仍然有一些公共的工件或层，它们可以在那里进行通信。Batts说:“这类似于多年来人们习惯于将Qemu映像用于虚拟机。</p>
+<p class="translated">至于该规范的未来，CoreOS的首席技术官Brandon Philips表示，已经有一些想法在下一个版本中得到解决。“有一些关于改进包装和运输方式的想法。我们如何更有效地传递差异和压缩内容？这有赖于对分配如何工作有真正好的规范。</p>
+<p class="translated">Docker的Walli说,“工作组面临的下一项重要工作是认证。规格终于在本周登陆，现在我们要证明这一点。接下来，我们将进行认证，使用OCI品牌来验证产品。”</p>
+<p class="attribution translated">CoreOS 、<a href="https://www.linuxfoundation.org/" class="ext-link" rel="external ">Linux基金会</a>和<a href="https://www.openshift.com/" class="ext-link" rel="external ">红帽</a>是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:<a href="http://www.metmuseum.org/Collections/search-the-collections/241305" class="ext-link" rel="external ">一艘船的陶土模型，公元前6世纪</a>，纽约大都会艺术博物馆，塞斯诺拉收藏。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

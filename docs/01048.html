@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Virtual Breadboarding with the Fritzing App</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:Fritzing应用程序的虚拟面包板</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-virtual-breadboarding-fritzing/#0001-01-01">https://thenewstack.io/off-shelf-hacker-virtual-breadboarding-fritzing/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">几周前，<a href="/tag/off-the-shelf-hacker/" target="_blank">现成的黑客</a>查看了<a href="https://thenewstack.io/off-shelf-hacker-read-schematics-like-pro/" class="local-link">原理图的基础</a>。本周我们将介绍如何使用Fritzing应用程序来绘制自己的原理图。我建议手工画几个原理图，只是为了练习。用<a href="http://fritzing.org" class="ext-link" rel="external ">烧结</a>绘制原理图肯定会加快进程。这是一个适度的学习曲线，随着练习肯定会变得更容易和更快。Fritzing在Maker社区中随处可见，当您需要记录您的电路设计时，它是您的首选。</p>
+<p class="translated">如果你还没有安装Fritzing，只需按照下面的步骤开始。</p>
+<h2 class="translated"><strong>烧结安装</strong></h2>
+<p class="translated">下载适合您的操作系统的版本。我使用的是<a href="http://fritzing.org/download/0.9.2b/linux-64bit/fritzing-0.9.2b.linux.AMD64.tar.bz2" class="ext-link" rel="external "> Linux-64版本</a>(下载链接)，它被复制到我的~/Downloads目录中。我扩展了tar文件，并使用以下命令行启动Fritzing程序。<br/></p>
+<div id="crayon-6422cb2ee97fd948993507" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">rob</span>%<span class="crayon-h">  </span><span class="crayon-i">cd</span><span class="crayon-h"> </span>~
+<span class="crayon-i">rob</span>%<span class="crayon-h">  </span><span class="crayon-i">cp</span><span class="crayon-h"> </span>~/<span class="crayon-i">Downloads</span>/<span class="crayon-i">fritzing</span>-<span class="crayon-cn">0.9.2b.linux.AMD64.tar.bz2</span><span class="crayon-h"> </span>.
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>不要忘记命令末尾的点号。它只是用相同的文件名将它复制到当前目录中。<br/></p>
+<div id="crayon-6422cb2ee9801264999825" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">rob</span>%<span class="crayon-h">  </span><span class="crayon-i">tar</span><span class="crayon-h"> </span>-<span class="crayon-e">xvf </span><span class="crayon-e ">fritz*</span><span class="crayon-e">bz2</span>
+<span class="crayon-i">rob</span>%<span class="crayon-h">  </span><span class="crayon-e">cd </span><span class="crayon-e ">fritz*</span>
+<span class="crayon-i">rob</span>%<span class="crayon-h">  </span>./<span class="crayon-v">Fritzing</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>主熔块屏幕如下所示:</p>
+<div id="attachment_1004367" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/01/fritzing-main-screen.png" rel="attachment wp-att-1004367" class="local-link"><img aria-describedby="caption-attachment-1004367" decoding="async" loading="lazy" class="size-large wp-image-1004367" src="../Images/a410a5f9f44a6ad8a15445f2b2d3283e.png" alt="Fritzing Main Screen" data-original-src="https://thenewstack.io/wp-content/uploads/2016/01/fritzing-main-screen-1024x640.png"/></a><p id="caption-attachment-1004367" class="wp-caption-text translated">烧结主屏幕</p></div>
+<h2 class="translated">让我们开始吧</h2>
+<p class="translated">单击“文件”和“新建”创建一个新文件默认情况下，空白草图会出现在“试验板”视图中，右侧是标准长度的试验板和零件列表。</p>
+<p class="translated">Fritzing中有三种视图模式。试验板视图(默认)允许您设计具有物理外观的组件。</p>
+<div id="attachment_1004374" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/01/breadboard-view.png" rel="attachment wp-att-1004374" class="local-link"><img aria-describedby="caption-attachment-1004374" decoding="async" loading="lazy" class="size-large wp-image-1004374" src="../Images/2411dc3d802cba672d3b56558ce4480f.png" alt="Breadboard View" data-original-src="https://thenewstack.io/wp-content/uploads/2016/01/breadboard-view-1024x640.png"/></a><p id="caption-attachment-1004374" class="wp-caption-text translated">试验板视图</p></div>
+<p class="translated">示意图显示了带有传统原理图符号的电路。</p>
+<div id="attachment_1004375" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/01/schematic-view.png" rel="attachment wp-att-1004375" class="local-link"><img aria-describedby="caption-attachment-1004375" decoding="async" loading="lazy" class="size-large wp-image-1004375" src="../Images/a7dc8a26421e029897e8fd8c851951c0.png" alt="Schematic View" data-original-src="https://thenewstack.io/wp-content/uploads/2016/01/schematic-view-1024x640.png"/></a><p id="caption-attachment-1004375" class="wp-caption-text translated">示意图</p></div>
+<p class="translated">PCB视图允许您在印刷电路板上物理排列元件。我们今天的讨论将局限于示意图，因此请单击该选项卡。如您所料，在您设计时，这三个视图会保持同步。请注意，您经常需要在各种视图中手动排列组件，以使它们整洁有序。你可以随意探索其他两种观点。</p>
+<p class="translated">让我们使用“<a href="https://thenewstack.io/off-shelf-hacker-read-schematics-like-pro/" class="local-link">像专业人士一样阅读原理图”文章中的例子来设计一个基本电路。</a></p>
+<div id="attachment_1004370" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/01/banner.png" rel="attachment wp-att-1004370" class="local-link"><img aria-describedby="caption-attachment-1004370" decoding="async" loading="lazy" class="size-full wp-image-1004370" src="../Images/0e4100f6988851568ae5529af298c684.png" alt="Simple Circuit" data-original-src="https://thenewstack.io/wp-content/uploads/2016/01/banner.png"/></a><p id="caption-attachment-1004370" class="wp-caption-text translated">简单电路</p></div>
+<p class="translated">点击零件清单上的“旧件”标签。会出现一堆输入、输出、微控制器的标准件。向下滚动到“输出”组，选择DC电机。单击并将其拖到空白原理图上。</p>
+<p class="translated">接下来，移动到“电源”部分，选择电池。单击并将其拖到原理图上。</p>
+<p class="translated">最后，向上滚动并在“输入”下找到拨动开关单击并将其拖到原理图上。</p>
+<p class="translated">将各部分排列整齐，就像我上面的画一样。</p>
+<p class="translated">连接部件非常简单。单击组件导线的末端，将连接(导线)拖到另一个组件上，将其挂接到所需的连接。例如，将一根电线从蓄电池的负极(短杆)连接到电机上的一根电线。在连接之前，你需要让电线的末端非常靠近组件的电线。如果导线看起来像是在空间中结束，请再次高亮显示导线末端，并稍微移动它，直到它“咔哒”一声或“连接”到另一根导线。</p>
+<p class="translated">将电机的另一端连接到拨动开关的一个端子上。然后，将拨动开关的另一端连接到蓄电池正极(长杆)上。当然，我们总是希望有一个完整的电路。</p>
+<h2 class="translated"><strong>让您的图解生活更轻松</strong></h2>
+<p class="translated">抓取零件，将它们放在原理图上并连接在一起。这就是用Fritzing绘制原理图的全部内容。神奇之处在于能够找到正确的部分，说明所有的连接，并使绘图整洁。</p>
+<p class="translated">始终使用最新版本。我使用的是64位版本fritzing-0.9.2b。最新版本包括来自大型硬件供应商的相当最新的零件库。这意味着，如果你使用Fritzing的当前版本，你将不必在互联网上寻找你的原理图需要的部分。</p>
+<p class="translated">例如，<a href="https://www.sparkfun.com/" class="ext-link" rel="external "> Sparkfun </a>销售Arduino Pro Mini。我在我的一些项目中使用过它们。向下滚动并点击Sparkfun零件选项卡。你会在“其他”组中找到Mini。</p>
+<p class="translated">您也可以使用零件列表顶部的搜索栏来查找零件。输入“pro mini”就能得到一堆零件。显然，许多零件的标签列表中都有“pro mini”字样。您需要向下滚动一点，才能在列表中找到它。</p>
+<p class="translated">如果找不到需要的零件怎么办？只要找一个合适的。网上的fzz文件。熔结零件是由供应商和第三方在。fzz格式，可以很容易地导入到应用程序中。我最近需要一个ESP8266-01器件用于一个新的无线项目。于是，我在谷歌搜索了“esp8266-01”和“fzz”。弹出了几个网站。我点击下载了一个。fzz文件到我的下载目录。这些文件通常不是很大。</p>
+<p class="translated">To use the file, start Fritzing and click the “core” tab on the parts list. On the right side of the “Core Parts” bar, you’ll see a little configuration drop-down. Click the drop-down and select “Import”. It should be at the top of the list. Go to the directory where the .fzz was downloaded. Click on the .fzz file and it will be imported into your parts list, probably under the “mine” parts tab. Simply drag it into the schematic, as usual.</p>
+<p class="translated">Another important tip is that you can manipulate the parts once they’re in your schematic. Left click on a part, then right-click to get a menu of things you can do to the part. For example, if the battery symbol has the positive terminal on the wrong side, just flip it horizontally (or vertically), so you can minimize long, complicated wire runs and unnecessary cross-overs. It takes a little practice to arrange parts, so the schematic is easy to read and unambiguous.</p>
+<p class="translated">Other functions on parts include rotating it 90 degrees clockwise/counter-clockwise, raising/lowering (in front of or behind other parts) in the drawing and copying/pasting. Take full advantage of these features and make your schematics neat and tidy. People looking at the schematic will appreciate your efforts. You’ll thank yourself too when you finally cycle back around to that back-burner project you were working on a month ago.</p>
+<h2 class="translated"><strong>Go Forth And Draw</strong></h2>
+<p class="translated">Fritzing is much like most other vector-based drawing applications. Remember that you are working with objects, as opposed to bits of color and you should be fine. Explore the program a bit and take advantage of the labor saving features, to create awesome schematics.</p>
+<p class="translated">Also, Fritzing is the perfect complement to the other important tools in the Off-The-Shelf Hacker’s tool box, like the Arduino IDE, Linux, Processing, Raspberry Pi and so on. It also has a strong following in the Maker community, so it’s as good as a standard.</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

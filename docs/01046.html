@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Get to Know the Arduino IDE</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:了解Arduino IDE</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-tooling-around-arduino-ide/#0001-01-01">https://thenewstack.io/off-shelf-hacker-tooling-around-arduino-ide/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">你最近看过Arduino IDE吗？</p>
+<p class="translated">当前的1.6.7版本是一个很好的工具。你不仅可以为所有Arduino板开发，还可以为支持WiFi的<a href="http://www.esp8266.com/" class="ext-link" rel="external "> ESP8266系列微控制器“芯片”编写和上传代码</a>尽管它们是微小的、最小组件的电路板，我还是喜欢称它们为芯片。</p>
+<p class="translated">说到8266，读者可能已经注意到它已经充斥了微控制器领域，它的32位处理器，完整的802.11n WiFi堆栈和相当有吸引力的3到8美元的价格。大约有十几种型号，从简单的双输入/输出(I/O)引脚“01”型号到多I/O“07”型号。想要更远的射程？“07”也有一个插座，这样你就可以连接可选的外部天线，甚至定向天线。</p>
+<p class="translated">IDE与8266的结合将物理计算堆栈带入了一个新的方向。该社区已经加快步伐，使向现有设备添加复杂的WiFi功能变得容易，并能够从头开始构建有用的小尺寸物联网。</p>
+<p class="translated">为了了解我们已经走了多远，请看一下示例程序。</p>
+<h2 class="translated">有趣的例子</h2>
+<p class="translated">Arduino IDE的主要特点是它非常全面和易于使用的例子。转到“文件”,点击“示例”,调出新菜单。根据安装的库，可能有几十个示例程序可供选择。</p>
+<p class="translated">从基本的LED闪烁和渐变程序，到通过智能手机在新网络上配置支持ESP8266 WiFi的设备，应有尽有。</p>
+<div id="attachment_1062730" class="wp-caption alignright"><img aria-describedby="caption-attachment-1062730" decoding="async" loading="lazy" class="size-medium wp-image-1062730" src="../Images/d30ebdb210c5f071afa78a41df878146.png" alt="8266 Smart Phone Web App - On Android" data-id="1062730" data-original-src="https://thenewstack.io/wp-content/uploads/2016/02/smartphone-8266-app-169x300.png"/><p id="caption-attachment-1062730" class="wp-caption-text translated">8266智能手机网络应用程序–在Android上</p></div>
+<p class="translated">后一个名为“AutoConnectWithFeedback”的程序启动8266设备，如果它以前使用过网络，只需连接并运行你编程到芯片中的任何Arduino代码。</p>
+<p class="translated">如果芯片以前从未连接到本地网络，它会以“接入点”模式启动，然后初始化一个Web服务器和简单的文本应用程序，然后等待用户提供的本地网络信息。</p>
+<p class="translated">通过将您的智能手机WiFi连接指向独立的8266接入点(通常具有192.168.4.1的IP)及其内置网页，可以输入本地网络配置数据。</p>
+<p class="translated">一旦本地数据被输入，8266重新启动，连接到本地网络，然后继续它的快乐之路。</p>
+<p class="translated">仅仅一两年前，你能想象一个“X 1”芯片的这种能力吗？</p>
+<h2 class="translated">图书馆经理</h2>
+<p class="translated">Arduino IDE库管理器进一步推动了物理计算堆栈模型。在版本1.6.2之前，您必须四处搜寻，然后在正确的目录中加载新的库。有了库管理器，你可以在Arduino IDE中选择大量的库“包”。</p>
+<div id="attachment_1062731" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1062731" decoding="async" loading="lazy" class="size-full wp-image-1062731" src="../Images/3761a7ccabf3f915bb99d84491dbe482.png" alt="Arduino IDE Library Manager Window" data-original-src="https://thenewstack.io/wp-content/uploads/2016/02/library-manager-window.png"/><p id="caption-attachment-1062731" class="wp-caption-text translated">Arduino IDE库管理器窗口</p></div>
+<p class="translated">单击“草图”，然后单击“包含库”，最后单击“管理库”以打开菜单窗口。在那里你可以找到构建“音频频率计”、控制“伺服系统”或使用“TFT”显示器的库。在搜索框中键入“8266”，在屏幕上方会弹出十几个不同的库，支持8266芯片上的各种功能。</p>
+<p class="translated">想运行一个小型网络服务器吗？使用“ESP8266WebServer”库。建立一个WiFi网状网络怎么样？只需安装“ESP8266WiFiMesh”库即可。</p>
+<p class="translated">说到安装，虽然这些库显示在库管理器中，但默认情况下它们都没有安装。库名称旁边的文本“Installed”和版本号表示它已经加载并可以使用了。否则，只需点击库标题，一个“安装”按钮将出现在右下角。单击该按钮，库管理器将上网，下载最新的代码并将其安装在IDE中。</p>
+<p class="translated">回到例子中，你会在列表中看到你可以使用的示例程序。点击一个程序，在编辑窗口中打开它，你会惊奇地发现你可以使用的代码。我通常会打开几个示例程序，并将我需要的功能剪切/粘贴在一起。不要忘记在速写本中以新的名称保存文件。</p>
+<h2 class="translated">探索</h2>
+<p class="translated">Arduino IDE和ESP8266是一个强大的组合。而且，不要忘记8266芯片售价仅为3.13美元，有时甚至包括运费。Arduino IDE总是可以免费下载的。</p>
+<p class="translated">部署酷的新网络项目、产品和服务的障碍继续减少。</p>
+<p class="translated">现在是时候跳到物理计算堆栈上来享受乐趣了。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Tutorial: Customize Your Terminal OG Style — No Libraries or Plugins!</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">教程:定制你的终端OG风格——没有库或插件！</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tutorial-your-terminal-og-style-no-libs-or-plugins/#0001-01-01">https://thenewstack.io/tutorial-your-terminal-og-style-no-libs-or-plugins/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">编码人员生活在命令行中。我们每天都在使用终端，不管我们是在建造还是在修理什么东西，也不管我们是在用额头敲打我们的人体工程学办公桌。因此，调整航站楼环境，使其变得舒适和适宜居住是绝对有意义的。例如，考虑一下运行<strong> brew install </strong> <em>(无论什么)</em>如何以彩色键控消息和说明文本的形式交付结果。这不仅使文本在物理上更容易阅读，而且使我们更快地掌握其含义并采取行动。</p>
+<p class="translated">当然，有各种各样的库和插件可以让我们随心所欲地重新装饰终端，但是——最终——安装别人预先打包好的设计选项能带来多少乐趣呢？通过命令行中的一些简单练习，我们的下一个bash脚本可以被丰富地格式化，并且更加用户友好——所有这些都不需要配置，也不需要安装插件。</p>
+<p class="translated">注:我在这里假设<a href="https://www.gnu.org/software/bash/" class="ext-link" rel="external ">痛击</a>。我不想卷入任何zsh vs bash vs的争论。Bash是几乎所有UNIX系统上的默认shell，这意味着它具有高度的可移植性，并且一旦您习惯了它，您几乎可以在任何地方使用它。这完全取决于个人喜好，巴什是我的。还有，bash是Mac和大多数Linux系统上的默认shell如果你是Windows用户，我一无所知——试着看看Cygwin在你的机器上创造的美妙的bash体验。</p>
+<h2 class="translated">说出我的名字</h2>
+<p class="translated">你的提示——在bash中出现在光标前面的文本，比如<strong>Leons-Macbook-Pro:~ Leon Jenkins $</strong>——实际上是由一个名为<strong> PS1 </strong>的变量定义的。您可以通过在终端提示符下键入'<strong> echo $PS1 </strong>'来检查这个变量的当前值(<strong> echo </strong>'告诉终端简单地打印出随后的内容)。注意:你会得到一些看起来像鸡爪一样的转义字符，类似于Regex。(想学习正则表达式，这是一种针对文本本身的通用快捷语言吗？太棒了。查看这个<a href="https://thenewstack.io/dont-fear-regex-getting-started-regular-expressions/" class="local-link"> TNS正则表达式教程)</a></p>
+<p class="translated">如果你以前从未弄乱过你的提示，<strong> PS1 </strong>很可能会返回“<strong>\ h:\ W \ u \ $</strong>”——一串转义字符，代表主机名(<strong> \h </strong>)、工作目录(<strong> \W </strong>)和用户名(<strong> \u </strong>)。不太漂亮，是吧？</p>
+<p class="translated">在冒险进入之前未知的<strong> vi </strong>命令行文本编辑器领域时，我收到的第一个有用的编码建议之一是将我的bash提示符改为简短且令人难忘的。所以我们从简单地去掉主机名开始——我们大多数人都非常清楚我们在使用哪个主机，谢谢。</p>
+<ol>
+<li class="translated">定位<strong>。bash_profile </strong>文件——您可能需要从命令行在您的用户名文件路径中创建一个</li>
+<li class="translated">在您最喜欢的文本编辑器中打开它。如果是空白的，那也可以。</li>
+<li class="translated">找到'<strong/>'在哪里，如果<strong>中有值。bash_profile </strong>并将它们更改为以下内容。如果没有，只需键入整个文本。</li>
+<li class="translated">存储更改并检查“终端”(您可能需要重新启动“终端”以使更改生效)。</li>
+</ol>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/92208e9c2adae8b2daa90e7350d221fa.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/d91484a2-screen-shot-2018-03-15-at-11.55.44-am.png"/></p>
+<p class="translated">将您的提示设置为当前工作目录和您的用户名，然后是一个箭头(而不是经典的'<strong> $ </strong>')，只是为了好玩！)，您应该会看到:</p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/5f18ca34eea1489439ca67dd39901d93.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/14b9b7c2-screen-shot-2018-03-15-at-11.50.36-am.png"/></p>
+<p class="translated">从这里开始，您可以尝试将用户名更改为真正简短的名称，例如，将“LeonJenkins”简单地转换为“Leon”。(显然，你应该在这里替换你自己的用户名和变体，除非你碰巧是Leon Jenkins。这样的话请PM我)。</p>
+<p class="translated">严肃的提示定制超出了本指南的范围，但是您可以通过简单地摆弄它来学到很多东西。如果你真的想自己滚动，Bash参考手册的<a href="https://www.gnu.org/software/bash/manual/bashref.html#Controlling-the-Prompt" class="ext-link" rel="external ">控制提示</a>是转义序列的入门。</p>
+<h2 class="translated">给我涂上美丽的颜色</h2>
+<p class="translated">默认情况下，终端是一个严肃的单色环境。</p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/6f9c30b9a5b08e34e92726a20d904577.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/42b59ff7-screen-shot-2018-03-15-at-12.50.38-pm.png"/></p>
+<p class="translated">幸运的是，bash内置了颜色代码！例如，'<strong>\ e[1；31m </strong>是红色的代码，可以与终端中的其他文本或命令结合使用:</p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/514f70a98c0137eb472d4aeac017eb12.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/03fcb80d-screen-shot-2018-03-15-at-12.50.50-pm.png"/></p>
+<p class="translated">不幸的是，一旦你让终端变成红色，它就一直保持红色。您可以键入“reset”以恢复到默认的单色…这将清除颜色，但也会清除整个屏幕。或者，您可以在末尾添加“<strong>\ e[0m</strong>”—白色的颜色代码:</p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/d268ba80446b4b47926e17f5c865ebf8.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/2ad20248-screen-shot-2018-03-15-at-12.55.57-pm.png"/></p>
+<p class="translated">是的，这很麻烦。因此，记住bash是一个我们可以编写脚本来做事情的地方，让我们引入一些变量。有各种各样的选择<a href="https://misc.flogisoft.com/bash/tip_colors_and_formatting" class="ext-link" rel="external ">你可以分配</a>:字体颜色、背景高亮颜色、粗体、斜体、下划线——甚至闪烁的文本，如果你想让它变得令人讨厌的话。然而，为了继续我们的简单示例，用您选择的名称分配一个变量，然后是不带空格的等号(重要的)，然后是$'code name here' — codename必须在单引号内—以将样式应用于终端文本。混搭！</p>
+<p class="translated"><strong>red = $ ' \ e[1；31米’</strong></p>
+<p class="translated"><strong>grn = $ ' \ e[1；32米’</strong></p>
+<p class="translated"><strong> white=$'\e[0m' </strong></p>
+<p class="translated"><strong>巴克辛=$'\e[46m' </strong></p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/e8063f38afa5709e9edba04f3fb55737.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/eb70041c-screen-shot-2018-03-15-at-1.01.54-pm.png"/></p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/70e27c5888c675a4cf92d32f33b822ae.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/0509b54c-screen-shot-2018-03-15-at-1.18.09-pm-1024x92.png"/></p>
+<p class="translated">显然，这是一个非常基本的例子，重点是您可以将这些变量放入您编写的任何shell脚本中，然后就可以了。最简单的方法是将<a href="https://misc.flogisoft.com/bash/tip_colors_and_formatting" class="ext-link" rel="external ">颜色和字体样式代码的标准备忘单</a>复制到你的<strong>中。bash_profile </strong>作为变量，从那时起，您就可以调用它们来满足您的创造性和丰富多彩的需求。</p>
+<h2 class="translated">第二个表情符号</h2>
+<p class="translated">或者我们现在称之为表情符号。(小时候我们用ASCII字符做了自己的表情符号<a href="https://thenewstack.io/surprisingly-rich-history-ascii-art/" class="local-link">，很喜欢)。</a></p>
+<p class="translated">这有点棘手，因为它取决于你的操作系统，但在实践中再简单不过了:只需将表情符号直接复制/粘贴到终端。(你也可以在你的<strong>中给变量分配你喜欢的。bash_profile </strong>，用于快速快速访问)。</p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/15b2df95cb37bb9f4b91ab369302107a.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/03/43bf19bb-screen-shot-2018-03-15-at-1.33.09-pm.png"/></p>
+<h2 class="translated">完全可选</h2>
+<p class="translated">好了，这些实际上不是视觉效果，而是一些我非常喜欢的超级方便的命令行快捷方式。这些是改变bash内置的<a href="https://en.wikipedia.org/wiki/GNU_Readline" class="ext-link" rel="external "> Readline </a>功能的方法，不知何故，当您第一次开始遍历终端时，没有人会提到它。也许是因为它们如此有用和显而易见，以至于我们立即内化了它们，并认为它们是理所当然的？在任何情况下，如果你对这些都不熟悉，请立即访问上面的Readline链接，查看所有其他的sweet CLI工具。</p>
+<p class="translated">还有<strong>$ set show-all-if-ambiguity。</strong>你知道如何开始输入文件路径名和tab键来自动完成，对吗？或者至少尝试着这么做，但是太早的禁忌会敲响令人恐惧的耻辱的钟声。这被称为完成函数。该<strong>模糊显示选项</strong>的终端默认为“关”；将它切换到“开”(也就是说，如果你对这个完全陌生，只需打开终端并键入它)意味着有不止一个可能完成的单词将立即列出所有匹配，而不是响铃。</p>
+<p class="translated">另外，尝试:<strong>$ set completion-ignore-case</strong><strong>on。</strong>默认为“关”。将其设置为“开”允许文件名匹配和完成，而忽略大小写。也就是说骆驼案不会再引发骆驼诅咒了。至少一样多。</p>
+<p class="attribution translated">图片由<a href="https://unsplash.com/photos/Koxa-GX_5zs?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external ">Ash</a>Edmonds<a href="https://unsplash.com/photos/Koxa-GX_5zs?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external ">在</a><a href="https://unsplash.com/search/photos/macbook?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash上拍摄。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

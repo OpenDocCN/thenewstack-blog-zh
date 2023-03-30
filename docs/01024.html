@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>TNS Tutorial Friday: The CoreOS rkt Container Engine, What It Is and How It Compares to Docker</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">TNS教程星期五:CoreOS rkt容器引擎，它是什么，它与Docker相比如何</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tns-tutorial-friday-exploring-coreos-rkt-container-engine/#0001-01-01">https://thenewstack.io/tns-tutorial-friday-exploring-coreos-rkt-container-engine/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在本周的新堆栈<a href="https://thenewstack.io/podcasts/tutorials/" target="_blank" class="local-link">教程星期五</a>中，我们探索CoreOS的容器引擎<a href="https://coreos.com/rkt/" target="_blank" rel="noopener noreferrer external " class="ext-link"> rkt </a>，讨论开发者的选择和灵活性如何影响容器生态圈，并深入了解rkt和Docker之间的良性竞争。新堆栈的创始人<a href="https://www.linkedin.com/in/alexwilliams2" target="_blank" rel="noopener noreferrer external " class="ext-link">亚历克斯·威廉姆斯</a>在<a href="https://coreos.com/" class="ext-link" rel="external "> CoreOS </a>与文档运营部的<a href="https://www.linkedin.com/in/joshua-wood-a453aa90" target="_blank" rel="noopener noreferrer external " class="ext-link">乔希·伍德</a>坐下来讨论这些话题以及更多。</p>
+<p class="translated">Wood通过深入研究使rkt从其他容器管理工具中脱颖而出的特性开始了演示。首先，rkt没有强加一个守护进程，这个守护进程会在系统的后台空转，站在容器和它们的管理工具之间。一旦环境启动，rkt将退出并允许用户与他们的容器完全交互。Rkt使用一种<a href="https://coreos.com/rkt/docs/latest/app-container.html" target="_blank" rel="noopener noreferrer external " class="ext-link"> ACI </a>(应用程序容器映像)格式来构建它的映像，Kubernetes也是如此。Wood指出，虽然这与Docker的容器格式不同，但rkt完全支持Docker图像，可以轻松地直接缓存Docker Hub。</p>
+<p class="translated"><iframe loading="lazy" title="TNS Tutorials: Exploring the CoreOS rkt Container Engine" src="https://www.youtube.com/embed/hdiVlkOY1ME?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">打开终端后，Wood在rkt中输入一个<em> sudo </em>命令来启动Alpine Linux的一个实例。rkt和Docker的另一个区别是rkt使用了pod，Kubernetes集群也是如此。“这种一对一的映射不仅方便，还意味着当你构建真正最小的容器时，pod为你提供了一种围绕它们共享资源的方式，从而使那些真正微型的架构变得有意义，”Wood说。</p>
+<p class="translated">为了更好地了解rkt的权限结构，Wood导航到Alpine Linux容器CLI。这允许他通过在终端中输入命令<em> rkt list </em>来访问信息，比如哪些容器当前正在运行。Wood指出，<em> rkt列表图像</em>将列出用户从哪些特定的容器中拉出。接下来，Wood输入命令<em> ps axf </em>来查看Alpine Linux容器的主机上的进程树内部。“我们可以找到我们刚刚开始运行的外壳，它实际上是我们称之为高级流程模型的分层术语的一个示例。Rkt在容器系统内部旋转一个初始化的存根系统来管理流程生命周期，因此您不必重新实现init来管理容器内部的流程，”Wood解释道。</p>
+<p class="translated">尽管rkt和Docker之间存在良性竞争，但Wood很快指出rkt支持Docker图像，可以直接从Docker Hub获取并转换图像。为了演示这一点，Wood开始使用命令<em>Sudo rkt run docker://Josh IX/Caddy</em>启动一个<a href="https://github.com/joshix/caddybox" target="_blank" rel="noopener noreferrer external " class="ext-link"> Caddy web服务器</a>。在rkt中，管理网络操作的任务由另一个CoreOS项目处理，即<a href="https://github.com/containernetworking/cni" target="_blank" rel="noopener noreferrer external " class="ext-link">容器网络接口</a> (CNI)。除了作为Kubernetes的网络插件模型之外，Wood指出，CNI还可以直接与rkt集成。</p>
+<p class="translated">与CNI相反，Docker使用<a href="https://github.com/docker/libnetwork" target="_blank" rel="noopener noreferrer external " class="ext-link"> libnetwork </a>来管理容器中的网络。虽然libnetwork对于那些希望快速入门的人来说仍然是一个可靠的选择，但Wood指出，“使用libnetwork，你会被迫进入本地与全球的二分法，以及他们看到的网络模型。很多时候，那个选择才是正确的选择。但是，你越是向平台构建者、集成商和将工具组装成自己的解决方案的人靠近，你就越需要灵活性。”</p>
+<p class="translated">当对话接近尾声时，Wood强调了在围绕标准化容器的讨论中要考虑的一个重要因素，“我们觉得我们以前可能学到的一个教训是，不要让任何类似于单一供应商控制某些东西的规范的事情发生。我们认为有一个标准是很重要的，这个标准是我们，整个互联网用户群体所拥有的，并且能够感受到真正的所有权。集装箱是什么，你可以堆多高，你可以在里面放多少负载，这些都是标准化的。”</p>
+<p class="attribution translated">CoreOS 和Docker 是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:<a class="owner-name truncate ext-link" title="Go to Tylana's photostream" href="https://www.flickr.com/photos/tylana/" data-track="attributionNameClick" data-rapid_p="36" rel="external "> Tylana </a>的:<a href="https://www.flickr.com/photos/tylana/6046796016/in/photolist-adkpMJ-hv29Q-aBAxmj-mwrhZX-p783KS-J9oq1U-9VmTQy-cnc1H5-9ViWAZ-bsoyhu-6QsoFs-9Vj8d4-a5kjB6-2tWXZy-8vuowe-71Wkn1-9EkRN-oM94XV-fNGoaY-62EXLu-5ySPUZ-dNMTCS-bF1TAS-rp8CF-abUkoV-2xQHwY-cN5fBq-8LaVVo-bYk2Rw-G1pdd-8vthyF-a88h1P-8vsRwt-8vv6gX-8vvoRi-8vsUSp-8vwbrN-dVL3Af-g2GAet-9ruwYc-8vwdWd-dpNbER-8vti9t-8vvYZS-8vvCuo-8vuFTD-8vw5Kb-jCEJd-adBYBe-8vvZMw" class="ext-link" rel="external "> Rocketscape(版本:2011 Dark) </a>在<a class="ext-link ext-link" href="https://creativecommons.org/licenses/by-sa/2.0/" rel="external "> CC BY-SA 2.0 </a>下获得授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

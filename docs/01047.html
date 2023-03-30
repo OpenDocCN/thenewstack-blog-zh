@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Off-the-Shelf Hacker: Add WiFi Connectivity to Your DIY Projects with the ESP8266</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:使用ESP8266为您的DIY项目添加WiFi连接</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-programming-tips-tricks-esp8266-wifi-module/#0001-01-01">https://thenewstack.io/off-shelf-hacker-programming-tips-tricks-esp8266-wifi-module/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">也许是因为该设备的巨大人气，在网上有一个关于ESP8266 DIY WiFi模块的相互矛盾的信息，导致许多沮丧和愤怒。</p>
+<p class="translated">在<a href="/tag/off-the-shelf-hacker/" target="_blank">现成黑客</a>的未来版本中，我们将研究如何使用Node.js或Lua来编写这种多功能的WiFi片上系统(SoC)。不过，首先，看看它的一些怪癖和细微差别是有意义的，特别是在让固件上传工作的时候。</p>
+<p class="translated">“ESP8266 WiFi模块是一个独立的SOC，集成了TCP/IP协议栈，可以让任何微控制器访问您的WiFi网络，”制造商的<a href="https://www.sparkfun.com/products/13678" class="ext-link" rel="external ">网站上写道</a>。“ESP8266既可以托管应用，也可以从另一个应用处理器卸载所有Wi-Fi网络功能。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignright size-medium wp-image-1027663" src="../Images/6a03dbc102c8be4c3fdf7dfb3732aa5a.png" alt="13678-01" data-id="1027663" data-original-src="https://thenewstack.io/wp-content/uploads/2016/02/13678-01-300x300.jpg"/></p>
+<p class="translated">今天，我将介绍我发现的适用于ESP8266-01型号的可靠方法。这些是最常见的板，只有八个引脚。我们将在后面的文章中使用-07模型(有更多的引脚和一个外部天线)。</p>
+<p class="translated">还要记住，8266是一个3.3伏的设备。虽然有些人说他们已经使用5伏连接，但我肯定会坚持3.3伏规格的电源，串行通信和GPIO引脚操作。我一次点三个..所以，你知道…只是为了安全起见。十块钱，没什么大不了。</p>
+<h2 class="translated"><strong> FTDI连接和电平转换</strong></h2>
+<p class="translated">8266使用串行接口进行编程。我的Linux笔记本只有USB口。</p>
+<p class="translated">怎么办？使用FTDI电缆。它将笔记本USB连接转换成8266、Arduino、XBee无线电模块或任何其他串行设备都可以理解的东西。</p>
+<p class="translated">有两种常见的电缆版本可用，<a href="https://www.sparkfun.com/products/9718" class="ext-link" rel="external "> 5伏</a>和<a href="https://www.sparkfun.com/products/9717" class="ext-link" rel="external "> 3.3伏</a>。在Adafruit、Sparkfun和其他供应商那里，每个售价约为18美元。如前所述，8266模块工作电压为3.3伏，而不是5.0伏。如果你像我一样只有一根5伏的FTDI电缆，这是一个挑战。</p>
+<p class="translated">我的零件箱中有一个实用的解决方案，就是使用一个<a href="https://www.sparkfun.com/products/12009" class="ext-link" rel="external ">电平转换器</a>。这种情况下我会准备一些。这是一个小电路板，位于5伏FTDI电缆末端和8266之间，将信号转换为所需的3.3伏电平。使用3.3伏的FTDI电缆会更简洁、更容易。我很贱。我能说什么呢？</p>
+<p class="translated">下面是我的试验板上的8266原理图。</p>
+<div id="attachment_1025118" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2016/02/simple-8266-2_schem.png" rel="attachment wp-att-1025118" class="local-link"><img aria-describedby="caption-attachment-1025118" decoding="async" loading="lazy" class="size-large wp-image-1025118" src="../Images/ee7cf80134c3f420a0e174d7b2054b24.png" alt="Simple ESP8266 Setup" data-original-src="https://thenewstack.io/wp-content/uploads/2016/02/simple-8266-2_schem-1024x334.png"/></a><p id="caption-attachment-1025118" class="wp-caption-text translated">简单的ESP8266设置</p></div>
+<p class="translated">你会注意到我包含了三个开关符号。当然，在物理上，它们代表着在进行固件上传时，将电线插入试验板或从试验板中拔出，这一点我们稍后会讨论。</p>
+<p class="translated">另外，FTDI Basic程序员代表我的FTDI电缆。从功能上讲，它们是可以互换的。FTDI电缆，通过USB端口插入我的Linux笔记本。</p>
+<p class="translated">既然你知道了FTDI电缆，我们需要一个程序来上传。</p>
+<p class="translated">对8266进行编程的一个好方法是使用Arduino IDE。在最新版本的应用程序中有大量的例子。我用的是1.6.7版本。在这个练习中，我加载了基本的“hello server”Web页面演示程序，并对其进行了一点调整。要修改的重要部分是网络参数。我的网络路由器使用加密，所以需要包含密码，否则8266永远无法连接。在文件开头编辑您自己的接入点ID和密码行。<br/></p>
+<div id="crayon-642311d5329ad313831582" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">const </span><span class="crayon-e ">char*</span><span class="crayon-h"> </span><span class="crayon-i">ssid</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-s">"your access point ID goes here"</span>;
+<span class="crayon-h"> </span><span class="crayon-e">const </span><span class="crayon-e ">char*</span><span class="crayon-h"> </span><span class="crayon-i">password</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-s">"your access point password goes here"</span>;
+</pre>
+</div>
+</div>
+
+<p/>
+<h2 class="translated"><strong>上传固件</strong></h2>
+<p class="translated">编辑完程序后，就可以将固件上传到8266模块了。</p>
+<p class="translated">对于5伏FTDI电缆和电平转换器来说，这有点棘手，但如果您知道正确的步骤，它会工作得很好:</p>
+<ol>
+<li class="translated">从正常的3.3伏连接位置拔下GPIO0。</li>
+<li class="translated">将GPIO0插入接地(蓄电池负极连接)。这将8266配置为上传模式。</li>
+<li class="translated">暂时拔下TX1连接并保持断开状态。</li>
+<li class="translated">暂时插入和拔出接地的复位线。ESP8266重新启动时，蓝色LED应稳定闪烁一次。这是实际启动到上传模式所需要的。</li>
+<li class="translated">插回TX1连接。这将FTDI/电平转换器重新连接到8266。</li>
+</ol>
+<p class="translated">现在点击Arduino IDE顶部的上传按钮。</p>
+<p class="translated">IDE将编译程序，并开始向8266上传固件。你会知道它在工作，因为会有一个上传信息和一系列的点在Arduino状态窗口上滚动。当圆点停止移动时，上传完成:</p>
+<ol>
+<li class="translated">将GPIO0连接从地移回正3.3伏位置。这将8266配置为运行模式。</li>
+<li class="translated">暂时拔掉TX1连接。</li>
+<li class="translated">暂时插入和拔出接地的复位线。当8266重新启动并从您的网络中获取IP地址时，蓝色LED应稳定闪烁一次。</li>
+</ol>
+<p class="translated">几秒钟后，您可以在浏览器中输入8266的IP地址，并看到新实现的Web服务器中出现的文本行。</p>
+<p class="translated">有几种方法可以找到8266的IP地址。在你的安卓手机上加载“Fing ”,扫描你的网络寻找8266模块。我的显示为“espressif”。</p>
+<p class="translated">另一种确定IP的方法是复位8266并在Arduino IDE上观察串行控制台。遵循这些步骤。</p>
+<ol>
+<li class="translated">暂时拔下TX1连接并保持断开状态。</li>
+<li class="translated">暂时插入和拔出接地的复位线。</li>
+<li class="translated">立即插回TX1连接，并观察串行监视器。</li>
+</ol>
+<p class="translated">当8266启动时，你会看到一些奇怪的字符，然后是几个字符串，其中一个是模块的IP地址。</p>
+<p class="translated">请记住，TX1连接是模块的电线(在试验板上)，而不是USB连接器。如果您从笔记本电脑上拔下USB连接器，Arduino IDE将会变得混乱，不再想与8266模块通信。关闭并重新启动Arduino IDE，让它再次运行。</p>
+<h2 class="translated"><strong>开始为您的8266编程</strong></h2>
+<p class="translated">这就是了。在ESP8266-01上轻松上传固件。一旦编程完成，您甚至不再需要连接FTDI/电平转换器。上电后，8266应重启进入运行模式，无需将reset引脚接地。</p>
+<p class="translated">请随意查看Arduino IDE中的其他8266示例。这是一个强大的小平台，有很大的潜力。而且，它们也很便宜。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

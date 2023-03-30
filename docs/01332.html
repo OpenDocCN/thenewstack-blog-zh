@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>The New Stack Analysts: Exploring the Economics of Containers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">新堆栈分析师:探索集装箱经济学</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tns-analysts-show-107-exploring-economics-containers/#0001-01-01">https://thenewstack.io/tns-analysts-show-107-exploring-economics-containers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在这一集的<a href="/tag/the-new-stack-analysts/" target="_blank"> The New Stack Analysts </a>中，我们深入讨论了从亚马逊EC2到容器的迁移，向基于容器的基础设施的转变，以及<a href="https://www.joyent.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Joyent </a>如何帮助逆向物流平台<a href="http://www.optoro.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Optoro </a>实现自己的API驱动的基础设施，同时保持在本地。New Stack创始人Alex Williams和联合主持人技术编辑Benjamin Ball与Optoro的DevOps总监Zach Dunn进行了深入的讨论。</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/115-exploring-the-economics-of-containers" class="ext-link" rel="external "> #115:探索集装箱的经济学</a> </span></p>
+
+<p class="translated">Optoro开始从亚马逊迁移到容器化服务的原因很简单。“我们意识到那袋屎已经满了，我们再也装不下了。当我们开始走服务路线时，我们偶然发现集装箱在这里非常有价值，”邓恩说。最初运行400个EC2实例的设置，Dunn继续解释说，Optoro的服务很快开始膨胀，因为更多的层被添加到单个服务中，以便登台将类似于生产。随着每个暂存层添加的虚拟机数量持续攀升，Dunn注意到Optoro开始注意到每次推出新服务时都会有10%的增长。“当我们向系统中添加越来越多的负载时，这就成了问题。”</p>
+<p class="translated"><iframe loading="lazy" title="Exploring the Economics of Containers" src="https://www.youtube.com/embed/DzlNyWBmIdQ?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">因此，该公司决定迁移到本地，从EC2迁移到主要基于容器的基础设施。随着最近围绕Docker Fork 可能性的讨论，Williams后来询问如果这种事情成为现实，Optoro会受到怎样的影响。“我们已经被孤立了。Dunn说，后来他补充说，Joyent的Triton上的Docker的操作可靠性是他决定采用Docker的关键。</p>
+<p class="translated">他后来继续解释说，对于当今的许多企业来说，转向基于容器的基础设施通常是“直截了当的经济效益”，并指出Optoro通过在内部安装和运行自己的解决方案节省了大量运营成本。虽然效率惊人，但有些事情容器并不适合。在这种情况下，邓恩指出，Optoro不会很快运行完全基于容器的基础设施。“这实际上是我们最终没有使用一些Docker框架的原因之一，它们对我们来说有点太‘一切都需要成为容器’。MySQL并不完全是为了摆脱容器而构建的。”</p>
+<p class="translated">当对话接近尾声时，Dunn详细介绍了Joyent如何让Optoro灵活地在内部迁移，同时又不会失去在云中工作的好处。“人们似乎认为只有在云中才能拥有API驱动的基础设施。事实是，您可以在自己的内部拥有一个API驱动的基础架构。我们选择Triton的一个决策是，我现在可以使用Joyent的公共云。如果我需要额外的容量，我只需开始在Joyent中旋转东西。”</p>
+<p class="attribution translated"><a href="https://www.mirantis.com/software/docker/kubernetes/" class="ext-link" rel="external "> Docker </a>和<a href="https://www.joyent.com/" class="ext-link" rel="external "> Joyent </a>是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:<a class="owner-name truncate ext-link" title="Go to Trenten Kelley's photostream" href="https://www.flickr.com/photos/trentenkelleyphotography/" data-track="attributionNameClick" data-rapid_p="31" rel="external ">特伦顿·凯利</a>创作的:<a href="https://www.flickr.com/photos/trentenkelleyphotography/12761083963/" class="ext-link" rel="external ">纽约大都会艺术博物馆喷泉</a>获得<a href="https://creativecommons.org/licenses/by-nd/2.0/" class="ext-link" rel="external "> CC BY-ND 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

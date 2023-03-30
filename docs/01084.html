@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Lyft's Amundsen: Data-Discovery with Built-In Trust</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Lyft的阿蒙森:内置信任的数据发现</h1>
+<blockquote>原文：<a href="https://thenewstack.io/lyfts-amundsen-data-discovery-with-built-in-trust/#0001-01-01">https://thenewstack.io/lyfts-amundsen-data-discovery-with-built-in-trust/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着1月1日<a href="https://eugdpr.org/" target="_blank" rel="noopener noreferrer external " class="ext-link">通用数据保护条例(GDPR) </a>和<a href="https://www.caprivacy.org/" target="_blank" rel="noopener noreferrer external " class="ext-link">加州消费者隐私法案(CCPA)</a>的颁布，了解一家公司拥有哪些数据以及这些数据存储在哪里以及如何存储变得更加迫切。</p>
+<p class="translated">但是，对于处理大量数据的组织来说，其他问题，如员工的工作效率，也很重要。例如，拼车公司<a href="https://www.lyft.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Lyft </a>收集其每月提供的超过5000万次拼车的数据。</p>
+<p class="translated">然而，据该公司称，数据科学家花了多达三分之一的时间试图找到他们需要的数据，然后试图确定他们找到的数据是否可信。</p>
+<p class="translated">作为回应，Lyft在元数据存储库的基础上构建了一个数据发现应用程序，让数据科学家和其他人更容易找到数据并与之互动。它是以挪威探险家罗尔德·阿蒙森的名字命名的，他的探险队是第一个到达南极的人，它是根据谷歌搜索的模式命名的。Lyft在4月份开源了这个项目。</p>
+<h3 class="translated">强调信任</h3>
+<p class="translated">Lyft在提供的服务量方面一直在快速增长，但加入该公司的员工数量也在快速增长，这留下了一个关于该公司拥有哪些数据、之前在这方面做了哪些工作以及这些数据有多新的知识缺口，产品经理<a href="https://www.linkedin.com/in/grovermark/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Mark Grover </a>在最近的<a href="https://www.youtube.com/watch?v=WVjss62XIG0" class="ext-link" rel="external ">网络研讨会</a>中解释道。</p>
+<p class="translated">Lyft的数据源包括结构化和非结构化数据存储，如Hive、Presto、Postgres和Amazon Redshift。</p>
+<p class="translated">它面临的挑战是，没有一个单一的数据模型适合所有的数据资源，而且每个数据模型的存储和读取方式都不同。</p>
+<p class="translated">它对项目的要求包括:</p>
+<ul>
+<li class="translated">解决方案中体现的信任——更值得信任的东西首先出现在搜索结果中。</li>
+<li class="translated">很少的手动监管—它需要自动化。</li>
+</ul>
+<p class="translated">对开放源代码的偏好。格罗弗说，虽然该团队考虑了LinkedIn的<a href="https://github.com/linkedin/WhereHows" target="_blank" rel="noopener noreferrer external " class="ext-link"> WhereHows </a>和<a href="https://atlas.apache.org/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Apache Atlas </a>等开源项目，但最终决定不提供他们想要的体验，并着手建立自己的体验。</p>
+<p class="translated"><a href="https://www.datacouncil.ai/hubfs/DataEngConf/Data%20Council/Slides%20SF%2019/Amundsen%20-%20A%20Data%20Discovery%20Platform%20from%20Lyft.pdf" target="_blank" rel="noopener noreferrer external " class="ext-link">到阿蒙森有四个部分</a>:</p>
+<ul>
+<li class="translated"><strong>爬虫称为Databuilder </strong>类似于Google的网络爬虫。它搜索数据库、仪表板和人力资源系统，以确定自上次运行以来哪些表是新创建的，哪些列是添加的，谁进入了系统，谁离开了公司等等。它使用<a href="https://airflow.apache.org/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Apache Airflow </a>来协调工作。</li>
+<li class="translated"><strong>搜索引擎</strong>类似谷歌的基于Elasticsearch。它支持多种类型的搜索:normal，根据相关性匹配记录；category，首先根据数据类型匹配记录，然后根据相关性匹配记录；和通配符。</li>
+<li class="translated"><strong>前端服务</strong>——例如，如果你正在寻找司机的预计到达时间(et a)数据，你在搜索框中键入“ETA”，就会得到一个类似于谷歌搜索中页面排名的结果页面。其中的信息包括查询表的频率、最后一次填充表的时间以及还有谁在使用该表。如果您单击第一个结果，它会提供更多的数据，包括表的模式、数据的快速预览和关于数据形状的统计，如标准差、平均值等。</li>
+<li class="translated"><strong>图形数据库</strong> —这是一个元数据库，包含关于表、人以及它们之间关系的信息。它基于Neo4j，但是对Apache Atlas的支持正在进行中。它还支持其他服务直接推送或拉取元数据的REST APIs。</li>
+</ul>
+<p class="translated">第一次迭代主要集中在表格上，数据科学家和分析师的工作，人们使用原始数据集进行分析。此后，它又增加了第二个节点，那就是人。</p>
+<p class="translated">“我可以进入团队中某个人的页面—她拥有哪些表，她收藏了什么，她经常使用什么？我们以前在Slack上的那些对话不再需要发生了，因为我有那些信息，”格罗弗说。</p>
+<p class="translated">它计划添加更多的节点，包括仪表板、流、ETL和数据质量。</p>
+<h3 class="translated">核心的元数据</h3>
+<p class="translated">据该公司称，元数据是下一波大数据应用的关键。</p>
+<p class="translated">“我们意识到我们正在收集所有这些有趣的元数据，我们希望将其用于数据发现和信任，但我们也可以将其用于其他应用程序。Grover说:“我们最终在顶层构建了这个数据发现应用程序，但在底层是这个元数据引擎，它是人们用来驱动数据的所有信息的核心。</p>
+<p class="translated">“如果我知道我们所有的数据存储在哪里，如果我可以将所有这些列标记为个人或私人，并知道谁在访问这些数据，那么我就可以有一个基于此的治理系统，”他谈到该系统的合规性用例。</p>
+<p class="translated">他在一篇博文中解释说，元数据可以用来适当地限制访问并保持合规性，而不是手动方法或在单独的数据库或位置中隔离敏感数据。</p>
+<p class="translated">对于ETL和数据质量，使用所有表中的数据配置文件，用户可以应用试探法来确定今天进入的数据与昨天的数据相比如何，然后设置一些允许的差异百分比。</p>
+<p class="translated">对于流，它可以确定哪些流是可信的，哪些映射到哪些数据集。</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/puliarfanita/" class="ext-link" rel="external ">安妮塔·里特诺尔</a>的《冰山陷害》。根据<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC BY-SA 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

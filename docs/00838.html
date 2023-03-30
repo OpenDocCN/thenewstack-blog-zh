@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Why One Developer Chose Go</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">为什么一个开发者选择Go</h1>
+<blockquote>原文：<a href="https://thenewstack.io/why-one-developer-chose-go/#0001-01-01">https://thenewstack.io/why-one-developer-chose-go/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在过去的几年里，出现了新的编程语言的爆炸式增长。作为开发人员，您需要评估这些语言，并决定是否应该在这些新语言上投入时间。所以当一个叫<a href="https://golang.org" class="ext-link" rel="external "> Go </a>的语言出现的时候，我问自己，值得看吗？</p>
+<p class="translated">对我来说，哪怕只是粗略地看一眼，这个决定也很快得到了回应。谷歌是幕后黑手。他们知道一些与运行大规模软件计划相关的挑战。他们有软件工程师团队，面临现代软件设计的挑战。当然，这留给了我下一个问题。这是一种只适合谷歌的语言，还是也适合我的需要？</p>
+<p class="translated">首先，让我们简单看一下Google为什么需要一种新的编程语言的历史和前提。他们面临着几个挑战。他们有一个由许多编程语言组成的多样化的软件基础。根据工程师的技能，将他们从一个团队调到另一个团队可能会很困难。他们编写的大部分软件都花了太多时间来编译或测试。这导致开发人员的反馈周期很长，从而减慢了实际的开发周期(一些程序可能需要一天的时间来编译)。此外，当前的语言仍然允许开发人员编写导致一类常见编程错误的代码，如内存泄漏、空指针异常等。有关更多信息和细节，请参考<a href="https://golang.org/doc/faq" class="ext-link" rel="external ">常见问题解答</a></p>
+<p class="translated">这门语言的目标是雄心勃勃的。创建一种易于学习的编程语言，消除了做出复杂编程决策的需要，具有快速反馈周期、现代语言特性(如垃圾收集)，并消除了甚至不允许存在的错误类别。</p>
+<p class="translated">由于这样一个雄心勃勃的目标，谷歌组建了一个摇滚明星团队，其中包括<a href="https://en.wikipedia.org/wiki/Robert_Griesemer" class="ext-link" rel="external ">罗伯特·格里斯默</a>、<a href="https://en.wikipedia.org/wiki/Rob_Pike" class="ext-link" rel="external ">罗布·派克</a>和<a href="https://en.wikipedia.org/wiki/Ken_Thompson" class="ext-link" rel="external ">肯·汤普森</a>。这个团队过去值得注意的成功(单独或共同)包括创建Unix、Plan 9、UTF-8等等。关于团队和过去成就的更多信息可以在维基百科文章中找到。</p>
+<p class="translated">好吧，所以我做了决定。我要写一些Go代码。我卷起袖子，深吸了一口气，准备好迎接接下来几周的挫败感。从以前的语言学习经验来看，我对为一门新语言创建开发环境所带来的痛苦有充分的准备，阅读没有什么意义的新代码语法，并且几乎没有在线资源可以参考，因为这是一门如此新的语言。</p>
+<p class="translated">我很快意识到，围棋不是这样。安装Go用了不到一分钟。写我的第一个hello world程序，又一次，不到一分钟。更重要的是，我明白我做了什么。我确信我错过了什么。不会真的这么简单吧？</p>
+<p class="translated">好吧，无可否认，在我的电脑上成功安装了一个新的开发环境，并运行了一个hello world程序，这与编写有用的、可投入生产的软件是不一样的。因此，我又一次鼓起勇气，开始编写我的第一个程序。</p>
+<p class="translated">由于我的大部分软件开发背景都围绕着web开发，我的第一个“真正的”项目自然是web项目。来自于。Net和Rails，我对“裸机”Go对于这样一个项目来说是多么的不可思议。我发现自己在围棋上比在其他语言上创造了更多的基础。起初，这感觉像是浪费我的时间。这些样板代码不应该已经存在了吗？我的web开发框架在哪里？我开始怀疑这是否是一个网络项目的好选择。</p>
+<p class="translated">但是，我坚持下来了。在与Go合作了两年多的网页制作项目后，这是我所能做出的最好的决定。我学到了一些关于web开发的关键点，这些是我以前从来没有考虑过的。</p>
+<p class="translated">首先，在实际项目规模的计划中，我必须编写的“样板文件”相当少。不过，这确实有一个不经意的结果。我非常清楚地知道我的web项目到底要做什么，即使是在“裸机”层。此外，我对我的web堆栈的每个部分都有100%的控制权。没有许多框架提供的“魔法”。这是极其自由的。我数不清有多少次其他语言的框架把我逼到了墙角，我不得不“破解”它，让它在生产中工作。</p>
+<p class="translated">其次，我在评审自己的代码的时候，很少去想“这个代码在做什么”。Go是以可读性优先的方式编写的，因此，您的代码相当明显(甚至令人厌烦)。这导致了更少的错误，甚至在我将测试分层到项目中之前。</p>
+<p class="translated">尽管如此，这并不是一次100%无痛的经历。有很多问题围绕着写Go的“惯用”方式。我也有很多标准的“你是如何做到的”问题(对这些问题来说,<a href="https://golang.org/doc/effective_go.html" class="ext-link" rel="external "> Effective Go </a>被证明是非常宝贵的)。</p>
+<p class="translated">回想过去两年使用Go进行产品开发的经历，我认为这是我做过的最好的选择之一。虽然Go并不一定适合所有的开发任务，但它是我目前在所有其他语言中最先接触到的。原因很简单。</p>
+<p class="translated">我用Go写出了我这辈子写过的可读性最强的代码。</p>
+<p class="translated">Go对我做的任何事情来说都是“够快的”。</p>
+<p class="translated">围棋规模很大。</p>
+<p class="translated">围棋是我现在选择的语言。</p>
+<p class="attribution translated">通过 Flickr知识共享的特色图片<a href="https://www.flickr.com/photos/magdalenaroeseler/10042096694/in/photolist-gionub-5H2Sc6-3mxA1e-8pdRmR-973C1u-fMt5Di-6bS8Wf-4DqhTZ-baJMcF-9CkzNG-4c5RaM-7Hr4Jm-827obA-6U7xyk-jxKYYN-8t96NE-9R5Aqu-ievmMo-9wcY9o-e69XkS-mFd5no-dKn5N-7L9B6z-89zVDn-cBBfxs-nqxkE-2fUDuw-ecxhTT-7HqJ43-7YBvu7-984Efp-bmJLUs-5UJHPF-rAbED-4vg5r4-8dF854-7LSQHF-6ZXWex-8R9kNZ-c3zv73-a9nq86-6G1Fhb-6UM3pD-cyXDw-5To5fn-eKRRr2-nkp9rG-neYXdT-foj4EV-79z8bu" class="ext-link" rel="external ">。</a></p>
+<p class="attribution translated"><a href="http://www.linkedin.com/in/corylanou" class="ext-link" rel="external ">科里·蓝鸥</a>是丹佛<a href="http://www.galvanize.it/school#main" class="ext-link" rel="external ">g学校</a>的讲师，他也是丹佛<a href="http://denvergophers.github.io/" class="ext-link" rel="external ">地鼠讲座</a>的组织者。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

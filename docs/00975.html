@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>How Docker Fits Into The DevOps Ecosystem</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Docker如何融入DevOps生态系统</h1>
+<blockquote>原文：<a href="https://thenewstack.io/how-docker-fits-into-the-devops-ecosystem/#0001-01-01">https://thenewstack.io/how-docker-fits-into-the-devops-ecosystem/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">对我来说，很难不写Docker容器技术，因为有这么多的发展要跟进。所以我会继续张贴我在那里看到的东西。</p>
+<p class="translated">今晚，我遇到了对T2的采访，他是Docker的高级工程师，讨论了Docker与DevOps technologies的契合度。在采访中，他讨论了Docker如何适应人们当前使用的工具集，以及何时作为主要或补充工具最有用。</p>
+<p class="translated">关于如何使用Docker没有很深的知识。与<a href="https://www.chef.io/products/chef-infra/" class="ext-link" rel="external ">厨师、</a> <a href="http://puppetlabs.com/" class="ext-link" rel="external ">木偶、</a> <a href="http://www.saltstack.com/community/" class="ext-link" rel="external ">盐</a>或<a href="http://www.ansible.com/home" class="ext-link" rel="external "> Ansible </a>如何契合？Petazzoni说，Docker不是这些技术的替代品，该组织也不希望它成为替代品。</p>
+<p class="translated">相反，例如，Docker像Puppet一样抽象了配置管理的复杂性。Shell脚本变得没有必要。相反，Docker可用于小型或大型部署:</p>
+<blockquote><p class="translated">但你不必再过早地进行投资，也不必面对陡峭的学习曲线。而不是说:“我只是要写一些shell脚本，因为Puppet太复杂了！”可以用Docker，因为不会比那些shell脚本难。不要说，“我不想用Puppet来做我正在做的那种小规模的部署”，而是说，“好吧，现在我有一百台服务器，所以使用Puppet是有意义的。”你乐于使用它，而不是将其视为负担。</p></blockquote>
+<p class="translated">当我在关于配置管理技术的会议上与开发人员和操作人员交谈时，对易用性和简单性的需求已经成为我经常听到的呼声。这些工具相当复杂，管理起来也很复杂。许多问题源于复杂的集成。</p>
+<blockquote><p class="translated">…你必须确保你使用的是相同的发行版，相同的库。确保所有这些环境完全一致可能需要大量的工作。Docker解决了这个问题，因为你是从一个给定的基本图像开始的，而且它保证在任何地方都是相同的图像。</p></blockquote>
+<p class="translated">Docker使新的堆栈变得更加有形。但是Docker并不是万能的。更重要的是，它是向轻量级服务转移的催化剂，轻量级服务比重量级的遗留技术更适用于这个新的堆栈世界。这在Petazzoni如何看待Docker与DevOps产品的契合度中显而易见。</p>
+<p class="translated">这里有一个关于Docker如何诞生的采访第一部分的链接。第三部分将于下周出版。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

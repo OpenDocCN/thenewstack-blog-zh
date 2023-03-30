@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>A Week Later, Docker Offers Scant Details on Hub Attack</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">一周后，Docker提供了很少关于网络中心攻击的细节</h1>
+<blockquote>原文：<a href="https://thenewstack.io/a-week-later-docker-offers-scant-details-on-hub-attack/#0001-01-01">https://thenewstack.io/a-week-later-docker-offers-scant-details-on-hub-attack/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">引用一项正在进行的调查，Docker在其年度<a href="https://thenewstack.io/dockercon-2019-all-about-the-end-to-end-container-lifecycle/" target="_blank" class="local-link"> DockerCon用户大会</a>上提供了一些关于<a href="https://thenewstack.io/docker-hub-compromised-users-urged-to-reset/" target="_blank" class="local-link">上周对Docker Hub </a>的攻击的细节，该攻击导致190，000个用户账户被曝光——这种缺乏初始透明度的情况让一些用户担心。</p>
+<p class="translated">在主题演讲的第二天，官方首次提到了DockerCon的违规行为。Docker首席技术官<a href="https://www.linkedin.com/in/kalde/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Kal De </a>，作为该公司正在测试的新技术演示的一部分。</p>
+<p class="translated">“我们将尽最大努力尊重您对我们的信任，为此，作为一家公司，我们必须非常认真地对待安全问题，并将继续全力以赴。我只是想非常清楚地表明，这是我们最关心的事情，”德对人群说。</p>
+<p class="translated">然而，除了在Docker Success门户网站上提供一个<a href="https://success.docker.com/article/docker-hub-user-notification" target="_blank" rel="noopener noreferrer external " class="ext-link">常见问题</a>页面外，该公司迄今没有提供关于此次攻击的必要细节，该公司承诺会经常更新该页面。但对于攻击者进入系统多长时间，攻击如何影响其他Docker系统，以及攻击中损害了哪些软件(Docker自己的或第三方软件)或进程，目前还没有消息。也没有任何可以立即做出改变的承诺，例如添加双因素身份认证(2FA)，这可能会进一步限制此类攻击的潜在损害。</p>
+<p class="translated">在周三的DockerCon新闻发布会上，Docker首席执行官兼董事长史蒂夫·辛格(Steve Singh)简要讨论了Docker正在采取的了解所发生事情的过程。该公司有一个调查违规行为的协议，并正在遵守。这个过程类似于辛格在他之前的公司——费用管理服务提供商<a href="https://www.concur.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Concur </a>使用的剧本。辛格承认,<a href="https://www.eweek.com/security/docker-responds-to-data-breach-and-outlines-the-container-future" target="_blank" rel="noopener noreferrer external " class="ext-link">在回答eWeek记者</a><a href="https://twitter.com/TechJournalist" target="_blank" rel="noopener noreferrer external " class="ext-link">肖恩·肯纳</a>的一个问题时,【Docker】保留了第三方法医调查员的服务。</p>
+<p class="translated">辛格引用这项正在进行的调查，拒绝回答新堆栈提出的关于入侵者访问Docker Hub多长时间的问题，或者是否有任何其他系统被入侵。他强调，该公司在发现漏洞后立即通知了受影响的用户，并披露了当时可能披露的一切。</p>
+<p class="translated">“世界上有糟糕的演员。他们做一些我们不得不应对的事情，”辛格说。他提出了为“供应链攻击”做准备的主题，这是最近的一个明显趋势，攻击者一直专注于在上游基础设施软件中嵌入恶意代码，这些代码可用于劫持组织的运营。他说，供应链公司需要研究一种“设计安全”的方法来防止这种情况发生，并补充说，“这是我们说‘让我们承认这个问题’的一个机会。”"</p>
+<p class="translated">辛格断言，总体而言，Docker中心的范围“非常小”。“我们以最快的速度做出了响应，并在了解违规行为和受影响者后尽快通知了我们的用户。”</p>
+<h2 class="translated">潜在影响</h2>
+<p class="translated">至少有一名安全专家持不同观点。</p>
+<p class="translated">“我们知道的还不够多。它可能会很有影响力。这可能会对整个世界产生很多影响，”Twistlock首席执行官John Morello在接受即将到来的<a href="https://thenewstack.io/podcasts/makers" target="_blank" class="local-link"> TNS制造商播客</a>采访时说。正如其他人所指出的，攻击者可以使用暴露的GitHub和BitBucket凭据来毒害这些存储库中的整个私有软件存储库。他说，如果攻击者在他们所做的事情上是聪明和有策略的，他们可能“可能会影响很多企业”。</p>
+
+<p/>
+<p class="translated">“Docker Hub不是目标。这只是一个渠道，”他说。“如果你知道组织X正在使用Docker Hub，并且你想打入该组织，那么Docker Hub将是实现这一目标的途径。”</p>
+<p class="translated">Morello说，这就是为什么对于Docker Hub用户来说，拥有攻击者首次进入的完整时间表是如此重要。有了明确的时间表——假设攻击发生在30天前或3个月前——安全管理员可以在该时间范围内检查日志中的可疑活动。他说，如果没有攻击可能发生的确切时间范围，“人们很难回过头来搞清楚什么是真实的，什么可能是可疑的”。</p>
+<p class="translated">通常情况下，云服务提供商，如<a href="https://aws.amazon.com/message/2329B7/" target="_blank" rel="noopener noreferrer external " class="ext-link">亚马逊网络服务</a>和<a href="https://blogs.msdn.microsoft.com/vsoservice/?p=17485" target="_blank" rel="noopener noreferrer external " class="ext-link">微软Azure </a>会发布详细的“事后”报告，详细说明到底哪里出了问题，以及通常为防止类似事故再次发生而采取的措施。然而，这些详尽的报告可能需要一些时间来编译。</p>
+<p class="translated">更糟糕的是，Docker不愿意加入2FA认证，这需要另一种形式的身份识别，如指纹或电话转接密码，这是除了DockerHub密码之外的要求。他说，即使是小的信用合作社也有实施2FA的技术人才，所以这对Docker来说应该不成问题。</p>
+<p class="translated">“如果我经营Docker Hub，那将是我的首要任务，”Morello说。</p>
+<h2 class="translated">码头中心维护</h2>
+<p class="translated">Docker Hub上似乎正在进行工作，可能是为了修复攻击者用来进入的漏洞。该公司周五提醒用户，美国太平洋夏令时大约上午9点至下午7点15分“正在进行定期维护”。</p>
+<p class="translated">“在此期间，Docker Hub将以只读模式运行。注册表登录和映像获取将在此时间段的大部分时间内继续工作。然而，推送通常是不可用的，”该公司在一封电子邮件中提醒用户。</p>
+<p class="translated">TNS出版商Alex Williams为本文做出了贡献。</p>
+<p class="attribution translated">Twistlock是新堆栈的赞助商。Docker支付了记者参加DockerCon的旅费。</p>
+<p class="attribution translated">专题图片:Docker首席技术官Kal De，在DockerCon 2019。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

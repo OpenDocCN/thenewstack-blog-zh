@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Gremlin Brings Chaos to Kubernetes Environments</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Gremlin给Kubernetes的环境带来混乱</h1>
+<blockquote>原文：<a href="https://thenewstack.io/gremlin-brings-chaos-to-kubernetes-environments/#0001-01-01">https://thenewstack.io/gremlin-brings-chaos-to-kubernetes-environments/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="attribution translated">Portworx赞助了New Stack对KubeCon+CloudNativeCon北美2019的报道。</p>
+<p class="translated">进一步扩展其故障即服务平台，<a href="https://www.gremlin.com/" class="ext-link" rel="external "> Gremlin </a>在Kubernetes环境中推出了对混沌工程的本地支持。<a href="https://thenewstack.io/how-chaos-engineering-can-drive-kubernetes-reliability/" target="_blank" class="local-link">混沌工程</a>的团队通过模拟分布式系统的压力和攻击为最坏的情况做准备。</p>
+<p class="translated">该公司去年增加了对<a href="/gremlin-now-treats-containers-as-first-class-failures/" target="_blank"> Docker环境</a>的支持，并在10月通过其<a href="https://www.gremlin.com/the-next-step-application-level-fault-injection/" target="_blank" rel="noopener noreferrer external " class="ext-link">应用级故障注入</a> (ALFI)技术增加了对<a href="/gremlin-applies-chaos-testing-to-serverless/" target="_blank">无服务器</a>的支持，该技术提供了一种通过将断点插入开发者代码本身来进行应用级故障测试的方法。</p>
+<p class="translated">Expedia项目管理总监西蒙·戈维尔说:“Gremlin为我们在Kubernetes的特定服务上运行混沌实验提供了一种简单可靠的方法。“这大大减少了进行故障注入所需的时间，并提高了我们系统的故障恢复能力。"</p>
+<p class="translated">Gremlin声称它是唯一一个直接与Kubernetes集成的企业产品。</p>
+<p class="translated">Gremlin的联合创始人兼首席技术官Matthew Fornaciari 说:“你在那里嵌入一个控制器，它会贯穿你的部署，并使它变得非常容易，然后根据你如何进行部署来运行一点混乱。</p>
+<p class="translated">“你不需要围绕如何定位目标来转换思维。你可以说，‘好吧，这个部署，这个守护进程集或者这个pod，这就是我要攻击的。然后你只需进入我们的用户界面，找到它，按名称空间过滤，就可以了。"</p>
+<p class="translated">在一篇博客文章中，产品总监Lorne Kligerman是这样说的</p>
+<p class="translated"><em>“过去，如果您在Kubernetes集群中的一个容器上安装了Gremlin，那么您需要处理由Kubernetes orchestrator上下旋转的容器。将您想要试验的服务的底层容器作为目标有点像打地鼠游戏。”</em></p>
+<p class="translated">Gremlin允许锁定Kubernetes集群中的对象。选择一个集群后，您可以通过选择一个名称空间来过滤可见的对象集。选择您的任何部署、副本集、状态集、守护集或单元。当选择一个对象时，所有子对象也将成为目标。</p>
+<p class="translated">他补充说，现在你不必再在一长串特定的容器中寻找，也不必怀疑你是否找到了所有的容器。相反，此攻击的目标容器将显示在攻击详细信息屏幕中，按它们所属的Kubernetes对象分组。</p>
+<p class="translated">根据您选择的对象数量，UI提供了攻击的可视化效果。</p>
+<p class="translated">根据Fornaciari的说法，在仪表板的右上角是一个红色的停止按钮，这意味着你可以立即停止攻击并回滚一切，安全是最重要的。</p>
+<p class="translated">该公司在9月份的<a href="https://www.chaosconf.io/" target="_blank" rel="noopener noreferrer external " class="ext-link">混沌会议</a>用户大会上宣布了其<a href="/gremlins-scenarios-simulate-common-outages-for-chaos-engineering/" target="_blank">场景</a>功能。它由六个推荐场景组成，对系统承受常见云中断场景的能力进行了开箱测试。该公司计划很快在一个场景中实现针对Kubernetes的功能，尽管这还不可用。</p>
+<p class="translated">该公司还就其推荐的Kubernetes攻击类型提供指导。</p>
+<p class="translated">“Kubernetes是一个非常强大的工具，你可以用它做任何事情。但这也意味着对新用户来说会有点复杂。“所以给他们一点指导，让他们尽可能简单地走出去，引起一点混乱，这就是释放本地社区支持的目标。”</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

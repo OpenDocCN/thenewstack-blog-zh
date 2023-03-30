@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Feel Force with a Load Sensor</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:用负荷传感器感受力</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-feel-force-with-a-load-sensor/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-feel-force-with-a-load-sensor/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">当开发和构建物理计算小工具时，我们经常需要测量事物。以前的一篇文章讨论了用<a href="/off-the-shelf-hacker-throw-a-thermocouple-on-the-grill/" target="_blank">热电偶</a>读取温度。几周前的<a href="/off-the-shelf-hacker-how-to-use-the-dial-caliper-for-extra-precise-measurement/" target="_blank">“千分尺”故事</a>谈到了捕捉长度，这样我们就可以在CAD程序中精确地为零件建模。去年四月，我们还介绍了梁式称重传感器及其基本操作<a href="/off-the-shelf-hacker-use-load-cells-to-measure-mechanical-forces/" target="_blank">。</a></p>
+<p class="translated">这次我将把称重传感器/放大器组合到<a href="https://www.amazon.com/KeeYees-Internet-Development-Wireless-Compatible/dp/B07HF44GBT/ref=sr_1_14?keywords=nodemcu&amp;qid=1568757966&amp;sr=8-14" target="_blank" rel="noopener noreferrer external " class="ext-link">节点MCU板</a>上，这样我就可以进行远程无线力感测。我们可以利用这种能力来构建便携式数字秤、感应物体并从机械装置中提供可操作的反馈。今天，我们将使用NodeMCU板作为Arduino Nano进行基本操作，并通过USB传输数据。为遥感添加无线代码和网络逻辑将出现在下一篇文章中。</p>
+<h2 class="translated">称重传感器+节点MCU =无限乐趣</h2>
+<div id="attachment_8697225" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8697225" decoding="async" loading="lazy" class="size-full wp-image-8697225" src="../Images/8cf9d4410638de1b2a64015448800fc7.png" alt="" data-id="8697225" data-original-src="https://cdn.thenewstack.io/media/2019/09/b497b244-10kg-load-cell.png"/><p id="caption-attachment-8697225" class="wp-caption-text translated">10千克称重传感器</p></div>
+<p class="translated">之前的称重传感器文章很好地描述了它们是什么以及它们是如何工作的。</p>
+<p class="translated">它们通常是一个小的矩形铝块，中心钻有一个交叉的空腔，顶部和底部粘有应变仪(薄膜电阻)。电阻器连接到一个放大器，该放大器分析它们的值，并将测得的力值发送到NodeMCU或Arduino纳米板。</p>
+<p class="translated">这些负荷传感器的一个很酷的地方是，你可以单独购买1、10、20、50、200和1000公斤大小的传感器。我的10公斤版亚马逊售价8.50美元，包括放大器板。甚至还有一款5000公斤的<a href="https://www.amazon.com/Pressure-Concrete-Station-Batching-Testing/dp/B07L9S8VCD/ref=asc_df_B07L9S8VCD/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=344588138627&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=16321041789184075272&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9051575&amp;hvtargid=pla-848974129677&amp;psc=1&amp;tag=&amp;ref=&amp;adgrpid=69777454699&amp;hvpone=&amp;hvptwo=&amp;hvadid=344588138627&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=16321041789184075272&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9051575&amp;hvtargid=pla-848974129677" target="_blank" rel="noopener noreferrer external " class="ext-link">型号</a>，售价约为124美元。你可以测量出11000磅。拉那个怪物。</p>
+<p class="translated">所有称重传感器都使用相同的微型HX711放大器板。</p>
+<div id="attachment_8697226" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8697226" decoding="async" loading="lazy" class="size-full wp-image-8697226" src="../Images/bc3ea54239ea5d18c21951985540d126.png" alt="" data-id="8697226" data-original-src="https://cdn.thenewstack.io/media/2019/09/c96aaa72-amp-on-nodemcu.png"/><p id="caption-attachment-8697226" class="wp-caption-text translated">焊接在NodeMCU板上的称重传感器放大器</p></div>
+<p class="translated">完成的node MCU/放大器封装非常紧凑。我使用20号实芯线将放大器板“悬浮”在NodeMCU板上方。放大器板底部的几片透明胶带防止了短路。随着设计的发展，我们会考虑一个外壳，可能还会考虑一些用于切换到不同称重传感器的插头和插座。</p>
+<p class="translated">将称重传感器和放大器连接到NodeMCU板只需极少的焊接。这里是连接。</p>
+<p class="translated">HX711放大器板的称重传感器。</p>
+
+<p class="translated">NodeMCU微控制器的放大器板。</p>
+
+<h2 class="translated">在ESP8266上运行Arduino代码</h2>
+<p class="translated">NodeMCU板是取代Nano的一个很好的选择，因为它有一个内置的ESP8266 Wi-Fi无线电。我正在开发易于携带的负载传感器，并能够应用于各种非笔记本电脑或Raspberry Pi连接的情况。NodeMCU将连接到我的网络并通过wifi传输数据。</p>
+<p class="translated">node MCU(esp8266 s)可通过使用USB电缆的Arduino IDE轻松编程。只需在编译和上传过程中更改电路板类型，就万事大吉了。代码的第一步是通过USB发送数据，并使用Arduino IDE串行终端查看结果。</p>
+<p class="translated">让NodeMCU或Nano板与HX711放大器板对话需要一个库。我在Arduino IDE中安装了由Olav Kallhovd 1 . 1 . 5版库提供的HX711_ADC。启动Arduino IDE，进入工具菜单，选择管理库。搜索“HX711 ”,当上述库出现在列表中时，点击“安装”按钮。这还会将示例代码文件放在“文件”-&gt;“示例”菜单下。它们被列为HX711_ADC。</p>
+<p class="translated">对于这个项目，我只是引入了Read_1x_load_cell示例并做了一些修改。<br/></p>
+<div id="crayon-642311f743458209916615" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-c">//-------------------------------------------------------------------------------------</span>
+<span class="crayon-c">// HX711_ADC.h</span>
+<span class="crayon-c">// Arduino master library for HX711 24-Bit Analog-to-Digital Converter for Weigh Scales</span>
+<span class="crayon-c">// Olav Kallhovd sept2017</span>
+<span class="crayon-c">// Tested with      : HX711 asian module on channel A and YZC-133 3kg load cell</span>
+<span class="crayon-c">// Tested with MCU  : Arduino Nano, ESP8266</span>
+<span class="crayon-c">//-------------------------------------------------------------------------------------</span>
+<span class="crayon-c">// This is an example sketch on how to use this library</span>
+<span class="crayon-c">// Settling time (number of samples) and data filtering can be adjusted in the config.h file</span>
+ 
+<span class="crayon-p">#include &amp;lt;HX711_ADC.h&amp;gt;</span>
+<span class="crayon-p">#include &amp;lt;EEPROM.hh&amp;gt;</span>
+ 
+<span class="crayon-c">//HX711 constructor (dout pin, sck pin):</span>
+<span class="crayon-e">HX711_ADC </span><span class="crayon-e">LoadCell</span>(<span class="crayon-cn">5</span>,<span class="crayon-cn">4</span>);
+ 
+<span class="crayon-e">const </span><span class="crayon-e">int </span><span class="crayon-i">eepromAdress</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span>;
+ 
+<span class="crayon-i">long</span><span class="crayon-h"> </span><span class="crayon-st">t</span>;
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>()<span class="crayon-h"> </span>{
+ 
+<span class="crayon-e">float </span><span class="crayon-i">calValue</span>;<span class="crayon-h"> </span><span class="crayon-c">// calibration value</span>
+<span class="crayon-c">// calValue = 696.0; // uncomment this if you want to set this value in the sketch</span>
+<span class="crayon-i">calValue</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">245.0</span>;<span class="crayon-h"> </span><span class="crayon-c">// uncomment this if you want to set this value in the sketch</span>
+<span class="crayon-p">#if defined(ESP8266)</span>
+<span class="crayon-c">//EEPROM.begin(512); // uncomment this if you use ESP8266 and want to fetch the value from eeprom</span>
+<span class="crayon-p">#endif</span>
+<span class="crayon-c">//EEPROM.get(eepromAdress, calValue); // uncomment this if you want to fetch the value from eeprom</span>
+ 
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>(<span class="crayon-cn">115200</span>);<span class="crayon-h"> </span><span class="crayon-e">delay</span>(<span class="crayon-cn">10</span>);
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>();
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Starting..."</span>);
+<span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>();
+<span class="crayon-e">long </span><span class="crayon-i">stabilisingtime</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">2000</span>;<span class="crayon-h"> </span><span class="crayon-c">// tare preciscion can be improved by adding a few seconds of stabilising time</span>
+<span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">start</span>(<span class="crayon-i">stabilisingtime</span>);
+<span class="crayon-e">if</span>(<span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">getTareTimeoutFlag</span>())<span class="crayon-h"> </span>{
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Tare timeout, check MCU&amp;gt;HX711 wiring and pin designations"</span>);
+}
+<span class="crayon-e">else</span><span class="crayon-h"> </span>{
+<span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">setCalFactor</span>(<span class="crayon-i">calValue</span>);<span class="crayon-h"> </span><span class="crayon-c">// set calibration value (float)</span>
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Startup + tare is complete"</span>);
+}
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">loop</span>()<span class="crayon-h"> </span>{
+<span class="crayon-c">//update() should be called at least as often as HX711 sample rate; &amp;gt;10Hz@10SPS, &amp;gt;80Hz@80SPS</span>
+<span class="crayon-c">//use of delay in sketch will reduce effective sample rate (be carefull with use of delay() in the loop)</span>
+<span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">update</span>();
+ 
+<span class="crayon-c">//get smoothed value from data set</span>
+<span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-e">millis</span>()<span class="crayon-h"> </span><span class="crayon-sy">&amp;gt;</span><span class="crayon-h"> </span><span class="crayon-st">t</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-cn">250</span>)<span class="crayon-h"> </span>{
+<span class="crayon-i">float</span><span class="crayon-h"> </span><span class="crayon-m">i</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">getData</span>();
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">"Load_cell output val: "</span>);
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-m">i</span>);
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">", oz= "</span>);
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-m">i</span><span class="crayon-h"> </span>*<span class="crayon-h"> </span><span class="crayon-cn">0.035274</span>);
+ 
+<span class="crayon-st">t</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">millis</span>();
+}
+ 
+<span class="crayon-c">//receive from serial terminal</span>
+<span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">available</span>()<span class="crayon-h"> </span><span class="crayon-sy">&amp;gt;</span><span class="crayon-h"> </span><span class="crayon-cn">0</span>)<span class="crayon-h"> </span>{
+<span class="crayon-i">float</span><span class="crayon-h"> </span><span class="crayon-m">i</span>;
+<span class="crayon-e">char </span><span class="crayon-i">inByte</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">read</span>();
+<span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">inByte</span><span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-s">'t'</span>)<span class="crayon-h"> </span><span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">tareNoDelay</span>();
+}
+ 
+<span class="crayon-c">//check if last tare operation is complete</span>
+<span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">LoadCell</span><span class="crayon-st">.</span><span class="crayon-e">getTareStatus</span>()<span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-i">true</span>)<span class="crayon-h"> </span>{
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Tare complete"</span>);
+}
+ 
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>第一个mod，我换了HX711_ADC称重传感器(4，5)；值为5.4。我无意中颠倒了从放大器板到NodeMCU的数据输出和s时钟连接。我没有拿出烙铁，让事情与示例代码保持一致，而是改变了代码中的引脚。用代码修复某些硬件问题很容易。请注意，如果您不仔细和有组织，这种做法可能会很快失控，特别是在任何接近生产的代码中。</p>
+<p class="translated">另一个变化是在底部增加了一个打印语句，除了显示千克以外，还显示以盎司为单位的测量力。</p>
+<p class="translated">最后，我更改了校准值。示例代码指定作者在他的应用中使用3 kg称重传感器。我用的是10公斤的电池。我通过反复试验得出了我的校准值。下一部分将快速介绍这个过程。</p>
+<h2 class="translated">弯曲横梁</h2>
+<p class="translated">为了获得力的精确读数，需要对系统进行校准。用已知重量校准传感器非常简单。今天的讨论将假设传感器值随着负载线性上升。当然，如果您需要非常精确的测量，您需要将值从低端(0)映射到高端(10千克)，以考虑任何变化。</p>
+<p class="translated">对于测试设置，我将传感器的一端夹在我的桌子上，因此钻孔间隙悬在边缘上。然后，我用一根绳子在传感器的另一端自由悬挂一个5磅重的锻炼重物，放在地板上。五磅约为2.27公斤或2270克。</p>
+<div id="attachment_8697224" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8697224" decoding="async" loading="lazy" class="size-large wp-image-8697224" src="../Images/8bb9249db72d8eabd9a8cefcbd781477.png" alt="" border="1" data-id="8697224" data-original-src="https://cdn.thenewstack.io/media/2019/09/99049aee-load-cell-readout3-1024x640.png"/><p id="caption-attachment-8697224" class="wp-caption-text translated">Arduino IDE串行终端窗口上显示的称重传感器读数。</p></div>
+<p class="translated">我的方法有点粗暴。我更改了代码中的校准值，然后编译并重新上传固件到NodeMCU，直到Arduino IDE串行终端读数上出现正确的值。每次上传固件时，一定要解开重量，否则，你将有效地“清零”5磅的传感器。我们希望传感器在空载时读数为零。此外，如果你得到负读数，只需将传感器翻转过来，重新夹紧。应变仪的排列使得你可以得到正负读数。这种能力可能会派上用场。有什么想法吗？</p>
+<p class="translated">无论如何，校准是有点乏味的，虽然它最终工作得很好。升级可能是添加一个小电位计和一些代码，让您通过旋转旋钮或螺丝刀进行校准调整。</p>
+<p class="translated"><iframe loading="lazy" title="load cell nodemcu" src="https://www.youtube.com/embed/j3aEAI6lh4c?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<h2 class="translated">更进一步</h2>
+<p class="translated">很容易直接从Arduino IDE串行终端读取压力值。您也可以在Linux终端中使用cat命令发送它们，甚至发送到处理模拟仪表程序。我们在过去的文章中讨论过这些话题。</p>
+<p class="translated">该项目的下一步是增加Wi-Fi功能。在接下来的故事中，我将向您展示代码，以及我们如何使用连接到网络的远程负载传感器。将强制值发送给MQTT代理可能也很有用。</p>
+<p class="translated"><em>赶【Torq博士的 <a href="https://thenewstack.io/tag/off-the-shelf-hacker/" target="_blank" class="local-link">现成黑客专栏</a>，每周六，只上新栈！在<a href="mailto:doc@drtorq.com">doc@drtorq.com</a>或407-718-3274联系他咨询、演讲、委托项目。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Puppet’s New Cloud Native Continuous Delivery Tool Builds on the CDF’s Tekton</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Puppet的新云原生连续交付工具建立在CDF的Tekton之上</h1>
+<blockquote>原文：<a href="https://thenewstack.io/puppets-new-cloud-native-continuous-delivery-tool-builds-on-the-cdfs-tekton/#0001-01-01">https://thenewstack.io/puppets-new-cloud-native-continuous-delivery-tool-builds-on-the-cdfs-tekton/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Puppet已经发布了其<a href="https://puppet.com/project-nebula" target="_blank" rel="noopener noreferrer external " class="ext-link"> Project Nebula </a>的公开测试版，这是一个云原生工具，将DevOps团队的现有工具集连接到一个端到端的连续交付平台。该公司旨在通过将基础架构供应、应用部署和通知的常用工具连接到一个自动化的工作流中，来简化微服务和基于无服务器的应用的部署。</p>
+<p class="translated">“世界上有少数人相信一种工具可以解决所有问题。还有一些人相信最佳产品，相信用正确的人和正确的文化为正确的工作提供正确的工具，”<a href="https://puppet.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">木偶</a>的产品管理高级总监<a href="https://www.linkedin.com/in/mattyoung/" target="_blank" rel="noopener noreferrer external " class="ext-link">马修·杨</a>说。“我们真正追求的是后者……我们并不是要取代所有其他工具。”</p>
+<p class="translated">Project Nebula目前支持包括Terraform、Helm、Kubectl、Slack等20多个工具。Young说，随着Puppet瞄准主要的集成工具，如GitLab和Jenkins，这个列表将继续增长。</p>
+<p class="translated">由此产生的管道或工作流可以通过<a href="/what-is-gitops-and-why-it-might-be-the-next-big-thing-for-devops/" target="_blank"> GitOps方法</a>以声明方式进行管理。在git命令git-push的触发下，Nebula启动部署工作流，并将来自各种工具的日志聚合到该过程的逐步可视化中，从而实现更加集中的调试和优化。例如，为了将应用程序部署到Kubernetes，Nebula将在Google Kubernetes引擎中提供一个Kubernetes集群，然后按照预定的步骤推出应用程序，然后通知Slack中的DevOps团队，并在完成后关闭吉拉的票证。Puppet已经在其免费社区市场<a href="https://forge.puppet.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Puppet Forge </a>上提供了一些Nebula工作流。</p>
+<h2 class="translated">CDF之外的第一个商业CD工具</h2>
+<p class="translated">Project Nebula建立在Tekton的基础上，Tekton是一个开源项目，始于谷歌，并于去年三月捐赠给持续交付基金会。Puppet的解决方案是CDF合作的第一个商业产品，其创始成员包括CloudBees、Google、JFrog、网飞和其他公司。</p>
+<p class="translated">“有许多公司在各种综合发展基金项目的基础上进行建设。这是公司在Tekton基础上开发产品的最早例子之一，这仍处于早期阶段，”<a href="https://www.cncf.io/" target="_blank" rel="noopener noreferrer external " class="ext-link">云计算原生计算基金会</a>首席技术官/首席运营官、<a href="https://training.linuxfoundation.org" target="_blank" rel="noopener noreferrer external " class="ext-link">Linux基金会</a>开发人员关系副总裁Chris Aniszczyk 通过电子邮件说道。“但随着项目的不断成熟，看到人们已经在Tekton上进行建设，这是令人鼓舞的。”</p>
+<p class="translated">Puppet凭借其开源自动化供应工具引领了基础设施代码运动，在过去几年中，它在管理云原生工作流方面取得了长足的进步。其2017年对Distelli的<a href="https://puppet.com/blog/welcome-distelli-to-puppet-family" target="_blank" rel="noopener noreferrer external " class="ext-link">收购导致了Puppet Pipelines的创建，这是其Puppet Enterprise产品的CI/CD功能的一部分。大约一年前，由于客户开始要求云供应功能，Puppet也开始在内部开发自己的云原生CD工具。在CDF宣布前不久，Puppet将内部云原生管道项目</a><a href="https://lyraproj.github.io/" class="ext-link" rel="external "> Lyra </a>作为开源发布。</p>
+<p class="translated">CDF成立后，Puppet停止了Lyra的工作，转而加入CDF，开始在Tekton上构建一个新的CD工具。Young说，Project Nebula的首席工程师参加了CDF的技术监督委员会会议，并从其他成员那里学到了很多关于他们应该在Project Nebula中加入哪些功能的知识。例如，Tekton不包括基于角色的访问控制(RBAC)、秘密管理或GUI，所有这些Puppet都已集成到Nebula中，以区别于开源项目和基于它的其他解决方案。</p>
+<p class="translated">“我们开始意识到Tekton在编排云原生工作流方面所做的事情与Lyra实际上计划做的事情之间有很多协同作用，”Young说。“因此，与其有一个相互竞争的项目，一个人的社区与一个以上的社区，我们决定共同努力，让Tekton项目成为每个人更可行的选择。</p>
+<p class="translated">“这是一种啰嗦的说法，我们在过去的12个月里学到了很多，”杨说。</p>
+<h2 class="translated">建立在开源的基础上以走得更快</h2>
+<p class="translated">Tekton最初是由Google为Kubernetes上的Knative无服务器应用程序开发的构建工具。作为工作流协调器，它位于堆栈的底部，在Kubernetes和团队的部署和管理工具之间形成一层。谷歌Tekton的软件工程师丹·洛伦茨(Dan Lorenc)说，它与Kubernetes primitives和各种工具进行交互，整合、管理和自动化将应用程序从笔记本电脑投入生产的所有步骤。</p>
+<p class="translated">Puppet产品管理总监Eric Sorenson表示，Nebula中的所有计算繁重任务都由Tekton处理，从并行和排序，以便各个步骤可以同时运行或根据其依赖关系按顺序运行，到步骤和pod的生命周期管理以及跨步骤共享数据。</p>
+<p class="translated">索伦森说:“[Tekton]提供的平台功能将我们的项目加速了4到6个月，因为它做了很多棘手的计算。”。“这些都是谷歌在内部使用它作为Knative build项目时想出来的东西。”</p>
+<p class="translated">其他公司也在Tekton的基础上建立了CD产品，包括Red Hat的<a href="https://blog.openshift.com/cloud-native-ci-cd-with-openshift-pipelines/" target="_blank" rel="noopener noreferrer external " class="ext-link"> OpenShift Pipelines </a>、<a href="https://developer.ibm.com/open/projects/kabanero/" target="_blank" rel="noopener noreferrer external " class="ext-link"> IBM的Kabanero </a>和CDF的<a href="https://jenkins.io/projects/jenkins-x/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Jenkins X </a>。但是Puppet的星云是第一个直接来源于CDF合作的。</p>
+<p class="translated">“我对[Puppet]从他们第一次开始在CDF中提出问题所用的时间以及他们提出问题的速度印象深刻，”Lorenc说，并指出Nebula对于这样一个新的倡议来说是一个功能相当丰富的产品。“他们在Tekton上构建的方式是有意义的，这是我们所预想的(当谷歌将Tekton捐赠给中国发展基金时)。]我们很高兴看到这次发布。”</p>
+<p class="translated">Lorenc说，通过在Tekton上开发Project Nebula，Puppet正在利用现有的插件和集成生态系统来更快地进入市场。最终用户还可以从市场上更多样化的产品中受益，这些产品满足不同的需求和使用情形，但都建立在相同的基础之上，从而提高了可移植性和互操作性。</p>
+<p class="translated">“每个人似乎都在努力实现持续部署。他们引用的原因是因为很难以可重复的方式对环境建模，以便人们可以在将代码推出GitHub repo时进行测试，”Puppet的Young说。“如果我们能够帮助解决这个问题，我们已经在[Puppet Enterprise]中为连续交付做到了这一点，而且我们可以在云原生空间中做到这一点，你知道，我认为这是互利的。”</p>
+<p class="translated">Puppet以配置管理为基础，将开源技术和基础设施的相同原则作为代码移植到云本地空间。凭借其自己的开源Puppet和Puppet Enterprise用户社区，该公司对企业在将云原生与传统企业基础架构集成并大规模集成时所面临的挑战有着独特的理解。</p>
+<p class="translated">“我们将继续为开源做出贡献，并努力实现技术的民主化，”Puppet首席执行官<a href="https://puppet.com/company/leadership/yvonne-wassenaar" target="_blank" rel="noopener noreferrer external " class="ext-link">伊冯娜·瓦森纳</a>在本周于波特兰举行的该公司<a href="https://puppet.com/puppetize" target="_blank" rel="noopener noreferrer external " class="ext-link"> Puppetize PDX 2019 </a>用户大会上说道。“我们将继续抽象复杂性。我们将确保它的可扩展性和安全性……我们跨越了从数据中心到云再到容器再到裸机的整个环境。”</p>
+<p class="attribution translated">CloudBees、Cloud Native Computing Foundation、Linux Foundation、Puppet和Red Hat是新堆栈的赞助商。</p>
+<p class="attribution translated">特写:木偶公司的首席执行官伊冯娜·瓦塞纳尔在PDX木偶剧院的舞台上。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

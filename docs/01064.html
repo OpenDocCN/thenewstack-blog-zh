@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>An iOS Single View Controller App Built in Xamarin</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Xamarin内置的iOS单视图控制器应用程序</h1>
+<blockquote>原文：<a href="https://thenewstack.io/ios-single-view-controller-app-built-xamarin/#0001-01-01">https://thenewstack.io/ios-single-view-controller-app-built-xamarin/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">创建iOS应用程序时，通常会使用许多视图控制器。这些是管理屏幕和控制屏幕间导航的iOS对象。不过，只用一个视图控制器创建一个多表单也是可能的，在本文中，我将向您展示如何实现。</p>
+<p class="translated">完整的源代码，包括thi sapp的所有项目文件，都在新的Stack GitHub账户上。</p>
+<h2 class="translated">这个应用程序是做什么的？</h2>
+<p class="translated">它显示一个带有几个按钮的屏幕。这些是木制按钮，一个写着“软木”，另一个写着“钙”。点击“软木”会切换到两个垂直排列的按钮，标题分别为“木材”和“Calc ”,两个按钮的背景都是软木。单击“Calc”按钮会显示一个简单的数字键盘，包括0-9、一个小数点以及Del和Send按钮。点击这些按钮输入一个带小数点的五位数。DEL键删除最后按下的数字或字符，SEND弹出一个显示输入值的框，并切换回双按钮显示。</p>
+<p class="translated">所有三个不同的屏幕都是通过重用一个视图控制器实现的。</p>
+<h2 class="translated">该应用的架构</h2>
+<p class="translated">最小的iOS应用程序只需要一个AppDelegate和一个UIViewController。在这个应用程序的AppDelegate中，它创建并设置SingleViewController作为根控制器，即启动事物的控制器。这是一个非常简单的类，它继承自UIViewController基类，并覆盖ViewDidLoad方法来调用StartUp()方法。当ViewController第一次变为活动状态时，将调用ViewDidLoad()方法。这里，它创建了MainView类的一个实例，将其分配给视图控制器的View属性，然后调用MainView实例Start()方法。</p>
+<p class="translated">视图控制器是应用程序的关键，如果你使用iOS故事板功能，你可以创建一个应用程序，为你完成大部分(如果不是全部)管理视图控制器的工作。我选择让这个应用程序100%代码，所以没有笔尖或故事板使用。对于一个简单的应用程序来说，这是可以的，但是当你开发一些更复杂的东西时，你会感激故事板和笔尖能为你做什么。</p>
+<h2 class="translated">景色</h2>
+<p class="translated">每个视图控制器都有一个视图，它是UIView的一个实例，在屏幕的矩形部分显示内容，并让用户与该内容进行交互。你可以有一个由多个视图控制器组成的屏幕，每个控制器处理它的一部分，或者你可以有一个视图控制器用于整个屏幕，就像我做的那样，有多个控件。</p>
+<p class="translated">每个iOS控件都是一个视图，因为控件的类继承自UIView。要用控件填充视图，只需创建所需的控件，并使用view将每个控件添加到视图中。AddSubview(控件)。这将视图添加到视图中。这个数组管理视图中的控件以及它们的显示方式。创建按钮等的所有代码都放在lib.cs文件中，例如lib.GetTextureButton。</p>
+<p class="translated">为了保持应用程序相对简单，我将所有视图代码放在MainView.cs中。它本来可以放在ViewController文件中，但最好是将视图和视图控制器分开。MainView类是控件，继承自UIView。在从SingleViewController StartUp()方法调用的构造函数中，iPhone的UIScreen。主屏幕。传入边界；这些是屏幕的尺寸。因此，主视图控件可以访问所有屏幕，包括顶部的电池状态行、3G信号强度等。<br/></p>
+<div id="crayon-6422f1534df51393246043" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">View</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">MainView</span>(<span class="crayon-i">UIScreen</span><span class="crayon-st">.</span><span class="crayon-i">MainScreen</span><span class="crayon-st">.</span><span class="crayon-i">Bounds</span>);
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>main view构造函数在lib类中缓存了一些值，特别是FrameWidth和FrameHeight。这些用于计算按钮大小。因为有两个方形按钮，所以计算出的按钮大小存储在lib中。来自iPhone屏幕宽度的ButtonWidth，用于计算水平坐标col1和col2，并在放置按钮时使用它们。</p>
+<h2 class="translated">什么是统一API？</h2>
+<p class="translated">苹果要求所有应用程序在2015年6月前转换成统一的应用程序，即它们可以运行在64位或32位架构上。Xamarin现在支持这一点，这个应用程序已经开发为一个。您会注意到，它使用nint和nfloat等变量类型，其中n代表本机，因此nint在32位架构上是32位，在64位架构上是64位，而int在两种架构上都是32位。iPhone 5和更早版本使用32位架构，而iPhone 5S和更早版本使用64位架构。</p>
+<h2 class="translated">撕掉它，重新开始</h2>
+<p class="translated">TidyViews()方法清除屏幕，并从三个方法Start()、Calc()和Cork()中调用。它删除了视图中的所有控件(更准确地说是子视图中的视图),因此可以添加新的控件。这是仅用一个视图控制器实现多个屏幕的关键机制。<br/></p>
+<div id="crayon-6422f1534df57781400167" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h"> </span><span class="crayon-c">// Removes all controls (views) from the View</span>
+<span class="crayon-h"> </span><span class="crayon-e">private </span><span class="crayon-e">void </span><span class="crayon-e">TidyViews</span>()
+<span class="crayon-h"> </span>{
+<span class="crayon-h"> </span><span class="crayon-e">foreach</span><span class="crayon-h"> </span>(<span class="crayon-e">var </span><span class="crayon-e">view </span><span class="crayon-e">in </span><span class="crayon-i">Subviews</span>)
+<span class="crayon-h"> </span>{
+<span class="crayon-h"> </span><span class="crayon-i">view</span><span class="crayon-st">.</span><span class="crayon-e">RemoveFromSuperview</span>();
+<span class="crayon-h"> </span>}
+<span class="crayon-h"> </span>}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>主视图方法Start、Cork和Calc都有一个与。NET事件处理程序。这是一个带有两个参数的方法:object sender和EventArgs e。我已经在lib.cs中用这一行将其显式定义为委托类型Anaction。<br/></p>
+<div id="crayon-6422f1534df59114892983" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h">  </span><span class="crayon-e">internal </span><span class="crayon-e">delegate </span><span class="crayon-e">void </span><span class="crayon-e">Anaction</span>(<span class="crayon-e">object </span><span class="crayon-i">sender</span>,<span class="crayon-h"> </span><span class="crayon-e">EventArgs </span><span class="crayon-i">args</span>);
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>lib的参数之一。GetTextureButton是一个操作，它使用lambda表达式连接到TouchUpInside事件。你可以在GetTextureButton中看到这一行。如果你不知道C#委托或者Lambda表达式也不用太担心，基本都是匿名函数。下面的语法可能很难理解，但它所做的只是将传入的函数d添加到按钮TouchUpInside事件处理程序中。<br/></p>
+<div id="crayon-6422f1534df5a852371599" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h">   </span><span class="crayon-i">button</span><span class="crayon-st">.</span><span class="crayon-i">TouchUpInside</span><span class="crayon-h"> </span>+=<span class="crayon-h"> </span>(<span class="crayon-m">o</span>,<span class="crayon-h"> </span><span class="crayon-st">e</span>)<span class="crayon-h"> </span>=<span class="crayon-sy">&amp;gt;</span><span class="crayon-h"> </span><span class="crayon-r">d</span>(<span class="crayon-m">o</span>,<span class="crayon-h"> </span><span class="crayon-st">e</span>);
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>作为动作参数d传入的任何内容都成为点击的目标。在下面的代码中，在坐标(Col1，bottomy)处添加了一个带有文本“Cork”的按钮，当单击该按钮时，它会调用Cork()方法。<br/></p>
+<div id="crayon-6422f1534df5b851615937" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h">   </span><span class="crayon-e">AddSubview</span>(<span class="crayon-i">_lib</span><span class="crayon-st">.</span><span class="crayon-e">GetTextureButton</span>(<span class="crayon-s">"Cork"</span>,<span class="crayon-h"> </span><span class="crayon-i">col1</span>,<span class="crayon-h"> </span><span class="crayon-i">bottomy</span>,<span class="crayon-h"> </span><span class="crayon-i">Cork</span>));
+</pre>
+</div>
+</div>
+ 
+<p class="translated"><br/>键盘按键使用UIButton。标记属性来标识在ClickButton()事件处理程序中按下了哪个键。按钮标记值被转换为lib中的字符串。TranslateButtonIndexToString()。如果单击了SEND按钮，并且有一个字符串，那么它调用ShowValue()来使用UIAlertController显示该值。</p>
+<h2 class="translated">不要混淆iOS委托和C#委托</h2>
+<p class="translated">在iOS中，当你看到delegate这个词时，它意味着一个类为另一个类做一些事情，这是整个iOS中非常常见的模式。在C#中，虽然委托意味着匿名函数。</p>
+<h2 class="translated">结论</h2>
+<p class="translated">这是ponyish的一个小技巧，但对于创建简单的应用程序来说可能是有用的。</p>
+<p class="translated">真实图像<a href="https://www.flickr.com/photos/75001512@N00/7864614878/in/photolist-bBnC2S-bBoAow-9KJbGj-gHeEMT-3SzWn9-9Kj3a6-5WoGuJ-5WoGqW-nLKXZ6-9gzLnQ-6pEMeU-7iEFwq-9KJaUC-5WjpVt-5WjqpK-7z6BZD-7zas45-5WoGws-e49PUQ-7zapQ3-7zapcQ-9KHMS7-ecdhVE-earsT3-eakLze-eakMEF-5WoFZS-8sPtGD-cYYd1f-cdjyHJ-cdjxhs-9isYYY-dtgma-cdjRmQ-cdjouh-bVX7uZ-bVXvMX-9gwFon-8g9fo6-9bW3Cu-9GjoHr-ebEpkH-64GBfU-61MDuv-ccqggh-7Uq6YD-5WoGo7-5Mux8Y-6bcDJ8-5WjqfX" class="ext-link" rel="external ">通过</a> Flickr知识共享。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

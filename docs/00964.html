@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Project Flogo: A Lightweight Runtime for Edge Computing</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Project Flogo:面向边缘计算的轻量级运行时</h1>
+<blockquote>原文：<a href="https://thenewstack.io/project-flogo-a-lightweight-runtime-for-edge-computing/#0001-01-01">https://thenewstack.io/project-flogo-a-lightweight-runtime-for-edge-computing/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">边缘计算的兴起标志着企业物联网平台下一波浪潮的开始。主要的公共云提供商——AWS、谷歌和微软——已经将其物联网平台扩展到边缘。对于客户来说，边缘计算是公共云的延伸。他们获得微型版本的云服务，包括设备管理、机器对机器通信、身份验证和授权，以及通常通过容器和功能交付的核心计算服务。</p>
+<p class="translated">AWS Greengrass、Azure IoT Edge、Google Cloud IoT Edge将物联网平台服务延伸到边缘。但是这些服务与它们各自的云平台服务紧密耦合。客户需要一种不受云、平台限制的边缘计算平台，可以在内部部署。</p>
+<p class="translated">TIBCO的Project Flogo 是一个轻量级边缘计算平台，不依赖于任何特定的公共云平台。这是一个考虑到可移植性而开发的<a href="https://github.com/TIBCOSoftware/flogo" class="ext-link" rel="external ">开源项目</a>。因为它主要是用Golang编写的，所以可以跨各种环境部署运行时。Project Flogo可以在由运行Kubernetes的x86服务器或基于ARM CORTEX处理器的微型Raspberry Pi Zero主导的数据中心中运行。</p>
+<p class="translated">与其他边缘计算平台不同，Project Flogo占地面积非常小。它比Node.js和Java Dropwizard运行时轻20到50倍。执行Project Flogo应用程序所需的二进制文件只有3.3Mb。</p>
+<p class="translated">TIBCO基于事件驱动和无服务器计算模型构建了Project Flogo。该平台与AWS Lambda等主流无服务器平台无缝集成。</p>
+<h2 class="translated">一个开发者对Flogo项目的看法</h2>
+<p class="translated">Project Flogo是一个建立在Node-Red基础上的无代码平台。熟悉Node-Red的开发人员将能够立即使用该工具。但是Flogo在执行环境和运行时方面与Node-Red有着本质的不同。要运行Node-Red节点，部署平台应该安装Node-Red。使用Flogo，绝对没有来自目标环境的期望。Flogo发出的二进制文件可以像本机x86或ARM可执行文件一样运行，没有任何依赖性。</p>
+<p class="translated">在Flogo上构建应用时，开发人员要么处理Web UI，要么处理CLI。Flogo应用被建模为流，流是基于JSON用领域特定语言(DSL)编写的声明。</p>
+<p class="translated">Flogo应用程序不是在运行时动态解析和执行流，而是将流嵌入到独立的二进制文件中。虽然开发人员每次更改流程时都需要编译二进制文件，但这样做的好处在于生成的二进制文件大小紧凑。编译后的二进制文件是独立的、可移植的、独立的实体，没有任何依赖关系。这就是Project Flogo最大的好处。这些轻量级的二进制文件可以通过现代的CI/CD工具轻松地推送到目标环境中。</p>
+<p class="translated">一旦开发和部署了一个流，就可以通过各种触发器调用它。Flogo中的触发器连接到入站和出站通道，如REST、MQTT、CoAP、Kafka主题、Cron作业，甚至是直接通过CLI发送的参数。</p>
+<p class="translated">当执行一个流时，它开始监听声明中定义的触发器。例如，MQTT触发器将订阅现有的主题，并等待发布者发送消息。类似地，REST触发器将在特定端口上同步等待HTTP请求到达。</p>
+<p class="translated">那么，当在流中触发触发器时会发生什么呢？一系列动作将按顺序或以并行方式发生。这些操作在Flogo中作为活动提供。活动通过处理来自触发器的入站消息来完成繁重的工作。例如，一个活动可能会调用Twilio API来发送文本消息。另一个活动可能加载张量流模型，以发现传感器遥测中的异常。Project Flogo附带了十几个预定义的活动，可以立即包含在流程中。开发人员还可以在Golang中创建自定义活动，并将其与流程连接起来。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/770c3dbb-flogo-1.jpg" class="ext-image" rel="external "><img decoding="async" loading="lazy" src="../Images/8340f35cd6f94d951e6efc01c7168b3e.png" alt="" data-id="5400341" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/770c3dbb-flogo-1.jpg"/>T2】</a></p>
+<p class="translated">由于Project Flogo是一个事件驱动的平台，我们可以调用流程来响应外部事件。AWS Lambda活动可用于调用现有的Lambda函数。</p>
+<p class="translated">但是Project Flogo的无服务器功能超出了函数调用的范围。这些流可以以AWS Lambda为目标。有了AWS Lambda对Golang的本地支持，Project Flogo流就可以作为Lambda函数打包和部署。Flogo CLI和AWS CLI的组合可用于自动化功能部署。</p>
+<h2 class="translated"><strong>弗洛戈项目启动</strong></h2>
+<p class="translated">Flogo项目可以通过web界面或命令行访问。最简单的入门方法是拉一下Project Flogo的Docker图片。</p>
+<p class="translated">下面是访问Flogo web UI的简单步骤。<br/></p>
+<div id="crayon-64212dd881b50126908254" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">docker </span><span class="crayon-i">run</span><span class="crayon-h"> </span>-<span class="crayon-i">it</span><span class="crayon-h"> </span>-<span class="crayon-t">p</span><span class="crayon-h"> </span><span class="crayon-cn">3303</span><span class="crayon-st">:</span><span class="crayon-cn">3303</span><span class="crayon-h"> </span><span class="crayon-i">flogo</span>/<span class="crayon-i">flogo</span>-<span class="crayon-i">docker</span><span class="crayon-st">:</span><span class="crayon-e">latest </span><span class="crayon-i">eula</span>-<span class="crayon-v">accept</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>等待图像提取和初始化完成。终端将显示以下输出，表明平台已准备就绪。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/b1b730f8-flogo-2.jpg" class="ext-image" rel="external "><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-5400349" src="../Images/6e4f140f1f04d4a23fd69c9571935390.png" alt="" data-id="5400349" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/b1b730f8-flogo-2.jpg"/>T2】</a></p>
+<p class="translated">我们现在可以访问web UI了。点击http://localhost:3303将显示控制台:</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/fbc128f2-flogo-3.jpg" class="ext-image" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-5400351" src="../Images/3a4b2a2ddcfc62c0b7b16fa7076e60e5.png" alt="" data-id="5400351" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/fbc128f2-flogo-3.jpg"/> </a></p>
+<p class="translated">请随意探索一些流附带的示例应用程序。</p>
+<p class="translated">您也可以通过三个简单的步骤安装Flogo CLI。</p>
+<p class="translated">1)从<u><a href="https://golang.org" class="ext-link" rel="external ">https://golang.org</a></u>下载Golang，按照说明配置开发环境。确保正确设置了GOPATH和GOBIN环境变量。</p>
+<p class="translated">2)安装Golang Dep工具来管理依赖关系。运行以下命令来配置该工具。<br/></p>
+<div id="crayon-64212dd881b55655840789" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">curl </span><span class="crayon-i">https</span>:<span class="crayon-c">//raw.githubusercontent.com/golang/dep/master/install.sh | sh</span>
+</pre>
+</div>
+</div>
+
+<p class="translated">最后，使用以下命令安装Flogo CLI:<br/></p>
+<div id="crayon-64212dd881b56088375151" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">go </span><span class="crayon-i">get</span><span class="crayon-h"> </span>-<span class="crayon-i">u</span><span class="crayon-h"> </span><span class="crayon-i">github</span><span class="crayon-st">.</span><span class="crayon-i">com</span>/<span class="crayon-i">TIBCOSoftware</span>/<span class="crayon-i">flogo</span>-<span class="crayon-i">cli</span>/...
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>如果一切安装和配置正确，Flogo CLI应该工作。</p>
+<p class="translated"><a href="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/2f7e26a1-flogo-4.jpg" class="ext-image" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-5400352" src="../Images/158c6709815b130e152648e8fcace87c.png" alt="" data-id="5400352" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/08/2f7e26a1-flogo-4.jpg"/> </a></p>
+<p class="translated">在下一篇文章中，我将带您逐步构建和部署一个可以在边缘计算设备上运行的端到端Flogo应用程序。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

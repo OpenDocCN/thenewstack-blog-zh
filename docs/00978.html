@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Dropbox Open Sources Go Libraries Following Migration From Python Code Base</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">从Python代码库迁移后，Dropbox开源Go库</h1>
+<blockquote>原文：<a href="https://thenewstack.io/dropbox-open-sources-go-libraries-following-migration-from-python-code-base/#0001-01-01">https://thenewstack.io/dropbox-open-sources-go-libraries-following-migration-from-python-code-base/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">像许多公司一样，Dropbox已经开始采用Go编程语言。昨天，公司<a href="https://tech.dropbox.com/2014/07/open-sourcing-our-go-libraries/" class="ext-link" rel="external ">宣布</a>它是o <span> pen采购其图书馆，以帮助更广泛的社区建立大规模生产系统。</span></p>
+<p class="translated">大约一年前，Dropbox开始将其性能关键型系统从Python中迁移出来。该公司采用Go以更高效的方式扩展其系统。从那以后，该公司已经将大部分基础设施转移到了T4。但是在这个过程中，它面临着一个关于Go的问题，这个问题更多的反映了这种编程语言的年轻。</p>
+<p class="translated">Go没有Dropbox构建更大系统所需的深度库。为了解决这个问题，Dropbox团队开始构建自己的库，提供更好的抽象，比如连接管理和memcache客户端。</p>
+<p class="translated">正如李雅达所描述的那样，以下是它为启动这一努力而提供的内容:</p>
+<ul>
+<li class="translated"><a href="https://godoc.org/github.com/dropbox/godropbox/caching" class="ext-link" rel="external ">缓存</a>:为构建缓存层提供一个通用的抽象。</li>
+<li class="translated"><a href="https://godoc.org/github.com/dropbox/godropbox/errors" class="ext-link" rel="external ">错误</a>:增强标准错误接口，公开堆栈跟踪信息。</li>
+<li class="translated"><a href="https://godoc.org/github.com/dropbox/godropbox/database/sqlbuilder" class="ext-link" rel="external ">数据库/sqlbuilder </a>:允许开发者以编程方式生成sql语句。</li>
+<li class="translated"><a href="https://godoc.org/github.com/dropbox/godropbox/memcache" class="ext-link" rel="external "> memcache </a>:实现了一个全功能的memcache客户端库，支持连接池和灵活的分片。</li>
+<li class="translated"><a href="https://godoc.org/github.com/dropbox/godropbox/net2" class="ext-link" rel="external "> net2 </a>:增加连接管理功能。</li>
+<li class="translated">(我个人最喜欢的是，<a href="https://godoc.org/github.com/dropbox/godropbox/hash2" class="ext-link" rel="external "> hash2 </a>，它包含了一个空间高效的基于置换的一致性哈希算法)</li>
+</ul>
+<p class="translated">Dropbox表示将继续扩展其使用的库，并在GitHub 上公开提供这些库。这些是Dropbox将在内部使用的相同库。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

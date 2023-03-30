@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Open Source Leaders: Charity Majors' Mission to Monitor Microservices</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">开源领导者:慈善专业人士监控微服务的使命</h1>
+<blockquote>原文：<a href="https://thenewstack.io/open-source-leaders-charity-majors-mission-monitor-microservices/#0001-01-01">https://thenewstack.io/open-source-leaders-charity-majors-mission-monitor-microservices/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">下面的采访是“开源领导者”系列的一部分，在这个系列中，我们描述了开源IT社区中的项目领导者，以了解他们如何开发他们的软件，以及运行开源项目带来的挑战和好处。</p>
+<p class="translated"><span><a href="https://github.com/charity" class="ext-link" rel="external ">C</a></span><a href="https://github.com/charity" class="ext-link" rel="external ">harity Majors</a>第一手了解每个软件开发人员在发布一个精心构建并经过艰苦测试的项目时的痛苦——也就是说，在那个时刻，性能监控变得几乎不可能。因此，她共同创立了<a href="https://honeycomb.io/" class="ext-link" rel="external "> Honeycomb.io </a>，提供监控和调试工具，为应用程序的“真实世界”性能创建实时窗口。</p>
+<p class="translated">梅杰斯在移动应用程序开发公司Parse磨练了自己的技能，她在Parse的移动后端即服务项目中担任基础设施技术主管。当脸书<a href="https://techcrunch.com/2013/04/25/facebook-parse/" class="ext-link" rel="external ">在2013年收购</a> Parse时，梅杰斯成为一个生产工程师团队的经理，负责超过500，000个移动应用的维护和供应——基础设施、数据库管理、自动化、事件响应、持续部署管道、脸书集成。</p>
+<p class="translated">Charity Majors采访了New Stack，谈论了离开脸书与合伙人/首席执行官(也是前解析工程师)Christine Yen 一起创建Honeycomb.io，以及开源生态系统的一些帮助。</p>
+<p class="translated"><b>你是什么背景？</b></p>
+<p class="translated">我是音乐专业的辍学生，后来成为了技术人员。我总是被ops和DBA工程角色所吸引——我对抽象的计算机科学的容忍度很低，我必须做需要做的工作。所以我做过系统工程师和工程经理，但不知何故，似乎最终也要负责数据库——我从17岁起就随叫随到了！我在工程管理和集成电路角色之间来回转换已经有一段时间了。2016年1月，我和另一位前Parse工程师Christine Yen一起创立了Honeycomb.io。公司还没有倒闭。</p>
+<p class="translated"><b>你是怎么开始做Honeycomb.io的？</b></p>
+<p class="translated">当我在脸书工作时，我爱上了潜水。水肺是脸书的内部观察工具，它有着巨大、快速和灵活的用户界面。当我准备离开脸书时，一想到我将回到一个充满老式指标和仪表板的世界，我就感到非常震惊。我意识到，我只是一个更强大的工程师，拥有丰富的、基于事件的交互式工具，我再也不想像过去那样在黑暗中摸索，从一个工具跳到另一个工具。所以我们建立了蜂巢，给小公司同样的实时应用性能分析，像脸书这样的大型企业组织都可以使用。</p>
+<p class="translated"><b>蜂巢帮助解决了哪些商业或技术问题？</b></p>
+<p class="translated">一个字:复杂。我们看到了不久的将来，每个人都必须成为分布式系统工程师来管理爆炸式增长的复杂性。LAMP stack这一代工具旨在快速有效地回答已知问题。它做得很好，石墨，新遗迹，麋鹿/弹性等。但是，在未来，我们将没有已知未知的奢侈。我的意思是，在这个系统中，如果你知道问题是什么，你可能会回答它。然而，现在你越来越没有一个明确的问题。看看<a href="/category/microservices/" target="_blank">微服务</a>和分布式系统:找出症状(可能存在，也可能不存在，由不可靠的叙述者或同样不可靠的工具报告)来源于哪个(哪些)组件是非常具有挑战性的。哪些是原因，哪些是结果？</p>
+<blockquote><p class="translated">“大多数仪表板都是过去失败的产物，如果你认为它适合你当前和未来的情况，那你就是在蒙蔽自己。”—慈善专业</p></blockquote>
+<p class="translated">Honeycomb拥有大量的Scuba DNA，是一种激进的、从根本上不同的解决问题的方式，而且是完全必要的。我在脸书和其他地方一再看到这一点:如果我们坚持旧的方式，我们就会迷失。大多数仪表盘都是过去失败的产物——如果你认为它适合你现在和未来的情况，那你就自欺欺人了。</p>
+<p class="translated">如今，不管公司是否知道，他们都需要蜂巢这样的东西。幸运的是，人们越来越认识到运行大型多租户平台和开发深度数据工具不是免费的，也不是他们核心业务的一部分，因此他们应该雇用像我这样的人来为他们处理这些事情。Honeycomb能够很好地处理高基数数据，没有其他系统能做到这一点。你可以在那个有蜂窝的干草堆里找到每一根针。</p>
+<p class="translated"><b>开源在这方面发挥了什么作用？</b></p>
+<p class="translated">到目前为止，Honeycomb 的<a href="https://github.com/honeycombio" class="ext-link" rel="external ">开源组件是一个集成库，它是将数据传输到我们的API的软件。如果要我猜的话，到目前为止，至少有50人已经提交了与蜂巢相关的代码，我们将在接下来的两个季度中大幅提升。</a></p>
+<p class="translated">让蜂巢的前端开源是巨大的。将客户端数据传输给我们的所有连接器的所有代码——我们不可能为所有类型编写所有连接器，这将是一个非常长的尾巴，我们根本没有这些资源。但是有了开源的Honeycomb集成，现在任何人都可以去阅读代码，用Erlang或其他我们永远不会支持的语言写点东西，因为没有足够多的人使用它们。开源服务于所有人，在这种情况下。</p>
+<p class="translated">我们还没有开源蜂巢的后端。主要是因为它还没有准备好——我们专注于作为一个企业的生存，现在没有资源去那里。我们希望有一天。</p>
+<p class="translated">在我的日常工作之外，我也为开源做出了贡献。我最近做的最大的是我的<a href="https://charity.wtf/tag/terraform/" class="ext-link" rel="external "> Terraform配置文件</a>。<a href="https://www.terraform.io/" class="ext-link" rel="external "> Terraform </a>是一个开源工具，它将API编译成声明性的配置文件，可以在团队成员之间共享，被视为代码，进行编辑、审查和版本控制，其GitHub repo有超过1000名贡献者。我还写了<a href="https://github.com/lexelby/apiary" class="ext-link" rel="external "> apiary </a>，这是捕获/重放MySQL/HTTP流量基准测试的原始工具。现在由Lex Neva 维护。</p>
+<p class="translated"><b>货币化的潜力如何？</b></p>
+<p class="translated">我们讨论过让整个蜂巢开源，并通过出售企业许可、定制和支持等模式来赚钱的想法。但同样，我们是一家初创公司，专注于生存，让自己在市场上站稳脚跟。</p>
+<p class="translated">我是超级开源专家，我的整个职业生涯都在使用操作系统软件，并热情地支持它。但是我也很务实——根据我的经验，开源有助于你更快地扩张，并吸引人们。但是你需要从一个稳定的、已建立的基础上成长。除非你有世界上所有的风险投资，否则几乎任何人都做不到开源整个创业公司。因此，我们现在尽我们所能，并且随着我们的发展，一定会扩大我们的参与。</p>
+<p class="translated"><b>你既是一名经验丰富的开源贡献者，也是一家软件公司的创始人。在您看来，开源和企业如何才能最好地融合在一起？</b></p>
+<p class="translated">作为一个消费者和现在做相对小规模企业的人，在那个领域，我觉得我们都应该倾向于开源。如果有争论，倾向于公开。除非你有不透明的理由，否则就去做！</p>
+<p class="translated">从更大的角度来看，我们应该让那些在核心业务的关键部分使用操作系统软件的大型公司感到羞耻，但他们不会通过指派一名或两名或三名工程师或开发人员来回报，让他们为帮助他们盈利的操作系统资源做出贡献，并为其他使用该资源的人提供更好的资源。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

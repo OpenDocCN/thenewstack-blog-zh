@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Distributed Graph with GraphQL</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">带GraphQL的分布式图</h1>
+<blockquote>原文：<a href="https://thenewstack.io/distributed-graph-with-graphql/#0001-01-01">https://thenewstack.io/distributed-graph-with-graphql/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在创建网飞的广告管理系统Monet时，其营销技术团队在使用传统的REST APIs时遇到了网络瓶颈。</p>
+<p class="translated">即使是简单的页面也需要来自各种来源的数据，但是检索到的数据远远超过所需的数量。通过建立一个GraphQL层，它实现了8倍的性能提升。通过能够更具体地获取所需的数据，以前检索10MB数据的页面现在可以获得大约200KB</p>
+<p class="translated">根据一篇博客文章，该团队还发现了帮助其更快添加功能的其他好处，包括可重用的抽象和查询包装器来管理网络请求的逻辑。</p>
+<p class="translated">GraphQL的日益流行促使Linux基金会在去年11月成立了<a href="/graphql-gets-its-own-foundation/" target="_blank"> GraphQL基金会</a>，围绕API(应用程序编程接口)的查询语言建立一个厂商中立的社区。脸书在2012年开发了这项技术，并于2015年在<a href="https://code.fb.com/core-data/graphql-a-data-query-language/" target="_blank" rel="noopener noreferrer external " class="ext-link">开源。</a></p>
+<p class="translated"><iframe loading="lazy" title="GraphQL: The Documentary" src="https://www.youtube.com/embed/783ccP__No8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated"><a href="https://www.apollographql.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Apollo GraphQL </a>最近发布了<a href="https://blog.apollographql.com/apollo-federation-f260cf525d21?_ga=2.21296306.847777793.1561456928-364483517.1560335808" target="_blank" rel="noopener noreferrer external " class="ext-link"> Apollo Federation </a>，这是一个用于组合多个GraphQL服务的架构，它将不同团队的部分缝合成一个整体，称为graph。</p>
+<p class="translated">Apollo的首席执行官Geoff Schmidt解释说:<a href="https://twitter.com/GeoffQL" target="_blank" rel="noopener noreferrer external " class="ext-link">在建立网站时，某处有一个网络服务器与一个或两个数据库通信。</a></p>
+<p class="translated">“但我们正在走向一个更加复杂的应用世界。许多不同平台上的许多不同频道。iOS和Android，可能还有Apple Watch和home assistant……这不是一台服务器与一个数据库对话，他们正在将不同的微服务和数据库缝合在一起，可能是第三方API。一个应用程序可能有100个片段，”他说。</p>
+<p class="translated">除了作为外部服务的前端，查询语言<a href="/serverless-graphql-perfect-match-new-cloud-paradigm/" target="_blank">还为功能即服务提供了一个简单的接口</a>，为无服务器和微服务提供了更复杂的业务逻辑。</p>
+<p class="translated">“你必须将数据来自云中的所有地方——所有不同的微服务和数据库——连接在一起，以获得该应用程序屏幕上的特定数据组合。你最终会遇到N乘N的问题，试图覆盖你的应用程序使用的所有数据组合。”</p>
+<p class="translated">他说，以前的方法是REST APIs，这是一项已经有20年历史的技术。</p>
+<p class="translated">“它是为一个非常不同的世界设计的。REST的问题在于它是点对点的。它基于这样一个想法，即你要预先协商你需要从后端获得的每一种数据组合。</p>
+<p class="translated">他说，你必须构建大量样板粘合代码，只是为了获取应用程序中每个功能和每个屏幕的数据。</p>
+<p class="translated">“这不仅浪费了开发人员的时间，而且您构建的所有代码都是对安全性和性能敏感的。“这真的很难维持，”他补充说。你不仅浪费了大量的时间来构建代码，还花费了大量的时间在前端团队和后端团队之间进行协调。前端团队必须乞求帮助才能完成工作。"</p>
+<p class="translated">相反，它促进了数据图的创建，这是一个位于设备和云之间的层，提供了云中所有数据和服务及其相互关系的地图。GraphQL是它的查询语言。</p>
+<p class="translated">它旨在取代模式拼接，并解决诸如协调、关注点分离和脆弱的网关代码等问题。</p>
+<p class="translated">“超过10或20个开发人员，人们希望联合他们的图形。他们希望有许多团队都在构建自己的一小部分图表。也许目录服务可以跟踪产品，运输服务可以跟踪运输，评论和推荐服务……，”他说。</p>
+<p class="translated">然而，就像去亚马逊一样，你可以把不同供应商的产品放进一个购物车。</p>
+<p class="translated">客户机将它们的请求发送到Apollo Gateway，它包含一个分布式查询规划器。它将一个可能涉及多个服务的查询分解成需要到达每个服务的片段或子查询。它了解这些服务之间的相互关系。它可以在所有这些后端上执行查询，然后将所有这些片段组合成一个结果提供给客户端。</p>
+<p class="translated">这就像SQL查询规划器将来自多个表的数据组合在一起，但它不是从多个磁盘驱动器中提取数据，而是从多个微服务和构建这些微服务的多个团队中提取数据。</p>
+<p class="translated">联盟基于以下核心原则:</p>
+<ul>
+<li class="translated"><strong>构建一个图应该是声明性的。</strong>您可以从模式中声明性地构建一个图，而不是编写命令性的模式拼接代码。</li>
+<li class="translated">代码应该通过关注点来分离，而不是通过类型。</li>
+<li class="translated"><strong>图表应该简单，便于客户消费。</strong></li>
+<li class="translated"><strong>它只是GraphQL，只使用该语言符合规范的特性。</strong>不仅仅是JavaScript，任何语言都可以实现联邦。</li>
+</ul>
+<p class="translated">对于复杂的环境，联合包括用户指定的主键、显式查询计划和跨服务边界使用非规范化数据的灵活方式等特性。</p>
+<p class="translated">频谱讨论的早期用户对此有很多问题，顾问Ben Awad在YouTube视频中想知道它是否涵盖了所有可能的问题。</p>
+<p class="translated">“如果我需要在网关级别定制某个查询，会是什么样子？”他问道。</p>
+<p class="translated">Apollo最近有了第一个百万下载周，在过去一年中总共有2500万次下载，并且刚刚在第一轮风险投资中筹集了2200万美元。</p>
+<p class="translated">同时，<a href="/faunadb-harnesses-serverless-cloud/" target="_blank"> FaunaDB </a>最近增加了一个<a href="https://fauna.com/blog/the-worlds-best-serverless-database-now-with-native-graphql" target="_blank" rel="noopener noreferrer external " class="ext-link"> GraphQL API </a>并且<a href="https://blog.getpostman.com/2019/06/18/postman-v7-2-supports-graphql/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Postman </a> API开发环境在7.2版本中也增加了支持。</p>
+<p class="translated">总部位于西雅图的威猛公司也发布了<a href="https://formidable.com/blog/2019/urql-2019/" target="_blank" rel="noopener noreferrer external " class="ext-link"> urql(通用反应查询库)</a>，它宣称这是一种极简、更简单的GraphQL入门方式。根据<a href="https://2018.stateofjs.com/data-layer/graphql/" target="_blank" rel="noopener noreferrer external " class="ext-link">2018 JavaScript State调查</a>，它解决了关于GraphQL的头号抱怨:它臃肿而复杂。</p>
+<p class="attribution translated">Linux基金会是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/qubodup/" class="ext-link" rel="external "> I G </a>拍摄的:<a href="https://www.flickr.com/photos/qubodup/5016819309/in/photolist-8DjvAD-cPzn5f-ebiH4u-4T9SQH-f9whv7-9wjdg9-sbUyQj-76X1cY-9UndAh-7J82U4-cPznoy-aRkZ7V-cPznAo-cssu4C-9e2tfK-rnivhX-cPzjBu-8QZTin-MUjTHQ-cPzgvf-cPzecY-dSm6dQ-ikyZrn-cPzhVs-s2R8N-6PDw6N-9fz8Sd-57BDNQ-aEVhNi-boPDxm-97GD84-jHiGUg-bpZKjS-9qWiCe-okwFHx-in6U7u-8o6YNr-7LqyYx-KdTxs-9sK1dA-cCy7eJ-ca3dTQ-bmigsn-6MZbiG-egFws6-4TMadV-2Q4wPh-bhAgBc-dSrc8W-dVi8WX" class="ext-link" rel="external ">南瓜子——微距，无闪光灯，塑料盒稳定#1 </a>。公共领域。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

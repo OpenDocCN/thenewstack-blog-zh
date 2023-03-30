@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>JavaScript 2018: Things You Need To Know, and a Few You Can Skip</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">JavaScript 2018:你需要知道的事情，还有一些你可以跳过</h1>
+<blockquote>原文：<a href="https://thenewstack.io/js-2018-things-need-know-can-skip/#0001-01-01">https://thenewstack.io/js-2018-things-need-know-can-skip/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">JavaScript已经成长起来了——我们不再仅仅是在网页中制作微小的交互元素，我们正在用JavaScript构建整个巨大的应用程序。因此，当然，它比以往任何时候都更复杂，有如此多的移动部分，以至于很难把握当前JavaScript生态系统的规模和范围。</p>
+<p class="translated">作为一名在职软件工程师和为O'Reilly Media出版的两本JavaScript书籍的作者，<a href="https://www.linkedin.com/in/ethan-brown-5b74b13a/" class="ext-link" rel="external "> Ethan Brown </a>花了很多时间解析JavaScript领域，试图弄清楚那里有什么，以及现代JavaScript开发人员如何开始将所有这些部分组合在一起。</p>
+<p class="translated">以下是Brown对JavaScript生态系统的一些方面的预测，这些方面对聪明的开发者来说是最有前途的，或者至少是最有用的，可以让他们在2018年熟悉。有两个警告:首先，他指出了JavaScript领域所有变化中值得注意的好的方面，即使这个列表中的一些项目不是你的重点。当您遇到不同领域的交叉问题时，拥有这种总体意识将有助于您建立联系，知道与谁交谈以及寻找什么技术。</p>
+<p class="translated">他还强调，这些选择是他自己的意见，基于他自己在生态系统中的经验，当然你的可能完全不同。“这只是我的看法，我们都可以画自己的地图，我知道我漏掉了一些东西，”布朗说。</p>
+<p class="translated">尽管如此，我们总得从某个地方开始。</p>
+<p class="translated"><strong>web assembly</strong>:<a href="http://webassembly.org/" class="ext-link" rel="external ">web assembly</a>是JavaScript的子集，为其他语言提供编译器目标。所以，如果你想把你的C++编译成JavaScript，<a href="https://thenewstack.io/ready-web-assembly-revolution/" class="local-link"> WebAssembly是你应该找的地方</a>——它允许几乎任何语言以浏览器或目标Node.js为目标，并且有一些非常有趣的应用。“我有一种感觉，这将是一个大事件，这将是非常重要的，”布朗说。“我肯定会竖起耳朵，在2018年花些时间更好地学习这一点。”</p>
+<p class="translated"><strong>函数式编程</strong>:“这不是一个新想法，它已经被JavaScript社区的很大一部分接受，但我觉得2018年将是函数式编程真正达到临界质量和规模的一年，”布朗说。他继续说，通常的批评是，它更难学习，更难理解，但这实际上是一个视角问题:如果我们都从函数式编程开始，命令式编程的混乱、副作用和混乱对我们来说将是奇怪和困难的。</p>
+<p class="translated">布朗的建议是:“如果你想尝试真正受约束的函数式编程，你可以看看<a href="http://elm-lang.org/" class="ext-link" rel="external "> Elm </a>或<a href="https://clojure.org/about/functional_programming" class="ext-link" rel="external "> ClojureScript </a>，但你现在可以在JavaScript中简单地说，‘好吧，我代码中的一切都将是纯函数。’"</p>
+<p class="translated"><strong>不变性</strong>:与函数式编程齐头并进。“虽然很多人在第一次谈到不变性时会想‘哇，这真的很低效，你在创建所有东西的副本，所有的内存看起来都是非常不必要的’”，Brown说。但请记住，他补充道，你只是复制了变化的东西——其他结构保持不变。此外，这确实是JavaScript的事情——身份比较在JavaScript中既快又便宜，所以当大多数人转向不变性架构时，他们会发现它提高了性能。</p>
+<p class="translated">更好的是，不变性为实验提供了一个天然的安全网——如果你知道你实际上不能改变任何已存在的东西，你只能创建一个被修改的新副本，这鼓励了你可能不习惯的实验。这对于初学编程的人来说也很棒。</p>
+<p class="translated"><strong>单向数据绑定</strong>:“这是为前端伙计们准备的，一个由Elm带到桌面上的想法，由<a href="https://www.facebook.com/Engineering/" class="ext-link" rel="external ">脸书</a>用<a href="https://facebook.github.io/flux/" class="ext-link" rel="external ">通量</a>拾起，然后有了<a href="https://redux.js.org/" class="ext-link" rel="external "> Redux </a>，现在它在<a href="https://angular.io/" class="ext-link" rel="external "> Angular </a>和<a href="http://vuejs.org" class="ext-link" rel="external "> Vue </a>中，”布朗说。越来越多的人意识到这是一个伟大的想法，2018年是一个认识的好时机。</p>
+<p class="translated">单向数据绑定确实使应用程序状态更容易管理。当你第一次看到它时，你会想，天哪，这要做的工作太多了，我要写的东西太多了，这看起来太多了。对于小应用程序来说，这可能有点过了，但是一旦你的应用程序达到一定的规模，它确实有助于将你的思维限制在整个应用程序上，而不仅仅是你正在工作的部分。因为当您使用单向数据绑定时，您必须考虑应用程序每个部分的状态以及它在应用程序层次结构中的位置。</p>
+<p class="translated"><a href="http://www.benmvp.com/learning-es6-enhanced-object-literals/" class="ext-link" rel="external "> <strong>计算属性名称/属性简写</strong> : </a>“这是<a href="http://es6-features.org/#Constants" class="ext-link" rel="external "> ECMAScript 6 </a> (ES6)的卧铺hit。我还没有看到人们经常使用它，我认为它可以用得更多。这是一个奇妙的语法糖，允许你动态地构造属性名和对象初始化器或对象文字，”布朗说。“我觉得每周我都能找到一种新的很酷的方式来使用它。这对于函数式编程来说也非常有用，所以如果你以前没有看过，一定要去看看——我非常希望看到它在社区中得到更多的使用。”</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3778885" src="../Images/9b14ff0d63c3ad6ec4a159aac6c77db4.png" alt="" data-id="3778885" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/12/56c49afe-screen-shot-2017-12-23-at-5.57.28-pm.png"/></p>
+<p> </p>
+<h2 class="translated">无需担心的事情:</h2>
+<p class="translated">据布朗说，也有一些知识领域我们可以跳过。至少现在是这样。</p>
+<p class="translated"><strong>面向对象编程</strong>:“我不是JavaScript中经典面向对象编程的忠实粉丝。我认为有更好的范例，更好的方法来用JavaScript完成事情，实现代码重用。因此，如果你在JavaScript领域，我不会为学习OOP的所有知识而烦恼，”他推荐道。</p>
+<p class="translated"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator" class="ext-link" rel="external ">生成器</a>:“这是JavaScript的一个很酷的特性，肯定有一些用例，但我认为主要的一个被<a href="https://ponyfoo.com/articles/understanding-javascript-async-await" class="ext-link" rel="external "> async/await排除了。</a>因此，有一段时间，我们真的很高兴使用<a href="http://koajs.com/" class="ext-link" rel="external "> Koa.js </a>和生成器，这样我们就可以在异步编程中使用漂亮的同步语义，但现在我们有了async和await，甚至更好。所以除非你是在那些奇怪的使用案例中，发电机是有意义的，否则我不会太担心，”他说。</p>
+<p class="translated">布朗说:“这是另一个伟大的想法，是对语言的一个奇妙的补充，但是(A)我没有看到人们使用它，以及(B)每次我试图使用符号时，我只会遇到框架和序列化的问题。”。简而言之，他不认为JavaScript生态系统真的适合符号，甚至可能不适合我们用JavaScript做的事情。他的建议是:在这一点上，在符号上观望。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>CNCF Incubates Open Policy Agent, a Policy-As-Code Project</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">CNCF孵化开放政策代理，一个政策代码项目</h1>
+<blockquote>原文：<a href="https://thenewstack.io/cncf-incubates-open-policy-agent-a-policy-as-code-project/#0001-01-01">https://thenewstack.io/cncf-incubates-open-policy-agent-a-policy-as-code-project/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">作为一名年轻的程序员，您可能学到的早期经验之一是，如果您发现自己一遍又一遍地编写相同的代码，您应该将这些代码分离到一个类或一个函数中，这样既可以提高效率，又可以更容易地跨功能的多次使用来更改功能。如今，这种想法已经扩展到DevOps实践中，如基础设施即代码(IaC ),其中技术堆栈的管理和供应被分离出来，以实现自动化和一站式访问。最近，策略即代码的出现为将策略应用于多种目的和场景提供了同样的自动化和易用性。</p>
+<p class="translated"><a href="https://www.openpolicyagent.org/" target="_blank" rel="noopener noreferrer external " class="ext-link">开放策略代理(OPA) </a>项目就是这样一个作为代码的策略提供者，该项目刚刚被<a href="https://www.cncf.io/" target="_blank" rel="noopener noreferrer external " class="ext-link">云本地计算基金会(CNCF) </a>接受为孵化级托管项目。根据该公司的一份声明，OPA是“一个开源的通用策略引擎，可以在整个堆栈中实现统一的上下文感知策略执行”,它“比硬编码的服务逻辑或特定领域语言提供了更大的灵活性和表达能力”</p>
+<p class="translated">在对新堆栈的采访中，<a href="https://www.linkedin.com/in/torin-sandall-1967387" target="_blank" rel="noopener noreferrer external " class="ext-link"> Torin Sandall </a>，Styra 的软件工程师和OPA的技术负责人，将这种解耦作为项目的核心原则。</p>
+<p class="translated">“这个项目背后的核心思想之一是将政策制定与政策执行分离开来。“OPA为架构师、开发人员和安全从业者提供了一个将安全策略表达为代码并交付使用的好方法，”Sandall说。“您可以将它用于微服务、API网关、脚本和CI/CD管道。您可以在堆栈中的任何地方应用它来解决各种不同的策略相关问题。无论您是在谈论访问控制和微服务环境，还是对容器化的工作负载施加限制，OPA的使命都是一样的，即帮助大型组织对这些类型的资源实施限制、防护或规则和治理。”</p>
+<p class="translated"><iframe loading="lazy" title="Intro: Open Policy Agent - Torin Sandall, Styra" src="https://www.youtube.com/embed/CDDsjMOtJ-c?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">OPA通过使用JSON over HTTP的RESTful APIs提供了通用语言兼容性，并且易于部署，没有依赖性。它可以作为守护进程与您的服务并行运行，或者，对于用Go编写的服务，OPA可以作为库嵌入和使用，消除了运行单独守护进程的需要。它还为用户提供了一个交互式shell来试验查询和数据集。</p>
+<p class="translated">桑德尔说，OPA被接受为孵化级项目表明该项目已经走了多远，一些大公司正在使用这项技术。CNCF孵化级托管的其他项目包括OpenTracing、Fluentd、gRPC、rkt、CNI、Jaeger、公证人、TUF、Vitess、NATS、Linkerd、Helm、Rook、Harbor和etcd。</p>
+<p class="translated">“在过去的一年里，在生产中运行项目的人数有了很大的增长。网飞将该项目作为其内部安全平台的一部分，Intuit和Capital One等公司正在为Kubernetes生产中的准入控制运行该项目。“越来越多的人在生产中使用这个项目来执行重要的政策。从沙盒更新试用的举动反映了该项目在过去一年中取得的进展。”</p>
+<p class="translated">对GitHub 上的<a href="https://github.com/open-policy-agent" target="_blank" rel="noopener noreferrer external " class="ext-link"> OPA库的访问显示了一些与第三方技术的集成，如Kubernetes、Docker和Istio等，Sandall表示，他预计可见性的提高将导致集成的进一步发展。</a></p>
+<p class="translated">展望未来，Sandall表示，该项目将专注于继续强化和优化项目的核心，同时也将扩展对将OPA策略编译成可分发和嵌入的WebAssembly二进制文件的开放支持。该项目最近还与Styra、谷歌和微软合作推出了<a href="https://github.com/open-policy-agent/gatekeeper" target="_blank" rel="noopener noreferrer external " class="ext-link">看门人</a>子项目，该项目“将OPA与Kubernetes集成在一起，以帮助管理员执行准入控制政策并审计现有政策违规的集群”，并将提供社区用例政策的标准库，如注册表白名单或标签管理，根据该公司的声明。</p>
+<p class="attribution translated">云计算原生计算基金会是新堆栈的赞助商。</p>
+<p class="attribution translated">专题照片是一个屏幕截图，来自CNCF的视频。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

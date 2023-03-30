@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>The Four Pillars of Cloud-Native Operations</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">云原生运营的四大支柱</h1>
+<blockquote>原文：<a href="https://thenewstack.io/four-pillars-cloud-native-operations/#0001-01-01">https://thenewstack.io/four-pillars-cloud-native-operations/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://blog.chef.io/author/michael/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">迈克尔·杜西</p> <p class="infoBlockText">迈克尔目前担任Chef的产品营销总监，专注于帮助公司了解Chef、DevOps、IT转型。此前，他专注于为客户的云计算、IT自动化和持续交付需求设计和实施自动化解决方案。Michael在其职业生涯中还担任过各种角色，包括云架构、系统工程、性能工程和IT讲师。Michael拥有芝加哥大学的计算机科学硕士学位和俄亥俄州立大学的MBA学位。</p> </div> </a></p><p class="translated">随着组织转变其应用战略以拥抱云原生世界，云的目的从节省资金转变为交付和管理应用。Cloud Foundry、Kubernetes和Docker等平台重新定义了利用云的应用环境的可能性。作为运营专业人员，现在是我们重新思考如何在这个新世界中开展工作的时候了。我们应该问，我们的组织如何利用云原生作为应用交付的新模式？</p>
+<p class="translated">在解决这个问题时，我们应该努力使我们的平台和服务尽可能易于消费。开发者和消费者都依赖我们来隐藏操作的复杂性并保持选择的自由。为了这两个群体，我们应该认识到云原生运营的四大支柱:</p>
+<ul>
+<li class="translated"><strong>可组合性</strong>:应用组件应该易于组合和连接，以构建更高层次的服务。</li>
+<li class="translated"><strong>灵活性</strong>:现代应用团队不应该认为他们的选择有限。</li>
+<li class="translated"><strong>可编程性</strong>:我们应该坚持API优先的供应、部署和管理方法。</li>
+<li class="translated"><strong>无摩擦</strong>:我们应该对现代应用团队隐藏基础设施和操作的复杂性和细节。</li>
+</ul>
+<h2 class="translated">可组合性</h2>
+<p class="translated">从一开始，可组合性就是云的一个主要特性。典型的乐高积木构图类比早已成为陈词滥调。因此，为了刷新我们的视角，让我们尝试一个现实世界的例子:一些人会认为亚马逊网络服务的快速增长是其先发优势的副产品。其他人认为这是因为AWS比其他人更早理解了可组合性的概念，并利用了这一点。</p>
+<p class="translated">弹性计算云是首批提供的AWS服务之一，为用户提供了一种通过API请求征用计算基础架构的更简单方法。对于AWS来说，EC2为所有其他服务的发展提供了基础。AWS明白EC2不是最终游戏，而是SimpleDB和Elastic MapReduce等更高级服务的基础。这些服务利用了大型计算实例集群，以及顶层的Hadoop框架。</p>
+<p class="translated">对于云原生操作，您应该考虑在您已经构建的基础上，为客户构建更高级别的服务。如果您确保服务可以轻松地重组为更高级别的服务，那么服务本身就可以成为基础。当然，您还没有发现每个用例。</p>
+<h2 class="translated">灵活性</h2>
+<p class="translated">灵活性可以被描述为“选择的自由”现代应用程序团队应该能够自由选择他们需要的应用程序语言、运行时和支持服务。技术变化太快，所以开发人员不应该根据过去的服务需求来限制他们的选择。</p>
+<p class="translated">每个平台都应该支持广泛的语言和支持服务，或者提供轻松扩展自身的能力，以支持开发人员可能需要的新语言或服务。</p>
+<h2 class="translated">可编程序性</h2>
+<p class="translated">通过API端点提供云服务，以及通过该API提供服务的可组合性，确保了可编程性。这很好地体现了灵活性原则——通过定义良好的接口轻松扩展云服务。</p>
+<p class="translated">云服务不仅应该提供开放的API，还应该提供轻松创建额外API端点的能力。AWS的API网关服务和Kubernetes的自定义资源定义就是很好的例子，它们都通过API为您自己的服务提供了可扩展性。</p>
+<h2 class="translated">无摩擦</h2>
+<p class="translated">多年来，你已经听说过NoOps T1的概念，它认为在云原生世界中，操作变得几乎不存在。不出所料，这一观点遭到了反对，“但仍有行动！”</p>
+<p class="translated">NoOps背后的基本思想通常是正确的:从现代应用程序团队的角度来看，操作变得透明和无摩擦。是的，仍然有操作，但是它们离消费者有几层距离。在展示你的云服务时，你应该强调减少摩擦的理念。您应该细化您的流程，这样，当您添加新服务时，您可以进一步减少应用程序团队的运营开销，越来越接近于零。</p>
+<p class="translated">为现代应用程序团队构建服务需要谨慎和思考。云原生运营的这四个原则为运营专业人员提供了指导概念，以满足其应用程序团队的需求。云服务应该专注于让消费变得简单和无缝。</p>
+<p class="attribution translated"><a href="https://www.chef.io/" class="ext-link" rel="external ">主厨</a>赞助这个故事。</p>
+<p class="attribution translated">Mrfaisal007在知识共享3.0下授权的伊斯兰堡巴基斯坦纪念碑<a href="https://commons.wikimedia.org/wiki/File:4_Pillars_at_the_Pakistan_Monument_in_Islamabad.jpg" class="ext-image" rel="external ">四根柱子的标题图片。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Juniper Networks: Should Workloads and Infrastructure Be Managed with the Same Platform?</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Juniper Networks:工作负载和基础架构是否应该在同一个平台上进行管理？</h1>
+<blockquote>原文：<a href="https://thenewstack.io/juniper-networks-dilemma-deserves-power-manage-infrastructure/#0001-01-01">https://thenewstack.io/juniper-networks-dilemma-deserves-power-manage-infrastructure/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">“OpenStack的问题在于它过于关注基础设施，”<a href="http://www.juniper.net/us/en/" class="ext-link" rel="external "> Juniper Networks </a>的工程师Chandan Dutta Chowdhury 在几周前的OpenStack峰会的周二上午会议开始时说道。</p>
+<p class="translated">这就像说莎士比亚的问题在于他对语言的强烈关注。然而，Chowdhury确实切入了企业、公共部门和小型企业中OpenStack实践者之间的主要辩论:管理工作负载和管理基础设施的工作应该是同一份工作吗？</p>
+<p class="translated">“如果你看看应用程序，”Chowdhury继续说，“应用程序更倾向于考虑它们将拥有什么样的资源。他们从内存、CPU使用率、存储、网络带宽分配等方面考虑，而所有这些功能实际上都由基础架构提供商控制。OpenStack可以为您提供控制所有这些基础设施的API。因此，我们看到应用程序实际想要使用的东西和OpenStack提供的东西之间存在差距。”</p>
+<h2 class="translated">输入应用基础架构</h2>
+<p class="translated"><img decoding="async" loading="lazy" class="alignright size-medium wp-image-2372545" src="../Images/2aca2d22a1870ddfa723fd159991b145.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/05/fd6f20aa-170510-openstack-boston-2017-01-chandan-dutta-chowdhury-239x300.jpg"/>应用程序能够从基础设施层请求资源，Chowdhury [ <em>见右图</em> ]承认可靠API的存在。但他认为，这并不等同于交流。假设应用能够在需要时从OpenStack动态请求资源。该应用程序可以通过直接传输到OpenStack组件的统计数据组，定期报告其资源使用情况。</p>
+<p class="translated">Chowdhury建议的解决方案是一种通信组件，他称之为应用基础设施API，或App Infra。他说，这样一个系统将使OpenStack重新聚焦于集装箱化系统所采用的更加以应用为中心的思维模式。</p>
+<p class="translated">“让应用程序开发者自己向你请求更多的资源，或者应用程序发现缺少的资源，而不是第三方将应用程序作为一个进程来监控，并请求那些资源，”他建议道。</p>
+<p class="translated">OpenStack作为可靠地配置和管理数据中心基础设施的平台赢得了声誉。但是，关于这项工作有多容易仍有争议。Chowdhury认为，开发人员在设计他们的应用程序时，最大的困难是在分布式系统基础设施中可靠地正确使用资源。</p>
+<div id="attachment_2346524" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2346524" decoding="async" loading="lazy" class="wp-image-2346524 size-full" src="../Images/bfe260b4992488446a41e613ef3e5154.png" alt="" data-id="2346524" data-original-src="https://cdn.thenewstack.io/media/2017/05/fa802188-slide1.png"/><p id="caption-attachment-2346524" class="wp-caption-text translated">上个月，华特迪士尼动画工作室的系统工程师贾斯汀·加里森发表了一份T2调查的结果，该调查涵盖了基础设施和应用程序。共有222名受访者，其中45%的人认为自己是DevOps角色，53%的人在一家拥有100多名员工的组织中工作。</p></div>
+<p class="translated">他指出，在这样的环境中，一个正在运行的应用程序应该能够生成其消费的运行概况。这并不是一个真正的自动化过程——不像过程监视器那样从上面监督应用程序，并预测接下来会发生什么。相反，Chowdhury的想法依赖于开发人员明智地使用他设想的API来提供他们需要的基础设施资源，包括在微服务环境中，其中一个应用程序的多个实例可能共存。</p>
+<p class="translated">这种想法可以将管理资源的负担从管理平台转移到应用程序本身，或者转移到一些外部协调器或第三方性能监视器上。</p>
+<p class="translated">这可能是Juniper Networks的另一个革命性想法。也就是说，如果瞻博网络是幕后黑手的话。</p>
+<p class="translated">Juniper软件定义网络(SDN)和云高级总监<a href="https://twitter.com/ssneddon?lang=en" class="ext-link" rel="external "> Scott Sneddon </a>在接受新堆栈采访时表示:“没有一种规格适合所有人。</p>
+<p class="translated">Sneddon是Nuage Networks的首席解决方案架构师，在此之前是Brocade的<a href="http://www.brocade.com/en/products-services/software-networking/sdn-controllers-applications/sdn-controller.html" class="ext-link" rel="external "> Vyatta SDN </a>的首席解决方案架构师，他是软件定义网络领域世界上最有成就的工程师之一。正是SDN使得虚拟组件沿着虚拟基础架构虚拟联网成为可能。OpenStack认为它已经组装的系统通过虚拟地址和由SDN实现的覆盖连接在一起。不管你喜不喜欢，网络让堆栈成为可能。</p>
+<p class="translated">但到目前为止，网络一直是每天与Juniper或Brocade和Cisco等公司打交道的人的权限。Juniper的Chowdhury看到了将这一权限扩展到开发人员领域的机会。Juniper的Sneddon看到了这种方法的局限性。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignleft size-medium wp-image-2372546" src="../Images/902e2f962f62d5325566b0022e9e8eb9.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2017/05/d75fc914-170510-openstack-boston-2017-02-scott-sneddon-200x300.jpg"/>“我们在一家希望利用无服务器优势的游戏开发商身上看到了这一点；我们在网飞看到了这一点，它希望建立一个大规模分布式系统，其中包括CDN[<em>内容交付网络</em>]，”斯奈登说。“所有这些应用都有不同的要求。因此，他所描述的模型在NFV环境中可能非常有趣，也许在交易环境中，特定应用程序的性能、延迟和I/O是该应用程序交付的关键。</p>
+<p class="translated">“而与Friends或Farmville或其他公司一起为next Words开发后端的Web开发人员可能对延迟和吞吐量有不同的要求，并且可能能够扩大规模以解决基础架构限制。这是<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>的承诺之一:无论我使用什么分析平台，如果它检测到性能异常，它可以自动扩展到更多的服务器，假设我有无限的资源供应。这与了解基础设施上可用的旋钮并在运行时利用它们的方法相反。”</p>
+<h2 class="translated">绝对权力</h2>
+<p class="translated">我请Chowdhury解释一下，相对于依赖于orchestrator的Kubernetes方法，他认为App Infra方法在动态管理资源消耗方面有哪些优势。毕竟，从一开始，容器架构就应该让面向用户的代码独立于运行它的系统。</p>
+<p class="translated">“如果你想从外部的角度监控一个应用程序，一个外部代理可以为很多应用程序工作，”他回答说。“这是非常通用的。它可以查看进程的属性，并得出应用程序使用多少资源的一些值。”</p>
+<p class="translated">Chowdhury继续说，将这种通用报告与应用程序设计人员能够为自己构建的东西(他称之为动态性能矩阵)进行比较，这种通用报告将永远达不到标准。但是，如果基础设施在历史上是由其他人管理的，这样的开发人员如何理解基础设施的需求呢？她会知道该怎么做吗？</p>
+<p class="translated">“你可以从不同的角度来看，”他回答道。“一种看法是，是的，如果你使用API代理，你就把它交给第三方，他们可能专门监控应用程序。但是，如果你想从你的平台中挤出最大的价值，使用弹性平台，那么给应用程序开发人员一个与基础设施进行实际通信的方法，给应用程序开发人员很大的权力。”</p>
+<p class="translated">“强大的能力”是世界上任何地方的网络管理员都希望应用程序开发人员拥有的吗？</p>
+<p class="translated"><a href="http://events.linuxfoundation.org/events/opnfv-summit/attend/registration" class="ext-link" rel="external "><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2404745" src="../Images/19d70646302d99c5fc7bde3207bca257.png" alt="" data-id="2404745" data-original-src="https://cdn.thenewstack.io/media/2017/05/b7082ed9-2017.06.12_opnfvsummit_storypromotion.png"/>T2】</a></p>
+<p class="translated">Juniper的Sneddon说:“我认为那些希望在部署时了解那么多细节的开发人员是特例。我不认为大多数开发者想要调整。</p>
+<p class="translated">“我觉得Chandan的想法——最终，它的用户可能会是某种人工智能、机器学习类型的应用程序，”Sneddon一度表示。“你希望基础设施将信息的每一个小部件和旋钮都提供给机器学习平台，然后机器学习平台将对其进行抽象。”</p>
+<p class="translated">斯奈登和乔杜里都承认，当然，组织需要选择。但是他们做出正确的选择是至关重要的——从他们每个人的角度来看，都会有不同的结果。如果基础设施对动态配置开放，OpenStack保持<em>一个堆栈</em>，而不是之前考虑的— <a href="https://thenewstack.io/openstack-summit-austin-many-different-openstacks-need/" class="local-link">，并且每次都被拒绝—几个，那么Chowdhury的预测就会发生:开发者<em>将</em>拥有权力。但是，在网络管理员仍然拥有这些技能和工作的组织中，这种能力可能是无用的或未被使用的。</a></p>
+<p class="translated">Sneddon认为有一类客户总是需要更确定的性能，并以英特尔和纳斯达克的合作为例。他称这个群体为“角落阶层”——占据了市场的一大块角落，但仍然是一个角落。</p>
+<h2 class="translated">失败的风险</h2>
+<p class="translated">有没有一种方法可以为最适合的客户类别可靠地划分系统架构？Juniper Networks的架构和技术营销副总裁Jason Venner解释道:不尽然。</p>
+<p class="translated">Venner在一次OpenStack峰会上告诉我:“我认为我们将会看到，实际上，PaaS层正在发展，这样你就可以通过完全控制来获得你需要的直接联系，或者为没有时间、专业知识或没有必要的人提供紧密的指导。一般的开发人员可能不会，但如果你正在做某种需要GPU访问的深度学习应用程序，你会希望对事情的完成方式有更多的控制，而不是在做另一个广告网络。”</p>
+<p class="translated">他继续说，PaaS平台的目标是为不愿意直接管理效率或安全性的个人和组织高效、安全地交付资源。在后来与我和一些其他与会者的讨论中，Venner说他观察到那些依赖资深开发人员来指导他们的架构的组织已经或正在迁移到Kubernetes。在他看来，市场的另一面是一个只希望架构问题得到解决、完成和解决的群体。他观察到，这个群体已经或正在向云代工厂T2转移。</p>
+<p class="translated">“我已经经历了大概七、八年的云之旅，”Venner一度说道。“而且还在不断发展。实际上，这是关于在加快行动的同时找到管理风险的方法。我在金融部门呆了很长时间。作为风险管理，我会考虑很多事情。我们当前的大多数实践都是关于，我们如何管理失败的风险？我们建立错综复杂的流程，花费大量的时间和金钱，以此来降低灾难性失败的风险。我们看到的是，DevOps中持续交付的精益模式提供了另一种管理风险的方式，让我们更快地看到我们所做事情的结果，并降低失败的总体成本。”</p>
+<p class="translated">换句话说，建筑师有一种方法来构建系统，这种系统是如此的系统化，以至于他们不可能一下子全部失败。简单性让人们更清楚地了解风险是什么……也许这就是驱使建筑师建造复杂建筑的问题。</p>
+<p class="translated"><em> TNS研究分析师<a href="https://thenewstack.io/author/lawrence-hecht/" class="local-link"> Lawrence Hecht </a>对本文有贡献。</em></p>
+<p class="attribution translated"><a href="https://www.cncf.io/" class="ext-link" rel="external "> Cloud Foundry </a>是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

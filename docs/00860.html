@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Parity Check: Node.js, JVM and the Surprising Results About Docker Swarm</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">奇偶校验:Node.js、JVM和Docker Swarm的惊人结果</h1>
+<blockquote>原文：<a href="https://thenewstack.io/parity-check-node-js-jvm-containers/#0001-01-01">https://thenewstack.io/parity-check-node-js-jvm-containers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Node.js和JVM开发人员部署容器的方式与其他人不同。或者至少这是你看到两项新的1000多名受访者调查的结果后会想到的。一项调查显示，只有5%的Node.js开发者使用Docker来“运行”容器，尽管这个群体中的大多数人显然使用Docker格式的容器。一项<a href="https://www.lightbend.com/" class="ext-link" rel="external "> Lightbend </a>调查显示Scala开发者押注Docker Swarm进行编排。这两项研究都表明，AWS是在公共云中部署容器的首选。开发人员可能对Docker和Amazon容器服务有偏见，但随着容器进入生产IT运营，DevOps将在选择技术方面有很大的发言权。随着组织思维从一般技术转移到具体产品——Docker到Docker云，Kubernetes到CoreOS architectural，Mesos/Marathon到meso sphere DC/OS——调查可能会描绘出一幅不同的画面。</p>
+<p class="translated">根据RisingStack对Node.js开发者的一项新的<a href="https://blog.risingstack.com/node-js-developer-survey-results-2016/" class="ext-link" rel="external ">调查</a>，51%的人使用Docker技术，这比2016年1月Node.js基金会<a href="https://nodejs.org/en/blog/announcements/nodejs-foundation-survey/" class="ext-link" rel="external ">调查</a>报告的45%略有上升。这些数字看起来很高，但是我们知道，总的来说，开发者一直是容器先锋。需要注意的是,“使用”Docker可能意味着有人在玩它，而不一定是在生产应用程序中使用它。在使用容器技术(Docker)或VM (VirtualBox、AWS AMIs或VMware)的受访者中，45%使用亚马逊容器服务，25%使用Kubernetes，8%使用Docker。纵观整个样本，这意味着29%的Node.js开发人员使用ECS，16%的Kubernetes和5%的Docker。</p>
+<div id="attachment_1447179" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1447179" decoding="async" loading="lazy" class="wp-image-1447179 size-full" src="../Images/9975cf00eaa596cdebbb51483fbc0b13.png" data-id="1447175" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/node-js-survey-how-run-container-acs-2.jpg"/><p id="caption-attachment-1447179" class="wp-caption-text translated">在调查的全部样本中，AWS ECS的使用率为29%。Docker的低使用率与Node.js开发人员所说的如何“使用”或部署容器有关，而不是他们是否使用Docker格式的容器。</p></div>
+<div id="attachment_1447176" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1447176" decoding="async" loading="lazy" class="wp-image-1447176 size-full" src="../Images/12168792bfc9de0304a55bbe203a528c.png" data-id="1447176" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/node-js-survey-where-run-apps.png"/><p id="caption-attachment-1447176" class="wp-caption-text translated">DigitalOcean和Heroku(Salesforce.com)都有四分之一的受访者在其基础设施上运行Node.js应用。这些提供商在开发者中传统上很强大，但不确定是否大多数受访者的应用程序实际上都在这些云上。</p></div>
+<p class="translated">我们对上述统计数据表示怀疑，特别是因为许多“容器用户”可能在非生产和测试环境中。也就是说，这些数据让我们有了一些感悟:</p>
+<ul>
+<li class="translated"><strong> Docker technology不是Docker，Inc .</strong>node . js一半的开发者都在用“Docker”。大多数人可能使用Docker格式的容器，但不一定使用Docker来部署他们的容器。因此，虽然一些开发人员可能会向Docker，Inc .支付支持费用，但在本次调查的容器用户中，只有十分之一在使用其Docker Swarm、Docker Cloud或Docker Datacenter服务。</li>
+<li class="translated"><strong>亚马逊集装箱服务</strong> <strong>有可能占据主导地位。</strong>我们之前<a href="https://thenewstack.io/aws-focused-container-use/" class="local-link">已经确定</a>AWS上的大多数容器使用都没有利用它的容器服务。RisingStack的数据直接反驳了这一发现。如果可以选择的话，很多调查对象可能会说他们在AWS上使用虚拟机来运行容器。鉴于它的首要地位，如果用户认为Kubernetes和Docker是底层技术，而不是他们自己的平台，AWS可以对容器市场提出要求。</li>
+<li class="translated"><strong>开发者</strong> <strong>来自火星，IT Ops来自金星</strong>。在今年春天的一项调查中，我们发现开发人员和运营团队在如何使用manage containers方面存在显著差异。DigitalOcean和Heroku(Salesforce.com)在开发者中传统上很强，但它们在谷歌、微软和IBM产品上的突出地位与其他市场研究报告中的显著不同。</li>
+</ul>
+<h2 class="translated">Lightbends的JVM调查</h2>
+<p class="translated">Lightbend <a href="https://info.lightbend.com/COLL-20XX-Enterprise-Development-Trends-2016-Report_RES-LP.html" class="ext-link" rel="external ">的前身是Typesafe，它调查了超过2151名使用JVM语言的开发者。尽管一些受访者使用Groovy和Clojure，但大约四分之三的人使用Scala编写的产品应用程序，几乎一半的人使用基于Java的应用程序。研究发现，在使用容器和微服务方面，Scala开发者比Java开发者更高级。其关于微服务的发现有力地支持了我们在<em> <a href="https://thenewstack.io/beyond-greenfield-rearchitecting-containers/" class="local-link">为绿地之外的容器重新架构</a>中所写的结论。</em>尽管对集装箱管理的偏好与之前报告的趋势一致，但Lightbend的研究似乎过度代表了AWS和Docker的优势。</a></p>
+<div id="attachment_1447545" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1447545" decoding="async" loading="lazy" class="wp-image-1447545 size-full" src="../Images/be19d19775b5a425978a371fb66c4f25.png" data-id="1447436" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/COLL-report-enterprise-development-trends-2016-09.png"/><p id="caption-attachment-1447545" class="wp-caption-text translated">证实了先前的发现，JVM开发人员正专注于容器化新的而不是遗留的应用程序。</p></div>
+<p class="translated">Lightbend调查证实了最近Bitnami调查的结果，该调查表明1)集中于容器化新应用程序，以及2)微服务成熟度越高的开发人员越有可能使用容器。从上面的图表中可以看出，59%的JVM开发人员主要针对新应用程序进行容器化，相比之下，41%的开发人员针对现有应用程序。Lightbend调查还发现了微服务和容器使用之间的关系:</p>
+<ul>
+<li class="translated">在所有JVM开发者中，30%在生产中部署微服务，22%在生产中部署容器。</li>
+<li class="translated">只看那些在生产中部署微服务的企业，在生产中部署容器的比例几乎翻了一番，达到41%。</li>
+</ul>
+<p class="translated">根据Lightbend的<a href="https://twitter.com/deanwampler" class="ext-link" rel="external "> Dean Wampler </a>的说法，Scala和前沿思想之间也有关联。因此，他认为Scala开发者更有可能寻找Java的替代语言。从这个角度来看，Scala程序员在某种程度上领先于其他人并不奇怪，他们拥有更高的微服务和容器使用率。</p>
+<h2 class="translated">有点意外</h2>
+<p class="translated">报告中最令人惊讶的结果之一是，与Kubernetes相比，有两倍多的组织押注于Docker Swarm技术。如果受访者知道Swarm现在被捆绑到核心Docker引擎中，那么哇，Docker公司似乎在容器编排大战中占了上风。更有可能的是，许多专注于Scala的开发人员基于他们一般的市场观点做出假设，而不是在生产中实际体验编排容器。如前所述，开发人员使用Docker的经验更丰富，因此可能不太倾向于看到Kubernetes和DC/OS给开发运维团队和IT运营团队带来的价值。当Lightbend只关注实际的生产容器用户时，它更像是一场赛马，Docker Swarm获得了30%的选票，而Mesos/Marathon或Mesosphere DC/OS获得了21%的选票，Kubernetes获得了20%的选票。深入挖掘数据，Scala用户比其他人更有可能选择Mesos/Marathon和DC/OS产品。对这种现象的一种解释是，由于Marathon是用Scala编写的，开发人员可能会根据他们对该语言的熟悉程度做出选择。</p>
+<div id="attachment_1447544" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1447544" decoding="async" loading="lazy" class="wp-image-1447544 size-full" src="../Images/69fc2cabb43590447bc72e5d8e66d90e.png" data-id="1447529" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/2COLL-report-enterprise-development-trends-2016-10.png"/><p id="caption-attachment-1447544" class="wp-caption-text translated">JVM开发者的组织比Kubernetes更倾向于Docker。</p></div>
+<p class="translated">最后，尽管相关图表没有包含在报告中，Lightbend写道，“66%的调查受访者表示，亚马逊为使用容器的开发者提供了(主要公共云提供商中)最有吸引力的产品，相比之下，谷歌和微软的这一比例分别为29%和5%。”虽然这一发现可能与已知的公共云市场份额有关，但基于其基于Kubernetes的产品的成熟度，谷歌也有可能得到提升。</p>
+<p class="small attribution translated"><a href="https://www.mirantis.com/software/docker/kubernetes/" class="ext-link" rel="external ">号</a>、<a href="https://d2iq.com/" class="ext-link" rel="external ">号</a>和<a href="https://coreos.com/" class="ext-link" rel="external ">号【科瑞奥斯】号</a>是新堆栈的赞助商。</p>
+<p class="small attribution translated">特色图片由Celeste Hutchins以<strong> <a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC-BY 2.0 </a> </strong>授权的“<a href="http://www.celesteh.com/pics/November05/November05-Pages/Image13.html" class="ext-link" rel="external ">爱成就一个家庭</a>”。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

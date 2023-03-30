@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Two-Way Comms with the ESP8266</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:与ESP8266的双向通信</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-two-way-comms-esp8266/#0001-01-01">https://thenewstack.io/off-shelf-hacker-two-way-comms-esp8266/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着人们对物联网(IoT)的广泛讨论，ESP8266 WiFi片上系统(SoC)无疑是这类项目的理想选择。它很容易编程，占用空间小，而且价格低廉。ESP8266模块的物联网应用可能包括传感器、执行器、指示器和需要远程双向通信的项目。</p>
+<p class="translated">我正在开发PIR(被动红外)区域监视器、网络照明系统、远程环境传感器和用于我的LibreOffice Impress演示的无线点击器。所有这些都使用远程节点(ESP8266设备)与我的局域网、服务器、云或用户应用程序之间的近实时双向通信。</p>
+<p class="translated">在这一期中，我将介绍ESP8266-07模型的基本通信方案。请随意扩展概念以创建您自己的物联网项目。</p>
+<h2 class="translated">框架和设置</h2>
+<p class="translated">正如我们在早先的<a href="/tag/off-the-shelf-hacker/" target="_blank">现成黑客</a>故事中讨论的那样，ESP8266芯片是使用多种语言和框架编程的。我个人喜欢Arduino IDE。代码语法对我来说很有意义，函数库相当全面，对于8266s、Arduino和处理项目工作来说，环境是相同的。请务必回顾之前的<a href="https://thenewstack.io/off-shelf-hacker-read-schematics-like-pro/" class="local-link">“像专家一样阅读原理图”</a>、<a href="https://thenewstack.io/off-shelf-hacker-programming-tips-tricks-esp8266-wifi-module/" class="local-link">“使用ESP8266将WiFi连接添加到您的DIY项目”</a>和<a href="https://thenewstack.io/off-shelf-hacker-split-personality-esp8266/" class="local-link">“ESP8266 WiFi芯片的分裂个性”</a>新堆栈故事。</p>
+<p class="translated">使用ESP8266-07的设置类似于-01版本，除了-07有一个外部天线连接器和更多的通用输入/输出(GPIO)引脚。物理跳板看起来相当复杂。</p>
+<p class="translated">电路实际上非常简单，如图所示。</p>
+<div id="attachment_1151749" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1151749" decoding="async" loading="lazy" class="size-large wp-image-1151749" src="../Images/20fb940d1a9fee32b564be128ff5babe.png" alt="ESP8266-07 2-Way Comms Schematic" data-original-src="https://thenewstack.io/wp-content/uploads/2016/03/2-way-8266-07_schem-1024x354.png"/><p id="caption-attachment-1151749" class="wp-caption-text translated">ESP8266-07双向通信示意图</p></div>
+<h2 class="translated">易管理的代码——第1部分</h2>
+<p class="translated">库是Arduino IDE环境中节省人力的现代设备。毫不奇怪，我从一个ESP WiFi库中抓取了代码来开始我的双向通信程序。</p>
+<p class="translated">代码分为两部分，连接到接入点(AP)和处理GPIO。</p>
+<p class="translated">第1部分处理加入接入点的问题，来自“WiFiManager”类别下的“AutoConnectWithFeedback”示例程序。如果8266设备之前没有连接到特定的接入点，它会启动自己的接入点，并在其Web服务器(http://192.168.4.1)上发布一个页面，为配备WiFi/浏览器的设备(如Galaxy 5超级手机)上的用户提供选择加入哪个AP的选项。此时，8266设备和电话之间有一个临时局域网。然后，该页面提示用户输入AP访问密码。8266将进行复位，并在关闭临时局域网和网络服务器的同时连接到选定的局域网。如果wifi manager . reset settings()；行被注释掉了，它会记住AP凭证，所以您不必每次都输入SSID和密码。在编程和故障排除期间，取消对该行的注释以重置设置。</p>
+<p class="translated">在代码的WiFi部分初始化之后，我们继续第2部分。</p>
+<p class="translated">这是第1部分的代码。<br/></p>
+<div id="crayon-642311d4ca765316340551" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-p">#include &amp;lt;ESP8266WiFi.h&amp;gt;</span>
+<span class="crayon-p">#include &amp;lt;DNSServer.h&amp;gt;</span>
+<span class="crayon-p">#include &amp;lt;ESP8266WebServer.h&amp;gt;</span>
+<span class="crayon-p">#include &amp;lt;WiFiManager.h&amp;gt;</span>
+ 
+<span class="crayon-e">void </span><span class="crayon-e">configModeCallback</span><span class="crayon-h"> </span>(<span class="crayon-e ">WiFiManager *</span><span class="crayon-i">myWiFiManager</span>)<span class="crayon-h"> </span>{
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Entered config mode"</span>);
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">softAPIP</span>());
+<span class="crayon-c">//if you used auto generated SSID, print it</span>
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">myWiFiManager</span>-<span class="crayon-sy">&amp;gt;</span><span class="crayon-e">getConfigPortalSSID</span>());
+}
+ 
+<span class="crayon-e">const </span><span class="crayon-e">int </span><span class="crayon-i">ledPin</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">5</span>;
+<span class="crayon-e">const </span><span class="crayon-e">int </span><span class="crayon-i">buttonPin4</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">4</span>;
+<span class="crayon-e">int </span><span class="crayon-i">buttonState4</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span>;
+<span class="crayon-e">WiFiServer </span><span class="crayon-e">server</span>(<span class="crayon-cn">1337</span>);
+ 
+<span class="crayon-e">void </span><span class="crayon-e">printWiFiStatus</span>();
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>(<span class="crayon-i">void</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>(<span class="crayon-cn">115200</span>);
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-e">WiFiManager </span><span class="crayon-i">wifiManager</span>;
+<span class="crayon-h">  </span><span class="crayon-i">wifiManager</span><span class="crayon-st">.</span><span class="crayon-e">resetSettings</span>();
+<span class="crayon-h">  </span><span class="crayon-i">wifiManager</span><span class="crayon-st">.</span><span class="crayon-e">setAPCallback</span>(<span class="crayon-i">configModeCallback</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-e">if</span>(!<span class="crayon-i">wifiManager</span><span class="crayon-st">.</span><span class="crayon-e">autoConnect</span>())<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"failed to connect and hit timeout"</span>);
+<span class="crayon-h">    </span><span class="crayon-i">ESP</span><span class="crayon-st">.</span><span class="crayon-e">reset</span>();
+<span class="crayon-h">    </span><span class="crayon-e">delay</span>(<span class="crayon-cn">1000</span>);
+<span class="crayon-h">  </span>}<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">  </span><span class="crayon-c">// Configure GPIO2 as OUTPUT.</span>
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">ledPin</span>,<span class="crayon-h"> </span><span class="crayon-i">OUTPUT</span>);
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">buttonPin4</span>,<span class="crayon-h"> </span><span class="crayon-i">INPUT</span>);
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-c">// Start TCP server.</span>
+<span class="crayon-h">  </span><span class="crayon-i">server</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>();
+</pre>
+</div>
+</div>
+
+<p/>
+<h2 class="translated">易管理的代码——第2部分</h2>
+<p class="translated">第2部分处理读取按钮、向远程机器(比如我的Galaxy superphone或Linux笔记本)发送消息，以及可选地打开或关闭LED。</p>
+<p class="translated">有趣的是，第2部分自然地出现在固件的循环部分，它实际上完成了设备的工作。额外的功能很可能被插入到这个部分中。</p>
+<p class="translated">这是第2部分的代码。<br/></p>
+<div id="crayon-642311d4ca76c216366036" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">void </span><span class="crayon-e">loop</span>(<span class="crayon-i">void</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-c">// Check if module is still connected to WiFi.</span>
+<span class="crayon-h">  </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">status</span>()<span class="crayon-h"> </span>!=<span class="crayon-h"> </span><span class="crayon-i">WL_CONNECTED</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"WiFi connected inside void loop"</span>);
+<span class="crayon-h">    </span><span class="crayon-e">while</span><span class="crayon-h"> </span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">status</span>()<span class="crayon-h"> </span>!=<span class="crayon-h"> </span><span class="crayon-i">WL_CONNECTED</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">      </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"WiFi.status connected loop"</span>);
+<span class="crayon-h">      </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+<span class="crayon-h">    </span>}
+<span class="crayon-h">    </span><span class="crayon-c">// Print the new IP to Serial.</span>
+<span class="crayon-h">    </span><span class="crayon-e">printWiFiStatus</span>();
+<span class="crayon-h">  </span>}
+<span class="crayon-h">     </span>
+<span class="crayon-h">  </span><span class="crayon-e">WiFiClient </span><span class="crayon-i">client</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">server</span><span class="crayon-st">.</span><span class="crayon-e">available</span>();
+ 
+<span class="crayon-h">  </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">client</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Client connected."</span>);
+ 
+<span class="crayon-h">    </span><span class="crayon-e">while</span><span class="crayon-h"> </span>(<span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">connected</span>())<span class="crayon-h"> </span>{
+ 
+<span class="crayon-h">      </span><span class="crayon-i">buttonState4</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">digitalRead</span>(<span class="crayon-i">buttonPin4</span>);
+<span class="crayon-h">        </span><span class="crayon-c">// Serial.println(buttonState4);</span>
+<span class="crayon-h">        </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">buttonState4</span><span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-i">HIGH</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">          </span><span class="crayon-c">// digitalWrite(5, HIGH);</span>
+<span class="crayon-h">          </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Button pushed"</span>);
+<span class="crayon-h">          </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"Button pushed\n"</span>);
+<span class="crayon-h">        </span>}
+<span class="crayon-h">      </span>
+<span class="crayon-h">      </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">available</span>())<span class="crayon-h"> </span>{<span class="crayon-h">  </span>
+<span class="crayon-h">                </span>
+<span class="crayon-h">        </span><span class="crayon-e">char </span><span class="crayon-i">command</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">read</span>();
+<span class="crayon-h">        </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">command</span><span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-s">'H'</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">          </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">ledPin</span>,<span class="crayon-h"> </span><span class="crayon-i">HIGH</span>);
+<span class="crayon-h">          </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"LED is now on."</span>);
+<span class="crayon-h">          </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"LED is now on."</span>);
+<span class="crayon-h">        </span>}
+<span class="crayon-h">        </span><span class="crayon-e">else </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">command</span><span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-s">'L'</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">          </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">ledPin</span>,<span class="crayon-h"> </span><span class="crayon-i">LOW</span>);
+<span class="crayon-h">          </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"LED is now off."</span>);
+<span class="crayon-h">          </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"LED is now off."</span>);
+<span class="crayon-h">        </span>}
+<span class="crayon-h">     </span>}
+<span class="crayon-h">    </span>}
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Client disconnected."</span>);
+<span class="crayon-h">    </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">stop</span>();
+<span class="crayon-h">  </span>}
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">printWiFiStatus</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">""</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">"Connected to "</span>);
+<span class="crayon-h">  </span><span class="crayon-c">// Serial.println(ssid);</span>
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">"IP address: "</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">localIP</span>());
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>代码并不复杂。当远程客户端连接时，它建立连接并启动服务器。远程客户端可能是一个应用程序，甚至是类似网络终端的程序，<a href="https://www.digitalocean.com/community/tutorials/how-to-use-netcat-to-establish-and-test-tcp-and-udp-connections-on-a-vps" class="ext-link" rel="external "> netcat </a>。在编写这个故事时，我在Linux笔记本和Galaxy 5手机上都使用了netcat。当按钮被按下时，8266向远程客户端机器发送“按钮被按下”文本消息。如果远程机器向8266设备发送一个“H”字符，它会点亮LED。同样，发送“L”字符会关闭LED。根据您的功能需求制作您的信息。</p>
+<p class="translated">printWiFiStatus()代码只是向串行终端发送状态信息，对于开发和故障排除非常有用。</p>
+<h2 class="translated">更进一步</h2>
+<p class="translated">一个基本的双向通信方案是一个合理的扩展起点，有更多的按钮、传感器、输出等等。由于局域网配置代码是使用库函数内置的，所以在不同的位置使用该设备也很容易，只需很少的额外工作。一点点的计划和逻辑可以使今天概述的概念扩展到具有多种设备和位置的更大的项目。</p>
+<p class="translated">一旦你有了按钮或传感器和输出设备，就很容易通过修改和上传新的固件来改变行为。</p>
+<p class="translated">您可以查看ESP8266WiFiMesh和ESP8266WiFi示例，了解更多项目想法。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

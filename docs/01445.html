@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Docker CEO: Docker Already Is a Security Platform (with Swarm, That Is)</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Docker CEO: Docker已经是一个安全平台了(也就是说有了Swarm)</h1>
+<blockquote>原文：<a href="https://thenewstack.io/ceo-ben-golub-docker-already-security-platform-swarm/#0001-01-01">https://thenewstack.io/ceo-ben-golub-docker-already-security-platform-swarm/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Docker Inc .的首席执行官Ben Golub(上图右，与HPE执行副总裁Antonio Neri在一起)在上周二上午举行的<a href="https://www.hpe.com/events/discover/" class="ext-link" rel="external ">HPE 2016年伦敦探索大会</a>上告诉与会者，Docker平台通过其独特的架构解决并改善了用户的安全问题，这强化了其公司的营销信息，即集装箱化作为一种架构在设计上更安全。</p>
+<p class="translated">Golub告诉与会者:“我们从这个星球上使用Docker的最有安全意识的组织那里听到的是，他们使用Docker并不是出于安全考虑，而是为了解决安全问题。”</p>
+<p class="translated">这位首席执行官然后引用了【2016年7月Gartner分析师Joerg Fritsch 的一篇博客文章，建议该分析师小组的客户，容器化的应用程序通常比运行在裸机或基于虚拟机的基础设施上的应用程序更安全。</p>
+<p class="translated">Fritsch写道:“尽管容器无法防止应用程序受到危害，但它们极大地限制了成功危害的损害，因为应用程序和用户是基于每个容器隔离的，因此它们无法危害其他容器或主机操作系统——只要主机操作系统上不存在内核权限提升漏洞。”</p>
+<p class="translated">自从两年前码头工人安全问题首次在<a href="https://thenewstack.io/the-new-stack-analysts-show-9-dockers-inherent-lack-of-security-the-black-hat-view/" class="local-link">被提出以来，最后一条就一直是人们关注的焦点。迄今为止，还没有人成功地恶意利用这个理论上的安全漏洞。但是软件工程师直到今天还在不断发出警告，容器的主机操作系统内核可能受到危害，导致容器完全暴露。</a></p>
+<p class="translated">去年10月，安全开发人员<a href="https://thenewstack.io/the-new-stack-analysts-show-9-dockers-inherent-lack-of-security-the-black-hat-view/" class="local-link"> Gabriel Lawrence在YouTube </a>上发布了一段视频，旨在演示在Amazon AWS实例上运行的安全测试环境中，<a href="https://blog.paranoidsoftware.com/dirty-cow-cve-2016-5195-docker-container-escape/" class="ext-link" rel="external ">Linux内核漏洞如何被利用</a>来修改容器的内容，以根级别权限打开容器的外壳。</p>
+<p class="translated">这里使用的Linux函数是写时复制(COW)特性，它的一部分代码显然是作为库的一部分跨多个Linux进程共享的。虽然我们不会解释这个漏洞，只是为了给任何人一些坏主意，但足以说劳伦斯的演示似乎显示了任意恶意代码被复制到同一个库中，从而充当提供漏洞的代理。</p>
+<p class="translated">《米特CVE词典》将这种虫子归类为CVE-2016-5195，人们开始称它为“肮脏的母牛”公平而明确地说，这是一个Linux错误，而不是Docker错误。</p>
+<p class="translated">但在某种程度上，这就是问题所在:Docker容器对Linux内核的依赖，从理论上来说(而且，正如Lawrence可能指出的那样，主动地)可能会将托管容器暴露给内核本身面临的任何漏洞。随着我们越来越清楚地认识到，Linux中可能有许多未被利用的bug，它们在Docker问世之前很久就已经潜伏起来了。</p>
+<p class="translated">在<a href="https://thenewstack.io/foundation-of-secure-containers/" class="local-link">去年8月Docker安全总监Nathan McCauley </a>为新的Stack Analysts播客所做的采访中，他评论说任何新技术的安全性问题都可能出现。但是在过去的两年里，他说，他的公司和它的贡献者已经在Docker平台中引入了“基础”安全措施。其中一项措施是加密节点身份，他将其描述为PKI注册表，为Docker群环境中的各个服务器节点提供可验证的身份。Swarm是<a href="https://thenewstack.io/docker-engine-1-12-will-come-built-orchestration-capabilities/" class="local-link"> Docker的编排引擎</a>，现在嵌入在核心Docker引擎中。</p>
+<p class="translated">“我们已经实现了一个实际上非常容易使用的PKI，”McCauley说，“在我们做的最初演示中，甚至在Docker[<em>Inc .</em>]这里，我们也没有说任何关于它的事情。我们刚刚打开它，它是默认打开的，所有的命令看起来完全一样。的原因。。。是因为它们都是默认内置的。作为Swarm一部分的每个Docker引擎都有一个TLS身份，这使我们能够在此基础上构建一堆东西。”</p>
+<p class="translated">Docker Inc .的Golub在给HPE发现伦敦的评论中表示，Docker平台的自动化元素(他没有命名，但他指的是Swarm)完善了其安全模型。推而广之，他认为，只要数据中心能够信任其容器映像的真实性，以及在服务器集群中托管这些映像的节点，那么被肮脏的牛、猪、羊或任何可能出现在Linux漏洞堆中的东西利用的可能性就可以忽略不计了。</p>
+<p class="translated">“如果你想一想，这意味着什么:如果你正在部署的一切都是从源构建的，放入一个容器中，经过数字签名，可以扫描已知的漏洞，可以自动化和测试，并且[你可以]在几秒钟内完成这些，”Golub说，“那么你正在部署到基础设施中的东西出现问题的可能性非常低。如果有问题，当然，总会有[问题]，您可以跟踪它，并像[*snap*]那样修复它。您可以推送更新，而不必关闭服务器，也不必做类似的事情。所以你实际上更安全，更有弹性。”</p>
+<p class="attribution translated">Docker是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

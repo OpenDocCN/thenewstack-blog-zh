@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>StdLib: A Serverless Library for Building Developer Velocity</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">StdLib:用于构建开发人员速度的无服务器库</h1>
+<blockquote>原文：<a href="https://thenewstack.io/stdlib-drives-bring-developer-velocity-serverless/#0001-01-01">https://thenewstack.io/stdlib-drives-bring-developer-velocity-serverless/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="p1 translated">FaaS平台标准库的创始人兼首席执行官基思·霍伍德说，无服务器的真正价值不是每秒的计算能力，而是开发速度。</p>
+<p class="p1 translated">“我们的观点是，在无服务器领域，开发人员的速度是最大的优势，”Horwood说，他的标准库(被称为<a href="https://StdLib.com/" class="ext-link" rel="external "> <span class="s1"> StdLib </span> </a>)提供了一个平台，编码人员可以在这个平台上编写或组合自动缩放的函数。“我们经常在首席信息官层面听到，他们非常关注无服务器架构，因为它可以很好地避免供应不足和过度供应，但我们对此的看法是，有人希望尽快交付产品。他们明白编写代码是怎么一回事，但他们对投身web开发变得犹豫不决，因为现在有太多的技术解决了可扩展性问题，但却以牺牲开发人员的速度为代价。”</p>
+<p class="p1 translated">Horwood认为，无服务器允许回到90年代末和21世纪初编程模型的承诺。开发人员可以通过简单地修改现有网页的PHP代码来建立网站，通过SFTP加载并提供给全世界的网络观众。在那个范例中，脚本被认为是基本的可发布代码。然后，随着互联网使用的爆炸式增长，大规模的分发和性能成为开发人员的主要关注点，即使是那些专注于前端应用程序和网站的开发人员。</p>
+<p class="p1 translated">Horwood说这在很多方面影响了开发者的速度。不仅是需要在操作环境中管理的组件的复杂性，更重要的是让开发人员不断担心“如果它崩溃了怎么办”的认知开销。</p>
+<p class="p1 translated">“节省这是一个巨大的好处，对于团队和管理时间的开发人员来说，这将具有不可估量的价值。这将是无服务器的最终真正驱动力，”霍伍德说。</p>
+<h2 class="p1 translated">StdLib作为一个服务平台发挥作用</h2>
+<p class="p1 translated">StdLib允许开发人员安装命令行界面(CLI)工具，该工具允许访问一系列库命令，并为脚本创建一些轻量级支架。从那里，开发人员可以在已经构建了函数的地方搜索可用的API(例如能够创建Slack应用程序或将Stripe合并到在线商店中)，或者在node.js中编写自己的函数。一旦函数经过测试(StdLib附带自记录类型安全检查，以确保函数可执行)，它们就可以被合并到任何企业现有的代码库中，或者使用StdLib用户的函数URL通过webhook进行访问。</p>
+<p class="p1 translated">“最终，你是在建立自己的函数库，”霍伍德说。“我们去掉了应用服务器的抽象，所以你只需要考虑功能，并把它们变成web服务和API端点。”</p>
+<p class="p1 translated">Horwood认为StdLib让开发团队在企业软件代码库中像“一等公民”一样使用函数。在现有的代码库中，当想要使用函数时，开发人员会安装lib模块，然后执行StdLib函数，就像它是一个内联函数一样。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-3106575" src="../Images/7f713d93f6e939d7b5b2ea578ec91f21.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/09/379b3b54-screen-shot-2017-09-19-at-18.47.37.png"/></p>
+<p class="p1 translated">另一种方法是依靠webhooks并调用用户的StdLib函数URL来触发事件。对于一些试图平衡跨不同平台的代码库分布的企业来说，将代码库缩减到StdLib和他们的内部代码可能是确保监督的一种方式。</p>
+<p class="p1 translated">随着Twilio、Auth0等SaaS平台开始提供无服务器功能平台，<a href="https://thenewstack.io/3-questions-serverless-technology/" class="local-link"> <span class="s1">一些人担心这将为企业带来更多的复杂性</span> </a>在更广泛分散的微服务和功能架构中，企业要准确了解其代码在哪里运行。也许使用StdLib将允许企业只在两个位置维护对代码的监督:他们自己的repos和他们的StdLib库中。</p>
+<h2 class="p1 translated">StdLib中的监控函数</h2>
+<p class="p1 translated">虽然在StdLib的FaaS方法中处理了缩放操作，但仍有<a href="https://thenewstack.io/iopipe-launches-lambda-monitoring-tool-aws-summit/" class="local-link"> <span class="s1">个函数级操作问题需要监控</span> </a>。</p>
+<p class="p1 translated">功能可能会超时而不执行，可能会崩溃而不按预期运行，或者使用在生产中不同步的过期包构建。</p>
+<p class="p1 translated">Horwood说StdLib团队处理了大部分这些问题，而StdLib用户不需要看到发生了什么。例如，如果一个包不是最新的，StdLib会看到许多运行时错误，并会纠正包的使用，Horwood说这种情况不会经常发生。</p>
+<p class="p1 translated">用户可能需要通过检查他们的日志或登录用户看到的service analytics控制面板来监视功能超时错误。然后，他们可以在代码中允许更长的执行时间。</p>
+<p class="p1 translated">为了更好地理解运行在StdLib中的函数，用户需要构建自己的解决方案。根据Horwood的说法，活动日志是作为平台功能的一部分编写的，但用户必须创建自己的<strong> cron </strong>作业来保存这些控制台日志文件，因为它们只保留一天。</p>
+<p class="p1 translated">该平台还没有将警报系统作为一项功能来实现，例如，如果用户希望收到关于他们的执行日志中可能发生的任何事情的通知，尽管Horwood说他们确实“有一个API日志端点，所以如果有人想安排一个<strong> cron </strong>作业，这是可能的。”</p>
+
+<p/>
+<h2 class="p1 translated">StdLib作为生态系统的切入点</h2>
+<p class="p1 translated">当第一次引起社区的兴趣时，无服务器经常被说成是构建完整的端到端无服务器应用程序。那是可能的，大多在<a href="https://thenewstack.io/emerging-graphql-serverless-stack-building-static-web-sites/" class="local-link"> <span class="s1">静态和</span> </a>单页应用空间。但通常情况下，企业开始将无服务器用于一系列特定的工作流任务，任务被移交给无服务器环境进行计算，然后重新整合到更大的工作流中。</p>
+<p class="p1 translated">预定任务和图像处理是两个重要的例子。另一个越来越常见的例子是异步更新客户记录。</p>
+<p class="p1 translated">例如，客户通过集成在企业网站上的电子邮件工具注册。这可能触发三个异步无服务器功能运行:</p>
+<ul>
+<li class="li2 translated">向CRM中添加新电子邮件地址的条目</li>
+<li class="li1 translated">使用<a href="https://clearbit.com/" class="ext-link" rel="external "> Clearbit API </a>来填充关于该电子邮件地址的客户端数据，并将其添加到CRM记录中</li>
+<li class="li3 translated">将电子邮件地址添加到滴滴营销漏斗中。</li>
+</ul>
+<p class="p1 translated">Horwood说，这种例子正在成为企业的中流砥柱，成为第一个无服务器和FaaS平台的关键用例。另一个是分布式web抓取，StdLib让企业进行“大规模并行DNS校准”，以实例化尽可能多的功能，并撒下一张大网来收集网站上的数据。Horwood说，也就是说，类似MapReduce的任务在StdLib中利用无服务器执行。</p>
+<p class="p1 translated">这些使用案例反映了有多少企业使用无服务器不是为了面向外部的应用，而是为了加快内部工作流的开发时间。Horwood说，这也是企业使用StdLib创建内部Slack工作流的主要方式，而不是外部面向客户的机器人。</p>
+<p class="p1 translated">Horwood听起来对StdLib的潜力真正感到兴奋的地方是他们迄今为止与Slack合作的方式。一个解释如何用StdLib  构建Slack应用的教程已经成为Slack开发者博客中最受欢迎的内容之一。Horwood认为这表明了StdLib在帮助任何新兴SaaS平台创建其开发者生态系统的低门槛入口方面可以发挥的作用。在大多数情况下，如果开发人员希望在SaaS平台上进行构建，他们必须处理集成产品的所有应用服务器和扩展任务，然后才能获得成为合作伙伴的好处。如果像Slack这样的SaaS平台继续使用StdLib，新的生态系统合作伙伴的加入速度可以加快，开发人员在外部平台上创建的成本也可以降低。他们构建的东西可以直接进入平台的市场，就像他们自己从零开始构建集成一样。</p>
+<p class="p1 translated">10月11日，霍伍德在纽约市的<a href="https://nyc.serverlessconf.io/agenda" class="ext-link" rel="external "> Serverlessconf上发表了关于开发者速度的演讲。今年早些时候，他还谈到了服务组合:</a></p>
+<p class="translated"><iframe loading="lazy" src="https://www.youtube.com/embed/m5TFVI5Y5Ro?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">视频</iframe></p>
+<p class="attribution translated">专题图片(从左至右):StdLib的雅各布·李、基思·霍伍德、史蒂夫·梅耶。</p>
+<p class="attribution">
+</p>
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

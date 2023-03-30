@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Data Theorem: API Security from Mobile to Serverless</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">数据定理:从移动到无服务器的API安全性</h1>
+<blockquote>原文：<a href="https://thenewstack.io/data-theorem-api-security-from-mobile-to-serverless/#0001-01-01">https://thenewstack.io/data-theorem-api-security-from-mobile-to-serverless/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">现代企业中的安全性最近一直是一个不断变化的目标，重点是云原生世界中的<a href="/why-security-is-really-different-in-todays-cloud-native-world/" target="_blank">差异</a>、<a href="/the-new-stack-context-two-views-of-open-source-security/" target="_blank">开源面临的挑战</a>以及<a href="/problems-with-sharing-responsibility-for-security/" target="_blank">共享责任模式</a>。</p>
+<p class="translated">与此同时，Gartner报告了对API安全性日益增长的担忧，指出客户对该主题的询问同比增长了30%。<a href="https://www.gartner.com/en/documents/3834704/how-to-build-an-effective-api-security-strategy" target="_blank" rel="noopener noreferrer external " class="ext-link">据预测</a>到2022年，API滥用将成为企业web应用最常见的攻击媒介。</p>
+<p class="translated">总部位于加州帕洛阿尔托的<a href="https://www.datatheorem.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">数据定理</a>正在采用DevOps方法解决API安全性问题。该公司最初专注于移动应用的API安全，但在过去的一年里，一直在建设保护无服务器API的能力。</p>
+<p class="translated">Data Theorem首席运营官道格·杜利(Doug Dooley)表示:“我们的业务是在应用程序层面防止数据泄露。</p>
+<p class="translated">“我们的任务是帮助安全团队在DevOps团队中占有一席之地，而不是对允许DevOps快速运行的伟大想法和功能泼冷水，而是提供保护和护栏，以构建更快的速度。…增加安全自动化，而不会增加系统负担和减缓进度。”</p>
+<p class="translated"><a href="https://www.datatheorem.com/resources/reports/esg-security-for-devops/" class="ext-link" rel="external ">受<a href="https://www.esg-global.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">企业战略小组</a>委托的公司进行的研究</a>发现，随着自动化成为标准方法，组织开始将安全实施到<a href="/category/devops/" target="_blank">开发运维实践</a>中。然而，在一项针对371名IT和网络安全专业人员的调查中，只有8%的受访者表示他们的组织通过DevSecOps实践保护了75%或更多的云原生应用程序，只有39%的受访者表示他们的网络安全团队成员参与了目前一半以上的云原生应用程序项目。</p>
+<p class="translated">“如果您有一个敏捷的环境，我们认为您需要一个持续的监控和安全分析系统，该系统与您的DevOps流程挂钩，不仅可以快速发现安全问题，还可以提供清晰的指导，甚至是自动补救功能来纠正这些问题，”杜利说。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignright size-full wp-image-10377135" src="../Images/ee80a43031392dbcb870a461613825be.png" alt="" data-id="10377135" data-original-src="https://cdn.thenewstack.io/media/2020/02/ecfa5071-image002.png"/></p>
+<p> </p>
+<h3 class="translated">自动分析器引擎</h3>
+<p class="translated"><a href="https://www.linkedin.com/in/himanshudwivedi1/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Himanshu Dwivedi </a>，连续创业者和安全<a href="https://www.amazon.com/Himanshu-Dwivedi/e/B001IXO8N8" target="_blank" rel="noopener noreferrer external " class="ext-link">作者</a>，于2013年推出数据定理。</p>
+<p class="translated">该公司拥有一项核心技术，即专有的分析器引擎，其产品基于不同的用例。这是纯粹的SaaS产品。</p>
+<ul>
+<li class="translated"><strong> App Secure </strong>:持续扫描和监控iOS和Android应用中的漏洞和数据隐私问题。</li>
+<li class="translated"><strong>应用搜索</strong>:自动应用追踪服务。</li>
+<li class="translated"><strong> API Inspect </strong>:自动持续安全服务，在面向互联网的API中发现认证和加密漏洞。</li>
+<li class="translated"><strong> API Discover </strong>:自动持续发现服务，在公共云环境中发现新的API、已知API的变化以及相关的云服务。</li>
+<li class="translated"><strong> Brand Protect </strong>:一个自动爬虫，寻找发布到第三方应用商店的未经授权的克隆移动应用。</li>
+</ul>
+<p class="translated">去年九月，它发布了一个自动发现和持续动态运行时漏洞<a href="https://www.businesswire.com/news/home/20190917005407/en/Data-Theorem-Launches-Automated-Discovery-Continuous-Dynamic" target="_blank" rel="noopener noreferrer external " class="ext-link">检测工具</a>专门为web单页面应用程序(SPAs)构建。它支持GraphQL和REST API服务作为API Discover和API Inspect的一个组件。</p>
+<p class="translated">它还开发了<a href="https://github.com/datatheorem" target="_blank" rel="noopener noreferrer external " class="ext-link"> TrustKit </a>，这是一个用于在移动应用程序中部署SSL公钥锁定和报告的开源框架。</p>
+<h3 class="translated">阻止数据提取</h3>
+<p class="translated">杜利说，通过移动设备，分析器引擎可以查看各种应用商店中应用的生产版本——授权版本和未授权版本，然后通过二进制分析、运行时分析、动态分析和静态分析来寻找漏洞。</p>
+<p class="translated">“我们正在寻找攻击者追踪你的应用程序的所有途径，”他说。</p>
+<p class="translated">一旦它通过所有的应用程序，“我们整合结果，并尝试以人类可读的方式展示这些结果。当你登录到门户网站时，这些都是你的应用程序，所有可能出错的东西，然后我们自动筛选最重要的东西，”他说。</p>
+<p class="translated">他说，这与计算风险无关，那是商业决定。它只是专注于防止从应用程序中提取数据。</p>
+<p class="translated">“有时客户说数据无论如何都是公开的，所以即使数据被破坏了，数据也不是敏感的，他们可以接受，”他说。</p>
+<p class="translated">这和云很相似。</p>
+<p class="translated">“我们寻找您的所有域，寻找与您的域相关联的所有API，我们经常查看您的移动应用程序、web应用程序，以找到企业通常没有意识到的嵌入式API或影子API，即在应用程序中移动数据。</p>
+<p class="translated">“我们向他们展示了他们拥有的所有API，以及可能被用来提取数据的潜在攻击。在某些情况下，当我们发现泄漏的API时，我们可以提取数据并进行我们自己的分析，以确定是否有任何PII(个人身份信息)可能代表合规违规。然后我们把它展示给顾客，”他说。</p>
+<p class="translated">杜利说，分析客户的数据需要一定程度的信任，这种信任是通过首先分析其生产应用程序来建立的，然后客户通常会决定将数据定理集成到预生产中，作为Jenkins或其他CI/CD管道的一部分。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="alignright size-full wp-image-10377137" src="../Images/fd3cd86aa1c65adfce44dc3c086770ab.png" alt="" data-id="10377137" data-original-src="https://cdn.thenewstack.io/media/2020/02/b4ed94c5-image003.png"/></p>
+<h3 class="translated">无服务器</h3>
+<p class="translated">他说，该公司已经体验到了内部无服务器基础设施的好处，开发人员使用一些机器学习技术，用大约1/10的代码更快地构建功能。</p>
+<p class="translated">但是在没有服务器的情况下，许多底层技术都变得短暂。虚拟机在哪里？操作系统在哪里？集装箱在哪里？作为开发人员，这些对您来说都是隐藏的，但是，您并不真正关心这些。</p>
+<p class="translated">但对安全团队来说，不利的一面是，如果你希望挂钩容器或在操作系统上安装代理，或强制实施代理网关让流量通过，云供应商现在已经隐藏了所有这些，使其在幕后自动缩放，所以你甚至看不到它或挂钩它。</p>
+<p class="translated">“当我们两年前开始构建我们的API技术时，我们知道我们必须致力于无代理和网关无代理的架构。因此，我们开始寻找新的技术来保护API和数据流，或者至少分析数据流，而不强制执行代理挂钩或操作系统挂钩或网络代理，”他说。</p>
+<p class="translated">它决定采用云提供商提供的技术:审计角色。使用基于角色的访问控制，it可以查看云提供商和客户提供的API，以持续监控它们，确保它们符合其功能规格。</p>
+<p class="translated">Gartner注意到越来越多的API安全供应商采用各种方法，包括<a href="https://42crunch.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">42 crunch</a>；槟榔湾，改名<a href="https://www.cloudvector.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">云媒</a>；<a href="https://www.imvisiontech.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">视觉</a>；<a href="https://salt.security/" target="_blank" rel="noopener noreferrer external " class="ext-link">盐保</a>；以及<a href="https://thenewstack.io/ai-engine-api-security-scale/" target="_blank" class="local-link">弹性梁</a>，通过Ping身份获取，现在叫做<a href="https://www.pingidentity.com/en/software/pingintelligence.html" target="_blank" rel="noopener noreferrer external " class="ext-link">Ping intelligence for API</a>。</p>
+<p class="translated">数据定理吹捧已经检测到超过3亿个应用程序窃听事件，同时为包括网飞、Evernote、威瑞森和Etsy在内的客户保护了超过4000个应用程序。</p>
+<p class="translated">最近，该公司一直在警告新的攻击，如拒绝钱包(DoW)，其中提交了如此多的请求，以至于底层基础设施不断扩大，直到成本失控。</p>
+<p class="translated"><iframe loading="lazy" title="Data Theorem Interview Digital Anarchist RSA Conference 2019" src="https://www.youtube.com/embed/uLYUpDz2Svw?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/drbillydude/" class="ext-link" rel="external ">奇兰嘎水泥</a>的<a href="https://www.flickr.com/photos/drbillydude/37337740262/in/photolist-YTpFms-r179kU-Ejeqyf-2eJuhFa-PNb2Uo-fcodhg-RFM6jz-26xiNy7-PP6oUA-z2qxu-4mmzgG-25XVVJM-dVxbBR-SNuuKo-bhAC6V-StZshy-69YLzC-ykGRQu-DYoqNr-7VQmHe-4GriTj-dqkJ5n-NHqWZi-N8uozy-Azp8dW-zTcjLP-tqhybY-25J6mYY-ov51qX-JoLTVT-B56KfZ-kDM3G2-8NQ3Yd-oi5z5Y-26nrfLh-2fkL7Dp-TxgL1K-abxBej-q6Mz7r-9hSLaZ-htpimc-nKtnb6-raJcLq-T7Fhux-riqAzE-21eb2U5-28YwqJz-VNng7U-SNuGPJ-AD7c58" class="ext-link" rel="external ">莫洛克斯</a>。根据<a href="https://creativecommons.org/licenses/by/2.0/" class="ext-link" rel="external "> CC BY-SA 2.0 </a>授权。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

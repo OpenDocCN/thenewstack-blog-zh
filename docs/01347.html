@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Get to Know vi, a Text Editor for the Ages</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">了解vi，一个时代的文本编辑器</h1>
+<blockquote>原文：<a href="https://thenewstack.io/get-to-know-vi-a-text-editor-for-the-ages/#0001-01-01">https://thenewstack.io/get-to-know-vi-a-text-editor-for-the-ages/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">几乎所有现存的Unix或Linux系统上都有<strong> vi </strong>文本编辑器，通常是默认的。我第一次使用它是在1981年，普渡大学的新生。我的第二堂编程课是在一台大型的大学主机上运行Unix。那是GUI(图形用户界面)出现之前的日子，一切都是通过命令行完成的，同时还沉浸在令人欣慰的(怪诞？)老派CRT(阴极射线管)终端的绿色文本辉光。普渡大学正在逐步淘汰穿孔卡片，我曾经和他们一起上过一堂课。我能说的就是给你的牌编号。</p>
+<p class="translated">正是在那些黑暗的地下室电脑室的深夜，我进入了Unix上的古老神秘的第六代的地下世界。令人高兴的是，39年后的今天，它仍然是我编辑文本的首选武器。其他流行的、现成的Linux文本编辑器也存在，比如<a href="https://www.nano-editor.org/" target="_blank" rel="noopener noreferrer external " class="ext-link"> nano </a>或<a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener noreferrer external " class="ext-link"> emacs </a>，它们做得很好。不过，依我拙见，并不像第六版那么容易。</p>
+<p class="translated">在严格基于GUI或鼠标的编辑器中长大的用户可能会发现基于命令终端的<strong> vi </strong>令人生畏。不要烦恼。我们正处于喧嚣的21世纪20年代的开端，没有比这更好的尝试新事物的时机了。给<strong> vi </strong>一个公平的尝试，我想你会看到一个快速、无戏剧性的文本编辑器的价值，它可以在你所有的Linux服务器、笔记本和基于微控制器的机器上工作，甚至包括远程(网络或串行)连接。(注意，大多数发行版使用更新的<strong> vi </strong>，称为<a href="https://www.vim.org/" target="_blank" rel="noopener noreferrer external " class="ext-link"> VIM </a>)。</p>
+<p class="translated">过一会儿，vi也可能成为你的老朋友。</p>
+<h2 class="translated">伙伴按下ESC键</h2>
+<p class="translated">把<strong> vi </strong>想象成一个强大的、基于字符或键盘的极简文本编辑器。顺便说一句，<strong> vi </strong>可以处理数兆字节的文本文件，所以手工编辑基于文本的大型数据集是可能的，没有太多麻烦。逗号分隔值(。csv)、HTML和json文件浮现在脑海里。</p>
+<p class="translated">在Linux终端中，用文件名调用<strong> vi </strong>。如果文件已经存在，你可以直接进入文本，并从那里开始编辑。如果文件不存在，它将创建一个新的空文件。下面是一个新的rob.txt文件的命令行。</p>
+<p class="translated"><code>rob% vi rob.txt</code></p>
+<div id="attachment_9815260" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-9815260" decoding="async" loading="lazy" class="size-full wp-image-9815260" src="../Images/08a8b0f98ee3584cb6782ec9949479b7.png" alt="" data-id="9815260" data-original-src="https://cdn.thenewstack.io/media/2020/01/39a3b0e9-blank-file.png"/><p id="caption-attachment-9815260" class="wp-caption-text translated">空白rob.txt文件</p></div>
+<p class="translated">添加文本很简单，记住<strong> vi </strong>的方法是基于字符/键的。键入代表“插入”的“I”字符，并将所需文本添加到文件中。完成后，按一次ESC键，告诉<strong> vi </strong>您想退出“插入”功能。</p>
+<p class="translated">escape键是一个重要的<strong> vi </strong>机制，用于结束一个命令序列。默认情况下，<strong> vi </strong>接受键盘字符/按键组合来执行各种功能，例如插入文本(使用“I”命令)、在文件中移动、替换或删除文本以及切换到命令模式(使用“:”命令)。</p>
+<blockquote><p class="translated"><strong> vi </strong>的方法是基于字符/键的。键入代表“插入”的“I”字符，并将所需文本添加到文件中。完成后，按一次ESC键，告诉<strong> vi </strong>您想退出“插入”功能。</p></blockquote>
+<p class="translated">这几乎涵盖了在文件的任何地方插入文本。将光标移动到要键入的位置。使用“I”键插入文本，完成后使用ESC键。继续下一个你想添加或改变的东西。</p>
+<p class="translated">如果我们已经有了一些文本，并且想向下移动几行并插入一个字符或一些文本，该怎么办？用同样的方法打开一个现有的rob.txt文件。</p>
+<p class="translated"><code>rob% vi rob.txt</code></p>
+<div id="attachment_9815299" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-9815299" decoding="async" loading="lazy" class="size-full wp-image-9815299" src="../Images/e1ee388da5301d9ead8b23472fb9f41f.png" alt="" data-id="9815299" data-original-src="https://cdn.thenewstack.io/media/2020/01/193d764d-existing-file.png"/><p id="caption-attachment-9815299" class="wp-caption-text translated">现有的rob.txt文件</p></div>
+<p class="translated"><strong> vi </strong>使用四个基本导航键在文件中移动。</p>
+<p class="translated"><strong>h</strong>–将光标向后移动一格<br/><strong>l</strong>–将光标向前移动一格<br/><strong>j</strong>–移到下一行<br/><strong>k</strong>–移到上一行</p>
+<p class="translated">假设您想在这个rob.txt文件的第三行将字母“s”添加到单词“computer”中。使用“j”键向下移动到第三行。现在使用“l”键移动到单词“computer”的末尾。接下来，键入“I”(insert)键插入一个字符，输入字母“s ”,然后按ESC键。键入ESC键后，我们不再插入文本，可以使用导航键h、l、j和k自由移动。</p>
+<p class="translated">请注意，使用h、l、j和k键移动可以最大限度地减少手指的移动，让您可以用一只手浏览文件。从70年代起，我就能触摸打字了，把你的手放在一个地方可以加快速度。</p>
+<p class="translated">我习惯性地在做完所有的事情后按ESC键。事实上，在WordPress和LibreOffice上编辑文章文件时，我偶尔会发现自己在按ESC键。</p>
+<h2 class="translated">标准方法，不同字符</h2>
+<p class="translated">删除文本字符与插入文本字符的方式相同。移动到您想要删除的字符，然后键入“x”。噗，这个角色会从你的屏幕上消失。您可以重复使用一串x来删除一串字符。不要忘记键入ESC键来结束删除功能。</p>
+<p class="translated">要替换字符，请使用“r”键。移到您想要替换的字符，键入“r”，然后键入您的替换字符。按ESC键结束替换字符功能。</p>
+<p class="translated">假设您想在文本文件中搜索一个字符串？</p>
+<p class="translated">使用“/”键。这个工作方式略有不同。通过按ESC键确保你处于编辑模式。输入“/”键后，你将被传送到终端编辑窗口的底部。键入您的搜索字符串。你可以在rob.txt文件中使用“computer”。点击Enter键，vi将在文件中找到“计算机”的下一个实例。键入另一个“/”，然后按Enter键，它会记住它正在寻找“计算机”，并去寻找下一个实例。<strong> vi </strong>当到达文件末尾时，在底部显示提示。再次键入“/”继续从顶部开始搜索。</p>
+<p class="translated">在我们结束今天的教程之前，最好保存我们的工作。</p>
+<p class="translated">键入“:”再次传送到终端窗口底部的<strong> vi </strong>命令行。在这里，你可以使用一大堆额外的关键字符和组合来真正深入了解<strong> vi </strong>的威力。</p>
+<p class="translated">在我们的例子中，我们只想将我们的工作保存在文件中。键入ESC，然后键入“:”，然后键入“w”键。如果您正在编辑现有文件，磁盘上的文件将被您当前的编辑所替换。如果它是一个从未保存过的全新空白文件，您也可以给它一个文件名。我可能会创建一个新文件，键入“:”，后跟“w”，然后是一个空格，然后是“rob.txt”。当编辑一个文件，尤其是一个大文件时，我经常使用“w”。</p>
+<p class="translated">同样，完全退出<strong> vi </strong>就像输入“:”键，然后输入“q”键一样简单。如果您还没有保存您的工作，您可能会得到一个“文件未保存”的提示。我通常用“wq”组合来结束我的编辑会话。如果你不想保存任何东西并退出，使用“q！”组合。当然，如果您开始了一个空白文件，并且由于某种原因改变了主意，使用“q”而不做任何编辑来结束您的<strong> vi </strong>会话。</p>
+<h2 class="translated">下一步是什么？</h2>
+<p class="translated">这就是了。在Linux机器上使用vi的速成班。我宁愿打开一个终端，键入<strong> vi </strong>和一个文件名，然后直接进入编辑，而不是去桌面菜单，找到一个基于GUI/鼠标的编辑器，然后那样做。</p>
+<p class="translated">当然，我经常用LibreOffice写故事，偶尔用bluefish编辑HTML文件。我的在线帖子现在也完全在WordPress上发表了。我们都必须有点开明和灵活。</p>
+<p class="translated">为了在我所有基于Linux的机器上快速编辑文本，vi是我的首选应用。对我有用的旧程序可能就是对你有用的新程序。投身其中，成为Unix/Linux传统的一部分。</p>
+<p class="translated">寻找未来的Linux教程，深入研究如何使用<strong> vi </strong>文本编辑器。</p>
+<p class="translated"><em>在<a href="mailto:doc@drtorq.com">doc@drtorq.com</a>或407-718-3274联系<a href="/author/rob-reilly/" target="_blank"> Rob "drtorq" Reilly </a>咨询、演讲约定和委托项目。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

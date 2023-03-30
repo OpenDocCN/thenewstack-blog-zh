@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Avoid Burning the Christmas Turkey with Thermocouples</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:避免用热电偶烧圣诞火鸡</h1>
+<blockquote>原文：<a href="https://thenewstack.io/avoid-burning-christmas-turkey-thermocouples/#0001-01-01">https://thenewstack.io/avoid-burning-christmas-turkey-thermocouples/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">用微控制器读取华氏500度甚至更高的温度有多有趣？这是<a href="http://www.thermocoupleinfo.com/" class="ext-link" rel="external ">热电偶传感器</a>的工作。</p>
+<p class="translated">热电偶、热电偶放大器和其他零件已于本周一抵达。很快，我发现厨房里那个52年前的烤箱差了一大截。我妻子总是说华氏25度偏高。</p>
+<p class="translated">今天，我们将开始研究使用这些传感器来捕捉我们的PancakeBot上的实时<a href="https://thenewstack.io/hack-pancake-stack-whats-inside-pancakebot/" class="local-link"> PancakeBot </a>温度，这在上周的<a href="https://thenewstack.io/hack-pancake-stack-whats-inside-pancakebot/" class="local-link">现成黑客</a>中有所涉及。我认为分析温度数据，就像PancakeBot打印出煎饼一样，可能会导致有趣的操作行为模式。一致的煎饼生产需要了解机器的物理特性。微控制器、传感器、软件和数据采集非常适合这类工作。</p>
+<h2 class="translated">热电偶里有什么？</h2>
+<p class="translated">一个<a href="https://en.wikipedia.org/wiki/Thermocouple" class="ext-link" rel="external ">热电偶</a>由两根不同的金属线组成，在商业端熔合在一起。保险丝产生一个非常小的电压，该电压被放大，然后被处理成数字信号，然后被发送到你的计算堆栈。我使用Arduino Duemilanove控制器从放大器读取数字信号，然后通过USB电缆将数据转发到我的Linux笔记本电脑。</p>
+<p class="translated">大约有半打不同种类的热电偶，K型是最常见的。我使用了Adafruit 的标准玻璃编织绝缘<a href="https://www.adafruit.com/products/270" class="ext-link" rel="external "> K型热电偶。它记录的温度高达华氏900度。</a></p>
+<p class="translated">热电偶产生的电压很小，需要一个放大器来读取读数。我为这个项目使用了一个<a href="https://www.adafruit.com/products/3263" class="ext-link" rel="external "> MAX31856通用热电偶放大器分线板</a>。这个特殊的放大器板可以读取所有不同类型热电偶的读数，并通过SPI总线输出数据。SPI总线需要4条数据线、电源和接地连接。</p>
+<p class="translated">本<a href="https://learn.adafruit.com/adafruit-max31856-thermocouple-amplifier" class="ext-link" rel="external "> Adafruit教程</a>完整介绍了如何连接热电偶和放大器。</p>
+<p class="translated">放大器板和热电偶在第一次尝试中工作正常，尽管随着探针温度的升高，数据会下降。这是一个致命的泄露，热电偶引线是反的。松开两根导线并调换位置，然后将它们拧回端子板，这样数字就指向了正确的方向。</p>
+<p class="translated">我的想法是在PancakeBot操作过程中使用热电偶来捕捉烤盘的温度。煎锅通过内置于烹饪表面的加热元件使用家用电流。这应该是一个简单的问题，即将热电偶探头连接到煎锅的底部，以直接测量加热元件的温度和变化，因为煎饼是熟的。</p>
+<p class="translated">事实证明，正确安装热电偶是一件棘手的事情。这份<a href="http://www.flir.eu/science/blog/details/?ID=75018" class="ext-link" rel="external ">“了解使用热电偶测量表面温度的挑战”白皮书</a>非常详细地解释了这一点。基本上，它说永久安装的热电偶，相对于临时安装的热电偶(比如用电工胶带)，应该是相当准确和可靠的。我们当然希望对我们的PancakeBot温度做出可靠、准确和快速的响应。</p>
+<p class="translated">我的计划是用某种支架将热电偶端机械连接到烤盘底部。随着传感器的工作，随着项目的进展，我会找出安装细节。</p>
+<h2 class="translated">烤箱测试:“总是煮过头”</h2>
+<p class="translated">在厨房使用烤箱为热电偶提供了一个易于使用的测试设置。</p>
+<p class="translated">数据从放大器流向Arduino，然后流向Linux笔记本电脑。我编译并上传了MAX31856示例代码，它包含在MAX31856库中。试验板用于将放大器连接到Arduino。</p>
+<p class="translated">我把笔记本电脑、试验板、Arduino和热电偶/放大器板放在厨房柜台上，靠近烤箱。</p>
+<p class="translated">为了获取读数，我简单地展开热电偶丝，将尖端放入烘箱内，同时关门保持其位置。门内侧周围的柔性编织玻璃纤维密封为电线提供了一个柔和的通道，因此几乎没有损坏的风险。</p>
+<p class="translated">一旦Arduino被接入，使用快速而肮脏的“Linux命令行方法上的猫”很容易捕获数据:<br/></p>
+<div id="crayon-642311cb4e94e868903276" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">rob</span>%<span class="crayon-h">  </span><span class="crayon-i">cat</span><span class="crayon-h"> </span>/<span class="crayon-i">dev</span>/<span class="crayon-i">ttyUSB0</span><span class="crayon-h"> </span><span class="crayon-sy">&amp;gt;</span><span class="crayon-h"> </span><span class="crayon-i">temp</span><span class="crayon-st">.</span><span class="crayon-v">txt</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>在短暂的采集期后，检查终端窗口中的数据，烤箱刻度盘温度设置为300 F。</p>
+<div id="attachment_1718602" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1718602" decoding="async" loading="lazy" class="size-full wp-image-1718602" src="../Images/6e32581e15f75b166c051e7619295bac.png" alt="&quot;cat&quot; Oven Data" data-original-src="https://thenewstack.io/wp-content/uploads/2016/12/9f1523f3-cat-oven-data.png"/><p id="caption-attachment-1718602" class="wp-caption-text translated">“卡特彼勒”烤箱数据</p></div>
+<p class="translated">我还从200到500，每隔50次读取数据。在删除每一行开头的文本并进行汇总后，我将数据插入LibreOffice Calc电子表格并生成了以下图表。蓝线是刻度盘设置，红线是热电偶测得的温度。哇，温度在低端很高，在高端又略低。</p>
+<p class="translated">谁知道呢？</p>
+<div id="attachment_1718604" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1718604" decoding="async" loading="lazy" class="size-large wp-image-1718604" src="../Images/97e4f3dce5ec6cfd6d383a8cf9b3aac0.png" alt="Oven Temperature Plot" data-original-src="https://thenewstack.io/wp-content/uploads/2016/12/5eb7e384-oven-temp-plot-1024x639.png"/><p id="caption-attachment-1718604" class="wp-caption-text translated">烘箱温度图</p></div>
+<p class="translated">这张图表清楚地解释了我在过去20年中遇到的一些厨房灾难。</p>
+<h2 class="translated">下一步是什么</h2>
+<p class="translated">现在，您已经了解了热电偶及其相关放大器。我们还观察了来自传感器的真实数据。</p>
+<p class="translated">在接下来的专栏中，我将介绍MLX90614 Melexis非接触式红外传感器。你认为热电偶和放大器很有趣？这个东西通过设备前面的一个小窗口读取温度，不需要与表面有任何物理接触。</p>
+<p class="translated">我们将把所有这些传感器集成到我们的PancakeBot遥测和R&amp;D工作中。</p>
+<p class="translated">敬请期待，圣诞快乐。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

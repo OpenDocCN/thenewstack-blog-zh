@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: What it Takes to Lift a Robotic Arm</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:抬起机械臂需要什么</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-what-it-takes-to-lift-a-robotic-arm/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-what-it-takes-to-lift-a-robotic-arm/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">上周，我们开始谈论自动化和机器人。</p>
+<p class="translated">我们还启动了一个快速项目，为一个简单的机构添加运动，用一个电动马达、一个马达驱动器和一个Arduino来回移动手臂。我们看了部分和一般项目布局，现在我们将通过构建和基本代码，使物理行为发生。下周，我们将深入探讨控制，如启动按钮，限位开关和紧急停止。我们将总结关于增强和为可能的2.0版本添加功能的想法。</p>
+<p class="translated">在我们开始讨论机械和代码之前，我需要解决我用6伏电机和塑料变速箱的错误转向。</p>
+<p class="translated">从一张白纸开始，快速原型化一个新的或未经测试的想法，是一场赌博。你不可能知道你不知道的东西，直到你建立了一个东西，测试它并分析结果。你所能做的最好的事情就是利用你自己丰富的知识和工程经验来做出你最好的初始决策，然后进行构建和测试。术语“快速失效”当然适用于构建任何种类的物理设备。我倾向于抓取零件，模拟物理机制，然后将开关拨到“开”的位置，看看会发生什么。偶尔，我会出错，但它并不像预想的那样工作。我想到了另一个贴切的术语，“迭代”。</p>
+<p class="translated">从上周的故事开始，情况就是如此。以下是事情的经过，以及我是如何回到正轨的。</p>
+<h2 class="translated">6伏电机故障</h2>
+<p class="translated">读者会注意到，最初的零件清单显示了一个6伏电机与双轴塑料变速箱。我决定用一种更快、更省时的方法来完成这项工作，那就是从一个旧的两轮MakeBot机器人框架中取出一个6伏的车轮电机(单轴)。他们有一个直径2英寸的塑料齿轮，带有一个紧密配合的橡胶圈，充当轮胎。</p>
+<p class="translated">使用单侧电机可以很容易地装配一对安装支架，将臂枢轴安装在安装面上方约1-1/2英寸处。然后将电机轴的中心与臂枢轴点对齐，并制作L形支架以将电机保持在正确的高度。</p>
+<p class="translated">随着电机与臂枢轴正确对齐，想法是用一个销键接到塑料轮的一个孔中来驱动臂。看看这张照片。</p>
+<div id="attachment_1449612" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1449612" decoding="async" loading="lazy" class="size-large wp-image-1449612" src="../Images/236550bc8a4a592f93daeb45c23ccabb.png" alt="6-Volt-Motor/Plastic Gearbox" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/6-volt-motor-1024x576.png"/><p id="caption-attachment-1449612" class="wp-caption-text translated">6伏电机/塑料变速箱</p></div>
+<p class="translated">在将6伏电机/变速箱安装到蒸汽朋克演示机的摄像头臂上并在Arduino上运行代码后，很明显，这个小型电机无法胜任抬起摄像头臂的任务。它太小了。将马达输入电压增加到12伏特，减少机械装置的束缚，改变脉冲宽度和计时码，都是徒劳的。我本可以花时间，预先测量马达扭矩，计算控制手臂所需的能量，或者从一个大喇叭马达开始。但是，我没有。</p>
+<p class="translated">有时候事情就是这样。设计，构建，然后快速失败并调整你的方法。</p>
+<h2 class="translated">金属变速箱重新布线</h2>
+<p class="translated">幸运的是，我有一个更强大的电机和变速箱来补救这种情况。不久前，为了另一个项目，我花了大约13美元从Skycraft Electronics购买了这个马达。</p>
+<div id="attachment_1449630" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1449630" decoding="async" loading="lazy" class="size-large wp-image-1449630" src="../Images/033ecf415935723f9ae923c4b288d11b.png" alt="Big Motor With The Metal Gearbox" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/big-motor-metal-gearbox-1024x645.png"/><p id="caption-attachment-1449630" class="wp-caption-text translated">带金属变速箱的大电机</p></div>
+<p class="translated">在变速箱输出轴处，给电机电源端子提供6伏电压给了我大约14转/分钟。这相当于每分钟旋转5040度。或者说，每秒84度。在它目前的配置中，我们有大约170度的弧度，我们可以在与机器后部的木制底座或树莓皮碰撞之前摆动手臂。根据我们的代码，有了每秒84度这个数字，我们就可以根据我们运行马达的时间，粗略地计算出手臂会摆动多远。我的示例代码使电机向前运行1000毫秒，向后运行相同的时间。该臂在其行程包线的中间行进了大约90度的弧。</p>
+<p class="translated">事实证明，最大的挑战是为轴装配一个致动器臂。轴的端部是D形横截面。最后，我将一块1/8英寸×3/4英寸的铝型材弯曲成L形，并在短边上钻了几个孔，用钢带将它夹在电机轴的扁平部分。理想情况下，你会使用某种<a href="https://en.wikipedia.org/wiki/Broaching_(metalworking)" class="ext-link" rel="external ">拉成的</a> D形适配器来连接到连接到相机臂的杠杆上。我没有任何适配器，所以我只是“快速原型化”了L-bracket并继续工作。用钻床、老虎钳和BFH(大锤子)制作杠杆花了大约半个小时。</p>
+<div id="attachment_1449613" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1449613" decoding="async" loading="lazy" class="size-large wp-image-1449613" src="../Images/786915d7c48914383781f1dabba125bc.png" alt="Close-up of Motor Lever" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/closeup-motor-lever-1024x608.png"/><p id="caption-attachment-1449613" class="wp-caption-text translated">电机杆特写</p></div>
+<p class="translated">我还制作了几个简单的L型支架，将电机固定在演示机器的底座上。他们用螺栓固定在齿轮箱壳体的底部。齿轮箱轴需要与臂枢轴的中心线对齐，这样就不会有任何束缚。</p>
+<div id="attachment_1449627" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1449627" decoding="async" loading="lazy" class="size-large wp-image-1449627" src="../Images/85037a73f030c5c29ce1d83dc90913e1.png" alt="Big Motor L-Bracket" data-original-src="https://thenewstack.io/wp-content/uploads/2016/09/big-motor-bracket-1024x660.png"/><p id="caption-attachment-1449627" class="wp-caption-text translated">大电机L形支架</p></div>
+<h2 class="translated">让我们看看代码</h2>
+<p class="translated">关于Radio Shack双通道电机驱动器(型号2730851)的信息在网上有点难找到。幸运的是，<a href="https://github.com/RadioShackCorp/2730851-Dual-Channel-Motor-Driver" class="ext-link" rel="external "> GitHub有样图</a>和规格表。我只是拉进来，根据我的需要修改了草图。因为只需要一个通道，所以另一个通道被注释掉了。<br/></p>
+<div id="crayon-6423117cf0873231643124" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-c">//********************************************************************************</span>
+<span class="crayon-c">// * File Name          : DC_motor_driver</span>
+<span class="crayon-c">// * Author             : Radio Shack Corporation</span>
+<span class="crayon-c">// * Version            : V1.0</span>
+<span class="crayon-c">// * Date               : 2014/01/27</span>
+<span class="crayon-c">// * Description        : Control direction and speed of a motor </span>
+<span class="crayon-c">// *                      using pulse width modulation (PWM)</span>
+<span class="crayon-c">// ********************************************************************************</span>
+<span class="crayon-c">//    This program is free software: you can redistribute it and/or modify</span>
+<span class="crayon-c">//    it under the terms of the GNU General Public License as published by</span>
+<span class="crayon-c">//    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="crayon-c">//    (at your option) any later version.</span>
+<span class="crayon-c">//</span>
+<span class="crayon-c">//    This program is distributed in the hope that it will be useful,</span>
+<span class="crayon-c">//    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="crayon-c">//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="crayon-c">//    GNU General Public License for more details.</span>
+<span class="crayon-c">//</span>
+<span class="crayon-c">//    You should have received a copy of the GNU General Public License</span>
+<span class="crayon-c">//    along with this program.  If not, see .</span>
+<span class="crayon-c">// ********************************************************************************</span>
+<span class="crayon-e">int </span><span class="crayon-i">CH1A</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">5</span>;<span class="crayon-h">     </span><span class="crayon-c">// CH1A, CH1B, CH2A, and CH2B </span>
+<span class="crayon-e">int </span><span class="crayon-i">CH1B</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">6</span>;<span class="crayon-h">     </span><span class="crayon-c">// must be one of 3, 5, 6, 9, 10, or 11 for PWM</span>
+<span class="crayon-c">// int CH2A =5;    // Set digital ~5, ~6, ~10, and ~11 for default pins.</span>
+<span class="crayon-c">// int CH2B =12;</span>
+ 
+<span class="crayon-c">// *********************************************************************************</span>
+<span class="crayon-c">// * Function:  Control Motor A</span>
+<span class="crayon-c">// * Input:     speed (PWM duty, range = 0-255)</span>
+<span class="crayon-c">// *********************************************************************************</span>
+<span class="crayon-e">void </span><span class="crayon-e">motorA_forward</span>(<span class="crayon-e">int </span><span class="crayon-i">sp</span>)
+{
+<span class="crayon-h">  </span><span class="crayon-e">analogWrite</span>(<span class="crayon-i">CH1A</span>,<span class="crayon-i">sp</span>);<span class="crayon-h"> </span>
+<span class="crayon-h">  </span><span class="crayon-e">analogWrite</span>(<span class="crayon-i">CH1B</span>,<span class="crayon-cn">0</span>);
+}
+<span class="crayon-e">void </span><span class="crayon-e">motorA_backward</span>(<span class="crayon-e">int </span><span class="crayon-i">sp</span>)
+{
+<span class="crayon-h">  </span><span class="crayon-e">analogWrite</span>(<span class="crayon-i">CH1A</span>,<span class="crayon-cn">0</span>);
+<span class="crayon-h">  </span><span class="crayon-e">analogWrite</span>(<span class="crayon-i">CH1B</span>,<span class="crayon-i">sp</span>);
+}
+ 
+<span class="crayon-c">// *********************************************************************************</span>
+<span class="crayon-c">// * Function:  Control Motor B</span>
+<span class="crayon-c">// * Input:     speed (PWM duty, range = 0-255)</span>
+<span class="crayon-c">// *********************************************************************************</span>
+<span class="crayon-e">void </span><span class="crayon-e">motorB_forward</span>(<span class="crayon-e">int </span><span class="crayon-i">sp</span>)
+{
+<span class="crayon-h">  </span><span class="crayon-c">// analogWrite(CH2A,sp);</span>
+<span class="crayon-h">  </span><span class="crayon-c">// analogWrite(CH2B,0);</span>
+}
+<span class="crayon-e">void </span><span class="crayon-e">motorB_backward</span>(<span class="crayon-e">int </span><span class="crayon-i">sp</span>)
+{
+<span class="crayon-h">  </span><span class="crayon-c">// analogWrite(CH2A,0);</span>
+<span class="crayon-h">  </span><span class="crayon-c">// analogWrite(CH2B,sp);</span>
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>()
+{
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">CH1A</span>,<span class="crayon-h"> </span><span class="crayon-i">OUTPUT</span>);<span class="crayon-h">   </span><span class="crayon-c">// Initialize pin for output</span>
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">CH1B</span>,<span class="crayon-h"> </span><span class="crayon-i">OUTPUT</span>);
+<span class="crayon-h">  </span><span class="crayon-c">// pinMode(CH2A, OUTPUT);</span>
+<span class="crayon-h">  </span><span class="crayon-c">// pinMode(CH2B, OUTPUT);</span>
+ 
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>(<span class="crayon-cn">9600</span>);
+<span class="crayon-h">  </span><span class="crayon-e">while</span><span class="crayon-h"> </span>(!<span class="crayon-i">Serial</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span>;<span class="crayon-h"> </span><span class="crayon-c">// wait for serial port to connect. Needed for native USB port only</span>
+<span class="crayon-h">  </span>}
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">loop</span>()
+{
+<span class="crayon-h"> </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"motor backward"</span>);
+<span class="crayon-h"> </span><span class="crayon-e">motorA_backward</span>(<span class="crayon-cn">250</span>);
+<span class="crayon-h"> </span><span class="crayon-e">delay</span>(<span class="crayon-cn">1000</span>);
+<span class="crayon-h"> </span><span class="crayon-c">// slow motor before reverse</span>
+<span class="crayon-h"> </span><span class="crayon-e">motorA_backward</span>(<span class="crayon-cn">10</span>);
+<span class="crayon-h"> </span><span class="crayon-e">delay</span>(<span class="crayon-cn">100</span>);
+<span class="crayon-h"> </span>
+<span class="crayon-h"> </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"motor forward"</span>);
+<span class="crayon-h"> </span><span class="crayon-e">motorA_forward</span>(<span class="crayon-cn">250</span>);
+<span class="crayon-h"> </span><span class="crayon-e">delay</span>(<span class="crayon-cn">1000</span>);
+<span class="crayon-h"> </span><span class="crayon-c">// slow motor before reverse</span>
+<span class="crayon-h"> </span><span class="crayon-e">motorA_forward</span>(<span class="crayon-cn">10</span>);
+<span class="crayon-h"> </span><span class="crayon-e">delay</span>(<span class="crayon-cn">100</span>);
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>正如您在代码中看到的，我使用了数字引脚5和6，它们具有脉冲宽度调制(PWM)功能。motorA_forward和motorA_backward这两个函数实际上包含了analog_Write()函数，并且是从主程序循环中调用的。给这些函数一个从0到255的参数来指定PWM的占空比。然后，告诉程序运行电机(使用delay()函数)一定的毫秒数，以将机械臂移动到所需的角度。</p>
+<p class="translated">你会注意到马达不会每秒钟突然反转方向。相反，它会在反转前100毫秒降低速度。在改变方向之前，通常的做法是增加或降低速度，以最小化手臂关节和机构上的峰值负载。逐渐加速/减速是电机驱动项目中平稳、可控负载和可靠运行的关键。</p>
+<h2 class="translated">走向</h2>
+<p class="translated">在这个版本中，也没有任何定位反馈。我们只需让马达朝一个方向或另一个方向运转一段时间。没有初始位置验证或臂位置的连续监控。甚至没有任何限位开关来阻止手臂触及其行程的物理末端。</p>
+<p class="translated">这一切都没问题，因为我的意图是解释使用电机、电机驱动器和Arduino来控制一个简单的旋转臂的基础知识。</p>
+<p class="translated">下周，我们还将学习使用一些输入控件来启动运动序列，并讨论限位开关、定位反馈和紧急停止按钮。增强功能和可能的新功能也将提上日程。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

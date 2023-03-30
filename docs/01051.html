@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Off-The-Shelf-Hacker: Button Pressing with the Processing Language</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:用处理语言按下按钮</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-button-pressing-processing/#0001-01-01">https://thenewstack.io/off-shelf-hacker-button-pressing-processing/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在<a href="https://thenewstack.io/off-shelf-hacker-push-button-slides-pi/" class="local-link">“现成黑客:运行Raspberry Pi的幻灯片”文章</a>中，几周前，我谈到了使用Python脚本的按钮来改变我的Raspberry Pi驱动的“会议演示和操作设备”上的幻灯片</p>
+<p class="translated">今天，我们将看看如何使用输入按钮来改变屏幕上一个方框的颜色，这次是用<a href="https://en.wikipedia.org/wiki/Processing_(programming_language)" target="_blank" rel="noopener noreferrer external " class="ext-link">处理语言</a>。应用可能包括将开关连接到机器上和构建工业过程仪表板。或者，一个你可以从安乐椅上观看的带有门开关输入的家庭安全系统怎么样？Pi和处理提供了许多有趣的可能性。</p>
+<p class="translated"><a href="http://www.processing.org" target="_blank" rel="noopener noreferrer external " class="ext-link">处理</a>语言是为那些想要在没有陡峭的学习曲线或大麻烦的情况下完成视觉项目的艺术家和创意人员准备的。该代码与您在编写Arduino时编写的代码相同。可以预见，库和特定函数略有不同，而代码是相同的。我认为使用像Processing和Arduino IDE这样的标准工具，作为一个现成的黑客可以很容易地完成工作。</p>
+<h2 class="translated"><strong>获取硬件</strong></h2>
+<p class="translated">硬件包括一个Raspberry Pi 2，上次的40针连接器和电缆，以及我为我的Fossetcon演讲制作的“点击器”。当然，您还需要一个大屏幕显示器、键盘/鼠标垫和网络连接，因为该示例将在Raspbian Linux桌面上运行。</p>
+<div id="attachment_861719" class="wp-caption aligncenter"><a href="https://thenewstack.io/wp-content/uploads/2015/12/wired-clicker.png" class="local-link"><img aria-describedby="caption-attachment-861719" decoding="async" loading="lazy" class="size-full wp-image-861719" src="../Images/bd431af09484e2099375ed44dc3a47a6.png" alt="Graphic #1 - Steampunk &quot;clicker&quot;" data-original-src="https://thenewstack.io/wp-content/uploads/2015/12/wired-clicker.png"/></a><p id="caption-attachment-861719" class="wp-caption-text translated">图形1–蒸汽朋克“点击器”</p></div>
+<p class="translated">图1显示了点击器的细节。我从当地一家历史悠久的剩余电子产品商店<a href="http://www.skycraftsurplus.com/" class="ext-link" rel="external "> Skycraft </a>购买了几个工业外观的按钮组件。每件付一美元。</p>
+<p class="translated">我用现有的螺丝孔，将按钮固定在一个旧的黄铜色门撞板上，那是在我的“垃圾箱”里。当你有一个库存充足的垃圾箱时，你可以节省很多时间，并利用大量的创意许可，设计蒸汽朋克主题的小工具。</p>
+<p class="translated">几个#6-32 x 1/2”机器螺钉和螺母将一根扁平的4英寸长、直径为1”的铜管固定到门撞针/按钮板上，并用作把手。一根10英尺长的CAT 5电缆穿过手柄，并使用两对导线将按钮连接到40针Pi连接器。</p>
+<p class="translated">我喜欢尽可能地深入硬件细节，因为我认为这对新手来说很重要，不仅要了解物理计算的软件和计算机方面，还要了解机械和电子方面。</p>
+<h2 class="translated"><strong>用点击器改变盒子颜色</strong></h2>
+<p class="translated">像大多数其他物理计算程序一样，我们想读取一些输入，也许做一些计算并设置一些输出。</p>
+<p class="translated">在这种情况下，我们将有一个循环，它不断地读取两个点击按钮的状态，当它检测到一个按压时，改变屏幕上一个正方形的颜色。</p>
+<p class="translated">参考最近的<a href="https://thenewstack.io/off-shelf-hacker-expand-projects-processing-sketchbook/" class="local-link">“现成的黑客:用一个处理速写本丰富你的项目”</a>来获得在你的Raspberry Pi上安装处理的帮助。你会想要下载Linux ARMv6hf (Raspberry Pi)版本，而不是我在Linux笔记本上使用的Linux 64位(Intel architecture)版本。两个平台上的安装过程是相同的。</p>
+<p class="translated">出于某种原因，我仍然不得不使用sudo运行处理集成开发环境(IDE)。Processing 3应该允许您访问GPIO引脚，而无需考虑权限问题，所以我必须调查它为什么不能正常工作。</p>
+<p class="translated">切换到Processing 3目录并执行应用程序。<br/></p>
+<div id="crayon-642311d7e9674985298880" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h">&lt;</span><span class="crayon-i">em</span><span class="crayon-h">&gt;</span><span class="crayon-i">pi</span>%<span class="crayon-h"> </span><span class="crayon-e">cd </span><span class="crayon-i">processing3</span><span class="crayon-h"> </span><span class="crayon-h">&lt;</span>/<span class="crayon-i">em</span><span class="crayon-h">&gt;</span><span class="crayon-h"> </span>
+<span class="crayon-h">&lt;</span><span class="crayon-i">em</span><span class="crayon-h">&gt;</span><span class="crayon-i">pi</span>%<span class="crayon-h"> </span><span class="crayon-i">sudo</span><span class="crayon-h"> </span>./<span class="crayon-i">processing</span><span class="crayon-h"> </span><span class="crayon-h">&lt;</span>/<span class="crayon-i">em</span><span class="crayon-h">&gt;</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>下面是我用“点击器”检测按钮按压的代码。<br/></p>
+<div id="crayon-642311d7e9679762862979" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">import </span><span class="crayon-i">processing</span><span class="crayon-st">.</span><span class="crayon-i">io</span>.*;
+<span class="crayon-h"> </span>
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">pinMode</span>(<span class="crayon-cn">20</span>,<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">INPUT</span>);
+<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">pinMode</span>(<span class="crayon-cn">21</span>,<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">INPUT</span>);<span class="crayon-h"> </span>
+ 
+<span class="crayon-h"> </span><span class="crayon-c">// On the Raspberry Pi, GPIO 4 is pin 7 on the pin header,</span>
+<span class="crayon-h"> </span><span class="crayon-c">// located on the fourth row, above one of the ground pins</span>
+<span class="crayon-h"> </span><span class="crayon-c">// For this particular board one could also write:</span>
+<span class="crayon-h"> </span><span class="crayon-c">// GPIO.pinMode(RPI.PIN7, GPIO.INPUT);</span>
+ 
+<span class="crayon-h"> </span><span class="crayon-c">// frameRate(0.1);</span>
+<span class="crayon-h"> </span>}<span class="crayon-h"> </span>
+ 
+<span class="crayon-e">void </span><span class="crayon-e">draw</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h"> </span><span class="crayon-c">// sense the input pin</span>
+<span class="crayon-h"> </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">digitalRead</span>(<span class="crayon-cn">21</span>)<span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">HIGH</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h"> </span><span class="crayon-c">//println("right button pressed");</span>
+<span class="crayon-h"> </span><span class="crayon-e">fill</span>(<span class="crayon-cn">100</span>);
+<span class="crayon-h"> </span><span class="crayon-c">// delay(200);</span>
+<span class="crayon-h"> </span>}
+<span class="crayon-h"> </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">digitalRead</span>(<span class="crayon-cn">20</span>)<span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">HIGH</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h"> </span><span class="crayon-c">// println("left button pressed");</span>
+<span class="crayon-h"> </span><span class="crayon-e">fill</span>(<span class="crayon-cn">0</span>);
+<span class="crayon-h"> </span><span class="crayon-c">// delay(200);</span>
+<span class="crayon-h"> </span>}
+ 
+<span class="crayon-h"> </span><span class="crayon-e">rect</span>(<span class="crayon-cn">30</span>,<span class="crayon-h"> </span><span class="crayon-cn">20</span>,<span class="crayon-h"> </span><span class="crayon-cn">55</span>,<span class="crayon-h"> </span><span class="crayon-cn">55</span>);
+<span class="crayon-h"> </span><span class="crayon-e">fill</span>(<span class="crayon-cn">200</span>);
+</pre>
+</div>
+</div>
+
+<p class="translated">这个程序并不复杂。基本上，GPIO引脚被初始化，然后一对if语句检查引脚何时变为高电平(按下)。我注释掉了print和delay语句，因为它们主要用于故障排除。</p>
+<p class="translated">点击play按钮(编辑器左上角的箭头)运行应用程序，过一会儿，屏幕上会出现一个带方框的新窗口。按下每个按钮，盒子的颜色应该会改变。</p>
+<p class="translated">反应非常好，没有滞后或问题。网上有人说Pi上的处理3又慢又笨拙。我发现这个程序足够快，可以在你按下按钮时检测到开关的弹跳。取消对println语句的注释将为您提供三或四行文本。取消对delay()语句的注释，并可能将其增加到250 ms以消除重复行。</p>
+<p class="translated">此外，不要忘记Processing有一个庞大的用户社区，他们已经生成了一些非常棒的库。特别是ControlP5 ，它有一组丰富的屏幕标尺、按钮、滑块等等，非常适合构建跟踪输入的桌面仪表盘。</p>
+<p class="translated">您可能还想研究如何从命令行运行草图。看看这篇<a href="https://learn.adafruit.com/downloads/pdf/processing-on-the-raspberry-pi-and-pitft.pdf" class="ext-link" rel="external "> Adafruit文章</a>。看一下第9页。</p>
+<h2 class="small translated"><strong>总结</strong></h2>
+<p class="translated">用Raspberry Pi检测开/关输入非常简单。我们已经看到了如何在Python和处理中完成这项工作。您的项目可能会使用按钮、磁簧开关、光学传感器或其他开/关传感器。能够在屏幕上显示一个变化使您能够构建桌面仪表板。看看Processing.org的网站，了解更多的想法。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

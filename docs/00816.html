@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Red Hat Ansible Aims to Simplify Automation with Tower 3</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Red Hat Ansible旨在通过Tower 3简化自动化</h1>
+<blockquote>原文：<a href="https://thenewstack.io/red-hat-ansible-aims-simplify-automation-tower-3/#0001-01-01">https://thenewstack.io/red-hat-ansible-aims-simplify-automation-tower-3/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着几层流程被视为数据中心基础设施的一部分，任何推广“数据中心自动化新方法”的公司都可能迎合DevOps社区、数据中心经理或首席信息官。周三，<a href="https://www.openshift.com/" class="ext-link" rel="external "> Red Hat </a>宣布了对其<a href="https://www.ansible.com/tower" class="ext-link" rel="external "> Ansible Tower </a>自动化包的更新——如果你马上想到，让我们通知DevOps团队，请稍等。那不是红帽这次瞄准的观众。</p>
+<p class="translated">正如<a href="https://twitter.com/tjcramer" class="ext-link" rel="external ">红帽子的Ansible工程高级总监Tim Cramer </a>告诉新的堆栈，Ansible Tower版本3是面向桥另一边的所有IT经理和高管的一个游戏，这些IT经理和高管来自Ansible Core的典型DevOps用户。</p>
+<p class="translated">“我们通常认为Ansible Core是一种非常自下而上的使用方式，”Cramer说。“我们有很多人在网上找到它；这让他们的工作变得更容易，当他们开始这样做的时候，它在一个组织中火了起来。Tower在销售上似乎更倾向于自上而下，更多的是经理们开始对Ansible在他们的组织中的使用进行控制。”</p>
+<h2 class="translated">我们已经改造了</h2>
+<p class="translated">为了吸引这些管理人群，Ansible Tower被打包成一种应用程序。对于版本3，前端已经针对新的使用模式进行了彻底的重新设计，增加了仪表盘和数据汇总，这已经使实时分析市场受到经理和高管的欢迎。</p>
+<p class="translated">“我们重写了我们的后端，并且[<em>在前端增加了</em>一个新的可视化，”克莱姆说。“过去很难弄清楚，尤其是对于第一次使用的用户来说，他们实际上如何访问剧本并运行它。因此，他们必须能够访问作业模板和库存，您必须拥有这些不同的可用权限，并且您必须弄清楚如何授予他们这些权限—这非常令人困惑。如果你成功了，那当然很好，但你必须到达那里。”</p>
+<p class="translated">Cramer告诉我们，随着新的可视化方案的出现，旧的“向导”式的类别遍历方案已经被一个双窗格布局所取代，他承认这在一定程度上是受亚马逊AWS成功的启发。类别列在左边的一列中，详细信息显示在右边的一组可滚动页面中。图形已经被简化和流线化，如顶部的例子。他说，对于那些只想从Ansible命令中获取<strong> stdout </strong>值的操作人员来说，这也应该会让他们的生活变得更加轻松。</p>
+<p class="translated">与Slack的新一轮集成使运营团队成员、他们的经理和Ansible平台能够有效地合作，在一组新正式的<em>通知</em>发生时做出响应，如右图所示。</p>
+<p class="translated">Cramer解释说:“在一项工作成功或不成功完成时，你可以通过电子邮件、HipChat、Slack、IRC或一般的web挂钩获得通知。所以你可以把它挂在BMC[<em>服务台</em>或ServiceNow上，这样就可以启动流程中的下一个项目。”</p>
+<p class="translated">例如，他继续说道，假设一个开发人员执行了启动一轮自动化测试的代码。当这些测试结果为阳性时，Tower 3可以生成一条消息，然后由ServiceNow使用。这样，当测试完成时，可以通知生产操作人员，这样她就可以将代码推向生产。</p>
+<h2 class="translated">你可以看看这个</h2>
+<p class="translated">最近几个月，Red Hat一直在通过一个涉及专业服装零售商J. Crew的用例，向客户的高管推广Ansible Tower。在最近的几次红帽活动中，包括最近的红帽峰会和之前的AnsibleFest，红帽认为Tower生成的报告可以被运营部门以外的人理解。</p>
+<p class="translated"><a href="http://eventsblog.redhat.com/2016/06/28/lessons-using-ansible-at-j-crew/" class="ext-link" rel="external ">最近的一篇公司博客文章</a>总结了这部分用例，其中一部分写道:“在Red Hat实现Ansible Tower的过程中，[ <em> J. Crew </em> ]发现该工具生成了很棒的报告。他们为经理、QA团队等创建报告。通过这些报告，他们能够自动化日常工作，摆脱无意义的工作。毕竟，如果你雇佣了聪明人，你希望他们解决问题，而不是整天担心复印文件之类的事情。”</p>
+<p class="translated">但不是无意的，Red Hat的Colby Hoke立即在那句话后提到了<strong> tower-cli，一个</strong>命令行界面。默认情况下，您可能会认为任何基于命令行的工具都只是为DevOps专业人员定制的。但Hoke指出，CLI工具使Ansible能够与组织的现有配置管理和自动化框架集成，包括Jenkins。</p>
+<p class="translated">对于首席信息官来说，这一信息可能与报告可以大声朗读的消息一样有趣。</p>
+<p class="translated">Ansible的首席工程师解释说:“对于Chef来说，你真的需要能够编程——你必须是一名Ruby开发人员，才能真正让产品实现你所要求的自动化。“有了Ansible，你就不用了。这是一种特定于领域的语言，<a href="http://yaml.org/" class="ext-link" rel="external "> YAML </a>，它的设计使得编写shell脚本的人可以很容易地掌握它。人们将抓住Ansible，并在几个小时内开始自动化事情。”</p>
+<p class="translated">他还告诉我们，对于Tower 3，“我们现在有能力实现物理网络的自动化。”他指的是直接处理网络交换机和其他设备的能力，包括来自思科、Juniper Networks和Cumulus的部件——这是去年2月添加到Ansible Core 2.1的<a href="https://thenewstack.io/red-hat-ansible-will-handle-networking/" class="local-link">功能。</a></p>
+<p class="translated">现在，凭借解决网络设备过于陈旧而无法包含自己的API的能力，物理网络自动化功能有助于Red Hat支持其支持<em>集成</em>——另一个贴近Tower目标受众核心的观察词。</p>
+<p class="attribution translated">Red Hat是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

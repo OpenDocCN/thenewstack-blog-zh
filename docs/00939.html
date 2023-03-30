@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Paperspace Gradient: A Modern PaaS for Machine Learning</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">纸空间梯度:机器学习的现代PaaS</h1>
+<blockquote>原文：<a href="https://thenewstack.io/paperspace-gradient-a-modern-paas-for-machine-learning/#0001-01-01">https://thenewstack.io/paperspace-gradient-a-modern-paas-for-machine-learning/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">本文是我们探索基于云的机器学习服务系列的一部分。在介绍了<a href="/how-the-azure-ml-streamlines-cloud-based-machine-learning/" target="_blank"> Azure ML Services </a>、<a href="https://thenewstack.io/google-cloud-ml-engine-train-and-deploy-machine-learning-models/" target="_blank" class="local-link"> Google Cloud ML Engine </a>、<a href="https://thenewstack.io/train-deploy-machine-learning-models-with-amazon-sagemaker/" target="_blank" class="local-link"> Amazon SageMaker </a>和<a href="/build-machine-learning-models-with-ibm-watson-studio-cloud/" target="_blank"> IBM Watson Studio Cloud </a>之后，我们将进一步了解Paperspace Gradient。</p>
+<p class="translated">ML和AI的兴起促使云计算行业引入了一个新的平台即服务(PaaS)产品细分市场。新的基于ML的平台从Heroku和Engine Yard等原始PaaS供应商那里获得了一些最佳功能，并将其与机器学习的关键用例及场景相结合。其结果是一个易于使用的、自助式的PaaS，能够运行ML培训作业，并为模型部署提供一个可扩展的托管环境。</p>
+<p class="translated">在传统的PaaS中，开发人员在将代码部署到生产中之前，在本地机器上编写和测试代码。PaaS的输入是打包成zip文件或Docker映像的代码，可以自动进行配置和管理。在将构建过程的每个迭代作为版本化的工件推入PaaS之前，对其进行独立的测试。</p>
+<p class="translated">ML PaaS遵循与传统PaaS环境相同的工作流程。开发人员和数据科学家在本地机器上编写Python或R代码，用较小的数据集进行测试。相同的代码与大型数据集一起被移动到云中，以启动训练作业。这些工作利用了基于高端CPU和GPU的强大基础设施。开发人员通常使用不同的超参数集多次运行训练作业，直到他们确信模型的准确性。完全训练好的冻结模型被部署在相同的PaaS或不同的环境中进行推理。</p>
+<p class="translated"><a href="https://www.paperspace.com/gradient" class="ext-link" rel="external "> Paperspace Gradient </a>是一个当代平台，旨在将传统PaaS的简单性和灵活性引入云中构建机器学习模型。Paperspace还提供了一个名为as Core的产品，可以向喜欢对基础设施进行额外控制的客户公开由NVIDIA GPUs和Google TPUs支持的原始虚拟机。</p>
+<p class="translated">Paperspace Gradient构建在核心之上，作为一个抽象层，隐藏了配置和管理虚拟机所涉及的复杂性。这种PaaS服务依靠Docker和NVIDIA容器来简化ML模型的生命周期管理。</p>
+<p class="translated">让我们探讨一下图纸空间渐变的组成部分。</p>
+<p class="translated">概括来说，Gradient有三个基本要素:工作、笔记本和存储。作业是平台的主力，而笔记本通过提供工具支持充当IDE。作业和笔记本使用存储层来存储和检索数据集、模型和其他相关工件。PaaS的这些组件可以通过门户、CLI或API进行访问。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-6044572" src="../Images/aee2a544781e969775a0c913ead4d55f.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/11/14c82ff1-paperspace-gradient-1024x484.png"/></p>
+<h2 class="translated">乔布斯</h2>
+<p class="translated">简单地说，Paperspace中的作业是一个Docker容器，其中包含shell脚本或Python代码形式的可执行代码。作业被安排在一台或多台由GPU或TPU驱动的机器上。</p>
+<p class="translated">当开发人员使用CLI或门户将代码提交给job runner时，Gradient会提取代码，对其进行压缩，然后创建Docker映像。也可以在提交作业时提及机器类型。如果在诸如Docker Hub之类的注册表中有可用的容器图像，则Gradient可以指向该图像的位置以及提取该图像所需的凭证。对于涉及管道的复杂工作流，用户可以在通过注册中心将Docker图像提交给Gradient之前，在本地构建和测试Docker图像。</p>
+<p class="translated">如果有带源代码的Github repo，Gradient可以在构建Docker映像之前动态克隆它。本地源代码目录、Docker映像和Github存储库的选择为开发人员和DevOps团队提供了灵活性。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-6044639" src="../Images/1bacb1e58f51899936916b48ba9119d9.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/11/22359219-jobs-1024x930.png"/></p>
+<p class="translated">一旦作业被作业运行器启动，门户就可以显示代码发出的指标。以{"chart": " <identifier>，" y": <value>，" x": <value> }格式写入stdout的日志由门户获取以进行可视化。CLI还可以将日志流式传输到本地控制台。</value></value></identifier></p>
+<p class="translated">梯度PaaS最好的特性之一是能够访问容器暴露的IP地址和端口。每个作业都获得一个公共地址以及映射到相关容器的特定端口。这个功能在访问TensorBoard或NVIDIA DIGITS等工具暴露的web UI时非常有帮助。基本的推理可以通过在容器中包含一个简单的Flask或Django应用程序来完成，当一个作业运行时可以访问这个容器。</p>
+<p class="translated">作业可以访问/storage中可用的存储位置，以持久存储经过训练的模型、评估指标或任何其他需要在同一作业的不同迭代中持久存储的工件。</p>
+<h2 class="translated">笔记本电脑</h2>
+<p class="translated">Paperspace Gradient可用于快速启动Jupyter笔记本电脑，无需调配和配置虚拟机。</p>
+<p class="translated">和乔布斯一样，笔记本也是通过Docker容器打包推出的。Paperspace有多个预配置的容器映像，由各种深度学习和机器学习框架以及Jupyter笔记本组成。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter wp-image-6044745 size-full" src="../Images/8243d38a2dc4f78519ed95c9f72295b7.png" alt="" data-original-src="https://cdn.thenewstack.io/media/2018/11/f115057d-notebooks.jpg"/></p>
+<p class="translated">笔记本容器可以在由GPU支持的虚拟机上启动。每个笔记本会话最多可持续12个小时，之后会自动停止。笔记本电脑生成的工件可以永久保存在其他笔记本电脑或作业可用的共享存储中。</p>
+<p class="translated">与自定义作业容器的概念类似，开发人员可以构建自定义笔记本容器并上传到Docker Hub，Gradient可以访问这些容器来实例化自定义笔记本环境。这有助于管理开发人员和数据科学家使用的高度定制的框架配置。</p>
+<h2 class="translated">储存；储备</h2>
+<p class="translated">Gradient包括三种类型的存储，可在运行作业或笔记本容器的上下文中使用。这三种存储类型是持久存储、工件存储和工作空间存储。每种存储类型都有不同的用途，用于ML模型的实验和评估的不同阶段。</p>
+<p class="translated">持久存储由文件系统支持，非常适合存储图像、数据集和模型检查点等数据。它是一个指定的存储位置，您可以在作业过程中读取和写入文件。</p>
+<p class="translated">在CLI和web界面中运行作业后，将收集工件存储并使其可用。笔记本和作业使用这个位置来存储代码生成的任何工件。</p>
+<p class="translated">工作空间存储通常从启动作业的本地目录导入。该目录的内容被压缩并上传到作业实际运行的容器中。它是在作业运行期间存在的临时存储位置。</p>
+<p class="translated">Paperspace将MNIST和可可等流行数据集放在一个只读目录中，该目录安装在<em> /datasets中。</em>所有的作业和笔记本都可以访问存储在这个位置的数据集。</p>
+<p class="translated">Paperspace为现代ML PaaS的设计树立了一个很好的榜样。这一切都将为公共云平台供应商带来激烈的竞争，这些供应商正忙着将自己重新定位为ML开发和部署的首选平台。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

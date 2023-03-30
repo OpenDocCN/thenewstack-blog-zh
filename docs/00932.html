@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: The Art of Soldering</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:焊接艺术</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-the-art-of-soldering/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-the-art-of-soldering/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">很久以前，我为现成的黑客讲述了焊接基础知识。试验板非常适合原型制作和概念验证，同时可以轻松地用短跳线将所有东西连接在一起。如果你使用试验板，很多时候你不需要焊接任何东西。</p>
+<p class="translated">如果你正在设计更“永久”的原型，远离试验板，使用所有焊接连接，会得到一个坚固、可靠、更便携的结构。虽然焊接每个可见的连接很好，但你仍然需要处理许多DIY/Maker电路板上的头部连接。</p>
+<p class="translated">这一次，我将分享我的技术焊接小股实芯电线到男性头引脚。该过程使得将电线插入Arduino接头变得容易。它还适用于仍然需要进入试验板的电线，而不必使用跳线。如果你是焊接新手，这是快速获得宝贵实践的好方法，同时处理小而精确的焊点。</p>
+<p class="translated">对于有经验的现成黑客来说，将小导线焊接到插头引脚似乎是显而易见的。请记住，我们的读者中有很多新手，他们正在努力克服“LED灯”的困难。不时传授一些省力的小技巧是有好处的，这样可以保持高涨的热情，并有助于学习动手的手艺。</p>
+<h2 class="translated">从试验板到引脚</h2>
+<p class="translated">许多现成的黑客项目通过接头将电线连接到印刷电路板。</p>
+<p class="translated">例如，全尺寸的传统Arduino板具有两排0.1英寸(2.54毫米)的母接头，用于连接通用输入/输出、电源和其他接口。连接非常简单，只需将跳线的一端插入接头连接，并将另一端插入试验板上的孔中。</p>
+<p class="translated">您也可以将裸线的一端插入Arduino母接口。有时，如果我不想让这个项目成为一个杂乱无章的跳线鸟巢，我会以这种方式使用裸线。虽然如果你移动任何电路板或电线，它们往往会拔出来。对于需要运输和展示给观众的小玩意来说，这尤其成问题。为了可靠性和易于改装，将电线焊接到一个单独的公引脚或多引脚接头，然后可以插入母Arduino接头是可行的方法。单个公插脚非常适合单线。带有多线连接的成排公插头也非常好用，有助于确保电线处于正确的位置。下面是我如何将一根24号线焊接到一个标准的0.1英寸(2.54毫米)插头上。</p>
+<p class="translated">我通常用右手拿着烙铁，左手拿着焊药卷。</p>
+<div id="attachment_7417522" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-7417522" decoding="async" loading="lazy" class="size-full wp-image-7417522" src="../Images/4d81f86b045bf05a000d0e6c870fd06b.png" alt="" data-id="7417522" data-original-src="https://cdn.thenewstack.io/media/2019/04/98576a8a-helping-hands-pin.png"/><p id="caption-attachment-7417522" class="wp-caption-text translated">帮助手钻机，焊接，烙铁和定位</p></div>
+<h2 class="translated">这项技术</h2>
+<p class="translated">从要焊接到插头插脚的电线上剥去大约1/8英寸的绝缘层。将钢丝夹入<a href="https://www.harborfreight.com/helping-hands-60501.html" target="_blank" rel="noopener noreferrer external " class="ext-link">“第三手”钻机</a>的一侧。对我来说，这是左边。如果你真的想变得漂亮，看看这个<a href="https://www.amazon.com/QuadHands-Helping-Hands-Third-Soldering/dp/B00GIKVP5K/ref=pd_lpo_vtph_469_tr_t_2?_encoding=UTF8&amp;psc=1&amp;refRID=9YQ3Q4P8NS65VVYGEVQ2" target="_blank" rel="noopener noreferrer external " class="ext-link">“四手”装置</a>。使用<a href="https://www.radioshack.com/products/radioshack-25w-soldering-iron" target="_blank" rel="noopener noreferrer external " class="ext-link">小烙铁(25瓦左右)</a>将热烙铁头短暂接触焊丝，同时插入焊料末端。需要稳定的双手和一点点的练习才能将焊料整齐地涂在金属丝的顶端。不要把熨斗放在电线上太久，否则绝缘层会使电线收缩，在末端留下一个很长的空白。你可能需要使用侧刀修剪电线回到我推荐的1/8英寸长的裸露电线湿了焊料。用焊料润湿表面被称为“镀锡”。</p>
+<p class="translated">接下来，将0.1英寸插头夹入第三只手的另一侧，使短边朝向电线。使用同样的“接触烙铁末端和焊接技术”来给接头销的短边上锡。那应该是朝向电线的一边。根据需要，一个0.1英寸的插头销可以从<a href="https://www.banggood.com/10-Pcs-40-Pin-2_54mm-Single-Row-Male-Pin-Header-Strip-For-Arduino-p-918427.html?rmmds=search&amp;cur_warehouse=CN" class="ext-link" rel="external ">大块插头销</a>上折断。我在旧零件箱里备有现成的。</p>
+<div id="attachment_7417525" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-7417525" decoding="async" loading="lazy" class="size-full wp-image-7417525" src="../Images/fc61ed7fb1e352c3b3f28ac0b60d9e79.png" alt="" data-id="7417525" data-original-src="https://cdn.thenewstack.io/media/2019/04/c33c79db-multi-pin-male-header.png"/><p id="caption-attachment-7417525" class="wp-caption-text translated">多针插头</p></div>
+<p class="translated">现在，您可以调整第三只手来定位电线末端和接头销，使它们紧密接触。小心地，将烙铁的尖端带到接头处，轻轻地接触引脚和导线。焊料应该在两者之间流动，并产生光滑的结果。通常只需要轻轻一碰。嗯，手也很稳。通过练习，你甚至不用用另一只手添加任何焊料。</p>
+<p class="translated"><iframe loading="lazy" title="soldering revisited" src="https://www.youtube.com/embed/lkmkQWrjEVY?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">显然，我应该在拍摄视频前少喝一杯咖啡。</p>
+<p class="translated">也可以使用第三只手、烙铁和焊料将多根电线连接到一排插头插脚。我喜欢在最终定位之前剥去所有电线和匹配的插头插脚。在接头的两端连接电线有助于在中间获得正确的长度，特别是在制作电缆时。在先前连接的地方进行焊接有点困难。下图说明了多线/公接头排引脚连接。</p>
+<div id="attachment_7417524" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-7417524" decoding="async" loading="lazy" class="size-full wp-image-7417524" src="../Images/7309df3ff1c61f8435e7c43b01996e92.png" alt="" data-id="7417524" data-original-src="https://cdn.thenewstack.io/media/2019/04/d0c05b6f-multi-wire-pin.png"/><p id="caption-attachment-7417524" class="wp-caption-text translated">多线引脚接头和导线</p></div>
+<h2 class="translated">更进一步</h2>
+<p class="translated">将小导线焊接到接头引脚上可能看起来微不足道。没有坚固的焊点，你的项目就不会可靠和坚固。哦，当然每个人都在转向回流炉和DIY印刷电路板。你猜怎么着？你仍然需要锡的微小组件得到重新流动。</p>
+<p class="translated">在你现成的黑客技能组合中加入电线到头部的技巧，将会确保你的项目在面对观众和有压力的情况下也能发挥作用。在你的项目中使用可插拔的管脚也可以很容易的把东西拆开来进行修改和再利用。</p>
+<p class="translated"><em>赶【Torq博士的 <a href="https://thenewstack.io/tag/off-the-shelf-hacker/" class="local-link">现成黑客专栏</a>，每周六，只上新栈！直接联系他，在<a href="mailto:doc@drtorq.com">doc@drtorq.com</a>或407-718-3274咨询和委托项目。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

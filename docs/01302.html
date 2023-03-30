@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>StorageOS Tackles Container File System Woes</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">StorageOS解决容器文件系统难题</h1>
+<blockquote>原文：<a href="https://thenewstack.io/storageos-tackles-container-file-system-woes/#0001-01-01">https://thenewstack.io/storageos-tackles-container-file-system-woes/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">自十多年前亚马逊推出网络服务和S3以来，存储和云就一直紧密联系在一起。不幸的是，随着云开始从虚拟机转向容器，持久存储的工作变得更加困难。</p>
+<p class="translated">毕竟，容器的全部意义在于，当它们坏掉的时候，你可以把它们扔掉，然后简单地用另一个代替它。而存储则基本相反。当存储实例损坏时，您必须修复它，否则其中的数据将永远损坏。当容器消失时，数据必须保留。</p>
+<p class="translated">这意味着将存储附加到容器，但也意味着在分配文件系统、给予适当的权限以及从长期存储系统复制其数据时需要很长的等待时间。这是按需、短暂计算的对立面。</p>
+<p class="translated">输入<a href="https://storageos.com/" class="ext-link" rel="external "> StorageOS </a>。在一个市场中，上一批新的存储公司都是在7年前被收购的，并且所有这些公司都要求您购买物理机箱，StorageOS有自己的工作要做。</p>
+<p class="translated">StorageOS的联合创始人兼首席技术官<a href="https://www.linkedin.com/in/alexchircop/" class="ext-link" rel="external ">亚历克斯·奇尔科普</a>指出，这是因为该公司的主要关注点是基于容器的持久存储，填补了市场空白。他上辈子还在<a href="http://www.goldmansachs.com/" class="ext-link" rel="external ">高盛</a>负责存储平台工程。他说，现有的用于容器环境存储的产品大多是不彻底的解决方案。</p>
+<p class="translated">StorageOS的联合创始人兼首席执行官克里斯·布兰顿表示，他们的产品是一种“基于容器的存储阵列，完全可移植，与编排无关，与内核无关，在应用层运行，将卷配置到容器，并提供基于策略的规则引擎，用于放置存储在何种类型的存储上。我们负责复制、快照、克隆以及与该存储相关的所有性能。”</p>
+<p class="translated">“我们开始致力于StorageOS的原因之一是，当Chris试图在云环境中构建存储系统时，他发现很难配置解决方案，因为缺乏API集成，而且还因为很难通过应用程序移动数据，”Chircop说。"我们从第一天起就设计了这个API集成来与Docker或Kubernetes一起工作."</p>
+<h2 class="translated">API驱动</h2>
+<p class="translated">据该公司称，这就是StorageOS与其他基于云的文件系统解决方案之间的巨大差异:StorageOS是完全由API驱动的全新设计。对于存储系统来说，这似乎有些奇怪，但云的其余部分是由API配置和处理的，因此向这种混合中添加存储使其更容易访问，也更容易以编程方式控制。</p>
+<p class="translated">Chircop表示，其他解决方案并不能满足基于云的存储的所有需求。“<a href="https://www.chef.io/" class="ext-link" rel="external ">厨师</a>和<a href="https://puppet.com/" class="ext-link" rel="external ">木偶</a>需要时间。现有系统旨在向操作系统实例而不是容器或应用程序本身呈现存储。除了定义或声明应用程序在卷和属性方面的需求之外，还必须将应用程序映射到一半连接了存储的节点上，这非常复杂。我们在应用程序级别运行，将存储呈现给应用程序或容器，因此我们绕过了这一级别的复杂性。”</p>
+<p class="translated">该团队将存储层从通常与硬盘和持久文件存储相关的较低层中抽象出来。</p>
+<p class="translated">该产品被部署为一个容器，在该容器中，控制平面管理集群中的配置，数据平面为卷的数据部分提供功能。该控制平面管理这些卷的运行状况、配置、集群状态和计划更改。数据平面有一个虚拟化层，允许它查看每个节点中可用的不同类型的存储。裸机中的物理磁盘或虚拟机中的虚拟磁盘。</p>
+<p class="translated">Chircop说:“我们从中构建了一个全球性的、高度可用的存储池，然后从中分割出卷。这些卷被命名，然后可以附加到正在运行的容器。</p>
+<p class="translated">面对如此多的现有解决方案，StorageOS不得不特别关注其理想的使用情形。因此，Chircop表示，它可以做大多数其他基于云的存储解决方案无法做到的事情。Chircop说，例如，GlusterFS是一个共享文件系统，虽然它可以同时供全球许多用户使用，但由于一致性问题，延迟可能会成为一个大问题。</p>
+<p class="translated">Chircop说，同样，NFS也不适合集装箱运输。“NFS是一种点对点协议，因此您在某个地方有一个文件系统，它通过NFS服务器导出，而服务器本身总是会出现单点故障。有多种方法可以对NFS进行集群，但它们倾向于商业解决方案或设备。虽然NFS无处不在，因为它是最古老的文件共享协议之一，但它是一种无状态的服务。状态在客户端维护，像锁定和一致性这样的事情是应用程序要处理的。</p>
+<p class="translated">“虽然使用NFS共享文件非常常见，”Chircop说，“但在NFS更改文件和发布内容的现实生活应用程序往往具有相当高的复杂性，当NFS服务器因失去锁定状态而发生故障时，会有非常复杂的解决方案，那里有很多腐败的机会。</p>
+<p class="translated">“通常，因为NFS不是性能最好的协议，”Chircop说，“总会有一定量的缓存。如果像锁定这样的事情没有正确实现，您在应用程序中看到的一些一致性问题就会出现。我们确实看到了NFS的一个用例，以及像Gluster这样的共享文件系统。然而，我们确实认为，使用容器来公开NFS等服务会变得非常复杂，因为容器通常在私有IP名称空间内运行，所以每个容器都有自己的网络服务定义，而在NFS内维护的打开文件句柄实际上是IP地址和文件句柄的散列。”</p>
+<p class="translated">自然，云提供商自己提供最特定于云的文件托管解决方案。然而，Chircop特别指出，StorageOS比亚马逊的<a href="https://aws.amazon.com/ebs/" class="ext-link" rel="external "> Elastic Block Store </a> (EBS)提供了更好的复制和全球分发能力。</p>
+<p class="translated">“所有的云提供商都有可用性区域的概念。每个可用性区域都有一组独特的基础设施和API，它们应该完全独立于其他可用性区域。本质上，Amazon不提供跨可用性区域的复制功能。你必须使用第三方软件来做到这一点，”Chircop说。因为我们可以跨一个或多个可用性区域虚拟化副本，所以我们可以确保您的卷高度可用，并且在单个节点出现故障或可用性区域出现故障时也不会受到影响</p>
+<p class="translated">Chircop说，这还不是EBS的最大问题。“EBS更像一个传统的磁盘:它被呈现给一个单独的EC2实例。当你的容器需要移动时会发生什么？该EBS实例必须分离并重新连接到另一个EBS节点并进行配置。有时这些过程可能需要相当长的时间:我们已经看到了长达一个小时，”Chircop说。“将容器从一个节点移动到另一个节点的简单概念变得复杂得多。也没有全局名称空间。”</p>
+<p class="translated">然而，作为高盛(Goldman Sachs)的前成员，Chircop认为EBS有一个缺点是金融机构永远不能接受的。“尽管EBS具有内置的加密功能，但它要求AWS控制加密密钥。这对银行和政府来说是不合适的。StorageOS对磁盘加密没有这种要求。</p>
+<p class="translated">StorageOS仍在为全面上市做准备，但该公司预计将在今年年底向所有用户开放。它的路线图还包括增加跨多个容器的共享文件系统，这一新特性预计也将在今年晚些时候推出。</p>
+<p class="attribution translated">特征图像通过px here<a href="https://pxhere.com/en/photo/1188230" class="ext-link" rel="external ">。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

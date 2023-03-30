@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Google Container Engine Now Speaks Kubernetes 1.7</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">谷歌容器引擎现在说Kubernetes 1.7</h1>
+<blockquote>原文：<a href="https://thenewstack.io/google-container-engine-now-speaks-kubernetes-1-7/#0001-01-01">https://thenewstack.io/google-container-engine-now-speaks-kubernetes-1-7/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">谷歌正在宣传其将6月底发布的<a href="https://www.forbes.com/sites/janakirammsv/2017/06/30/kubernetes-1-7-debuts-with-enhanced-security-and-extensibility/#fca91ce519fc" class="ext-link" rel="external ">Kubernetes 1.7</a>快速整合到<a href="https://cloud.google.com/container-engine/" class="ext-link" rel="external ">谷歌容器引擎</a>中。考虑到谷歌是开源编排引擎的最初创造者，并且仍然是开源项目的主要贡献者之一，周转时间并不令人惊讶。</p>
+<p class="translated">谷歌负责Kubernetes和Container Engine的集团产品经理<a href="https://github.com/apsinha" class="ext-link" rel="external "> Aparna Sinha </a>表示，主要的企业客户，如<a href="https://www.nextplatform.com/2015/11/12/inside-ebays-shift-to-kubernetes-and-containers-atop-openstack/" class="ext-link" rel="external ">易贝</a>、<a href="https://open.blogs.nytimes.com/2017/01/12/continuous-deployment-to-google-cloud-platform-with-drone/" class="ext-link" rel="external ">纽约时报</a>和<a href="https://cloud.google.com/customers/philips/" class="ext-link" rel="external ">飞利浦</a>正在推动Kubernetes和Container Engine更加成熟，并专注于企业级安全性、可扩展性、联网和混合联网功能。</p>
+<p class="translated">它还宣布了工程工作的结果，以提供更好的容器引擎开发者体验。</p>
+<p class="translated">她说，谷歌策划的<a href="https://cloud.google.com/container-optimized-os/" class="ext-link" rel="external ">容器优化操作系统</a> (COS)及其网站可靠性工程师团队持续监控和管理容器引擎集群，提供了高水平的基础安全性。此外，新功能增加了安全多租户功能，这对于有许多不同团队共享集群的组织来说非常重要。</p>
+<p class="translated">“能够隔离这些团队非常重要，这样它们就不会重叠或相互攻击，”她说。</p>
+<p class="translated">新特性包括:</p>
+<ul>
+<li class="translated">Kubernetes<a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" class="ext-link" rel="external ">network policy API</a>，允许用户控制哪些pod可以相互通信。</li>
+<li class="translated">节点授权者 beta限制了节点表面的威胁等级。每个kubelet只能访问为该节点调度的对象，这有助于保护集群免受受损或不可信节点的影响。</li>
+</ul>
+<p class="translated">网络策略API的网络隔离和节点授权器的节点间资源隔离与1.6版中引入的基于角色的访问控制(RBAC)提供的集群资源集中控制相结合，为多租户提供了增强的安全性。</p>
+<p class="translated">许多使用Container Engine的大公司希望将他们的云和本地应用程序连接起来。她说，混合网络的新功能支持这一点。它们包括:</p>
+
+<p class="translated">Google正在响应Kubernetes社区对提高可扩展性的呼吁，推出了一些新功能，比如已经进入测试版的<a href="https://kubernetes.io/docs/concepts/api-extension/apiserver-aggregation/" class="ext-link" rel="external "> API聚合</a></p>
+<p class="translated">“用户喜欢Kubernetes API——它设计得非常好。但是他们通常有自定义的API和其他解决方案，他们希望以与Kubernetes API相同的方式添加和管理这些解决方案。一些用户在Kubernetes API的基础上构建了一个PaaS解决方案，他们希望从他们的PaaS中引入额外的对象……API聚合允许你这样做，而不必重新安装或重启你的软件，”她说。</p>
+<p class="translated"><a href="https://kubernetes.io/docs/admin/extensible-admission-controllers/" class="ext-link" rel="external ">alpha集群中提供的动态准入控制</a>，允许客户集成定制的业务逻辑和第三方解决方案。她称<a href="https://cloudplatform.googleblog.com/2017/05/istio-modern-approach-to-developing-and.html" class="ext-link" rel="external "> Istio </a>开源项目为微服务增加了网络、安全和监控功能，是动态访问控制解决方案类型的前沿范例。</p>
+<p class="translated"><a href="https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#updating-statefulsets" class="ext-link" rel="external "> StatefulSet Updates </a>，一个新的测试版特性，允许使用滚动更新等各种策略自动更新Kafka、Zookeeper和etcd等有状态应用程序。</p>
+<p class="translated">Kubernetes和Container Engine的首席工程师<a href="https://github.com/bgrant0607" class="ext-link" rel="external ">布莱安·葛兰特</a>表示，机器学习工作负载对图形处理单元(GPU)的支持一直有很高的需求。GCE现在支持NVIDIA K80 GPUs在<a href="https://cloud.google.com/container-engine/docs/alpha-clusters" class="ext-link" rel="external "> alpha集群</a>中进行实验，并将在未来支持其他GPU。</p>
+<p class="translated">他说，为了帮助提高开发人员的效率，GCE增加了集群本身的<a href="https://cloud.google.com/container-engine/docs/node-auto-upgrade" class="ext-link" rel="external ">自动升级</a> beta功能，这不会威胁应用程序本身的正常运行时间或有状态应用程序中的数据。它在节点层整合了API <a href="https://kubernetes.io/docs/concepts/workloads/pods/disruptions/" class="ext-link" rel="external "> Pod中断预算</a>，允许用户控制应用程序的中断率。它可以在亚马逊S3这样的云原生数据商店以及MySQL这样的传统商店上运行。</p>
+<p class="translated">另一个让开发人员不用担心基础设施的功能是测试版的<a href="https://cloud.google.com/container-engine/docs/node-auto-repair" class="ext-link" rel="external ">自动修复</a>，它可以监控不健康的节点并自动修复它们。Container Engine还提供集群级和单元级的自动伸缩。</p>
+<p class="translated"><a href="https://console.cloud.google.com/kubernetes" class="ext-link" rel="external ">容器引擎UI </a>使用户能够可视化他们的工作负载。格兰特说，它是为开发者的观点而设计的，而不仅仅是显示基础设施资源。</p>
+<p class="translated">它显示诸如工作负载类型、运行状态、命名空间和群集、注释、标签、副本数量和状态等信息。所有视图都是跨集群的。</p>
+<p class="translated">展望未来，Sinha说，她希望在混合环境方面做进一步的工作。在接下来的几个版本中，我们将在自动缩放方面做更多的工作。在pod扩展方面，需要根据与应用程序相关的自定义指标(如连接数)进行扩展，并监控集群中的应用程序。</p>
+<p class="translated">期待看到对GPU的更多支持，围绕机器学习工作负载的更多工具，以及与其他服务的更好集成。</p>
+<p class="translated">“对于开发人员来说，他们不必管理基础设施是一件好事，但我们也希望以更简单、更易于使用的方式为他们提供所需的服务，”Sinha说。</p>
+<p class="attribution translated">通过Pixabay的特征图像。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Open Policy Agent's Mission to Secure the Cloud</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">开放策略代理保护云安全的使命</h1>
+<blockquote>原文：<a href="https://thenewstack.io/open-policy-agents-mission-to-secure-the-cloud/#0001-01-01">https://thenewstack.io/open-policy-agents-mission-to-secure-the-cloud/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://www.manifold.co" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">杰冯·麦克唐纳</p> <p class="infoBlockText">过去十年，杰冯·麦克唐纳一直致力于打造高科技企业。他是云原生市场公司Manifold的联合创始人兼首席执行官。在Manifold之前，他是GoInstant的联合创始人兼首席执行官，该公司于2012年被Salesforce以1亿美元收购。收购后，他在Salesforce担任服务云移动总经理。在此之前，他曾在达奇斯集团、Firestoker.com和silverorange.com工作。</p> </div> </a></p><p class="translated">如果云计算和软件开发要继续繁荣，就需要更多的合作来确保我们共享系统的安全。</p>
+<p class="translated">为此，我们需要同意在关键领域实施行业标准。<a href="https://www.openpolicyagent.org/" target="_blank" rel="noopener noreferrer external " class="ext-link">开放政策代理</a> (OPA)是朝着这个方向迈出的重要一步，它还没有得到应有的关注。</p>
+<p class="translated">OPA是一个开源工具，支持跨域和堆栈中的所有层实施广泛的策略。该策略引擎为用户提供了对其环境的更大控制，同时消除了为每个产品和服务编写不同策略语言、API或模型的需要。</p>
+<p class="translated">想想我们许多人投入政策管理的时间和精力。我们必须经常实施旨在根除网络漏洞的工具，部分原因是我们缺乏实用的方法来测试一项政策是否在所有地方都行得通。太多的资源专门用于身份认证和合规性，而不是我们的核心产品。</p>
+<p class="translated">OPA有助于消除这些问题以及许多其他问题。</p>
+<p class="translated">这项技术在2018年成为新闻，当时<a href="https://www.cncf.io/" target="_blank" rel="noopener noreferrer external " class="ext-link">云原生计算基金会</a> (CNCF)宣布它已经<a href="https://www.cncf.io/blog/2018/03/29/cncf-to-host-open-policy-agent-opa/" target="_blank" rel="noopener noreferrer external " class="ext-link">同意主持</a>并“沙盒”OPA项目。CNCF是许多最重要的开源项目的供应商中立之家，包括Prometheus和Kubernetes。</p>
+<p class="translated">在去年11月的KubeCon+CloudNativeCon San Diego大会上，在Pinterest、Yelp、微软、谷歌和Trip Advisor等公司分享了用例并提供了证明之后，OPA引发了更多的讨论。</p>
+<h2 class="translated">证据</h2>
+<p class="translated">到目前为止，我们对OPA的了解是，它是一个灵活方便的工具，支持跨容器、服务器、微服务API和公共云基础设施的策略控制。这种通用策略引擎的最佳特性之一是，它不要求用户强制执行一组特定的规则。</p>
+<p class="translated">OPA的策略语言减压阀使用户能够轻松定义规则。服务运营商编写规则，规定谁在哪里获得什么访问权限。OPA查询API请求，并根据操作者提供的规则决定是否同意该请求。OPA将策略从服务代码中分离出来，并在不牺牲可用性的情况下支持审查和测试。</p>
+<p class="translated">CNCF执行董事Dan Kohn在最近的KubeCon大会上解释说，大量有安全意识且受到严格监管的企业公司曾经花费大量时间审核软件发布。除了耗费大量时间之外，审计并不总是可靠的。Kohn说，随着越来越多的企业转向微服务架构，而不是一个大的整体，他们现在可能有数百个微服务应用程序要拆分。</p>
+<p class="translated">随着企业从按季度或按月安装软件发展到每天多达50次部署，旧的手动审查系统变得难以为继。</p>
+<p class="translated">科恩说:“对OPA来说，最简单的办法就是说，‘我们把过去由人工审计员和审查员完成的所有功能都放进了软件。我们将监控软件在执行规则方面是否做了它应该做的事情。"</p>
+<p class="translated">请记住，OPA是一项正在进行的工作，其实现并非没有挑战。一些在KubeCon分享用例的经理提醒观众注意OPA的一些复杂性。</p>
+<p class="translated">“避免我们的错误，”<a href="https://www.linkedin.com/in/william-fu-7305a2a8/" target="_blank" rel="noopener noreferrer external " class="ext-link">Pinterest软件工程师William Fu </a>开玩笑地告诉KubeCon与会者。Fu建议使用OPA提供的包可以节省时间。</p>
+<p class="translated">在授权访问时，傅说，创建一个通断开关对于处理紧急情况非常重要。他补充说，Pinterest希望看到类似滑动控制条的东西，让运营商能够授权不同的流量百分比。</p>
+<p class="translated">傅还建议让工程师们自己制定政策。</p>
+<p class="translated"><iframe loading="lazy" title="Open Policy Agent at Scale: How Pinterest Manages Policy Distribution" src="https://www.youtube.com/embed/LhgxFICWsA8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">来自猫途鹰的Luke Massa谈到了在部署OPA时编写测试的重要性。</p>
+<p class="translated">“边走边写测试有助于整理你对OPA的理解，”Massa告诉大家。他补充说，早期测试不仅有助于运营商在减压阀获得舒适的写作，而且还使添加新策略更容易，压力更小。</p>
+<p class="translated">虽然今天实施OPA的成本有点高，但这项技术通过提供更多的控制和帮助保护系统而获得了回报。随着OPA的不断完善，我们可以预计实施成本将会下降，从而使OPA的投资更具合理性。</p>
+<p class="translated">云基础设施庞大而复杂，需要比我们现在拥有的更复杂的保护——特别是当我们看到越来越多的大公司采用Kubernetes时。</p>
+<p class="translated"><iframe loading="lazy" title="TripAdvisor: Building a Testing Framework for Integrating Open Policy Agent into Kubernetes" src="https://www.youtube.com/embed/X09c1eXvCFM?start=1106&amp;feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated"><a href="https://www.linkedin.com/in/torin-sandall-1967387/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Torin Sandall </a>，一位来自<a href="https://www.styra.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Styra </a>公司的工程师，创立了OPA，他去年说这个项目的发展见证了越来越多的贡献者。他还明确了OPA的最终目标。</p>
+<p class="translated">“我们看到越来越多的安全厂商对OPA感兴趣，”Sandall说。“你知道，从长远来看，这将有助于实现跨多个不同系统统一策略控制的目标。永远不会有一个供应商主宰一切，总会有不同技术的融合。”</p>
+<p class="translated">他说:“我认为，我们能做的最好的事情就是提供这种可以嵌入到任何地方的构件。”</p>
+<p class="translated">OPA有潜力成为重要的行业标准。采用厂商中立的标准通常能够使蓬勃发展的技术生态系统围绕它们成长。如果没有以太网、TCP/IP和HTML，我们会怎样？</p>
+<p class="translated">显而易见的是，为开发像OPA这样的技术做出贡献的人越多，我们受益就越多。</p>
+<p class="attribution translated">KubeKon+CloudNativeCon和CNCF是新堆栈的赞助商。</p>
+<p class="attribution translated">特征图像:<a href="https://www.openpolicyagent.org/" target="_blank" rel="noopener noreferrer external " class="ext-link">开放策略代理</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

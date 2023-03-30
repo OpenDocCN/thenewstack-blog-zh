@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Microsoft’s Lightweight Linux Runtime Environment Comes to Windows Server</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Microsoft’s Lightweight Linux Runtime Environment Comes to Windows Server</h1>
+<blockquote>原文：<a href="https://thenewstack.io/microsofts-lightweight-linux-runtime-environment-comes-windows-server-brings-distros/#0001-01-01">https://thenewstack.io/microsofts-lightweight-linux-runtime-environment-comes-windows-server-brings-distros/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">The <a href="https://thenewstack.io/windows-10-creators-update-means-windows-subsystem-linux/" class="local-link">Windows Subsystem for Linux</a> — the way that Windows 10 is able to run command line Linux binaries directly, without a virtual machine — is now out of beta. The company is also introducing WSL into the Windows Server environment as well.</p>
+<p class="translated">“We’re adding WSL to Windows Server in response to the many requests we’ve received since launching WSL on Windows client,” Microsoft’s <a href="https://github.com/bitcrazed" class="ext-link" rel="external ">Rich Turner</a> told the New Stack. “Many DevOps engineers — systems engineers, administrators, and developers — want and need to deploy, manage, monitor, and maintain apps and systems that incorporate tools that run best, or only, on GNU/Linux platforms. They want to run local services to host, for example, databases and websites for local development and debugging. Being able to run one’s preferred Linux distros and tools atop WSL on Windows Server will enable dev-ops engineers to get more done on Windows Server.”</p>
+<p class="translated">Turner describes “a very lightweight Linux runtime environment for local interactive user scenarios.” As part of the Fall Creators Update (1709) of Windows 10, WSL will be fully supported, so you can file issues through your standard Microsoft support channels (and use the Windows 10 Feedback Hub as well as the <a href="https://github.com/Microsoft/BashOnWindows" class="ext-link" rel="external ">WSL issues GitHub repo</a>).</p>
+<p class="translated">The process for installing a Linux distro changes as well; distros for WSL now come from the Windows Store. Ubuntu, <a href="https://www.microsoft.com/en-us/store/p/opensuse-leap-42/9njvjts82tjx" class="ext-link" rel="external ">openSUSE Leap 42</a> and <a href="https://www.microsoft.com/en-us/store/p/suse-linux-enterprise-server-12/9p32mwbh6cns" class="ext-link" rel="external ">SUSE Linux Enterprise Server 12</a> are already available and Fedora is coming soon. Moving the distros to the Store simplifies installation and speeds up downloads (by using the Store’s content distribution network). It also means that you can run different distros simultaneously on the same machine, without reinstalling or rebooting.</p>
+<p class="translated">Use the Windows <strong>wslconfig</strong> command to manage which distro you’re working with. The <strong>/l</strong> flag lists your installed distributions; use<strong> /setdefault &lt;DistributionName&gt;</strong> to choose the default distro that starts when you type bash at the command prompt. You can also type <strong>ubuntu</strong> or <strong>fedora</strong> to launch the distro you want (or use their tiles on the Start menu) — and you can use those commands in scripts to run tests across multiple distros automatically.</p>
+<p class="translated">如果你已经用WSL安装了Ubuntu，它不会停止工作，但是你仍然会想切换到商店发行版，因为发行版更新现在将通过商店发布，在某个时候，直接安装的版本将被否决。为此，备份您想要保留的任何文件和配置信息(例如，在/mnt/c/tmp/WSL-backup/或您的用户目录(即/mnt/c/Users/ <username> /Desktop/)中创建一个WSL-backup文件夹)；如果您要移动大量文件，请先对它们进行焦油处理。从Windows命令提示符或PowerShell使用lxrun /uninstall命令卸载现有的Ubuntu，然后从存储安装Ubuntu，并将文件复制或解压缩到新的Ubuntu实例中。</username></p>
+<p class="translated">“如果你在同一个发行版家族的实例之间移动设置，移动应该相对简单，”特纳指出，但是他建议如果你使用不同的发行版要非常小心，因为配置系统和文件位置并不总是相同的；最好是从头开始创建你的设置，而不是通过将它们复制到多个发行版来节省时间。</p>
+<p class="translated">WSL也将进入Windows Server，作为<a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver" class="ext-link" rel="external "> Windows Server Insider计划</a>的一部分。这并没有改变WSL在Windows中的原因；它仍然面向使用命令行工具和工具链集成的开发人员，而不是运行生产工作负载或服务器应用程序，如Redis(即使它们可能工作)。它也不打算取代PowerShell，PowerShell仍然是管理服务器工作负载和Windows Server本身的方式。</p>
+<p class="translated">尽管如此，Turner也警告说“WSL只用于用户发起的交互式任务，而不用于生产服务工作负载。WSL是专门为用户运行工具、本地构建、部署和调试软件、修改配置、监控工作负载等而构建的，但不应用于托管生产守护程序/作业或服务器工作负载，如Apache、Nginx、MySQL、PostgreSQL或MongoDB。”</p>
+<p class="translated">出于性能和支持方面的原因，不要尝试将WSL用于服务器工作负载。最近的一组独立基准[www.phoronix.com/scan.php？page = article &amp; item = windows 10-wsl-scaling &amp; num = 1]表明，虽然总体性能与直接在相同硬件上运行Linux相差不远，但I/O性能仍然滞后(这是微软仍承诺改进的领域)。</p>
+<h2 class="translated">在Windows Server上设置WSL</h2>
+<p class="translated">要在<a href="https://msdn.microsoft.com/commandline/wsl/install-on-server" class="ext-link" rel="external "> Windows服务器</a>上开始使用WSL，请确保您使用的是Windows Insider预览版，并以管理员身份从PowerShell运行以下PowerShell命令:<br/></p>
+<div id="crayon-64223a7310939648951602" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">Enable</span>-<span class="crayon-i">WindowsOptionalFeature</span><span class="crayon-h"> </span>-<span class="crayon-i">Online</span><span class="crayon-h"> </span>-<span class="crayon-e">FeatureName </span><span class="crayon-i">Microsoft</span>-<span class="crayon-i">Windows</span>-<span class="crayon-i">Subsystem</span>-<span class="crayon-v">Linux</span>
+</pre>
+</div>
+</div>
+
+<p class="translated">你可以在Windows 10上使用的相同的WSL发行版将在Windows Server上运行，它们仍然来自Windows Server上的Windows Store，但你必须用Invoke-WebRequest <a href="https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.utility/invoke-webrequest" class="ext-link" rel="external "> cmdlet </a>从Store CDN手动下载它们。Ubuntu在<a href="https://aka.ms/wsl-ubuntu-1604" class="ext-link" rel="external ">https://aka.ms/wsl-ubuntu-1604</a>，OpenSUSE在<a href="https://aka.ms/wsl-opensuse-42" class="ext-link" rel="external ">https://aka.ms/wsl-opensuse-42</a>，SLES在<a href="https://aka.ms/wsl-sles-12" class="ext-link" rel="external ">https://aka.ms/wsl-sles-12</a>，Fedora也快到了。下载Ubuntu，PowerShell命令是:<br/></p>
+<div id="crayon-64223a7310946619901141" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">Invoke</span>-<span class="crayon-i">WebRequest</span><span class="crayon-h"> </span>-<span class="crayon-e">Uri </span><span class="crayon-i">https</span>:<span class="crayon-c">//aka.ms/wsl-ubuntu-1604 -OutFile ~/Ubuntu.zip -UseBasicParsing</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>将发行版解压到系统驱动器上的目标目录。例如:<br/></p>
+<div id="crayon-64223a7310949722476590" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h"> </span><span class="crayon-i">Expand</span>-<span class="crayon-i">Archive</span><span class="crayon-h"> </span>~/<span class="crayon-i">Ubuntu</span><span class="crayon-st">.</span><span class="crayon-i">zip</span><span class="crayon-h"> </span>~/<span class="crayon-v">Ubuntu</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>现在运行以发行版命名的安装程序(ubunte.exe，fedora.exe等等)，创建你的UNIX用户，并按照你在Windows 10上为WSL做的一样设置用户名和密码。</p>
+<div id="attachment_2840004" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2840004" decoding="async" loading="lazy" class="wp-image-2840004 size-large" src="../Images/3f991a5a1adcab88c42a9f7313da925f.png" alt="" data-id="2840004" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/08/99c6e1a5-wsl-1024x724.png"/><p id="caption-attachment-2840004" class="wp-caption-text translated">Hyper-V Linux容器为您提供了Hyper-V的隔离和Docker容器的灵活性，您可以使用Linux工具来管理它们，因为WSL即将进入Windows Server(归功于微软)。</p></div>
+<p class="translated">如果你一直在Windows 10上使用WSL，并且你想通过将你的设置复制到Windows Server上来节省时间，你可以像在Windows 10上那样做——但是再次强调，坚持从同一个发行版复制你的配置以避免问题。</p>
+<h2 class="translated">混合容器</h2>
+<p class="translated">如果您使用Hyper-V容器在Windows Server上运行Linux容器，WSL将是Windows Server特别感兴趣的。把它们想象成容器和VM之间的中间物；它们运行在具有最少服务的轻量级虚拟机中，因此它们有自己的操作系统和内核，但您不必管理虚拟机，您只需管理Docker容器。</p>
+<p class="translated">正如微软的<a href="https://github.com/taylorb-microsoft" class="ext-link" rel="external "> Taylor Brown </a>向我们解释的那样，“WSL for Windows Server是一种很好的方式，可以将您现有的部署脚本和工具与我们为服务器带来的容器技术结合使用。如果您想运行Linux容器，有一种方法可以运行您的Bash脚本，在Windows Server上使用Linux容器来构建、启动、调试、部署和执行Linux本机操作。”</p>
+<p class="translated">这是对Windows Server 2016和Windows 10中Windows格式Docker容器的补充，因为微软客户同时使用这两种容器。Brown鼓励开发者尝试跨平台。“我们一直在集思广益，看看你能用它做些什么。既然我可以在WSL中运行Docker client(如果我想的话),并且所有相关的工具都可以使用，既然我已经有了多阶段构建，那么我是否可以使用Linux容器来构建我的Windows映像，或者使用Windows容器来构建我的Linux映像呢？答案大概是肯定的。”</p>
+
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

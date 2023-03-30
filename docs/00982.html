@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>Getting Started with GPUs in Google Kubernetes Engine</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Google Kubernetes引擎中的GPU入门</h1>
+<blockquote>原文：<a href="https://thenewstack.io/getting-started-with-gpus-in-google-kubernetes-engine/#0001-01-01">https://thenewstack.io/getting-started-with-gpus-in-google-kubernetes-engine/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在本系列的最后一部分，我<a href="https://thenewstack.io/primer-nvidia-docker-containers-meet-gpus/" class="local-link">介绍了Nvidia-Docker </a>从容器访问GPU。在本教程中，我将向您介绍从Kubernetes访问GPU的步骤。</p>
+<p class="translated">Google Kubernetes Engine (GKE)是第一个为客户提供GPU的托管Kubernetes平台之一。基于英伟达特斯拉K80和P100 GPU，GKE使得在云中大规模运行容器化的机器学习作业、图像处理和金融建模成为可能。该功能目前在谷歌云平台的特定地区提供测试版。</p>
+<p class="translated">作为Kubernetes的倡导者，以及一名崭露头角的机器学习开发人员，我非常兴奋地看到GPU的可用性。这种能力将为部署在Kubernetes上的机器学习作业带来高度可扩展的训练和推理。</p>
+<p class="translated">假设您有一个有效的GCP帐户，并且在您的开发机器上配置了Google Cloud SDK，那么您可以启动一个由GPU支持的Kubernetes集群。</p>
+<p class="translated">让我们从验证GCP云中可用的加速器和支持的区域开始。<br/></p>
+<div id="crayon-642311ba81ed3401027955" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">gcloud </span><span class="crayon-e">beta </span><span class="crayon-e">compute </span><span class="crayon-i">accelerator</span>-<span class="crayon-e">types </span><span class="crayon-i">list</span>
+ 
+<span class="crayon-h">&lt;</span><span class="crayon-e">img </span><span class="crayon-i">class</span>=<span class="crayon-s">"aligncenter size-full wp-image-4496949"</span><span class="crayon-h"> </span><span class="crayon-i">src</span>=<span class="crayon-s">"https://storage.googleapis.com/cdn.thenewstack.io/media/2018/04/d7522857-gpu-gke-1.jpg"</span><span class="crayon-h"> </span><span class="crayon-i">alt</span>=<span class="crayon-s">""</span><span class="crayon-h"> </span><span class="crayon-i">width</span>=<span class="crayon-s">"947"</span><span class="crayon-h"> </span><span class="crayon-i">height</span>=<span class="crayon-s">"827"</span><span class="crayon-h"> </span><span class="crayon-i">data</span>-<span class="crayon-i">id</span>=<span class="crayon-s">"4496949"</span><span class="crayon-h"> </span>/<span class="crayon-h">&gt;</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>该输出证实了Nvidia Tesla K80和P100 GPU加速器在一些地区的可用性。</p>
+<p class="translated">我们现在将在asia-east1-a区域启动一个GKE集群，该区域有两个节点。这是一个没有GPU节点的普通集群。在配置好集群之后，我们将添加几个带有GPU的节点。<br/></p>
+<div id="crayon-642311ba81ed7704565639" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">gcloud </span><span class="crayon-e">container </span><span class="crayon-e">clusters </span><span class="crayon-e">create </span><span class="crayon-i">k8s</span>-<span class="crayon-i">gpu</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-i">num</span>-<span class="crayon-i">nodes</span>=<span class="crayon-cn">2</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-e">zone </span><span class="crayon-i">asia</span>-<span class="crayon-i">east1</span>-<span class="crayon-st">a</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-i">cluster</span>-<span class="crayon-i">version</span><span class="crayon-h"> </span><span class="crayon-cn">1.9.4</span>-<span class="crayon-i">gke</span><span class="crayon-st">.</span><span class="crayon-cn">1</span>
+ 
+$<span class="crayon-h"> </span><span class="crayon-e">kubectl </span><span class="crayon-e">get </span><span class="crayon-v">nodes</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4496946" src="../Images/a045d3572ec5b21121a2c8b0a6268dd4.png" alt="" data-id="4496946" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/04/f9c58ee8-gpu-gke-2.jpg"/></p>
+<p class="translated">集群就绪后，我们现在将创建一个包含GPU特定节点的节点池。节点池是群集中具有相同配置的节点实例的子集。</p>
+<p class="translated">当我们创建容器集群时，指定的节点数量和类型成为默认节点池。然后，我们可以向群集中添加不同大小和类型的额外自定义节点池。任何给定节点池中的所有节点都彼此相同。</p>
+<p class="translated">以下命令将创建一个新的节点池，并将其添加到现有群集中。这种方法的优点是每个节点池都可以单独扩展。尽管我们最初只添加了一个节点，但我们可以根据工作负载轻松扩展或收缩池。<br/></p>
+<div id="crayon-642311ba81ed8518609159" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">gcloud </span><span class="crayon-e">beta </span><span class="crayon-e">container </span><span class="crayon-i">node</span>-<span class="crayon-i">pools</span><span class="crayon-h"> </span>\
+ 
+<span class="crayon-e">create </span><span class="crayon-i">gpu</span>-<span class="crayon-i">pool</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-i">num</span>-<span class="crayon-i">nodes</span>=<span class="crayon-cn">1</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-e">accelerator </span><span class="crayon-i">type</span>=<span class="crayon-i">nvidia</span>-<span class="crayon-i">tesla</span>-<span class="crayon-i">k80</span>,<span class="crayon-i">count</span>=<span class="crayon-cn">1</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-e">zone </span><span class="crayon-i">asia</span>-<span class="crayon-i">east1</span>-<span class="crayon-st">a</span> <span class="crayon-h"> </span>\
+ 
+--<span class="crayon-e">cluster </span><span class="crayon-i">k8s</span>-<span class="crayon-v">gpu</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>上面使用的命令加载了开关。注意开关<em>–加速器</em>，它提到了要使用的GPU类型以及GPU的数量。可以向池中的一个节点添加多个GPU。</p>
+<p class="translated">现在，集群多了一个GPU支持的节点。<br/></p>
+
+
+<p class="translated"><br/> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4496948" src="../Images/37fd9e3401f6bd91ab39670c3e2673cc.png" alt="" data-id="4496948" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/04/57dbfc35-gpu-gke-3.jpg"/></p>
+<p class="translated">当一个GPU节点添加到集群中时，GKE会在该特定节点上运行一个插件作为pod。</p>
+<p class="translated">检查kube-system名称空间中的pod将确认这一点。<br/></p>
+<div id="crayon-642311ba81edb717680558" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">kubectl </span><span class="crayon-e">get </span><span class="crayon-i">pods</span><span class="crayon-h"> </span>-<span class="crayon-st">n</span>=<span class="crayon-i">kube</span>-<span class="crayon-i">system</span><span class="crayon-h">&lt;</span><span class="crayon-i">em</span><span class="crayon-h">&gt;</span> <span class="crayon-h">&lt;</span>/<span class="crayon-i">em</span><span class="crayon-h">&gt;</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4496945" src="../Images/acfe46875208c9fc9d61de304f0651f0.png" alt="" data-id="4496945" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/04/765bafa2-gpu-gke-4.jpg"/></p>
+<p class="translated">我们还需要安装设备驱动程序作为DaemonSet，它针对集群中的每个GPU节点。Google提供了一个带有DaemonSet定义的<a href="https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/k8s-1.9/nvidia-driver-installer/cos/daemonset-preloaded.yaml" class="ext-link" rel="external "> YAML文件</a>。</p>
+<p class="translated">安装需要几分钟才能完成。安装后，Nvidia GPU设备插件通过Kubernetes APIs公开Nvidia GPU容量。<br/></p>
+<div id="crayon-642311ba81edc179461674" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">kubectl </span><span class="crayon-i">create</span><span class="crayon-h"> </span>-<span class="crayon-m">f</span><span class="crayon-h"> </span><span class="crayon-h">&lt;</span><span class="crayon-st">a</span><span class="crayon-h"> </span><span class="crayon-i">href</span>=<span class="crayon-s">"https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/k8s-1.9/nvidia-driver-installer/cos/daemonset-preloaded.yaml"</span><span class="crayon-h">&gt;</span><span class="crayon-i">https</span>:<span class="crayon-c">//raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/k8s-1.9/nvidia-driver-installer/cos/daemonset-preloaded.yaml&lt;/a&gt;</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>几分钟后，驱动程序出现在kube-system名称空间中。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4496950" src="../Images/43d83756d33fa5f8ad9f8cb6b8c3f724.png" alt="" data-id="4496950" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/04/8c9cc5c1-gpu-gke-5.jpg"/></p>
+<p class="translated">我们已经准备好在集群上运行GPU工作负载。让我们首先部署一个Ubuntu 16:04映像来检查Nvidia配置。<br/></p>
+<div id="crayon-642311ba81edd706062084" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>$<span class="crayon-h"> </span><span class="crayon-e">kubectl </span><span class="crayon-e">run </span><span class="crayon-i">cuda</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-i">image</span>=<span class="crayon-i">ubuntu</span><span class="crayon-st">:</span><span class="crayon-cn">16.04</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-i">env</span>=<span class="crayon-s">"LD_LIBRARY_PATH=/usr/local/nvidia/lib64:/usr/local/nvidia/bin"</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-i">limits</span>=<span class="crayon-s">"nvidia.com/gpu=1"</span><span class="crayon-h"> </span>\
+ 
+--<span class="crayon-i">rm</span><span class="crayon-h"> </span>-<span class="crayon-i">it</span><span class="crayon-h"> </span>--<span class="crayon-h"> </span>/<span class="crayon-i">bin</span>/<span class="crayon-v">bash</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>上面的命令创建了一个名为cuda的部署，GPU限制设置为1。根据作为节点池的一部分添加到节点的GPU数量，我们可以将GPU资源分配给pod。该命令还设置了一个环境变量，用于将二进制文件和库添加到pod中。</p>
+<p class="translated">如果一切顺利，我们应该在Ubuntu容器的外壳里面。</p>
+<p class="translated">导航到<em> /usr/local/nvidia/bin </em>目录，运行常用的<em> nvidia-smi </em>命令。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-4496947" src="../Images/883aabd91f2ce8d9b8b4e6d2f94f9ad7.png" alt="" data-id="4496947" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2018/04/a1c1f1e7-gpu-gke-6.jpg"/></p>
+<p class="translated">恭喜你！您已经准备好在Kubernetes上运行大规模并行工作负载。</p>
+<p class="translated">如果您正在运行一个pod而不是一个部署，那么使用下面的带有<em> nodeSelector </em>的声明来创建亲缘关系。这将确保pod总是被安排在具有GPU的节点上。<br/></p>
+<div id="crayon-642311ba81ede179923266" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">apiVersion</span>:<span class="crayon-h"> </span><span class="crayon-e">v1</span>
+ 
+<span class="crayon-i">kind</span>:<span class="crayon-h"> </span><span class="crayon-e">Pod</span>
+ 
+<span class="crayon-i">spec</span>:
+ 
+ <span class="crayon-h"> </span><span class="crayon-i">containers</span>:
+ 
+ <span class="crayon-h"> </span>-<span class="crayon-h"> </span><span class="crayon-i">name</span>:<span class="crayon-h"> </span><span class="crayon-i">my</span>-<span class="crayon-i">gpu</span>-<span class="crayon-i">container</span>
+ 
+   <span class="crayon-h"> </span><span class="crayon-i">resources</span>:
+ 
+     <span class="crayon-h"> </span><span class="crayon-i">limits</span>:
+ 
+      <span class="crayon-h"> </span><span class="crayon-i">nvidia</span><span class="crayon-st">.</span><span class="crayon-i">com</span>/<span class="crayon-i">gpu</span>:<span class="crayon-h"> </span><span class="crayon-cn">2</span>
+ 
+ <span class="crayon-h"> </span><span class="crayon-i">nodeSelector</span>:
+ 
+   <span class="crayon-h"> </span><span class="crayon-i">cloud</span><span class="crayon-st">.</span><span class="crayon-i">google</span><span class="crayon-st">.</span><span class="crayon-i">com</span>/<span class="crayon-i">gke</span>-<span class="crayon-i">accelerator</span>:<span class="crayon-h"> </span><span class="crayon-i">nvidia</span>-<span class="crayon-i">tesla</span>-<span class="crayon-i">p100</span><span class="crayon-h"> </span><span class="crayon-p"># or nvidia-tesla-k80</span>
+</pre>
+</div>
+</div>
+
+<p class="translated">在本教程的下一部分，我们将创建一个机器学习训练作业，在GKE集群上构建一个Caffe模型。这是一个利用Kubernetes和GPU联合力量的令人兴奋的用例。敬请期待！</p>
+<p class="translated">特征图像:在<a href="https://thenewstack.io/nvidia-embraces-kubernetes-for-scalable-deep-learning/" class="local-link"> Nvidia GPU技术会议</a>上展示的由GPU从2D MRI图像中生成的心脏的3D可视化。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

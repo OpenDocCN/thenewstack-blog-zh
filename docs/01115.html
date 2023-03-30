@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Today's CI/CD: From 'Fat Sheepdogs' to 'Robot Cats'</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">今天的CI/CD:从“胖牧羊犬”到“机器猫”</h1>
+<blockquote>原文：<a href="https://thenewstack.io/todays-ci-cd-from-fat-sheepdogs-to-robot-cats/#0001-01-01">https://thenewstack.io/todays-ci-cd-from-fat-sheepdogs-to-robot-cats/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">基于软件管理的“<a href="https://thenewstack.io/pets-and-cattle-symbolize-servers-so-what-does-that-make-containers-chickens/" target="_blank" class="local-link">宠物与牛</a>”类比，谷歌云的开发者倡导者<a href="https://www.linkedin.com/in/davidstanke/" target="_blank" rel="noopener noreferrer external " class="ext-link">戴夫·斯坦克</a>本周早些时候在旧金山举行的<a href="https://www.cloudbees.com/devops-world/san-francisco" target="_blank" rel="noopener noreferrer external " class="ext-link">devo PS World | Jenkins World 2019</a>上发表演讲时，又加入了几只动物来提及持续集成和部署(CI/CD)的现代化。</p>
+<p class="translated">当然，宠物是云出现之前的服务器。我们单独照顾他们。在云中，它们是牲畜，只知道是大量存在的，而挑战在于管理畜群。对于Kubernetes来说，它们更像一群蝴蝶，他指出这被称为万花筒。</p>
+<p class="translated">他将新兴平台比作“星际迷航”中的纯能量光束。</p>
+<p class="translated">“当我与人们谈论他们的CI/CD系统时，他们说他们落后于他们的生产系统。他们没有高度进化，”他说。</p>
+<p class="translated">他提出了这样一个场景:</p>
+<p class="translated">即使你已经迁移到了云，你的办公桌下还有一个旧的prod box，上面有Jenkins。或者它曾经生活在你的书桌下，但你已经搬了几次家，它仍然在那里，在某个地方。</p>
+<p class="translated">“我们在快速发展的现代生产系统上使用传统的DevOps系统。这些是牧羊犬。牧羊犬是管理家畜的宠物。当我们深爱他们时，他们却在拖我们的后腿。他们脆弱、缓慢、负担过重，他说。</p>
+<p class="translated">构建被破坏了，你不能确定这是一个错误的提交还是CI系统的问题。长长的构建队列、溢出的硬盘驱动器怎么办？有这个CI系统，但是只有一个人知道怎么做，而且他们在度假。</p>
+<p class="translated">CI/CD在实现表现最佳的组织与其他组织之间的关键指标方面发挥着重要作用，这些指标在<a href="https://devops-research.com/assessment.html" target="_blank" rel="noopener noreferrer external " class="ext-link">devo PS Research and Assessment(DORA)</a>报告中有所提及——周期时间、发布时间、变更失败率和平均修复时间。</p>
+<p class="translated">“对于传统系统，您需要花费大量时间等待CI任务完成。他们很慢。他们很古怪。因此，我们需要快速且可扩展的竞争情报，”他说。</p>
+<p class="translated">“部署也需要快速，但也需要可扩展性。我们需要与代码库一起发展的CI/CD。快速、可扩展、可靠、适应性强、安全。这些是我们在生产系统中想要的东西。为了实现这些，我们也需要CI/CD中的这些品质。</p>
+<p class="translated">“我们可以获得现代CI/CD，但这意味着我们需要淘汰牧羊犬。我们需要更像机器猫的东西。”</p>
+<p class="translated">这并不意味着抛弃你已经拥有的一切。他说，你可以使用渐进式步骤，指的是谷歌云和CloudBees之间的合作。</p>
+<p class="translated">Google Cloud的Graphite团队创建了与流行的开源工具的集成，以简化在GCP上的工作。他们负责Turbo GCP提供商、GCP的Ansible模块、GCP的CloudFoundry和Logstack插件。</p>
+<p class="translated">他说，该公司的首要任务之一是制造一流的詹金斯插件，以连接到谷歌云。这包括用于身份验证的OAuth插件、用于构建工件的云存储、用于供应工人的计算插件以及用于部署GKE的Kubernetes引擎插件。</p>
+<p class="translated">CI/CD面临的一大挑战是可扩展性。当工程师们在白天工作时，系统变得超负荷，但当他们不工作时，系统就处于闲置状态。这既昂贵又低效。</p>
+<p class="translated">在云中，您可以按需供应来构建模板。每当构建队列开始时，Jenkins都会及时剥离一个工人。您可以一次根据需要并行运行尽可能多的实例，只有在实例实际工作时才会为它们付费。</p>
+<p class="translated">Graphite团队为GCE提供了一个插件，可以自动提供和终止计算实例。按需代理易于保持最新状态。如果有安全漏洞，不用一个一个绕过去。只需更新模板。每项工作都有一台干净的修补过的机器。</p>
+<p class="translated">这样，詹金斯大师还能住在你的桌子底下。然而，它仍然更具可扩展性，也更安全。</p>
+<p class="translated">Kubernetes怎么样？</p>
+<p class="translated">缺乏一致性是组织的一个共同点。他们有很多应用程序，在不同的时间构建，有很多技术。不同的语言，框架，大量的依赖。</p>
+<p class="translated">“这是难为宋词了。每个应用程序都有不同的工具链，所以我们让员工使用各种工具，Java、Python、. NET。每种工具的多个版本都相互碰撞。我们给这些宠物吃得太多了，”他说。</p>
+<p class="translated">有了Kubernetes上的Jenkins，你可以得到定制的、容器化的工人作为代码。您的工人定义与他们构建的代码一起在版本中陈述，而不是有一个预烤的模板存在于云配置中。每个版本都有合适的工具。他说，不要再养胖宠物了。如果想使用一些特殊的语言，只需在Docker文件中添加一行，这个特殊的工具就会在需要的时候出现。建筑完工后就消失了。</p>
+<p class="translated">在混合环境中，谷歌的答案是Anthos，这是一个基于开源平台(如Kubernetes和Istio)的托管基础设施堆栈。谷歌云和<a href="https://thenewstack.io/cloudbees-expands-into-software-delivery-management/" target="_blank" class="local-link"> Cloudbees刚刚开始与谷歌合作，整合Jenkins和Anthos。</a></p>
+<p class="translated">他说，Anthos提供了跨异构环境的一致基础，因此相同的软件可以在GCP、数据中心甚至AWS上运行，所有这些都具有一致的控制平面。</p>
+<p class="translated">“这对于CI/CD来说非常有趣。他说:“你可以在云中运行你的构建，利用可扩展的工作节点来处理那些尖峰工作负载，然后部署到本地的生产服务器上。</p>
+<p class="translated">他继续倡导<a href="https://thenewstack.io/the-cd-foundation-finds-a-challenging-environment-in-continuous-delivery/" target="_blank" class="local-link">持续交付基金会</a>，这是一个专注于减少碎片化和开发行业持久标准的组织。它的四个项目分别是<a href="https://jenkins.io/" target="_blank" rel="noopener noreferrer external " class="ext-link">詹金斯</a>、<a href="https://jenkins-x.io/" target="_blank" rel="noopener noreferrer external " class="ext-link">詹金斯X </a>、<a href="https://www.spinnaker.io/" target="_blank" rel="noopener noreferrer external " class="ext-link">大三角帆</a>和<a href="https://github.com/tektoncd" class="ext-link" rel="external ">泰克顿</a>，他称之为我们要找的机器猫。</p>
+<p class="translated">Tekton是起源于Google的CI/CD开源框架。他说，它运行在Kubernetes上，因此它获得了云的固有优势，如可扩展性、封装和声明性配置。</p>
+<p class="translated">JenkinsX是Cloudbees对Tekton的实现。它在系统上本地运行，因此工作负载可以在任何可以运行Tekton的系统上移植，Tekton可以是任何Kubernetes集群。</p>
+<p class="translated">他说，有了现代CI/CD，是时候让牧羊犬退休了。</p>
+<p class="attribution translated">CloudBees赞助了这个故事，由New Stack独立撰写。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Ygor Hand Me That BeagleBone</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:Ygor把那个小猎犬骨递给我</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-ygor-hand-me-that-beaglebone/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-ygor-hand-me-that-beaglebone/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在考虑音频/文本到下巴的同步挑战并能够在便携式电源上运行机器人头骨赫德利的时候，我突然想到……为什么不使用T2比格涅黑色板来代替树莓Pi 3呢？</p>
+<p class="translated">为什么不呢？对于赫德利来说，比格骨有许多有助于支持有效的大脑移植的特征:</p>
+<ul>
+<li class="translated"><a href="https://www.debian.org/" class="ext-link" rel="external ">默认情况下，Debian Linux </a>(用于ARM平台)从4GB的板载闪存模块运行。作为一种选择，您可以从micro-SD卡或u盘启动并运行Linux。启动大约需要二十秒。</li>
+<li class="translated">如果你不想走USB路线，该板由USB电缆或桶形连接器供电。</li>
+<li class="translated">当USB电缆插入Linux笔记本电脑时，它会自动通过USB创建网络连接，你可以从笔记本电脑上<a href="https://www.ssh.com/ssh/" class="ext-link" rel="external "> ssh </a>进入骨骼。</li>
+<li class="translated">该板有大量通用输入/输出(GPIO)引脚。</li>
+<li class="translated">有两个内置的可编程实时单元(pru)。这有点像一对连接到主处理器的Arduinos。如果我能想出如何对它们进行编程，这些可能会解决我的扑颌音频问题。</li>
+<li class="translated">它远没有树莓派3那么耗电。</li>
+<li class="translated">任何名字中带有“骨头”的板子都是很容易想到的，对于一个头骨项目来说，这将是我们下一次会议技术演讲的绝佳素材。</li>
+</ul>
+<p class="translated">让我们用小猎犬黑来代替树莓Pi 3，看看它是活得好…还是迅速堕落为邪恶。</p>
+<p class="translated">哈哈哈哈哈哈！</p>
+<h2 class="translated">病人准备好了吗？</h2>
+<p class="translated">用BeagleBone Black board替换赫德利的Raspberry Pi 3并不困难。</p>
+<p class="translated">在关闭了头骨上的所有电源后，我断开了Pi并把它放在了一边。Pi和Bone上的螺栓模式不同，所以我在微控制器框架上添加了几个新的支架。这是有意义的，只需切割几块1/4英寸x 1/16英寸的黄铜扁材，将它们焊接到位，然后钻孔以安装喙骨。旧的括号留在原处，以防我想切换回Pi。原型通常可以容忍一些额外的部分。</p>
+<p class="translated">我做的一件事是使用4英寸x 3/4英寸长的黄铜螺钉和非常短的亮绿色管子，将电路板安装并固定在黄铜框架上。这种技术节省了很多时间，不用用螺母和垫圈把所有东西都拧在一起。只要用尖嘴钳把管子向下推到螺丝上就行了。</p>
+<p class="translated">将USB连接器定位在前面是有意义的，因为我偶尔会运行连接到Linux笔记本的skull，这样可以方便访问。此外，我计划在大部分时间里插入一个桶形连接器来供电，并将电线沿着底座延伸到背面。我不确定赫德利多久会接入有线网络，尽管如果需要的话，有线网络就在那里。</p>
+<p class="translated">背面是微型HDMI和USB 2.0连接器。由于骨头上只有一个USB端口，连接到<a href="http://jevois.org/" class="ext-link" rel="external "> JeVois传感器</a>和使用无线键盘/鼠标垫需要一个USB集线器。赫德利已经在背面安装了一个集线器，因为JeVois设备需要两个USB 2.0端口来供电。无线键盘micro-fob用电量不大，我就直接插在四口集线器上了。集线器电缆的另一端连接到BeagleBone上的USB端口。</p>
+<p class="translated">此外，Raspberry Pi在两端都使用了全尺寸的HDMI连接器。微型HDMI连接器插入骨骼，并在大屏幕端使用全尺寸插头。无论如何，你的maker lab库存中需要两根电缆。</p>
+<h2 class="translated">不同的脑电波</h2>
+<p class="translated">BeagleBone和Raspberry Pi上的软件略有不同。</p>
+<p class="translated">我的比格犬大约三岁了。因此，它运行的是有点过时的Debian Linux版本。为了我们实验的目的，赫德利和我可以接受这个事实。</p>
+<p class="translated">我所做的就是运行“apt-get update”和“apt-get upgrade ”,以获得这个Debian版本的最新可用应用程序版本。我没有花太多时间调整Linux，因为我们真正需要的是赫德利的头骨平移功能的工作版本<a href="http://guvcview.sourceforge.net/" class="ext-link" rel="external "> guvcview </a>。</p>
+<p class="translated">以树莓Pi和我的Xubuntu Linux笔记本上最新版本的guvcview为例。他们的版本都是2.0.4。我们回到了BeagleBone的1.5.3版本。</p>
+<p class="translated">这种差异凸显了在Linux环境中工作的一个肮脏的小秘密。由于有如此多的桌面选择、应用和硬件平台，不可避免的是，在主板系列、Linux品牌甚至供应商内部，没有人运行完全相同的配置。这只是Linux生活方式的一个事实。</p>
+<p class="translated">对我来说，这不是一个大问题，因为Linux的概念相当普遍。通常，只需要挖掘细节，找出您的版本和另一个设置之间的不同之处，然后找出需要调整的地方以满足您的需求。</p>
+<p class="translated">例如，guvcview的BeagleBone Debian版本没有我在最新的Raspberry Pi Raspian版本的Linux中已经习惯的一些功能。</p>
+<p class="translated">一件事是，没有使用'-g '选项的图形界面，我无法从命令行运行guvcview。虽然这没什么大不了的，但是它使通过ssh远程使用程序变得更加容易和快速，因为您不必担心显示窗口。</p>
+<p class="translated">重点是，当您在项目中尝试不同的板时，您可能需要做一些小的调整，以使您的所有功能都按照您想要的方式工作。有时，您可能在一个版本中没有在另一个版本中拥有的选项。</p>
+<p class="translated">另一方面，在BeagleBone上运行guvcview开箱即用效果很好。视频馈送窗口正常出现，图像几乎实时更新。我在树莓Pi 3上使用guvcview时遇到了启动问题。早期版本可能功能较少，代码也不太复杂。换句话说，操作更简单，更少的事情会搞砸。在这个过程中，在Pi上发生了一些事情，应用程序根本不会出现在屏幕上。我最终发现重启<a href="http://jackaudio.org/" class="ext-link" rel="external "> JACK服务器</a>，然后启动guvcview就解决了问题。这有什么关系？</p>
+<p class="translated">事实上，我实际上在OSCON的赫德利演讲中使用了<a href="https://github.com/webcamoid/webcamoid" class="ext-link" rel="external ">的网络视频程序</a>，因为我不确定当我们在舞台上时guvcview是否会正常运行。我很有信心，我可以相信guvcview现在在观众面前可靠地工作。</p>
+<p class="translated">你猜怎么着？后来，我发现webcamoid没有出现在我的旧版本Debian Linux上的可用应用程序列表中。</p>
+<h2 class="translated">它是活的</h2>
+<p class="translated">能够在您的项目中替换nano-Linux板是一件好事。它使您能够针对您的特定应用优化特性和功能。在这种情况下，BeagleBone看起来会使用更少的电力，并且会有更一致的操作来满足我们的特定要求。</p>
+<p class="translated">请记住，广泛的互换性现在才真正开始成熟。五年甚至三年前，你从来没有像今天这样的选择。这适用于硬件、软件、价格、可用性、供应商和无数其他因素。</p>
+<p class="translated">最棒的是。这一切都是“现成的”容易。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

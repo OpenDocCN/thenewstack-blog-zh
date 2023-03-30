@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Design Your System to Update Itself: Greg Kroah-Hartman on Linux Security</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">设计你的系统来自我更新:Greg Kroah-Hartman谈Linux安全性</h1>
+<blockquote>原文：<a href="https://thenewstack.io/design-system-can-update-greg-kroah-hartman-linux-security/#0001-01-01">https://thenewstack.io/design-system-can-update-greg-kroah-hartman-linux-security/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在上个月柏林的CoreOS Fest期间，领先的Linux内核开发者Greg Kroah-Hartman分享了一些关于安全性的见解，指出“所有的错误都可能是安全漏洞。我们不知道这是不是安全漏洞。”</p>
+<p class="translated">你无法摆脱bug，当然，它们是软件开发过程的一部分。你实际上能做的是尽快照顾好他们。“内核错误是很严重的事情。我们想解决这些问题，”克罗亚-哈特曼说。</p>
+<p class="translated">在过去的15年里，<a href="https://www.kernel.org/" class="ext-link" rel="external "> Linux内核社区</a>一直遵循一条规则:尽快修复错误。内核社区在修复这些错误方面做了令人难以置信的工作，但是有一个问题。在Linux内核上构建产品的供应商不会采用这些补丁。大多数这样的供应商都懒得升级他们的设备。这让这些设备的用户处于危险之中。</p>
+<p class="translated">Kroah-Hartman举了一个很好的例子，说明一个看起来良性的bug如何变成令人讨厌的东西。大约三年前，一个TTY1层的错误被修复。那时候，它看起来像一个正常的，无害的错误。内核社区修复了它，在新版本中推出了它，并完成了它。三年后有人发现这是一个安全漏洞。现在公司吓坏了。他们当时都懒得用这些补丁，现在甚至像SUSE和Red Hat这样的公司也不得不回去修复他们所有的旧东西。</p>
+<p class="translated">“我们有很长一段时间让虫子存活的不良历史。有人做过调查，大多数已知的病毒在系统中可以存活五年。这些都是人们知道并知道如何利用的东西。他们没有关门。这是我们基础设施中的一个问题。</p>
+<p class="translated">公司懒得更新软件的原因有很多。公司出售它们并转向下一版本的硬件，因为它们通过出售更多的硬件而不是通过维护旧设备来赚钱。由于没有金钱上的激励，他们懒得在这个硬件上更新软件。</p>
+<blockquote><p class="translated">许多人运行的系统不接受他们不能更新内核，或者他们认为如果他们坚持使用内核并且没有任何改变，那就很好。这不是真的，”–格雷格·克罗亚·哈特曼。</p></blockquote>
+<p class="translated"><span>谷歌的Android是一个很好的例子，因为它使用的是一个长期支持的(LTS)模型，但运行的是一个非常旧的内核，这个内核有已知的漏洞。Kroah-Hartman说，“有一些众所周知的简单方法可以在我的手机上获得root…这很好，因为我喜欢在我的手机上获得root，但这已经被修复了。补丁会公开发布，但不会更新。”</span></p>
+<p class="translated">然而，运行旧内核并不意味着这是一件坏事。人们运行旧内核是有真正的原因的，这也是为什么Linux维护<a href="https://www.kernel.org/category/releases.html" class="ext-link" rel="external "> LTS发布的</a>，更新它们，这很大程度上要感谢Kroah-Hartman的协调工作，在大量开发工作转移到新版本内核后很久才修复错误。但是，如果公司不把补丁推送到他们依赖Linux的设备上，修复这些旧版本又有什么好处呢？</p>
+<p class="translated">四年多来，3.2内核是LTS发布的，仍然每天进行两次修复，并定期更新:内核开发者<a href="https://twitter.com/benhutchingsuk" class="ext-link" rel="external ">本·休金斯</a>每隔一周发布一次。Debian社区在获取这些补丁并保持更新方面做得非常好。</p>
+<p class="translated">“一个由志愿者组成的非营利组织比一些最大的Linux提供商做得更好。这太疯狂了。那很糟糕。克罗亚-哈特曼说:“要么以Debian为基础，要么超时更新你的内核。</p>
+<h2 class="translated"><strong>新内核，旧心态</strong></h2>
+<p class="translated">在系统管理员社区中有一种普遍的看法，即一旦系统被设置好并且稳定了，就不应该再碰它。克罗亚-哈特曼对这种情况并不满意。</p>
+<p class="translated">“你必须能够运行一个能够自我升级的系统。许多人运行的系统不接受他们不能更新内核，或者他们认为如果他们坚持使用内核，如果什么都没有改变，那就很好。不是这样的。我们每天都在修复大约10个内核错误。并非所有这些都是安全问题，但有时大问题是我们不知道一个问题是否是安全问题，”Kroah-Hartman在采访中说。</p>
+
+<p/>
+<p class="translated">有很多邪恶的团体密切关注未修复的bug。他们投入时间和资源来发现该漏洞是否会被利用来提高安全性。如果他们发现任何此类漏洞，他们可能会使用它，或者将它出售给可能用于更大规模攻击的人。</p>
+<p class="translated">“这很令人难过，因为我们已经尽力了。我们正在修复它们，并对它们进行更新，”克罗亚-哈特曼说。</p>
+<p class="translated">在克罗亚-哈特曼看来，最好的方法是使用(或设计)自我更新的系统。他举了Chrome OS和CoreOS操作系统的例子，这两个操作系统都可以自动更新。</p>
+<p class="translated">“Chrome操作系统和后来的Core操作系统都采用了同样的思路。您有两个系统映像。你要更新一个。一旦你知道它工作，它可以切换到另一个。你必须能够以一种安全的方式更新它。这项技术已经被证实了。问题已经解决了。人们只需要使用它并将其构建到他们的系统中。内核不会自行更新自己。”</p>
+<p class="attribution translated">CoreOS 是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

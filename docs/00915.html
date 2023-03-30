@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>TossingBot Uses 'Residual Physics' to Chuck Like a Champ</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">TossingBot使用“剩余物理学”像冠军一样出拳</h1>
+<blockquote>原文：<a href="https://thenewstack.io/tossingbot-uses-residual-physics-to-chuck-like-a-champ/#0001-01-01">https://thenewstack.io/tossingbot-uses-residual-physics-to-chuck-like-a-champ/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">机器人越来越能够执行看起来简单但实际上非常复杂的任务。现在，机器正在从事类似于<a href="https://thenewstack.io/autonomous-robot-surgical-cuts-better-human-surgeon/" target="_blank" class="local-link">进行精确的外科切割</a>、<a href="https://thenewstack.io/harvards-micro-robot-high-precision-high-speed-wonder/" target="_blank" class="local-link">在微小尺度上抓取和放置</a>、<a href="https://thenewstack.io/lessons-learned-hiatus-flippy-burger-flipping-robot/" target="_blank" class="local-link">烙牛肉饼</a>、<a href="https://thenewstack.io/mit-robot-uses-tactile-reasoning-ai-to-play-jenga-like-a-human/" target="_blank" class="local-link">玩叠人偶</a>，甚至<a href="https://thenewstack.io/huggiebot-is-a-robot-learning-how-to-hug-humans/" target="_blank" class="local-link">拥抱</a>的活动——所有这些活动都需要在施加正确的体力和对内在动力的近乎直觉的“感觉”之间保持谨慎的平衡，因为这些力会随着时间、不同的对象和不同的目标而变化。</p>
+<p class="translated">现在，来自谷歌、麻省理工学院、哥伦比亚大学和普林斯顿大学的工程师团队正在寻求使用人工智能、深度学习神经网络来帮助机器人学习如何抓住和准确投掷任意物体。研究人员恰如其分地将其命名为<a href="https://tossingbot.cs.princeton.edu/" target="_blank" rel="noopener noreferrer external " class="ext-link">投掷机器人</a>，旨在开发一种可以捡起未知物体并将其扔向不同位置的机器，只需最少的训练时间和人工监督。</p>
+<p class="translated"><iframe loading="lazy" title="TossingBot: Learning to Throw Arbitrary Objects with Residual Physics" src="https://www.youtube.com/embed/f5Zn2Up2RjQ?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">正如人们可能预料的那样，准确地投掷各种物体需要我们人类进行一些练习，然后才能变得相当熟练。对于机器人来说，构建它学习如何投掷的方式有很大的不同:它不是学习如何投掷现有的每个物体(如果曾经有过的话，这是一个不可能的大数据集)，而是必须学习如何“概括”和适应它所拥有的关于投掷新物体的基本知识。换句话说，对于一个机器人来说，要可靠而准确地扔东西，这意味着要很好地掌握处理形状奇怪的物体，以及学习如何预测和补偿非结构化环境中的任何未知动态和可变性。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-7231579" src="../Images/864e6e61e58ebc6c88a007eb42a5a494.png" alt="" data-id="7231579" data-original-src="https://cdn.thenewstack.io/media/2019/04/b811f881-tossingbot-google-mit-columbia-princeton-2.jpeg"/></p>
+<h2 class="translated">“剩余物理学”</h2>
+<p class="translated">正如他们的<a href="https://tossingbot.cs.princeton.edu/paper.pdf" target="_blank" rel="noopener noreferrer external " class="ext-link">论文</a>中所详述的，该团队的混合方法——他们称之为“剩余物理学”——不仅考虑了抛掷物体背后的物理学和不断变化的空气动力学，还考虑了最初抓住物体的<em>方式。他们的实验装置包括一个工业级UR5机械臂，一个随机物体箱，以及一系列作为投掷物体目标的盒子，这些盒子正好位于机械臂的触及范围之外。机器人手臂的进度和准确性由头顶的摄像机跟踪，因此手臂可以通过反复试验来教会自己投掷，并随着时间的推移提高其准确率。</em></p>
+<p class="translated">该团队关注的一个主要因素是“投掷前的条件”——如何拿起一个物体<em>以及<em>在哪里拿着</em>将会影响它如何被投掷。研究小组发现，这些投掷前的条件会对投掷尝试是否成功产生明显的影响，因为它会影响物体的抛射轨迹。例如，TossingBot学会了如何以某种方式握住香蕉或记号笔等不对称的物体，以确保它们不会飞出预定位置。</em></p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-7231581" src="../Images/c699d7bd9a7a5b6d115f087b8b075063.png" alt="" data-id="7231581" data-original-src="https://cdn.thenewstack.io/media/2019/04/66a1297f-tossingbot-google-mit-columbia-princeton-3.jpg"/></p>
+<p class="translated">以前的机器人投掷工作仅限于某种形状的物体，如球或飞镖，投掷前的条件是手动设置的，而不是随机的。相比之下，为了在面对一系列可变对象和环境时实现更好的准确性，TossingBot使用了一种基于物理的混合控制器，该控制器采用分析模型来提供关于投掷物体的力度和距离的初步估计。然后将这一初始估计与深度学习模型相结合，该模型能够预测和补偿其他数据驱动的“残余”参数，如气动阻力和抛射体速度(由物体的拾取和抓握方式决定)。然后，机器人的任务是从不同角度抓住每个不同的物体，将它们扔进某个盒子，然后通过头顶的摄像头评估每次尝试的准确性，以便学习下次如何更好地扔物体。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-7231580" src="../Images/145c403833cdabcf17f70ce96a01df98.png" alt="" data-id="7231580" data-original-src="https://cdn.thenewstack.io/media/2019/04/b85b077e-tossingbot-google-mit-columbia-princeton-2.jpg"/></p>
+<p class="translated">在让TossingBot愉快地扔出去的过程中，研究小组发现，该机器最初在最佳抓取物体和准确投掷两方面的结果都很差。然而，在大约10，000次训练尝试(或大约14个小时的投掷)后，机器人的投掷准确度攀升至85%，在一小时内600次可能的“取放”动作中，抓取可靠性为87%——比其他先前的方法提供了更好的结果，甚至比普通人更好。</p>
+<p class="translated">该团队目前正在努力提高该系统的准确性和可靠性，除了整合不仅仅是视觉反馈手段，还可能添加其他传感器来收集其他类型的信息，如触觉和扭矩。随着它的进一步发展，人们可以想象这样的系统可以进一步“推广”并适用于其他情况，例如让机器人在救援行动中快速有效地打包箱子、分类衣物或投掷倒塌的碎片以拯救生命，以及许多其他尚未预见的可能性。</p>
+<p class="attribution translated">图片:谷歌，麻省理工学院，哥伦比亚大学和普林斯顿大学</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

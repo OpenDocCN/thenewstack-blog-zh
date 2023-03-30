@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>AWS' CodeGuru Will Point Out What's Wrong with Your Code</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">AWS的代码专家会指出你的代码有什么问题</h1>
+<blockquote>原文：<a href="https://thenewstack.io/amazon-web-services-codeguru-will-point-out-whats-wrong-with-your-code/#0001-01-01">https://thenewstack.io/amazon-web-services-codeguru-will-point-out-whats-wrong-with-your-code/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Amazon Web Services希望将机器学习(ML)的全部力量用于代码开发。在该公司的年度用户大会上，该公司推出了一项名为<a href="https://aws.amazon.com/codeguru/" target="_blank" rel="noopener noreferrer external " class="ext-link"> CodeGuru </a>的新服务，旨在自动化代码审查并提供应用性能建议。</p>
+<p class="translated">AWS首席执行官<a class="ext-link ext-link" href="https://twitter.com/ajassy" target="_blank" rel="noopener noreferrer external "> Andy Jassy </a>在本周于拉斯韦加斯举行的会议主题演讲中承认，手工代码审查是一种痛苦。公司开发人员必须留出时间来审查代码，即使是最严格的审查也会遗漏一些元素。CodeGuru可以找到许多常见的，但很难注意到的错误，甚至可以突出应用程序中低效(即昂贵)的代码行。</p>
+<p class="translated">该服务之所以引人注目，是因为它是首批基于ML的代码审查和分析工具之一，分析师<a class="ext-link ext-link" href="https://www.linkedin.com/in/janakiramm?originalSubdomain=in" target="_blank" rel="noopener noreferrer external ">贾纳吉姆·MSV</a>说，并补充说，当它与主流ide(如Visual Studio、VS Code和IntelliJ)集成时，它对开发人员有潜在的吸引力(回头看看新的堆栈，因为贾纳吉姆将在活动结束后为我们更深入地研究这项服务)。</p>
+<p class="translated">CodeGuru可以很容易地加入到开发过程中:将CodeGuru添加为pull请求的接收者之一。当开发人员提交代码时，CloudGuru参考其模型和算法，以人类可读的形式提供代码评估，指出有问题的代码行。</p>
+<p class="translated">该软件本身源于亚马逊的内部代码审查过程，并借鉴了GitHub开源项目的10，000个应用程序配置文件。它可以查明资源泄漏、原子性违规、潜在的并发竞争情况、未初始化的输入、浪费的CPU周期以及难以查明的线程安全类，等等。</p>
+<p class="translated"><a href="https://aws.amazon.com/codeguru/" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-large wp-image-9475019" src="../Images/45bc508eebbc5e9e72ac02202b51192b.png" alt="" data-id="9475019" data-original-src="https://cdn.thenewstack.io/media/2019/12/dc2895ba-aws-codeguru-01-f-1024x660.jpg"/> </a></p>
+<p class="translated">Jassy说，它还被设计来定位“你的最低效、最无用、最昂贵的代码行”。该服务通过机器学习驱动的分析器来实现这一点，该分析器需要在应用程序中嵌入一个小代理。“CodeGuru会观察您的应用程序，每五分钟就会创建一个配置文件。它告诉你诸如延迟和CPU利用率之类的东西，并且它帮助你识别你的应用程序中最昂贵的代码行，”Jassy说。</p>
+<p class="translated">Jassy说，亚马逊自己已经在80，000个自己的应用程序中使用了这个分析器，这已经“为我们节省了数千万美元”。亚马逊的消费者支付团队在一年的时间里反复使用该工具，并能够将CPU利用率提高325%，节省39%的运营成本，即使对其服务的需求持续增长。同样，该公司声称，在遵循分析者的建议后，该公司的目录管理服务的CPU使用率减少了67%。</p>
+<p class="translated"><a href="https://aws.amazon.com/codeguru/" class="ext-link" rel="external "><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-9475021" src="../Images/74e385c2e183e5abc0e63a724896c8aa.png" alt="" data-id="9475021" data-original-src="https://cdn.thenewstack.io/media/2019/12/7942af9c-code-guru-1024x487.png"/>T2】</a></p>
+<p class="translated">最初，CodeGuru将支持Java，尽管将来会支持其他语言。它可以通过AWS插入<a href="https://github.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> GitHub </a>和<a href="https://aws.amazon.com/codecommit/" target="_blank" rel="noopener noreferrer external " class="ext-link"> CodeCommit </a>，未来还会添加更多的库。虽然这项服务现在还处于预览阶段，但当它上线时，AWS有望以较低的按需定价，因此它可以用于组织内的所有代码审查:CodeGuru的费用为每个应用程序配置文件每个采样小时0.005美元，每月每100行代码0.75美元。</p>
+<p class="translated">AWS不是唯一一个认为扫描巨大的在线代码库以获得一组最佳实践和安全修复具有分析价值的人。GitHub自己也在用它的<a class="ext-link ext-link" href="https://securitylab.github.com/tools/codeql" target="_blank" rel="noopener noreferrer external "> CodeQL </a>语义代码分析引擎做类似的工作，它是在9月份收购Semmle 时收购<a class="ext-link ext-link" href="https://techcrunch.com/2019/09/18/github-acquires-code-analysis-tool-semmle/" target="_blank" rel="noopener noreferrer external ">的。微软旗下的公司正在使用这项技术生成所有公开回购的语义代码图，这将为理解和改善编码模式、质量和安全性提供巨大的机会，</a><a href="https://thenewstack.io/how-code-analytics-could-help-github-decipher-its-semantic-code-graph-of-open-source/" target="_blank" class="local-link">报道玛丽·布兰斯科为新堆栈</a>报道。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

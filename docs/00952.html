@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Simulate Sensor Data with an Arduino</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:用Arduino模拟传感器数据</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-simulate-sensor-data-with-an-arduino/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-simulate-sensor-data-with-an-arduino/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">用一个传感器和一个Arduino微控制器捕获真实世界的测量值，然后将这些读数推送到一台Linux计算机上，在模拟仪表程序上显示或用于其他用途，现在已经相当普遍。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="size-large wp-image-7620606 aligncenter" src="../Images/f64dba9a57b9bc1d5351635c6a400489.png" alt="" border="1" data-id="7620606" data-original-src="https://cdn.thenewstack.io/media/2019/05/740b4e4a-arduino-notebook-diagram-1024x576.png"/></p>
+<p class="translated">我们读取传感器，将值换算成实际值，然后将数据打印到USB端口。Linux显示机器上的一个配套程序可以吸收数据，并根据传感器读数做一些类似旋转屏幕上模拟仪表指针的事情。</p>
+<p class="translated">有时传感器还不可用。它可能是来自中国的众所周知的慢船(或飞机)或其他什么东西。好消息是，您可以在Arduino传感器设备上用最少的代码“模拟”数据。这样，在等待传感器到来的同时，您就可以在Linux机器上开发自己的仪表或其他程序了。你的仪表程序认为它在读取真实的传感器数据。</p>
+<p class="translated">本周我们将探讨一些简单的方法来模拟屏幕上仪表、读数、刻度盘和其他用途的数据。</p>
+<h2 class="translated">超快速硬件数据模拟</h2>
+<p class="translated">您可以在几分钟内在Arduino上构建一个基本硬件数据模拟器。编写一些代码，将一串值打印到串行端口，上传到您身边的任何旧Arduino，当它重新启动时，开始读取USB电缆另一端的数据。下面是一些强力代码，以1/2秒的间隔，从0到100，以10为增量上下扫描值。<br/></p>
+<div id="crayon-641fb170296cb239455155" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">【void】</span><span class="crayon-e">【setup】</span><span class="crayon-h"/>
+<span class="crayon-i">【Serial】</span><span class="crayon-st"/><span class="crayon-e">begin </span>(<span class="crayon-cn">115200 </span>))( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )( )(<span class="crayon-e">println </span>(<span class="crayon-s">“0”</span>);
+<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“10”</span>)
+<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“20” </span>)<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“30”</span>)
+<span class="crayon-h"/><span class="crayon-e">延迟</span>(<span class="crayon-cn">500 </span>)
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“40”</span>)<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“50”</span>)
+<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“40” </span>)
+<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“30” </span>)
+<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“20”</span>)
+<span class="crayon-h"/><span class="crayon-e"/><span class="crayon-cn">500</span>】
+<span class="crayon-h"/><span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">println </span>(<span class="crayon-s">“10”</span>)
+<span class="crayon-h"/><span class="crayon-e">【延迟】</span>(<span class="crayon-cn">500 </span>)(T228) (T229) (T229)
+</pre>
+</div>
+</div>
+
+<p class="translated">编写、编译和上传只花了五分钟。更好的是，你只需要一个Arduino和一根USB线。</p>
+<div id="attachment_7614417" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-7614417" decoding="async" loading="lazy" class="size-full wp-image-7614417" src="../Images/962967b8466b231e019045d333282bba.png" alt="" border="1" data-id="7614417" data-original-src="https://cdn.thenewstack.io/media/2019/05/2b23591c-ng-cable.png"/><p id="caption-attachment-7614417" class="wp-caption-text translated">Arduino NG生成模拟数据并将其发送到Linux笔记本</p></div>
+<p class="translated">在Linux计算机端，使用cat命令检查模拟数据操作很容易。我们经常使用这种技术。出于习惯，我首先运行<em> stty </em>命令来确保USB端口工作正常。在Linux终端中执行这些。<br/></p>
+<div id="crayon-641fb170296cf302091796" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">stty</span><span class="crayon-h"/>-<span class="crayon-i">raw</span><span class="crayon-h"/>-<span class="crayon-i">ICR nl</span><span class="crayon-h"/>-<span class="crayon-m">F</span><span class="crayon-h"/>/<span class="crayon-i">dev</span>/<span class="crayon-i">TT yusb</span><span class="crayon-h"/><span class="crayon-cn">115200</span>
+<span class="crayon-i">cat</span>
+</pre>
+</div>
+</div>
+
+<p class="translated">上周在测试<a href="https://thenewstack.io/off-the-shelf-hacker-throw-a-thermocouple-on-the-grill/" target="_blank" class="local-link">热电偶项目时，我只能通过抓住探针的末端或将其放入热水中来改变温度几度。该设备可以测量高达900华氏度的温度。更全面的测试可能会提供上限和下限的数据，而不仅仅是下限的狭窄范围。我可以使用硬件数据模拟器。</a></p>
+<h2 class="translated">稍微复杂一点的方法</h2>
+<p class="translated">一个稍微复杂一点的模拟以半秒的间隔从0单步执行到100步。这产生了更平滑的针扫描。当该值达到100时，它会在一秒钟的延迟后跳回零，然后不断重复。<br/></p>
+<div id="crayon-641fb170296d1673469931" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+ <div class="crayon-main">
+<pre><span class="crayon-i"/><span class="crayon-h"/><span class="crayon-m">【I】</span><span class="crayon-h"/><span class="crayon-h"/><span class="crayon-cn"/>(A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A<span class="crayon-e">begin </span>(<span class="crayon-cn">115200 </span>))(我)(们)(都)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(。(T57) (T58) (T59) (T59) (T62) (T63) (T63) (T64) (T65) (T65) (T66) (T65) (T65) (T65) (T65) (T65) (T66) (T67) (T68) (T68) (T68) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65) (T65)<span class="crayon-e">println </span>(<span class="crayon-m">i </span>)
+<span class="crayon-m">i </span>++;
+<span class="crayon-e">延迟</span>(<span class="crayon-cn">100 </span>))(那)(就)(是)(我)(们)(的)(一)(个)(人)(,)(我)(们)(都)(不)(知)(道)(了)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(是)(不)(知)(道)(,)(我)(们)(还)(不)(知)(道)(,)(我)(们)(还)(是)(不)(知)(道)(。
+<span class="crayon-i">串行</span><span class="crayon-st"/><span class="crayon-e">print </span>(<span class="crayon-s">“重启”</span>)
+<span class="crayon-e">【延迟】</span>(<span class="crayon-cn">1000 </span>)(A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A) (A
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>这段代码也简单有效。</p>
+<p class="translated"><iframe loading="lazy" title="Simulation data display demo" src="https://www.youtube.com/embed/KDj89op-7g8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">当然，我们需要缩放sim数据和处理仪表程序，以处理0到900的热电偶温度范围，同时适当改变显示机器侧的表盘。你明白了。</p>
+<h2 class="translated">扩展模型</h2>
+<p class="translated">使用“sim卡数据”功能，您可以做很多很酷的事情。</p>
+<p class="translated">也许你有多个仪表读取多个传感器。您可以将这些值打包在一个输出行中，使用逗号作为数据分隔符。当然，在仪表显示程序方面，我们需要将每一行数据解析成它们各自的值，并将它们发送给相应的仪表例程。</p>
+<p class="translated">对于不同的仪表分辨率，您可以使用更小或更大的步长。较小的值会使指针更平滑、更缓慢地扫过。也许你想放弃延迟值或数值范围以获得更快的响应。使用trig函数来控制波形数据流的“I”值如何？</p>
+<p class="translated">而且，我们并不局限于模拟数字数据。我们可以很容易地发送文本测试数据。在Arduino代码中，只需将文本用双引号括起来。例如:<br/></p>
+<div id="crayon-641fb170296d3034636807" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>  <span class="crayon-e"> println </span> ( <span class="crayon-s">“也可以发文字”</span>)；
+ </pre>
+</div>
+</div>
+
+<p/>
+<h2 class="translated">后续步骤</h2>
+<p class="translated">我们只是触及了使用Arduino通过USB电缆发送模拟数据的表面。读者可以很容易地拿一个Arduino Nano，构建一个适合放在小盒子里的微型“sim”或诊断设备。纳米非常便宜。您甚至可以使用几个电位计和开关来改变输出数据，而不必每次都重新上传Arduino固件。这里有很多可能性。</p>
+<p class="translated"><em>赶<a href="https://twitter.com/robreilly" class="ext-link" rel="external ">Torq博士的</a> <a href="https://thenewstack.io/tag/off-the-shelf-hacker/" class="local-link">现成黑客专栏</a>，每周六，只上新栈！在<a href="mailto:doc@drtorq.com">doc@drtorq.com</a>或407-718-3274直接联系他进行咨询、演讲和委托项目。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

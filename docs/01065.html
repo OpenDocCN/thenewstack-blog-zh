@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Starting with CocosSharp on iOS for Building Cross Games and Apps</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">从iOS上的CocosSharp开始构建交叉游戏和应用程序</h1>
+<blockquote>原文：<a href="https://thenewstack.io/starting-cocossharp-ios/#0001-01-01">https://thenewstack.io/starting-cocossharp-ios/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Cocos2D是一系列用于构建跨平台游戏和应用的开源框架的名称。全球有超过400，000名开发人员使用Cocos2d的一个版本。有针对JavaScript (Cocos2d-JS)、XNA (Cocos2d-XNA)、Swift (Cocos2d-Swift)和Python (Cocos2d-Python)的具体版本。Xamarin已经分叉Cocos2d-XNA，并生产了用于iOS、Android和Windows Phone的<a href="http://blog.xamarin.com/introducing-cocossharp/" class="ext-link" rel="external "> CocosSharp </a>。许多商业游戏使用这些<a title="Link To Cocos2d Showcase" href="http://www.cocos2d-x.org/games" target="_blank" rel="noopener noreferrer external " class="ext-link"> Cocos2d库</a>中的一个。</p>
+<p class="translated">除了跨平台，CocosSharp还是一个可移植的类库。可移植类库不仅仅是一个避免不可移植事物的类库，它还包括工具支持。告诉编译器。NET目标你想支持(即一个配置文件)，它会抱怨，如果你试图使用一些不会工作。所有的源代码都是可用的，所有的Cocos版本，所以你可以检查它，看看会发生什么。CocosSharp源代码在<a title="Link To CocosSharp source codeon Github" href="https://github.com/mono/CocosSharp" target="_blank" rel="noopener noreferrer external " class="ext-link"> Github </a>上。</p>
+<p class="translated">虽然Xamarin不是免费的，但你可以以每月25美元的价格订阅独立版本。当然，你仍然需要一台Mac，并且是一名注册的苹果开发者，才能部署到iOS设备/应用商店。所有的Cocos家族都是开源的，大部分使用麻省理工学院的许可证，这意味着你可以用它们创建开源或商业软件。</p>
+<h2 class="translated">安装CocosSharp</h2>
+<p class="translated">首先创建一个空项目，在我的例子中，我称它为TNSGame，是New Stack Game的缩写。现在使用Nuget并输入CocosSharp。你会看到一个很大的软件包列表，但我们只需要iOS版的。单击Add Package后，您将在解决方案列表中看到一个新的包条目，并在From Packages文件夹下看到一组新的引用。具体是box2d，CocosSharp，ICSharpCode。夏普齐普里，利德格伦。网络，和两个一夫一妻制的参考。花栗鼠还没有出现，但很快就会出现。</p>
+<h2 class="translated">iOS应用的CocosSharp架构</h2>
+<p class="translated">一切都像在AppDelegate类的非Cocos应用程序中一样开始。然而这里的情况有所不同，你的FinishLaunching方法应该是这样的:<br/></p>
+<div id="crayon-6421a0cc15386835968175" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h">    </span><span class="crayon-e">var </span><span class="crayon-i">application</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">CCApplication</span><span class="crayon-h"> </span>();
+<span class="crayon-h">    </span><span class="crayon-i">application</span><span class="crayon-st">.</span><span class="crayon-i">ApplicationDelegate</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">GameAppDelegate</span><span class="crayon-h"> </span>();
+<span class="crayon-h">    </span><span class="crayon-i">application</span><span class="crayon-st">.</span><span class="crayon-e">StartGame</span><span class="crayon-h"> </span>();
+<span class="crayon-h"> </span><span class="crayon-e">return </span><span class="crayon-i">true</span>;
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>现在我们需要在GameAppDelegate.cs中创建一个GameAppDelegate类，并覆盖ApplicationDidFinishLaunching方法。添加此代码。<br/></p>
+<div id="crayon-6421a0cc1538b517242134" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-h">    </span><span class="crayon-e">class </span><span class="crayon-i">GameAppDelegate</span><span class="crayon-h"> </span>:<span class="crayon-h"> </span><span class="crayon-e">CCApplicationDelegate</span>
+<span class="crayon-h">    </span>{
+ 
+<span class="crayon-h">        </span><span class="crayon-e">public </span><span class="crayon-e">override </span><span class="crayon-e">void </span><span class="crayon-e">ApplicationDidFinishLaunching</span>(<span class="crayon-e">CCApplication </span><span class="crayon-i">application</span>,<span class="crayon-h"> </span><span class="crayon-e">CCWindow </span><span class="crayon-i">mainWindow</span>)
+<span class="crayon-h">        </span>{
+<span class="crayon-h">            </span><span class="crayon-e">var </span><span class="crayon-i">bounds</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">mainWindow</span><span class="crayon-st">.</span><span class="crayon-i">WindowSizeInPixels</span>;
+<span class="crayon-h">            </span><span class="crayon-i">CCScene</span><span class="crayon-st">.</span><span class="crayon-e">SetDefaultDesignResolution</span>(<span class="crayon-i">bounds</span><span class="crayon-st">.</span><span class="crayon-i">Width</span>,<span class="crayon-h"> </span><span class="crayon-i">bounds</span><span class="crayon-st">.</span><span class="crayon-i">Height</span>,<span class="crayon-h"> </span><span class="crayon-i">CCSceneResolutionPolicy</span><span class="crayon-st">.</span><span class="crayon-i">ShowAll</span>);
+<span class="crayon-h">            </span><span class="crayon-i">application</span><span class="crayon-st">.</span><span class="crayon-i">PreferMultiSampling</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">false</span>;
+<span class="crayon-h">            </span><span class="crayon-i">application</span><span class="crayon-st">.</span><span class="crayon-i">ContentRootDirectory</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-s">"Content"</span>;
+ 
+<span class="crayon-h">            </span><span class="crayon-e">var </span><span class="crayon-i">gameScene</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">GameScene</span>(<span class="crayon-i">mainWindow</span>);
+<span class="crayon-h">            </span><span class="crayon-i">mainWindow</span><span class="crayon-st">.</span><span class="crayon-e">RunWithScene</span>(<span class="crayon-i">gameScene</span>);
+<span class="crayon-h">        </span>}
+<span class="crayon-h">    </span>}
+</pre>
+</div>
+</div>
+
+<p/>
+<h2 class="translated">CocosSharp类</h2>
+<p class="translated">有许多类，你可以在在线<a title="link to Online Mono Documentation" href="http://docs.go-mono.com/?link=root:/CocosSharp" target="_blank" rel="noopener noreferrer external " class="ext-link"> Mono文档</a>中看到它们的文档。我唯一的批评是，参考文档需要更多的工作，它有缺口，并解释像将屏幕坐标映射到世界坐标这样的事情会有所帮助。</p>
+<p class="translated">出于我们的目的，我们可以只关注五个相关的类，它们将完成大部分工作。它们是CCSprite、CCLayer、CCScene、CCNode和CCLabel。CCSprite显示图像，可以重新定位，调整大小和旋转。它可以有子节点。CCNode是CocosSharp中所有可视对象的基类，尽管它从未显示过。CCSprites的所有旋转和大小调整都发生在CCNode中。这里的其他四个类都继承自CCNode。CCLayer是CCSprite的容器，所有可视对象必须是以CCScene为根的可视树的一部分。</p>
+<p class="translated">一个游戏可以有多个CCScenes，它们由一个CCDirector实例来管理，但是我们不会讨论这个。然而，一次只能运行一个场景。</p>
+<h2 class="translated">游戏</h2>
+<p class="translated">游戏很简单；只不过是把高尔夫球轻击入洞。假以时日，它可能会变成一个半体面的高尔夫游戏，但我的目的只是为了展示可以做些什么，所以认为这是电脑高尔夫游戏历史上最糟糕的高尔夫游戏。一个洞没有树，掩体或任何其他类型的有趣的地形！</p>
+<p class="translated">【T2<img decoding="async" loading="lazy" class="aligncenter size-medium wp-image-232528" src="../Images/ecb88263b7005f5da6f11ce2c357be57.png" alt="golfgame" data-original-src="https://thenewstack.io/wp-content/uploads/2015/01/golfgame-163x300.png"/></p>
+<p class="translated">从CocosSharp的角度来看，它不使用Box2d物理引擎，而是将一个阻力应用到速度组件来减慢球的速度。如果你能在三分钟内把它沉入水中，你就比我强！要使它下沉，它必须在红旗底部以下大约10-15个像素处停止或非常缓慢地移动。</p>
+<h2 class="translated">制图法</h2>
+<p class="translated">除了常见的应用程序图形(默认图像和应用程序图标)，只有三个使用:高尔夫球场，球和旗帜。这三个都作为精灵来处理。将旗帜作为精灵让我可以在它和球之间进行碰撞测试。所有精灵都在GameScene构造函数中设置。课程精灵略有不同，因为它被放大到整个iPhone屏幕。旗帜精灵必须放置在球场图像右侧232像素和下方115像素的小绿色区域。因为图像可能被缩放，所以这些偏移也必须被缩放。不幸的是，只有在我完成I之后，我才意识到我没有缩放球的速度，所以在iPhone 6/6+上，它需要更多的击球。</p>
+<p class="translated">CCNodes和CCSprites可以定义一个锚点。这一点很重要，因为它会影响碰撞检测，并且旗杆的定位点被选择在中间底部。</p>
+<p class="translated">CCSprite的构造函数在指定图形的位置有一个重载。像往常一样，iOS上的图形必须是png格式，但是在CocosSharp中，它们也必须位于一个名为Content的文件夹中，并且构造函数的参数应该去掉. png。</p>
+<p class="translated">CCLabel用于显示所用的笔画数。指定标签的位置时，您可能会注意到垂直位置被定义为mainLayer。VisibleBoundsWorldspace . MaxY–35。这样做的意义在于，原点坐标0，0被视为屏幕左侧的bo0ttom，因此MaxY-35距离顶部35个像素。</p>
+<h2 class="translated">安排事件</h2>
+<p class="translated">CCNodes有一个调度方法，可以以60 fps或更低的频率触发事件。大部分动作，即移动球，都发生在RunGameLogic方法中。这做了三件事:首先，它更新球的位置。通过将两个速度分量乘以所有预定事件获得的frameTimeInSeconds参数来平滑运动。我想，两个连续事件之间的1/60秒并不总是精确的，所以这可以弥补这一点。</p>
+<p class="translated">做的第二件事是检查球是否击中了球洞。这是通过碰撞检查来完成的；如果两个精灵矩形相交，球移动得足够慢，它就在洞里。它有点粗糙，但在这里工作得很好。如果球确实进洞了，那么第三部分就是显示一个信息，停止球的移动，并设置一个isOver标志来阻止进一步的游戏动作。</p>
+<p class="translated">我使用了另一个以每秒10次调用运行的调度程序来对球施加摩擦力，将它的速度分量降低到98%，然后在低于固定速度时停止。</p>
+<h2 class="translated">用户输入</h2>
+<p class="translated">CocosSharp有许多用户输入方法。我添加了两个处理程序方法，用于触摸开始和结束的时间，并通过测量用户移动手指的距离来计算笔画的“力度”，缩放两个分量(x和y)，然后将其限制在50像素。这设置了球的X和Y速度。触摸处理器传入一系列触摸，因此如果你在触摸屏幕时移动手指，它会存储每次触摸。因为我只对开始和结束触摸事件感兴趣，所以在这两种情况下我都只使用第一个触摸坐标。</p>
+<h2 class="translated">结论</h2>
+<p class="translated">我对CocosSharp印象非常深刻。从安装它到完成这个简单的游戏花了我六个小时，但当然我只是触及了它的表面，并没有接近雪碧批量更新，粒子系统，声音和音乐播放，场景切换，tilemaps，物理引擎等等。它开箱后就能正常工作，我只遇到过一次由于未具体化的对象而导致的愚蠢的崩溃。我在模拟器中开发了它，并在运行iOS 8的iPhone 5和运行7.1的4S上进行了测试。它在两者上运行完美。</p>
+<p class="translated">Xamarin对Cocos2d-XNA做了很多修改，以提高代码质量，如果你有Cocos2d使用其他版本框架的经验，你应该阅读他们的<a title="Link to Key differences document" href="https://github.com/mono/CocosSharp/wiki/Key-Differences" target="_blank" rel="noopener noreferrer external " class="ext-link">关键差异</a>文档。它们不是很大的变化，但主要是一些高级类之间的功能转移，例如CCWindow从CCDirector接管渲染。</p>
+<p class="translated">游戏的完整项目源代码在<a title="link to Github" href="https://github.com/thenewstack/TNSGame" target="_blank" rel="noopener noreferrer external " class="ext-link">的NewStack </a> Github账户上。</p>
+<p class="translated"><em>特色图片<a href="https://www.flickr.com/photos/microsiervos/15215516397/in/photolist-pbxuVB-dnP4eM-ksmHKt-cQii5Q-aJpwiD-aJpwCV-aJpwx2-aJpw9v-aJpw1r-aJpvWB-fDsMDR-bcsAx6-nZLdvs-nHoTDn-nZMuYL-nZMmfJ-o2Ev1k-nHpue2-nHpt1v-o2Er5K-nHoktR-nZSVjR-nZSTTz-nZSRmk-nZzBmr-nZM2Dq-nHnVcK-o2DWUr-nHnFhQ-nHnEaj-nHnzNW-nZyPcT-nHoNud-nHogxz-nZLujS-53QapR-aE8b9Y-aJpwp6-aJpwfT-eVN7DL-7wsiVS-M9n91-int2r7-fDgf3F-fiFQDB-mSDyQu-844kTN-52zxSN-fiW3xf-MEyWj" class="ext-link" rel="external ">通过</a> Flickr知识共享。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Making the Move to Helm 3</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">向头盔3移动</h1>
+<blockquote>原文：<a href="https://thenewstack.io/making-the-move-to-helm-3/#0001-01-01">https://thenewstack.io/making-the-move-to-helm-3/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着Helm 3的发布，该项目渴望让用户尽快迁移出Helm 2。在<a href="https://thenewstack.io/helm-3-is-almost-boring-and-thats-a-great-sign-of-maturity/" target="_blank" class="local-link"> Helm 3 </a>中，生产力和可用性的提高、改进的安全性和向后兼容性的结合意味着迁移通常会很简单。</p>
+<p class="translated">“如果你的Kubernetes集群上有Helm release，你可以将它们从Helm 2转换到Helm 3，只需拿起它即可，”Azure Container计算和发布主管Kubernetes 1.16的首席项目经理<a href="https://github.com/lachie83" class="ext-link" rel="external ">拉克伦·艾文森</a>告诉新堆栈。“我们甚至将现有的操作动词命名为新动词，以便人们可以获得无缝体验并进行迁移。我们的目的是尽快让所有人都进入Helm 3。”</p>
+<p class="translated">如果你使用水平吊舱自动缩放器，移动到头盔3有一个警告；当你使用掌舵图更新一个版本时，新的三向合并保留了边盘，也将副本的数量设置回图表中定义的数量，所以检查你使用的任何提供HPA <a href="https://github.com/helm/helm/issues/7090#issuecomment-559161443" target="_blank" rel="noopener noreferrer external " class="ext-link">的图表没有设置副本的数量</a>。之前的行为是一个错误，Helm 2与Kubernetes本身不同，但在某种程度上证明是有用的。</p>
+<h2 class="translated"><strong>插入并运行</strong></h2>
+<p class="translated">从头盔2转到头盔3有两种选择。你可以把所有东西从头盔2移植到头盔3(有一个<a href="https://GitHub.com/helm/helm-2to3" target="_blank" rel="noopener noreferrer external " class="ext-link"> 2to3插件</a>可以帮助你)，这意味着头盔3会接管现有头盔2版本的管理工作。IBM高级软件工程师兼Helm核心维护人员Martin Hickey向我们解释说:“你可以把它看作实时迁移。”。</p>
+<p class="translated">“这是您查看您的集群并说‘我想今天转移到Helm 3，但我不想丢失我所有的版本’的地方。”该插件将状态信息移动到新的状态信息位置，这意味着将你已经安装的任何插件拉过来，尽管有一些小的例外。该插件所做的是跨这些版本进行映射，并以Helm 3格式存储它们，但它不涉及该版本已经部署的Kubernetes对象。它无缝运行。它也有一个清理功能，将删除释放信息的所有头盔2的状态，而不触及Kubernetes对象，它会为你删除蒂勒。"</p>
+<p class="translated">如果你使用插件中的清理选项，你将无法回到头盔2，所以请确保你首先备份，并使用<strong>–模拟运行</strong>标志来检查版本将被正确转换。</p>
+<p class="translated">另一个选择是相当不祥的命名为“扼杀者模式”，你逐步淘汰头盔2，因为兼容性意味着头盔2和头盔3可以毫无问题地管理同一个集群，只要你把头盔3二进制文件放在你的路径中的不同文件夹或重命名为<strong>头盔3。</strong></p>
+<p class="translated">“你有头盔2和头盔3树，管理同一个集群，随着时间的推移，你做的每一个新的部署，你使用头盔3，随着时间的推移，你扼杀或逐步淘汰头盔2版本。最终，你会发现不再有任何头盔2版本部署，而你在头盔3上，”Hickey解释道。</p>
+<p class="translated">“由于我们在架构和基础设施方面进行了重大变革，这种方式非常有效。基本上，对于Helm 2，您的Helm状态信息和配置信息位于一个单独的目录结构中，存储在集群中的发布数据以不同的方式存储，因此它们不会遍历每一个。”</p>
+<p class="translated">名称空间对于由Helm 3管理的版本来说是不同的，因为它们不再是默认的<strong> kube-system </strong>名称空间，并且如果你使用了Helm 2配置的秘密(不是默认选项)，它们也在Tiller名称空间中，但是Helm 3的秘密存储在用户名称空间中。</p>
+<p class="translated">如果你已经习惯了Helm 2，并且你正在一个新的系统上安装Helm 3，你不必担心迁移，但是你需要知道默认情况下它不会设置任何repos。这是获取图表的更广泛变化的一部分。</p>
+<h2 class="translated"><strong>图表发行的未来</strong></h2>
+<p class="translated">为了鼓励组织转移到头盔3，头盔2正在进入维护模式，头盔2.15作为最终功能发布。在Helm 3发布日期(截至2020年11月13日)之后，错误修复将持续六个月，安全补丁将持续一年。在同一时间线上，<a href="https://github.com/helm/charts" class="ext-link" rel="external "> GitHub图表报告</a>已被否决。</p>
+<p class="translated">这部分是关于从不再适合云本地计算基金会项目(在中国不可用)的谷歌云存储中转移，部分是关于从图表的集中存储(实际上不包括所有图表)转移到联合模型。</p>
+<p class="translated">相反，现在可以通过<a href="https://hub.helm.sh/" target="_blank" rel="noopener noreferrer external " class="ext-link">舵毂</a>访问图表，现在更容易搜索(如果你想让自己的内部图表更容易找到，你可以运行自己的舵毂)。稳定和孵化器图表回购从未真正打算成为图表的单一来源，它们将于2020年5月13日从Helm Hub退市，届时Helm 2将开始获得安全修复。</p>
+<p class="translated">Codecademy高级DevOps工程师兼Helm项目维护者斯科特·里格比告诉我们:“Helm Hub的存在是为了现在启用图表的联邦模型，Helm 3可以搜索Helm Hub以获取图表并加载它们。</p>
+<p class="translated">随着图表数量的增长，更多的图表维护者可能希望将他们的图表发布到GitHub页面上托管的Helm repo已经有一些<a href="https://github.com/stefanprodan/gh-actions/tree/master/helm-gh-pages" target="_blank" rel="noopener noreferrer external " class="ext-link">实验用GitHub Actions </a>实现了自动化。<a href="https://github.com/helm/chart-releaser" target="_blank" rel="noopener noreferrer external " class="ext-link">图表发布器</a>工具将很快支持使用GitHub动作将GitHub repos转化为Helm Chart repos里格比说，它一直在等待GitHub的行动普遍可用。</p>
+<p class="translated">从长远来看，让Docker注册管理机构支持<a href="/microsoft-buck-shows-how-cnab-bundling-could-work-for-cloud-app-deployment/" target="_blank">云原生应用捆绑包</a> (CNAB)的工作也将允许OCI注册管理机构为Helm chart服务。</p>
+<p class="translated">“对于Helm 2，如果你想存储图表，你可以将它们存储在Helm repo中；这是一个HTTP，HTTPS网络服务器，将提供tarballs，”Evenson解释说。社区不希望维护另一个回购协议，尤其是一个具有旧身份验证机制的回购协议。OCI发行规范v2包括多种媒体类型，包括Helm charts，它与Helm 3安全态势更匹配。</p>
+<p class="translated">“我们可以利用该工具中的所有安全插件和授权模型，而不仅仅是Helm 2中的基本身份验证。我们想让它成为一个安全的体验，作为一个副作用，它现在集成到你所有的其他工具中。你现在可以在同一个空间存储你自己的图表，所以这是一个很好的集成体验。我们有很棒的集装箱仓库:我们把其他的文物放在那里怎么样？”</p>
+<p class="attribution translated">云计算原生计算基金会是新堆栈的赞助商。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/@erdaest?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Erda Estremera </a>在<a href="https://unsplash.com/s/photos/moving?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash上拍摄的特征图像。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

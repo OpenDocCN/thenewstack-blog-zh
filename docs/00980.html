@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Building a Geospatial Application with Cloudant to Show Colorado Ski Areas</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">使用Cloudant构建地理空间应用程序来显示科罗拉多滑雪区</h1>
+<blockquote>原文：<a href="https://thenewstack.io/building-a-geospatial-application-with-cloudant-to-show-colorado-ski-areas/#0001-01-01">https://thenewstack.io/building-a-geospatial-application-with-cloudant-to-show-colorado-ski-areas/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+<div class="editors-note"><p class="translated">编者按:地理数据的使用传统上是地理信息专家的领域。但越来越多的事实证明，地理数据对希望为应用程序添加更深层次功能的开发人员非常有用。这一点在我参加</p><a href="http://www.esri.com/events/user-conference">Esri User Conference</a><p class="translated">本月初。开发人员正在寻找各种使用地理数据的新方法。但是从我们的角度来看，我们需要更多的例子来说明地理数据是如何增加更多的内容和阐明以前看不到的信息的。Cloudant在这方面的贡献只是数据库如何用于将地理数据集成到应用程序中的一个例子。我们期待更多突出地理数据项目并为我们所有人提供使用指南的贡献。</p></div>
+
+<p class="translated">这篇文章的目的是为在第三方应用程序中查询和呈现来自<a href="https://cloudant.com/" class="ext-link" rel="external "> Cloudant </a>的地理空间数据提供构建模块。具体来说，我们将讨论如何将<a href="http://leafletjs.com/" class="ext-link" rel="external ">传单</a>与Cloudant整合，以构建这个<a href="https://normanb.cloudant.com/colorado_skiing/geo/demos/cloudant/index.html" class="ext-link" rel="external ">站点</a>。传单是一个开源的JavaScript库，用于移动友好的交互式地图。</p>
+<p class="translated"><a href="https://thenewstack.io/wp-content/uploads/2014/07/skiing.png" class="local-link"> <img decoding="async" loading="lazy" class="aligncenter wp-image-2702" src="../Images/67ac14ad5aa7ee205c5f17d8ad0a4cce.png" alt="skiing" data-original-src="https://thenewstack.io/wp-content/uploads/2014/07/skiing.png"/> </a></p>
+<h3 class="translated">积木</h3>
+<p class="translated">该网站是使用<a href="http://jasonsanford.github.io/leaflet-vector-layers/" class="ext-link" rel="external ">传单矢量图层</a>和<a href="https://github.com/Leaflet/Leaflet.draw" class="ext-link" rel="external ">传单绘图</a>构建的。你可以在这里找到所有代码<a href="https://github.com/normanb/leaflet-vector-layers/tree/master/demos/cloudant" class="ext-link" rel="external "/>。传单矢量图层从地理网络服务提供商(包括ArcGIS Server、Arc2Earth、CartoDB和Geocommons)获取矢量要素。传单绘图是一个矢量绘图和传单编辑插件。</p>
+<p class="translated">我们使用了来自<a href="http://www.geoiq.com/" class="ext-link" rel="external "> GeoIQ </a>的现有数据集，其中包括落基山脉科罗拉多地区滑雪场的GeoJSON数据:<br/></p>
+<div id="crayon-642311ba54b32475398983" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>{
+ 
+<span class="crayon-h">    </span><span class="crayon-s">"type"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Feature"</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">    </span><span class="crayon-s">"id"</span>:<span class="crayon-h"> </span><span class="crayon-cn">11</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">    </span><span class="crayon-s">"properties"</span>:<span class="crayon-h"> </span>{
+ 
+<span class="crayon-h">        </span><span class="crayon-s">"Name"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Breckenridge Ski Area"</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">        </span><span class="crayon-s">"Status"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Open"</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">        </span><span class="crayon-s">"XCOORD"</span>:<span class="crayon-h"> </span>-<span class="crayon-cn">106.079136</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">        </span><span class="crayon-s">"YCOORD"</span>:<span class="crayon-h"> </span><span class="crayon-cn">39.459103</span>
+ 
+<span class="crayon-h">    </span>},<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">    </span><span class="crayon-s">"geometry"</span>:<span class="crayon-h"> </span>{
+ 
+<span class="crayon-h">        </span><span class="crayon-s">"type"</span>:<span class="crayon-h"> </span><span class="crayon-s">"Point"</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">        </span><span class="crayon-s">"coordinates"</span>:<span class="crayon-h"> </span>[
+ 
+<span class="crayon-h">            </span>-<span class="crayon-cn">106.07913649885852</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">            </span><span class="crayon-cn">39.45910306740733</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">            </span><span class="crayon-cn">0</span>
+ 
+<span class="crayon-h">        </span>]
+ 
+<span class="crayon-h">    </span>}
+ 
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>将数据更新到Cloudant后，通过Cloudant管理用户界面创建数据库。(注意:如果你不熟悉Cloudant，注册并让support@cloudant.com知道你想加入地理空间集群。)</p>
+<p class="translated"><a href="https://thenewstack.io/wp-content/uploads/2014/07/dashboard.png" class="local-link"><img decoding="async" loading="lazy" class="aligncenter wp-image-2701 size-full" src="../Images/b196533713baf23638180ecc0b19efa8.png" alt="dashboard" data-original-src="https://thenewstack.io/wp-content/uploads/2014/07/dashboard-e1406752381879.png"/>T2】</a></p>
+<p class="translated">我们使用下面的Cloudant设计文档将GeoJSON索引为R*Tree二级空间索引。<br/></p>
+<div id="crayon-642311ba54b37893896462" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre>{
+ 
+<span class="crayon-h">    </span><span class="crayon-s">"_id"</span>:<span class="crayon-h"> </span><span class="crayon-s">"_design/SpatialView"</span>,<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">    </span><span class="crayon-s">"indexes"</span>:<span class="crayon-h"> </span>{
+ 
+<span class="crayon-h">        </span><span class="crayon-s">"ski_areas"</span>:<span class="crayon-h"> </span>{
+ 
+<span class="crayon-h">            </span><span class="crayon-s">"index"</span>:<span class="crayon-h"> </span><span class="crayon-s">"function(doc){ if (doc.geometry) { st_index(doc.geometry);}}"</span>
+ 
+<span class="crayon-h">        </span>}
+ 
+<span class="crayon-h">    </span>}
+ 
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>上面的设计文档是使用HTTP POST请求在Cloudant中创建的:<br/></p>
+<div id="crayon-642311ba54b38671237405" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">curl</span><span class="crayon-h"> </span>-<span class="crayon-st">X</span><span class="crayon-h"> </span><span class="crayon-i">POST</span><span class="crayon-h"> </span>-<span class="crayon-r">d</span><span class="crayon-h"> </span>@<span class="crayon-i">designDoc</span><span class="crayon-st">.</span><span class="crayon-e">json </span><span class="crayon-i">https</span>:<span class="crayon-c">//username:password@cloudant.com/colorado_skiing</span>
+ 
+<span class="crayon-h"> </span>-<span class="crayon-i">H</span><span class="crayon-h"> </span><span class="crayon-s">"Content-Type: application/json"</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>我使用了一个简单的Python脚本来加载科罗拉多滑雪场剩余的GeoJSON要素集合:<br/></p>
+<div id="crayon-642311ba54b39417644273" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">import </span><span class="crayon-e">json</span>
+ 
+<span class="crayon-e">import </span><span class="crayon-e">requests</span>
+ 
+<span class="crayon-e"> </span>
+ 
+<span class="crayon-i">headers</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span>{<span class="crayon-s">"content-type"</span>:<span class="crayon-h"> </span><span class="crayon-s">"application/json"</span>}
+ 
+<span class="crayon-h"> </span>
+ 
+<span class="crayon-p"># parse json feature collection</span>
+ 
+<span class="crayon-i">json_data</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">open</span>(<span class="crayon-i">areas</span>)
+ 
+<span class="crayon-i">data</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">json</span><span class="crayon-st">.</span><span class="crayon-e">load</span>(<span class="crayon-i">json_data</span>)
+ 
+<span class="crayon-h"> </span>
+ 
+<span class="crayon-e">for </span><span class="crayon-e">feature </span><span class="crayon-e">in </span><span class="crayon-i">data</span>[<span class="crayon-s">"features"</span>]:
+ 
+<span class="crayon-h">        	</span><span class="crayon-i">Id</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">feature</span>[<span class="crayon-s">"id"</span>]
+ 
+<span class="crayon-h">        	</span><span class="crayon-p"># delete feature type and duplicate id</span>
+ 
+<span class="crayon-h">        	</span><span class="crayon-e">del </span><span class="crayon-i">feature</span>[“<span class="crayon-i">id</span>”]
+ 
+<span class="crayon-h">        	</span><span class="crayon-i">requests</span><span class="crayon-st">.</span><span class="crayon-e">post</span>(<span class="crayon-i">dbUrl</span>,<span class="crayon-h"> </span><span class="crayon-i">data</span>=<span class="crayon-i">json</span><span class="crayon-st">.</span><span class="crayon-e">dumps</span>(<span class="crayon-i">feature</span>),<span class="crayon-h"> </span><span class="crayon-i">headers</span>=<span class="crayon-i">headers</span>)
+ 
+<span class="crayon-h"> </span>
+ 
+<span class="crayon-i">json_data</span><span class="crayon-st">.</span><span class="crayon-e">close</span>()
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>上面的脚本使用Python请求来提取GeoJSON要素集合，并将其解析为要在Cloudant空间索引中索引的单个文档。</p>
+<p class="translated">包装在传单矢量图层中的Cloudant Geo OpenSearch API添加了一个数据源，相当于编辑index.html来设置感兴趣的区域。</p>
+<p class="translated">传单矢量图层将为您的数据提供半径、边界框和多边形查询。</p>
+<p class="attribution translated">诺曼·巴克是IBM公司Cloudant的Geo总监。10多年来，他一直在开发地理空间程序，并领导Cloudant的分布式地理空间索引的开发。他的主要兴趣是如何使用非结构化的地理空间数据。</p>
+<p class="attribution translated">通过 Flickr知识共享<a href="https://www.flickr.com/photos/80497449@N04/7392329216/in/photolist-cgeBW1-kjyUmp-Fju3G-53Uzwa-b7mPSF-aKQ87x-7iSrs3-bZUzHQ-fuHAbs-dUJJgf-dHsohH-7SoaAB-9cF7zD-8Voph9-9MFBHp-2ffjk-kjzvyM-cBfRrh-8oZXEi-8p48ZU-5Dj8zC-dxKGEX-kjxEoM-3iuW1m-3iquAx-3iv3bf-drZkoK-85GPHs-iGhArd-6oiBZW-83Ryjn-6oi8JA-7HSxoE-7kuBae-m2rwJx-8qrEGA-59ssnf-7jTats-8qmzxN-9tmLxQ-bsohpQ-am3b1c-895Yb8-4RB2dR-h5AKH-68r86Q-eS7Qpx-eSjgtQ-D6Afv-kjBmUu" class="ext-link" rel="external ">的特色图片。</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

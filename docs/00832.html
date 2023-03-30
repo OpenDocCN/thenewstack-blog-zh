@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>This Week in Programming: Dart 2 Arises from the Ashes</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">本周节目:Dart 2浴火重生</h1>
+<blockquote>原文：<a href="https://thenewstack.io/week-programming-ashes-arises-dart-2/#0001-01-01">https://thenewstack.io/week-programming-ashes-arises-dart-2/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Dart，Objective-C，CoffeeScript，Lua，Erlang。这个编程语言列表有什么共同点？</p>
+<p class="translated">如果你的答案是“<a href="https://www.techrepublic.com/article/the-5-worst-programming-languages-to-learn-in-2018/" class="ext-link" rel="external ">2018年最难学的五种编程语言</a>”，那么你会同意<a href="https://www.codementor.io/" class="ext-link" rel="external ">共同导师</a>发布的一项调查。根据该报告，这些语言“位居开发人员在2018年应该避免学习的编码语言之首，因为它们缺乏社区参与、就业和增长。”</p>
+<p class="translated">即使这不是你的答案，我相信你读了之后会对自己说“是的，听起来很对。”但是，也许本周的一两个其他公告将改变列表中至少一种语言的情况——Dart。</p>
+<p class="translated">我们已经看到了像谷歌这样的大公司支持一种语言可以为它的受欢迎程度做些什么。本周编程界的新闻有一大堆来自巴塞罗纳<a href="https://www.mobileworldcongress.com/" class="ext-link" rel="external ">移动世界大会</a>，而引领我们的是谷歌<a href="https://developers.googleblog.com/2018/02/announcing-flutter-beta-1.html" class="ext-link" rel="external ">宣布的Flutter beta 1 </a>。Flutter是谷歌新的移动用户界面框架，适用于iOS和Android的原生界面。</p>
+<p class="translated"><iframe loading="lazy" src="https://www.youtube.com/embed/fq4N0hgOWzU?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">视频</iframe></p>
+<p class="translated">你会问，这和Dart有什么关系？嗯，Flutter本身是用Dart写的，所有基于Flutter的app也是。</p>
+<p class="translated">与此同时，谷歌还宣布了一个<a href="https://adtmag.com/articles/2018/02/23/dart-2.aspx" class="ext-link" rel="external "> Dart 2重启</a>，据<a href="https://adtmag.com/Home.aspx" class="ext-link" rel="external ">应用开发者趋势</a>称，谷歌已经通过添加强类型和其他优化“改造”了Dart。与此同时，Jaxenter的开发人员表示，他们“一直在急切地等待这个版本中的所有重大变化”，并且“Dart 2是这种语言的一次重大重启，使它更接近其创造者的初衷。”</p>
+<p class="translated">因此，尽管2017年版的你——三个月前在某项调查中被问到时可能会说不要学习Dart的你——可能不会同意，但也许2018年版的你终究应该学习Dart。</p>
+
+<p/>
+<h2 class="translated">本周在(谷歌)编程</h2>
+<ul>
+<li class="translated"><strong>让AR开始:</strong>在谷歌本周发布的众多相关公告中，该公司还<a href="https://www.blog.google/products/google-vr/announcing-arcore-10-and-new-updates-google-lens/" class="ext-link" rel="external ">发布了ARCore 1.0以及谷歌镜头的更新</a>，这是谷歌护目镜的替代品。虽然谷歌镜头的更新并不真正属于编程的范畴，但ARCore是谷歌为Android开发的<a href="https://developers.google.com/ar/" class="ext-link" rel="external ">增强现实SDK </a>，让你可以构建类似的应用程序。随着这一版本的发布，ARCore已经离开了测试版，现在可以投入生产，这意味着您的开发者现在可以将AR应用发布到Google的Play Store。该公司表示，ARCore用于1亿部安卓智能手机，包括13款，并将很快用于三星、华为、LGE、摩托罗拉、华硕、小米、HMD/诺基亚、中兴、索尼移动和Vivo的设备。1.0版本还包括“改进的环境理解，使用户能够放置虚拟资产”，并在Android Studio Beta的<a href="https://developers.google.com/ar/develop/java/emulator" class="ext-link" rel="external ">模拟器</a>中得到支持，允许桌面虚拟环境测试。</li>
+<li class="translated"><strong>谷歌加入聊天机器人军备竞赛:</strong>上周，Atlassian宣布向开发者开放其Stride API，现在谷歌也紧随其后，发布了其<a href="http://gsuite-developers.googleblog.com/2018/02/develop-bot-integrations-with-hangouts.html" class="ext-link" rel="external "> Hangouts聊天平台和API </a>。这一举动已经被期待了一段时间，因为谷歌已经谈论过<a href="https://chat.google.com/" class="ext-link" rel="external "> Hangouts Chat，</a>它的“网络和移动企业协作的信息平台”然而，正如该公司在公告中指出的那样，“更有趣的是，从今天开始，你将能够使用<a href="https://developers.google.com/hangouts/chat" class="ext-link" rel="external "> Hangouts聊天开发平台和API </a>来制作自己的机器人集成。”尽管谷歌称Apps Script是“创建和部署机器人最简单的方式之一”，但它也将在<a href="https://cloud.google.com/appengine" class="ext-link" rel="external ">谷歌应用引擎</a>或你自己的<a href="https://cloud.google.com/compute" class="ext-link" rel="external ">谷歌计算引擎</a>实例或其他公共或私有云上支持Python、Java、PHP、Go等更多语言。</li>
+<li class="translated"><strong>不再有非SDK的Android界面:</strong>提醒Android开发者，谷歌本周还宣布将致力于<a href="http://android-developers.googleblog.com/2018/02/improving-stability-by-reducing-usage.html" class="ext-link" rel="external ">通过减少非SDK界面的使用来提高稳定性</a>，因为使用这样的界面“会给用户带来崩溃的风险，也会给开发者带来紧急部署的风险”继2016年<a href="https://android-developers.googleblog.com/2016/06/improving-stability-with-private-cc.html" class="ext-link" rel="external ">对允许的C/C++符号的限制之后，</a>Android的下一个版本将扩展这些限制，以包括SDK的Java语言接口。关于这可能如何破坏现有应用程序的完整细节，请确保完整阅读该公告，但谷歌表示，“我们的规划和设计有一个明确的目标，即尊重我们的开发者社区，在解决应用程序稳定性的同时，尽可能减少变化。”简而言之，“如果你的应用目前依赖于非SDK接口，你应该开始计划向SDK替代品的迁移。”</li>
+<li class="translated"><strong>谷歌动作:</strong>最后，Android开发者终于可以用16种语言构建谷歌的“动作”(想想Alexa的“技能”)<a href="http://developers.googleblog.com/2018/02/actions-on-google-now-supports-16.html" class="ext-link" rel="external ">，包括印地语、泰语、印尼语、丹麦语、挪威语、瑞典语和荷兰语。此外，actions现在还可以使用askForPlace，这是一个新的对话助手，它使用Google Places API来理解基于位置的用户对话中的查询。</a></li>
+</ul>
+
+<p/>
+<h2 class="translated">本周在(GitHub)编程中</h2>
+<ul>
+<li class="translated"><strong>Slack的一款新GitHub应用:</strong>如果你不是IRC的死忠，你可能会使用Slack。Ang GitHub。这两家公司已经合作发布了新的GitHub和Slack应用程序。根据GitHub的<a href="https://github.com/blog/2506-slack-and-github-your-ultimate-productivity-pair" class="ext-link" rel="external ">公告</a>，新的应用程序“将GitHub活动带入您的空闲频道，以保持您的团队及时更新和高效”，允许您订阅GitHub资源库，并自动查看新的拉取请求、问题、代码审查和部署的更新。Slack/GitHub集成是<a href="https://github.com/integrations/slack" class="ext-link" rel="external ">开源的</a>并且是用公开可用的API构建的。如果您想贡献代码、提交功能请求或错误报告，请访问GitHub知识库进行集成。</li>
+<li class="translated"><strong> GitHub Desktop 1.1来了:</strong>在GitHub本周发布的一系列较大或较小的公告中，我们有<a href="https://github.com/blog/2508-github-desktop-1-1-is-now-available" class="ext-link" rel="external "> GitHub Desktop 1.1 </a>，它以<a href="https://electronjs.org/" class="ext-link" rel="external ">电子应用</a>的“全新发布”为特色。GitHub Desktop 1.1的最新特性包括diffs中的语法突出显示、拉请求列表，该列表在当前存储库的分支旁边显示打开的拉请求、<a href="https://github.com/blog/2496-commit-together-with-co-authors" class="ext-link" rel="external ">共同创作的提交</a>，以及查看哪些拉请求通过了<a href="https://help.github.com/articles/about-statuses/" class="ext-link" rel="external ">提交状态</a>检查以及哪些需要更多工作的能力。有关完整的细节，请查看<a href="https://desktop.github.com/release-notes/" class="ext-link" rel="external ">发行说明</a>。</li>
+<li class="translated"><strong>告别弱加密标准:</strong>我们在发布时提到过这一点，所以在此再次重申——<a href="https://github.com/blog/2507-weak-cryptographic-standards-removed" class="ext-link" rel="external ">GitHub将不再支持弱加密标准</a>。它已经永久删除了对github.com和api.github.com的TLSv1/TLSv1.1、diffie-hellman-group1-sha1、diffie-hellman-group14-sha1的支持。</li>
+<li class="translated"><strong> PHP Pull Requests: </strong>最后，GitHub增加了一个特性来<a href="https://github.com/blog/2512-quickly-review-changed-functions-in-your-php-pull-requests" class="ext-link" rel="external ">查看PHP Pull Requests中已更改的函数</a>，对文件查找器进行了更改，使您可以导航到Pull Requests中已更改的方法和函数。通过在文件查找器中搜索术语function或PHP文件中已更改函数的名称，您将获得结果的过滤视图，以帮助识别pull请求中最有影响的部分。如果这没有意义，请查看文档。</li>
+</ul>
+
+<p/>
+<h2 class="translated">本周在(非附属)节目中</h2>
+<ul>
+<li class="translated">Ruby的实时编译器:最新版本的Ruby，被它的朋友亲切地称为Ruby 2.6.0-preview1，已经在<a href="https://www.ruby-lang.org/en/news/2018/02/24/ruby-2-6-0-preview1-released/" class="ext-link" rel="external ">发布</a>，并引入了JIT(实时)编译器的初步实现。JIT编译器将通过将C代码打印到磁盘上并生成通用C编译器进程来生成本机代码，从而提高Ruby程序的执行性能。目前，这个版本主要是一个检查平台兼容性和确定安全风险的机会——大多数优化还没有实现。有关如何试用预览版的详细信息，请查看公告。</li>
+<li class="translated"><strong>2017年围棋调查称:</strong>我们在新堆栈这里有我们自己的方式，但<a href="https://blog.golang.org/survey2017-results" class="ext-link" rel="external ">围棋2017年调查结果</a>已经出来了，我相信你可能已经听说了。这是他们超快的要点:围棋很受欢迎，人们正在用它赚钱。而用围棋的人，嗯，他们也喜欢围棋。如需完整的细节，请自行查看结果，或查看我们的完整报道。</li>
+<li class="translated"><strong>爪哇EE已死——向雅加达EE致敬！</strong>最后，本周最大的新闻(我们当然把最好的留到了最后)<a href="https://mmilinkov.wordpress.com/2018/02/26/and-the-name-is/" class="ext-link" rel="external "> Jakarta EE是Java EE的新名字！</a>在不到7，000份回复中，近65%的人毫不意外地选择了“Jakarta EE”而不是“企业简介”“企业简介”听起来像一种语言的名字吗？哦，还有，不要叫它EE4J，这显然是绝对不允许的。</li>
+</ul>
+<p class="attribution translated">谷歌是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

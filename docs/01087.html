@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>How PingCAP’s TikV Is Set to Process Transactions from China's 800 Million Internet Shoppers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">PingCAP的TikV将如何处理中国8亿网络购物者的交易</h1>
+<blockquote>原文：<a href="https://thenewstack.io/how-pingcaps-tikv-is-set-to-process-data-from-chinas-800-million-internet-shoppers/#0001-01-01">https://thenewstack.io/how-pingcaps-tikv-is-set-to-process-data-from-chinas-800-million-internet-shoppers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="attribution translated"><a href="https://www.cncf.io/kubecon-cloudnativecon-events/" target="_blank" rel="noopener noreferrer external " class="ext-link"> KubeCon + CloudNativeCon </a>赞助本帖。</p>
+<p class="translated"><br/><span class="media-direct-link"><a href="https://thenewstack.simplecast.com/episodes/how-pingcaps-tikv-is-set-to-process-transactions-from-chinas-800-million-internet-shoppers" class="ext-link" rel="external ">PingCAP的TikV如何处理中国8亿互联网购物者的交易</a> </span></p>
+
+<p class="translated">不久前，<a href="https://www.linkedin.com/in/kevinsxu/" class="ext-link" rel="external ">平盖</a>全球战略和运营总经理<a href="https://www.linkedin.com/in/kevinsxu/" class="ext-link" rel="external ">许海波</a>还记得在他的祖国中国，走进一家网吧被他描述为“黑暗和昏暗”的地下室，玩<a href="https://worldofwarcraft.com/" class="ext-link" rel="external ">魔兽世界</a>和吃面条。</p>
+<p class="translated">“那些日子确实存在，但不再那么多了——现在有许多手机供应商，几乎所有的事情都在你的智能手机上完成，”徐说。</p>
+<p class="translated">但在2014年至2017年就读斯坦福大学法学院(Stanford University Law School)后——当时他在校园里参加了高级计算机科学课程，因为他认为法学院“无聊”——中国的互联网经济已经变成了一个截然不同的地方。</p>
+<p class="translated">“关于中国互联网经济有趣的事情是，第一，自从我上次统计以来，它拥有世界上最多的互联网用户，大约8亿人，相当于美国总人口的两倍半，现在可能更多，”徐说。"他们不仅是互联网用户，而且大多是移动用户."</p>
+<p class="translated"><a href="https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/" class="ext-link" rel="external "> KubeCon + CloudNativeCon中国开源峰会2019 </a>在上海举行，为与徐一起录制最新一期<a href="/podcasts/makers" target="_blank"> The New Stack Makers </a>播客提供了完美的背景。除此之外，徐还展望了PingCap的<a href="https://github.com/tikv/tikv" class="ext-link" rel="external "> TikV </a>开源分布式事务关键值数据库如何帮助满足中国互联网经济8亿用户的需求，该数据库拥有超过5，500个GitHub stars，并已成为云原生计算基金会的孵化级托管项目。(<a href="https://www.zhihu.com/signup?next=%2F" target="_blank" rel="noopener noreferrer external " class="ext-link">知乎</a>，中国Q &amp; A网站，也是TikV项目维护者。)</p>
+<p class="translated">在中国互联网上处理如此大量的交易数据需要后端系统的单一视图，当然包括所有备份数据。这就是底层编程语言Rust和TikV的Raft协议发挥作用的地方。“随着数据集的增长，当你向集群中添加更多的节点时，你不想在这方面妥协，这就是Raft的用武之地，”徐说。“对我们来说，当涉及到TikV的设计时，这就是所有其他决策点出现的地方，因为…您不希望您的银行账号出错。即使作为一个不那么重要但仍然重要的例子，比如亚马逊订单，你也不希望这是错误的。”</p>
+<p class="translated">对徐来说，中国网购者对工程师的要求很有趣，也很有挑战性。“很多人都在谈论中国经济的规模、估值和股市，”徐说。“从一个开发者的角度来看，我觉得有趣的是，你能想出什么样的技术解决方案来吸收所有这些需求。”</p>
+<p class="translated">Xu描述了TikV和开源的TiDB(它提供了SQL处理层)如何能够扩展到他所说的“一天就有数十亿美元的交易价值”的需求。他说TiDB和TikV是独立的，“所以它们是两个独立的代码库。”徐说，通过将TiDB服务器扩展为无状态节点，这有助于更容易地扩展吞吐量，因此“你可以根据流量模式或促销或公司可能正在运营的任何其他类型的事情来扩展和收缩”</p>
+<p class="translated">“这非常灵活和有用，因为他们确实有这些疯狂的在线购物日，如果你从金钱的角度考虑，这有点荒谬，但更荒谬的是，如果你像工程师一样，在后端工作，试图确保你的服务不会下降。因此，在我看来，所有这些需求都来自于对更好的创新技术的需求，这种需求来自于这个经济体的特点。”</p>
+<p class="translated"><iframe loading="lazy" title="Discussing TikV’s Journey To CNCF Incubation Status" src="https://www.youtube.com/embed/t7WoL13__D4?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<h3 class="translated">在这个版本中:</h3>
+<p class="translated"><a href="https://thenewstack.simplecast.com/episodes/how-pingcaps-tikv-is-set-to-process-transactions-from-chinas-800-million-internet-shoppers?t=1:13" class="ext-link" rel="external "> 1:13: </a>给我们介绍一下TikV和PingCAP<br/>T3】6:17:那么ping cap优化TikV的方式有哪些呢？<br/> <a href="https://thenewstack.simplecast.com/episodes/how-pingcaps-tikv-is-set-to-process-transactions-from-chinas-800-million-internet-shoppers?t=10:26" class="ext-link" rel="external "> 10:26: </a>为什么建在铁锈里？<br/> <a href="https://thenewstack.simplecast.com/episodes/how-pingcaps-tikv-is-set-to-process-transactions-from-chinas-800-million-internet-shoppers?t=15:56" class="ext-link" rel="external "> 15:56: </a>在中国市场的背景下，你如何看待TIDB和TikV在企业间的合作？<br/> <a href="https://thenewstack.simplecast.com/episodes/how-pingcaps-tikv-is-set-to-process-transactions-from-chinas-800-million-internet-shoppers?t=19:55" class="ext-link" rel="external "> 19:55: </a>随着向外扩展的继续，中国的提供商和您的客户面临哪些挑战？<br/><a href="https://thenewstack.simplecast.com/episodes/how-pingcaps-tikv-is-set-to-process-transactions-from-chinas-800-million-internet-shoppers?t=24:05" class="ext-link" rel="external ">24:05:</a>CNCF孵化状态对TikV意味着什么？在接下来的几个周期中，我们应该期待什么？</p>
+<p class="translated">Alex Williams，The New Stack的创始人兼主编，主持了这个播客。</p>
+<p class="attribution translated">云计算原生计算基金会是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

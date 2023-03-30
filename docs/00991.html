@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Hedley the Robotic Skull, Formerly 'Old One-Eye'</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:赫德利机器人头骨，以前的“老独眼”</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-hedley-formerly-old-one-eye/#0001-01-01">https://thenewstack.io/off-shelf-hacker-hedley-formerly-old-one-eye/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">谁想要一个独眼机器人头骨？</p>
+<p class="translated">我们可以拥有<a href="http://www.monsterguts.com/store/product.php?productid=17785&amp;cat=272&amp;page=1" class="ext-link" rel="external ">平移/倾斜眼球</a>，就像通过Arduino或Raspberry Pi的命令移动的怪物内脏。不过，让我们实际一点。我最新的<a href="/tag/off-the-shelf-hacker/" target="_blank">现成黑客</a>项目，赫德利，右眼窝里已经有了一个<a href="http://jevois.org/" class="ext-link" rel="external "> JeVois相机</a>。虽然商店里买的眼睛套装很棒，但它会花掉你180美元。也许我们可以在未来的文章中添加一个单独的平移/倾斜眼睛。</p>
+<p class="translated">目前，我只是想要一个好看的固定眼球，可以有计划地发出不同的颜色，吸引注意力，而且价格便宜。</p>
+<p class="translated">所以，他们开始寻找合适的物品作为眼球。</p>
+<h2 class="translated">合适的眼球</h2>
+<p class="translated">我的顿悟，除了在右边的插座上使用JeVois智能机器摄像头之外，是以一个小塑料圣诞树装饰品的形式出现的。我女儿在装饰一棵小树，我用各种颜色装饰了几棵。它有一个小的装饰帽，顶部有一个槽，可以很容易地移除，露出一个圆形的，有缺口的圆形突起，非常适合固定1/4英寸的铜管。</p>
+<div id="attachment_3745341" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-3745341" decoding="async" loading="lazy" class="size-large wp-image-3745341" src="../Images/042052b4fa0b02b95ca6813752c50c98.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/12/338fa41b-christmas-balls-1024x576.png"/><p id="caption-attachment-3745341" class="wp-caption-text translated">各种颜色的圣诞装饰品</p></div>
+<p class="translated">它完全符合头骨。</p>
+<p class="translated">用钻头和小鼠尾锉将顶部的洞稍微扩大。塑料零件很容易手工加工，因为你几乎不需要动力来转动它们。我只是在手指间旋转钻头，打出大小合适的洞。不需要钻床。</p>
+<p class="translated">我还在装饰物的前面(底部)手工钻了一个孔，形成虹膜。再一次，稍微修饰一下，这次用的是<a href="https://www.dremel.com/en_US/products/-/show-product/accessories/561-multipurpose-cutting-bit" class="ext-link" rel="external ">螺旋切割钻头</a>，几乎很快就把洞打得很圆了。小心这个特别的钻头，因为凹槽非常锋利。</p>
+<h2 class="translated">可编程的幽灵般的辉光</h2>
+<p class="translated">我喜欢用三色发光二极管。它们相当便宜，只需几美元左右，而且通常非常明亮。<a href="https://www.banggood.com/10pcs-5mm-RGB-LED-Common-Anode-4-Pin-Tri-Color-Emitting-Diodes-F5-p-937446.html?rmmds=buy&amp;cur_warehouse=CN" class="ext-link" rel="external ">1.60美元的Banggood有10个</a>。</p>
+<p class="translated">不久前，我们发表了一篇关于选择和使用两种不同led的讨论，共阴极和共阳极。在这种情况下，我使用公共阳极类型，因为Pi可以处理其输出引脚上的电源切换。公共阳极接地，每种颜色连接到相应的GPIO引脚。</p>
+<p class="translated">这一次，我没有在LED附近安装100欧姆电阻，而是将它们放在Raspberry Pi 40引脚连接器上。1/4”管内没有足够的空间容纳所有三个电阻，所以我只是从引线开始布线，一直到Pi。我使用了一些从旧的串行鼠标中回收的24号绞合线来连接led和Pi。这种电线非常柔韧，非常容易使用。</p>
+<div id="attachment_3745342" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-3745342" decoding="async" loading="lazy" class="size-large wp-image-3745342" src="../Images/d4d859f8ed3bfa917830c63562b6f496.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/12/0368ac60-led-resistors-1024x576.png"/><p id="caption-attachment-3745342" class="wp-caption-text translated">连接到40针Pi连接器的LED电阻</p></div>
+<p class="translated">我们只需要100欧姆的电阻，因为Raspberry Pi上的通用输入/输出(GPIO)引脚工作在3.3伏。你会发现很多使用三色led的5伏Arduino项目。由于电压较高，它们需要270欧姆的电阻。Pi GPIO引脚始终使用3.3伏电压进行计算。</p>
+<p class="translated">在将细线焊接到LED的引线上之后，我在每一根引线周围用了一些透明胶带来防止短路。它不漂亮，藏在安装管里。少量的热胶水将LED固定在管子的中心。</p>
+<div id="attachment_3745343" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-3745343" decoding="async" loading="lazy" class="size-large wp-image-3745343" src="../Images/500bcc8ddbf254c82d6fe3dfc16cc95e.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/12/06fe442d-eyeball-mount-1024x576.png"/><p id="caption-attachment-3745343" class="wp-caption-text translated">铜管眼球/LED支架</p></div>
+<p class="translated">黄铜安装管压入眼球。然后将眼球压入头骨左眼窝的匹配孔中。对于这一个，我确实用Dremel钻了一个导向孔，因为塑料相当厚。在那之后，我再次使用螺旋钻头手工加工孔到合适的尺寸。</p>
+<p class="translated">目前，眼球仅通过压配合保持在眼窝中。我可能会在头骨内建立一个小支架，抓住安装管并牢牢抓住它。</p>
+<h2 class="translated">保持简单，使用Python</h2>
+<p class="translated">运行眼球的代码非常简单，类似于我在前面提到的基本LED视觉界面文章中使用的代码。<br/></p>
+<div id="crayon-64222f8446822253410454" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-p">#!/usr/bin/env python2.7</span>
+<span class="crayon-h">  </span>
+<span class="crayon-e">import </span><span class="crayon-i">RPi</span><span class="crayon-st">.</span><span class="crayon-e">GPIO </span><span class="crayon-e">as </span><span class="crayon-i">GPIO</span><span class="crayon-h"> </span><span class="crayon-p"># always needed with RPi.GPIO  </span>
+<span class="crayon-e">from </span><span class="crayon-e">time </span><span class="crayon-e">import </span><span class="crayon-i">sleep</span><span class="crayon-h">  </span><span class="crayon-p"># pull in the sleep function from time module  </span>
+ 
+<span class="crayon-i">maxint</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">30</span><span class="crayon-h"> </span>
+<span class="crayon-h">  </span>
+<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">setmode</span>(<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">BCM</span>)<span class="crayon-h">  </span><span class="crayon-p"># choose BCM or BOARD numbering schemes. I use BCM  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">setup</span>(<span class="crayon-cn">22</span>,<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">OUT</span>)<span class="crayon-p"># set GPIO 22 as output for red led  </span>
+<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">setup</span>(<span class="crayon-cn">17</span>,<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">OUT</span>)<span class="crayon-p"># set GPIO 17 as output for blue led  </span>
+<span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">setup</span>(<span class="crayon-cn">27</span>,<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-i">OUT</span>)<span class="crayon-p"># set GPIO 27 as output for green led  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-i">red</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">PWM</span>(<span class="crayon-cn">22</span>,<span class="crayon-h"> </span><span class="crayon-cn">100</span>)<span class="crayon-h">    </span><span class="crayon-p"># create object red for PWM on port 25 at 100 Hertz  </span>
+<span class="crayon-i">green</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">PWM</span>(<span class="crayon-cn">17</span>,<span class="crayon-h"> </span><span class="crayon-cn">100</span>)<span class="crayon-h">      </span><span class="crayon-p"># create object blue for PWM on port 24 at 100 Hertz  </span>
+<span class="crayon-i">blue</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">PWM</span>(<span class="crayon-cn">27</span>,<span class="crayon-h"> </span><span class="crayon-cn">100</span>)<span class="crayon-h">      </span><span class="crayon-p"># create object green for PWM on port 24 at 100 Hertz  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-p"># red.start(1)              # start red led on 0 percent duty cycle (off)  </span>
+<span class="crayon-i">blue</span><span class="crayon-st">.</span><span class="crayon-e">start</span>(<span class="crayon-cn">0</span>)<span class="crayon-h">              </span><span class="crayon-p"># start blue on (100%)  </span>
+<span class="crayon-p"># green.start(0)              # start green on (0%)  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-p"># now the fun starts, we'll vary the duty cycle to   </span>
+<span class="crayon-p"># dim/brighten the leds, so one is bright while the other is dim  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-i">pause_time</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0.05</span><span class="crayon-h">           </span><span class="crayon-p"># you can change this to slow down/speed up  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-i">try</span>:<span class="crayon-h">  </span>
+<span class="crayon-h">    </span><span class="crayon-e">while </span><span class="crayon-i">True</span>:<span class="crayon-h">  </span>
+<span class="crayon-h">        </span><span class="crayon-i">for</span><span class="crayon-h"> </span><span class="crayon-m">i</span><span class="crayon-h"> </span><span class="crayon-e">in </span><span class="crayon-e">range</span>(<span class="crayon-cn">1</span>,<span class="crayon-i">maxint</span>):<span class="crayon-h">      </span><span class="crayon-p"># 101 because it stops when it finishes 100  </span>
+<span class="crayon-h">            </span><span class="crayon-p">#red.ChangeDutyCycle(maxint - i)  </span>
+<span class="crayon-h">            </span><span class="crayon-i">blue</span><span class="crayon-st">.</span><span class="crayon-e">ChangeDutyCycle</span>(<span class="crayon-i">maxint</span><span class="crayon-h"> </span>-<span class="crayon-h"> </span><span class="crayon-m">i</span>)<span class="crayon-h">  </span>
+<span class="crayon-h">            </span><span class="crayon-p"># green.ChangeDutyCycle(maxint - i)  </span>
+<span class="crayon-h">            </span><span class="crayon-e">sleep</span>(<span class="crayon-i">pause_time</span>)<span class="crayon-h">  </span>
+ 
+<span class="crayon-h">        </span><span class="crayon-i">for</span><span class="crayon-h"> </span><span class="crayon-m">i</span><span class="crayon-h"> </span><span class="crayon-e">in </span><span class="crayon-e">range</span>(<span class="crayon-i">maxint</span>,<span class="crayon-cn">1</span>,-<span class="crayon-cn">1</span>):<span class="crayon-h">      </span><span class="crayon-p"># 101 because it stops when it finishes 100  </span>
+<span class="crayon-h">            </span><span class="crayon-p">#red.ChangeDutyCycle(maxint- i)  </span>
+<span class="crayon-h">            </span><span class="crayon-i">blue</span><span class="crayon-st">.</span><span class="crayon-e">ChangeDutyCycle</span>(<span class="crayon-i">maxint</span><span class="crayon-h"> </span>-<span class="crayon-h"> </span><span class="crayon-m">i</span>)<span class="crayon-h">  </span>
+<span class="crayon-h">            </span><span class="crayon-p"># green.ChangeDutyCycle(maxint - i)  </span>
+<span class="crayon-h">            </span><span class="crayon-e">sleep</span>(<span class="crayon-i">pause_time</span>)<span class="crayon-h">  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-e">except </span><span class="crayon-i">KeyboardInterrupt</span>:<span class="crayon-h">  </span>
+<span class="crayon-h">    </span><span class="crayon-i">red</span><span class="crayon-st">.</span><span class="crayon-e">stop</span>()<span class="crayon-h">            </span><span class="crayon-p"># stop the red PWM output  </span>
+<span class="crayon-h">    </span><span class="crayon-i">blue</span><span class="crayon-st">.</span><span class="crayon-e">stop</span>()<span class="crayon-h">              </span><span class="crayon-p"># stop the blue PWM output  </span>
+<span class="crayon-h">    </span><span class="crayon-i">green</span><span class="crayon-st">.</span><span class="crayon-e">stop</span>()<span class="crayon-h">              </span><span class="crayon-p"># stop the green PWM output  </span>
+<span class="crayon-h">    </span><span class="crayon-i">GPIO</span><span class="crayon-st">.</span><span class="crayon-e">cleanup</span>()<span class="crayon-h">          </span><span class="crayon-p"># clean up GPIO on CTRL+C exit</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>代码初始化了库和变量。然后设置哪些Raspberry Pi引脚连接到哪些LED颜色。之后，程序只是向上循环一个变量，然后向下改变蓝色LED的占空比。占空比是来自脉宽调制(PWM) Raspberry Pi GPIO引脚的ON脉冲宽度。宽度越大，LED越亮。</p>
+<p class="translated">从很小的数字开始，LED看起来很暗，然后逐渐变强。然后程序反其道而行之，让LED变得越来越暗。这给了一个很酷的脉冲效果。</p>
+<p class="translated">还可以添加其他颜色或几何功能来定制您认为合适的眼球发光轮廓。</p>
+<p class="translated">我在想，甚至有可能根据JeVois摄像机看到的东西来改变眼球的颜色。例如，也许当头骨意识到面前站着一个人时，眼睛会发出蓝光。当一只狗出现时，它会发出红光。</p>
+<p class="translated">我们将不得不进一步探索头骨中的LED视觉界面。</p>
+<h2 class="translated">包裹</h2>
+<p class="translated">给头骨增加特征和功能需要时间，我通常每周只能做一两个。啊，一个技术“如何”文章作者的生活。</p>
+<p class="translated">总之，我会给你留下几个链接供你查看。</p>
+<p class="translated">第一个是机器人头部项目的小目录。有些你可以买。有些非常复杂。有些……嗯。也许他们会给你的项目带来一些灵感。</p>
+<p class="translated">另一个链接是到<a href="http://www.monsterguts.com/store/" class="ext-link" rel="external ">怪物内脏网站</a>。他们有相当多的道具和机器人部件可供选择，包括气动装置。我们甚至还没有在现成的黑客上讨论过这些。请务必观看他们的视频，寻找新的项目灵感。</p>
+<p class="translated">这么多现成的技术，这么少的时间。为老一只眼睛干杯。</p>
+<p> </p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

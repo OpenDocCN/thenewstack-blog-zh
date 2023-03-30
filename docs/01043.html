@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: How to Make A Steampunk Eyeball - Part 2</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Off-The-Shelf Hacker: How to Make A Steampunk Eyeball - Part 2</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-make-steampunk-eye-ball-part-2/#0001-01-01">https://thenewstack.io/off-shelf-hacker-make-steampunk-eye-ball-part-2/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Building a new project is a lot of fun, but it can also be daunting.</p>
+<p class="translated">Even a small project, like my new <a href="https://thenewstack.io/off-shelf-hacker-make-steampunk-eyeball/" class="local-link">Steampunk Eyeball</a> endeavor, offers many options and a fair number of “moving” parts. In this sense, think of “moving parts” as the different subsystems, firmware/software, and processes needed to turn the pile of parts into a working device.</p>
+<p class="translated">Here, the moving parts include the eyeball sphere itself, the eyeball pivoting and tilt servo mechanisms, the Pixy camera and it’s mounting inside the sphere, the base, and pan servo parts, plus a whole host of other incidental bits and pieces. There’s also the software used on a Linux notebook to setup and run firmware on the Pixy, monitoring software, electronic connections and power. When you think about it, the Eyeball has most of the elements of the physical computing stack.</p>
+<p class="translated">Yup, there’s a lot to it. If it were that easy, a fifth grader could do it.</p>
+<p class="translated">Before we get too deep, let’s review the homework assignment from <a href="https://thenewstack.io/off-shelf-hacker-make-steampunk-eyeball/" class="local-link">last week’s Off-The-Shelf Hacker column</a>. Did you pick a cool part for your project? Did you start a little project notebook and jot down your ideas? What about your theme? Great. Keep up the good work.</p>
+<p class="translated">With that out of the way, I want to cover how I arrived at the major design decisions for the Steampunk Eyeball. We’ll also look at a few fabrication issues and solutions, that surfaced, as I started the build.</p>
+<p class="translated">No fifth graders here.</p>
+<h2 class="translated"><strong>Perspective Vision</strong></h2>
+<p class="translated">My steampunk eyeball “want” list is pretty straightforward.</p>
+<ul>
+<li class="translated">Use the Pixy camera</li>
+<li class="translated">Make it unique so it attracts attention at conferences</li>
+<li class="translated">Make it fun for the readers and audiences</li>
+<li class="translated">Build something cool</li>
+<li class="translated">Make it move</li>
+<li class="translated">Give it a strong steampunk look</li>
+</ul>
+<p class="translated">Notice anything missing? How about the main driver for having a steampunk eyeball with a Pixy camera inside, in the first place?</p>
+<p class="translated">Purpose: I’d like the audience to be impressed with a physical computing device that tracks me as I walk around during one of my tech talks.</p>
+<p class="translated">Having a vested interest in your ideas sometimes causes you to assume that everybody else understands the big picture, without you coming right out and saying it. Clearly expressing your project vision, is important. Yes…I wasn’t clear.</p>
+<p class="translated">A great way to keep perspective and not gloss over important points is to write out your “want list” in one sentence, which is what I did. Here’s what I want the thing to do: Build a moving steampunk device, that’s fun, attracts attention at conferences and tracks me as I move around the stage, using the Pixy camera video processing capability.</p>
+<h2 class="translated"><strong>Deciding How To Get There</strong></h2>
+<p class="translated">You could plan everything out in minute detail, then fab.</p>
+<p class="translated">我更喜欢“构建、破解、修改、重复”的方法，基于我最终想要什么的总体愿景，就像一句话的总结。我对自己的fab技能有足够的信心，知道自己可以修复、适应或纠正任何问题。我通常对小项目进行快速的心理风险/收益测试，而不是冗长的分析。</p>
+<p class="translated">更大的项目需要更多的计划、分析和设计讨论，特别是如果是团队工作的话。我也倾向于过多考虑选项，很难做出“纸上决策”，因此拖慢了项目的进度。对我来说，在我的小型快速原型项目中使用“构建、破解、修改、重复”的方法效果更好。</p>
+<p class="translated">不管fab和开发方法如何，做出设计决策和设置优先级仍然很重要。</p>
+<p class="translated">对于这个项目来说，除了眼球可以在某种支架上旋转之外，其他什么都不重要。为了获得逼真的效果，Pixy还需要安装在眼球球体内部，这样当我在设备前面走动时，固件可以正确计算如何移动伺服系统来跟踪我。让它发挥作用是当务之急。</p>
+<p class="translated">到目前为止，这些是主要的设计决策和推理:</p>
+
+<h2 class="translated"><strong>进入下一步</strong></h2>
+<p class="translated">下周，我们将讨论制造半环和伺服装置的细节。我们甚至可以测试小精灵是如何追踪一个彩色斑点的。我很期待看到眼球动起来。</p>
+<p class="translated">不要忘记在笔记本上记录您的项目风险/收益分析和设计决策。想想看，你可能想把你的项目放在<a href="http://www.instructables.com/" class="ext-link" rel="external "> Instructables </a>或者其他创客网站上。有笔记会让写你的故事(或者在会议上告诉每个人……提示……提示)变得容易。</p>
+<p class="translated">下周见。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

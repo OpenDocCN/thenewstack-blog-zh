@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>The Challenges to Building a Predictive COVID-19 Model</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">构建预测性新冠肺炎模型的挑战</h1>
+<blockquote>原文：<a href="https://thenewstack.io/the-challenges-to-building-a-predictive-covid-19-model/#0001-01-01">https://thenewstack.io/the-challenges-to-building-a-predictive-covid-19-model/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">如果我们每次听到新闻中提到的模型时都拍一张照片，那么，关于在家工作会降低生产率的管理神话将最终被证明是正确的。事实上，围绕新冠肺炎疫情的大部分模型——从下一个热点在哪里到感染率和死亡率何时达到稳定水平的严峻预测——基本上是一个谜。它们可能来自深度学习模型或人工智能，也可能只是来自Excel电子表格。</p>
+<p class="translated">它们都是如此不同。仅在美国，预测死亡人数从20万到200多万不等。存在大量交叉和冲突的多表变量。没有简单的方法来识别所有这些未知。</p>
+<p class="translated">即使我们知道进入它们的预测模型，还有一个巨大的可解释性问题。太多的东西进入机器学习，人工智能被锁在一个黑匣子里。这使得机器学习隐藏在创新实验室中，与企业的其他部分隔离开来。这并不是说人工智能没有带来好处，只是这通常很难向组织的其他成员解释清楚。</p>
+<p class="translated">今天，我们并不假装知道所有的答案，但我们给出了最有可能被使用的预测模型的基本入门。我们试图打破这个黑匣子，希望在这个充满不确定性的时代分享一些理解。</p>
+<h2 class="translated">新冠肺炎模型:从哪里开始</h2>
+<p class="translated">流行病学家、政府和非政府组织都在试图利用建模来找出如何应对和治疗疫情。然后，<a href="https://fivethirtyeight.com/features/why-its-so-freaking-hard-to-make-a-good-covid-19-model/" class="ext-link" rel="external ">正如民调分析网站FiveThirtyEight指出的那样</a>，我们这些外行人抓住模型来回答两个问题:</p>
+<ul>
+<li class="translated">这真的会变得多糟？</li>
+<li class="translated">说真的，我还要像这样被关多久？</li>
+</ul>
+<p class="translated">问题是所有这些模型都是如此不同。每个国家不同的数据集、方法和报告也是如此。再加上社会经济的交叉性。让我们甚至不要开始测试不一致性。也没有触及围绕接触者追踪的伦理争论。</p>
+<p class="translated">我们唯一能确定的是，新冠肺炎传染性很强，一些人因此死亡。虽然是事实，但这些说法并不完全可以量化。</p>
+<p class="translated">对新冠肺炎来说，很多预测都依赖于人类行为。数学教育网站<a href="https://www.3blue1brown.com/" class="ext-link" rel="external "> 3blue1brown </a>提供了一系列数学模型，展示了个人能够影响的主要变量。</p>
+<p class="translated"><iframe loading="lazy" title="Simulating an epidemic" src="https://www.youtube.com/embed/gxAaO2rsdIs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">当然，还有更多的系统、文化和政治变量需要考虑，然而，这是一个很好的例子，可以解释完全社交距离与大部分社交距离的影响——比如仍然每周去一次市场或学校——以及广泛测试的影响。它主要基于<a href="https://github.com/3b1b/manim" target="_blank" rel="noopener noreferrer external " class="ext-link"> manim，一个开源的数学动画引擎</a>。这是一个很好的方式开始潜入新冠肺炎的建模。</p>
+<h2 class="translated">新冠肺炎模式可能是什么？</h2>
+<p class="translated">虽然还没有办法知道哪些数学模型正被应用于这个疫情，但有可能预测大多数种类。</p>
+<p class="translated">“有各种不同的模型在发挥作用，”合成数据提供商<a href="http://hazy.com" class="ext-link" rel="external "> Hazy </a>的深度学习工程师<a href="http://www.linkedin.com/in/johnnykkelsey" class="ext-link" rel="external ">约翰尼·凯尔西</a>说。</p>
+<p class="translated">凯尔西拥有伦敦大学学院的数学博士学位，并在受自然启发的计算和免疫系统相关生物方面进行了大量研究和工作。</p>
+<p class="translated">他预测，由于可解释性问题，这些不太可能是深度学习模型。可能有数百万个模型参数配置到单个模型中，其中许多参数不是来自数据科学家，而是来自学习的模型本身。这让我们无法向政策制定者这样的外行人解释为什么这些模型会输出这些数据。</p>
+<p class="translated">凯尔西认为，这些最有可能是流行病学家的模型，他说这些模型从相当简单到“非常非常复杂的传染病模型”不等。</p>
+<h3 class="translated">确定性和SIR模型</h3>
+<p class="translated">最常见的模型可能是SIR，它是易感、感染、康复(或患病)的缩写。这三个组成部分中的每一个都代表了在给定时间在给定区域的人数。在疫情的开始阶段，易受影响的人开始高，但随着人们进入另外两个区间，迅速下降。他称SIR为原始的数学感染模型，并说它实际上是非线性的，这通常使它更难解决，但方程“相当简单”</p>
+<p class="translated">凯尔西说，这位受欢迎的先生“认为一旦你真的得了这种病，你就不会再得了。没有理由认为，”认为这种冠状病毒可能会以不同的形式重新出现，如流感或普通感冒。</p>
+<h3 class="translated">随机模型</h3>
+<p class="translated">随机模型，如SIR模型，也是基于方程组。然而，这些使用随机变量和输出概率。</p>
+<p class="translated">凯尔西解释说，“我们着眼于传染病在人群中传播的概率，而不是发病率。”</p>
+<p class="translated">确定性模型用于预测整个国家的大量人口，而当人们参考特定人群或人口感染的可能性时，可能会涉及随机模型。</p>
+<h3 class="translated">时间序列分析</h3>
+<p class="translated">时间序列分析当然被应用于实时追踪流行病。</p>
+<p class="translated">他解释说:“你有一个数据点，比如昨天的登记感染率和今天的感染率。如果你把所有这些放在一起——昨天、前天和前天，“可以对未来做出预测，而实际结果还无法验证。</p>
+<p class="translated">时间序列数据是顺序数据的一种形式，是按一定顺序一个接一个出现的数据点的列表。序列数据的另一个例子是语言，口语或书面语。深度学习模型的一个原型例子是它们在自然语言处理中的广泛成功应用，例如，用一种语言给出的文本被翻译成另一种语言。深度神经网络将例如英语中的序列作为输入，并训练自己以例如法语输出句子。</p>
+<p class="translated">“输出必须有意义。这需要大量的训练。如果你在一个足够高的层次上进行抽象，它会有效地观察序列并输出序列，”凯尔西说。</p>
+<p class="translated">正如时间序列这个名字所暗示的，这些模型只有在正确的时间顺序下才有意义，反之则没有意义。深度学习网络已经应用于股市预测、经济预测等时间序列问题，效果越来越好。</p>
+<p class="translated">凯尔西称这些模型“非常好”，但它们缺乏可解释性或缺乏透明度——我们如何获得特定的价值？</p>
+<p class="translated">“试图证明你的模型是很困难的，除非你试图以一种实证的方式来做——一个预测是正确的，并且在过去三年里一直是正确的，因此，它一定是正确的，”他解释道。</p>
+<p class="translated">然而，对于新冠肺炎，他说我们只是还没有大量的数据来训练这些顺序深度学习模型。</p>
+<p class="translated">“对于深度学习和神经网络来说，你给它们的数据越多，它们往往表现得越好，”凯尔西说。</p>
+<p class="translated">这就是语言翻译快速发展的原因，因为你可以导出所有的法语和英语维基百科来训练一个相当好的翻译模型。</p>
+<h3 class="translated">自回归、移动平均和ARMA</h3>
+<p class="translated">ARMA是自回归模型和移动平均模型的融合。它将变量与今天、昨天和前一天的时间序列中的移动平均值相结合。移动平均线表示，您试图建模的过程可能与之前的时间序列事件相似并受其影响，因此今天的股价将与昨天的股价相似，而昨天的股价将与前天的股价相似。</p>
+<p class="translated">当然，我们正在经历的许多事情没有现代数据历史。</p>
+<p class="translated">ARMA模型要简单得多，需要训练的参数也更少，这使得它们可能不如机器学习或深度学习模型准确。</p>
+<p class="translated">另一方面，它们通常更透明，更容易解释，这在24小时新闻周期中很重要。</p>
+<p class="translated">最后，凯尔西预测大多数流行病学家正在使用数学模型或时间序列模型。他说，如果他们在统计上更有偏差，他们将使用计量经济学时间序列模型。如果他们更加基于生物学，他们会使用像SIR一样的传染率模型。</p>
+<h2 class="translated">没有足够的数据，任何模型都不起作用</h2>
+
+<p/>
+<p class="translated">凯尔西推测，我们可能还没有足够的数据点来建立深度学习模型，除了在韩国，他们对数据和方法更加开放。</p>
+<p class="translated">“目前我们在英国只有非常非常近似的数字。主要是因为我们没有测试足够多的人。死亡率是可疑的——只有死在医院的人才被登记为新冠肺炎的受害者，”凯尔西说。</p>
+<p class="translated">如果他们每天测试至少10万名“随机”英国人，他相信模型会更准确。他继续称英国的数据本身“可能不可靠”，因为抽样率太低。<a href="https://www.gov.uk/guidance/coronavirus-covid-19-information-for-the-public" class="ext-link" rel="external ">在撰写本文时，只有不到40万人</a>在英国接受了测试。</p>
+<p class="translated">“我们知道新冠肺炎传染性很强，症状潜伏期长达一周或更长。如果你没有检测，或者检测不太准确，或者两者都有，那么我们实际上不知道谁实际上感染了谁，”凯尔西说。</p>
+<p class="translated">“如果你的采样率太低，就很难从数据中得出任何结论。你的基础太小，无法从中得出任何伟大的精确结论，”他继续说道。</p>
+<p class="translated"><em>披露:这篇文章的作者为Hazy做咨询工作。</em></p>
+<p class="attribution translated">特征图片:<a href="https://www.3blue1brown.com/" class="ext-link" rel="external "> 3blue1brown </a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

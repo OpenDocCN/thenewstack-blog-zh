@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Orchestrating the DevOps Tool Chain: Stories from the Front Line</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">编制DevOps工具链:来自前线的故事</h1>
+<blockquote>原文：<a href="https://thenewstack.io/orchestrating-tool-chain-within-devops-stories-front-line/#0001-01-01">https://thenewstack.io/orchestrating-tool-chain-within-devops-stories-front-line/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://automic.com/" class="clearfix infoBlock " target="_blank"> <div class="infoBlockTextBlock"> <p class="infoBlockTitle">罗恩·吉德龙，Automic </p> <p class="infoBlockText">罗恩·吉德龙是Automic Software的发布自动化产品营销总监。在过去的14年里，他在初创公司和大型企业中担任产品营销、产品管理和售前职位。Ron的激情在于软件、用户和市场趋势的交集。</p> </div> </a></p><p class="translated">如今，走进任何一个IT部门，谈论的话题都是敏捷性，即更快地为企业提供创新、高质量的服务。然后再快一点。</p>
+<blockquote><p class="translated">随着IT部门采用DevOps，基于任务的IT自动化开始出现裂缝，并显示出其局限性</p></blockquote>
+<p class="translated">自动化正在引领这个敏捷的新时代。它将以前的手动任务机械化，以便更快、更可靠地完成它们。<a href="/category/devops/" target="_blank"> DevOps </a>是其中固有的一部分。越来越多的组织正在采用融合了开发人员、操作人员和质量保证测试人员的文化实践的方法，以便加速交付和减少错误。</p>
+<p class="translated">这是“但是”</p>
+<p class="translated">随着IT部门采用DevOps，基于任务的IT自动化开始出现问题，并显示出其局限性。当任务自动化涉及一个领域中的几个步骤时，它是理想的，然而，一旦团队移动到那个领域或影响之外，自动化就不再工作了。</p>
+<p class="translated">这就是编排的用武之地。DevOps <em> </em>编排将IT中基于任务的概念和流程与更大的业务联系起来，使用自动化来交付IT服务。编排和自动化有什么区别？自动化是重复执行单个任务(例如部署服务器)或完成任务的不同步骤的理想选择。编排将这些独立的自动化任务放入一个驱动连续交付的工作流中。编排平台不会取代自动化，它只是将现有的东西带入一个内聚的平台。</p>
+<p class="translated">流程编排是一种成熟的方法，世界各地的组织都在使用它来自动化发布并巩固其数字化转型战略。这里是最近两个使用DevOps <em> </em>编排的例子。第一个反映了DevOps编排在基于云的现代基础设施和全新技术体系中的使用。第二个是不同的:复杂的遗留基础设施中的DevOps编排。两者都提出了非常不同的挑战。</p>
+<h2 class="translated">TASC:在云中协调发布</h2>
+<p class="translated">道达尔行政服务公司(<a href="https://www.tasconline.com/" class="ext-link" rel="external "> TASC </a>)是美国最大的第三方员工福利行政服务独立提供商，拥有60，000名客户和8，000名现场代表。</p>
+<p class="translated">在MyTASC网站上，TASC的基于网络的应用程序和系统应用程序通常有40，000名活跃用户，高峰时在线用户多达100，000人。直到最近，每两到三个月就会有代码发布到公司的Java平台上，这显然不够快。大约有六个人参与计划和执行每个版本，系统必须离线。</p>
+<p class="translated">Jenkins最初是为了帮助自动化部署而推出的，但跨多个节点部署的复杂性，加上对可扩展性和更高敏捷性的需求，促使TASC采用了一种发布自动化解决方案——在这种情况下是来自Automic。这消除了关闭系统并从早期测试到生产使用相同部署模型的需要，从而提高了质量。</p>
+<p class="translated">这种编排模式的结果是什么？部署时间从长达10小时的停机时间缩短到45分钟的交付周期，没有任何中断。只需要两名员工来管理发布，客户可以立即使用新功能。</p>
+<p class="translated">这只是开始。</p>
+<p class="translated">TASC现在正在协调其部署管道，与<a href="http://www.sonatype.org/nexus/" class="ext-link" rel="external "> Sonatype Nexus Maven </a>和<a href="https://subversion.apache.org/" class="ext-link" rel="external "> Subversion </a>集成，通过基于JBoss的开发、QA、试运行和生产环境推广其应用。web界面为用户提供了提交请求和跟踪部署进度的网关。</p>
+<p class="translated">团队现在可以为每个目标环境提供服务器、这些服务器的组件、数据刷新和特定代码发布，例如，以一致和可重复的方式。现在，业务分析师、项目经理和QA工程师访问门户网站，选择他们想要的内容，然后按一下按钮，他们就可以在一个小时内以适当的构建和配置级别调配一个完整的环境。</p>
+<p class="translated">这一成功激励TASC将所有东西——从开发和测试到QA和登台平台——都迁移到亚马逊EC2云。这带来了巨大的成本节约，不需要未使用的内部计算资源和无限的可用容量。</p>
+<p class="translated">TASC已经在自动开发和部署下一代Java和Docker应用程序，并将其创建为微服务。DevOps <em> </em>编排使公司能够灵活地在其交付渠道中引入和替换单个组件。目前，该公司正在从subversion过渡到git，并扩展其管道以协调<a href="http://projects.spring.io/spring-cloud/" class="ext-link" rel="external "> Spring Cloud </a>配置管理、使用<a href="https://nginx.org/en/" class="ext-link" rel="external "> Nginx </a>的服务发现以及使用<a href="https://www.elastic.co/products/kibana" class="ext-link" rel="external "> Kibana </a>的日志管理。</p>
+<h2 class="translated">克服Siebel的复杂性，实现敏捷和连续的部署</h2>
+<p class="translated">自动化和DevOps编排的第二个例子是不同的。与TASC基于云的现代技术体系不同，一家匿名的荷兰电信公司背负着复杂的传统基础设施。这是一个完全不同的挑战。</p>
+<p class="translated">咨询机构<a href="https://www.accenture.com/" class="ext-link" rel="external "> Accenture </a>最近与荷兰的一家大型电信提供商合作，使用Automic的DevOps <em> </em>流程编排和自动化来实现Oracle Siebel部署的自动化。目标是最大限度地提高使用Siebel的呼叫中心系统的可用性，同时减少新版本投入生产的实施时间。</p>
+<p class="translated">然而，<a href="http://www.oracle.com/us/products/applications/siebel/overview/index.html" class="ext-link" rel="external "> Oracle Siebel </a>版本是复杂的。执行一口井是困难的。提取数据库、迁移Siebel Repository Files (SRF)存储库、部署非存储库项目以及管理所有计划内和计划外停机是一项艰巨的任务。部署很容易花费数天时间，并且很少更新，因为企业承受不起任何停机时间。</p>
+<p class="translated">传统的部署方法涉及大量的手动干预:例如，管理员手动改进XML文件，并且需要在文件传输期间停止Siebel Web和应用程序服务器。这导致了错误、部署期间环境链的有限可用性、合规性降低(因为很难区分谁在何时做了什么),以及环境管理方法阻止了开发运维的使用。</p>
+<p class="translated">Accenture使用的发布自动化解决方案为电信公司提供了自动化部署框架，环境团队使用该框架来执行部署请求。现在，相同的产品包以相同的方式部署到每个环境中，QA团队在运营团队部署时不再无所事事，重复性工作大幅减少。结果是革命性的:</p>
+<ul>
+<li class="translated">整个部署工作流程(一个ADM请求、DDL、SFR、导入存储库)过去需要197分钟，现在只需要137分钟(提高了30%)；</li>
+<li class="translated">过去需要99分钟的部署工作流程(一个ADM请求)现在只需要17分钟(提高了82%)；</li>
+<li class="translated">部署100个ADM请求所需的时间从58分钟减少到了5分钟(提高了91%)；</li>
+<li class="translated">生产停机时间从八小时减少到不到一小时(减少了87%)。</li>
+</ul>
+<p class="translated">最终，该电信公司能够在几分钟内交付Siebel更新，减少计划内和计划外停机时间，并为最复杂的环境部署正确的工件和配置设置。</p>
+<h2 class="translated">把这些都画在一起</h2>
+<p class="translated">DevOps <em> </em>编排能够让IT更快地响应业务需求。自动化是IT的第一步——编排是下一步，因为它将继续发展并建立在成功的基础上。自动化工具可以独立存在，但是如果没有自动化来驱动任务和事件，编排就无法存在。虽然它们是独立的工具，在一个组织中有不同的角色和功能，但在编排等式中它们是连在一起的。</p>
+<p class="attribution translated">由<a href="https://unsplash.com/photos/in9-n0JwgZ0?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Breno Machado </a>在<a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="ext-link" rel="external "> Unsplash </a>上拍摄的特写图片。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

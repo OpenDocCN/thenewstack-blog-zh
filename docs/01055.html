@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Video Tutorial: Weave Scope, the Missing Piece to Show What You've Built with Docker</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">视频教程:Weave Scope，展示您用Docker构建的缺失部分</h1>
+<blockquote>原文：<a href="https://thenewstack.io/video-tutorial-weave-scope-the-missing-piece-to-show-what-youve-built-with-docker/#0001-01-01">https://thenewstack.io/video-tutorial-weave-scope-the-missing-piece-to-show-what-youve-built-with-docker/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">几周前，在新的堆栈上，Weaveworks软件工程师<a href="https://github.com/peterbourgon" class="ext-link" rel="external "> Peter Bourgon </a>和<a href="https://github.com/davkal" class="ext-link" rel="external "> David Kaltschmidt </a>发布了一个关于<a href="http://weave.works/scope/index.html" class="ext-link" rel="external "> Weave Scope </a>的<a href="https://thenewstack.io/how-to-detect-map-and-monitor-docker-containers-with-weave-scope-from-weaveworks/" class="local-link">教程</a>，它提供了对基础设施中每个主机、容器和进程的自动检测和监控，并构建了它们的通信地图。</p>
+<p class="translated">最近，New Stack创始人Alex Williams与Peter和Weaveworks团队进行了联系，以拍摄Scope的视频教程，并讨论这一新产品的开发。</p>
+<p class="translated"><iframe loading="lazy" title="TNS Tutorials: Automatic Detection and Monitoring with Weave Scope" src="https://www.youtube.com/embed/7nU4FLqrq18?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">“当我们开发Scope时，激励我们的是目前许多开发人员和技术组织工作的新环境，”Peter说，“这种环境是建立在许多新概念和技术之上的，如Docker、容器、微服务等。这是编写软件、部署软件和在生产中运行软件的一种新的思维方式。”</p>
+<p class="translated">他们认为缺少一些必要的工具。“在这个新世界里，”Peter说，“你从现成的数据服务，如Elasticsearch、PostgreSQL或Redis中拼凑出你的应用程序，将它与你自己内部编写的应用程序服务结合起来，在顶层使用标准的负载平衡和流量整形层，最终你会得到一个在构建时有意义的基础架构，但随着时间的推移可能会有点棘手。</p>
+<blockquote><p class="translated">我们没有看到有一个好的方法来看看你实际上已经建立了什么，并随着时间的推移保持关注。这就是范围的上下文。</p></blockquote>
+<p class="translated">“我们想要一种可以像应用程序服务一样部署到基础架构中的东西。至关重要的是，在没有配置、没有声明的情况下，我们希望能够向您展示您已经构建的基础架构，让您探索它，让您看到您已经部署的现有服务，四处点击，并能够监控您已经部署的东西—您的容器—在它们出现问题时对它们进行故障排除，并从根本上了解它们。”</p>
+<p class="translated">在本教程中，Peter从主机视图开始，该视图显示了一个简单的单主机设置。然后，他转到Containers by Image，这显示了他为演示部署的典型的三层堆栈:底层是数据库服务器，中间是应用服务器(业务逻辑所在的位置)，顶层是负载平衡层(如Nginx或HAProxy)。</p>
+<p class="translated">他强调，Scope已经从基础设施中收集了这些信息，而无需更改或检测任何这些应用程序。无论是数据库、负载平衡器还是应用程序源，“一切都会好的。”</p>
+<p class="translated">“Scope正在查看主机操作系统并进行各种智能关联，”Peter说，“以找出数据通信路径，而无需插入任何代码。”</p>
+<p class="translated">容器视图显示了数据库的三个实例，显示了每个实例如何与两个应用服务器进行对话，每个应用服务器与各自的负载平衡器进行联系。</p>
+<p class="translated">“应用程序”视图显示每台主机上的各个进程。单击代表应用服务器的节点会显示关于该进程的信息，包括TCP连接的数量、进程名称以及关于运行它的主机的统计信息。Weaveworks打算在未来几个月扩大这一资源，以包括带宽和深度包检查。</p>
+<p class="translated">“Scope的神奇之处在于，所有这些信息都可以在语义上组合起来，”他说，展示了两个应用服务器的数据是如何通过图像视图合并到容器中的。</p>
+<p class="translated">“通过这种方式，您可以真正深入了解并发现问题，并查看哪些实例可能行为不当，可能会看到更多流量，”Peter说，“所有这些都是在没有任何配置和声明的情况下发生的。”</p>
+<p class="translated">Peter说，虽然他们认为这个工具在生产环境中很重要，但他强调在典型的开发人员工作流程中拥有它也很重要——构建-运行-测试循环。</p>
+<p class="translated">“它在那种环境下同样工作得很好，”Peter说，“它帮助新开发人员和您的基础设施老手弄清楚他们到底在构建什么，以及它是如何交互的——并且是从网络上实际发生的事情的角度，而不是从您认为正在发生的事情或您预期应该发生的事情的角度。当你在构建软件时，这种透明度非常重要，我们认为这是当前生态系统中所缺乏的。”</p>
+<p class="attribution translated">Weaveworks是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

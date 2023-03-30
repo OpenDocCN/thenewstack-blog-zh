@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>With Azure Container Service, Microsoft Works to Make Container Management Boring</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">通过Azure容器服务，微软努力让容器管理变得乏味</h1>
+<blockquote>原文：<a href="https://thenewstack.io/new-updates-making-azure-container-service-applications-run-not-containers-run/#0001-01-01">https://thenewstack.io/new-updates-making-azure-container-service-applications-run-not-containers-run/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">本周早些时候，微软<a href="https://azure.microsoft.com/en-us/blog/kubernetes-now-generally-available-on-azure-container-service/" class="ext-link" rel="external ">在<a href="https://azure.microsoft.com/en-us/services/container-service/" class="ext-link" rel="external "> Azure Container Service </a>上推出了Kubernetes容器编排服务</a>，以及其他主流容器编排引擎Docker Swarm和Mesosphere的数据中心操作系统(DC/OS)。Kubernetes联合创始人<a href="https://github.com/brendandburns" class="ext-link" rel="external "> Brendan Burns </a>告诉New Stack，此举是建立服务的又一步骤。</p>
+<p class="translated">七个月前，伯恩斯从谷歌跳槽到微软，负责运营ACS <a href="http://blog.kubernetes.io/2017/02/caas-the-foundation-for-next-gen-paas.html" class="ext-link" rel="external ">,他的愿景是</a>将ACS转变为“真正的托管服务”,不仅可以提供使用容器的工具，还可以作为一个完整的容器即服务(CaaS)平台。</p>
+<h2 class="translated">专注于应用和平台即服务</h2>
+<p class="translated">他指出，随着技术的成熟，重点从你如何使用容器转移到你用它们做什么。“Kubernetes社区和整个容器社区都在谈论容器和编排应该如何变得乏味。这是一个非常热门的话题，但在某种意义上，它只是一个基础设施。你在其上构建的应用才是真正令人兴奋和有趣的。”</p>
+<p class="translated">准备好基础设施，以便您可以看到容器相对于熟悉但不完善的流程的优势，这需要很快。伯恩斯警告说:“如果要花六个月或一年的时间才能获得收益，没人会这么做。”“如果你能立即得到好处，我认为人们会欣然接受，这是ACS真正能提供帮助的地方之一。设置这些东西，弄清楚如何运行、管理和部署这些容器编排器可能是棘手的，找到关于如何部署它们的最佳实践。实际上，ACS为您所做的就是解决您的问题。”</p>
+<p class="translated">他解释说，作为一种“面向应用的抽象”，ACS需要帮助人们过渡到使用容器。“在云中，我们正在从面向机器转向面向应用，这是一个巨大的发展，因为除了考虑机器的运营人员之外，其他人都希望考虑应用。”</p>
+<p class="translated">在新的云世界中，这些不仅仅是单独的应用程序；它们也将是PaaS产品，因为容器服务使开发人员创建PaaS变得更加容易——这意味着我们将看到更多针对利基和垂直市场的PaaS，而不仅仅是广泛的通用工具。</p>
+<p class="translated">“构建PaaS的人不再必须是分布式系统专家。因为容器编排者已经接管了大量的分布式系统问题，你将看到真正有针对性的PaaS，在特定的、有针对性的垂直领域提供真正令人难以置信的开发者体验，”Burns说。</p>
+<p class="translated">他认为这也将使技术选择更接近开发团队，而不是必须成为重大的战略决策。“您将看到这些体验被并排部署到一个容器编排器上。如果我需要一个用于我的移动应用和游戏，我会将它部署到我的容器服务中；如果我需要一个用于web应用程序的，我将它部署到我的容器服务上——它们使用相同的底层容器编排器。这意味着平台的选择并不多；个人开发团队可以做出选择，而不是由首席技术官为整个公司做出选择。”</p>
+<p class="translated"><a href="https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough" class="ext-link" rel="external "><img decoding="async" loading="lazy" class="aligncenter size-full wp-image-1965329" src="../Images/1b9e359871a158058016c427cdd97f65.png" alt="" data-id="1965329" data-original-src="https://cdn.thenewstack.io/media/2017/02/93c64861-kubernetes.png"/>T2】</a></p>
+<h2 class="translated">容器的选择</h2>
+<p class="translated">这种选择就是ACS支持多容器编排器的原因。“我们发现大多数客户都有多种需求，无论是因为他们是拥有多个不同部门的大企业，还是因为他们是小公司，但仍然需要进行大数据分析。这是为了找到最适合每个用户的解决方案。”</p>
+<p class="translated">Kubernetes对Windows服务器容器的支持(相当于大家熟悉的Linux Docker容器的Windows版本)现在已经进入预览版，同时还有Docker Swarm支持。伯恩斯说:“当你运行Kubernetes和Windows服务器容器时，你正在构建Windows容器应用程序，并通过Kubernetes API和Kubernetes工具部署它们。</p>
+<p class="translated">ACS还允许您拥有同时使用Windows Server和Linux的混合集群。“在ACS的开源核心<a href="https://github.com/Azure/acs-engine" class="ext-link" rel="external "> ACS引擎</a>中，我们拥有混合集群，其中包含一些Linux节点和一些Windows节点。因此，您可以使用服务发现和命名来构建混合应用程序，这些应用程序使用一些Windows组件和一些Linux组件。”</p>
+<p class="translated">接下来，ACS很可能也支持<a href="https://thenewstack.io/microsoft-secures-the-windows-docker-container/" class="local-link"> Hyper-V容器</a>；一个Docker容器，运行在一个基于<a href="https://blogs.technet.microsoft.com/windowsserver/2016/02/10/exploring-nano-server-for-windows-server-2016/" class="ext-link" rel="external "> Windows Nano Server </a>的非常轻量级的虚拟机中，用于安全和内核隔离，但可以像其他任何容器一样管理。这将需要嵌套虚拟化，一旦Azure转移到Windows Server 2016上运行，这将成为可能，这将在2017年的某个时候发生。伯恩斯称Hyper-V容器是一个令人兴奋的选择，有很多商业用途。</p>
+<p class="translated">“容器中最后一个未解决的问题是，如何确保这些东西的安全？因为每个人都喜欢您可以推动的部署模式和利用率，但在很多情况下，您真的希望确保恶意行为者无法从一个应用程序逃到另一个应用程序，我认为Hyper-V容器将是这方面的解决方案。因此，有能力协调这些将是重要的，”伯恩斯说。</p>
+<p class="translated">因为Hyper-V容器仍然是Docker容器，并且当你部署它时，你可以选择将容器作为Hyper-V而不是Windows Server容器运行，“你可以根据具体情况做出决定，哪些是你需要保护的，哪些是你认为更可信的，”Burns指出。</p>
+<h2 class="translated">蔚蓝的优势</h2>
+<p class="translated">正如微软越来越多的情况一样，从事ACS的工程师也为他们集成的工具从事开源项目。伯恩斯说，这是顾客看重的东西。“我的一个工程师是下一个Kubernetes版本的发布经理；他将进行大量的测试，以确保升级工作正常进行，所以当你从一个版本的Kubernetes升级到下一个版本的Kubernetes时，它可以正常工作。这不仅仅会让Azure用户受益；这将使整个社区受益。”</p>
+<p class="translated">ACS与其他Azure服务很好地集成也很重要，比如Azure资源管理器(Burns也有一个团队在运行)。他承认这很有挑战性。“我们在ACS中展示的orchestrators是开源API，因此我们无法像传统的Azure APIs那样控制它们的形状和感觉。ARM [ <a href="https://azure.microsoft.com/en-us/features/resource-manager/" class="ext-link" rel="external "> Azure资源管理器</a> ]对你进行API调用时会发生什么做了一些假设，特别是它做了这样的假设:你总是可以一遍又一遍地做同样的调用，它会有同样的效果；每个调用都是幂等的。并不是所有的API都这样做，有时它们需要特定的路径。”</p>
+<p class="translated">他希望找到将ARM模型引入一些开源项目的方法，从身份开始——这对于微软商店来说意味着活动目录支持。“现在，当您在创建一个群集后对其进行身份验证时，您使用的是与Active Directory凭据不同的一组凭据。我们希望这样做，以便您可以使用您的Active Directory凭据向群集进行身份验证。”</p>
+<p class="translated">身份对于容器越来越重要，不仅仅是对于需要管理数量不断增加的容器的生命周期的运营人员。“身份绝对是一个关键因素，不仅仅是退休和分组；这也是为了交流。我希望能够说，这类容器可以与另一类容器对话，但其他任何人都不能。”</p>
+<p class="translated">没有这一点，身份的激增将难以管理。“如果每个应用程序都必须有自己的(身份系统)，那么就不只是一个全新的系统，而是五个或七个全新的系统。这是忘记在某人离开公司后将其从团队中移除的秘诀。”</p>
+<p class="translated">他指出，容器编排工具需要成熟才能做到这一点。“他们还没有根深蒂固的身份观念。这是一个我们将不得不做大量工作的领域，随着我们的前进，以及上游项目。这不是Azure在真空中会做的事情；这是我们将与开源社区一起做的事情，这样它就可以在人们运行的任何地方工作，因为<a href="https://msdn.microsoft.com/en-us/library/bb742424.aspx" class="ext-link" rel="external "> Active Directory </a>和<a href="https://azure.microsoft.com/en-us/services/active-directory/" class="ext-link" rel="external "> Azure Active Directory </a>到处都在使用。”</p>
+<p class="translated">不可变的基础设施容器比其他选择更可靠，但对于习惯于登录服务器并运行命令来安装软件的人来说，这也是一个巨大的变化。容器听起来似乎已经接管了世界，但是Burns将市场状况与2002年或2003年的虚拟化进行了比较:</p>
+<p class="translated">“这不是‘那些疯狂的孩子在虚拟化东西’，但也不是每个人都完全接受。我们仍处于采用的早期阶段，但成功是实实在在的，对开发人员和运营人员来说都是如此。对于虚拟化，优势更多的是在运营方面，而不是在开发方面，但是对于容器来说，优势更加平衡。双方都是赢家，所以进展会更快。”</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

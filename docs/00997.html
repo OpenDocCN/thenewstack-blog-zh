@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Use Processing's Meter Library to Build Gauges</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:使用Processing的仪表库来构建仪表</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-use-processings-meter-library-to-build-gauges/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-use-processings-meter-library-to-build-gauges/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">我用<a href="https://processing.org/" target="_blank" rel="noopener noreferrer external " class="ext-link">处理编程语言</a>拼凑了几个仪表接口。在其中一个例子中，我通过编程从<a href="/off-shelf-hacker-use-processing-build-screen-gauge/" target="_blank">线条、弧线和文本</a>中构建了标尺元素。在另一个项目中，我在屏幕上放了一个仪表的<a href="/off-shelf-hacker-give-screen-gauges-new-face/" target="_blank">图像，然后围绕中心支点</a>旋转指针的图像。每种方法都有其优势和挑战。</p>
+<p class="translated">Processing有很多很酷的库。今天我们将探索我发现的一个处理库，它可以制作非常漂亮的现代仪表。它使用编程的仪表元素构建方法，并且有大量的参数，您可以根据自己的需要进行调整。只需设置一个值，仪表显示就会改变。这比我在程序代码中调整大小、颜色和标尺行为的原始方案更容易使用。</p>
+<h2 class="translated">在加工过程中安装仪表库</h2>
+<p class="translated">我在Linux笔记本和Raspberry Pi 3上都使用了处理版本3.4，所以你可能希望至少升级到那个级别。当前版本是3.5.3。</p>
+<p class="translated">开始处理并转到Sketch选项卡，将鼠标悬停在Import Library菜单项上，然后从列表顶部选择Add Library。将出现“贡献管理器”窗口。</p>
+<p class="translated">在搜索框中键入“米”，然后按回车键。应该会出现Bill Kujawa的仪表库。选择它并按下右下角的安装按钮。安装完成后关闭窗口。</p>
+<div id="attachment_7690323" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-7690323" decoding="async" loading="lazy" class="size-large wp-image-7690323" src="../Images/a70c97a46a2903dcefc33c5ed4382e6f.png" alt="" border="1" data-id="7690323" data-original-src="https://cdn.thenewstack.io/media/2019/05/ce4f899c-ss-contribution-manager-1024x640.png"/><p id="caption-attachment-7690323" class="wp-caption-text translated">显示血糖仪库的处理库贡献管理器屏幕</p></div>
+<p class="translated">我从示例部分中的“整圈测量仪”程序开始，作为我的测量仪的基础。单击文件–&gt;示例–&gt;贡献的库–&gt;计量器。在列表中，选择“整圆流量计”。</p>
+<h2 class="translated">关于输入数据的一句话</h2>
+<p class="translated">我尝试过的将数据从微控制器传输到Linux笔记本电脑或Raspberry Pi上的处理仪表程序的方法是通过USB端口。当然，Arduinos可以通过USB电缆传输数据，也可以用它来供电。</p>
+<p class="translated">我还使用热电偶/放大器装置来提供数据流。我们在最近的故事中用过。这个小发明可以测量高达900华氏度的温度。我任意选择零作为仪表将显示的最低值。我们从微控制器读取“数据”,因此您可以选择任何值开始和结束。这些值可以很容易地显示为一个百分比，比如从0%到100%，只需对处理代码稍加修改。指向“低”、“中”或“高”的仪表指针可能适用于某些情况。</p>
+<p class="translated">让我们看看代码。</p>
+<h2 class="translated">代码</h2>
+<p class="translated">一旦安装了这个库，它就只是获取数据，设置显示参数，然后调用仪表显示函数。<br/></p>
+<div id="crayon-641d1ec60c2b5172655847" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">import </span><span class="crayon-i">meter</span>.*;
+ 
+<span class="crayon-i">Meter</span><span class="crayon-h"> </span><span class="crayon-st">m</span>;
+<span class="crayon-e">int </span><span class="crayon-i">sensorValue</span>;
+<span class="crayon-e">String </span><span class="crayon-i">ivalue</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-s">"0"</span>;
+<span class="crayon-e">BufferedReader </span><span class="crayon-i">datafile1</span>;
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h"> </span>
+<span class="crayon-h">  </span><span class="crayon-e">size</span>(<span class="crayon-cn">600</span>,<span class="crayon-h"> </span><span class="crayon-cn">300</span>);
+<span class="crayon-h">  </span><span class="crayon-e">background</span>(<span class="crayon-cn">150</span>,<span class="crayon-h"> </span><span class="crayon-cn">255</span>,<span class="crayon-h"> </span><span class="crayon-cn">100</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">Meter</span>(<span class="crayon-i">this</span>,<span class="crayon-h"> </span><span class="crayon-cn">90</span>,<span class="crayon-h"> </span><span class="crayon-cn">15</span>,<span class="crayon-h"> </span><span class="crayon-i">false</span>);<span class="crayon-h"> </span><span class="crayon-c">// full circle - true, 1/2 circle - false  </span>
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">setMinScaleValue</span>(<span class="crayon-cn">0</span>);
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">setMaxScaleValue</span>(<span class="crayon-cn">1000</span>);
+<span class="crayon-h">    </span>
+<span class="crayon-h">  </span><span class="crayon-c">// Display digital meter value.</span>
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">setDisplayDigitalMeterValue</span>(<span class="crayon-i">true</span>);
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">setTitle</span>(<span class="crayon-s">"Thermocouple Temp"</span>);
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-i">String</span>[]<span class="crayon-h"> </span><span class="crayon-i">scaleLabels</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span>{<span class="crayon-s">"0"</span>,<span class="crayon-h"> </span><span class="crayon-s">"100"</span>,<span class="crayon-h"> </span><span class="crayon-s">"200"</span>,<span class="crayon-h"> </span><span class="crayon-s">"300"</span>,<span class="crayon-h"> </span><span class="crayon-s">"400"</span>,<span class="crayon-h"> </span><span class="crayon-s">"500"</span>,<span class="crayon-h"> </span><span class="crayon-s">"600"</span>,<span class="crayon-h"> </span><span class="crayon-s">"700"</span>,<span class="crayon-h"> </span><span class="crayon-s">"800"</span>,<span class="crayon-h"> </span><span class="crayon-s">"900"</span>,<span class="crayon-h"> </span><span class="crayon-s">"   1000"</span>};
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">setScaleLabels</span>(<span class="crayon-i">scaleLabels</span>);
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">setShortTicsBetweenLongTics</span>(<span class="crayon-cn">9</span>);
+<span class="crayon-h">   </span>
+<span class="crayon-h">  </span><span class="crayon-i">datafile1</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">createReader</span>(<span class="crayon-s">"/dev/ttyUSB0"</span>);
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">draw</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h">   </span>
+<span class="crayon-h">  </span><span class="crayon-e">try</span><span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">ivalue</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">datafile1</span><span class="crayon-st">.</span><span class="crayon-e">readLine</span>();<span class="crayon-h">   </span><span class="crayon-c">// after startup pull in serial data</span>
+<span class="crayon-h">  </span>}
+ 
+<span class="crayon-h">  </span><span class="crayon-e">catch</span><span class="crayon-h"> </span>(<span class="crayon-i">IOException</span><span class="crayon-h"> </span><span class="crayon-st">e</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-st">e</span><span class="crayon-st">.</span><span class="crayon-e">printStackTrace</span>();
+<span class="crayon-h">    </span><span class="crayon-i">ivalue</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">null</span>;
+<span class="crayon-h">  </span>}
+<span class="crayon-h">  </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">ivalue</span><span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-i">null</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-c">// Stop reading because of an error or file is empty</span>
+<span class="crayon-h">    </span><span class="crayon-e">noLoop</span>();<span class="crayon-h">  </span>
+<span class="crayon-h">  </span>}
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-e">println</span>(<span class="crayon-i">ivalue</span>);
+<span class="crayon-h">  </span><span class="crayon-e">println</span>(<span class="crayon-s">"currentMeterValue: "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">getCurrentMeterValue</span>());
+<span class="crayon-h">  </span><span class="crayon-i">sensorValue</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">int</span>(<span class="crayon-e">map</span>(<span class="crayon-e">float</span>(<span class="crayon-i">ivalue</span>),<span class="crayon-h"> </span><span class="crayon-e">float</span>(<span class="crayon-cn">0</span>),<span class="crayon-h"> </span><span class="crayon-e">float</span>(<span class="crayon-cn">1000</span>),<span class="crayon-h"> </span><span class="crayon-e">float</span>(<span class="crayon-cn">0</span>),<span class="crayon-h"> </span><span class="crayon-e">float</span>(<span class="crayon-cn">256</span>)));
+<span class="crayon-h"> </span>
+<span class="crayon-h">  </span><span class="crayon-st">m</span><span class="crayon-st">.</span><span class="crayon-e">updateMeter</span>(<span class="crayon-i">sensorValue</span>);
+<span class="crayon-h">  </span><span class="crayon-c">// Use a delay to see the changes.</span>
+<span class="crayon-h">  </span><span class="crayon-c">// delay(700);</span>
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>虽然处理代码遵循正常的初始化变量、“设置”和“绘制”格式，但仍有一些地方需要特别注意。</p>
+<p class="translated">“m”是要显示的每个仪表的高级变量。使用“m.set[parameter name]”形式的变量设置参数。例如，显示在仪表顶部的标题文本显示为“m.setTitle("热电偶温度")；”在代码中。在我查看“SetAllValues”脚本之前，参数的变量名并不直观。在这里您可以找到参数的名称和典型值。一旦你掌握了使用变量的窍门，你就需要熟悉可能的值，并看看它在显示屏上是什么样子。在大多数情况下，我使用默认值，并且只在代码中放入我更改过的值。</p>
+<p class="translated">我添加的是“catch”函数周围的线条。似乎如果不包含查找IOException情况的代码，就会在程序执行过程中出错。我第一次运行没有catch函数的程序，得到了IOException错误。不知何故，我记得在另一个例子中见过错误处理程序。将代码复制粘贴到我的脚本中…问题就解决了。</p>
+<p class="translated">我不是全职程序员，我依赖于记忆看似随机的战略信息，这些信息在未来可能会有用。这是现成的黑客似乎随着时间的推移而发展起来的“直觉”技能之一。不要质疑为什么，甚至不要质疑我们是如何做的，只要用它来完成工作。确保在您的实验笔记中捕捉到“真知灼见”,以供后代参考。</p>
+<p class="translated">我还使用标准的“map”处理函数来缩放输入值，以适应0到180度的仪表面，从0到1000。您需要根据您使用的传感器输入数据进行调整。请记住，Arduino代码可能会在处理显示代码之前进行一些数据缩放。</p>
+<p class="translated">最后，请注意，我在scaleLabels变量中的“1000”前面包含了一些额外的空格。标签正对着厚厚的黑色半弧规图形，看起来局促。空格给了它一个与其他标签一致的外观。</p>
+<p class="translated">在运行处理程序之前，不要忘记在终端中插入传感器并使用通常的stty命令，以便USB端口配置正确。否则，您可能会看到仪表，但没有任何数据通过USB线传入。<br/></p>
+<div id="crayon-641d1ec60c2ba900515753" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">rob</span>%<span class="crayon-h">   </span><span class="crayon-i">stty</span><span class="crayon-h"> </span>-<span class="crayon-i">raw</span><span class="crayon-h"> </span>-<span class="crayon-i">icrnl</span><span class="crayon-h"> </span>-<span class="crayon-m">F</span><span class="crayon-h"> </span>/<span class="crayon-i">dev</span>/<span class="crayon-i">ttyUSB0</span><span class="crayon-h"> </span><span class="crayon-cn">115200</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>这里有一个温度计的短片，通过USB连接热电偶输入。</p>
+<p class="translated"><iframe loading="lazy" title="meter library demo1" src="https://www.youtube.com/embed/8QbiA7XSGN0?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">布局非常干净高效。这些仪表非常适合屏幕仪表盘，尤其是带有多个传感器的仪表盘。</p>
+<h2 class="translated">下一步是什么</h2>
+<p class="translated">我还没有发现很多用于Arduino和/或处理传感器项目的仪表或量表库。我猜，很多人只是将传感器读数发送到他们Arduino上的一个小LCD上。</p>
+<p class="translated">一个可能值得探索的领域是在ESP8266上实现代码，通过WiFi将传感器数据发送到联网的Linux机器上的处理仪表程序。一个应用程序可能是独立的，就像某种Linux笔记本到无人机传感器，在野外使用。或者，我们可以在野外或建筑物顶部安装一个无线传感器，通过本地网络连接到处理仪表。</p>
+<p class="translated"><em>赶【Torq博士的 <a href="https://thenewstack.io/tag/off-the-shelf-hacker/" class="local-link">现成黑客专栏</a>，每周六，只上新栈！在<a href="mailto:doc@drtorq.com">doc@drtorq.com</a>或407-718-3274直接联系他咨询、演讲出场和委托项目。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

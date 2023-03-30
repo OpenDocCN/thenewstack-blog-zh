@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Last.Backend Helps Developers Focus on Apps, Not Infrastructure</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">最后。后端帮助开发者专注于应用，而不是基础设施</h1>
+<blockquote>原文：<a href="https://thenewstack.io/last-backend-helps-developers-focus-apps-not-infrastructure/#0001-01-01">https://thenewstack.io/last-backend-helps-developers-focus-apps-not-infrastructure/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">最后一名的队伍。后端正在为一个游戏开发项目研究虚拟化技术，这时他们发现了containers和Docker。</p>
+<p class="translated">相信容器将“占领世界”，他们欣然接受新技术，开始为开发人员构建自动化容器管理系统。他们的目标是让开发人员专注于编写基于云的应用程序，而不必担心管理底层基础设施。</p>
+<p class="translated">“第一个也是最基本的想法是用基础设施自动化工作，”Last说。后端首席执行官亚历山大·卡洛辛。“对我们来说，主要活动是设计和开发，我们直接知道它是什么:测试和部署软件的过程。对于我们以前的项目，我们已经不止一次地编写了我们自己的自动化系统。当容器化技术出现时，我们可以为整个开发者社区提供一个相当通用的解决方案。”</p>
+<p class="translated">他说，截至2015年他的公司成立时，只有去年。后端和<a href="https://thenewstack.io/tutum-offers-docker-container-management/" class="local-link"> Tutum </a>都专注于这个目标。当然，Tutum已经被Docker收购，Docker利用这项技术推出了自己的云托管服务。</p>
+<p class="translated">去年12月。Backend开发了基于Kubernetes的平台即服务，<a href="https://github.com/lastbackend/lastbackend" class="ext-link" rel="external ">开源</a>。</p>
+<h2 class="translated"><strong>混合技术</strong></h2>
+<p class="translated">该产品混合了多种技术，包括容器编排、应用容器化、来自容器的度量和分析、容器的虚拟覆盖网络以及日志存储。</p>
+<p class="translated">该团队开发了一个系统，用于在有大量机器的集群上部署和扩展Docker容器，以及一个钩子系统和一个命令行界面，目的是使管理变得容易。系统从诸如GitHub或BitBucket等存储库中的源代码构建容器映像，然后使用这些映像进行编排。它部署在三台服务器上:一台用于REST API，另一台用于代理服务器和DNS服务器，还有一台用于三个组件:构建管理器、编排器和调度器。</p>
+<p class="translated">Kaloshin这样解释他的团队的任务:</p>
+<p class="translated">配置管理器跟踪所连接机器的配置，如果配置不匹配，就将作业发送给调度器进行更新。</p>
+<p class="translated">调度程序为主系统生成机器规范和各种任务，比如构建源代码任务、钩子管理和节点管理。它接收来自控制器的信号，并生成特定机器的规格。代理接受这些规范，并将受管节点的状态引导到正确的状态。这种方法在大型集群中提供了更简单的系统扩展，并提供了可靠性。</p>
+<p class="translated">构建管理器——最简单的组件之一——启动构建映像的过程，然后监控它们的执行。托管Docker的独立机器集群可以作为构建映像的服务器池来调用。该公司计划将其建成一个完整的持续集成系统。</p>
+<p class="translated">Kaloshin说，任何人都可以开始使用该系统，即使只有一台服务器，你也可以轻松地从一个集群和数千台服务器开始。</p>
+<p class="translated">原始架构中的所有组件都应该能够独立运行，以实现高容错性。对于本地测试，您还可以在一个包中运行除代理之外的所有内容。</p>
+<p> </p>
+<p class="translated">“我们还有很多工作要做。我们需要加强我们的网络交互模型，我们在持久性卷设计上花费了大量时间。我们期待从开源社区获得一些帮助。在很多任务中，更有经验的专家的能力对我们所有人都是有用的，”他说。</p>
+<p class="translated">“我不能直截了当地说我们在发明新的东西，因为所有这些都在许多第三方服务中得到了部分实现，但我们还没有见过一个带有CI /CD、web-UI的单一开源系统，您可以轻松地将它放在一台服务器或一组服务器上。”</p>
+<h2 class="translated">只需点击几下</h2>
+<p class="translated">总部设在俄罗斯圣彼得堡，去年。后端已经获得了俄罗斯政府支持的加速器<a href="https://www.bloomberg.com/research/stocks/private/snapshot.asp?privcapId=247776879" class="ext-link" rel="external ">互联网倡议发展基金</a> (IIDF)的资助。它于去年进入中国市场，至于美国市场，Kaloshin表示，只要他们继续专注于创造一种优秀的产品，政治就不会成为障碍。</p>
+<p class="translated">最后。Backend也得到了来自<a href="https://channel9.msdn.com/Blogs/PartnerApps/LastBackend-Picks-Azure-to-Help-Deliver-Geo-Distributed-Apps" class="ext-link" rel="external ">微软</a>的支持，成为其Azure合作伙伴计划的一员。它的视觉也可以与AWS和DigitalOcean一起工作，并与聊天室Slack和HipChat集成在一起。</p>
+<p class="translated">“我们希望节省IT专业人员的时间，避免与基础设施打交道，”Kaloshin说。“让他们专注于开发优秀的应用。如果他们需要一个数据库，只需点击几下就能得到。是的，你可以在DigitalOcean上打开一些指南，自己做所有的事情，但为什么要浪费时间呢？你的代码更新了？—让Last.backend构建、测试并在服务器上运行它。”</p>
+<p class="translated">他说，虽然Docker和Kubernetes的生态系统更侧重于企业，但他希望他的公司也能帮助较小的团队和独立开发者。他补充说，虽然Kubernetes很棒，但不是每个初创公司都可以在生产状态下部署它——这就是为什么orchestrator更经常用于测试。他的公司也专注于为舞台和制作提供解决方案。</p>
+<p class="translated">最后。这位首席执行官说，后端与Heroku、Deis和OpenShift等PaaS平台竞争，在某种程度上，也与Docker和Kubernetes等容器化组件竞争。Kaloshin告诉我们，与竞争对手相比，该平台对正在使用的物理资源提供了更高层次的控制——在操作系统层面、在流程层面的控制。</p>
+<p class="translated">他说，像Heroku这样的服务对于小型项目来说是理想的，但对于拥有大型基础设施的公司来说，以及在微服务架构上使用十几个存储库的应用程序来说，就变得更加困难了。</p>
+<p class="translated">作为对开发者的激励，该公司制定了一个奖励计划:免费提供有限的资源，以换取对开源项目的贡献。所有奖励将单独确定。</p>
+<p class="attribution translated">DigitalOcean是新堆栈的赞助商。</p>
+<p class="attribution translated">专题图片:<a href="https://www.flickr.com/photos/peyri/48825808/in/photolist-5jfdh-81MXJq-fykiqY-6wLw3u-7D1RPo-e47Jj-EHyap-rG9Fqw-dxckg-dxckp-66EEpg-p9uUnM-kf1MYx-kf1NYZ-4gwdZx-5jfek-56zNeu-8q6foW-bxrnpQ-aztFKe-Zj2Yr-4C7jkH-s9Wi-8he8WU-6X9XsW-EHvxr-4Vf4td-d2EUi-7kTnAQ-B1Vr2-6MTRz-dBZ9VH-aeJXd-bWFd4x-iBoPYa-ncZxNm-7t5BDs-eNaHc-c2mmos-78XPTL-5VpEr-bbwkYD-5EBSLh-3VGGk-6qeq8D-7dAZE8-eeDhBC-7B1Kkj-6hHzvc-oMHnd" class="ext-link" rel="external ">蓝色机器人</a>，作者<a href="https://www.flickr.com/photos/peyri/" class="ext-link" rel="external ">佩里·埃雷拉</a>，获得CC BY-SA 2.0许可。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

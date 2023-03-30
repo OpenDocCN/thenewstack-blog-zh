@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Use a Servo as a Gauge</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:使用伺服作为衡量标准</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-use-servo-gauge/#0001-01-01">https://thenewstack.io/off-shelf-hacker-use-servo-gauge/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">对于硬件黑客和蒸汽朋克项目来说，仪表是很有价值的视觉输出设备。从最基本的意义上来说，量规是一个测量事物的组件，它以数字或视觉的方式表示所测量的事物的大小。</p>
+<p class="translated">我的周末家庭项目原型结合了这两个主题，所以我认为这是一个很好的时间来实际上把一个项目的标准。</p>
+<p class="translated">例如，对于我的下一个<a href="https://thenewstack.io/hacking-hardware-the-never-ending-saga-of-steampunk-name-badge-development/" class="local-link">蒸汽朋克会议徽章</a>的彩色液晶显示屏，我认为用软件创建一个简单的计量器是一件很容易的事情。</p>
+<p class="translated">事实证明，设计屏幕上的仪表比我想象的要复杂。首先，我找不到Python的任何“标准”库，Python是Raspberry Pi最常用的编程语言。<a href="https://thenewstack.io/off-shelf-hacker-expand-projects-processing-sketchbook/" class="local-link">处理</a>是一个选项，因为有一些不错的旋钮库。对于过去的项目，我已经将其中的一些例子转化成了可用的量表。当然，处理必须首先安装在Pi上。我已经很久没有看这些程序了，所以决定暂时把“屏幕上的”量表放在一边。</p>
+<p class="translated">为什么不用伺服作为标尺？这是手表和汽车制造商使用的。会有多难呢？</p>
+<p class="translated">给你个提示。很大程度上取决于传感器和时间。本周，我们将看看伺服量规如何在您的项目中发挥作用，以及学到的经验和面临的挑战。</p>
+<h2 class="translated">吸引注意力</h2>
+<p class="translated">我的会议徽章旨在吸引注意力，并在活动中引发话题。</p>
+<p class="translated">我在我的下一个“第五代”徽章上放了一个超声波测距仪，因为它不仅看起来有趣，还可以充当“社交互动干扰仪”传感器。这是一个虚构的蒸汽朋克技术术语，用来测量我和另一个人之间的距离，以及我们的互动水平。</p>
+<p class="translated">如果我前面没有人，护林员会报告一个很高的数字，甚至是“超出范围”的值。正常、随意的转换可能会返回36英寸的值。12英寸或更小的尺寸意味着我们正在进行一场激烈的讨论。</p>
+<p class="translated">为了提供视觉反馈，我认为徽章前面的移动标尺会随着距离的变化而变化，这会引发一些疑问。</p>
+<p class="translated">在会议徽章的情况下，超声波测距仪连接到辅助Arduino Pro Mini微控制器上的几个引脚。Pro Mini向Raspberry Pi发送串行数据，然后Raspberry Pi在终端中显示文本值。对于基本的Arduino代码，我使用了传感器库中的ping示例。</p>
+<div id="attachment_2920247" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2920247" decoding="async" loading="lazy" class="size-large wp-image-2920247" src="../Images/19e6f54a5b890f630be8851b3000e5fc.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/08/771a2cd9-aux-pro-mini-1024x576.png"/><p id="caption-attachment-2920247" class="wp-caption-text translated">辅助Arduino Pro Mini从Raspberry Pi板下卸下</p></div>
+<p class="translated">测距仪数据也可以直接馈入连接到Pro Mini的伺服系统，只需对ping代码进行一些修改。</p>
+<p class="translated">以下是超声波传感器、伺服系统和Arduino Pro Mini的基本电路图连接:</p>
+<div id="attachment_2920528" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2920528" decoding="async" loading="lazy" class="size-large wp-image-2920528" src="../Images/18ff050283f6e9ff5b93cb1cdca26314.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/08/9f8166d5-aux-pro-mini_bb-1024x609.png"/><p id="caption-attachment-2920528" class="wp-caption-text translated">超声波传感器、伺服系统和Arduino Pro Mini的基本连接</p></div>
+<h2 class="translated">反映输入数据</h2>
+<p class="translated">ping代码相当简单。发出一个ping，测量返回时间，将时间转换为距离，然后打印结果。运行伺服所需的额外代码以粗体显示。<br/></p>
+<div id="crayon-6421d75d98f31621907521" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-c">/*</span>
+<span class="crayon-c">HC-SR04 Ping distance sensor]</span>
+<span class="crayon-c">VCC to arduino 5v; GND to arduino GND</span>
+<span class="crayon-c">Echo to Arduino pin 7; Trig to Arduino pin 8</span>
+<span class="crayon-c">*/</span>
+ 
+<span class="crayon-h">&lt;</span><span class="crayon-i">strong</span><span class="crayon-h">&gt;</span><span class="crayon-p">#include &amp;lt;Servo.h&amp;gt; </span>
+<span class="crayon-e">Servo </span><span class="crayon-i">myservo</span>;<span class="crayon-h">  </span><span class="crayon-c">// create servo object to control a servo&lt;/strong&gt;</span>
+ 
+<span class="crayon-p">#define echoPin 8</span>
+<span class="crayon-p">#define trigPin 7</span>
+<span class="crayon-h">&lt;</span><span class="crayon-i">strong</span><span class="crayon-h">&gt;</span><span class="crayon-e">int </span><span class="crayon-i">val</span>;<span class="crayon-h">&lt;</span>/<span class="crayon-i">strong</span><span class="crayon-h">&gt;</span>
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">begin</span><span class="crayon-h"> </span>(<span class="crayon-cn">115200</span>);
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">trigPin</span>,<span class="crayon-h"> </span><span class="crayon-i">OUTPUT</span>);
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">echoPin</span>,<span class="crayon-h"> </span><span class="crayon-i">INPUT</span>);
+<span class="crayon-h">  </span><span class="crayon-h">&lt;</span><span class="crayon-i">strong</span><span class="crayon-h">&gt;</span><span class="crayon-i">myservo</span><span class="crayon-st">.</span><span class="crayon-e">attach</span>(<span class="crayon-cn">9</span>);<span class="crayon-h">&lt;</span>/<span class="crayon-i">strong</span><span class="crayon-h">&gt;</span>
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">loop</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span><span class="crayon-c">// send a pulse on the trigger pin to initiate measurement</span>
+<span class="crayon-h">  </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">trigPin</span>,<span class="crayon-h"> </span><span class="crayon-i">LOW</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delayMicroseconds</span>(<span class="crayon-cn">2</span>);
+<span class="crayon-h">  </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">trigPin</span>,<span class="crayon-h"> </span><span class="crayon-i">HIGH</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delayMicroseconds</span>(<span class="crayon-cn">10</span>);
+<span class="crayon-h">  </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">trigPin</span>,<span class="crayon-h"> </span><span class="crayon-i">LOW</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-c">// the length of the pulse on the echo pin is proportional to the distance</span>
+<span class="crayon-h">  </span><span class="crayon-e">long </span><span class="crayon-i">duration</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">pulseIn</span>(<span class="crayon-i">echoPin</span>,<span class="crayon-h"> </span><span class="crayon-i">HIGH</span>);
+<span class="crayon-h">  </span><span class="crayon-e">long </span><span class="crayon-i">distance</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span>(<span class="crayon-i">duration</span><span class="crayon-h"> </span>/<span class="crayon-h"> </span><span class="crayon-cn">2</span>)<span class="crayon-h"> </span>/<span class="crayon-h"> </span><span class="crayon-cn">29.1</span><span class="crayon-h"> </span>*<span class="crayon-h"> </span>.<span class="crayon-cn">3937</span><span class="crayon-h"> </span>;
+ 
+<span class="crayon-h">  </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">distance</span><span class="crayon-h"> </span><span class="crayon-sy">&amp;gt;</span>=<span class="crayon-h"> </span><span class="crayon-cn">200</span><span class="crayon-h"> </span>||<span class="crayon-h"> </span><span class="crayon-i">distance</span><span class="crayon-h"> </span><span class="crayon-sy">&amp;lt;</span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Out of range"</span>);
+<span class="crayon-h">  </span>}
+<span class="crayon-h">  </span><span class="crayon-e">else</span><span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-i">distance</span>);
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">" in"</span>);
+<span class="crayon-h">  </span>}
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-i">val</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">map</span>(<span class="crayon-i">distance</span>,<span class="crayon-h"> </span><span class="crayon-cn">1</span>,<span class="crayon-h"> </span><span class="crayon-cn">70</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-cn">180</span>);<span class="crayon-h">     </span><span class="crayon-c">// scale it to use it with the servo (value between 0 and 180) </span>
+<span class="crayon-h">  </span><span class="crayon-i">myservo</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-i">val</span>);
+<span class="crayon-h">    </span>
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">300</span>);
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>伺服代码也并不复杂。</p>
+<p class="translated">首先，include语句从标准伺服库中引入函数，而servo语句初始化用于控制伺服的对象。</p>
+<p class="translated">我们必须添加一个变量<strong> val </strong>，用于根据伺服控制程序的需要，将测距仪的距离值换算成角度值。</p>
+<p class="translated">接下来，<strong> myservo.attach </strong>语句将伺服分配给Arduino Pro Mini上的引脚9。</p>
+<p class="translated">之后，map函数将距离缩放到伺服机构的角度，然后将该值写入伺服机构，使其移动。</p>
+<p class="translated">我确保在Arduino IDE的工具菜单下将主板设置为“Pro Mini”。如果您忘记使用不同的主板编译代码，当您尝试将固件上传到Pro Mini时，将会出现<strong>“STK 500 _ getsync()</strong>”错误。切换到正确的板，一切都会正常工作。使用<strong> sudo </strong>启动Arduino IDE，以避免USB端口权限<br/>的问题</p>
+<div id="crayon-6421d75d98f36987718584" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" touchscreen minimize scroll-mouseover">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">pi</span>%<span class="crayon-h">  </span><span class="crayon-e">cd </span><span class="crayon-e ">ard*</span><span class="crayon-cn">1.6.5</span>
+<span class="crayon-i">pi</span>%<span class="crayon-h">  </span><span class="crayon-i">sudo</span><span class="crayon-h"> </span>./<span class="crayon-i">arduino</span><span class="crayon-h"> </span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>代码是在我的Linux笔记本上开发的，并使用USB转串行接口电缆上传。在代码被编译并上传到Arduino后，我拔掉了电缆并重启了会议徽章上的Pi。一旦Pi启动并运行，我打开Arduino的电源，伺服系统立即开始移动。</p>
+<div id="attachment_2920172" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-2920172" decoding="async" loading="lazy" class="size-large wp-image-2920172" src="../Images/43ed8d1d18f68f7e710c0380bb9a7f74.png" alt="" data-original-src="https://storage.googleapis.com/cdn.thenewstack.io/media/2017/08/450ee1b0-serial-usb-header-576x1024.png"/><p id="caption-attachment-2920172" class="wp-caption-text translated">串行到USB接头连接到辅助Arduino Pro Mini</p></div>
+<h2 class="translated">徽章上的伺服仪表可行吗？</h2>
+<p class="translated">结果有点令人失望。伺服有点工作，但它的行动是相当不稳定的。</p>
+<p class="translated">在观看来自串行终端的数据后，当超声波测距仪将数据馈送到Pro Mini并试图用伺服系统跟踪它时，很明显时间是一个主要问题。</p>
+<p class="translated">超声波传感器使用两条数据线。一个向传感器上的转换器发送数字脉冲。连接到传感器接收器的另一条线监听返回的数字脉冲，然后Arduino将脉冲的往返时间转换为距离。</p>
+<p class="translated">Arduino还生成特定宽度的脉冲，告诉伺服移动到某个位置。</p>
+<p class="translated">小小的Arduino似乎无法同时为超声波传感器和伺服系统准确地生成和读取这些脉冲。更糟糕的是，任何导致代码执行延迟的事情都会导致进一步的计时问题。<strong>改变delay() </strong>函数值甚至增加打印语句对伺服跟踪有负面影响。</p>
+<p class="translated">另一个问题可能是来自伺服电机的噪声影响到+5伏电源线上的超声波传感器的功率。一些滤波或单独的伺服电源可能会有所帮助。</p>
+<p class="translated">我的结论是，在这种配置下，同时使用超声波测距仪和伺服仪，对于我的特定应用来说是一个有问题的组合。</p>
+<p class="translated">用Arduino的模拟输入引脚读取电位计，然后根据数值移动伺服系统(比如仪表),这是非常可靠的。对于远程控制项目，我已经多次使用这种技术。模拟引脚上的电位计并不关心脉冲宽度和时序问题。结果是一致的，快速和跟踪是相当不错的。如果你的传感器没有很强的时间要求，使用伺服作为一个衡量将在许多情况下工作。</p>
+<p class="translated">在将伺服系统添加到徽章之前，测距仪愉快地沿着它的路线前进，以每秒几次的速度跟踪距离，同时在终端窗口中以文本流的形式输出值。数值一致、快速且准确。你可以使用一个测距仪，让Arduino管理时间，一个伺服表，连接到一个输出引脚。你也可以调查一个<a href="https://www.adafruit.com/product/815" class="ext-link" rel="external ">外部基于I2C的伺服驱动板</a>。不过，我对这些方法表示怀疑。</p>
+<h2 class="translated">什么会更好？</h2>
+<p class="translated">我想在Gen 5徽章上加一个三色LED“臭氧管”已经有一段时间了。即使LED由脉冲宽度(PWM)输出值控制，它也可能作为可视输出设备工作。想象一下，当有人靠近徽章时，LED会从蓝色变为绿色，再变为橙色，然后变为红色。我们必须试一试。</p>
+<p class="translated">或者，也许屏幕上的计量器终究会更好。我不认为计时问题会影响LED屏幕上显示的仪表。也许破解我的一个旧的处理测量程序(在Pi上)来读取从Pro Mini输入Pi串口的测距数据是有意义的。这个选项是未来专栏的一个很好的候选。</p>
+<p class="translated"><a href="/tag/off-the-shelf-hacker/" target="_blank">现成的黑客</a>经常经历错误的开始和重来。这是游戏的本质，也是我们学习的方式。经验丰富的设计人员当然知道使用微控制器时的时序挑战，并采取相应的行动。</p>
+<p class="translated">专业硬件制造商和周末硬件制造商在知识和理解上存在巨大差距。环顾四周，看看你是否能找到关于定时、传感器和微控制器的真实世界的讨论。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

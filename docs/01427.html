@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Simulate the Internet with Flashback, a New WebDev Test Tool from LinkedIn</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">用Flashback模拟互联网，这是LinkedIn的一个新的WebDev测试工具</h1>
+<blockquote>原文：<a href="https://thenewstack.io/mocking-internet-flashback-new-tool-linkedin/#0001-01-01">https://thenewstack.io/mocking-internet-flashback-new-tool-linkedin/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">互联网是一个苛刻的情妇。网站在没有通知的情况下关闭、更改，甚至完全消失。网络——你坐下了吗？—不是100%可靠。这意味着测试一个有外部依赖的项目，事情可能会失败，甚至不是你的错误。软件测试工程师要做什么？！监视</p>
+<p class="translated">做自己的互联网，就是这样。或者至少有一个网络层模拟系统来处理出站流量，这样就不会有第三方宕机网络问题或其他限制来破坏您的测试。LinkedIn社交网络服务<a href="https://engineering.linkedin.com/blog/2017/03/flashback-mocking-tool" class="ext-link" rel="external ">的软件工程团队周五在一篇博客文章</a>中宣布，他们已经做到了这一点，建立了一个新的互联网模仿工具，名为Flashback，以消除测试等式中的不可控变量。</p>
+<p class="translated">当然，现在已经有各种各样的网络嘲讽工具了。它们的工作原理是拦截由web应用程序发起的HTTP连接，然后根据需要“重放”它们。换句话说，模仿工具用它以前记录的实例代替了任何HTTP交互，在测试中可以根据需要可靠地提供多次。</p>
+<p class="translated">事实上，LinkedIn测试团队最初使用的是<a href="https://github.com/betamaxteam/betamax" class="ext-link" rel="external "> Betamax </a>，这是一款开源的测试自动化工具。LinkedIn软件工程师Yabin Kang 说，该团队喜欢Betamax的许多方面，但他们需要的一些功能却没有提供，特别是服务级别集成测试。因此，康和他的同事们<a href="https://www.linkedin.com/in/shangshangfeng/" class="ext-link" rel="external ">尚尚峰</a>和<a href="https://www.linkedin.com/in/danvinegrad/" class="ext-link" rel="external ">丹·维涅格勒</a>利用Betamax的开源根构建了一个新的网络层嘲讽系统，名为闪回。</p>
+<p class="translated">闪回旨在模拟HTTP和HTTPS资源，如web服务和<a href="https://en.wikipedia.org/wiki/Representational_state_transfer" class="ext-link" rel="external ">REST</a>API，用于测试目的。它记录HTTP/HTTPS请求并回放先前记录的HTTP事务—在闪回中称为“场景”—以便在测试期间不需要外部互联网调用。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="size-large wp-image-2072257 aligncenter" src="../Images/b61b28c84c74a569877e986b42413870.png" alt="" data-id="2072257" data-original-src="https://cdn.thenewstack.io/media/2017/03/cb7764e4-flashback-overview-1024x852.png"/></p>
+<p class="translated">“想象一个标准的LinkedIn个人资料页面，”康说。“它需要100多个下游依赖服务来呈现。如果你在这个页面上只测试一个微小的规范，你真的不想依赖所有那些依赖。尤其是当这些依赖实际上是来自互联网的永恒服务，而你又无法控制的时候。”</p>
+<p class="translated">Kang说，确保测试环境一致性的最佳方法是模拟依赖关系。回到我们的LinkedIn个人资料页面示例，这些页面使用一种叫做LinkedIn摄取服务的东西来获取外部内容——比如YouTube视频——以丰富您的LinkedIn个人资料。康解释说，典型的三层架构在中间有一个网关服务。“这就是闪回的用武之地——充当代理的中间层。我们的机会是在这一层进行模拟，以测试我们的摄取服务结果，而无需依赖外部提供商。”</p>
+<p class="translated">闪回处理HTTP/HTTPS流量，截取请求和响应，并存储它们以备必要时“重放”。这种完全隔离的测试环境是Flashback相对于Betamax的主要创新领域，但还有更多。闪回还处理来自第三方网站的身份验证呼叫。“其他开源工具都没有做到这一点，”冯说。“当与互联网对话时，您总是需要处理认证，并且请求中的一些参数通常是不同的。因此，我们希望让用户能够完全满足这一要求。”</p>
+<p class="translated">HTTP请求通常包含URL、方法、头和主体。闪回允许为这些组件的任意组合定义匹配规则。闪回还允许用户向URL查询参数、标题和正文添加白名单或黑名单标签。</p>
+<p class="translated">康和冯指出了以下假设的OAuth授权流程，请求查询参数可能如下:<br/></p>
+<div id="crayon-642312565533d828971299" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">oauth_consumer_key</span>=<span class="crayon-s">"jskdjfljsdklfjlsjdfs"</span>,
+<span class="crayon-h">  </span>     <span class="crayon-h"> </span><span class="crayon-i">oauth_nonce</span>=<span class="crayon-s">"ajskldfjalksjdflkajsdlfjasldfja;lsdkj"</span>,
+<span class="crayon-h">  </span>     <span class="crayon-i">oauth_signature</span>=<span class="crayon-s">"asdfjaklsdjflasjdflkajsdklf"</span>,
+<span class="crayon-h">  </span>     <span class="crayon-i">oauth_signature_method</span>=<span class="crayon-s">"HMAC-SHA1"</span>,
+<span class="crayon-h">  </span>     <span class="crayon-i">oauth_timestamp</span>=<span class="crayon-s">"1318622958"</span>,
+<span class="crayon-h">  </span>     <span class="crayon-i">oauth_token</span>=<span class="crayon-s">"asdjfkasjdlfajsdklfjalsdjfalksdjflajsdlfa"</span>,
+<span class="crayon-h">  </span>     <span class="crayon-i">oauth_version</span>=<span class="crayon-s">"1.0"</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>由于OAuth要求客户端每次都为oauth_nonce生成一个新值，因此这些值中的许多值会随着每个请求而改变。“在我们的测试中，我们需要验证oauth_consumer_key、oauth_signature_method和oauth_version的值，同时还要确保请求中存在oauth_nonce、oauth_signature、oauth_timestamp和oauth_token。闪回让我们能够创建自己的比赛规则来实现这一目标，”工程师在宣布闪回发布的博客帖子中写道。“这个特性让我们可以测试带有时变数据、签名、令牌等的请求。客户端没有任何变化。”</p>
+<p class="translated">LinkedIn团队很高兴<a href="https://github.com/linkedin/flashback" class="ext-link" rel="external ">将闪回作为开源工具</a>提供给任何可能发现它有用的测试团队。闪回是用Java编写的，但是可以支持任何使用HTTP服务的环境。冯在2015年谷歌测试自动化会议上首次展示了闪回的概念证明，之后有很多人询问这个项目是否会开源。“最初我认为这只会在LinkedIn内部有用，但这些观众让我意识到这是一个测试场景，许多公司都会用到，”康说。</p>
+<p class="translated"><iframe loading="lazy" title="GTAC 2015: Mock the Internet" src="https://www.youtube.com/embed/6gPNrujpmn0?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<p class="translated">该团队在2016年期间完善了闪回，并在今天的发布中达到高潮。当然，最终的问题是“作为一名开发人员，这如何让我的生活变得更好？”</p>
+<p class="translated">LinkedIn团队报告说，闪回现在帮助他们更快地释放。该公司长期致力于使他们的测试环境尽可能自动化，以及“积极的测试哲学”来适应新代码的快速部署。“当我们能够在可靠的测试基础设施内进行持续集成时，我们就知道一切是否都通过了——我们的服务做得很好，我们可以快速而自信地部署新版本，”Kang说。</p>
+<p class="translated">康举例说，“我们过去常常直接从YouTube等网站获取数据和内容。有时事情会从源头发生变化——不同的标题或其他变化。这将导致与我们的代码无关的失败。”</p>
+<p class="translated">他说，闪回就像一个测试框架。“设置完成后，您过去必须做的一切，即以旧方式编写测试以从YouTube获取数据，现在都可以通过闪回来处理。”</p>
+<p class="translated">康补充说:“现在，在集成测试中，你知道你的‘外部’响应将被可靠和一致地服务。”</p>
+<p class="attribution translated">特征图片:(从左至右)尚尚峰、丹尼尔·维耐加德、亚宾·康(由LinkedIn提供。)</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

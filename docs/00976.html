@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>A Look At How Docker Manages Its Open Source Project</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">看看Docker是如何管理其开源项目的</h1>
+<blockquote>原文：<a href="https://thenewstack.io/a-look-at-how-docker-manages-its-open-source-project/#0001-01-01">https://thenewstack.io/a-look-at-how-docker-manages-its-open-source-project/#0001-01-01</a></blockquote><div>
+
+
+
+
+<div id="tns-post">
+
+<p id="post-date">
+2014-05-15 10:11:31	</p>
+<p id="post-title" class="translated">看看Docker是如何管理其开源项目的</p>
+<p id="post-tags">
+</p>
+
+<div class="content-column content-column-post-body">
+<div id="tns-post-headline">
+
+<div id="tns-post-headline-title">
+<h1 class="title translated">看看Docker是如何管理其开源项目的</h1>
+<p class="post-excerpt">
+</p>
+</div>
+<div id="tns-post-headline-byline">
+<span class="date">
+May 15th, 2014 10:11am by </span>
+<span class="author">
+<a href="https://thenewstack.io/author/alex/" title="Posts by Alex Williams" class="author url fn" rel="author">Alex Williams</a> </span>
+</div>
+</div>
+<div id="tns-post-key-media">
+<img src="../Images/9bac63691f0c1c4ee18defc9cc3fc166.png" alt="Featued image for: A Look At How Docker Manages Its Open Source Project" data-original-src="https://cdn.thenewstack.io/media/2014/05/docker_stats-leanstack-1024x747.png"/>
+</div>
+
+
+<div id="tns-post-body">
+<div class="row">
+<div class="copy-column">
+<div id="tns-post-body-content">
+
+
+<p class="translated">Leanstack发布了对Docker高级工程师jérme Petazzoni的第三次采访。</p>
+<p class="translated">以下是这篇文章的一些亮点——非常值得一读。</p>
+<ul>
+<li class="translated">Petazzoni表示，他们将不得不开发新的工具来管理Docker上的大量拉取请求。维护人员会花一半的时间在拉请求上，但是旧的请求仍然会出现在需要注意的地方。管理拉取请求的新工具正在开发中。</li>
+<li class="translated">有一些关于完美的Docker黑客环境的讨论。正如在采访中所说的，一些团队成员正在考虑离开一个普通的发行版，转而使用boots Docker。</li>
+</ul>
+<blockquote><p class="translated">那么所有的东西都会在一个容器里。您的图形环境将在一个容器中。你的编辑器会在一个容器里。所有东西都在一个容器里。</p></blockquote>
+<ul>
+<li class="translated">Docker是用Go写的。DotCloud，平台即服务(PaaS)最初是用Python写的。码头工人喜欢去。</li>
+<li class="translated">整个开发过程是通过拉请求来完成的。从一开始就是这样。</li>
+<li class="translated">Docker正在积极寻找<a href="https://github.com/dotcloud/docker/blob/master/CONTRIBUTING.md#how-can-i-become-a-maintainer" class="ext-link" rel="external ">的维护者。</a></li>
+<li class="translated">在0.6版本中，“Docker中的Docker”已被添加到构建中，然后以可预测的方式测试Docker。例如，它解决了与不同的Go版本或不同的库版本不兼容的问题。</li>
+<li class="translated">IRC机器人用于请求通知。</li>
+<li class="translated">Docker有一个新的托管平台，构建于Docker之上，由物理机器上的容器组成。</li>
+<li class="translated">Docker使用<a href="http://leanstack.io/pingdom" target="_blank" rel="noopener noreferrer external " class="ext-link"> Pingdom </a>和<a href="http://leanstack.io/pagerduty" target="_blank" rel="noopener noreferrer external " class="ext-link">page duty</a>进行监听。</li>
+<li class="translated">Docker移动到<a href="http://boot2docker.github.io/" class="ext-link" rel="external "> boot2docker </a>，因为移动部件比<a href="http://www.vagrantup.com/" class="ext-link" rel="external ">vagger少。</a></li>
+</ul>
+<p class="translated">在Leanstack的文章中还有很多内容要看。如果没有别的，采访显示了Docker如何适应，建立新的工具，并深入到自己的社区，以保持项目的流动。</p>
+<p> </p>
+<p> </p>
+<p> </p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="content-column">
+<div class="tns-insight-portcos-disclosure">
+<div class="content">
+<p class="disclosure translated">TNS所有者Insight Partners是Docker的投资者。</p> </div>
+</div>
+</div>
+
+
+<div class="content-column content-column-post-footer">
+<div id="tns-post-newsletter">
+<div class="tns-newsletter-shortcode">
+<p class="title translated"><span>新堆栈更新</span>一份时事通讯摘要，对本周最重要的新闻进行分析&amp;。</p>
+<div class="newsletter-form">
+<p class="newsletter-form-inputs translated"><input class="tns-newsletter-form-email" type="email" placeholder="EMAIL ADDRESS"/> <button class="tns-newsletter-form-submit">订阅</button></p>
+<div class="newsletter-form-privacy"><p class="translated">新的堆栈不会出售您的信息，也不会与无关的第三方共享。如果继续，您同意我们的</p><a href="/terms-of-use/">Terms of Use</a><p class="translated">和</p><a href="/privacy-policy/">Privacy Policy</a><p>.
+</p></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+</div>    
+</body>
+</html>

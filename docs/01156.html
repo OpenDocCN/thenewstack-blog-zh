@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: The Great Robot Servo Dilemma</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:伟大的机器人伺服困境</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-the-great-robot-servo-dilemma/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-the-great-robot-servo-dilemma/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">我的项目，机器人头骨赫德利，有一个可以前后摇动头部的伺服系统。我很快会添加一个使旧头向前和向后倾斜。如果赫德利可以转动他的左眼，或者抬起和放下一条眉毛，那不是更有趣吗？所有的专家都认为，机器人应该有适当的表达能力，以便在它们的人类主人旁边和谐地工作。</p>
+<p class="translated">我发现一个巨大的技术挑战是控制机器人中“X”个伺服系统。</p>
+<p class="translated">头部和一个眼球的平移和倾斜相当于四个伺服系统。记得赫德利的右眼窝里有JeVois智能视觉传感器。简单的上/下眉毛运动需要另一个伺服系统。现在我们有五个了。显然，Arduino或Raspberry Pi本身无法有效地协调少至五个伺服系统。如果我们想添加更多的眉毛或另一只眼睛呢？</p>
+<p class="translated">本周我将使用16通道伺服/PWM板制作原型。这个设备位于你的机器人伺服系统和你的机器人微控制器大脑之间，通过I2C总线进行通信。所有伺服计时都由电路板处理，因此微控制器只需编写伺服系统应该移动的位置和时间。编写我们的“机器人歌舞表演”也是一个复杂的过程。今天，我们将让电路板开始工作，并深入了解在机器人控制应用中需要考虑哪些因素。</p>
+<h2 class="translated">连接到节点MCU</h2>
+<p class="translated">I2C总线内置于大多数现代微控制器中，包括Arduino和Raspberry Pi。上周，我们探索了使用I2C总线来完成<a href="https://thenewstack.io/off-the-shelf-hacker-portable-atmospheric-readings-with-a-sparkfun-breakout-board/" target="_blank" class="local-link"> BME280大气传感器故事</a>。它使用两条数据线，一条连接+5伏和地，所以总共有四条线。伺服控制器董事会谈论I2C。</p>
+<p class="translated">我最近从Banggood 买了一个<a href="https://www.banggood.com/3Pcs-PCA9685-16-Channel-12-bit-PWM-Servo-Motor-Driver-I2C-Module-For-Arduino-Robot-p-1188110.html?rmmds=search&amp;cur_warehouse=USA" target="_blank" rel="noopener noreferrer external " class="ext-link">三包PCA9685 16X12位伺服/PWM控制器板，价格约为12美元。</a></p>
+<p class="translated">在之前的故事中，我使用NodeMCU板作为“Arduino”每块主板大约4美元，为什么要使用其他东西呢，尤其是考虑到你可以通过相当简单的固件升级来激活WiFi连接。将NodeMCU连接到伺服板很容易，我使用了试验板来快速完成这项工作。伺服板的一端有一个公接头，所以我简单地将其垂直插入试验板，并在两块板之间连接跳线。快速连接和原理验证是原型制作的关键。从NodeMCU到伺服板的连接如下。3.3伏至VCC，GND至GND，D1至SLC，D2至SDA。</p>
+<p class="translated">不能从NodeMCU上的5伏管脚运行伺服板。它会产生过多的电流，导致不稳定的行为。最好的方法是连接一个至少能提供1安培电流的5伏壁式电源。我有一个旧的三洋手机型号，容量为950毫安。够近了。电缆上的内部导体连接到伺服板上的正极螺丝端子，而编织导体连接到负极端子。平移和颚伺服引线分别与伺服头0和1配对。将固件上传到NodeMCU板后，将USB电缆插入标准的5伏壁式电源插座。</p>
+<div id="attachment_8894982" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-8894982" decoding="async" loading="lazy" class="size-full wp-image-8894982" src="../Images/f2f558157080487abdf63f1bdd95cdad.png" alt="" data-id="8894982" data-original-src="https://cdn.thenewstack.io/media/2019/10/bb84313b-nodemcu-servo-controller.png"/><p id="caption-attachment-8894982" class="wp-caption-text translated">带NodeMCU和伺服控制器的试验板</p></div>
+<h2 class="translated">开始测试代码</h2>
+<p class="translated">我从SunFounder网站复制了示例程序，并做了一些修改。查看PCA9685页面，了解伺服系统如何与脉宽调制(PWM)配合工作的有趣的复习说明。</p>
+<p class="translated">在试图编译和运行你的伺服程序之前，一定要在Arduino IDE中安装Adafruit PWM伺服驱动库。我用的是2.0.0版。<br/></p>
+<div id="crayon-642311fec4658157992674" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-p">#include </span>
+ 
+<span class="crayon-c">// called this way, it uses the default address 0x40</span>
+<span class="crayon-e">Adafruit_PWMServoDriver </span><span class="crayon-i">pwm</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">Adafruit_PWMServoDriver</span>();
+ 
+<span class="crayon-p">#define MIN_PULSE_WIDTH       650</span>
+<span class="crayon-p">#define MAX_PULSE_WIDTH       2350</span>
+<span class="crayon-p">#define DEFAULT_PULSE_WIDTH   1500</span>
+<span class="crayon-p">#define FREQUENCY             50</span>
+<span class="crayon-c">// our servo # counter</span>
+<span class="crayon-e">uint8_t </span><span class="crayon-i">servonum</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span>;
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>(<span class="crayon-cn">115200</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"16 channel Servo test!"</span>);
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>();
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWMFreq</span>(<span class="crayon-i">FREQUENCY</span>);<span class="crayon-h">  </span><span class="crayon-c">// Analog servos run at ~60 Hz updates</span>
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">loop</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWM</span>(<span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-cn">60</span>));<span class="crayon-h">  </span><span class="crayon-c">// panning the skull</span>
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"90"</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWM</span>(<span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-cn">100</span>));
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"100"</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWM</span>(<span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-cn">120</span>));
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"120"</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+<span class="crayon-h">  </span>
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWM</span>(<span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-cn">100</span>));
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"100"</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWM</span>(<span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-cn">60</span>));
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"90"</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWM</span>(<span class="crayon-cn">1</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-cn">95</span>));<span class="crayon-h">  </span><span class="crayon-c">// open jaw</span>
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"90"</span>);
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-i">pwm</span><span class="crayon-st">.</span><span class="crayon-e">setPWM</span>(<span class="crayon-cn">1</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-cn">120</span>));<span class="crayon-h">  </span><span class="crayon-c">// closed jaw againt teeth</span>
+<span class="crayon-h">  </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+<span class="crayon-h">  </span>
+}
+ 
+<span class="crayon-e">int </span><span class="crayon-e">pulseWidth</span>(<span class="crayon-e">int </span><span class="crayon-i">angle</span>)
+{
+<span class="crayon-h">  </span><span class="crayon-e">int </span><span class="crayon-i">pulse_wide</span>,<span class="crayon-h"> </span><span class="crayon-i">analog_value</span>;
+<span class="crayon-h">  </span><span class="crayon-i">pulse_wide</span><span class="crayon-h">   </span>=<span class="crayon-h"> </span><span class="crayon-e">map</span>(<span class="crayon-i">angle</span>,<span class="crayon-h"> </span><span class="crayon-cn">0</span>,<span class="crayon-h"> </span><span class="crayon-cn">180</span>,<span class="crayon-h"> </span><span class="crayon-i">MIN_PULSE_WIDTH</span>,<span class="crayon-h"> </span><span class="crayon-i">MAX_PULSE_WIDTH</span>);
+<span class="crayon-h">  </span><span class="crayon-i">analog_value</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">int</span>(<span class="crayon-e">float</span>(<span class="crayon-i">pulse_wide</span>)<span class="crayon-h"> </span>/<span class="crayon-h"> </span><span class="crayon-cn">1000000</span><span class="crayon-h"> </span>*<span class="crayon-h"> </span><span class="crayon-e ">FREQUENCY *</span><span class="crayon-h"> </span><span class="crayon-cn">4096</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">analog_value</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>();
+<span class="crayon-h">  </span><span class="crayon-e">return </span><span class="crayon-i">analog_value</span>;
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>我们从常见的变量、初始化和库引用开始。类似地，设置从串行通信开始，并执行库调用以打开PWM通道。</p>
+<p class="translated">接下来，<strong> pwm.setPWM() </strong>功能使用<strong> pulseWidth() </strong>功能将角度转换为脉冲宽度，将指定的伺服移动到所需的角度位置。然后在移动之间有半秒钟的延迟，整个序列重复。伺服0是平移伺服，1是钳夹伺服。</p>
+<p class="translated">在这种情况下，赫德利来回移动他的头，然后在主循环的每个循环中开合他的下巴。</p>
+<p class="translated">请记住，你可能应该开始与几个松散的伺服重视伺服控制器板。让一切正常工作，然后计算出实际机器人伺服系统的开始和停止位置。例如，我查阅了过去的实验笔记，发现赫德利的张角和闭角分别是95度和120度。当我把伺服板连接到赫德利的伺服系统时，我最初使用了90和115来确保我没有把伺服系统撞进它们的机械极限，因此可能会把内部齿轮剥离。第一次运行伺服程序时，要随时准备拔掉电源插头。</p>
+<p class="translated">在确认我不会打破任何东西后，在将控制板插入实际的机器人伺服系统后，我很容易地慢慢移动到一个稍微关闭的下巴和一个没有击中赫德利颈骨的开放位置。</p>
+<p class="translated"><iframe loading="lazy" title="nodemcu servo controller" src="https://www.youtube.com/embed/iZgjfLO5Ifg?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<h2 class="translated">下一步是什么</h2>
+<p class="translated">现在我们知道了棋盘在工作，伺服系统在移动，是时候弄清楚如何轻松地配置一场“表演”了，这样赫德利可以移动他的头，张开他的嘴，说话，这样一切看起来都很真实。</p>
+<p class="translated">我也许可以建立一个遵循“脚本”的处理程序，这样我就可以在一次技术演讲中与赫德利互动。我还不确定如何运行音频分析(将下颚与音频同步)程序，同时移动平移/倾斜伺服系统。</p>
+<p class="translated">我甚至不确定音频分析程序是否会通过伺服控制板运行。该领域的实验可能是下一个议程。</p>
+<p class="translated">无论如何，构建机器人和物理计算系统是富有挑战性和乐趣的。我很高兴能与读者分享我的发现、成功和偶尔的失误。</p>
+<p class="translated"><em>赶【Torq博士的 <a href="https://thenewstack.io/tag/off-the-shelf-hacker/" target="_blank" class="local-link">现成黑客专栏</a>，每周六，只上新栈！在<a href="mailto:doc@drtorq.com">doc@drtorq.com</a>或407-718-3274联系他进行咨询、演讲和委托项目。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

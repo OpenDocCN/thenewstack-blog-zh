@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Snyk Releases a Kubernetes-focused Container Security Platform</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Snyk发布了一个以Kubernetes为中心的容器安全平台</h1>
+<blockquote>原文：<a href="https://thenewstack.io/snyk-announced-new-container-product-what-to-know/#0001-01-01">https://thenewstack.io/snyk-announced-new-container-product-what-to-know/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">随着容器采用率的上升，控制甚至意识到由于依赖开源而引入的漏洞变得更加困难。考虑到这一点，云原生安全公司Snyk推出了一个以容器和Kubernetes为中心的安全平台<a href="https://snyk.io/product/container-vulnerability-management/" class="ext-link" rel="external "> Snyk容器</a>，以在整个软件开发生命周期中发现并修复第三方应用依赖关系中的漏洞。</p>
+<p class="translated">Snyk今天也发布了一个<a href="https://github.com/snyk-labs/helm-snyk" class="ext-link" rel="external ">头盔插件</a>，允许开发者扫描他们自己的头盔图寻找漏洞。他们刚刚发布的<a href="https://snyk.io/wp-content/uploads/helm-report.pdf" class="ext-link" rel="external ">舵手安全报告</a>暴露了公共舵手图表库中的漏洞。Helm是Kubernetes的一个流行的包管理器，也可以用来安装第三方软件，如Jenkins、PostgreSQL等等。观看新堆栈的<a href="https://www.periscope.tv/thenewstack/" class="ext-link" rel="external ">对报告作者Gareth Rushgrove的直播采访，</a>太平洋时间2019年11月18日下午12点15分，来自圣地亚哥的KubeCon + CloudNativeCon。</p>
+<p class="translated">该公司最近的开源安全报告强调了对集装箱扫描服务的需求。该研究表明，“容器经常引入数百个来自开源依赖的漏洞，并且没有本地安全措施来发现和修复它们，”Snyk 总裁兼联合创始人<a href="https://twitter.com/guypod" target="_blank" rel="noopener noreferrer external " class="ext-link"> Guy Podjarny </a>在一份声明中指出。“通过为开发人员提供构建和运行安全容器所需的工具，包括监控Kubernetes工作负载的漏洞，Snyk Container正在帮助客户大幅降低不断增长的容器基础设施的风险，并扩展安全最佳实践。”</p>
+<p class="translated">Podjarny提到的研究提到了令人大开眼界的发现，包括两年内应用程序库漏洞增加了88%，十大最受欢迎的Docker图像中的每一个都包含至少30个漏洞。Helm Security报告进一步发现，68%的稳定Helm图表包含具有高严重性漏洞的图像。</p>
+<h3 class="translated">容器产品可以简化IT工作</h3>
+<p class="translated">容器产品在短时间内变得如此流行的原因之一是因为它们针对开发人员面临的一些常见问题。例如，许多应用程序只需要查看用户和组，但是却被授予了更多的访问权限。</p>
+<p class="translated">如果使用虚拟身份服务器(VIS)或容器，它们映射和发布特定于应用程序的视图，只向应用程序提供它需要的数据。然而，很容易看出，如果it专业人员继续处理与容器漏洞相关的问题，那么与容器产品相关的便利性会变得不那么明显。Snyk容器旨在使漏洞管理变得简单明了。</p>
+<p class="translated">Snyk容器直接与开发人员工作流和组织使用的现有工具集成，如源代码控制平台、Kubernetes、CI/CD工作流和容器注册表。Snyk容器支持定期执行快速扫描，以查找与操作系统或应用程序相关的漏洞。它还可以验证Kubernetes工作负载的安全配置。</p>
+<p class="translated">开发人员还可以在需要时使用策略在特定条件下中断构建。当发现漏洞时，Snyk容器显示原始Docker文件行。然后，开发人员可以出于补救目的对相关线路进行优先级排序。</p>
+<p class="translated">人们还可以检查Snyk容器创建的漏洞树，以显示直接和间接的依赖关系。有了这些信息，就可以了解每个漏洞是如何产生的。</p>
+<p class="translated">然后，对于每个已识别的漏洞，Snyk Container会提供如何修复它的建议，例如升级到最安全的基础映像。即将推出的一个相关特性是自动修复的拉请求。Snyk会自动执行更改为推荐基本图像的拉取请求，从而提供快速、无缝的结果。</p>
+<p class="translated">【T2<img decoding="async" loading="lazy" class="aligncenter size-full wp-image-9275181" src="../Images/2083f9368cc847368d895c3e38ec38b1.png" alt="" data-id="9275181" data-original-src="https://cdn.thenewstack.io/media/2019/11/c48cd620-snyk-01.png"/></p>
+<h2 class="translated">监控新问题</h2>
+<p class="translated">除了检查当前的漏洞并建议如何修复它们，Snyk Container还有一个监视组件，可以通知用户新的漏洞。Slack和电子邮件是发布这些警报的两个渠道，确保IT专业人员掌握最新信息并采取及时行动。</p>
+<p class="translated">Snyk最近因成功筹集资金而成为头条新闻。该公司在2019年11月获得了700万美元的A轮融资。2019年9月，该公司宣布<a href="https://techcrunch.com/2019/09/10/snyk-grabs-70m-more-to-detect-security-vulnerabilities-in-open-source-code-and-containers/" class="ext-link" rel="external ">已经筹集了</a>总计7000万美元。该公司计划用这笔钱来扩大业务。Snyk容器的引入是实现这一意图的一个例子。</p>
+<p class="translated">Snyk容器为用户提供了所需的洞察力和资源，让他们知道漏洞在哪里以及如何解决它们。这些好处有助于客户降低随着集装箱基础设施的增长而出现的风险。随着规模的扩大，公司可以保持最佳的安全实践。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

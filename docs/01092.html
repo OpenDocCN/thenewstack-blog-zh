@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Why Your Organization Cannot Live on Git Alone</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">为什么您的组织不能仅靠Git生存</h1>
+<blockquote>原文：<a href="https://thenewstack.io/why-your-organization-cannot-live-on-git-alone/#0001-01-01">https://thenewstack.io/why-your-organization-cannot-live-on-git-alone/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="attribution translated">Twistlock 赞助了这个播客。</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/why-your-organization-cannot-live-on-git-alone" class="ext-link" rel="external ">为什么你的组织不能仅靠Git生存</a> </span></p>
+
+<p class="translated">Linux内核背后的主要开发者<a href="https://github.com/torvalds" target="_blank" rel="noopener noreferrer external " class="ext-link"> Linus Torvalds </a>创建了<a href="https://github.com/gitster/git" target="_blank" rel="noopener noreferrer external " class="ext-link"> Git </a>开源代码库，这无疑是天才之举。但是，虽然Junio Hamano继续在维护开源Git方面做得非常出色，但是那些希望跳跃到所谓的敏捷开发和部署周期的组织必须超越依赖Git的核心版本控制和软件库功能。</p>
+<p class="translated">如果你愿意，可以称之为成长的烦恼——但是DevOps敏捷性的下一阶段需要更多更多的东西。这尤其适用于开发运维团队，他们希望在周期开始时增加嵌入安全性的部署节奏(是的，虽然说起来容易做起来难，但这是可能的)。</p>
+<p class="translated">要实现这一点，需要重新思考传统的软件开发周期。这需要做一些必要的工作，以便代码一存储到Git上，就可以立即集成到主生产管道中。</p>
+<p class="translated">在五月底于巴塞罗纳举行的<a href="https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2019/" class="ext-link" rel="external "> KubeCon + CloudNativeCon </a>会议期间录制的本期<a href="https://thenewstack.io/podcasts/makers" target="_blank" class="local-link">新堆栈制造商</a>播客中，如何跨越主要使用Git作为版本控制的软件存储库是与<a href="https://www.linkedin.com/in/ashishkuthiala" target="_blank" rel="noopener noreferrer external " class="ext-link">产品营销总监</a><a href="https://gitlab.com/gitlab-com" target="_blank" rel="noopener noreferrer external " class="ext-link">Ashish Kuthiala</a>的主要话题。</p>
+<p class="translated">However, Git has and should continue to play its part in the software development and delivery in the indefinite future. Git, indeed, has its place in DevOps. Kuthiala noted how open source Git offers well-known advantages over other repositories, including its distributed mechanism, its speed and the ease and elegance with which it enables code-sharing. But as mentioned above, that is not enough.</p>
+<p class="translated">“If you look at the complete software development lifecycle when storing code somewhere, then taking it and making it usable for the end user — you still very often have traditional software process that in place that needs to go through traditional software development lifecycles — and that hasn’t changed for a very long time,” Kuthiala said.</p>
+
+<p class="translated">This traditional build and deploy model continues to still often involve different specialized teams, each separately adding code to the repository and testing performance and security before the code is processed by operations. “So, there’s still a lot of manual handoff from one team to the other. But this is changing and isn’t really that acceptable anymore in a world that wants to go faster,” Kuthiala said. “The customers want to use software as a differentiating mechanism for their competitors and you need to respond really fast. And this manual hand-off process is error-prone, takes time and ultimately, is costly.”</p>
+<p class="translated">It was this problem that prompted GitLab to see the importance of how a repository by itself was insufficient to accommodate where software development was headed. The end result was enabling DevOps to merge all the processes into a single application. “As soon as you’ve committed your coding into Git, it will start building and integrating into the main track. And the users found this experience to be immensely valuable, which led to the realization that since there are so many stages in the software development cycle, it is necessary to really not have to stitch together many different tools,” Kuthiala said. “And so, [GitLab] has built a single tool for the entire application development process, especially focused on DevOps.”</p>
+<p class="translated">The numbers say a lot. Kuthiala said GitLab’s software-as-a-service sees about 165 to 170 deploys a day. For the self-hosted version, Based on the open source forum model,  a realize takes place on the 22nd of each month, which has occurred during the past “90 plus months without fail,” Kuthiala said.</p>
+<p class="translated">GitLab’s external contributors number more than 2,200. “Our customers are all actually contributing code to make this better,” Kuthiala said. “Our customers, they’re all working to better each other.”</p>
+<p class="translated"><iframe loading="lazy" title="Why Software Repository Providers Must Offer a Complete Range of Lifecycle Management Processes" src="https://www.youtube.com/embed/rA7reJ0y1mY?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">VIDEO</iframe></p>
+<h3 class="translated">In this Edition:</h3>
+<p class="translated"><a href="https://thenewstack.simplecast.com/episodes/why-your-organization-cannot-live-on-git-alone?t=1:22" target="_blank" rel="noopener noreferrer external " class="ext-link"> 1:22: </a>采用Git和GitLab。<br/> <a href="https://thenewstack.simplecast.com/episodes/why-your-organization-cannot-live-on-git-alone?t=4:48" target="_blank" rel="noopener noreferrer external " class="ext-link">凌晨4点48分:</a>流程和发射井。<br/> <a href="https://thenewstack.simplecast.com/episodes/why-your-organization-cannot-live-on-git-alone?t=7:32" target="_blank" rel="noopener noreferrer external " class="ext-link"> 7:32: </a>度量。<br/> <a href="https://thenewstack.simplecast.com/episodes/why-your-organization-cannot-live-on-git-alone?t=13:20" target="_blank" rel="noopener noreferrer external " class="ext-link"> 13:20: </a>现实检查现在是发展的时候。<br/><a href="https://thenewstack.simplecast.com/episodes/why-your-organization-cannot-live-on-git-alone?t=15:25" target="_blank" rel="noopener noreferrer external " class="ext-link">15:25:</a>DevSecOps的想法。<br/> <a href="https://thenewstack.simplecast.com/episodes/why-your-organization-cannot-live-on-git-alone?t=21:24" target="_blank" rel="noopener noreferrer external " class="ext-link"> 21:24: </a>云原生开发。</p>
+<p class="attribution translated">KubeCon + CloudNativeCon是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

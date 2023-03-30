@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Serverless Needs Standardization to Be the Future of Application Infrastructure</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">无服务器需要标准化来成为应用基础设施的未来</h1>
+<blockquote>原文：<a href="https://thenewstack.io/serverless-needs-standards-to-be-the-future-of-application-infrastructure/#0001-01-01">https://thenewstack.io/serverless-needs-standards-to-be-the-future-of-application-infrastructure/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated"><a href="https://www.alcide.io/" class="clearfix infoBlock " target="_blank"><div class="infoBlockTextBlock"><p class="infoBlockTitle">Gadi Naor</p><p class="infoBlockText">Gadi Naor作为首席技术官和Alcide的联合创始人，拥有15年的网络安全产品开发经验。Gadi将他的管理和技术背景融合在不同的岗位上。Gadi曾在CheckPoint工作，担任业务开发经理和高级开发人员，领导CheckPoint的防火墙核心安全引擎和VPN软件的开发。然后，他在Altor Networks担任高级软件工程师，Altor Networks是虚拟化数据中心安全领域的先驱，后来被Juniper Networks收购，他继续担任高级软件工程师。在联合创立Alcide之前，Gadi是基于微服务的系统Fitfully的联合创始人兼首席技术官。</p> </div> </a></p><p class="translated">无服务器正在起飞:最近<a href="https://www.cncf.io/" class="ext-link" rel="external ">云本地计算基金会</a> (CNCF)的一项调查发现，41%的受访者目前正在使用无服务器技术，另有20%的人计划在未来12到18个月内使用。也称为功能即服务(FaaS)，无服务器允许云本机应用程序开发团队将运行和运送代码的运营负担转移到他们的云提供商，从而降低管理成本，提高可扩展性，并简化开发运维周期。</p>
+<p class="translated"><a href="/category/serverless/">无服务器</a>已经被认为是应用基础设施的下一次发展，但仍有一些障碍需要克服，特别是标准化。</p>
+<p class="translated">标准化长期以来一直是计算世界的统一力量。如果你的年龄足够大，还记得互联网的早期(那时它还被称为万维网)，你可能还记得Internet Explorer和Netscape之间的浏览器战争。在争夺主导权的过程中，每个浏览器都在推广自己的HTML更新，而这些更新与其他浏览器很大程度上是不兼容的。</p>
+<p class="translated">它迅速升级到为一种浏览器构建的网站无法在另一种浏览器上很好地工作的程度，从而分割了互联网并提高了网络开发的成本。开发者必须有效地创建两个网站，否则就会错过使用另一个浏览器的观众。</p>
+<p class="translated">随着网络标准项目(T1)的出现，这种情况发生了变化，这是一个草根联盟，它在2001年成功地说服了Internet Explorer、Netscape和其他浏览器采用由T2万维网联盟(T3)建立的标准。其结果就是我们今天所熟悉和喜爱的互联网:一个开放、协作和通用的平台，将世界各地的人们在线连接起来，使web开发人员的生活变得更加轻松。</p>
+<p class="translated">今天，无服务器生态系统仍然是分散的，很像早期的互联网。在AWS Lambda、微软Azure函数、谷歌云函数和无数其他平台之间，许多无服务器函数是专有的，这使得将应用程序从一个平台迁移到另一个平台成为一个挑战。平台之间缺乏可移植性和互操作性阻碍了无服务器的采用，因为开发人员担心供应商锁定。</p>
+<p class="translated">由于无服务器市场仍然相对较新，如果有更好的选择，开发人员不希望被无服务器提供商所困。随着冠状病毒对经济造成浪费，无服务器市场可能会迅速整合，使得跨平台迁移无服务器应用程序的能力比以往任何时候都更重要。</p>
+<p class="translated">缺乏无服务器标准化也带来了安全挑战。虽然无服务器可以通过取消服务器管理来简化操作，但开发人员无法了解他们在无服务器平台上运行的工作负载。这意味着数据泄露、错误配置、过度配置访问权限等安全威胁可能会被忽视。实际上，这使得开发人员依赖无服务器提供商提供的API来观察可能的安全威胁。没有标准化的无服务器框架，就没有标准化的安全工具或最佳实践来支持无服务器生态系统。</p>
+<p class="translated">标准化的势头已经开始。在云世界的中心，CNCF已经认识到标准化的紧迫性，指出“需要高质量的文档、最佳实践，更重要的是，需要工具和实用程序。最重要的是，需要将不同的参与者聚集在同一屋檐下，通过协作推动创新。”本着合作的精神，CNCF将无服务器平台提供商和第三方库开发者聚集在<a href="https://github.com/cncf/wg-serverless" class="ext-link" rel="external ">无服务器工作组</a>中，以推进标准化。</p>
+<p class="translated">无服务器工作组的早期输出是<a href="https://cloudevents.io/" class="ext-link" rel="external "> CloudEvents </a>，它开始标准化事件描述。无服务器工作组经过两年的工作，于2019年10月发布了1.0版本。CloudEvents为Go、JavaScript、Java、C#、Ruby和Python提供了标准化的SDK，可用于构建事件路由器、跟踪系统和其他工具，简化跨平台和环境的事件数据交付。</p>
+<p class="translated">Kubernetes已经成为另一个有前途的解决方案。容器生态系统已经围绕Kubernetes进行了整合，这也使它成为联合无服务器生态系统的完美平台。2018年，谷歌与Pivotal、IBM、Red Hat和SAP合作推出了<a href="/amidst-controversy-the-knative-serverless-software-keeps-growing/"> Knative </a>，这是一个开源框架，用于在Kubernetes和Istio之上运行无服务器应用程序组件。该平台提供所有API机制和支持资源，以构建、交付、扩展和运行无服务器工作负载。</p>
+<p class="translated">除了互操作性和可移植性，Knative还具有安全优势。Knative允许您使用已经为Kubernetes开发的安全工具，Kubernetes的安全范例更加成熟。使用Knative，您可以通过将安全代理嵌入到Kubernetes中的无服务器工作负载和功能中，而不是使用无服务器平台提供的基础设施插件，来实现对安全威胁的更好观察。如果您的团队已经对Kubernetes安全性进行了投资，那么这些安全性投资可以扩展到无服务器安全性。</p>
+<p class="translated">Knative是否会成为无服务器标准化的赢家还有待观察。截至3月，Knative的采用率为17%，这意味着仍有足够的成熟和增长空间。Knative本身建立在Kubeless的基础上，这是以前围绕Kubernetes标准化无服务器的努力。但作为行业早期接受的一个迹象，谷歌围绕Knative建立了下一代完全托管的无服务器平台Cloud Run，这意味着其他无服务器平台可能很快会效仿。</p>
+<p class="translated">无服务器使开发人员可以自由地将精力集中在将功能构建到他们的代码中，而不是管理运行这些功能的服务器。这种从平凡而重要的运营责任中解放出来的方式有可能为应用程序开发人员带来重大的创新和商业价值，但缺乏标准化可能会导致无服务器生态系统的分裂，并产生赢家和输家。随着标准化而来的是开源协作的力量，这种力量从计算时代开始就推动了创新。</p>
+<p class="attribution translated">亚马逊网络服务、云计算基金会和Red Hat是这个新堆栈的赞助商。</p>
+<p class="attribution translated">特征图片:CloudEvents。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+</div>
+</div>    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Serverless, Functions and Challenges in Today’s Cloud Native World</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">当今云世界中的无服务器、功能和挑战</h1>
+<blockquote>原文：<a href="https://thenewstack.io/serverless-functions-and-challenges-in-todays-cloud-native-world/#0001-01-01">https://thenewstack.io/serverless-functions-and-challenges-in-todays-cloud-native-world/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="attribution translated">甲骨文公司赞助了这次播客。</p>
+<p class="translated"><br/> <span class="media-direct-link"> <a href="https://thenewstack.simplecast.com/episodes/serverless-api-gateways-and-challenges-in-todays-cloud-native-world" class="ext-link" rel="external ">无服务器、API网关和挑战当今的云原生世界</a> </span></p>
+
+<p class="translated">针对云原生部署的新服务和工具不断涌现，在已经非常复杂的选择网络中争夺一席之地。</p>
+<p class="translated">在巴塞罗那KubeCon + CloudNativeCon由New Stack创始人兼主编Alex Williams主持的播客中，主要话题是<a href="https://www.oracle.com/index.html" target="_blank" rel="noopener noreferrer external " class="ext-link"> Oracle </a>和<a href="https://gitlab.com/autom8.network" target="_blank" rel="noopener noreferrer external " class="ext-link"> Autom8的无服务器工具和目标。网络</a>，提供分散的功能即服务(FaaS)。</p>
+<p class="translated">播客嘉宾<a href="https://www.linkedin.com/in/ioana-madalina-patrichi/?originalSubdomain=uk" target="_blank" rel="noopener noreferrer external " class="ext-link">甲骨文高级软件开发人员Maddie Patrichi </a>和Autom8联合创始人兼首席技术官<a href="https://www.linkedin.com/in/gregg-altschul" target="_blank" rel="noopener noreferrer external " class="ext-link"> Gregg Altschul </a>。网络，提供他们的想法和描述他们的项目。</p>
+<p class="translated">Altschul描述了Autom8。Network正在创建一个分散的FaaS平台，供开发人员部署他们的功能。“由于它是分散的，我们去寻找一个节点，无论它在哪里，它在那里运行并返回一个结果，如果开发者想从他们运行的功能中赚钱，你只需支付计算时间和少量版税，”Altschul说。</p>
+<p class="translated">从一开始，Altschul就说Autom8。网络试图避免被单一的云供应商或技术所束缚。“我们可以在Lambda上建立这样的东西，但那样我们就会成为AWS Lambda，我们就会被束缚在那个生态系统中。或者我们可以选择任何其他类型的技术，如谷歌或其他类似的云提供的技术，但你仍然会被困在这些技术中，”Altschul说。“还有其他技术可以让您构建自己的数据中心，如果您有自己的数据中心，您可以将这些东西放入其中并进行构建。”</p>
+<p class="translated">帕特里奇说，对于帕特里奇的团队和他们的API gateway项目，他们试图使用Kubernetes，但“放弃了”。帕特里奇描述了主要问题是如何牵涉到安全问题的。例如，客户可以访问API网关数据计划，“因此，如果我们有一个从控制平面到数据平面的漏洞，那么从数据平面基本上可以访问所有的客户租户，”Patrichi说。</p>
+<p class="translated">“所以，你并不是真的想要Kubernetes(在这种情况下)。Kubernetes非常成熟，社区在识别安全问题和为这些安全问题提供补丁方面做得非常好，但是……在我们特定的API网关案例中，它可能并不总是安全的。"这种类型的交流，你知道，来来回回，不是功能的最佳方式."</p>
+<p class="translated">一天结束时，帕特里奇说她不相信“Kubernetes更像一把瑞士刀。”“因此，我认为它更适合服务应用程序，但不一定适合提供商——我们是服务提供商，我们希望建立架构，我们希望负责架构，”Patrichi说。“所以，这就是为什么我们有点信任问题，你知道我们正在处理非常敏感的信息。我们有庞大的客户，政府也是客户，所以我们非常非常有安全意识。”</p>
+<p class="translated"><iframe loading="lazy" title="Exploring All Things Serverless" src="https://www.youtube.com/embed/TWR-YPDuGYg?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<h3 class="translated">在这个版本中:</h3>
+<p class="translated"><a href="https://thenewstack.simplecast.com/episodes/serverless-api-gateways-and-challenges-in-todays-cloud-native-world?t=1:33" class="ext-link" rel="external "> 1:33: </a> Maddie，您之前说过您正在与Oracle合作开发他们的API网关。你能告诉我们一点吗？<br/> <a href="https://thenewstack.simplecast.com/episodes/serverless-api-gateways-and-challenges-in-todays-cloud-native-world?t=3:03" class="ext-link" rel="external "> 3:03: </a>请简单介绍一下您开始看到的无服务器架构，以及您为什么选择Fn？我知道你有一个自己开发的点对点网络，你把Fn放在上面。造成这种情况的原因是什么？<br/> <a href="https://thenewstack.simplecast.com/episodes/serverless-api-gateways-and-challenges-in-todays-cloud-native-world?t=7:36" class="ext-link" rel="external "> 7:36: </a> Maddie，你的团队对函数的理念是什么，它们如何适应API Gateway？<br/><a href="https://thenewstack.simplecast.com/episodes/serverless-api-gateways-and-challenges-in-todays-cloud-native-world?t=14:53" class="ext-link" rel="external ">14:53:</a>FaaS在API网关中的角色，这为您提供了什么优势？这有什么独特的？<br/> <a href="https://thenewstack.simplecast.com/episodes/serverless-api-gateways-and-challenges-in-todays-cloud-native-world?t=18:22" class="ext-link" rel="external "> 18:22: </a>当了解到软件供应链的存在时，你如何发展你的姿态？<br/><a href="https://thenewstack.simplecast.com/episodes/serverless-api-gateways-and-challenges-in-todays-cloud-native-world?t=24:44" class="ext-link" rel="external ">24:44:</a>Maddie，在您考虑API网关和功能集成时，您的团队在未来六个月内会优先考虑哪些方面？</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

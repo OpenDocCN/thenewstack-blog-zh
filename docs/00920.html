@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>A Model for Managing Microservices in Cellular Self-Organized Teams</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">蜂窝自组织团队中的微服务管理模型</h1>
+<blockquote>原文：<a href="https://thenewstack.io/a-model-for-managing-microservices-in-cellular-self-organized-teams/#0001-01-01">https://thenewstack.io/a-model-for-managing-microservices-in-cellular-self-organized-teams/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">我们已经说过很多次了——现代系统是复杂的。现在，康威定律——技术系统的设计反映了一个组织的文化和沟通——是否可取还有待讨论，但毫无疑问，它几乎是一个常数。分布式系统的风险在于，每个人和每件事都是如此的分散，以至于没有一个清晰的路径来说明事情是如何连接的，以及谁负责什么代码以及负责多长时间。</p>
+<p class="translated">WSO2的联合创始人Paul Fremantle 向QCon London 的<a href="https://qconlondon.com/london2019/presentation/cell-based-approach-microservices-architecture" target="_blank" rel="noopener noreferrer external " class="ext-link">观众讲述了他如何试图将简化的数学和物理模型应用于分布式系统。他发现分布式系统不断变化的复杂性更类似于不断进化的细胞生物学。</a></p>
+<p class="translated">“生物学不是试图让一切都超级简单，而是学习如何处理复杂性，”他说。</p>
+<p class="translated">人体和现代分布式架构都是类似的复杂系统。</p>
+<p class="translated">今天，我们将分享WSO2基于单元的微服务方法，其中代码被重新聚合以反映分散的敏捷组织。</p>
+<h2 class="translated">是什么阻碍了企业敏捷性成为现实？</h2>
+<p class="translated">“过去50年发生的事情是，我们正在分解我们的系统——越来越小，无服务器和微服务，”弗里曼特尔说。</p>
+<p class="translated">他说，扩大规模和加快发展速度的需求是这一趋势的驱动力。然而，他引用了<a href="https://stateofagile.versionone.com/" class="ext-link" rel="external ">第12次年度敏捷状态报告</a>指出，虽然58%的组织使用敏捷实践来支持这一点，但只有4%的组织认为他们的组织作为一个整体是敏捷的，能够适应市场条件。</p>
+<p class="translated">在团队中引入敏捷性并建立一个团队— <a href="https://thenewstack.io/scaling-agile-build-scrum-scrums/" target="_blank" class="local-link">像一群群的scrum</a>一样——将敏捷性提升到企业级别，似乎是一个巨大的挑战。</p>
+<p class="translated">弗里曼特尔认为，在一个统一的、跨组织的战线上保持敏捷的困难是因为有太多的分散。从API和端点到功能组件，再到运行时的碎片化和平台，再到Kubernetes和微服务，我们离硬件编排越来越远。作为云原生的本质上使事情变得更加分散和复杂。</p>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/27fe76a688e6ba28de41f4a3a68aae4d.png" alt="" data-id="7097242" data-original-src="https://cdn.thenewstack.io/media/2019/03/4d0f9998-cloud-native.jpg"/></p>
+<p class="translated">他继续吹捧诸如复杂的面向服务的架构(SOA)过程——以及错误的技术堆栈——如何通过过多的步骤中断流程等问题。分层架构使您无法控制需要控制的事情。</p>
+<p class="translated">Fremantle认为，虽然我们已经分离了很多架构，但我们还没有分离组织。提到<a href="http://agilemanifesto.org" class="ext-link" rel="external ">敏捷宣言</a>对自组织团队的关注，他说我们也需要“可组合”的企业。</p>
+<p class="translated">对他来说，这个企业是由自组织团队组成的，这些团队:</p>
+<ul>
+<li class="translated">管理自己的工作</li>
+<li class="translated">拉动工作</li>
+<li class="translated">不需要命令和控制</li>
+<li class="translated">团队内部有效沟通</li>
+<li class="translated">不怕问问题</li>
+<li class="translated">不断发展技能和能力</li>
+<li class="translated">有一个仆人式的领导者或促进者，而不是项目经理和领导者</li>
+</ul>
+<p class="translated">弗里曼特尔主张将团队成员限制在10人以下。他说，根据下面的公式，如果一个团队有10个人，那就已经有45个联系了。十一？五十五个连接。20个人导致90个连接。就像软件一样，这些相互关联的部分让事情变得非常复杂，导致<a href="https://www.sciencedirect.com/science/article/pii/S0749597811001105" target="_blank" rel="noopener noreferrer external " class="ext-link">关系损失</a>。</p>
+<p class="translated">n(n-1) <br/> ______ <br/> 2</p>
+<p class="translated">但是一旦你的组织结构看起来像这样，你如何确保技术反映它？(<a href="https://thenewstack.io/microservices-terribly-named-ambiguously-defined/" target="_blank" class="local-link">也读作:微服务:名字可怕，定义模糊)</a></p>
+<h2 class="translated">康威法则如何为您的堆栈提供更多控制和可见性</h2>
+<p class="translated">Fremantle提供API作为自然边界，因为它们具有:</p>
+<ul>
+<li class="translated">预期的、必需的身份验证</li>
+<li class="translated">批准</li>
+<li class="translated">速率限制和节流</li>
+<li class="translated">分析和可观察性</li>
+<li class="translated">假设其他人会使用它:<ul>
+<li class="translated">开发人员友好的门户，如SDK、示例和论坛</li>
+<li class="translated">开发人员友好的治理，如版本控制和折旧通知</li>
+</ul>
+</li>
+</ul>
+<p class="translated">许多人在API网关后放置了一组微服务，以提供更多的版本控制。但请记住，你需要知道谁在使用你的API，他们用它们做什么，他说。</p>
+<p class="translated">他比喻说<a href="https://searchnetworking.techtarget.com/definition/control-plane-CP" target="_blank" rel="noopener noreferrer external " class="ext-link">控制平面</a>充当生物神经系统，而<a href="https://searchnetworking.techtarget.com/definition/data-plane-DP" target="_blank" rel="noopener noreferrer external " class="ext-link">数据平面</a>充当循环系统。他还指出，如今没有棕色地带和绿色地带之分，只有两者都有。</p>
+<p class="translated">“我们的核心系统在棕色地带，分散服务和微服务在绿色地带。大多数人都在使用某种API平台，某种将后端系统与服务隔离的方式，这给了我们扼杀部分架构的可能性。”</p>
+<p class="translated">如果一个由10个开发人员组成的团队负责200个微服务，没有人能够知道所有的微服务，但是可以有集体知识。考虑到这一点，Fremantle认为任何部署中90%的微服务都不应该对部署它的团队以外的任何人可见。否则，除了构建服务的人之外的其他人做出了更改，一切都会中断。</p>
+<p class="translated">“我们需要治理和界限，”弗里曼特尔说。“[它]让你在团队中保持敏捷，让你能够自我组织。”</p>
+<p class="translated">他继续说，我们需要重新整合那些微服务——不是一直回到monoliths，而是整合到团队所拥有的东西中。</p>
+<p class="translated">他分享了以下海绵再聚合的延时视频，来说明他所说的微服务的自然再聚合。</p>
+<p class="translated"><iframe loading="lazy" title="Timelapse of Sponge Aggregation" src="https://www.youtube.com/embed/SvtDMo7fjAc?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<blockquote><p class="translated">“API实现了边界，而边界实现了自组织团队。”保罗·弗里曼特尔，世界安全组织2</p></blockquote>
+<p class="translated">继续这个比喻，他说应该有有状态和无状态的单元，一些包装遗留的东西，以及团队想出如何对这些单元或微服务组进行分类。</p>
+<p class="translated">在WSO2，作为一个API管理系统，他们希望用工具和系统在技术上模拟这种细胞再聚合。他们试图自动可视化Kubernetes和微服务的组织。(<a href="https://thenewstack.io/miniservices-a-realistic-alternative-to-microservices/" target="_blank" class="local-link">也可理解为:微服务:微服务的现实替代方案)</a></p>
+<h2 class="translated">一个单元就像一个更高层次的抽象</h2>
+<p class="translated"><img decoding="async" loading="lazy" src="../Images/c5b756db97c38321a0a2b2b4e4f6dd78.png" alt="" data-id="7097568" data-original-src="https://cdn.thenewstack.io/media/2019/03/d260fa88-cellular-microservices.jpg"/></p>
+<p class="translated"><a href="https://wso2.com/wso2_resources/wso2-reference-methodology-for-agility-version-0.5.pdf" class="ext-link" rel="external "> WSO2敏捷方法论</a>指出，几乎每一个新的应用都涉及到跨越一组爆炸式增长的端点的集成。</p>
+<p class="translated">“集成必须从代码中学习，变得不可变、类型安全、可测试、持续构建和部署，以便它们更健壮、更有弹性，最重要的是——更敏捷，”这篇论文写道。</p>
+<p class="translated">它成为康威组织法则的现代化，建立在持续改进的基础上:</p>
+<ul>
+<li class="translated">对于人和过程来说，基础是组织的文化。</li>
+<li class="translated">对于技术来说，基础是由组织设计和实现的架构。</li>
+</ul>
+<p class="translated">“我们需要更高层次的抽象——这才是真正的细胞，”弗里曼特尔说。</p>
+<p class="translated">考虑到这一点，Fremantle为微服务和一般技术提供了三个指导方针，以赶上团队敏捷性:</p>
+<ul>
+<li class="translated">拥有清晰的全球数据和控制平台—提供API管理平台来实现这一目标</li>
+<li class="translated">确保团队通过控制平面提供清晰的边界—版本化的API</li>
+<li class="translated">让团队在这些边界内自由发展——就像这些微服务组周围的单元一样</li>
+</ul>
+<blockquote><p class="translated">“应该改变人性还是写代码？更容易写代码。我们应该围绕康威定律来构建我们的系统。”保罗·弗里曼特尔，世界安全组织2</p></blockquote>
+<p class="translated">他继续说，每个人都在迈向敏捷的旅途中，但是集成敏捷还没有赶上项目敏捷的速度。为了实现这种集成敏捷性，您必须用细胞结构重新聚合代码，以反映自组织团队，然后这些团队负责度量每个团队细胞的健康状况。</p>
+<p class="translated">继续围绕你的团队重构你的代码这个主题，他说，这是关于在开发运维、云基础设施和单元内通信的流程中将解耦的组件重新耦合到新的敏捷团队中，确保单元内的每个敏捷步骤都是版本化的，并且在边界的网关之后。</p>
+<p class="translated">“生物系统已经进化成了复杂性。我认为真正有趣的是企业系统已经进化成了复杂性，”弗里曼特尔说。</p>
+<p class="translated">点击此处了解更多关于细胞重组的信息。</p>
+<p class="attribution translated">WSO2是新堆栈的赞助商。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

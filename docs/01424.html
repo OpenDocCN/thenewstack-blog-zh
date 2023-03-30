@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Bitbucket Pipelines Now Connects to Docker Containers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">Bitbucket管道现在连接到Docker容器</h1>
+<blockquote>原文：<a href="https://thenewstack.io/bitbucket-pipelines-now-connects-docker-containers/#0001-01-01">https://thenewstack.io/bitbucket-pipelines-now-connects-docker-containers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Linux用户知道<a href="http://ryanstutorials.net/linuxtutorial/piping.php" class="ext-link" rel="external ">管道</a>(|’ing)允许将通用工具链接在一起，比如装配线。<a href="https://bitbucket.org/product/features/pipelines" class="ext-link" rel="external ">去年秋天推出的Bitbucket Pipelines </a>，在持续集成环境中执行类似的任务。周二，<a href="https://www.atlassian.com" class="ext-link" rel="external "> Atlassian </a> <a href="https://blog.bitbucket.org/" class="ext-link" rel="external ">发布了</a>Bitbucket Pipelines的更新，将<a href="https://www.docker.com/" class="ext-link" rel="external "> Docker </a>容器带入组合，准备部署到<a href="/category/kubernetes/" target="_blank"> Kubernetes </a>容器编排系统。</p>
+<p class="translated">这些容器不仅仅局限于用户构建的容器。可以说，Bitbucket管道现在还包括了在代码装配线中使用服务容器的能力。在Dockercon 2017上宣布的这一更新中，用户将能够在其Bitbucket Pipeline测试环境中托管多达三个服务，允许构建任务链快速启动依赖服务，如<a href="https://www.mysql.com/" class="ext-link" rel="external "> MySQL </a>、<a href="https://redis.io/" class="ext-link" rel="external "> Redis </a>或任何其他在<a href="https://hub.docker.com/" class="ext-link" rel="external "> Docker Hub </a>中作为容器呈现的服务。</p>
+<p class="translated">Atlassian公司<a href="https://confluence.atlassian.com/get-started-with-bitbucket/get-started-with-bitbucket-cloud-856845168.html" class="ext-link" rel="external "> Bitbucket Cloud </a>的首席产品经理Rahul Chhabria 表示，这次管道更新是受到开发世界所面临的困难的刺激。“我们认为云开发是一个不断增长的空间。我们看到越来越多的企业提供云解决方案，我们也看到了一些棘手的问题。越来越多的公司将他们的应用程序作为Docker容器来交付。</p>
+<p class="translated">众所周知，构建时间是成功开发团队的关键。脸书和谷歌都花了大量的钱来优化他们的构建过程，确保开发者不必坐以待毙，等待他们的软件在每次构建后通过一系列的测试。</p>
+<p class="translated">事实上，<a href="https://circleci.com/" class="ext-link" rel="external "> CircleCI </a>和<a href="http://electric-cloud.com/" class="ext-link" rel="external "> ElectricCloud </a>都围绕加快生产速度建立了完整的业务。对于Atlassian的Bitbucket平台来说，这似乎是一个很好的目标，该平台一直在GitHub的mindshare主导的市场中寻找立足点。</p>
+<p class="translated"><a href="https://blog.bitbucket.org/2017/04/18/bitbucket-pipelines-supports-building-docker-images-and-service-containers/?utm_source=twitter&amp;utm_medium=social&amp;utm_campaign=bitbucket_pipelines-service-containers-docker" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-full wp-image-2203229" src="../Images/69e011dcb5d3cffc894a70baf9006607.png" alt="" data-id="2203229" data-original-src="https://cdn.thenewstack.io/media/2017/04/196afa5f-c9si6l3xsaaw30h.jpg"/> </a></p>
+<p class="translated">“这节省了管理构建服务器操作的无数时间，”Chhabria说。“人们将能够使用Docker容器构建应用程序，他们将不再需要安装<a href="https://jenkins.io/" class="ext-link" rel="external "> Jenkins </a>来管理服务器，也不再需要跨不同的服务为多个用户提供服务。”</p>
+<p class="translated">詹金斯是查布里亚的一个大目标，这也是有道理的。自从甲骨文获得命名权后，Jenkins项目从最初的Hudson项目中分离出来，多年来，它已经成为大多数开发人员在持续集成和持续部署环境中构建和测试软件的事实上的标准。</p>
+<p class="translated">尽管詹金斯很受欢迎，但Chhabria将其归类为遗产。“理想情况下，我们希望让人们不再使用像Jenkins这样的传统系统。我们是专业团队的git解决方案。</p>
+<p class="translated">为了达到这一点，Chhabria说管道团队非常关注性能优化。“我们的核心关注点是性能，”Chhabria说。“通过管理自己的服务器，您可以获得一些好处，但这需要为两组用户提供极高的成本，并且限制了开发人员和工程师之间的反馈循环。我们的计划是实现自动化，让事情变得更快。”</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

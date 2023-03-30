@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Create an Early Warning Detector with Passive Infrared Sensors</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:创建一个早期预警探测器与被动红外传感器</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-shelf-hacker-create-early-warning-detector-passive-infrared-sensors/#0001-01-01">https://thenewstack.io/off-shelf-hacker-create-early-warning-detector-passive-infrared-sensors/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">多年来，我一直想在我的院子里建立一个由被动红外传感器(PIR)组成的星座，给我入侵者的早期预警，并根据需要激活适当的力场。当有人试图闯入你的房子时，警报系统是很棒的。当地滑稽农场的疯子、偶尔狂吠的疯狗或者甚至僵尸呢？额外的10-15秒钟的通知可能是生活和…嗯，你知道的。</p>
+<p class="translated">既然僵尸已经死了，而且可能不会发射任何红外能量，那么PIR传感器还能探测到僵尸吗？我们无法知道答案，除非我们造出一个装置并进行试验。按照真正的<a href="/tag/off-the-shelf-hacker/" target="_blank">现成黑客</a>的方式，让我们黑一个原型。</p>
+<h2 class="translated">PIR 101</h2>
+<p class="translated">被动红外传感器是检测热量的数字设备。哺乳动物散发出微量的红外线热量，这是因为它们是活着的。电子设备监控设备内部传感器芯片的两个部分，当它们之间没有差异时，信号会相互抵消，否则将指示红外光落在芯片上。如果一半人感觉到不同程度的红外光，PIR传感器会向输出引脚发送一个脉冲，指示运动。传感器前面有一个透镜系统，有助于将红外能量聚焦在芯片本身上。</p>
+<p class="translated">有两种类型的PIR传感器，输出引脚会变高或变低以指示物体。该项目中使用的器件被称为“开路集电极”，这意味着输出通过一个上拉电阻保持高电平，直到物体从检测器前面经过。然后输出被拉低，从而发出检测信号。开集信号方法使得在同一三线式总线上以菊花链形式连接多个传感器变得容易。</p>
+<p class="translated">我从Sparkfun 购买了我的<a href="https://www.sparkfun.com/products/13285" class="ext-link" rel="external "> PIR传感器，它是集电极开路的。检测到时，输出引脚变为低电平。arduino market place</a><a href="https://www.adafruit.com/category/17?gclid=CLj-yoGoyc8CFQaOaQodAwkNcg" class="ext-link" rel="external ">Adafruit</a>出售一种更新、更可调的传感器。其输出通常为低电平，检测到时变为高电平。因此，如果您从互联网上盗版代码，请确保您寻找适当的高或低输出。当您读取微控制器输入引脚以正确解释您的检测事件时，只需反转“低”和“高”值即可。</p>
+<h2 class="translated">装上电线</h2>
+<p class="translated">微控制器的一个很酷的特点是，你可以用基本的电路，只需切换输入设备，就可以得到不同的行为。例如，为了构建这个项目，我从OTSH项目的<a href="https://thenewstack.io/off-shelf-hacker-build-networked-temperature-sensor-esp8266/" class="local-link">中重新设计了无线温度传感器，并将DS18B20数字温度计换成了PIR传感器。两个传感器都是数字式的，在代码中很容易对不同的设备进行调整。</a></p>
+<p class="translated">看一看试验板:</p>
+<div id="attachment_1488763" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-1488763" decoding="async" loading="lazy" class="size-large wp-image-1488763" src="../Images/12db228dda0e998669d28670ee51e3e4.png" alt="ESP8266-PIR Breadboard" data-original-src="https://thenewstack.io/wp-content/uploads/2016/10/8266-pir-2-bb-1024x905.png"/><p id="caption-attachment-1488763" class="wp-caption-text translated">ESP8266-PIR试验板</p></div>
+<p class="translated">注意从PIR传感器到试验板的电线颜色。我的设备有红色、白色和黑色电线。红色代表VCC(阳性)。这种特殊传感器的额定电压为5到12伏。奇怪的是，白线接地(负极)。最后，输出黑线。PIR传感器的输出连接到ESP8266微控制器上的通用数字输入/输出(GPIO)引脚2。你可能会认为黑色是研磨过的，白色是输出。没有。别担心，我已经把我的接错了，没有不良影响。</p>
+<p class="translated"><a href="https://www.adafruit.com/products/189" class="ext-link" rel="external "> Adafruit有一个稍微先进一点的PIR传感器</a>，带一个小标题，可调节延迟和灵敏度。接头的接地引脚在左边，输出在中间，VCC在右边，所以电线颜色是你的选择。<a href="http://www.banggood.com/Wholesale-Mini-IR-Pyroelectric-Infrared-PIR-Motion-Human-Body-Sensor-Detector-Module-New-p-49018.html" class="ext-link" rel="external "> Banggood传感器</a>看起来与Adafruit产品相同。</p>
+<p class="translated">其他传感器可能使用不同的引脚配置或电线颜色。不要忘记，如果你买了一个Adafruit设备，你需要交换你的逻辑来响应检测到的高输出，而不是低输出。</p>
+<p class="translated">我的PIR传感器对输入电压也有点敏感。我用USB接口提供的5伏电压运行它，它给出了很多假阳性。将(PIR传感器的)电压提高到9伏，操作非常可靠。在那个电压下，我可以探测到8英尺以内的物体。</p>
+<p class="translated">记住，模块检测传感器两半之间的差异，因此物体必须移动，输出才会改变。您可以将9伏电池的正极连接到PIR传感器的正极引线，同时移除+5伏的连接。将电池的负极连接到公共地。将传感器的负极引线也连接到公共接地。</p>
+<h2 class="translated">弯曲代码</h2>
+<p class="translated">我使用的大部分代码来自之前的ESP8266温度传感器项目。如前所述，您可以使用智能手机，通过板载接入点和网络配置页面将ESP8266-PIR传感器连接到本地局域网。</p>
+<p class="translated">另外，请注意，我使用内置的标准“pin 13”LED来告知PIR传感器何时触发。引脚13通常连接到Arduino项目上的LED，用于基本操作和测试。</p>
+<p class="translated">在代码的下面，我还添加了一个小计数器，它输出到串行监视器，显示PIR传感器ping输入pin的次数。它将在重启时重置为零。我用序列号进行测试和诊断。<br/></p>
+<div id="crayon-642311cbd5a9d088904585" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-p">#include &amp;lt;ESP8266WiFi.h&amp;gt;</span>
+<span class="crayon-p">#include &amp;lt;DNSServer.h&amp;gt;</span>
+<span class="crayon-p">#include &amp;lt;ESP8266WebServer.h&amp;gt;</span>
+<span class="crayon-p">#include &amp;lt;WiFiManager.h&amp;gt;</span>
+ 
+<span class="crayon-e">void </span><span class="crayon-e">configModeCallback</span><span class="crayon-h"> </span>(<span class="crayon-e ">WiFiManager *</span><span class="crayon-i">myWiFiManager</span>)<span class="crayon-h"> </span>{
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Entered config mode"</span>);
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">softAPIP</span>());
+<span class="crayon-c">//if you used auto generated SSID, print it</span>
+<span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">myWiFiManager</span>-<span class="crayon-sy">&amp;gt;</span><span class="crayon-e">getConfigPortalSSID</span>());
+}
+ 
+<span class="crayon-c">/*</span>
+<span class="crayon-c"> * The setup function. We only start the sensors here</span>
+<span class="crayon-c"> */</span>
+<span class="crayon-e">WiFiServer </span><span class="crayon-e">server</span>(<span class="crayon-cn">1337</span>);
+ 
+<span class="crayon-e">void </span><span class="crayon-e">printWiFiStatus</span>();
+ 
+<span class="crayon-e">int </span><span class="crayon-i">calibrationTime</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">20</span>;
+ 
+<span class="crayon-e">int </span><span class="crayon-i">pirPin</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">2</span>;<span class="crayon-h">    </span><span class="crayon-c">//the digital pin connected to the PIR sensor's output</span>
+<span class="crayon-e">int </span><span class="crayon-i">ledPin</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">13</span>;
+<span class="crayon-e">int </span><span class="crayon-i">tr</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">1</span>;
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>(<span class="crayon-i">void</span>)
+{
+<span class="crayon-h">  </span><span class="crayon-c">// start serial port</span>
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>(<span class="crayon-cn">9600</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"ESP8266 Passive Infrared Detector Demo"</span>);
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">pirPin</span>,<span class="crayon-h"> </span><span class="crayon-i">INPUT_PULLUP</span>);
+<span class="crayon-h">  </span><span class="crayon-e">pinMode</span>(<span class="crayon-i">ledPin</span>,<span class="crayon-h"> </span><span class="crayon-i">OUTPUT</span>);
+<span class="crayon-h">  </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">pirPin</span>,<span class="crayon-h"> </span><span class="crayon-i">LOW</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-e">WiFiManager </span><span class="crayon-i">wifiManager</span>;
+<span class="crayon-h">  </span><span class="crayon-c">// wifiManager.resetSettings();</span>
+<span class="crayon-h">  </span><span class="crayon-i">wifiManager</span><span class="crayon-st">.</span><span class="crayon-e">setAPCallback</span>(<span class="crayon-i">configModeCallback</span>);
+ 
+<span class="crayon-h">  </span><span class="crayon-e">if</span>(!<span class="crayon-i">wifiManager</span><span class="crayon-st">.</span><span class="crayon-e">autoConnect</span>())<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"failed to connect and hit timeout"</span>);
+<span class="crayon-h">    </span><span class="crayon-i">ESP</span><span class="crayon-st">.</span><span class="crayon-e">reset</span>();
+<span class="crayon-h">    </span><span class="crayon-e">delay</span>(<span class="crayon-cn">1000</span>);
+<span class="crayon-h">  </span>}<span class="crayon-h"> </span>
+ 
+<span class="crayon-h">  </span><span class="crayon-c">// Start TCP server.</span>
+<span class="crayon-h">  </span><span class="crayon-i">server</span><span class="crayon-st">.</span><span class="crayon-e">begin</span>();
+ 
+<span class="crayon-h">  </span><span class="crayon-c">// Calibrate sensor</span>
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">"calibrating sensor "</span>);
+<span class="crayon-h">    </span><span class="crayon-e">for</span>(<span class="crayon-i">int</span><span class="crayon-h"> </span><span class="crayon-m">i</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span>;<span class="crayon-h"> </span><span class="crayon-m">i</span><span class="crayon-h"> </span><span class="crayon-sy">&amp;lt;</span><span class="crayon-h"> </span><span class="crayon-i">calibrationTime</span>;<span class="crayon-h"> </span><span class="crayon-m">i</span>++){
+<span class="crayon-h">      </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">"."</span>);
+<span class="crayon-h">      </span><span class="crayon-e">delay</span>(<span class="crayon-cn">1000</span>);
+<span class="crayon-h">      </span>}
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">" done"</span>);
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"SENSOR ACTIVE"</span>);
+<span class="crayon-h">    </span><span class="crayon-e">delay</span>(<span class="crayon-cn">50</span>);
+<span class="crayon-h">  </span>}
+<span class="crayon-h">  </span>
+<span class="crayon-c">/*</span>
+<span class="crayon-c"> * Main function, get and show the temperature</span>
+<span class="crayon-c"> */</span>
+<span class="crayon-e">void </span><span class="crayon-e">loop</span>(<span class="crayon-i">void</span>)
+{
+ 
+<span class="crayon-h"> </span><span class="crayon-c">// Check if module is still connected to WiFi.</span>
+<span class="crayon-h">  </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">status</span>()<span class="crayon-h"> </span>!=<span class="crayon-h"> </span><span class="crayon-i">WL_CONNECTED</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"WiFi connected inside void loop"</span>);
+<span class="crayon-h">    </span><span class="crayon-e">while</span><span class="crayon-h"> </span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">status</span>()<span class="crayon-h"> </span>!=<span class="crayon-h"> </span><span class="crayon-i">WL_CONNECTED</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">      </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"WiFi.status connected loop"</span>);
+<span class="crayon-h">      </span><span class="crayon-e">delay</span>(<span class="crayon-cn">500</span>);
+<span class="crayon-h">    </span>}
+<span class="crayon-h">    </span><span class="crayon-c">// Print the new IP to Serial.</span>
+<span class="crayon-h">    </span><span class="crayon-e">printWiFiStatus</span>();
+<span class="crayon-h">  </span>}
+<span class="crayon-h">     </span>
+<span class="crayon-h">  </span><span class="crayon-e">WiFiClient </span><span class="crayon-i">client</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">server</span><span class="crayon-st">.</span><span class="crayon-e">available</span>();
+ 
+<span class="crayon-h">  </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">client</span>)<span class="crayon-h"> </span>{
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Client connected."</span>);
+ 
+<span class="crayon-h">    </span><span class="crayon-e">while</span><span class="crayon-h"> </span>(<span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">connected</span>())<span class="crayon-h"> </span>{
+<span class="crayon-h">      </span>
+<span class="crayon-h">    </span><span class="crayon-c">// Serial.println("PIR sensor working");</span>
+<span class="crayon-h">    </span><span class="crayon-c">// PIR detection function  </span>
+ 
+<span class="crayon-h">    </span><span class="crayon-e">int </span><span class="crayon-i">proximity</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">digitalRead</span>(<span class="crayon-i">pirPin</span>);
+<span class="crayon-h"> </span>
+<span class="crayon-h">    </span><span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">proximity</span><span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-i">LOW</span>)<span class="crayon-h"> </span><span class="crayon-c">// If the sensor's output goes low, motion is detected</span>
+<span class="crayon-h">       </span>{
+<span class="crayon-h">       </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">ledPin</span>,<span class="crayon-h"> </span><span class="crayon-i">HIGH</span>);
+<span class="crayon-h">       </span><span class="crayon-c">// Serial.println("Motion detected!");</span>
+<span class="crayon-h">       </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"motion"</span>);
+<span class="crayon-h">       </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"\n"</span>);
+<span class="crayon-h">       </span><span class="crayon-i">tr</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">tr</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-cn">1</span>;
+<span class="crayon-h">       </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">tr</span>);
+<span class="crayon-h">       </span><span class="crayon-e">delay</span>(<span class="crayon-cn">200</span>);
+<span class="crayon-h">       </span>}
+<span class="crayon-h">    </span><span class="crayon-e">else</span>
+<span class="crayon-h">       </span>{
+<span class="crayon-h">       </span><span class="crayon-e">digitalWrite</span>(<span class="crayon-i">ledPin</span>,<span class="crayon-h"> </span><span class="crayon-i">LOW</span>);
+<span class="crayon-h">       </span><span class="crayon-c">//Serial.println("Nothing");</span>
+<span class="crayon-h">       </span><span class="crayon-c">// client.write("nothing");</span>
+<span class="crayon-h">       </span><span class="crayon-c">// client.write("\n");</span>
+<span class="crayon-h">       </span><span class="crayon-e">delay</span>(<span class="crayon-cn">200</span>);
+<span class="crayon-h">    </span>}<span class="crayon-h">  </span>
+<span class="crayon-h"> </span>}
+<span class="crayon-h"> </span>
+<span class="crayon-h">    </span>
+}
+<span class="crayon-h">    </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">"Client disconnected."</span>);
+<span class="crayon-h">    </span><span class="crayon-i">tr</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span>;
+<span class="crayon-h">    </span><span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">stop</span>();
+<span class="crayon-h">  </span>}<span class="crayon-h">  </span>
+ 
+<span class="crayon-e">void </span><span class="crayon-e">printWiFiStatus</span>()<span class="crayon-h"> </span>{
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-s">""</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">"Connected to "</span>);
+<span class="crayon-h">  </span><span class="crayon-c">// Serial.println(ssid);</span>
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">print</span>(<span class="crayon-s">"IP address: "</span>);
+<span class="crayon-h">  </span><span class="crayon-i">Serial</span><span class="crayon-st">.</span><span class="crayon-e">println</span>(<span class="crayon-i">WiFi</span><span class="crayon-st">.</span><span class="crayon-e">localIP</span>());
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>PIR传感器需要一段时间才能与ESP8266配合工作，这说明了入侵物理计算设备的挑战之一。</p>
+<p class="translated">虽然基于固件的微控制器，如Arduino和ESP8266，被认为非常快，但它们有其局限性，您需要在构建项目时考虑这些因素。添加一个WiFi堆栈，就像在ESP8266的情况下一样，您的实时操作可能必须做出一些妥协。</p>
+<p class="translated">我想获取传感器前面的所有运动，并向局域网上的另一台计算机发送消息，以便记录和报警。监控机器可以是Linux笔记本电脑、Raspberry Pi或者甚至是另一个ESP8266设备。</p>
+<p class="translated">因此，当8266在主循环中观察PIR传感器引脚的状态变化时，您必须允许WiFi堆栈偶尔进行控制，否则，内置的<a href="https://en.wikipedia.org/wiki/Watchdog_timer" class="ext-link" rel="external ">看门狗定时器(WDT) </a>将会触发并导致微控制器复位。这是一个安全功能，可以防止无限循环和其他类似的问题。</p>
+<p class="translated">原来，我不得不添加一些延迟，让WiFi无线电有时间在传感器读数之间进行通信。PIR读数之间200 ms的延迟效果很好。在这么短的时间内，PIR探测器几乎不可能错过移动物体。当一个物体在传感器前面移动时，你通常会快速连续地获得多个状态变化。</p>
+<p class="translated">加上延迟，将PIR电源电压提高到至少9伏，传感器就会变得坚如磐石。</p>
+<p class="translated">在我的Linux笔记本上，网络连接的另一端是<strong> netcat </strong>命令，每当PIR传感器触发时，它就监听并打印出“运动”文本。正如在另一篇文章中所阐述的，通过管道将netcat的输出(我们毕竟使用的是Linux)传输到一个文件中，并使用<a href="https://en.wikipedia.org/wiki/AWK" class="ext-link" rel="external "> AWK </a>添加时间/日期信息，这样您就可以记录数据，而不必在8266上实现时间/日期例程。保持简单，便于故障排除和维护。</p>
+<h2 class="translated">后续步骤</h2>
+<p class="translated">我用了一个<a href="http://www.gearbest.com/transmitters-receivers-module/pp_227657.html?currency=USD&amp;gclid=CjwKEAjwydK_BRDK34GenvLB61YSJACZ8da3M5_QBSMqyztLMOp2b4i7rzPPvHP1o3dJL6NYqWqJLxoCTbTw_wcB" class="ext-link" rel="external "> ESP8266模型07 </a>为这个项目。07有9个GPIO引脚。这个传感器只需要一个引脚。为什么不看看我们能否用<a href="http://www.gearbest.com/transmitters-receivers-module/pp_338585.html?wid=21" class="ext-link" rel="external ">esp 8266 01</a>型获得同样的功能？</p>
+<p class="translated">在以后的OTSH文章中，我将探讨如何从“过度杀伤”的07模型转移到基本的01设备。</p>
+<p class="translated">与此同时，我会去围捕测试僵尸。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

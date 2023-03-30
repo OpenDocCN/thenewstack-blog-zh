@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>ScyllaDB Takes on Cassandra to Boost Efficiency, Reduce Latency</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">ScyllaDB采用Cassandra来提高效率，减少延迟</h1>
+<blockquote>原文：<a href="https://thenewstack.io/scylladb-takes-cassandra-boost-efficiency-reduce-latency/#0001-01-01">https://thenewstack.io/scylladb-takes-cassandra-boost-efficiency-reduce-latency/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">Henrik Johansson，<a href="https://en.wikipedia.org/wiki/Eniro" class="ext-link" rel="external "> Eniro </a> <em>，</em>的高级开发人员，对他工作的瑞典搜索和目录协助公司使用的<a href="https://www.slideshare.net/ScyllaDB/scylla-summit-2016-using-scylladb-for-a-microservicebased-pipeline-in-go" class="ext-link" rel="external ">基于微服务的管道</a>中的ScyllaDB数据库系统给予了热情的评价。</p>
+<p class="translated">Eniro最初使用<a href="https://redis.io/" class="ext-link" rel="external "> Redis </a>来完成一个看似简单的任务:将一大组瞬态标识符A与另一大组其他标识符b相关联。它之前使用<a href="https://www.mongodb.com/" class="ext-link" rel="external "> MongoDB </a>和<a href="https://thenewstack.io/20-postgres-still-sign-times/" class="local-link"> PostgreSQL </a>的经验带来了可伸缩性问题，尽管Redis在这个项目中一度快速稳定，但延迟最终成为一个问题。</p>
+<p class="translated">他在<a href="http://developer.eniro.com/blog/post/scylladb-a-monster-or-a-rock/" class="ext-link" rel="external ">博客帖子</a>中解释说，编程语言<a href="https://golang.org/" class="ext-link" rel="external "> Go </a>、web框架<a href="https://github.com/labstack/echo" class="ext-link" rel="external "> Echo </a>、开源消息系统<a href="http://nats.io/" class="ext-link" rel="external "> NATS </a>和<a href="http://www.scylladb.com/" class="ext-link" rel="external "> ScyllaDB </a>的组合被证明速度快、延迟低且不需要额外的调整。</p>
+<p class="translated">“这带来了一种近乎反常的满足感……这让我怀疑我以前使用其他堆栈的大部分经验，”他说。</p>
+<p class="translated">ScyllaDB是一个开源的NoSQL数据库，旨在替代<a href="http://cassandra.apache.org/" class="ext-link" rel="external "> Apache Cassandra </a>，根据<a href="http://db-engines.com/en/ranking" class="ext-link" rel="external "> DB-Engines的数据库受欢迎程度排名</a>，Apache Cassandra 是第八大使用最广泛的数据库系统。ScyllaDB是用C++而不是Java编写的，它声称每秒可以处理一百万次操作，延迟不到一分钟，总体性能提高了10倍。</p>
+<p class="translated">ScyllaDB的联合创始人Dor Laor坚持认为Cassandra的效率非常低，但也有它的优点。</p>
+<p class="translated">“我们本可以用不同的API编写一个完整的数据库，但决定与Cassandra兼容，因为它被广泛使用。Cassandra中的好东西成就了它的今天——高可用性和容错。它可以执行1，000节点集群、多数据中心、开箱即用的出色复制、带Spark的生态系统。我们在设计中保留了所有这些，但做得更好，”他说。</p>
+<p class="translated">Cassandra使用多个执行线程来试图获取锁和资源。他说，问题是资源变得繁忙，对资源的访问受到限制，因此它们必须相互等待，有时还会相互干扰，导致即使使用x86也有20%的效率低下。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-2022218" src="../Images/661a6edb763ad061e66aa1162f92a2b5.png" alt="" data-id="2022218" data-original-src="https://cdn.thenewstack.io/media/2017/03/18029329-screen-shot-2017-02-23-at-10.11.32-am-1024x570.png"/></p>
+<h2 class="translated">核心处的碎片</h2>
+<p class="translated">Scylla使用两级<a href="http://searchcloudcomputing.techtarget.com/definition/sharding" class="ext-link" rel="external ">分片</a>，或者将数据库分割成更小更快的部分。分片通常由服务器完成。Cassandra使用集群范围的分片，但Scylla在核心级别使用分片，这对用户是透明的。</p>
+<p class="translated">“在服务器上，我们将数据范围划分为独立的核心。每个内核都拥有自己的数据子集、自己的CPU、自己的内存，并且多次可以直接访问I/O。因此它是完全独立的，不需要锁定和许多其他好处，”他解释道。</p>
+<p class="translated">“在Cassandra设计中，你有这些线程，但是内核拥有资源。它执行调度、内存管理和I/O。但是内核不知道哪个线程将处理哪个数据包。可能有内核10的传入数据包，但应用程序线程在内核20上运行。所以它需要锁定，需要上下文切换…这是一个巨大的开销。如果你的内存被分配在远程套接字上，那么访问它的代价是两倍。”</p>
+<p class="translated">Scylla运行多个引擎，但它是一个多线程的进程。每个线程运行子集。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-2022244" src="../Images/139e3f1ea336cf17e6193b02a4f64755.png" alt="" data-id="2022244" data-original-src="https://cdn.thenewstack.io/media/2017/03/597f56ad-screen-shot-2017-02-23-at-10.16.12-am-1024x582.png"/></p>
+<p class="translated">“因此，内存总是<a href="http://whatis.techtarget.com/definition/NUMA-non-uniform-memory-access" class="ext-link" rel="external "> NUMA </a>(非统一内存访问)友好的，因为每个引擎都有一个RAM子集，而且是NUMA本地的。我们把记忆和它联系在一起。我们还绑定了线程，因此非常高效，”他解释道。</p>
+<h2 class="translated">来自KVM创始人</h2>
+<p class="translated">Scylla创始人Laor和<a href="https://github.com/avikivity" class="ext-link" rel="external "> Avi Kivity </a>是创建<a href="https://www.linux-kvm.org/page/Main_Page" class="ext-link" rel="external "> KVM hypervisor </a>的团队成员，该团队是Red Hat在收购虚拟化初创公司<a href="https://arstechnica.com/information-technology/2008/09/red-hat-acquires-qumranet-will-embrace-kvm/" class="ext-link" rel="external "> Qumranet </a>时收购的。</p>
+<p class="translated">Laor和Kivity于2012年离开Red Hat，成立了Cloudius Systems。它创建了云操作系统<a href="https://github.com/cloudius-systems/osv" class="ext-link" rel="external "> OSv </a>和服务器端应用框架<a href="https://github.com/scylladb/seastar" class="ext-link" rel="external "> Seastar </a>。2015年，他们将这家总部位于以色列的公司更名为ScyllaDB。该公司刚刚筹集了1600万美元的B轮融资，使其总投资达到2500万美元。</p>
+<p class="translated">Scylla声称性能提高了10倍，但这取决于所用的硬件。广告技术公司<a href="http://techblog.outbrain.com/2016/03/we-are-testing-scylladb-live-blogging-1/" class="ext-link" rel="external "> Outbrain </a>是<a href="https://www.youtube.com/watch?v=bE_oGi3DNLA" class="ext-link" rel="external ">的早期测试者之一</a>，它报告了6倍的提升，Scylla处理的流量是Cassandra的20倍，而延迟是Cassandra的3倍。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-2022283" src="../Images/f9a175290aa6e36810fcee5e4700553f.png" alt="" data-id="2022283" data-original-src="https://cdn.thenewstack.io/media/2017/03/b3f01e7f-screen-shot-2017-02-23-at-10.33.25-am-1024x579.png"/></p>
+<p class="translated"><a href="http://www.alibabagroup.com/en/global/home" class="ext-link" rel="external ">阿里巴巴集团</a>在其<a href="https://github.com/fastio/pedis" class="ext-link" rel="external ">NoSQL数据存储项目</a>中，使用Scylla的<a href="https://github.com/scylladb/seastar" class="ext-link" rel="external "> Seastar </a>框架作为库，使用Redis协议重写了一个应用程序，并报告了8倍的好结果。Investing.com的首席技术官兼首席架构师Gabriel Mizrahi说，Scylla使公司的集群规模缩小了一半。</p>
+<p class="translated">开发者Marc Alonso和Thomas Mouron在Octo Talks博客上这样描述Scylla的优势:</p>
+<p class="translated">“用C ++编写应用程序的优势实际上是通过避免将程序加载到JVM中来减少CPU的使用。Scylla还提供定制的网络管理，通过绕过Linux内核来最小化资源。完成网络请求不需要系统调用。一切都发生在用户空间，限制了内核空间中昂贵的开关数量。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-2022285" src="../Images/7e7a8d976c8af5008e9ca8f20c12ef74.png" alt="" data-id="2022285" data-original-src="https://cdn.thenewstack.io/media/2017/03/4c4213dd-screen-shot-2017-02-23-at-10.36.02-am-1024x531.png"/></p>
+<p class="translated">C++的另一个优势是能够进行更精细但更复杂的内存管理。事实上，在Java中，垃圾收集器负责定期浏览分配的内存以释放未使用的空间。就处理器周期而言，这一步的成本非常高，它可能会在大内存上停止应用程序长达几秒钟，这也被称为“停止世界”"</p>
+<p class="translated">Laor说，有时对客户来说，延迟比吞吐量更大，比如在广告技术公司。</p>
+<p class="translated">延迟改善的部分原因是消除了Java的垃圾收集。通常，NoSQL数据存储由运行在Linux之上的Java虚拟机(JVM)组成，使用页面缓存和复杂的内存分配策略来“欺骗”JVM垃圾收集器以避免暂停。</p>
+<p class="translated">Laor说，在Cassandra中配置Java既复杂又非常困难。“锡拉”的自我调节能力提供了另一个好处，在<a href="https://www.quora.com/What-are-the-main-differences-between-Cassandra-and-Scylla" class="ext-link" rel="external "> Quora </a>上提到的<a href="https://github.com/avikivity" class="ext-link" rel="external "> Kivity </a>。</p>
+<p class="translated">“使用Cassandra，您必须调整几乎所有东西:读取器和写入器线程的数量、压缩和流吞吐量、垃圾收集器、各种缓存的大小。这非常耗时，容易出错，并且在可能变化的生产环境中非常困难。他写道:“ScyllaDB可以自我调整，并在用户读取、用户写入以及压缩和流式传输等内部任务之间动态划分处理器、网络和磁盘带宽。</p>
+<h2 class="translated">仍然不成熟的技术</h2>
+<p class="translated">在那篇文章中，“<a href="https://www.amazon.com/Practical-Cassandra-Developers-Addison-Wesley-Analytics/dp/032193394X" class="ext-link" rel="external ">实用卡珊德拉</a>”的合著者<a href="https://github.com/elubow" class="ext-link" rel="external ">埃里克·卢博</a>，列举了Scylla的缺点，作为一个小公司，很少有产品实现，并且缺乏围绕卡珊德拉的大规模社区。他指出，这是一项远不如Cassandra成熟的技术，并抱怨说，它不支持计数器(1.7 版本中的一个<a href="https://github.com/scylladb/scylla/commit/000edc36c43882cb9d1778dd61210e0e3802617f" class="ext-link" rel="external ">功能)，以及Seastar TCP堆栈和用户空间。</a></p>
+<p class="translated">Scylla在2月份发布了1.6版本，并计划在本月推出其企业版。</p>
+<p class="translated"><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-2022284" src="../Images/ef19142c626f2c21cda7d38e4901b596.png" alt="" data-id="2022284" data-original-src="https://cdn.thenewstack.io/media/2017/03/069927ff-screen-shot-2017-02-23-at-10.34.49-am-1024x576.png"/></p>
+<p class="translated">Lubow坚持认为，仅仅复制Cassandra的功能限制了Scylla的创新能力和真正的差异化。Laor说，Scylla将在Q2结束时实现Cassandra的所有功能，它将能够专注于大量其他事情，包括添加多租户，这可以通过Scylla来完成。</p>
+<p class="translated"><a href="https://developer.ibm.com/dwblog/2016/scylladb-compose-hosted-nosql-cassandra/" class="ext-link" rel="external "> IBM Compose </a>提供与<a href="https://www.ibm.com/cloud-computing/bluemix/" class="ext-link" rel="external "> Bluemix云服务</a>集成的托管服务Scylla。<a href="https://www.youtube.com/watch?v=vvJjGpvYJWw" class="ext-link" rel="external ">三星SDS </a>，其投资者之一，也将其用于物联网和移动应用。其他用户包括Arista Networks、广告技术公司AppNexus、视频社交网络musical.ly、印度出租车预订服务Ola。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

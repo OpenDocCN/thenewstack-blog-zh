@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>AWS Launches an IDE to Manage the Full Machine Learning Lifecycle</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">AWS推出IDE来管理整个机器学习生命周期</h1>
+<blockquote>原文：<a href="https://thenewstack.io/amazon-web-services-launches-an-ide-to-manage-the-full-machine-learning-lifecycle/#0001-01-01">https://thenewstack.io/amazon-web-services-launches-an-ide-to-manage-the-full-machine-learning-lifecycle/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">和去年一样，<a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer external " class="ext-link">亚马逊网络服务</a>将机器学习和人工智能作为其年度<a href="https://reinvent.awsevents.com/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Re:Invent </a>用户大会的一大主题，该大会本周在拉斯韦加斯举行。AWS首席执行官<a href="https://twitter.com/ajassy" target="_blank" rel="noopener noreferrer external " class="ext-link"> Andy Jassy </a>在他三个小时的主题演讲中花了近一个小时介绍该公司为展会推出的新人工智能/人工智能技术和服务。</p>
+<p class="translated">也许对开发者来说最值得注意的是，AWS推出了一个完全集成的开发环境(IDE)，名为SageMaker Studio，用于管理正在云服务上开发和运行的机器学习作业的完整生命周期。它在SageMaker平台的单一用户界面下统一了公司的所有工具，SageMaker平台是公司<a href="/amazon-sagemaker-automates-artificial-intelligence-development-pipeline/" target="_blank">两年前发布的</a>。此次发布还包括一些额外的功能，包括调试。监控甚至自动创建ML模型。</p>
+<p class="translated">SageMaker Studio“首次将数十种机器学习工具整合在一个单一的窗格中，”AWS人工智能副总裁Matt Wood也在主题演讲中表示。“我们的目标是将机器学习交给比以往更多的开发人员和数据科学家。”</p>
+<p class="translated">SageMaker Studio提供了从中央控制台构建、训练、调整和部署他们的ML模型的能力。开发者可以很容易地在步骤之间切换，<a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-studio-the-first-fully-integrated-development-environment-for-machine-learning/" target="_blank" rel="noopener noreferrer external " class="ext-link">公司承诺</a>，这样他们可以更快地迭代。可以创建文件夹来管理和共享给定项目的所有资源。</p>
+<p class="translated"><a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-studio-the-first-fully-integrated-development-environment-for-machine-learning/" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-large wp-image-9463590" src="../Images/57310a3e15ef588074810ae44b9d4080.png" alt="" data-id="9463590" data-original-src="https://cdn.thenewstack.io/media/2019/12/39d3115e-studio-1024x476.png"/> </a></p>
+<p class="translated">“SageMaker的更新是巨大的。AWS现在有一个端到端和完整的ML PaaS，”新堆栈贡献分析师<a href="/author/janakiram/" target="_blank">贾纳基拉姆·MSV</a>在展厅发推文给<a href="https://twitter.com/janakiramm/status/1201922272954421249?s=20" target="_blank" rel="noopener noreferrer external " class="ext-link">。</a></p>
+<h2 class="translated">概念漂移不再</h2>
+<p class="translated">SageMaker Studio的原子工作单元将是一个笔记本，一个基于开源<a href="/jupyter-notebooks-challenge-reproducibility/" target="_blank"> Jupyter笔记本</a>的代码和评论模板。开发人员可以在SageMaker笔记本上工作(目前在预览版中)，当它们运行时，AWS可以自动分配正确数量的硬件和云服务，消除了开发人员管理基础设施的需要。</p>
+<p class="translated"><a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-studio-the-first-fully-integrated-development-environment-for-machine-learning/" class="ext-link" rel="external "> <img decoding="async" loading="lazy" class="aligncenter size-large wp-image-9464537" src="../Images/075dca1a2279e79279a6941a710de89b.png" alt="" data-id="9464537" data-original-src="https://cdn.thenewstack.io/media/2019/12/0b76f738-aws-notebooksv2-1024x666.png"/> </a></p>
+<p class="translated">由于训练模型需要大量的迭代测试，AWS组装了<a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-experiments-organize-track-and-compare-your-machine-learning-trainings/" target="_blank" rel="noopener noreferrer external " class="ext-link"> SageMaker Experiments </a>，它自动捕获每个实验的输入参数、配置和结果，提供了一种实时检查和比较多个训练运行的方法。该公司还推出了<a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-processing-fully-managed-data-processing-and-model-evaluation/" target="_blank" rel="noopener noreferrer external " class="ext-link">Amazon SageMaker Processing</a>，这是一款Python SDK，可以在完全托管的基础设施上运行预处理、后处理和模型评估工作负载。特别是，这可以帮助完成所有繁琐的预处理工作，例如将数据集转换为输入格式，重新调整或归一化数字特征，以及将数据转换为更丰富的格式，例如用GPS坐标替换邮寄地址。</p>
+<p class="translated">添加了几个工具来提高模型本身的性能。添加了一个新的<a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-debugger-debug-your-machine-learning-models/" target="_blank" rel="noopener noreferrer external " class="ext-link">调试器</a>来仔细检查为什么ML模型没有得到最佳结果。它检查您的模型，自动收集操作指标，并提供优化训练时间和提高模型质量的警报和建议。这个SDK可以与TensorFlow、Keras、Apache MXNet、PyTorch和XGBoost配合使用。结果可以直接在SageMaker Studio的笔记本上查看。</p>
+<p class="translated">【T2<img decoding="async" loading="lazy" class="aligncenter size-large wp-image-9464538" src="../Images/ec3a383cb6e30e3ca14f9ea3ecef6d1e.png" alt="" data-id="9464538" data-original-src="https://cdn.thenewstack.io/media/2019/12/ee285533-aws-debug-1024x567.png"/></p>
+<p class="translated">另外，SageMaker Model Monitor 也可以提供帮助，它可以在运行时自动监控ML模型，在出现数据质量问题时发出警报。Jassy指出，这种监视器特别擅长检测“<a href="https://machinelearningmastery.com/gentle-introduction-concept-drift-machine-learning/" target="_blank" rel="noopener noreferrer external " class="ext-link">概念漂移</a>的问题，即以前成功的模型由于基本训练数据的一些最近变化(例如，房价的突然变化)而不再有用。它在训练期间创建一组基线统计数据，然后用于比较生产中模型的结果。警报可以反馈给SageMaker Studio和/或CloudWatch。你甚至可以将它与SageMaker Processing联系起来，在那里它将推断出一个新的模型，它们可以快速旋转起来。</p>
+<p class="translated">如果你想知道AWS是否可以自动完成创建有用的ML模型的整个过程，那么看看<a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-autopilot-fully-managed-automatic-machine-learning/" target="_blank" rel="noopener noreferrer external " class="ext-link"> SageMaker Autopilot </a>，它旨在检查一组原始数据，例如在S3存储为对象数据，自动检查一组分类和回归机器学习模型。通过多次迭代和对基础算法的轻微调整，这消除了手动创建预测模型的繁琐工作。从这项工作中，它训练了一个<a href="https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipelines.html" class="ext-link" rel="external ">推理管道</a>，然后可以在实时端点投入使用，或者为批处理做准备。</p>
+<p class="translated">除了SageMaker，该公司还推出了一系列新的计算实例，专门用于ML工作负载的推理部分。Jassy指出，虽然每个人都担心测试阶段，但亚马逊自己发现，ML工作负载中的大部分硬件成本——如支持Alexa语音命令服务——来自工作负载的推理(面向客户)部分。与当前的<a href="https://aws.amazon.com/ec2/instance-types/g4/" target="_blank" rel="noopener noreferrer external " class="ext-link"> G4实例</a>相比，<a href="https://aws.amazon.com/about-aws/whats-new/2019/12/introducing-amazon-ec2-inf1-instances-high-performance-and-the-lowest-cost-machine-learning-inference-in-the-cloud/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Inf1实例</a>每个都有多达16个基于ARM的AWS推理芯片，承诺提供40%的每次推理成本，以及3倍的性能。</p>
+<p class="translated">在主题演讲中，伍德概述了所有自动驾驶仪以及SageMaker的其他功能如何用于生产。他想预测美国的房价。他所需要的只是一个包含美国住房销售数据的CVS文件，以及每栋房子的特征(卧室数量等)。)AutoPilot一次最多可以运行50个模型。“ML的肮脏秘密是，你不只是训练一个单一的模型，你训练几十个，然后挑选最好的，”伍德打趣道。自动驾驶仪反复琢磨最佳的算法、数据特征和参数，以提供最佳的可能模型。您可以使用调试工具来了解每个模型是如何创建的，并且，当您选择的模型投入运行时，监控服务将让您知道预测何时开始不同于基线模式，这将表明需要重新构建。</p>
+<p class="translated"><a href="https://aws.amazon.com/blogs/aws/amazon-sagemaker-studio-the-first-fully-integrated-development-environment-for-machine-learning/" class="ext-link" rel="external "><img decoding="async" loading="lazy" class="aligncenter size-large wp-image-9464539" src="../Images/7d4e839bffb332e78339f016803a9741.png" alt="" data-id="9464539" data-original-src="https://cdn.thenewstack.io/media/2019/12/6be5eabf-aws-autopilot-1024x479.png"/>T2】</a></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

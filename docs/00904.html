@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>This Week in Programming: From the Mouths of Developers</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">本周编程:来自开发人员的口中</h1>
+<blockquote>原文：<a href="https://thenewstack.io/this-week-in-programming-from-the-mouths-of-developers/#0001-01-01">https://thenewstack.io/this-week-in-programming-from-the-mouths-of-developers/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">本周早些时候，我参加了一个当地开发者团体的“Docker和Kubernetes之夜”，该团体偶尔举办黑客马拉松，并主办一个相当活跃的Slack频道。令活动组织者惊讶的是，他们预订的房间几乎满座，尽管有几个发言者未能到场，但活动充满了演讲和热烈的讨论。</p>
+<p class="translated">作为一个从事写作而不是使用it行业的人，听一屋子活跃的现场开发人员谈论他们使用容器的经历是很有趣的。在某些方面，听到来自该领域开发人员的故事、问题和解决方案是令人大开眼界的，而不是福音传道者和营销副总裁以及其他公关类型的天上掉馅饼的故事，他们可能会用朗朗上口的流行语填充电子邮件，而不是描述现实。</p>
+
+<p/>
+<p class="translated">例如，当晚的第一位发言人在政府部门工作，在开始工作后，他发现他必须继续使用旧的代码库，使用不太新的语言，并且需要亲自前往40多个地点推广产品，每个地点都需要一周的时间。没错，一次部署就需要将近一年的旅行和时间。他很快开始将产品容器化，并让本地团队使用Docker Compose进行开发，并使用OpenShift进行部署。</p>
+<p class="translated">现在，在开发过程中，他的团队可以简单地保存代码并刷新浏览器来测试更改，推出将不再需要以前所需的冗长过程，从而缩短部署时间，他说，“使用这种方法可以缩短99.17%。”演讲充满了技术细节——具体的docker命令和YAML代码——来支持这样一个事实，即开发者确实在使用容器来实现更高的效率并节省大量不必要的工作。</p>
+<p class="translated">与此同时，当晚的第二位发言人更进一步，用Kubernetes和Helm来支持他的申请，并指出托管自己的Kubernetes是浪费时间。打算走库伯内特的路？他说，然后一个由GKE、EKS、AKS或数字海洋托管、管理的Kubernetes取决于你的版本、定价和GPU需求——是唯一的出路。他说话时的恼怒足以让我信服。</p>
+
+<p/>
+<p class="translated">最后，当晚的最后一位演讲者站起来提供了一个完全不同的观点——不要介意Kubernetes不必要的复杂性，如果可能的话，使用无服务器从头开始开发。在他的演讲中，他将Kubernetes称为“出血边缘”，他后来为我更好地定义了这一点:</p>
+<p class="translated">“在我的职业生涯中，我不时听到有人用这个术语来形容那些正在使用但非常不成熟的技术。我认为Kubernetes很感兴趣，人们也在这方面做了很多工作，但我个人非常担心，如果它不能简化他们的堆栈管理，人们会对它失望(就像我一样)。”</p>
+<p class="translated">我问，Istio能对此有所帮助吗？“我不这么认为，”他回答道。“我认为这些旨在帮助简化跨多家供应商的部署的解决方案是问题的真实症状。真正的问题是，人们把Kubernetes当作一个东西，而实际上它是来自每个提供商的不同功能的集合。”</p>
+<p class="translated">虽然他全心全意地推动无服务器，但他承认Kubernetes有自己的位置，他说“新的开发应该从无服务器开始，因为总拥有成本将大大降低”，但“我认为，如果你正在从事一个已经存在一段时间的项目，并且是在多层架构或容器架构上，那么转移到Kubernetes相对简单，并将提供许多好处。只是没有无服务器的好处。但最大的区别在于运营成本，这通常不能很好地归因于开发实践。”</p>
+<p class="translated">现在你知道了——一些关于容器、Kubernetes和无服务器的优点和缺点的观点，不是来自福音传道者、倡导者、Twitter名人，甚至是寻找页面浏览量的开发人员博客，而是来自该领域的一些开发人员，他们试图让事情尽最大努力工作。你尽管拿去吧，但我觉得它相当有价值。现在，我们来看看本周的编程新闻。</p>
+<p class="translated">https://www.youtube.com/watch?amp=&amp;v=xE7sW6BX3eU</p>
+<h2 class="translated">本周的节目中</h2>
+<ul>
+<li class="translated"><strong> TypeScript 3.4候选版本:</strong>微软本周宣布了<a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-4-rc/" class="ext-link" rel="external "> TypeScript 3.4 RC </a>，其中最值得注意的功能可能是增量编译，“它告诉TypeScript保存有关上次编译的项目图的信息，”这样，“下次使用—incremental调用TypeScript时，它将使用该信息来检测类型检查的最低成本方式，并向您的项目发出更改。”根据<a href="https://sdtimes.com/msft/typescript-3-4-rc-now-available-with-incremental-compilation/" class="ext-link" rel="external ">在SDTimes </a>上的一篇文章，TypeScript 3.4是“第一个拥有概述发布计划的迭代计划的版本”，它“旨在与其语言的<a href="https://sdtimes.com/msft/microsoft-reveals-plans-to-improve-typescript-in-2019/" class="ext-link" rel="external ">六个月路线图</a>保持一致”当然，这些只是新版本的一瞥，新版本还包括类似只读数组的类型、对只读元组的支持以及一个新的文字值构造。一如既往，查看<a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-4-rc/" class="ext-link" rel="external ">公告</a>了解全部细节。</li>
+<li class="translated"><strong> Java 12来了:</strong>当我们谈论新的语言版本时，SDTimes也有另一个关于Java 12 的很好的<a href="https://sdtimes.com/java/java-12-is-now-available/" class="ext-link" rel="external ">摘要，根据甲骨文的新发布时间表，这是今年两个主要版本的第一个，在Java 13于2019年9月到来之前还会有两个更新。根据这篇文章，“Java 12中的新特性包括新的低暂停时间垃圾收集器、微基准测试套件、开关表达式、JVM约束API、单个AArch64端口、默认CDS归档、可接受的G1混合收集，以及从G1返回未使用的提交内存的能力。”甲骨文表示，Java 12修复了1919个JIRA问题，“其中1433个由甲骨文员工完成，486个由个人开发人员完成。”与此同时，JAXEnter采访了Oracle Java产品管理高级主管Donald Smith，他们谈论了“最新版本、新版本节奏如何影响Java团队的工作流程、他最感兴趣的新特性等等。</a></li>
+</ul>
+
+<p/>
+<ul>
+<li class="translated"><strong> iOS应用商店提交要求注意:</strong>苹果公司就一些<a href="https://developer.apple.com/news/?id=03202019a" target="_blank" class="ext-link" rel="external ">即将到来的应用商店提交要求</a>向iOS开发者发出通知，指出“从2019年3月27日开始，iPhone或iPad的所有新应用和应用更新，包括通用应用，必须使用iOS 12.1 SDK或更高版本构建，并支持iPhone XS Max或12.9英寸iPad Pro(第三代)，”并要求截图。苹果电视和苹果手表也有新的要求，所以如果那是你的领域，一定要去<a href="https://developer.apple.com/ios/submit/" target="_blank" class="ext-link" rel="external ">看看细节</a>。</li>
+<li class="translated"><strong>red monk排名是这样说的:</strong>没错，“第一季度双年度”<a href="https://redmonk.com/sogrady/2019/03/20/language-rankings-1-19/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=language-rankings-1-19" target="_blank" class="ext-link" rel="external "> RedMonk编程语言排名</a>已经出炉，其中分析公司从GitHub和Stack Overflow两方面进行排名，以实现“试图反映代码(GitHub)和讨论(Stack Overflow)牵引力的排名。”这一次，他们注意到，“我们的第一级语言没有什么变化”，但这通常是常态。然而，更值得注意的是TypeScript、Kotlin和Julia的一些变化。TypeScript的受欢迎程度持续飙升，已经升至第12位，RedMonk表示，TypeScript肯定不仅仅来自于功能，而是被“越来越多的项目广泛使用”至于Kotlin，它的增长“仅次于Swift”，这是值得注意的，因为Swift是“这些排名历史上增长最快的语言。”他们指出，与此同时，Kotlin“大幅增长，而其他三家基于JVM的同行却在下滑。”最后，<a href="https://jaxenter.com/redmonk-rankings-for-q1-2019-typescript-157131.html" target="_blank" class="ext-link" rel="external "> JAXEnter注意到</a>“另一个值得一提的要点是，尽管没有出现在前20名的名单中，但朱莉娅的成长并没有突飞猛进；然而，它确实表现出了一些缓慢的、递增的上升，跃升了两位，排在第34位，”RedMonk将其与TypeScript过去的类似举动进行了比较。“当然，这并不是说Julia注定要步TypeScript的后尘，”Redmonk写道，“而是提醒我们，虽然语言并不常见，但它可以从缓慢、几乎无法衡量的增长时期快速过渡到一个又一个季度的持续高速增长。”</li>
+</ul>
+
+<p/>
+<ul>
+<li class="translated"><strong> Twitter费率限制其API:</strong>Twitter的API困境已经持续了很长时间，本周，ProgrammableWeb为我们带来了<a href="https://www.programmableweb.com/news/twitter-imposes-updated-rate-limits-to-flush-out-api-abuse/2019/03/20" target="_blank" class="ext-link" rel="external "> Twitter实施更新费率限制以清除API滥用</a>的故事，这是其试图“<a href="https://www.programmableweb.com/news/twitter-unveils-new-developer-requirements/2018/07/24" target="_blank" class="ext-link" rel="external ">通过对希望获得平台访问权的新开发者施加额外限制来保护他们的平台免受垃圾邮件和滥用</a>的一部分简而言之，Twitter宣布将从2019年6月19日开始，默认情况下将/status/mentions _ timeline和/status/user _ timeline端点限制为每天100，000个请求，并且“需要访问超过此速率限制的应用程序将被要求请求豁免，以便Twitter分析用例。”与此同时，Techcrunch <a href="https://techcrunch.com/2019/03/19/twitter-developer-review/" target="_blank" class="ext-link" rel="external ">提供了一点历史背景</a>，写道“过去，Twitter通过突然改变其API政策，用鞭子痛打了开发者。这导致应用程序崩溃，企业倒闭，人们认为Twitter对开发者来说是一个不可靠甚至充满敌意的地方。这一次，Twitter给了开发者三个月的时间，以尽量减少意外和问题。”干得好，推特。才过了十年。</li>
+<li class="translated"><strong>波音737Max的软件故事:</strong>现在，我对开发大型商用客机的软件一无所知，但这位作者在他关于<a href="https://medium.com/@jpaulreed/the-737max-and-why-software-engineers-should-pay-attention-a041290994bd" target="_blank" class="ext-link" rel="external ">737 max以及为什么软件工程师可能想要关注</a>的文章中似乎知道。"那么，作为软件专业人员，我们为什么要关心这种特殊的调查和补救是如何展开的呢？"他问道。“如果你退后一步，用‘系统’代替‘737’，用‘操作工程师’代替‘飞行员’，737Max的情况就是一个新的、市场驱动的业务需求的例子，促使人们对广泛认为稳定可靠的生产系统进行重新设计。”</li>
+</ul>
+
+<p/>
+<p class="attribution translated">专题图片:《Fortran，最伟大的编程语言》，<a href="http://www.simpsonsworld.com/" target="_blank" class="ext-link" rel="external "> The Simpsons </a>，截图(第26季第10集)。</p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>

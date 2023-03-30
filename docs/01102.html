@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Off-The-Shelf Hacker: Machine Vision Meets MQTT Messaging</title>
+<link href="../Styles/Style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="translated">现成的黑客:机器视觉遇到MQTT消息</h1>
+<blockquote>原文：<a href="https://thenewstack.io/off-the-shelf-hacker-machine-vision-meets-mqtt-messaging/#0001-01-01">https://thenewstack.io/off-the-shelf-hacker-machine-vision-meets-mqtt-messaging/#0001-01-01</a></blockquote><div><div id="tns-post-body-content">
+
+
+<p class="translated">在过去的几周里，我们已经讲述了用<a href="http://jevois.org/" target="_blank" rel="noopener noreferrer external " class="ext-link"> JeVois传感器</a>识别物体，并将数据发送到文本到语音转换<a href="https://processing.org/" target="_blank" rel="noopener noreferrer external " class="ext-link">处理脚本</a>。我开始思考，使用<a href="http://mqtt.org/" target="_blank" rel="noopener noreferrer external " class="ext-link"> MQTT </a>协议将识别出的对象名称和位置数据传递给其他机器和系统，会带来很多额外的自动化可能性。MQTT已经成为物联网(IoT)和<a href="https://en.wikipedia.org/wiki/Industrial_internet_of_things" class="ext-link" rel="external ">工业物联网(IIoT) </a>世界的通用消息交换标准。</p>
+<p class="translated">将MQTT消息传递集成到我们的处理脚本中相当简单，只需增加几行代码。将MQTT消息发布到一个联网的代理使得数据可以随时用于日志记录、公告、控制物理动作和其他用途。</p>
+<h2 class="translated">机器视觉加MQTT</h2>
+<p class="translated">我们需要一个MQTT代理来来回回发送消息。JakeMakes有一个非常好的安装程序。我还在以前的<a href="/off-shelf-hacker-run-mqtt-wearable/" target="_blank">可穿戴设备故事</a>中介绍过MQTT的安装。</p>
+<p class="translated">我将<a href="https://mosquitto.org/" target="_blank" rel="noopener noreferrer external " class="ext-link"> Mosquitto </a> MQTT broker和clients安装在<a href="https://thenewstack.io/off-the-shelf-hacker-conversations-with-hedley-the-robotic-skull/" target="_blank" class="local-link">我的基于Raspberry Pi的会说话的头骨</a>上。它会在启动时自动运行，所以当它需要处理发送到客户端或来自客户端的消息时就可以使用。我还通过处理IDE安装了MQTT贡献库。修改后的文本到语音处理脚本获取识别出的对象名，将其传递给MQTT发布函数，并通过代理使其可用。我还在我的ASUS Linux笔记本上使用Synaptic应用程序管理器安装了标准的MQTT代理/客户机包，以便能够在另一台联网的机器上测试新的处理脚本。一旦对处理脚本进行了软件更改，我可以使用下面的命令行检查消息(识别的名称和位置数据)。</p>
+<p class="translated">下面是我在Linux笔记本上使用的命令行，用来查看来自JeVois传感器的MQTT消息。<br/></p>
+<div id="crayon-642311ea96041968281828" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-i">pi</span>%<span class="crayon-h">  </span><span class="crayon-i">mosquitto_sub</span><span class="crayon-h"> </span>-<span class="crayon-i">h</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.111</span><span class="crayon-h"> </span>-<span class="crayon-st">t</span><span class="crayon-h"> </span><span class="crayon-v">mqtt5</span>
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>下面的过程通过处理IDE添加MQTT库。开始加工树莓酱。在“草图”选项卡下，单击“导入库”，然后单击“添加库”在贡献经理搜索框中键入“MQTT”，然后点击“Enter”单击Joel Gaehwiler的“基于Eclipse Paho项目的MQTT处理库”。按右下角的“安装”按钮安装库，安装完成后关闭窗口。我在华硕的Linux笔记本和赫德利的Raspberry Pi上使用的都是3.5.3版本的处理程序。两台机器上的MQTT处理库版本都是1.7.1。Linux笔记本上的Mosquitto代理和客户端版本为1.4.15-2ubuntu0.18.04.3。</p>
+<h2 class="translated">修改上周的代码</h2>
+<p class="translated">今天，关于物理计算项目原型的最酷的事情之一是，你可以将硬件模块插在一起，然后通过改变一些代码从根本上改变小工具的行为。在这里指向一个新安装的库，在那里添加几行代码，噗…新的功能。Processing有许多有趣的库，您可能会觉得有用。表哥，Arduino IDE也有类似的库。</p>
+<p class="translated">这是处理代码。<br/></p>
+<div id="crayon-642311ea96048998514394" class="crayon-syntax crayon-theme-github-gist crayon-font-liberation-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-always">
+<p class="crayon-plain-wrap"/>
+<div class="crayon-main">
+<pre><span class="crayon-e">import </span><span class="crayon-i">processing</span><span class="crayon-st">.</span><span class="crayon-i">serial</span>.*;
+<span class="crayon-e">import </span><span class="crayon-i">mqtt</span>.*;<span class="crayon-h">               </span>
+<span class="crayon-e">MQTTClient </span><span class="crayon-i">client</span>;<span class="crayon-h"> </span>
+<span class="crayon-e">int </span><span class="crayon-i">lf</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">10</span>;<span class="crayon-h"> </span><span class="crayon-c">// Linefeed in ASCII</span>
+<span class="crayon-e">String </span><span class="crayon-i">myString</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">null</span>;
+<span class="crayon-e">Serial </span><span class="crayon-i">myPort</span>;<span class="crayon-h"> </span><span class="crayon-c">// The serial port</span>
+ 
+<span class="crayon-e">void </span><span class="crayon-e">setup</span>()<span class="crayon-h"> </span>{
+<span class="crayon-c">// Open the port you are using at the rate you want:</span>
+<span class="crayon-i">myPort</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">Serial</span>(<span class="crayon-i">this</span>,<span class="crayon-h"> </span><span class="crayon-s">"/dev/ttyACM0"</span>,<span class="crayon-h"> </span><span class="crayon-cn">115200</span>);
+<span class="crayon-c">// myPort = new Serial(this, "/dev/ttyUSB0", 115200);</span>
+ 
+<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"streamoff\n"</span>);
+<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"setpar serout All\n"</span>);
+<span class="crayon-c">// myPort.write("setmapping2 YUYV 320 240 15.0 JeVois TensorFlowEasy\n");</span>
+<span class="crayon-c">// myPort.write("setmapping2 YUYV 640 480 15.0 JeVois DetectionDNN\n");</span>
+<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"setmapping2 YUYV 640 480 15.0 JeVois DarknetYOLO\n"</span>);
+<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"streamon\n"</span>);
+<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">write</span>(<span class="crayon-s">"setpar serstyle Normal\n"</span>);
+<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">clear</span>();
+ 
+<span class="crayon-i">client</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">MQTTClient</span>(<span class="crayon-i">this</span>);
+<span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">connect</span>(<span class="crayon-s">"mqtt://192.168.1.111"</span>,<span class="crayon-h"> </span><span class="crayon-s">"nothing"</span>);
+<span class="crayon-c">// client.connect("mqtt://test.mosquitto.org", "nothing");</span>
+}
+ 
+<span class="crayon-e">void </span><span class="crayon-e">draw</span>()<span class="crayon-h"> </span>{
+<span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">available</span>()<span class="crayon-h"> </span><span class="crayon-sy">&amp;gt;</span><span class="crayon-h"> </span><span class="crayon-cn">0</span>)<span class="crayon-h"> </span>{
+<span class="crayon-i">myString</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">readStringUntil</span>(<span class="crayon-i">lf</span>);
+ 
+<span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">myString</span><span class="crayon-h"> </span>!=<span class="crayon-h"> </span><span class="crayon-i">null</span>)<span class="crayon-h"> </span>{
+<span class="crayon-e">println</span>(<span class="crayon-i">myString</span>);
+<span class="crayon-i">String</span>[]<span class="crayon-h"> </span><span class="crayon-i">q</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-e">splitTokens</span>(<span class="crayon-i">myString</span>,<span class="crayon-h"> </span><span class="crayon-s">" :"</span>);
+<span class="crayon-e">if</span><span class="crayon-h"> </span>(<span class="crayon-i">q</span>[<span class="crayon-cn">0</span>].<span class="crayon-e">equals</span>(<span class="crayon-s">"N2"</span>)<span class="crayon-h"> </span>==<span class="crayon-h"> </span><span class="crayon-i">true</span>)<span class="crayon-h"> </span>{
+<span class="crayon-c">// exec("espeak", "I see a " + q[1]);</span>
+ 
+<span class="crayon-i">client</span><span class="crayon-st">.</span><span class="crayon-e">publish</span>(<span class="crayon-s">"mqtt5"</span>,<span class="crayon-h"> </span><span class="crayon-i">q</span>[<span class="crayon-cn">1</span>]<span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-s">" at x= "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-i">q</span>[<span class="crayon-cn">2</span>]<span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-s">" y = "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-i">q</span>[<span class="crayon-cn">3</span>]);
+ 
+}
+}
+<span class="crayon-e">delay</span>(<span class="crayon-cn">3000</span>);
+<span class="crayon-i">myPort</span><span class="crayon-st">.</span><span class="crayon-e">clear</span>();
+}
+}
+<span class="crayon-e">void </span><span class="crayon-e">messageReceived</span>(<span class="crayon-e">String </span><span class="crayon-i">topic</span>,<span class="crayon-h"> </span><span class="crayon-i">byte</span>[]<span class="crayon-h"> </span><span class="crayon-i">payload</span>)<span class="crayon-h"> </span>{
+<span class="crayon-e">println</span>(<span class="crayon-s">"new message: "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-i">topic</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-s">" - "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-e">new </span><span class="crayon-e">String</span>(<span class="crayon-i">payload</span>));
+}
+</pre>
+</div>
+</div>
+
+<p class="translated"><br/>MQTT库和客户机引用在脚本开始时被初始化。然后用代理的IP地址建立客户机和连接。确保包含地址的“mqtt://”部分。您也可以使用外部MQTT代理。Mosquitto有一个公共测试代理，可以免费使用。插入“mqtt://test.mosquitto.org”代替IP地址，如注释大纲所示。</p>
+<p class="translated">发送到代理的实际消息由client.publish()函数处理。在我们的例子中，“mqtt5”是主题。变量q[1]指的是已识别的名称。q[2]和q[3]对应于赫德利视野内被识别物体的x和y坐标。你能在你的机器视觉/MQTT项目中使用物体位置数据吗？</p>
+<p class="translated">我遇到的一个奇怪的情况是“runtime exception:MQTT]Callback not found”错误。不确定原因。“messageReceived()”函数出现在MQTT库下的一个示例程序中，所以我只是将它包含在代码中，它就消除了错误。</p>
+<p class="translated"><iframe loading="lazy" title="m-v mqtt" src="https://www.youtube.com/embed/-h6SN62N8m4?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">视频</iframe></p>
+<h2 class="translated">后续步骤</h2>
+<p class="translated">JeVois传感器数据和MQTT有很多可能的用例。</p>
+<p class="translated">也许我们可以将JeVois传感器连接到一个<a href="https://www.amazon.com/HiLetgo-Internet-Development-Wireless-Micropython/dp/B010O1G1ES" class="ext-link" rel="external "> NodeMCU板</a>上，并使用MQTT消息通知我们有人在前门。Arduino IDE有许多MQTT库。或者，使用Linux笔记本上的处理脚本进行远程文本到语音音频对象识别怎么样？或者，当前门传感器检测到汽车停在车道上时，使用NodeMCU板的联网灯会打开？嘿，打开洒水阀怎么样，用MQTT来阻止院子里的流浪动物？有了MQTT，让数据在网络上可用变得简单而快速。</p>
+<p class="translated">我们还能用这项技术做什么？</p>
+<p class="translated"><em>赶【Torq博士的 <a href="https://thenewstack.io/tag/off-the-shelf-hacker/" class="local-link">现成黑客专栏</a>，每周六，只上新栈！在<a href="mailto:doc@drtorq.com">doc@drtorq.com</a>或407-718-3274直接联系他咨询、演讲出场和委托项目。</em></p>
+
+
+<div class="tns-logo-slug">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 68 31" version="1.1">
+<title>Group</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Group">
+<path d="M24.002,29.619 L29.77,29.619 L29.77,15.808 C29.77,15.038 29.622,11.265 29.59,10.414 L29.77,10.414 C31.424,14.019 31.473,14.147 32.168,15.322 L39.65,29.618 L44.845,29.618 L44.845,0 L39.075,0 L39.075,11.064 C39.075,12.197 39.075,12.44 39.182,14.472 L39.325,17.468 L39.151,17.468 C39.034,17.267 38.596,16.173 38.467,15.929 C38.164,15.323 37.725,14.512 37.373,13.905 L30.031,0 L24,0 L24,29.619 L24.002,29.619 Z" id="Path-Copy" fill="#FF3287"/>
+<path d="M56.948,0 C50.745,0 47.606,3.43 47.606,8.296 C47.606,14.114 51.036,15.404 55.518,17.132 C60.438,18.853 61.782,19.332 61.782,21.539 C61.782,24.225 58.969,24.867 57.401,24.867 C54.579,24.867 52.493,23.342 51.536,20.858 L47,24.185 C49.43,28.937 52.145,30.185 57.713,30.185 C59.364,30.185 62.059,29.74 63.727,28.694 C67.779,26.156 67.779,22.22 67.779,20.898 C67.779,18.129 66.531,16.207 66.178,15.726 C65.049,14.121 63.032,12.918 61.25,12.278 L57.084,10.914 C55.073,10.267 52.928,10.105 52.928,8.019 C52.928,7.707 53.008,5.528 56.288,5.319 L61.465,5.319 L61.465,0 C61.465,0 57.342,0 56.948,0 Z" id="Path-Copy-2" fill="#00AFF4"/>
+<polygon id="Path" fill="#00AFF4" points="5.32907052e-15 1.77635684e-15 5.32907052e-15 5.319 7.572 5.319 7.572 29.564 14.132 29.564 14.132 5.319 21.544 5.319 21.544 1.77635684e-15"/>
+</g>
+</g>
+</svg> </div>
+
+</div>
+</div>    
+</body>
+</html>
