@@ -1,0 +1,47 @@
+# 无监督和有监督的人工智能之战
+
+> 原文：<https://thenewstack.io/the-battle-between-unsupervised-and-supervised-ai/>
+
+[](https://www.linkedin.com/in/kimdelfierro/)
+
+ [金·德尔·菲耶罗
+
+金·德尔·菲耶罗是 Aisera 的营销副总裁。Kim 为 Aisera 带来了长达 22 年的领导、战略制定和交付成功上市计划的职业生涯。](https://www.linkedin.com/in/kimdelfierro/) [](https://www.linkedin.com/in/kimdelfierro/)
+
+没有什么可以阻止人工智能(AI)进化的势头。我们目前正在目睹一场数字化转型，它使人工智能能力能够添加到企业现有的 IT 服务管理和客户服务管理工具中。
+
+当人工智能应用于内部和外部服务台系统时，它可以帮助用户自主解决他们的问题，而不需要服务台代理的帮助-事实上，根本不需要任何人工干预！这种自主性是及时、高质量服务和提高两端生产力的关键。此外，通过减轻服务台的低级支持需求并使代理专注于关键的高价值任务，AI 降低了运营成本，提高了服务台的工作效率，并为用户提供了及时、令人满意的自助服务体验。当应用于利用全渠道(网络聊天、短信、语音和电子邮件)的现有票务系统和知识库时，人工智能的节省可以大大降低业务成本。
+
+今天，融合人工智能和机器学习不仅是一种选择，也是在这个数字经济中生存和发展的关键一步。如今的客户希望随时都能快速获得称职、知情的支持。人工智能可以全天候实时满足这样的期望。那么，你的企业应该在哪里以及如何采用 AI 技术呢？
+
+## 客户支持中有监督的与无监督的人工智能
+
+如果你正在阅读这篇文章，那么你很可能已经使用了聊天机器人来试图获得你的服务查询的答案。通常，聊天机器人的响应是基于一组脚本化的输入，这些输入被映射到品牌创建的输出。这种监督学习是有限的，并且基于代理从客户那里收到的问题。如果客户询问 A，那么脚本将“知道”将该客户带到 b。然而，如果客户需要聊天机器人监督、引导流程范围之外的帮助，没有利用人工智能的聊天机器人无法提供帮助。
+
+为了克服监督学习的局限性，业界开始转向高级(尽管计算更复杂)[无监督](https://u7061146.ct.sendgrid.net/ls/click?upn=4tNED-2FM8iDZJQyQ53jATUXLHoeBfKFxdOAWzTAfVyd-2BWMGK7iJGiVPqjJ80BbvGzGVUSoSt4NeCypQH15JOOfn9ofniQ-2BbidKb5ObGmstk4-3DBYma_O3XWFiAdWrzzrOIt72qAuP-2FbndfNk77oStsNu8L1BZPqEyoWyLGgObP5D-2BSzNI70MI5TyyOnjna3a9QBBAyLrgmLtqupAd6uDvMJfvq-2FfKK7GhcUJ-2BLHOQcvFLsJC7wHcqwAfZwzHan5O5zMrs8AGf6l5X-2BWUwpqRqw6CX9bxGeFzJaY9wkRzej3s8jHXx0iFrQsm0M6k79o3sfQhNL2XwvxAqsV1-2Fjh4Ho-2FcGHQAXtolSZ202GKZWsWFOAPgqb2EBnVzzZPJTWIIWngGxDDs1Kt9IfNNYupKC4IV0coWx1v2fhvPD0lVFZDncYT3hZnPhV5sOdXGr1qntrkvX6p8rFwKIHeumAkZHTPCap9McE-3D)学习。这是因为，为了在不依赖脚本的情况下自主回答查询，聊天机器人必须能够在无人监督的情况下通过使用人工智能来学习客户的问题。当无人监管的人工智能向用户提供自助服务时，对话式交互可以利用[对话式人工智能](https://u7061146.ct.sendgrid.net/ls/click?upn=4tNED-2FM8iDZJQyQ53jATUchKuaQN9mvf-2Fh4y0HBsUFLAhH0COe2tulIy3n9V-2Bxd-2FsxN5qXSbT2em1x9uOSGiVjnYCgd-2Fvtmx7pAC1DqlC8U-3DVRTl_O3XWFiAdWrzzrOIt72qAuP-2FbndfNk77oStsNu8L1BZPqEyoWyLGgObP5D-2BSzNI70MI5TyyOnjna3a9QBBAyLrgmLtqupAd6uDvMJfvq-2FfKK7GhcUJ-2BLHOQcvFLsJC7wHcqwAfZwzHan5O5zMrs8AGf6l5X-2BWUwpqRqw6CX9bxGeFzJaY9wkRzej3s8jHXx0iFrQsm0M6k79o3sfQhNL2XzizH5JqY6a6PGglLfKiIwJwPT2ZP-2FGudPZplwUJefgGXP113-2Fi0oeNlho-2BcfndSa2rLERQYq-2BSpVp7SE-2FPoVlWYPG9EKQkNt2Jx9hUkmKrJxKEssK7uhmz9Dxy5JefXqT8qEhHhfA1W3pcXZa6f8N4-3D)变得更加丰富和自然。
+
+无监督学习体现了独立工作的智能和自动化，并从数据本身自动确定信息、结构和模式。这种能力支持无监督的自然语言处理(NLP ),具有明显的优越性。
+
+基于无监督人工智能的对话式人工智能为支持代理负责更复杂的支持请求打开了大门。代理还可以通过强化学习来识别和填补知识缺口，从而为人工智能聊天机器人的知识和工程做出贡献。最重要的是，人工智能可以通过学习和利用客户搜索和查询来销售更多产品，从而帮助创造收入。
+
+## 受监督的人工智能聊天机器人的作品
+
+受监督的聊天机器人处理对话流中预先写好的关键词。当客户输入查询时，聊天机器人会根据存储在其库中的预定义脚本做出响应。每个脚本化的聊天机器人命令必须单独编写，使用正则表达式或其他形式的字符串分析。如果客户输入的查询没有相关的关键字，那么聊天机器人会回复一条消息，比如“对不起，我不明白。”
+
+## 无人监管的人工智能聊天机器人的作品
+
+另一方面，基于人工智能的聊天机器人很智能。在自然语言处理(NLP)的帮助下，他们对主题提出适当的建议；因此，人工智能驱动的机器人可以“理解”用户的语言。当客户与人工智能聊天机器人互动时，这种对话近似于与人类聊天的体验。这种对话也被记录下来，并用于改进和提高人工智能聊天机器人的能力。所以，人工智能机器人从互动中学习，并自己变得聪明。
+
+## 哪一种适合您的企业？
+
+如果你对降低客户的通话量和解决问题的速度不感兴趣，那么你可以选择脚本聊天机器人。它们具备无需决策的能力，从用户提问开始。然而，如果你选择人工智能聊天机器人，你就有能力为你的客户提供独特的、令人满意的体验。如果人工智能聊天机器人无法继续与用户对话，它会迅速将聊天转移到人类代理。这种聊天机器人可以让你提供更好的客户和员工对话互动。
+
+## 结论
+
+客户决定着每一笔生意的成败，所以他们应该得到很好的支持。他们需要快速回答他们的问题和难题，而[一个高质量的人工智能解决方案](https://u7061146.ct.sendgrid.net/ls/click?upn=4tNED-2FM8iDZJQyQ53jATUcoNKbsKQkYMJykwV1UdoHm9M-2Fn1q0-2FNib4qCHBmotzxV6od_O3XWFiAdWrzzrOIt72qAuP-2FbndfNk77oStsNu8L1BZPqEyoWyLGgObP5D-2BSzNI70MI5TyyOnjna3a9QBBAyLrgmLtqupAd6uDvMJfvq-2FfKK7GhcUJ-2BLHOQcvFLsJC7wHcqwAfZwzHan5O5zMrs8AGf6l5X-2BWUwpqRqw6CX9bxGeFzJaY9wkRzej3s8jHXx0iFrQsm0M6k79o3sfQhNL2X7XKK4rHcGVa1-2FrlbMuR-2FnJ-2BRcu8aS9Dq-2FM-2FBut6v8oz10Z0ZrhWknscL8jqFzrTSaYDcSyTGEvli5RoN-2B0HDM1g2m87ok-2F9hc4jsEft3RQBB0Ses17egAC6WA3cblNeR19vxSYxcM481-2FRAzgAnFrY-3D)是给他们所需答案的最佳方式。
+
+我们的人工智能驱动、基于云的解决方案让您能够实现运营和服务台的现代化，同时随着业务的发展而不断扩展。
+
+如果你想进一步了解我们的[人工智能服务管理产品](https://aisera.com/)，请随时[请求演示](https://u7061146.ct.sendgrid.net/ls/click?upn=4tNED-2FM8iDZJQyQ53jATUdk-2FRlEIWQbl6W-2Bk22lAB3YDbl30K5cBOBMom7SttnlBhyXi-2BZjXM-2FZE-2FpOnyRKgAPeY8Zl4eAApFzE-2FYKqzQ2k-3DGa3J_O3XWFiAdWrzzrOIt72qAuP-2FbndfNk77oStsNu8L1BZPqEyoWyLGgObP5D-2BSzNI70MI5TyyOnjna3a9QBBAyLrgmLtqupAd6uDvMJfvq-2FfKK7GhcUJ-2BLHOQcvFLsJC7wHcqwAfZwzHan5O5zMrs8AGf6l5X-2BWUwpqRqw6CX9bxGeFzJaY9wkRzej3s8jHXx0iFrQsm0M6k79o3sfQhNL2X2Asjok7OzO85qsPM8OsjB7Wsoo0o4X95eSfcX-2FKn8MrqHlLvdDEXQDVIKC6iDUN2tKqBzf6L-2FnV5j4PArbT1K9D-2B9tb8gFHZgvlPYrtsu-2BWE91tY7o7gSLFyTi3bOwiMUjNPPW1nJeGPy8u87GZifI-3D)。
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 68 31" version="1.1"><title>Group</title> <desc>Created with Sketch.</desc></svg>

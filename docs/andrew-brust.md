@@ -1,0 +1,5 @@
+# 《新书库》的作者安德鲁·布鲁斯特
+
+> 原文：<https://thenewstack.io/author/andrew-brust/>
+
+Blue Badge Insights 的负责人 Andrew Brust 是数据库和 BI/分析领域的资深市场情报专家，自 20 世纪 80 年代末以来一直是一名从业者，在 20 世纪 90 年代和 21 世纪初担任咨询高管，并在大数据/BI 领域担任记者和分析师(自 2011 年起为 ZDNet 工作，自 2013 年起为 GigaOm 工作)。从 2015 年初到 2017 年 8 月，Brust 还在大数据 ISV Data meer 担任供应商方面的工作，担任市场战略和情报高级总监。Brust 在数据分析、BI 和数据仓库领域对客户需求和痛点有着深刻的理解，在商业智能市场已有 20 多年的从业经验。他还是一名云分析专家:他作为微软数据平台 MVP 和 RD 的认可为他提供了多年关于 Azure 云数据服务的洞察力和专业知识，包括现在的 Azure HDInsight 的早期测试和早期参与 Power BI 和 Azure Synapse Analytics。他在亚马逊网络服务(AWS)方面也有经验，已经编写了两个关于云的大数据堆栈的 Pluralsight 课程。Brust 是一位技术娴熟的作家，已经为技术受众写作了 25 年。Brust 还在包括 Visual Studio Live！，SQL Server Live！还有人工智能直播！，所有这些都是他共同主持的。2019 年 5 月，Brust 在微软的 Build 开发者大会上与 Azure Synapse 分析团队的一名成员共同举办了一场分组会议。他还在 2018 年和 2019 年在纽约著名的 Strata Data 会议上介绍了数据治理和数据目录。Brust 的技术背景、行业知识以及他作为作者和演示者的多产工作相结合，使他成为多才多艺的战略家、顾问、行业分析师以及分析和数据科学领域供应商、专家和资源的“连接器”。

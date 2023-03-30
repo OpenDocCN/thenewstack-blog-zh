@@ -1,0 +1,27 @@
+# 在本周的节目中:Docker Dogpile 继续
+
+> 原文：<https://thenewstack.io/this-week-in-programming-the-docker-dogpile-continues/>
+
+一周后的今天，Docker 桌面似乎仍在每个人的脑海中挥之不去。在 Docker 决定它[可能试图通过向超过 250 名员工和年收入超过 1000 万美元的公司收费，从其最受欢迎的产品之一中实际赚钱](https://www.docker.com/blog/updating-product-subscriptions/)之后，互联网上的许多人展示了[如何有权](https://thenewstack.io/this-week-in-programming-docker-and-the-internet-of-entitlement/)投诉 Docker 所谓的[诱饵和开关](https://twitter.com/jbeda/status/1432803352853684227?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1432803352853684227%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Ffeedly.com%2F)以及其他投诉。
+
+本周，黑客新闻的热门帖子几乎每天都有至少一个关于 Docker 桌面替代品的链接，就像上周新闻发布时迅速出现的那样。例如，DevOps 工程师 [Marcus Noble](https://twitter.com/Marcus_Noble_) 关于[从 Docker 迁移到 Podman](https://marcusnoble.co.uk/2021-09-01-migrating-from-docker-to-podman) 的一篇博客帖子似乎触动了神经，提到了 Podman 关于支持非 Linux 操作系统的[适时的推文](https://twitter.com/Podman_io/status/1432800271873323010)。
+
+与此同时，看起来 Podman 团队正在考虑这一切，并讨论 Podman 是否应该为 Windows、Linux 和 Mac 提供一个 [Podman 桌面](https://github.com/containers/podman/issues/11494)，写道“已经通过 Twitter、IRC、电子邮件和其他来源收到了几个请求，要求提供一个类似于 Docker 提供的 Podman 桌面应用程序。”
+
+除了 Noble 的博客文章，其他突出的链接包括 Podman 的[最近增加了对苹果 M1 机器的支持](https://github.com/simnalamburt/homebrew-x/blob/main/Formula/podman-apple-silicon.rb)，甚至是 Red Hat 一个月前的文章[关于如何在 Mac 上用 Podman 取代 Docker](https://www.redhat.com/sysadmin/replace-docker-podman-macos)。
+
+现在，似乎所有这些还不够，Infoworld 本周还发表了一篇很长很有价值的文章，考察了 Docker 是如何一分为二的，其中包括对 Docker 创始人 Solomon Hykes、前首席执行官 Ben Golub、早期员工等的采访。这篇文章列举了该公司一路走来的许多失误——尤其是它普遍缺乏重点，无法与 Kubernetes 团队良好合作——这些失误让该公司走到了今天的地步:尽管它很受欢迎，但仍难以盈利。
+
+与此同时，Docker 本周发布了一篇博客文章，解释了[Docker Desktop](https://www.docker.com/blog/the-magic-behind-the-scenes-of-docker-desktop/)幕后的魔力，并试图展示 Docker Desktop 不仅仅是一个容器的图形用户界面(GUI)。“Docker 桌面旨在让您在 Mac 和 Windows 上像在 Linux 上一样轻松地构建、共享和运行容器。他们写道:“Docker 会处理繁琐复杂的设置，这样你就可以专注于编写代码，”然后他们会详细介绍 Docker Desktop 的功能。
+
+正如上周一样，问题仍然存在，公司是否愿意为 Docker Desktop 付费，或者是否会转向其他替代产品，无论是 Podman(本周很流行)还是其他任何替代产品。至少对某些人来说，这甚至不是一个选择…
+
+## 本周的节目中
+
+*   亚马逊 Elasticsearch 成为 OpenSearch 服务:虽然它是亚马逊的[的又一个名称变化](https://twitter.com/jonbonso/status/1436073082733547537)，但鉴于该服务的历史，该公司本周从亚马逊 Elasticsearch 服务转移到亚马逊 OpenSearch 服务可能会被视为更多。正如我们已经在[的新堆栈](https://thenewstack.io/?s=amazon+elasticsearch)上[彻底](https://thenewstack.io/this-week-in-programming-elasticsearch-turns-aws-into-the-open-source-champion/) [编目](https://thenewstack.io/amazon-elastic-and-the-fight-for-open-source-freedom-in-the-enterprise/)一样，正如亚马逊自己在博客文章中简要详述名称变更一样，[亚马逊 OpenSearch 服务](https://aws.amazon.com/opensearch-service/)的历史充满了一场关于开源思想的斗争。长话短说，在最初的开源软件变得不那么开放以阻止 AWS 将其作为服务提供后，亚马逊最终[放弃了 Elasticsearch](https://thenewstack.io/this-week-in-programming-aws-completes-elasticsearch-fork-with-opensearch/) 。现在，亚马逊似乎想彻底超越那段历史，去掉 Elasticsearch 这个名字。“虽然名称已经改变，但我们将继续提供相同的体验，而不会对正在进行的操作、开发方法或业务使用产生任何负面影响，”他们写道，并指出该服务将提供开源引擎的选择，包括目前可用的 19 个版本的 ALv2 Elasticsearch [7.10 和更早的](https://aws.amazon.com/about-aws/whats-new/2021/04/amazon-elasticsearch-service-announces-support-for-elasticsearch-version-7-10/)，以及他们在 7 月[发布的 open search 1.0](https://www.opensearch.org/blog/updates/2021/07/opensearch-general-availability-announcement/)。此外，亚马逊表示，OpenSearch 1.0 提供了“亚马逊 OpenSearch 服务支持的现有 Elasticsearch 版本中没有的三个新功能:OpenSearch 仪表盘中的[转换](https://opensearch.org/docs/im-plugin/index-transforms/index/)、[数据流](https://opensearch.org/docs/opensearch/data-streams/)和[笔记本](https://opensearch.org/docs/dashboards/notebooks/)”
+*   **亚马逊将 EKS 与 EKS 一起部署在任何地方:**当我们在谈论亚马逊和[亚马逊网络服务](https://aws.amazon.com/?utm_content=inline-mention)时，该公司本周做出了另一个值得注意的举动，[宣布了亚马逊 EKS 任何地方](https://feedproxy.google.com/~r/AmazonWebServicesBlog/~3/1iLrrIF_AjE/)。基于其托管的[亚马逊弹性 Kubernetes 服务(EKS)](https://aws.amazon.com/eks/) 、 [EKS Anywhere](https://aws.amazon.com/eks/eks-anywhere) 允许用户使用 VMware vSphere 在自己的数据中心创建和操作 Kubernetes 集群，同时还可以享受集群生命周期支持的自动化工具。EKS Anywhere 是[开源的](https://github.com/aws/eks-anywhere/),适合与您的其他 EKS 集群和工具一起使用。为此，AWS 还发布了 EKS 连接器的公开预览，允许用户将任何 Kubernetes 集群连接到 EKS 控制台。
+
+*   **JetBrains 提供专用的数据科学 IDE:** JetBrains 是广受欢迎的 [IntelliJ IDEA](https://www.jetbrains.com/idea/) 和 [Kotlin](https://kotlinlang.org/) Java 替代方案的幕后公司，本周发布了新的集成开发环境(IDE)，VentureBeat 对此进行了[详述](https://venturebeat.com/2021/09/08/jetbrains-adds-ide-to-help-data-scientists-build-ai-models-in-python/)。VentureBeat 写道，新推出的 IDE， [DataSpell](https://www.jetbrains.com/dataspell/) ，专门面向使用 Python 代码创建人工智能模型的数据科学家，“与大多数数据科学家用来编写和管理代码的传统 Jupyter 笔记本相比，承诺提供更好的体验”。新的 IDE 并不意味着取代 Jupyter 笔记本，而是对它们进行补充，提供诸如“Python 的智能编码辅助、开箱即用的目录、折叠回溯和交互式表格”等功能。DataSpell 不仅支持 Python，还为同样受到数据科学家欢迎的 [R 编程语言](https://www.r-project.org/about.html)提供基础支持，对 [Julia](https://searchsoftwarequality.techtarget.com/news/252448615/Julia-10-brings-API-stability-to-machine-learning-language) 的支持即将到来。如果你对是否应该使用 DataSpell 或 JetBrains 的其他产品 PyCharm 感到困惑，请前往 DataSpell 页面底部的常见问题解答了解更多信息。
+*   **GitHub Enterprise Server 增加了黑暗模式(以及更多):** GitHub 已经[提供了 GitHub Enterprise Server 3.2 的发布候选版本](https://github.blog/2021-09-09-github-enterprise-server-3-2-color-modes-security/)，我们不妨直接切入正题——它有黑暗模式。当然，它也有其他功能，如拉请求和问题的视频，合规团队的控制，以及测试版的几个安全功能，但现在来了…黑暗模式。至于那些安全功能，GitHub 正在增加支持屏幕扫描中的自定义模式的能力，一个用于依赖性审查的测试版，以及一个安全概述功能，该功能提供“通过代码扫描、[依赖机器人](https://github.com/dependabot)和秘密扫描检测到的应用程序安全风险的组织级视图”
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 68 31" version="1.1"><title>Group</title> <desc>Created with Sketch.</desc></svg>
